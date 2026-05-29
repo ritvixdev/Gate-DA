@@ -4,40 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Matrices · GATE DA</title>
-<meta name="description" content="Matrix basics, multiplication, special types, transpose, inverse and trace — with an interactive Matrix Transformer.">
+<meta name="description" content="Learn matrices from zero: meaning, multiplication, special types, transpose, inverse, trace — simple language, GATE shortcuts, traps, practice, and an interactive Matrix Transformer.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body data-root=".." data-topic="02-matrices" data-content>
+  <!-- 1. TOPIC NAME -->
   <div class="hero">
     <span class="tag">Topic 2 · GATE weight: Very High</span>
     <h1>Matrices</h1>
-    <p class="lede">A matrix is a rectangular array of numbers — and, more powerfully, a
-      <strong>linear transformation</strong> of space. Master the operations, types, and the geometry.</p>
+    <p class="lede">A matrix is a table of numbers — and, more powerfully, a <strong>machine that
+      transforms vectors</strong>. This is the workhorse of GATE linear algebra.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔢</span> Matrix basics</div>
-    <p>An $m \times n$ matrix has $m$ rows and $n$ columns; entry $a_{ij}$ sits in row $i$, column $j$.</p>
-    <div class="formula">$$ A = [a_{ij}],\quad i=1\dots m,\ j=1\dots n \qquad \text{square: } m=n,\quad \text{column vector: } n\times 1 $$</div>
-  </div>
+  <!-- 2. WHY -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Vectors are arrows; a <strong>matrix</strong> is a machine that moves those arrows — it can stretch,
+      rotate, flip, shear, or project them. The same object also stores data tables and packs a
+      whole system of equations into one symbol.</p>
+    <p>Almost every later topic is "matrices, asked a different way": determinants, rank, inverse,
+      eigenvalues, systems of equations, PCA. Master the operations here and the rest gets easy.</p>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">✖️</span> Matrix multiplication</div>
-    <p>If $A$ is $m\times n$ and $B$ is $n\times p$, then $C=AB$ is $m\times p$. Each entry is a dot product of a row of $A$ with a column of $B$:</p>
-    <div class="formula">$$ C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj} $$</div>
-    <div class="callout example">
-      <div class="callout-label">✦ Worked example</div>
-      <p>$A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\ B=\begin{bmatrix}5&6\\7&8\end{bmatrix}$</p>
-      <p>$C_{11}=1\cdot5+2\cdot7=19,\quad C_{12}=1\cdot6+2\cdot8=22$</p>
-      <p>$\Rightarrow AB=\begin{bmatrix}19&22\\43&50\end{bmatrix}$</p>
+  <!-- 3. GAME / VISUAL -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Vector</strong> = a player's position arrow.<br>
+         <strong>Matrix</strong> = a transformation portal the player walks through.<br>
+         <strong>Output $Av$</strong> = the new position after the portal.<br>
+         The <strong>columns of the matrix</strong> tell you exactly where the basis arrows
+         $\hat{\imath}=(1,0)$ and $\hat{\jmath}=(0,1)$ land — that's the whole transformation.</p>
     </div>
-    <div class="callout tip">
-      <div class="callout-label">⚡ Critical</div>
-      <p>$AB \neq BA$ in general — matrix multiplication is <strong>not</strong> commutative. A classic GATE trap.</p>
-    </div>
-  </div>
+    <p>Drag the sliders below to build a $2\times2$ matrix and watch the grid deform. The shaded
+      square's area is the determinant (it turns coral if the space flips); try the <em>Singular</em>
+      preset to see the plane collapse to a line.</p>
+  </section>
 
   <div class="viz-panel">
     <div class="viz-head">
@@ -55,51 +60,173 @@
     <div class="viz-readout" id="matrix-transform-readout"></div>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📋</span> Special matrix types</div>
+  <!-- 4. DEFINITIONS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Matrix:</strong> a rectangular table of numbers. An <strong>$m\times n$</strong> matrix has $m$ rows and
+      $n$ columns (rows first — remember "<strong>RC</strong> cola"). Entry $a_{ij}$ sits in row $i$, column $j$.</p>
+    <p><strong>Square:</strong> rows = columns. <strong>Column vector:</strong> $n\times1$. <strong>Row vector:</strong> $1\times n$.</p>
+    <p>Common special matrices:</p>
     <div class="tbl-wrap"><table>
-      <tr><th>Type</th><th>Definition</th><th>Key property</th></tr>
-      <tr><td>Identity $I$</td><td>$a_{ij}=1$ if $i=j$ else $0$</td><td>$AI=IA=A$</td></tr>
-      <tr><td>Diagonal</td><td>$a_{ij}=0$ for $i\neq j$</td><td>Invert via $1/d_{ii}$</td></tr>
-      <tr><td>Symmetric</td><td>$A=A^{\mathsf T}$</td><td>Real eigenvalues, orthogonal eigenvectors</td></tr>
-      <tr><td>Skew-symmetric</td><td>$A=-A^{\mathsf T}$</td><td>Diagonal entries $=0$</td></tr>
+      <tr><th>Type</th><th>Definition</th><th>Key fact</th></tr>
+      <tr><td>Identity $I$</td><td>$1$ on diagonal, else $0$</td><td>$AI=IA=A$ (no effect)</td></tr>
+      <tr><td>Diagonal</td><td>$a_{ij}=0$ for $i\neq j$</td><td>stretches each axis independently</td></tr>
+      <tr><td>Zero $O$</td><td>all entries $0$</td><td>$Ov=0$ (everything → origin)</td></tr>
+      <tr><td>Symmetric</td><td>$A=A^{\mathsf T}$</td><td>real eigenvalues, orthogonal eigenvectors</td></tr>
+      <tr><td>Skew-symmetric</td><td>$A=-A^{\mathsf T}$</td><td>diagonal entries are $0$</td></tr>
+      <tr><td>Upper/Lower triangular</td><td>zeros below/above diagonal</td><td>$\det=$ product of diagonal</td></tr>
       <tr><td>Orthogonal</td><td>$A^{\mathsf T}A=I$</td><td>$A^{-1}=A^{\mathsf T}$, $\det=\pm1$</td></tr>
-      <tr><td>Idempotent</td><td>$A^2=A$</td><td>Eigenvalues are $0$ or $1$</td></tr>
-      <tr><td>Nilpotent</td><td>$A^k=0$ for some $k$</td><td>All eigenvalues $=0$</td></tr>
+      <tr><td>Idempotent</td><td>$A^2=A$</td><td>eigenvalues are $0$ or $1$ (a projection)</td></tr>
+      <tr><td>Nilpotent</td><td>$A^k=0$ for some $k$</td><td>all eigenvalues $0$</td></tr>
     </table></div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔄</span> Transpose &amp; inverse</div>
-    <div class="formula">$$ (A^{\mathsf T})_{ij}=A_{ji},\qquad (AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T} $$
-$$ AA^{-1}=A^{-1}A=I,\qquad (AB)^{-1}=B^{-1}A^{-1},\qquad A^{-1}\text{ exists} \iff \det A \neq 0 $$
-$$ \begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix} $$</div>
-    <div class="callout memory">
-      <div class="callout-label">🧠 Memory trick</div>
-      <p>“Socks before shoes, shoes before socks to remove.” For an inverse or transpose of a product, the order <strong>reverses</strong>.</p>
+  <!-- 5. SYMBOLS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$A$, $B$</td><td>"A, B"</td><td>matrices</td></tr>
+      <tr><td>$a_{ij}$</td><td>"a-i-j"</td><td>entry in row $i$, column $j$</td></tr>
+      <tr><td>$m\times n$</td><td>"m by n"</td><td>$m$ rows, $n$ columns</td></tr>
+      <tr><td>$I$</td><td>"identity"</td><td>identity matrix</td></tr>
+      <tr><td>$A^{\mathsf T}$</td><td>"A transpose"</td><td>rows ↔ columns</td></tr>
+      <tr><td>$A^{-1}$</td><td>"A inverse"</td><td>the undo matrix, $AA^{-1}=I$</td></tr>
+      <tr><td>$\operatorname{tr}(A)$</td><td>"trace of A"</td><td>sum of diagonal entries</td></tr>
+      <tr><td>$\det(A)$, $|A|$</td><td>"determinant"</td><td>scaling number (next topic)</td></tr>
+    </table></div>
+  </section>
+
+  <!-- 6. MAIN FORMULA -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p><strong>Size rule:</strong> $(m\times n)(n\times p)=(m\times p)$ — inner numbers must match, outer numbers give the answer size.</p>
+    <div class="formula">$$ C = AB,\qquad C_{ij} = \sum_{k=1}^{n} A_{ik}\,B_{kj} \quad (\text{row } i \text{ of } A \cdot \text{column } j \text{ of } B) $$</div>
+    <div class="formula">$$ (AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T},\qquad (AB)^{-1}=B^{-1}A^{-1},\qquad \operatorname{tr}(A)=\sum_i a_{ii} $$</div>
+    <p>For a $2\times2$ matrix the inverse is $\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\dfrac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$ (only if $ad-bc\neq0$).</p>
+  </section>
+
+  <!-- 7. STEP-BY-STEP -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: multiply two matrices</div>
+    <ol class="steps">
+      <li>Check sizes: $A$ is $m\times n$, $B$ is $n\times p$. Inner $n$'s match? Good; answer is $m\times p$.</li>
+      <li>For entry $C_{ij}$, take row $i$ of $A$ and column $j$ of $B$.</li>
+      <li>Multiply them term by term and add (a dot product).</li>
+      <li>Repeat for every $i,j$ to fill the answer.</li>
+    </ol>
+  </section>
+
+  <!-- 8. WORKED EXAMPLE -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Multiply</div>
+      <p>$A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\ B=\begin{bmatrix}5&6\\7&8\end{bmatrix}$</p>
+      <p>$C_{11}=1\cdot5+2\cdot7=19,\quad C_{12}=1\cdot6+2\cdot8=22$</p>
+      <p>$C_{21}=3\cdot5+4\cdot7=43,\quad C_{22}=3\cdot6+4\cdot8=50$</p>
+      <p>$\Rightarrow AB=\begin{bmatrix}19&22\\43&50\end{bmatrix}$</p>
     </div>
-  </div>
-
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">⚡</span> Trace</div>
-    <div class="formula">$$ \operatorname{tr}(A)=\sum_i a_{ii},\quad \operatorname{tr}(AB)=\operatorname{tr}(BA),\quad \operatorname{tr}(A)=\textstyle\sum \lambda_i $$</div>
-    <p>The trace equals the sum of the eigenvalues — a fast sanity check in exams.</p>
-  </div>
-
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. If $A$ is $3\times3$ with $A^2=A$, which <em>must</em> be true?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $A=I$</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A=0$</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> Every eigenvalue is $0$ or $1$</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\det(A)=1$</button>
+    <div class="callout example">
+      <div class="callout-label">✦ Order matters: $AB \neq BA$</div>
+      <p>With $A=\begin{bmatrix}1&2\\0&1\end{bmatrix},\ B=\begin{bmatrix}1&0\\3&1\end{bmatrix}$: &nbsp;
+        $AB=\begin{bmatrix}7&2\\3&1\end{bmatrix}$ but $BA=\begin{bmatrix}1&2\\3&7\end{bmatrix}$. Different!</p>
     </div>
-    <div class="quiz-feedback" data-fb="A">$A=I$ works, but so do many other matrices — not forced.</div>
-    <div class="quiz-feedback" data-fb="B">$A=0$ works but is not the only case.</div>
-    <div class="quiz-feedback" data-fb="C">✅ Correct — $A^2=A \Rightarrow \lambda^2=\lambda \Rightarrow \lambda\in\{0,1\}$.</div>
-    <div class="quiz-feedback" data-fb="D">$\det$ could be $0$ (if $A=0$) or $1$ (if $A=I$).</div>
-  </div>
+  </section>
+
+  <!-- 9. SHORTCUTS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Multiplication is <strong>associative</strong> $A(BC)=(AB)C$ but <strong>not commutative</strong> $AB\neq BA$.</li>
+        <li>Transpose and inverse <strong>reverse order</strong>: $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$, $(AB)^{-1}=B^{-1}A^{-1}$.</li>
+        <li>$\operatorname{tr}(AB)=\operatorname{tr}(BA)$ even though $AB\neq BA$. Also $\operatorname{tr}(A)=\sum\lambda_i$.</li>
+        <li>Diagonal / triangular matrix: $\det=$ product of diagonal entries.</li>
+        <li>$A^{-1}$ exists $\iff \det(A)\neq0$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10. TRAPS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$AB=BA$ always." <span class="right">Reality:</span> almost never — order matters.</p>
+      <p><span class="wrong">Trap:</span> "$(AB)^{\mathsf T}=A^{\mathsf T}B^{\mathsf T}$." <span class="right">Reality:</span> the order reverses: $B^{\mathsf T}A^{\mathsf T}$.</p>
+      <p><span class="wrong">Trap:</span> "$A^2=A$ means $A=I$." <span class="right">Reality:</span> any projection (idempotent) works; eigenvalues are just $0$ or $1$.</p>
+      <p><span class="wrong">Trap:</span> "Any two matrices can be multiplied." <span class="right">Reality:</span> only if inner dimensions match.</p>
+    </div>
+  </section>
+
+  <!-- 11. CONNECTIONS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Determinant &amp; inverse:</strong> built from a (square) matrix; $A^{-1}$ exists iff $\det\neq0$.</li>
+      <li><strong>Rank:</strong> independent columns/rows of the matrix.</li>
+      <li><strong>Eigenvalues:</strong> special directions of the transformation; $\operatorname{tr}=\sum\lambda$, $\det=\prod\lambda$.</li>
+      <li><strong>Linear equations:</strong> $Ax=b$ is a matrix acting on the unknown vector $x$.</li>
+      <li><strong>PCA / ML:</strong> data lives in matrices; covariance is a symmetric matrix.</li>
+    </ul>
+  </section>
+
+  <!-- 12. PRACTICE -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Can a $2\times3$ matrix multiply a $2\times2$ matrix (in that order)?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">No — inner dimensions $3$ and $2$ don't match. $(2\times3)(2\times2)$ is undefined.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. If $A$ is $4\times3$ and $B$ is $3\times5$, what size is $AB$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$4\times5$ (outer numbers).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. $\operatorname{tr}\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}=?$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$1+5+9=15$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. For an orthogonal matrix $Q$, what is $Q^{-1}$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$Q^{-1}=Q^{\mathsf T}$ (its transpose), since $Q^{\mathsf T}Q=I$.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If $A$ is $3\times3$ with $A^2=A$, which <em>must</em> be true?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $A=I$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A=0$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> Every eigenvalue is $0$ or $1$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\det(A)=1$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">$A=I$ works, but many other idempotents do too.</div>
+      <div class="quiz-feedback" data-fb="B">$A=0$ works but isn't forced.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $A^2=A\Rightarrow\lambda^2=\lambda\Rightarrow\lambda\in\{0,1\}$.</div>
+      <div class="quiz-feedback" data-fb="D">$\det$ could be $0$ or $1$.</div>
+    </div>
+  </section>
+
+  <!-- 13. MEMORY BOX -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Matrix = machine that transforms vectors; columns = where basis arrows land.</li>
+        <li>Size: $(m\times n)(n\times p)=m\times p$; inner must match.</li>
+        <li>$AB\neq BA$, but $A(BC)=(AB)C$ and $\operatorname{tr}(AB)=\operatorname{tr}(BA)$.</li>
+        <li>Reverse order: $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$, $(AB)^{-1}=B^{-1}A^{-1}$.</li>
+        <li>Triangular/diagonal $\det=$ product of diagonal; $A^{-1}$ exists iff $\det\neq0$.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> AB ≠ BA, and trace equals the sum of eigenvalues: two of the most common traps.</p>
