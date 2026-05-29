@@ -4,25 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vectors & Vector Spaces · GATE DA</title>
-<meta name="description" content="Vectors, vector spaces, subspaces, span, linear independence, basis and dimension — with an interactive Vector Lab.">
+<meta name="description" content="Learn vectors from zero: meaning, span, independence, basis and dimension — simple language, GATE shortcuts, traps, practice, and an interactive Vector Lab.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body data-root=".." data-topic="01-vectors" data-content>
+  <!-- 1. TOPIC NAME -->
   <div class="hero">
     <span class="tag">Topic 1 · GATE weight: High</span>
     <h1>Vectors &amp;<br>Vector Spaces</h1>
-    <p class="lede">The language of linear algebra. Vectors, subspaces, span, and linear
-      independence are the foundation everything else is built on.</p>
+    <p class="lede">Start here. Everything in linear algebra — matrices, rank, eigenvalues, PCA —
+      is built on this one idea. We'll go from "what is a vector" all the way to basis and
+      dimension, in plain words.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔵</span> What is a vector?</div>
-    <p>A <strong>vector</strong> is an ordered list of numbers. In $\mathbb{R}^n$ a vector $v$ has $n$ components and is usually written as a column.</p>
-    <div class="formula">$$ v = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}, \qquad u + v = \begin{bmatrix} u_1+v_1 \\ \vdots \\ u_n+v_n \end{bmatrix}, \qquad c\,v = \begin{bmatrix} c\,v_1 \\ \vdots \\ c\,v_n \end{bmatrix} $$</div>
-    <p>Think of a vector as an arrow from the origin: <strong>adding</strong> is tip-to-tail, <strong>scaling</strong> stretches or flips it. Drag the arrows below to feel it.</p>
-  </div>
+  <!-- 2. WHY THIS TOPIC EXISTS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>A <strong>vector</strong> is just an ordered list of numbers — but that simple idea lets us
+      describe <em>movement</em>, <em>data</em>, and <em>directions in space</em> with one language.</p>
+    <p>Once you can talk about directions and combinations of directions, you can ask the big
+      questions the rest of GATE linear algebra answers: How many independent directions are
+      there? Which directions matter? Can I rebuild any point from a few building blocks?
+      That's <strong>span</strong>, <strong>independence</strong>, <strong>basis</strong> and <strong>dimension</strong> — all in this topic.</p>
+  </section>
+
+  <!-- 3. GAME / VISUAL IMAGINATION -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Vector</strong> = a movement arrow ("go 3 right, 1 up").<br>
+         <strong>Scalar</strong> = a speed/power multiplier (stretch or flip the arrow).<br>
+         <strong>Adding vectors</strong> = do one move, then the next, tip-to-tail.<br>
+         <strong>Span</strong> = every place you can reach by combining your move arrows.<br>
+         <strong>Independent</strong> = each arrow unlocks a genuinely new direction.</p>
+    </div>
+    <p>Play with it below: drag <b>u</b> and <b>v</b>, switch on the sum to see tip-to-tail
+      addition, and switch on the span to see whether two arrows reach a whole plane or just a line.</p>
+  </section>
 
   <div class="viz-panel">
     <div class="viz-head">
@@ -37,98 +58,191 @@
     <div class="viz-readout" id="vector-lab-readout"></div>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🌐</span> Vector space ($\mathbb{R}^n$)</div>
-    <p>A <strong>vector space</strong> is a set $V$ where you can add vectors and scale them, and the result always stays inside $V$ (it is <em>closed</em> under both operations). Formally, eight axioms hold:</p>
-    <ul class="styled">
-      <li>$u+v = v+u$ &nbsp;(commutativity)</li>
-      <li>$(u+v)+w = u+(v+w)$ &nbsp;(associativity)</li>
-      <li>$v + 0 = v$ &nbsp;(zero vector exists)</li>
-      <li>$v + (-v) = 0$ &nbsp;(additive inverse)</li>
-      <li>$1\cdot v = v$, &nbsp; $c(dv) = (cd)v$</li>
-      <li>$c(u+v) = cu+cv$, &nbsp; $(c+d)v = cv+dv$ &nbsp;(distributivity)</li>
-    </ul>
-  </div>
+  <!-- 4. BASIC DEFINITIONS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Vector:</strong> an ordered list of numbers, e.g. $v=(3,1)$. Each number is a
+      <strong>component</strong> (the amount of movement along one axis).</p>
+    <p><strong>$\mathbb{R}^n$:</strong> the space of all vectors with $n$ real components.
+      $(1,2)\in\mathbb{R}^2$, $(3,4,5)\in\mathbb{R}^3$. The symbol $\in$ means "belongs to".</p>
+    <p><strong>Zero vector ($0$):</strong> all components zero, e.g. $(0,0)$ — "no movement", the origin.</p>
+    <p><strong>Vector space:</strong> a set of vectors that is <em>closed</em> — add any two, or scale any
+      one, and the result is still inside the set. ($\mathbb{R}^2$ is the flat plane; $\mathbb{R}^3$ is 3-D space.)</p>
+    <p><strong>Subspace:</strong> a smaller vector space sitting inside a bigger one — for example a line
+      through the origin inside $\mathbb{R}^2$.</p>
+    <p><strong>Span:</strong> all vectors you can build from a given set by scaling and adding.
+      <strong>Linear combination:</strong> one such built vector, $c_1v_1+c_2v_2+\dots$.</p>
+    <p><strong>Linearly independent:</strong> no vector in the set can be built from the others (no waste).
+      <strong>Dependent:</strong> at least one is redundant.</p>
+    <p><strong>Basis:</strong> a set that is independent <em>and</em> spans the space — the minimum team that
+      reaches everywhere. <strong>Dimension:</strong> how many vectors are in a basis.</p>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🧲</span> Subspace</div>
-    <p>A subset $W \subseteq \mathbb{R}^n$ is a <strong>subspace</strong> if it satisfies three things:</p>
-    <div class="formula">$$ \text{(1) } 0 \in W \qquad \text{(2) } u,v \in W \Rightarrow u+v \in W \qquad \text{(3) } u \in W,\ c \in \mathbb{R} \Rightarrow cu \in W $$</div>
+  <!-- 5. SYMBOLS & MEANING -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$v$, $u$, $w$</td><td>"vee, you, double-u"</td><td>vectors (arrows)</td></tr>
+      <tr><td>$c$, $d$</td><td>"see, dee"</td><td>scalars (ordinary numbers)</td></tr>
+      <tr><td>$\mathbb{R}^n$</td><td>"R n"</td><td>all vectors with $n$ real components</td></tr>
+      <tr><td>$\in$ / $\notin$</td><td>"belongs to / not in"</td><td>membership in a set</td></tr>
+      <tr><td>$0$</td><td>"zero vector"</td><td>the all-zeros vector (origin)</td></tr>
+      <tr><td>$\operatorname{span}\{\dots\}$</td><td>"span of"</td><td>all linear combinations</td></tr>
+      <tr><td>$\dim(V)$</td><td>"dim of V"</td><td>dimension = size of a basis</td></tr>
+      <tr><td>$v^{\mathsf T}$</td><td>"v transpose"</td><td>flip a column into a row (or back)</td></tr>
+    </table></div>
+  </section>
+
+  <!-- 6. MAIN FORMULA -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\} = \{\, c_1 v_1 + c_2 v_2 + \dots + c_k v_k \;:\; c_i \in \mathbb{R} \,\} $$</div>
+    <p><strong>Independence test</strong> — the vectors are independent only if the <em>only</em> way to get zero is all-zero scalars:</p>
+    <div class="formula">$$ c_1 v_1 + c_2 v_2 + \dots + c_k v_k = 0 \;\Longrightarrow\; c_1=c_2=\dots=c_k=0 $$</div>
+    <p><strong>Subspace test</strong> — a set $W$ is a subspace exactly when all three hold:</p>
+    <div class="formula">$$ 0 \in W \qquad u,v \in W \Rightarrow u+v \in W \qquad u\in W,\ c\in\mathbb{R} \Rightarrow cu \in W $$</div>
+  </section>
+
+  <!-- 7. STEP-BY-STEP METHOD -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <p><strong>To check if a set $W$ is a subspace:</strong></p>
+    <ol class="steps">
+      <li>Does $W$ contain the zero vector? If <strong>no</strong>, stop — it is not a subspace.</li>
+      <li>Take two general members $u,v\in W$; check $u+v$ still satisfies $W$'s condition.</li>
+      <li>Take $u\in W$ and any scalar $c$; check $cu$ still satisfies the condition.</li>
+      <li>All three pass → it is a subspace.</li>
+    </ol>
+    <p><strong>To check independence of vectors in $\mathbb{R}^n$:</strong></p>
+    <ol class="steps">
+      <li>If you have more than $n$ vectors, they are automatically <strong>dependent</strong> — done.</li>
+      <li>Otherwise set $c_1v_1+\dots+c_kv_k=0$ and solve for the $c_i$.</li>
+      <li>Only the all-zero solution → independent. Any non-zero solution → dependent.</li>
+    </ol>
+  </section>
+
+  <!-- 8. WORKED EXAMPLE -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
     <div class="callout example">
-      <div class="callout-label">✦ Worked example</div>
-      <p>Is $W = \{(x,y) : x+y = 0\}$ a subspace of $\mathbb{R}^2$?</p>
+      <div class="callout-label">✦ Is $W=\{(x,y): x+y=0\}$ a subspace of $\mathbb{R}^2$?</div>
       <ol>
-        <li>Does $(0,0)$ satisfy $x+y=0$? Yes ✓</li>
-        <li>If $x_1+y_1=0$ and $x_2+y_2=0$, then $(x_1+x_2)+(y_1+y_2)=0$ ✓</li>
-        <li>$c(x+y)=cx+cy=0$ ✓</li>
+        <li>Zero: $(0,0)$ gives $0+0=0$ ✓ contained.</li>
+        <li>Add: if $x_1+y_1=0$ and $x_2+y_2=0$, then $(x_1+x_2)+(y_1+y_2)=0$ ✓.</li>
+        <li>Scale: $c(x+y)=cx+cy=0$ ✓.</li>
       </ol>
-      <p>→ Yes — $W$ is a subspace (a line through the origin).</p>
+      <p>All three hold → <strong>yes, it's a subspace</strong> (the line $y=-x$ through the origin).</p>
     </div>
-    <div class="callout tip">
-      <div class="callout-label">⚡ GATE check</div>
-      <p>Every subspace <strong>must</strong> contain the zero vector. If $0 \notin W$, stop — it is <strong>not</strong> a subspace.</p>
-    </div>
-  </div>
-
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🌿</span> Span &amp; linear independence</div>
-    <p><strong>Span</strong> is the set of all linear combinations of some vectors:</p>
-    <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\} = \{ c_1 v_1 + c_2 v_2 + \dots + c_k v_k : c_i \in \mathbb{R} \} $$</div>
-    <p>Vectors are <strong>linearly independent</strong> when the only way to combine them into the zero vector is the trivial way:</p>
-    <div class="formula">$$ c_1 v_1 + \dots + c_k v_k = 0 \;\Longrightarrow\; c_1 = c_2 = \dots = c_k = 0 $$</div>
     <div class="callout example">
-      <div class="callout-label">✦ Are these independent?</div>
-      <p>$v_1=(1,0),\ v_2=(0,1),\ v_3=(2,3)$.</p>
-      <p>Since $v_3 = 2v_1 + 3v_2$, they are linearly <strong>dependent</strong>. In $\mathbb{R}^2$ any 3 vectors are always dependent — at most 2 can be independent.</p>
+      <div class="callout-label">✦ Are $(1,0),(0,1),(2,3)$ independent?</div>
+      <p>They live in $\mathbb{R}^2$ and there are 3 of them — more than $n=2$ — so they are
+        <strong>dependent</strong>. Indeed $(2,3)=2(1,0)+3(0,1)$.</p>
     </div>
-    <div class="callout memory">
-      <div class="callout-label">🧠 Memory trick</div>
-      <p>Independent = no vector can be built from the others. Like a team where no member is redundant.</p>
-    </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🏛️</span> Basis &amp; dimension</div>
-    <p>A <strong>basis</strong> of $V$ is a set of vectors that is both (1) linearly independent and (2) spans $V$.</p>
-    <div class="formula">$$ \text{Standard basis of } \mathbb{R}^3:\quad e_1=(1,0,0),\ e_2=(0,1,0),\ e_3=(0,0,1) \qquad \dim(\mathbb{R}^n)=n $$</div>
+  <!-- 9. GATE SHORTCUTS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
     <div class="callout tip">
-      <div class="callout-label">⚡ GATE fact</div>
-      <p>Every basis of a space has the <strong>same</strong> number of vectors — that number is the dimension, and it cannot change with your choice of basis.</p>
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>In $\mathbb{R}^n$, <strong>more than $n$ vectors are always dependent</strong>. (3 in $\mathbb{R}^2$, 4 in $\mathbb{R}^3$ → dependent.)</li>
+        <li>A subspace <strong>must</strong> contain $0$. If $0\notin W$, stop — not a subspace.</li>
+        <li>$\dim(\mathbb{R}^n)=n$; every basis of a space has the same number of vectors.</li>
+        <li>Two vectors are dependent iff one is a scalar multiple of the other (they're parallel).</li>
+        <li>The span of $k$ vectors has dimension = number of <em>independent</em> ones among them.</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. Which of the following is <em>not</em> a subspace of $\mathbb{R}^2$?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="D"><span class="opt-letter">A</span> $\{(x,y): 2x-y=0\}$</button>
-      <button class="quiz-opt" data-val="B" data-correct="D"><span class="opt-letter">B</span> $\{(0,0)\}$ (just the origin)</button>
-      <button class="quiz-opt" data-val="C" data-correct="D"><span class="opt-letter">C</span> $\mathbb{R}^2$ (all vectors)</button>
-      <button class="quiz-opt" data-val="D" data-correct="D"><span class="opt-letter">D</span> $\{(x,y): x+y=1\}$</button>
+  <!-- 10. COMMON TRAPS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "A line is always a subspace."
+        <span class="right">Reality:</span> only if it passes through the origin. $x+y=1$ is not a subspace.</p>
+      <p><span class="wrong">Trap:</span> "The zero vector can be an eigenvector / a basis vector."
+        <span class="right">Reality:</span> the zero vector is never independent and never in a basis.</p>
+      <p><span class="wrong">Trap:</span> "More vectors means a bigger span / dimension."
+        <span class="right">Reality:</span> extra dependent vectors add nothing; dimension counts independent directions only.</p>
     </div>
-    <div class="quiz-feedback" data-fb="A">A line through the origin — it <b>is</b> a subspace.</div>
-    <div class="quiz-feedback" data-fb="B">The trivial subspace — it <b>is</b> a subspace.</div>
-    <div class="quiz-feedback" data-fb="C">$\mathbb{R}^2$ is a subspace of itself.</div>
-    <div class="quiz-feedback" data-fb="D">✅ Correct — $x+y=1$ does not contain $(0,0)$, so it is not a subspace.</div>
-  </div>
+  </section>
 
-  <div class="quiz-card">
-    <div class="quiz-q">Q2. The dimension of $\operatorname{span}\{(1,2,3),(2,4,6)\}$ is:</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> 1</button>
-      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> 2</button>
-      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> 3</button>
-      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> 6</button>
+  <!-- 11. CONNECTIONS -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Matrices:</strong> a matrix is a machine that moves vectors around.</li>
+      <li><strong>Rank:</strong> the rank of a matrix = number of independent directions in its columns (this topic's idea, applied).</li>
+      <li><strong>Linear equations:</strong> "does $Ax=b$ have a solution?" is really "is $b$ in the span of $A$'s columns?"</li>
+      <li><strong>Eigenvectors:</strong> special directions that don't rotate under a matrix.</li>
+      <li><strong>Basis &amp; dimension</strong> reappear everywhere — null space, column space, eigenspaces.</li>
+    </ul>
+  </section>
+
+  <!-- 12. PRACTICE -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+
+    <div class="practice">
+      <p class="pq">Q1. Is $(2,3,4)$ in $\mathbb{R}^2$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">No — it has 3 components, so it lives in $\mathbb{R}^3$.</div>
     </div>
-    <div class="quiz-feedback" data-fb="A">✅ Correct — $(2,4,6)=2(1,2,3)$, so the vectors are parallel and the span is a 1-D line.</div>
-    <div class="quiz-feedback" data-fb="B">The two vectors are dependent (one is a multiple of the other), so dim is 1, not 2.</div>
-    <div class="quiz-feedback" data-fb="C">Span dimension can't exceed the number of independent vectors.</div>
-    <div class="quiz-feedback" data-fb="D">Dimension counts independent directions, not entries.</div>
-  </div>
+    <div class="practice">
+      <p class="pq">Q2. Is $W=\{(x,y): x+y=5\}$ a subspace of $\mathbb{R}^2$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">No — $(0,0)$ gives $0\neq5$, so $W$ doesn't contain the zero vector. Stop there.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Are $(1,0),(0,1),(4,5)$ independent?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Dependent — 3 vectors in $\mathbb{R}^2$ ($>n$) are always dependent.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. What is $\dim(\operatorname{span}\{(1,2,3),(2,4,6)\})$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$1$ — the second vector is $2\times$ the first, so they're parallel; the span is a line.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Write $(5,7)$ as a combination of $(1,0)$ and $(0,1)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$(5,7)=5(1,0)+7(0,1)$.</div>
+    </div>
 
-  <div class="cta-band cta-takeaway">
-    <p><strong>GATE takeaway —</strong> always check the zero vector first; if 0 ∉ W, the set is not a subspace.</p>
-  </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">Which of the following is <em>not</em> a subspace of $\mathbb{R}^2$?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="D"><span class="opt-letter">A</span> $\{(x,y): 2x-y=0\}$</button>
+        <button class="quiz-opt" data-val="B" data-correct="D"><span class="opt-letter">B</span> $\{(0,0)\}$</button>
+        <button class="quiz-opt" data-val="C" data-correct="D"><span class="opt-letter">C</span> $\mathbb{R}^2$</button>
+        <button class="quiz-opt" data-val="D" data-correct="D"><span class="opt-letter">D</span> $\{(x,y): x+y=1\}$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">A line through the origin — it <b>is</b> a subspace.</div>
+      <div class="quiz-feedback" data-fb="B">The trivial subspace — it <b>is</b> a subspace.</div>
+      <div class="quiz-feedback" data-fb="C">$\mathbb{R}^2$ is a subspace of itself.</div>
+      <div class="quiz-feedback" data-fb="D">✅ Correct — $x+y=1$ excludes $(0,0)$, so not a subspace.</div>
+    </div>
+  </section>
+
+  <!-- 13. FINAL MEMORY BOX -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Vector = movement arrow; scalar = stretch factor; add tip-to-tail.</li>
+        <li>$\mathbb{R}^n$ = all vectors with $n$ real components.</li>
+        <li>Subspace = smaller vector space; it <strong>must</strong> contain $0$.</li>
+        <li>Span = everything you can build; independent = no redundancy.</li>
+        <li>Basis = independent + spans; dimension = size of a basis; $\dim(\mathbb{R}^n)=n$.</li>
+        <li>More than $n$ vectors in $\mathbb{R}^n$ ⇒ always dependent.</li>
+      </ul>
+    </div>
+  </section>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>

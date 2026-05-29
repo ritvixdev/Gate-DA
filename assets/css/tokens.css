@@ -78,6 +78,9 @@
   --teal-text: #277264;
   --amber-text: #7a5600;
   --coral-text: #8f4a33;
+  --error-text: #a82f2f;
+  --error-bg: rgba(168, 47, 47, 0.07);
+  --error-border: rgba(168, 47, 47, 0.25);
 
   /* Canvas viz palette (resolved by grid.js) */
   --viz-grid: #e0d8cb;
@@ -131,6 +134,9 @@
   --teal-text: #6cc7b4;
   --amber-text: #efb46e;
   --coral-text: #e0917a;
+  --error-text: #e98a8a;
+  --error-bg: rgba(224, 106, 106, 0.10);
+  --error-border: rgba(224, 106, 106, 0.30);
 }
 
 /* Smooth theme transitions on color-bearing properties */

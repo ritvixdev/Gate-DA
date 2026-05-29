@@ -162,6 +162,21 @@
     }
   }
 
+  // ---- Practice show-answer toggle -------------------------
+  function wirePractice(scope) {
+    var btns = (scope || document).querySelectorAll(".show-ans");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var ans = this.nextElementSibling;
+        while (ans && !ans.classList.contains("ans")) ans = ans.nextElementSibling;
+        if (!ans) return;
+        var open = ans.classList.toggle("show");
+        this.textContent = open ? "Hide answer" : "Show answer";
+        this.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+  }
+
   // ---- Scroll reveal ---------------------------------------
   function wireReveal() {
     var cards = document.querySelectorAll(".concept-card");
@@ -220,6 +235,7 @@
     if (document.querySelector("[data-content]")) buildChrome();
     wireShell();
     wireQuizzes(document);
+    wirePractice(document);
     wireReveal();
     renderMath();
     if (window.GATE_VIZ_INIT) window.GATE_VIZ_INIT();

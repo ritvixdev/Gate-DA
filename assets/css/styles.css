@@ -292,6 +292,81 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
 .chip-amber { color: var(--amber-text); border-color: var(--amber-border); background: var(--amber-bg); }
 
 /* ---------------------------------------------------------- *
+ * Lesson sections (13-section template)
+ * ---------------------------------------------------------- */
+.sec-head {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+  margin-bottom: var(--s-md); padding-bottom: var(--s-sm);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.sec-num {
+  width: 26px; height: 26px; border-radius: var(--r-pill); flex-shrink: 0;
+  background: var(--primary-active); color: var(--on-primary);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* "Imagine it" — game / visual block */
+.imagine {
+  background: var(--surface-soft); border: 1px solid var(--hairline-soft);
+  border-radius: var(--r-lg); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0;
+}
+.imagine .callout-label { color: var(--coral-text); }
+.imagine p { font-size: 16px; line-height: 1.7; color: var(--body); }
+
+/* Step-by-step numbered list */
+ol.steps { list-style: none; counter-reset: step; padding: 0; margin: var(--s-sm) 0; }
+ol.steps li {
+  counter-increment: step; position: relative; padding: 7px 0 7px 40px;
+  font-size: 16px; line-height: 1.6; color: var(--body); margin: 2px 0;
+}
+ol.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 5px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--surface-strong); color: var(--ink);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Common traps (wrong vs right) */
+.trap { background: var(--error-bg); border-color: var(--error-border); }
+.trap .callout-label { color: var(--error-text); }
+.trap .wrong { color: var(--error-text); font-weight: 600; }
+.trap .right { color: var(--teal-text); font-weight: 600; }
+.trap p { margin: 8px 0; }
+
+/* Final memory box */
+.memory-box {
+  background: var(--coral-bg); border: 1px solid var(--coral-border);
+  border-radius: var(--r-lg); padding: var(--s-lg) var(--s-xl); margin: var(--s-lg) 0;
+}
+.memory-box .callout-label { color: var(--coral-text); font-size: 12px; }
+.memory-box ul { list-style: none; padding: 0; margin: 0; }
+.memory-box li {
+  font-size: 15px; line-height: 1.7; color: var(--body-strong);
+  padding: 5px 0 5px 22px; position: relative;
+}
+.memory-box li::before { content: '✓'; position: absolute; left: 0; color: var(--coral-text); font-weight: 700; }
+
+/* Practice with show-answer toggle */
+.practice { margin: var(--s-sm) 0; }
+.practice .pq { font-size: 16px; color: var(--body-strong); margin: var(--s-sm) 0 var(--s-xs); }
+.show-ans {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: var(--r-pill);
+  border: 1px solid var(--hairline); background: var(--surface-soft); color: var(--coral-text);
+  cursor: pointer;
+}
+.show-ans:hover { border-color: var(--primary); }
+.ans {
+  display: none; margin-top: var(--s-xs); padding: 10px 14px;
+  background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: var(--r-md);
+  font-size: 15px; line-height: 1.7; color: var(--body);
+}
+.ans.show { display: block; }
+
+/* ---------------------------------------------------------- *
  * Visualization panel
  * ---------------------------------------------------------- */
 .viz-panel {
