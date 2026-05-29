@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eigenvalues & Eigenvectors · GATE DA</title>
-<meta name="description" content="The most important GATE DA linear algebra topic: eigenvalues, eigenvectors, the characteristic equation, and key properties — with an interactive Eigen Lab.">
+<meta name="description" content="Learn eigenvalues and eigenvectors from zero: meaning, characteristic equation, key properties — simple language, GATE shortcuts, traps, practice, and an interactive Eigen Lab.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,16 +13,29 @@
   <div class="hero">
     <span class="tag">Topic 6 · GATE weight: Very High</span>
     <h1>Eigenvalues &amp;<br>Eigenvectors</h1>
-    <p class="lede">The single most important topic in GATE DA linear algebra. Eigenvalues reveal the
-      intrinsic behaviour of a linear transformation.</p>
+    <p class="lede">The most important topic in GATE DA linear algebra. Eigenvalues reveal the
+      "natural directions" of a matrix — the ones it only stretches, never rotates.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🌀</span> The core idea</div>
-    <p>An <strong>eigenvector</strong> of $A$ is a non-zero vector $x$ that only gets <em>scaled</em> — not rotated — when multiplied by $A$. The scale factor is the <strong>eigenvalue</strong> $\lambda$.</p>
-    <div class="formula">$$ A x = \lambda x, \qquad x \neq 0 $$</div>
-    <p>Drag $x$ in the Eigen Lab and watch its image $Ax$. On most directions $Ax$ points somewhere new — but along the special <em>eigen-directions</em> (dashed) $Ax$ stays on the same line through the origin.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Most directions get knocked sideways when a matrix acts on them. A rare few only get longer or
+      shorter, staying on their own line. Those special directions (<strong>eigenvectors</strong>) and their
+      stretch factors (<strong>eigenvalues</strong>) capture the true behaviour of the transformation — and power
+      diagonalization, stability analysis, and PCA.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Matrix</strong> = transformation portal. <strong>Eigenvector</strong> = a special arrow that comes out
+        pointing the same way it went in. <strong>Eigenvalue $\lambda$</strong> = how much that arrow got
+        stretched ($\lambda>1$ longer, $0<\lambda<1$ shorter, $\lambda<0$ flipped).</p>
+    </div>
+    <p>In the Eigen Lab, drag $x$ around. On most directions $Ax$ points somewhere new — but along the
+      dashed eigen-lines, $x$ and $Ax$ stay colinear. That's an eigenvector.</p>
+  </section>
 
   <div class="viz-panel">
     <div class="viz-head">
@@ -39,48 +52,134 @@
     <div class="viz-readout" id="eigen-lab-readout"></div>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔍</span> Finding eigenvalues</div>
-    <p>Eigenvalues are the roots of the <strong>characteristic equation</strong>:</p>
-    <div class="formula">$$ \det(A - \lambda I) = 0 $$</div>
-    <p>Then for each $\lambda$, solve $(A-\lambda I)x=0$ to get its eigenvectors.</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Eigenvector:</strong> a non-zero vector $x$ with $Ax=\lambda x$ — it keeps its direction.</p>
+    <p><strong>Eigenvalue $\lambda$:</strong> the stretch factor for that eigenvector.</p>
+    <p><strong>Characteristic equation:</strong> $\det(A-\lambda I)=0$ — the equation whose roots are the eigenvalues.</p>
+    <p><strong>Eigenspace:</strong> all eigenvectors for a given $\lambda$ (plus zero) — a subspace.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$A$</td><td>"A"</td><td>square matrix</td></tr>
+      <tr><td>$x$</td><td>"x"</td><td>eigenvector (non-zero)</td></tr>
+      <tr><td>$\lambda$</td><td>"lambda"</td><td>eigenvalue (stretch factor)</td></tr>
+      <tr><td>$I$</td><td>"identity"</td><td>identity matrix</td></tr>
+      <tr><td>$\det(A-\lambda I)$</td><td>"characteristic poly"</td><td>set $=0$ to find $\lambda$</td></tr>
+      <tr><td>$\operatorname{tr}(A)$</td><td>"trace"</td><td>$=\sum\lambda$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ Ax=\lambda x,\qquad x\neq 0 $$</div>
+    <div class="formula">$$ \det(A-\lambda I)=0 \ \ (\text{eigenvalues}),\qquad (A-\lambda I)x=0 \ \ (\text{eigenvectors}) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Form $A-\lambda I$ (subtract $\lambda$ from the diagonal).</li>
+      <li>Compute $\det(A-\lambda I)$ → a polynomial in $\lambda$.</li>
+      <li>Set it to $0$ and solve → the eigenvalues.</li>
+      <li>For each $\lambda$, solve $(A-\lambda I)x=0$ → the eigenvectors.</li>
+      <li>Non-zero solutions are the eigenvectors.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
     <div class="callout example">
       <div class="callout-label">✦ Full example</div>
-      <p>$A=\begin{bmatrix}4&1\\2&3\end{bmatrix}$, so $\det(A-\lambda I)=(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10=0$.</p>
+      <p>$A=\begin{bmatrix}4&1\\2&3\end{bmatrix}$: &nbsp; $\det(A-\lambda I)=(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10=0$.</p>
       <p>$(\lambda-5)(\lambda-2)=0 \Rightarrow \lambda_1=5,\ \lambda_2=2$.</p>
-      <p>$\lambda=5$: $(A-5I)x=0 \Rightarrow x=(1,1)^{\mathsf T}$. &nbsp; $\lambda=2$: $x=(1,-2)^{\mathsf T}$.</p>
+      <p>$\lambda=5$: $(A-5I)x=0\Rightarrow x=(1,1)^{\mathsf T}$. &nbsp; $\lambda=2$: $x=(1,-2)^{\mathsf T}$.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📋</span> Key properties — GATE gold</div>
-    <div class="formula">$$ \textstyle\sum \lambda_i = \operatorname{tr}(A), \qquad \prod \lambda_i = \det(A) $$</div>
-    <p>If $A$ has eigenvalue $\lambda$ (with eigenvector $x$), then:</p>
-    <ul class="styled">
-      <li>$A^k$ has eigenvalue $\lambda^k$; &nbsp; $A^{-1}$ has $1/\lambda$.</li>
-      <li>$A+cI$ has $\lambda+c$; &nbsp; $cA$ has $c\lambda$.</li>
-      <li>$A^{\mathsf T}$ has the same eigenvalues as $A$.</li>
-    </ul>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
     <div class="callout tip">
-      <div class="callout-label">⚡ Symmetric matrices ($A=A^{\mathsf T}$)</div>
-      <p>All eigenvalues are <strong>real</strong>, eigenvectors for distinct $\lambda$ are <strong>orthogonal</strong>, and the matrix is always diagonalizable.</p>
+      <div class="callout-label">⚡ GATE gold</div>
+      <ul>
+        <li>$\sum\lambda_i=\operatorname{tr}(A)$ and $\prod\lambda_i=\det(A)$ — fast checks.</li>
+        <li>Triangular/diagonal matrix → eigenvalues are the diagonal entries.</li>
+        <li>$A^k$ has $\lambda^k$; $A^{-1}$ has $1/\lambda$; $A+cI$ has $\lambda+c$; $A^{\mathsf T}$ has the same $\lambda$.</li>
+        <li>Symmetric matrix → all real eigenvalues, orthogonal eigenvectors.</li>
+        <li>If $0$ is an eigenvalue, $A$ is singular ($\det=0$).</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. If the eigenvalues of $A$ are $2$ and $3$, what are the eigenvalues of $A^{-1}$?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $-2,-3$</button>
-      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\tfrac12,\tfrac13$</button>
-      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $4,9$</button>
-      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2,3$</button>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "The zero vector is an eigenvector." <span class="right">Reality:</span> eigenvectors must be non-zero ($\lambda$ can be $0$, but $x$ can't).</p>
+      <p><span class="wrong">Trap:</span> "Real matrices have real eigenvalues." <span class="right">Reality:</span> they can be complex (e.g. a rotation).</p>
+      <p><span class="wrong">Trap:</span> "Eigenvalues of $A+B$ are eigenvalues of $A$ plus those of $B$." <span class="right">Reality:</span> false in general.</p>
     </div>
-    <div class="quiz-feedback" data-fb="A">Inversion gives reciprocals, not negatives.</div>
-    <div class="quiz-feedback" data-fb="B">✅ Correct — $A^{-1}$ has eigenvalues $1/\lambda$, i.e. $\tfrac12$ and $\tfrac13$.</div>
-    <div class="quiz-feedback" data-fb="C">$4,9$ would be the eigenvalues of $A^2$.</div>
-    <div class="quiz-feedback" data-fb="D">$A^{-1}$ flips each eigenvalue to its reciprocal.</div>
-  </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Determinant:</strong> $\det A=\prod\lambda$. <strong>Trace:</strong> $\operatorname{tr}A=\sum\lambda$.</li>
+      <li><strong>Rank:</strong> a zero eigenvalue means the matrix is rank-deficient.</li>
+      <li><strong>Diagonalization:</strong> needs enough independent eigenvectors.</li>
+      <li><strong>PCA:</strong> principal components are eigenvectors of the covariance matrix.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Eigenvalues are $2,3,5$. Find the trace and determinant.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Trace $=2+3+5=10$; determinant $=2\cdot3\cdot5=30$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. $A$ is triangular with diagonal $1,4,7$. Eigenvalues?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$1,4,7$ (the diagonal entries).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Eigenvalues of $A$ are $2,3$. Eigenvalues of $A^{-1}$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\tfrac12,\tfrac13$ (reciprocals).</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If the eigenvalues of $A$ are $2$ and $3$, the eigenvalues of $A^{-1}$ are:</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $-2,-3$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\tfrac12,\tfrac13$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $4,9$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2,3$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Inversion gives reciprocals, not negatives.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $A^{-1}$ has eigenvalues $1/\lambda$.</div>
+      <div class="quiz-feedback" data-fb="C">$4,9$ are eigenvalues of $A^2$.</div>
+      <div class="quiz-feedback" data-fb="D">$A^{-1}$ flips each $\lambda$ to its reciprocal.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Eigenvector = direction that doesn't rotate; eigenvalue = stretch factor.</li>
+        <li>$Ax=\lambda x$; find $\lambda$ from $\det(A-\lambda I)=0$.</li>
+        <li>Trace $=\sum\lambda$, determinant $=\prod\lambda$.</li>
+        <li>$A^k\to\lambda^k$, $A^{-1}\to1/\lambda$; triangular → diagonal entries.</li>
+        <li>Symmetric matrices are safest: real $\lambda$, orthogonal eigenvectors.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> Σλ = trace, Πλ = det, and Aᵏ has eigenvalues λᵏ — these appear almost every year.</p>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>System of Linear Equations · GATE DA</title>
-<meta name="description" content="When does Ax=b have a solution, and how many? Solution types, Gaussian elimination, homogeneous systems.">
+<meta name="description" content="Learn systems of linear equations from zero: when Ax=b has none, one, or infinite solutions, Gaussian elimination, homogeneous systems — simple language, shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,67 +13,153 @@
   <div class="hero">
     <span class="tag">Topic 5 · GATE weight: Very High</span>
     <h1>System of<br>Linear Equations</h1>
-    <p class="lede">When does $Ax=b$ have a solution? How many? This is the central problem of applied
-      linear algebra — and a top GATE topic.</p>
+    <p class="lede">When does $Ax=b$ have a solution, and how many? This one question is the heart of
+      applied linear algebra — and a near-certain GATE appearance.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">⚖️</span> Types of solutions</div>
-    <p>Compare the rank of $A$ with the rank of the augmented matrix $[A\,|\,b]$, where $n$ is the number of unknowns:</p>
-    <div class="formula">$$ \operatorname{rank}(A) \neq \operatorname{rank}([A|b]) \;\Rightarrow\; \textbf{no solution} $$
-$$ \operatorname{rank}(A) = \operatorname{rank}([A|b]) = n \;\Rightarrow\; \textbf{unique solution} $$
-$$ \operatorname{rank}(A) = \operatorname{rank}([A|b]) < n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} $$</div>
-    <div class="callout memory">
-      <div class="callout-label">🧠 The golden rule</div>
-      <p>Let $r=\operatorname{rank}(A)$, $r'=\operatorname{rank}([A|b])$, $n=$ unknowns.</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Most real problems become "solve $Ax=b$": balancing equations, fitting data, circuits, networks.
+      The key skill is not just solving, but knowing in advance whether a solution exists, is unique,
+      or comes in infinite families — decided entirely by ranks.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Each equation is a line (2-D) or plane (3-D). A <strong>solution</strong> is where they all cross.
+        Lines crossing at one point → <strong>unique</strong>. Same line twice → <strong>infinite</strong> (they overlap).
+        Parallel lines → <strong>no solution</strong> (never meet). Rank just counts how many genuinely
+        different equations you have.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>System:</strong> $Ax=b$, where $A$ is the coefficient matrix, $x$ the unknowns, $b$ the right side.</p>
+    <p><strong>Augmented matrix $[A\,|\,b]$:</strong> $A$ with the $b$ column attached.</p>
+    <p><strong>Consistent:</strong> at least one solution exists. <strong>Inconsistent:</strong> none.</p>
+    <p><strong>Homogeneous:</strong> $b=0$ (i.e. $Ax=0$). <strong>Free variable:</strong> an unknown not pinned down — each one gives an infinite family.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$Ax=b$</td><td>"A x equals b"</td><td>the system</td></tr>
+      <tr><td>$[A\,|\,b]$</td><td>"augmented matrix"</td><td>coefficients + right side</td></tr>
+      <tr><td>$r=\operatorname{rank}(A)$</td><td>"rank of A"</td><td>independent equations</td></tr>
+      <tr><td>$r'=\operatorname{rank}([A|b])$</td><td>"rank of augmented"</td><td>with right side included</td></tr>
+      <tr><td>$n$</td><td>"n"</td><td>number of unknowns</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main rule (the decider)</div>
+    <div class="formula">$$ r \neq r' \;\Rightarrow\; \textbf{no solution} $$</div>
+    <div class="formula">$$ r = r' = n \;\Rightarrow\; \textbf{unique solution} $$</div>
+    <div class="formula">$$ r = r' < n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} \ \ (n-r \text{ free variables}) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: Gaussian elimination</div>
+    <ol class="steps">
+      <li>Write the augmented matrix $[A\,|\,b]$.</li>
+      <li>Use row operations (swap, scale, add multiples) to reach row-echelon form.</li>
+      <li>Read off $r=\operatorname{rank}(A)$ and $r'=\operatorname{rank}([A|b])$.</li>
+      <li>Apply the decider rule to classify no / unique / infinite.</li>
+      <li>Back-substitute to get the actual solution (parameterize free variables if infinite).</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Solve $x+2y=5,\ 2x+4y=10$</div>
+      <p>$\left[\begin{array}{cc|c}1&2&5\\2&4&10\end{array}\right]\xrightarrow{R_2-2R_1}\left[\begin{array}{cc|c}1&2&5\\0&0&0\end{array}\right]$</p>
+      <p>$r=r'=1<2$ ⇒ infinitely many solutions. $y$ is free; $x=5-2y$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
       <ul>
-        <li>$r \neq r'$ → no solution</li>
-        <li>$r=r'=n$ → unique</li>
-        <li>$r=r'<n$ → $\infty$ many (with $n-r$ free variables)</li>
+        <li>Homogeneous $Ax=0$ <strong>always</strong> has the trivial solution $x=0$.</li>
+        <li>$Ax=0$ has non-trivial solutions $\iff \operatorname{rank}(A)<n \iff \det A=0$ (square).</li>
+        <li>Square system has a unique solution for every $b$ $\iff \det A\neq0$.</li>
+        <li>General solution $=$ one particular solution $+$ any null-space vector: $x=x_p+x_h$.</li>
       </ul>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🛠️</span> Gaussian elimination</div>
-    <p>Reduce $[A\,|\,b]$ to row-echelon form using elementary row operations: swap rows, scale a row, or add a multiple of one row to another.</p>
-    <div class="callout example">
-      <div class="callout-label">✦ Example — solve $x+2y=5,\ 2x+4y=10$</div>
-      <p>$\left[\begin{array}{cc|c}1&2&5\\2&4&10\end{array}\right] \xrightarrow{R_2-2R_1} \left[\begin{array}{cc|c}1&2&5\\0&0&0\end{array}\right]$</p>
-      <p>$r=r'=1<2$ → infinitely many solutions. $y$ is free; $x=5-2y$.</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$\det A=0$ means no solution." <span class="right">Reality:</span> it means <em>not unique</em> — could be none OR infinite; check $r$ vs $r'$.</p>
+      <p><span class="wrong">Trap:</span> "Homogeneous systems can be inconsistent." <span class="right">Reality:</span> never — $x=0$ always works.</p>
+      <p><span class="wrong">Trap:</span> "More equations ⇒ no solution." <span class="right">Reality:</span> only ranks decide, not the count.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🏠</span> Homogeneous system $Ax=0$</div>
-    <p>$Ax=0$ always has the trivial solution $x=0$. Non-trivial solutions exist precisely when the columns are dependent:</p>
-    <div class="formula">$$ \text{only trivial} \iff \operatorname{rank}(A)=n \qquad \text{non-trivial} \iff \operatorname{rank}(A)<n \iff \det A = 0 $$</div>
-    <div class="callout tip">
-      <div class="callout-label">⚡ GATE trap</div>
-      <p>“Only the trivial solution” $\iff \operatorname{rank}=n \iff \det\neq0 \iff A$ invertible. All four are equivalent.</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Rank:</strong> the entire decider rule is built on ranks.</li>
+      <li><strong>Determinant:</strong> square unique-solution test is $\det\neq0$.</li>
+      <li><strong>Null space:</strong> the $x_h$ part of the solution lives in the null space.</li>
+      <li><strong>Vectors:</strong> "$Ax=b$ solvable" means $b$ is in the span of $A$'s columns.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $r=2$, $r'=3$, $n=3$. How many solutions?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$r\neq r'$ ⇒ no solution (inconsistent).</div>
     </div>
-  </div>
-
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔁</span> Solution structure</div>
-    <div class="formula">$$ x = x_p + x_h $$</div>
-    <p>$x_p$ is any one particular solution; $x_h$ is any solution of $Ax=0$ (the null space). The full solution set is a <strong>shifted null space</strong>.</p>
-  </div>
-
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. For which $k$ does $x+2y=3,\ 2x+ky=7$ have <em>no</em> solution?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $k=3$</button>
-      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $k=4$</button>
-      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $k=5$</button>
-      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $k=6$</button>
+    <div class="practice">
+      <p class="pq">Q2. $r=r'=2$, $n=4$. How many solutions?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$r=r'<n$ ⇒ infinitely many, with $4-2=2$ free variables.</div>
     </div>
-    <div class="quiz-feedback" data-fb="A">$\det=k-4=-1\neq0$, so there's a unique solution.</div>
-    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=k-4=0$ at $k=4$; then $R_2-2R_1$ gives $[0\;0\,|\,1]$, so $r'\neq r$ → no solution.</div>
-    <div class="quiz-feedback" data-fb="C">$\det=1\neq0$ → unique solution.</div>
-    <div class="quiz-feedback" data-fb="D">$\det\neq0$ → unique solution.</div>
-  </div>
+    <div class="practice">
+      <p class="pq">Q3. When does $Ax=0$ (square $A$) have a non-trivial solution?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">When $\det A=0$ (equivalently $\operatorname{rank}<n$).</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">For which $k$ does $x+2y=3,\ 2x+ky=7$ have <em>no</em> solution?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $k=3$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $k=4$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $k=5$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $k=6$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">$\det=k-4\neq0$ ⇒ unique solution.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=k-4=0$ at $k=4$; then $R_2-2R_1$ gives $[0\,0\,|\,1]$, so $r'\neq r$ → no solution.</div>
+      <div class="quiz-feedback" data-fb="C">$\det\neq0$ ⇒ unique.</div>
+      <div class="quiz-feedback" data-fb="D">$\det\neq0$ ⇒ unique.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$r\neq r'$ → none; $r=r'=n$ → unique; $r=r'<n$ → infinite ($n-r$ free).</li>
+        <li>$Ax=0$ always has $x=0$; non-trivial iff $\operatorname{rank}<n$ iff $\det=0$.</li>
+        <li>General solution $x=x_p+x_h$ (particular + null space).</li>
+        <li>Solve by Gaussian elimination on $[A\,|\,b]$.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> compare rank(A), rank([A|b]) and n: it decides no, unique, or infinitely many solutions.</p>

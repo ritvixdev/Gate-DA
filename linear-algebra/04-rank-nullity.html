@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rank & Nullity · GATE DA</title>
-<meta name="description" content="Rank, null space, the rank-nullity theorem, and the four fundamental subspaces.">
+<meta name="description" content="Learn rank and nullity from zero: meaning, the rank-nullity theorem, four fundamental subspaces — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,62 +13,157 @@
   <div class="hero">
     <span class="tag">Topic 4 · GATE weight: High</span>
     <h1>Rank &amp; Nullity</h1>
-    <p class="lede">Rank measures how much information a matrix carries; nullity measures what it
-      destroys. Together they always sum to the number of columns.</p>
+    <p class="lede">Rank counts how many independent directions a matrix keeps. Nullity counts what
+      it crushes to zero. Together they always add up to the number of columns.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📐</span> Rank of a matrix</div>
-    <p>The <strong>rank</strong> of $A$ is the maximum number of linearly independent rows (equivalently, columns). It equals the number of non-zero rows in row-echelon form.</p>
-    <div class="formula">$$ \operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T}),\qquad \operatorname{rank}(A)\le \min(m,n) $$
-$$ \operatorname{rank}(AB)\le \min(\operatorname{rank}A,\operatorname{rank}B) $$</div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>When a matrix transforms space, some directions survive and some get flattened. <strong>Rank</strong>
+      tells you how much "real information" the matrix carries; <strong>nullity</strong> tells you how much it
+      destroys. This single idea decides whether equations have solutions and how many.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>A matrix is a portal. <strong>Rank</strong> = how many dimensions come out the other side
+        (a plane → plane is rank 2; a plane squashed to a line is rank 1). <strong>Null space</strong> = all the
+        input arrows that get crushed to the origin; <strong>nullity</strong> = how many independent crushed
+        directions there are.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Rank:</strong> the number of linearly independent rows (= independent columns). Equivalently,
+      the number of non-zero rows after row-reduction (row-echelon form).</p>
+    <p><strong>Null space (kernel):</strong> all vectors $x$ with $Ax=0$. <strong>Nullity:</strong> its dimension.</p>
+    <p><strong>Column space:</strong> all outputs $Ax$ (span of the columns). <strong>Row space:</strong> span of the rows.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\operatorname{rank}(A)$</td><td>"rank of A"</td><td>number of independent directions kept</td></tr>
+      <tr><td>$\operatorname{nullity}(A)$</td><td>"nullity of A"</td><td>$\dim$ of the null space</td></tr>
+      <tr><td>$N(A)$</td><td>"null space"</td><td>$\{x: Ax=0\}$</td></tr>
+      <tr><td>$C(A)$</td><td>"column space"</td><td>span of columns</td></tr>
+      <tr><td>$m,n$</td><td>"m, n"</td><td>rows, columns of $A$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <div class="formula">$$ \operatorname{rank}(A) + \operatorname{nullity}(A) = n \quad (n=\text{number of columns}) $$</div>
+    <div class="formula">$$ \operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T}),\qquad \operatorname{rank}(A)\le\min(m,n) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: find rank &amp; nullity</div>
+    <ol class="steps">
+      <li>Row-reduce $A$ to row-echelon form.</li>
+      <li>Count the non-zero rows → that's the rank.</li>
+      <li>Nullity $=n-\operatorname{rank}$ where $n$ is the number of columns.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
     <div class="callout example">
-      <div class="callout-label">✦ Worked example</div>
-      <p>$A=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$. Row 2 $=2\cdot$Row 1, so it vanishes. Row-reduction leaves 2 non-zero rows $\Rightarrow \operatorname{rank}(A)=2$.</p>
+      <div class="callout-label">✦ Find the rank</div>
+      <p>$A=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$. Row 2 $=2\times$ Row 1, so it vanishes.</p>
+      <p>Row-reduce → two non-zero rows remain ⇒ $\operatorname{rank}(A)=2$, and nullity $=3-2=1$.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🕳️</span> Null space &amp; nullity</div>
-    <p>The <strong>null space</strong> (kernel) of $A$ is every $x$ with $Ax=0$.</p>
-    <div class="formula">$$ \operatorname{Null}(A)=\{x\in\mathbb{R}^n : Ax=0\},\qquad \operatorname{nullity}(A)=\dim\operatorname{Null}(A)=n-\operatorname{rank}(A) $$</div>
-    <div class="callout memory">
-      <div class="callout-label">🧠 The rank-nullity theorem</div>
-      <p>For an $m\times n$ matrix:</p>
-      <p class="highlight-eqn">$\operatorname{rank}(A) + \operatorname{nullity}(A) = n$</p>
-      <p>One of the most important identities in all of linear algebra.</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$ (columns). Memorize this above all.</li>
+        <li>Square $A$ is invertible $\iff \operatorname{rank}=n \iff \det\neq0 \iff$ nullity $=0$.</li>
+        <li>$\operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T})$; rank = number of non-zero eigenvalues only for diagonalizable cases — safer: use echelon form.</li>
+        <li>$\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$.</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🗄️</span> Four fundamental subspaces</div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Nullity $=m-\operatorname{rank}$." <span class="right">Reality:</span> it's $n-\operatorname{rank}$ — use the number of <strong>columns</strong>.</p>
+      <p><span class="wrong">Trap:</span> "Rank can exceed $\min(m,n)$." <span class="right">Reality:</span> never.</p>
+      <p><span class="wrong">Trap:</span> "Row rank and column rank can differ." <span class="right">Reality:</span> they're always equal.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Vectors:</strong> rank = independent directions (this is the independence idea applied).</li>
+      <li><strong>Determinant:</strong> square $\det=0 \iff$ rank $<n$.</li>
+      <li><strong>Linear equations:</strong> compare $\operatorname{rank}(A)$ with $\operatorname{rank}([A|b])$ to count solutions.</li>
+      <li><strong>Four fundamental subspaces:</strong> column/row spaces have dim = rank; null spaces use nullity.</li>
+    </ul>
     <div class="tbl-wrap"><table>
       <tr><th>Subspace</th><th>Definition</th><th>Dimension</th></tr>
-      <tr><td>Column space $C(A)$</td><td>span of columns</td><td>$\operatorname{rank}(A)$</td></tr>
-      <tr><td>Null space $N(A)$</td><td>$\{x:Ax=0\}$</td><td>$n-\operatorname{rank}(A)$</td></tr>
-      <tr><td>Row space $C(A^{\mathsf T})$</td><td>span of rows</td><td>$\operatorname{rank}(A)$</td></tr>
-      <tr><td>Left null space $N(A^{\mathsf T})$</td><td>$\{y:A^{\mathsf T}y=0\}$</td><td>$m-\operatorname{rank}(A)$</td></tr>
+      <tr><td>Column space $C(A)$</td><td>span of columns</td><td>$\operatorname{rank}$</td></tr>
+      <tr><td>Null space $N(A)$</td><td>$\{x:Ax=0\}$</td><td>$n-\operatorname{rank}$</td></tr>
+      <tr><td>Row space $C(A^{\mathsf T})$</td><td>span of rows</td><td>$\operatorname{rank}$</td></tr>
+      <tr><td>Left null space $N(A^{\mathsf T})$</td><td>$\{y:A^{\mathsf T}y=0\}$</td><td>$m-\operatorname{rank}$</td></tr>
     </table></div>
-    <div class="callout tip">
-      <div class="callout-label">⚡ GATE insight</div>
-      <p>Row space $\perp$ null space in $\mathbb{R}^n$; column space $\perp$ left null space in $\mathbb{R}^m$. Handy for system-of-equations questions.</p>
-    </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. A $5\times8$ matrix $A$ has rank $3$. What is its nullity?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 2</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 3</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 8</button>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. A $5\times8$ matrix has rank 3. Find its nullity.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Nullity $=n-\operatorname{rank}=8-3=5$ ($n$ = columns = 8).</div>
     </div>
-    <div class="quiz-feedback" data-fb="A">Nullity $=n-\operatorname{rank}=8-3=5$; $n$ is the column count (8).</div>
-    <div class="quiz-feedback" data-fb="B">Don't confuse rank with nullity. Nullity $=8-3=5$.</div>
-    <div class="quiz-feedback" data-fb="C">✅ Correct — nullity $=n-\operatorname{rank}=8-3=5$.</div>
-    <div class="quiz-feedback" data-fb="D">8 is the number of columns, not the nullity.</div>
-  </div>
+    <div class="practice">
+      <p class="pq">Q2. A $4\times4$ matrix has rank 4. Is it invertible? What is its nullity?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Yes, invertible (full rank); nullity $=0$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. What is the maximum possible rank of a $3\times7$ matrix?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\min(3,7)=3$.</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">A $5\times8$ matrix $A$ has rank 3. What is its nullity?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 2</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 3</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 8</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Nullity $=8-3=5$ (use columns).</div>
+      <div class="quiz-feedback" data-fb="B">That's the rank, not the nullity.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $n-\operatorname{rank}=8-3=5$.</div>
+      <div class="quiz-feedback" data-fb="D">8 is the column count, not the nullity.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Rank = independent directions kept; nullity = crushed directions.</li>
+        <li>$\operatorname{rank}+\operatorname{nullity}=n$ (columns).</li>
+        <li>Rank = non-zero rows in echelon form; $\operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T})\le\min(m,n)$.</li>
+        <li>Square invertible $\iff$ full rank $\iff \det\neq0 \iff$ nullity 0.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> rank + nullity = number of columns; this is the identity most rank questions hinge on.</p>
