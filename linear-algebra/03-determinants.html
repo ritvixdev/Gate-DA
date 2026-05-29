@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Determinants · GATE DA</title>
+<meta name="description" content="What the determinant means, how to compute it, its properties, Cramer's rule — and determinant as signed area.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="03-determinants" data-content>
+  <div class="hero">
+    <span class="tag">Topic 3 · GATE weight: High</span>
+    <h1>Determinants</h1>
+    <p class="lede">A single number that tells you whether a matrix is invertible, how much it scales
+      area or volume, and whether it flips orientation.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">⬛</span> What it means</div>
+    <p>For a square matrix $A$, the determinant $\det(A)$ (or $|A|$) encodes:</p>
+    <ul class="styled">
+      <li>$\det(A)=0 \Rightarrow A$ is <strong>singular</strong> (not invertible).</li>
+      <li>$|\det(A)|$ is the <strong>area / volume scaling factor</strong> of the transformation.</li>
+      <li>$\operatorname{sign}(\det)$ is orientation: $+$ preserves, $-$ flips.</li>
+    </ul>
+    <p>The Matrix Transformer below shades the image of the unit square — its area is exactly $|\det A|$, and it turns coral when the orientation flips. Try the <em>Singular</em> preset to watch it collapse to a line.</p>
+  </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Determinant as area</span>
+      <span class="viz-hint">Shaded square area = |det|</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="matrix-transform"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>a <span id="mt-a-val">1.0</span></label><input type="range" id="mt-a" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="viz-control"><label>b <span id="mt-b-val">0.0</span></label><input type="range" id="mt-b" min="-3" max="3" step="0.1" value="0"></div>
+      <div class="viz-control"><label>c <span id="mt-c-val">0.0</span></label><input type="range" id="mt-c" min="-3" max="3" step="0.1" value="0"></div>
+      <div class="viz-control"><label>d <span id="mt-d-val">1.0</span></label><input type="range" id="mt-d" min="-3" max="3" step="0.1" value="1"></div>
+    </div>
+    <div class="viz-presets" id="matrix-transform-presets"></div>
+    <div class="viz-readout" id="matrix-transform-readout"></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🧮</span> Computing determinants</div>
+    <div class="formula">$$ \det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc $$
+$$ \det\begin{bmatrix}a&b&c\\d&e&f\\g&h&i\end{bmatrix}=a(ei-fh)-b(di-fg)+c(dh-eg) $$</div>
+    <p>The cofactor signs follow a checkerboard $\begin{smallmatrix}+&-&+\\-&+&-\\+&-&+\end{smallmatrix}$.</p>
+    <div class="callout example">
+      <div class="callout-label">✦ Worked example</div>
+      <p>$\det\begin{bmatrix}2&1&3\\0&4&2\\1&0&5\end{bmatrix}=2(20-0)-1(0-2)+3(0-4)=40+2-12=30$</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">⚙️</span> Key properties</div>
+    <div class="formula">$$ \det(AB)=\det A\,\det B,\qquad \det(A^{\mathsf T})=\det A,\qquad \det(A^{-1})=\tfrac{1}{\det A} $$
+$$ \det(cA)=c^{n}\det A,\qquad \det(A)=\textstyle\prod \lambda_i $$</div>
+    <ul class="styled">
+      <li>Swap two rows → sign flips.</li>
+      <li>Multiply a row by $k$ → determinant $\times k$.</li>
+      <li>Add a multiple of one row to another → unchanged.</li>
+      <li>Triangular / diagonal → product of the diagonal entries.</li>
+    </ul>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE shortcut</div>
+      <p>For triangular or diagonal matrices, $\det=$ product of the diagonal. Huge time-saver.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔗</span> Cramer's rule</div>
+    <p>For $Ax=b$ with $\det A \neq 0$:</p>
+    <div class="formula">$$ x_i = \frac{\det(A_i)}{\det(A)} \quad\text{where } A_i = A \text{ with column } i \text{ replaced by } b $$</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ When to use</div>
+      <p>Cramer's rule is mostly theoretical in GATE. For actual solving, Gaussian elimination is faster.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. If $\det(A)=5$ for a $3\times3$ matrix, what is $\det(2A)$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 10</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 20</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 40</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 5</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\det(cA)=c^n\det A$, so $2^3\cdot5=40$, not 10.</div>
+    <div class="quiz-feedback" data-fb="B">That used $c^2$. For a $3\times3$ the exponent is $n=3$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\det(2A)=2^3\cdot5=40$.</div>
+    <div class="quiz-feedback" data-fb="D">Scaling the matrix scales the determinant by $c^n$, not by 1.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/grid.js"></script>
+  <script src="../assets/js/viz/matrix-transform.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

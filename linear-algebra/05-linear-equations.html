@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System of Linear Equations · GATE DA</title>
+<meta name="description" content="When does Ax=b have a solution, and how many? Solution types, Gaussian elimination, homogeneous systems.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="05-linear-equations" data-content>
+  <div class="hero">
+    <span class="tag">Topic 5 · GATE weight: Very High</span>
+    <h1>System of<br>Linear Equations</h1>
+    <p class="lede">When does $Ax=b$ have a solution? How many? This is the central problem of applied
+      linear algebra — and a top GATE topic.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">⚖️</span> Types of solutions</div>
+    <p>Compare the rank of $A$ with the rank of the augmented matrix $[A\,|\,b]$, where $n$ is the number of unknowns:</p>
+    <div class="formula">$$ \operatorname{rank}(A) \neq \operatorname{rank}([A|b]) \;\Rightarrow\; \textbf{no solution} $$
+$$ \operatorname{rank}(A) = \operatorname{rank}([A|b]) = n \;\Rightarrow\; \textbf{unique solution} $$
+$$ \operatorname{rank}(A) = \operatorname{rank}([A|b]) < n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} $$</div>
+    <div class="callout memory">
+      <div class="callout-label">🧠 The golden rule</div>
+      <p>Let $r=\operatorname{rank}(A)$, $r'=\operatorname{rank}([A|b])$, $n=$ unknowns.</p>
+      <ul>
+        <li>$r \neq r'$ → no solution</li>
+        <li>$r=r'=n$ → unique</li>
+        <li>$r=r'<n$ → $\infty$ many (with $n-r$ free variables)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🛠️</span> Gaussian elimination</div>
+    <p>Reduce $[A\,|\,b]$ to row-echelon form using elementary row operations: swap rows, scale a row, or add a multiple of one row to another.</p>
+    <div class="callout example">
+      <div class="callout-label">✦ Example — solve $x+2y=5,\ 2x+4y=10$</div>
+      <p>$\left[\begin{array}{cc|c}1&2&5\\2&4&10\end{array}\right] \xrightarrow{R_2-2R_1} \left[\begin{array}{cc|c}1&2&5\\0&0&0\end{array}\right]$</p>
+      <p>$r=r'=1<2$ → infinitely many solutions. $y$ is free; $x=5-2y$.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🏠</span> Homogeneous system $Ax=0$</div>
+    <p>$Ax=0$ always has the trivial solution $x=0$. Non-trivial solutions exist precisely when the columns are dependent:</p>
+    <div class="formula">$$ \text{only trivial} \iff \operatorname{rank}(A)=n \qquad \text{non-trivial} \iff \operatorname{rank}(A)<n \iff \det A = 0 $$</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE trap</div>
+      <p>“Only the trivial solution” $\iff \operatorname{rank}=n \iff \det\neq0 \iff A$ invertible. All four are equivalent.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔁</span> Solution structure</div>
+    <div class="formula">$$ x = x_p + x_h $$</div>
+    <p>$x_p$ is any one particular solution; $x_h$ is any solution of $Ax=0$ (the null space). The full solution set is a <strong>shifted null space</strong>.</p>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. For which $k$ does $x+2y=3,\ 2x+ky=7$ have <em>no</em> solution?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $k=3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $k=4$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $k=5$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $k=6$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\det=k-4=-1\neq0$, so there's a unique solution.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=k-4=0$ at $k=4$; then $R_2-2R_1$ gives $[0\;0\,|\,1]$, so $r'\neq r$ → no solution.</div>
+    <div class="quiz-feedback" data-fb="C">$\det=1\neq0$ → unique solution.</div>
+    <div class="quiz-feedback" data-fb="D">$\det\neq0$ → unique solution.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

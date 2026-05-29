@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eigenvalues & Eigenvectors · GATE DA</title>
+<meta name="description" content="The most important GATE DA linear algebra topic: eigenvalues, eigenvectors, the characteristic equation, and key properties — with an interactive Eigen Lab.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="06-eigenvalues" data-content>
+  <div class="hero">
+    <span class="tag">Topic 6 · GATE weight: Very High</span>
+    <h1>Eigenvalues &amp;<br>Eigenvectors</h1>
+    <p class="lede">The single most important topic in GATE DA linear algebra. Eigenvalues reveal the
+      intrinsic behaviour of a linear transformation.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🌀</span> The core idea</div>
+    <p>An <strong>eigenvector</strong> of $A$ is a non-zero vector $x$ that only gets <em>scaled</em> — not rotated — when multiplied by $A$. The scale factor is the <strong>eigenvalue</strong> $\lambda$.</p>
+    <div class="formula">$$ A x = \lambda x, \qquad x \neq 0 $$</div>
+    <p>Drag $x$ in the Eigen Lab and watch its image $Ax$. On most directions $Ax$ points somewhere new — but along the special <em>eigen-directions</em> (dashed) $Ax$ stays on the same line through the origin.</p>
+  </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Eigen Lab</span>
+      <span class="viz-hint">Drag x onto a dashed line</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="eigen-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>A₁₁</label><input type="range" id="el-a" min="-3" max="3" step="0.1" value="2"></div>
+      <div class="viz-control"><label>A₁₂</label><input type="range" id="el-b" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="viz-control"><label>A₂₁</label><input type="range" id="el-c" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="viz-control"><label>A₂₂</label><input type="range" id="el-d" min="-3" max="3" step="0.1" value="2"></div>
+    </div>
+    <div class="viz-readout" id="eigen-lab-readout"></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔍</span> Finding eigenvalues</div>
+    <p>Eigenvalues are the roots of the <strong>characteristic equation</strong>:</p>
+    <div class="formula">$$ \det(A - \lambda I) = 0 $$</div>
+    <p>Then for each $\lambda$, solve $(A-\lambda I)x=0$ to get its eigenvectors.</p>
+    <div class="callout example">
+      <div class="callout-label">✦ Full example</div>
+      <p>$A=\begin{bmatrix}4&1\\2&3\end{bmatrix}$, so $\det(A-\lambda I)=(4-\lambda)(3-\lambda)-2=\lambda^2-7\lambda+10=0$.</p>
+      <p>$(\lambda-5)(\lambda-2)=0 \Rightarrow \lambda_1=5,\ \lambda_2=2$.</p>
+      <p>$\lambda=5$: $(A-5I)x=0 \Rightarrow x=(1,1)^{\mathsf T}$. &nbsp; $\lambda=2$: $x=(1,-2)^{\mathsf T}$.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">📋</span> Key properties — GATE gold</div>
+    <div class="formula">$$ \textstyle\sum \lambda_i = \operatorname{tr}(A), \qquad \prod \lambda_i = \det(A) $$</div>
+    <p>If $A$ has eigenvalue $\lambda$ (with eigenvector $x$), then:</p>
+    <ul class="styled">
+      <li>$A^k$ has eigenvalue $\lambda^k$; &nbsp; $A^{-1}$ has $1/\lambda$.</li>
+      <li>$A+cI$ has $\lambda+c$; &nbsp; $cA$ has $c\lambda$.</li>
+      <li>$A^{\mathsf T}$ has the same eigenvalues as $A$.</li>
+    </ul>
+    <div class="callout tip">
+      <div class="callout-label">⚡ Symmetric matrices ($A=A^{\mathsf T}$)</div>
+      <p>All eigenvalues are <strong>real</strong>, eigenvectors for distinct $\lambda$ are <strong>orthogonal</strong>, and the matrix is always diagonalizable.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. If the eigenvalues of $A$ are $2$ and $3$, what are the eigenvalues of $A^{-1}$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $-2,-3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\tfrac12,\tfrac13$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $4,9$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2,3$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Inversion gives reciprocals, not negatives.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $A^{-1}$ has eigenvalues $1/\lambda$, i.e. $\tfrac12$ and $\tfrac13$.</div>
+    <div class="quiz-feedback" data-fb="C">$4,9$ would be the eigenvalues of $A^2$.</div>
+    <div class="quiz-feedback" data-fb="D">$A^{-1}$ flips each eigenvalue to its reciprocal.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/grid.js"></script>
+  <script src="../assets/js/viz/eigen-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

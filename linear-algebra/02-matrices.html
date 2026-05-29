@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrices · GATE DA</title>
+<meta name="description" content="Matrix basics, multiplication, special types, transpose, inverse and trace — with an interactive Matrix Transformer.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="02-matrices" data-content>
+  <div class="hero">
+    <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <h1>Matrices</h1>
+    <p class="lede">A matrix is a rectangular array of numbers — and, more powerfully, a
+      <strong>linear transformation</strong> of space. Master the operations, types, and the geometry.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔢</span> Matrix basics</div>
+    <p>An $m \times n$ matrix has $m$ rows and $n$ columns; entry $a_{ij}$ sits in row $i$, column $j$.</p>
+    <div class="formula">$$ A = [a_{ij}],\quad i=1\dots m,\ j=1\dots n \qquad \text{square: } m=n,\quad \text{column vector: } n\times 1 $$</div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">✖️</span> Matrix multiplication</div>
+    <p>If $A$ is $m\times n$ and $B$ is $n\times p$, then $C=AB$ is $m\times p$. Each entry is a dot product of a row of $A$ with a column of $B$:</p>
+    <div class="formula">$$ C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj} $$</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Worked example</div>
+      <p>$A=\begin{bmatrix}1&2\\3&4\end{bmatrix},\ B=\begin{bmatrix}5&6\\7&8\end{bmatrix}$</p>
+      <p>$C_{11}=1\cdot5+2\cdot7=19,\quad C_{12}=1\cdot6+2\cdot8=22$</p>
+      <p>$\Rightarrow AB=\begin{bmatrix}19&22\\43&50\end{bmatrix}$</p>
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ Critical</div>
+      <p>$AB \neq BA$ in general — matrix multiplication is <strong>not</strong> commutative. A classic GATE trap.</p>
+    </div>
+  </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Matrix Transformer</span>
+      <span class="viz-hint">Move the sliders — watch space deform</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="matrix-transform"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>a <span id="mt-a-val">1.0</span></label><input type="range" id="mt-a" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="viz-control"><label>b <span id="mt-b-val">0.0</span></label><input type="range" id="mt-b" min="-3" max="3" step="0.1" value="0"></div>
+      <div class="viz-control"><label>c <span id="mt-c-val">0.0</span></label><input type="range" id="mt-c" min="-3" max="3" step="0.1" value="0"></div>
+      <div class="viz-control"><label>d <span id="mt-d-val">1.0</span></label><input type="range" id="mt-d" min="-3" max="3" step="0.1" value="1"></div>
+    </div>
+    <div class="viz-presets" id="matrix-transform-presets"></div>
+    <div class="viz-readout" id="matrix-transform-readout"></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">📋</span> Special matrix types</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Type</th><th>Definition</th><th>Key property</th></tr>
+      <tr><td>Identity $I$</td><td>$a_{ij}=1$ if $i=j$ else $0$</td><td>$AI=IA=A$</td></tr>
+      <tr><td>Diagonal</td><td>$a_{ij}=0$ for $i\neq j$</td><td>Invert via $1/d_{ii}$</td></tr>
+      <tr><td>Symmetric</td><td>$A=A^{\mathsf T}$</td><td>Real eigenvalues, orthogonal eigenvectors</td></tr>
+      <tr><td>Skew-symmetric</td><td>$A=-A^{\mathsf T}$</td><td>Diagonal entries $=0$</td></tr>
+      <tr><td>Orthogonal</td><td>$A^{\mathsf T}A=I$</td><td>$A^{-1}=A^{\mathsf T}$, $\det=\pm1$</td></tr>
+      <tr><td>Idempotent</td><td>$A^2=A$</td><td>Eigenvalues are $0$ or $1$</td></tr>
+      <tr><td>Nilpotent</td><td>$A^k=0$ for some $k$</td><td>All eigenvalues $=0$</td></tr>
+    </table></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔄</span> Transpose &amp; inverse</div>
+    <div class="formula">$$ (A^{\mathsf T})_{ij}=A_{ji},\qquad (AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T} $$
+$$ AA^{-1}=A^{-1}A=I,\qquad (AB)^{-1}=B^{-1}A^{-1},\qquad A^{-1}\text{ exists} \iff \det A \neq 0 $$
+$$ \begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix} $$</div>
+    <div class="callout memory">
+      <div class="callout-label">🧠 Memory trick</div>
+      <p>“Socks before shoes, shoes before socks to remove.” For an inverse or transpose of a product, the order <strong>reverses</strong>.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">⚡</span> Trace</div>
+    <div class="formula">$$ \operatorname{tr}(A)=\sum_i a_{ii},\quad \operatorname{tr}(AB)=\operatorname{tr}(BA),\quad \operatorname{tr}(A)=\textstyle\sum \lambda_i $$</div>
+    <p>The trace equals the sum of the eigenvalues — a fast sanity check in exams.</p>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. If $A$ is $3\times3$ with $A^2=A$, which <em>must</em> be true?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $A=I$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A=0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> Every eigenvalue is $0$ or $1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\det(A)=1$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$A=I$ works, but so do many other matrices — not forced.</div>
+    <div class="quiz-feedback" data-fb="B">$A=0$ works but is not the only case.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $A^2=A \Rightarrow \lambda^2=\lambda \Rightarrow \lambda\in\{0,1\}$.</div>
+    <div class="quiz-feedback" data-fb="D">$\det$ could be $0$ (if $A=0$) or $1$ (if $A=I$).</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/grid.js"></script>
+  <script src="../assets/js/viz/matrix-transform.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vectors & Vector Spaces · GATE DA</title>
+<meta name="description" content="Vectors, vector spaces, subspaces, span, linear independence, basis and dimension — with an interactive Vector Lab.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="01-vectors" data-content>
+  <div class="hero">
+    <span class="tag">Topic 1 · GATE weight: High</span>
+    <h1>Vectors &amp;<br>Vector Spaces</h1>
+    <p class="lede">The language of linear algebra. Vectors, subspaces, span, and linear
+      independence are the foundation everything else is built on.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔵</span> What is a vector?</div>
+    <p>A <strong>vector</strong> is an ordered list of numbers. In $\mathbb{R}^n$ a vector $v$ has $n$ components and is usually written as a column.</p>
+    <div class="formula">$$ v = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}, \qquad u + v = \begin{bmatrix} u_1+v_1 \\ \vdots \\ u_n+v_n \end{bmatrix}, \qquad c\,v = \begin{bmatrix} c\,v_1 \\ \vdots \\ c\,v_n \end{bmatrix} $$</div>
+    <p>Think of a vector as an arrow from the origin: <strong>adding</strong> is tip-to-tail, <strong>scaling</strong> stretches or flips it. Drag the arrows below to feel it.</p>
+  </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Vector Lab</span>
+      <span class="viz-hint">Drag the dots — values snap to the grid</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="vector-lab"></canvas></div>
+    <div class="viz-controls">
+      <label class="viz-toggle"><input type="checkbox" id="vl-sum" checked> Show sum u + v (tip-to-tail)</label>
+      <label class="viz-toggle"><input type="checkbox" id="vl-span"> Show span</label>
+    </div>
+    <div class="viz-readout" id="vector-lab-readout"></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🌐</span> Vector space ($\mathbb{R}^n$)</div>
+    <p>A <strong>vector space</strong> is a set $V$ where you can add vectors and scale them, and the result always stays inside $V$ (it is <em>closed</em> under both operations). Formally, eight axioms hold:</p>
+    <ul class="styled">
+      <li>$u+v = v+u$ &nbsp;(commutativity)</li>
+      <li>$(u+v)+w = u+(v+w)$ &nbsp;(associativity)</li>
+      <li>$v + 0 = v$ &nbsp;(zero vector exists)</li>
+      <li>$v + (-v) = 0$ &nbsp;(additive inverse)</li>
+      <li>$1\cdot v = v$, &nbsp; $c(dv) = (cd)v$</li>
+      <li>$c(u+v) = cu+cv$, &nbsp; $(c+d)v = cv+dv$ &nbsp;(distributivity)</li>
+    </ul>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🧲</span> Subspace</div>
+    <p>A subset $W \subseteq \mathbb{R}^n$ is a <strong>subspace</strong> if it satisfies three things:</p>
+    <div class="formula">$$ \text{(1) } 0 \in W \qquad \text{(2) } u,v \in W \Rightarrow u+v \in W \qquad \text{(3) } u \in W,\ c \in \mathbb{R} \Rightarrow cu \in W $$</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Worked example</div>
+      <p>Is $W = \{(x,y) : x+y = 0\}$ a subspace of $\mathbb{R}^2$?</p>
+      <ol>
+        <li>Does $(0,0)$ satisfy $x+y=0$? Yes ✓</li>
+        <li>If $x_1+y_1=0$ and $x_2+y_2=0$, then $(x_1+x_2)+(y_1+y_2)=0$ ✓</li>
+        <li>$c(x+y)=cx+cy=0$ ✓</li>
+      </ol>
+      <p>→ Yes — $W$ is a subspace (a line through the origin).</p>
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE check</div>
+      <p>Every subspace <strong>must</strong> contain the zero vector. If $0 \notin W$, stop — it is <strong>not</strong> a subspace.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🌿</span> Span &amp; linear independence</div>
+    <p><strong>Span</strong> is the set of all linear combinations of some vectors:</p>
+    <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\} = \{ c_1 v_1 + c_2 v_2 + \dots + c_k v_k : c_i \in \mathbb{R} \} $$</div>
+    <p>Vectors are <strong>linearly independent</strong> when the only way to combine them into the zero vector is the trivial way:</p>
+    <div class="formula">$$ c_1 v_1 + \dots + c_k v_k = 0 \;\Longrightarrow\; c_1 = c_2 = \dots = c_k = 0 $$</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Are these independent?</div>
+      <p>$v_1=(1,0),\ v_2=(0,1),\ v_3=(2,3)$.</p>
+      <p>Since $v_3 = 2v_1 + 3v_2$, they are linearly <strong>dependent</strong>. In $\mathbb{R}^2$ any 3 vectors are always dependent — at most 2 can be independent.</p>
+    </div>
+    <div class="callout memory">
+      <div class="callout-label">🧠 Memory trick</div>
+      <p>Independent = no vector can be built from the others. Like a team where no member is redundant.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🏛️</span> Basis &amp; dimension</div>
+    <p>A <strong>basis</strong> of $V$ is a set of vectors that is both (1) linearly independent and (2) spans $V$.</p>
+    <div class="formula">$$ \text{Standard basis of } \mathbb{R}^3:\quad e_1=(1,0,0),\ e_2=(0,1,0),\ e_3=(0,0,1) \qquad \dim(\mathbb{R}^n)=n $$</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE fact</div>
+      <p>Every basis of a space has the <strong>same</strong> number of vectors — that number is the dimension, and it cannot change with your choice of basis.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Which of the following is <em>not</em> a subspace of $\mathbb{R}^2$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="D"><span class="opt-letter">A</span> $\{(x,y): 2x-y=0\}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="D"><span class="opt-letter">B</span> $\{(0,0)\}$ (just the origin)</button>
+      <button class="quiz-opt" data-val="C" data-correct="D"><span class="opt-letter">C</span> $\mathbb{R}^2$ (all vectors)</button>
+      <button class="quiz-opt" data-val="D" data-correct="D"><span class="opt-letter">D</span> $\{(x,y): x+y=1\}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A line through the origin — it <b>is</b> a subspace.</div>
+    <div class="quiz-feedback" data-fb="B">The trivial subspace — it <b>is</b> a subspace.</div>
+    <div class="quiz-feedback" data-fb="C">$\mathbb{R}^2$ is a subspace of itself.</div>
+    <div class="quiz-feedback" data-fb="D">✅ Correct — $x+y=1$ does not contain $(0,0)$, so it is not a subspace.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. The dimension of $\operatorname{span}\{(1,2,3),(2,4,6)\}$ is:</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> 1</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> 2</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> 3</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> 6</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $(2,4,6)=2(1,2,3)$, so the vectors are parallel and the span is a 1-D line.</div>
+    <div class="quiz-feedback" data-fb="B">The two vectors are dependent (one is a multiple of the other), so dim is 1, not 2.</div>
+    <div class="quiz-feedback" data-fb="C">Span dimension can't exceed the number of independent vectors.</div>
+    <div class="quiz-feedback" data-fb="D">Dimension counts independent directions, not entries.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/grid.js"></script>
+  <script src="../assets/js/viz/vector-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

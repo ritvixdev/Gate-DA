@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rank & Nullity · GATE DA</title>
+<meta name="description" content="Rank, null space, the rank-nullity theorem, and the four fundamental subspaces.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="04-rank-nullity" data-content>
+  <div class="hero">
+    <span class="tag">Topic 4 · GATE weight: High</span>
+    <h1>Rank &amp; Nullity</h1>
+    <p class="lede">Rank measures how much information a matrix carries; nullity measures what it
+      destroys. Together they always sum to the number of columns.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">📐</span> Rank of a matrix</div>
+    <p>The <strong>rank</strong> of $A$ is the maximum number of linearly independent rows (equivalently, columns). It equals the number of non-zero rows in row-echelon form.</p>
+    <div class="formula">$$ \operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T}),\qquad \operatorname{rank}(A)\le \min(m,n) $$
+$$ \operatorname{rank}(AB)\le \min(\operatorname{rank}A,\operatorname{rank}B) $$</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Worked example</div>
+      <p>$A=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$. Row 2 $=2\cdot$Row 1, so it vanishes. Row-reduction leaves 2 non-zero rows $\Rightarrow \operatorname{rank}(A)=2$.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🕳️</span> Null space &amp; nullity</div>
+    <p>The <strong>null space</strong> (kernel) of $A$ is every $x$ with $Ax=0$.</p>
+    <div class="formula">$$ \operatorname{Null}(A)=\{x\in\mathbb{R}^n : Ax=0\},\qquad \operatorname{nullity}(A)=\dim\operatorname{Null}(A)=n-\operatorname{rank}(A) $$</div>
+    <div class="callout memory">
+      <div class="callout-label">🧠 The rank-nullity theorem</div>
+      <p>For an $m\times n$ matrix:</p>
+      <p class="highlight-eqn">$\operatorname{rank}(A) + \operatorname{nullity}(A) = n$</p>
+      <p>One of the most important identities in all of linear algebra.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🗄️</span> Four fundamental subspaces</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Subspace</th><th>Definition</th><th>Dimension</th></tr>
+      <tr><td>Column space $C(A)$</td><td>span of columns</td><td>$\operatorname{rank}(A)$</td></tr>
+      <tr><td>Null space $N(A)$</td><td>$\{x:Ax=0\}$</td><td>$n-\operatorname{rank}(A)$</td></tr>
+      <tr><td>Row space $C(A^{\mathsf T})$</td><td>span of rows</td><td>$\operatorname{rank}(A)$</td></tr>
+      <tr><td>Left null space $N(A^{\mathsf T})$</td><td>$\{y:A^{\mathsf T}y=0\}$</td><td>$m-\operatorname{rank}(A)$</td></tr>
+    </table></div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE insight</div>
+      <p>Row space $\perp$ null space in $\mathbb{R}^n$; column space $\perp$ left null space in $\mathbb{R}^m$. Handy for system-of-equations questions.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. A $5\times8$ matrix $A$ has rank $3$. What is its nullity?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 2</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 3</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 8</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Nullity $=n-\operatorname{rank}=8-3=5$; $n$ is the column count (8).</div>
+    <div class="quiz-feedback" data-fb="B">Don't confuse rank with nullity. Nullity $=8-3=5$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — nullity $=n-\operatorname{rank}=8-3=5$.</div>
+    <div class="quiz-feedback" data-fb="D">8 is the number of columns, not the nullity.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
