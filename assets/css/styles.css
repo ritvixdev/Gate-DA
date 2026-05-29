@@ -400,7 +400,51 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
   position: sticky; top: 0; z-index: 20;
   background: color-mix(in srgb, var(--canvas) 86%, transparent); backdrop-filter: blur(10px);
 }
-.site-footer { border-top: 1px solid var(--hairline); padding: var(--s-xl); text-align: center; color: var(--muted-soft); font-size: 13px; }
+/* Dark footer band — cream-to-dark pacing (always dark, both themes) */
+.site-footer { background: #1b1a17; padding: var(--s-xl); text-align: center; color: #a09d96; font-size: 13px; }
+.site-footer a { color: #e0917a; }
+.main > .site-footer { margin-top: var(--s-xl); }
+
+/* ---------------------------------------------------------- *
+ * Buttons (Claude button-primary / button-secondary)
+ * ---------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 22px; height: 42px; border-radius: var(--r-md);
+  font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  cursor: pointer; border: 1px solid transparent; text-decoration: none;
+  transition: background var(--speed) var(--ease), border-color var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+.btn-primary { background: var(--primary-active); color: var(--on-primary); }
+.btn-primary:hover { background: var(--coral-text); color: var(--on-primary); text-decoration: none; }
+.btn-secondary { background: var(--elevated); color: var(--ink); border-color: var(--hairline); }
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); text-decoration: none; }
+
+/* ---------------------------------------------------------- *
+ * Coral CTA / takeaway band (Claude cta-band-coral)
+ * ---------------------------------------------------------- */
+.cta-band {
+  background: var(--primary-active); color: var(--on-primary);
+  border-radius: var(--r-lg); padding: var(--s-xl);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-lg);
+  flex-wrap: wrap; margin: var(--s-xl) 0;
+}
+.cta-band .cta-title { color: var(--on-primary); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.cta-band p { color: var(--on-primary); font-size: 20px; font-weight: 600; line-height: 1.5; margin: 0; max-width: none; }
+.cta-band p strong { color: var(--on-primary); }
+.cta-band .btn-secondary { background: var(--canvas); }
+.content > .cta-band { max-width: 820px; margin-left: 0; margin-right: auto; }
+.cta-takeaway { padding: var(--s-md) var(--s-lg); }
+
+/* ---------------------------------------------------------- *
+ * Badges (Claude badge-pill / badge-coral)
+ * ---------------------------------------------------------- */
+.badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; padding: 2px 9px; border-radius: var(--r-pill);
+}
+.badge-coral { background: var(--primary-active); color: var(--on-primary); }
+.badge-soft { background: var(--surface-strong); color: var(--body); }
 
 /* ---------------------------------------------------------- *
  * Responsive

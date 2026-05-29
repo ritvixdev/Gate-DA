@@ -116,6 +116,7 @@
       '<div class="app">' + sidebar +
         '<div class="main">' + topbar +
           '<main class="content" id="content">' + inner + buildNav(slug, topics, laRoot) + "</main>" +
+          '<footer class="site-footer">GATE DA · Linear Algebra · Theme by <a href="https://getdesign.app">getdesign · claude</a></footer>' +
         "</div>" +
       "</div>" +
       '<div class="scrim" id="scrim"></div>';
