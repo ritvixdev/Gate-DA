@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SVD & PCA · GATE DA</title>
-<meta name="description" content="Singular value decomposition A = UΣVᵀ, low-rank approximation, and its link to principal component analysis.">
+<meta name="description" content="Learn SVD and PCA from zero: A = UΣVᵀ, singular values, low-rank approximation, link to PCA — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,64 +13,152 @@
   <div class="hero">
     <span class="tag">Topic 9 · GATE weight: High</span>
     <h1>SVD &amp; PCA</h1>
-    <p class="lede">Every matrix — square or not — factors into rotate, stretch, rotate. That single
-      fact powers dimensionality reduction across all of machine learning.</p>
+    <p class="lede">Every matrix — square or not — is secretly "rotate, stretch, rotate". That single
+      fact powers dimensionality reduction across machine learning.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">💡</span> Singular value decomposition</div>
-    <p>Any $m\times n$ matrix $A$ factors as</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Diagonalization only works for some square matrices. The <strong>SVD</strong> works for <em>any</em> matrix and
+      reveals its most important directions, ranked by strength. Keeping only the strongest few gives
+      the best simple approximation — that's compression and <strong>PCA</strong>.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Any transformation = <strong>rotate</strong> ($V^{\mathsf T}$) → <strong>stretch along clean axes</strong> ($\Sigma$) →
+        <strong>rotate again</strong> ($U$). A circle always becomes an ellipse; the singular values $\sigma_i$ are the
+        ellipse's axis lengths — the biggest one is the data's strongest direction.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>SVD:</strong> $A=U\Sigma V^{\mathsf T}$ for any $m\times n$ matrix.</p>
+    <p><strong>$U$ ($m\times m$):</strong> orthogonal, left singular vectors. <strong>$V$ ($n\times n$):</strong> orthogonal, right singular vectors.</p>
+    <p><strong>$\Sigma$:</strong> diagonal of <strong>singular values</strong> $\sigma_1\ge\sigma_2\ge\dots\ge0$.</p>
+    <p><strong>PCA:</strong> finds the directions of maximum variance in centered data — the principal components.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$U$</td><td>"U"</td><td>left singular vectors (orthogonal)</td></tr>
+      <tr><td>$\Sigma$</td><td>"sigma"</td><td>diagonal of singular values</td></tr>
+      <tr><td>$V^{\mathsf T}$</td><td>"V transpose"</td><td>right singular vectors (orthogonal)</td></tr>
+      <tr><td>$\sigma_i$</td><td>"sigma i"</td><td>$i$-th singular value $\ge0$</td></tr>
+      <tr><td>$C$</td><td>"C"</td><td>covariance matrix (PCA)</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
     <div class="formula">$$ A = U\,\Sigma\,V^{\mathsf T} $$</div>
-    <ul class="styled">
-      <li>$U$ ($m\times m$) — orthogonal; columns are the <strong>left singular vectors</strong>.</li>
-      <li>$\Sigma$ ($m\times n$) — diagonal of <strong>singular values</strong> $\sigma_1\ge\sigma_2\ge\dots\ge0$.</li>
-      <li>$V$ ($n\times n$) — orthogonal; columns are the <strong>right singular vectors</strong>.</li>
-    </ul>
-    <p>Geometrically: $V^{\mathsf T}$ rotates, $\Sigma$ stretches along axes, $U$ rotates again.</p>
-  </div>
+    <div class="formula">$$ \sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)},\qquad V:\text{eigenvectors of }A^{\mathsf T}A,\qquad U:\text{eigenvectors of }AA^{\mathsf T} $$</div>
+    <div class="formula">$$ A \approx \sum_{i=1}^{k}\sigma_i\,u_i v_i^{\mathsf T} \quad(\text{best rank-}k\text{ approximation}) $$</div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔗</span> Where the pieces come from</div>
-    <div class="formula">$$ \sigma_i = \sqrt{\lambda_i(A^{\mathsf T}A)},\qquad V:\text{eigenvectors of }A^{\mathsf T}A,\qquad U:\text{eigenvectors of }AA^{\mathsf T} $$</div>
-    <p>Singular values are always real and non-negative because $A^{\mathsf T}A$ is symmetric positive semi-definite. The number of non-zero $\sigma_i$ equals $\operatorname{rank}(A)$.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: compute an SVD</div>
+    <ol class="steps">
+      <li>Form $A^{\mathsf T}A$ (symmetric, positive semi-definite).</li>
+      <li>Find its eigenvalues $\lambda_i\ge0$ and eigenvectors → those eigenvectors are $V$.</li>
+      <li>Singular values $\sigma_i=\sqrt{\lambda_i}$, placed (largest first) on $\Sigma$.</li>
+      <li>Get each $u_i=\dfrac{1}{\sigma_i}A v_i$ → those form $U$.</li>
+      <li>Assemble $A=U\Sigma V^{\mathsf T}$.</li>
+    </ol>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🗜️</span> Low-rank approximation</div>
-    <p>Keeping only the largest $k$ singular values gives the best rank-$k$ approximation of $A$ (Eckart–Young):</p>
-    <div class="formula">$$ A \approx \sum_{i=1}^{k} \sigma_i\, u_i v_i^{\mathsf T} $$</div>
-    <p>This is the engine behind image compression, latent semantic analysis, and recommender systems.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example (idea)</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Singular values</div>
+      <p>For $A=\begin{bmatrix}3&0\\0&-2\end{bmatrix}$: $A^{\mathsf T}A=\begin{bmatrix}9&0\\0&4\end{bmatrix}$, eigenvalues $9,4$.</p>
+      <p>So singular values are $\sigma_1=3,\ \sigma_2=2$ (always non-negative — note the $-2$ became $2$).</p>
+    </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📉</span> PCA — the ML connection</div>
-    <p><strong>Principal Component Analysis</strong> finds the directions of maximum variance in centered data $X$. Those directions are the eigenvectors of the covariance matrix:</p>
-    <div class="formula">$$ C = \tfrac{1}{n-1} X^{\mathsf T} X,\qquad C = W \Lambda W^{\mathsf T} $$</div>
-    <ul class="styled">
-      <li>Principal components = eigenvectors of $C$ (= right singular vectors of $X$).</li>
-      <li>Variance explained by each = its eigenvalue $\lambda_i$ (= $\sigma_i^2/(n-1)$).</li>
-      <li>Keep the top components to reduce dimensions while preserving the most variance.</li>
-    </ul>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
     <div class="callout tip">
-      <div class="callout-label">⚡ GATE insight</div>
-      <p>PCA <em>is</em> the SVD of the centered data matrix. Running SVD on $X$ directly is the numerically stable way to do PCA.</p>
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Singular values are $\sqrt{\text{eigenvalues of }A^{\mathsf T}A}$ — always real and $\ge0$.</li>
+        <li>Number of non-zero singular values $=\operatorname{rank}(A)$.</li>
+        <li>$U,V$ are orthogonal; $\Sigma$ is diagonal.</li>
+        <li>PCA = SVD of the centered data matrix; variance explained $=\sigma_i^2/(n-1)$.</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. The singular values of $A$ are the…</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> eigenvalues of $A$</button>
-      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> square roots of the eigenvalues of $A^{\mathsf T}A$</button>
-      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> diagonal entries of $A$</button>
-      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> reciprocals of the eigenvalues of $A$</button>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Singular values = eigenvalues of $A$." <span class="right">Reality:</span> only for symmetric PSD matrices; in general $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$.</p>
+      <p><span class="wrong">Trap:</span> "Singular values can be negative." <span class="right">Reality:</span> never — they are $\ge0$ by definition.</p>
+      <p><span class="wrong">Trap:</span> "Only square matrices have an SVD." <span class="right">Reality:</span> every matrix does.</p>
     </div>
-    <div class="quiz-feedback" data-fb="A">Only true for symmetric PSD matrices; in general they differ.</div>
-    <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$, always real and $\ge0$.</div>
-    <div class="quiz-feedback" data-fb="C">Diagonal entries are unrelated to singular values in general.</div>
-    <div class="quiz-feedback" data-fb="D">Reciprocals relate to $A^{-1}$, not to singular values.</div>
-  </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Eigenvalues:</strong> SVD is built from eigenvalues of $A^{\mathsf T}A$ and $AA^{\mathsf T}$.</li>
+      <li><strong>Orthogonality:</strong> $U$ and $V$ are orthogonal matrices.</li>
+      <li><strong>Rank:</strong> number of non-zero singular values.</li>
+      <li><strong>Diagonalization:</strong> SVD is the "works-for-everything" generalization.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $A^{\mathsf T}A$ has eigenvalues $16,9$. Singular values of $A$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\sqrt{16}=4$ and $\sqrt{9}=3$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. A matrix has singular values $5,2,0,0$. What is its rank?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">2 — the number of non-zero singular values.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. How does PCA relate to SVD?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">PCA is the SVD of the centered data matrix; principal components are the right singular vectors (eigenvectors of the covariance).</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The singular values of $A$ are the…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> eigenvalues of $A$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> square roots of eigenvalues of $A^{\mathsf T}A$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> diagonal entries of $A$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> reciprocals of eigenvalues of $A$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Only for symmetric PSD matrices.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$, real and $\ge0$.</div>
+      <div class="quiz-feedback" data-fb="C">Unrelated in general.</div>
+      <div class="quiz-feedback" data-fb="D">That relates to $A^{-1}$.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$A=U\Sigma V^{\mathsf T}$: rotate, stretch, rotate — works for any matrix.</li>
+        <li>$\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}\ge0$; non-zero count = rank.</li>
+        <li>$U,V$ orthogonal; $\Sigma$ diagonal.</li>
+        <li>PCA = SVD of centered data; keep top components to reduce dimensions.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> singular values are √(eigenvalues of AᵀA), and PCA is just the SVD of centered data.</p>

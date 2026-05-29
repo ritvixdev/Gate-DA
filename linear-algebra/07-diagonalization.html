@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagonalization · GATE DA</title>
-<meta name="description" content="Diagonalization A = PDP⁻¹, when a matrix is diagonalizable, and computing matrix powers the easy way.">
+<meta name="description" content="Learn diagonalization from zero: A = PDP⁻¹, when it works, matrix powers made easy — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,60 +13,144 @@
   <div class="hero">
     <span class="tag">Topic 7 · GATE weight: Medium</span>
     <h1>Diagonalization</h1>
-    <p class="lede">Rewrite a matrix in its eigenvector basis, where it acts as simple scaling. This
-      turns hard operations like high powers into one-liners.</p>
+    <p class="lede">Rewrite a matrix in its eigenvector world, where it acts as simple stretching.
+      Hard jobs like high powers become one-liners.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📊</span> The factorization</div>
-    <p>A square matrix $A$ is <strong>diagonalizable</strong> if it can be written</p>
-    <div class="formula">$$ A = P D P^{-1} $$</div>
-    <p>where $D$ is diagonal with the eigenvalues on its diagonal, and the columns of $P$ are the corresponding eigenvectors.</p>
-    <div class="formula">$$ P=\big[\,x_1\ \ x_2\ \cdots\ x_n\,\big],\qquad D=\operatorname{diag}(\lambda_1,\lambda_2,\dots,\lambda_n) $$</div>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>In ordinary coordinates a matrix mixes directions together, which makes powers and behaviour
+      hard to see. If we switch to the matrix's own eigenvector directions, it becomes a plain
+      <strong>diagonal</strong> stretch. That's diagonalization — and it turns $A^{100}$ into raising numbers to a power.</p>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">✅</span> When is it possible?</div>
-    <ul class="styled">
-      <li>$A$ ($n\times n$) is diagonalizable $\iff$ it has $n$ <strong>linearly independent eigenvectors</strong>.</li>
-      <li>If all $n$ eigenvalues are <strong>distinct</strong>, $A$ is automatically diagonalizable.</li>
-      <li>Every <strong>symmetric</strong> matrix is diagonalizable — in fact orthogonally: $A=QDQ^{\mathsf T}$ with $Q^{\mathsf T}Q=I$.</li>
-      <li>A repeated eigenvalue is fine <em>only if</em> its geometric multiplicity matches its algebraic multiplicity.</li>
-    </ul>
-    <div class="callout tip">
-      <div class="callout-label">⚡ GATE check</div>
-      <p>Failure case: $\begin{bmatrix}1&1\\0&1\end{bmatrix}$ has $\lambda=1$ twice but only one independent eigenvector — <strong>not</strong> diagonalizable (it is <em>defective</em>).</p>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>$P^{-1}$ rotates you into the eigenvector world, $D$ just stretches each axis by its eigenvalue,
+        and $P$ rotates you back. Hard work in the normal world becomes easy work in the right world:
+        $A=PDP^{-1}$.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">⚡</span> Why it's useful — matrix powers</div>
-    <p>Because the $P^{-1}P$ pairs cancel, powers collapse to powering the diagonal:</p>
-    <div class="formula">$$ A^k = P D^k P^{-1},\qquad D^k=\operatorname{diag}(\lambda_1^{k},\dots,\lambda_n^{k}) $$</div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Diagonalizable:</strong> $A$ can be written $A=PDP^{-1}$, with $D$ diagonal.</p>
+    <p><strong>$P$:</strong> columns are the eigenvectors. <strong>$D$:</strong> diagonal entries are the matching eigenvalues.</p>
+    <p><strong>Defective:</strong> a matrix that cannot be diagonalized (too few independent eigenvectors).</p>
+    <p><strong>Algebraic vs geometric multiplicity:</strong> how many times $\lambda$ repeats vs how many independent eigenvectors it has; diagonalizable needs them equal for every $\lambda$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$P$</td><td>"P"</td><td>matrix of eigenvectors (columns)</td></tr>
+      <tr><td>$D$</td><td>"D"</td><td>diagonal matrix of eigenvalues</td></tr>
+      <tr><td>$P^{-1}$</td><td>"P inverse"</td><td>change back from eigen-world</td></tr>
+      <tr><td>$\operatorname{diag}(\dots)$</td><td>"diag"</td><td>diagonal matrix with given entries</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ A = PDP^{-1},\qquad D=\operatorname{diag}(\lambda_1,\dots,\lambda_n) $$</div>
+    <div class="formula">$$ A^{k} = P D^{k} P^{-1},\qquad D^{k}=\operatorname{diag}(\lambda_1^{k},\dots,\lambda_n^{k}) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Find the eigenvalues from $\det(A-\lambda I)=0$.</li>
+      <li>Find an eigenvector for each eigenvalue.</li>
+      <li>Check you have $n$ independent eigenvectors; if not, $A$ is not diagonalizable.</li>
+      <li>Put the eigenvectors as columns of $P$ and the eigenvalues on the diagonal of $D$.</li>
+      <li>Then $A=PDP^{-1}$; for powers use $A^k=PD^kP^{-1}$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
     <div class="callout example">
-      <div class="callout-label">✦ Worked example</div>
-      <p>$A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$ is already diagonal, so $A^{10}=\begin{bmatrix}2^{10}&0\\0&3^{10}\end{bmatrix}=\begin{bmatrix}1024&0\\0&59049\end{bmatrix}$. For a general diagonalizable $A$, change to the eigenbasis, raise to the power, change back.</p>
+      <div class="callout-label">✦ Powers via diagonalization</div>
+      <p>$A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$ is already diagonal, so $A^{10}=\begin{bmatrix}2^{10}&0\\0&3^{10}\end{bmatrix}=\begin{bmatrix}1024&0\\0&59049\end{bmatrix}$.</p>
+      <p>For a general diagonalizable $A$: change to the eigenbasis ($P^{-1}$), raise the eigenvalues to the power ($D^k$), change back ($P$).</p>
     </div>
-    <div class="callout memory">
-      <div class="callout-label">🧠 Big idea</div>
-      <p>$P^{-1}$ rotates into the eigenvector world, $D^k$ just stretches, $P$ rotates back. Hard work becomes easy work in the right basis.</p>
-    </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. Which matrix is <em>not</em> diagonalizable?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\begin{bmatrix}2&0\\0&5\end{bmatrix}$</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\begin{bmatrix}3&1\\1&3\end{bmatrix}$ (symmetric)</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\begin{bmatrix}1&1\\0&1\end{bmatrix}$</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ (distinct complex $\lambda$)</button>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$n$ <strong>distinct</strong> eigenvalues ⇒ automatically diagonalizable.</li>
+        <li>Every <strong>symmetric</strong> matrix is diagonalizable — orthogonally: $A=QDQ^{\mathsf T}$.</li>
+        <li>Diagonalizable $\iff$ $n$ independent eigenvectors (geometric = algebraic multiplicity for each $\lambda$).</li>
+        <li>$A^k=PD^kP^{-1}$ — the reason diagonalization is worth it.</li>
+      </ul>
     </div>
-    <div class="quiz-feedback" data-fb="A">Diagonal matrices are already diagonalized.</div>
-    <div class="quiz-feedback" data-fb="B">Symmetric matrices are always diagonalizable.</div>
-    <div class="quiz-feedback" data-fb="C">✅ Correct — repeated $\lambda=1$ with only one independent eigenvector; it is defective.</div>
-    <div class="quiz-feedback" data-fb="D">Distinct (complex) eigenvalues ⇒ diagonalizable over $\mathbb{C}$.</div>
-  </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Every matrix is diagonalizable." <span class="right">Reality:</span> $\begin{bmatrix}1&1\\0&1\end{bmatrix}$ has $\lambda=1$ twice but only one eigenvector — defective.</p>
+      <p><span class="wrong">Trap:</span> "Repeated eigenvalues ⇒ not diagonalizable." <span class="right">Reality:</span> fine if enough independent eigenvectors (e.g. $I$).</p>
+      <p><span class="wrong">Trap:</span> "$D$ can hold eigenvalues in any order." <span class="right">Reality:</span> order of $D$ must match the column order of $P$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Eigenvalues:</strong> diagonalization is built entirely from them.</li>
+      <li><strong>Symmetric matrices &amp; orthogonality:</strong> give the clean orthogonal diagonalization.</li>
+      <li><strong>SVD:</strong> a generalization that works for <em>any</em> matrix, not just square diagonalizable ones.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. A $3\times3$ matrix has eigenvalues $2,4,7$ (all distinct). Diagonalizable?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Yes — distinct eigenvalues guarantee it.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. If $A=PDP^{-1}$ with $D=\operatorname{diag}(1,2)$, what is $A^5$ in factored form?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$A^5=P\operatorname{diag}(1^5,2^5)P^{-1}=P\operatorname{diag}(1,32)P^{-1}$.</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">Which matrix is <em>not</em> diagonalizable?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\begin{bmatrix}2&0\\0&5\end{bmatrix}$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\begin{bmatrix}3&1\\1&3\end{bmatrix}$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\begin{bmatrix}1&1\\0&1\end{bmatrix}$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Already diagonal.</div>
+      <div class="quiz-feedback" data-fb="B">Symmetric ⇒ always diagonalizable.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — repeated $\lambda=1$ with only one eigenvector (defective).</div>
+      <div class="quiz-feedback" data-fb="D">Distinct (complex) eigenvalues ⇒ diagonalizable over $\mathbb{C}$.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$A=PDP^{-1}$: $P$ = eigenvectors, $D$ = eigenvalues.</li>
+        <li>Diagonalizable $\iff$ $n$ independent eigenvectors; distinct $\lambda$ guarantee it.</li>
+        <li>Symmetric ⇒ orthogonally diagonalizable $A=QDQ^{\mathsf T}$.</li>
+        <li>$A^k=PD^kP^{-1}$ — powers made easy.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> A is diagonalizable iff it has n independent eigenvectors; distinct eigenvalues guarantee it.</p>

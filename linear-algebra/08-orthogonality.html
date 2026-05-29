@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Orthogonality · GATE DA</title>
-<meta name="description" content="Orthogonal and orthonormal sets, projections, Gram–Schmidt, and orthogonal matrices.">
+<meta name="description" content="Learn orthogonality from zero: dot product, projections, Gram-Schmidt, orthogonal matrices — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -13,55 +13,151 @@
   <div class="hero">
     <span class="tag">Topic 8 · GATE weight: Medium</span>
     <h1>Orthogonality</h1>
-    <p class="lede">Right angles make linear algebra easy: projections become simple, bases become
-      stable, and inverses become transposes.</p>
+    <p class="lede">Right angles make everything easy: projections become simple, bases become stable,
+      and inverses become transposes.</p>
   </div>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">📐</span> Orthogonal &amp; orthonormal</div>
-    <p>Two vectors are <strong>orthogonal</strong> when their dot product is zero. A set is <strong>orthonormal</strong> if its vectors are mutually orthogonal and each has unit length.</p>
-    <div class="formula">$$ u \cdot v = u^{\mathsf T} v = 0 \quad(\text{orthogonal}),\qquad q_i^{\mathsf T} q_j=\begin{cases}1 & i=j\\ 0 & i\neq j\end{cases}\ (\text{orthonormal}) $$</div>
-    <p>Orthogonal sets of non-zero vectors are automatically linearly independent.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>When directions are perpendicular they don't interfere, so calculations get clean and stable.
+      Orthogonality powers least-squares fitting, QR factorization, and the orthogonal eigenvectors of
+      symmetric matrices — and it's the backbone of PCA.</p>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🔦</span> Projection</div>
-    <p>The projection of $v$ onto the line spanned by $u$ is the “shadow” of $v$ along $u$:</p>
-    <div class="formula">$$ \operatorname{proj}_u(v) = \frac{u^{\mathsf T} v}{u^{\mathsf T} u}\, u $$</div>
-    <p>This is the closest point to $v$ on that line — the foundation of least-squares fitting.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Two arrows at $90°$ are <strong>orthogonal</strong> — neither casts any shadow on the other.
+        A <strong>projection</strong> is the shadow one arrow drops onto another's line. An <strong>orthogonal matrix</strong>
+        is a rigid move (rotation/reflection): it never stretches, so lengths and angles are preserved.</p>
+    </div>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🧰</span> Gram–Schmidt</div>
-    <p>Turn any independent set $\{v_1,\dots,v_k\}$ into an orthogonal set by subtracting off the projections onto everything already chosen:</p>
-    <div class="formula">$$ u_1=v_1,\qquad u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k) $$</div>
-    <p>Normalize each $u_i$ to get an orthonormal basis. This yields the $QR$ factorization $A=QR$.</p>
-  </div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Dot product:</strong> $u\cdot v=u^{\mathsf T}v=\sum u_iv_i$. Zero means perpendicular.</p>
+    <p><strong>Orthogonal set:</strong> every pair is perpendicular. <strong>Orthonormal:</strong> orthogonal <em>and</em> each has length 1.</p>
+    <p><strong>Projection:</strong> the closest point to $v$ on another vector's line.</p>
+    <p><strong>Orthogonal matrix:</strong> a square matrix whose columns are orthonormal ($Q^{\mathsf T}Q=I$).</p>
+  </section>
 
-  <div class="concept-card">
-    <div class="card-title"><span class="card-ico">🟦</span> Orthogonal matrices</div>
-    <p>A square matrix $Q$ is <strong>orthogonal</strong> when its columns are orthonormal:</p>
-    <div class="formula">$$ Q^{\mathsf T}Q = I \;\Rightarrow\; Q^{-1}=Q^{\mathsf T},\qquad \det Q=\pm1,\qquad \|Qx\|=\|x\| $$</div>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$u\cdot v$, $u^{\mathsf T}v$</td><td>"u dot v"</td><td>dot product (a number)</td></tr>
+      <tr><td>$\|v\|$</td><td>"norm of v"</td><td>length $=\sqrt{v\cdot v}$</td></tr>
+      <tr><td>$\perp$</td><td>"perp"</td><td>perpendicular (dot $=0$)</td></tr>
+      <tr><td>$\operatorname{proj}_u v$</td><td>"projection"</td><td>shadow of $v$ onto $u$</td></tr>
+      <tr><td>$Q$</td><td>"Q"</td><td>orthogonal matrix</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ u \cdot v = 0 \iff u \perp v,\qquad \|v\|=\sqrt{v\cdot v} $$</div>
+    <div class="formula">$$ \operatorname{proj}_u v = \frac{u^{\mathsf T}v}{u^{\mathsf T}u}\,u $$</div>
+    <div class="formula">$$ Q^{\mathsf T}Q=I \;\Rightarrow\; Q^{-1}=Q^{\mathsf T},\quad \det Q=\pm1,\quad \|Qx\|=\|x\| $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: Gram–Schmidt</div>
+    <ol class="steps">
+      <li>Keep the first vector: $u_1=v_1$.</li>
+      <li>For each next $v_k$, subtract its projections onto all previous $u_j$.</li>
+      <li>That remainder $u_k$ is orthogonal to all earlier ones.</li>
+      <li>Normalize each $u_i$ (divide by its length) to get an orthonormal basis.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Projection</div>
+      <p>Project $v=(3,4)$ onto $u=(1,0)$: &nbsp; $\operatorname{proj}_u v=\dfrac{u^{\mathsf T}v}{u^{\mathsf T}u}u=\dfrac{3}{1}(1,0)=(3,0)$.</p>
+      <p>The shadow of $(3,4)$ on the x-axis is $(3,0)$ — exactly the $x$-part.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
     <div class="callout tip">
-      <div class="callout-label">⚡ GATE insight</div>
-      <p>Orthogonal matrices preserve length and angle — they are exactly the rotations and reflections. That is why $\|Qx\|=\|x\|$.</p>
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Orthogonal matrix: $Q^{-1}=Q^{\mathsf T}$ (inverse for free), $\det=\pm1$, preserves length.</li>
+        <li>Orthogonal sets of non-zero vectors are automatically independent.</li>
+        <li>Symmetric matrices have orthogonal eigenvectors (for distinct $\lambda$).</li>
+        <li>Gram–Schmidt gives the $QR$ factorization $A=QR$.</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <h3>Practice</h3>
-  <div class="quiz-card">
-    <div class="quiz-q">Q1. If $Q$ is orthogonal, what is $Q^{\mathsf T}Q$?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $Q$</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $I$</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $Q^2$</button>
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Orthogonal = orthonormal." <span class="right">Reality:</span> orthonormal also requires unit length.</p>
+      <p><span class="wrong">Trap:</span> "$Q^{\mathsf T}Q=I$ means $Q$ is symmetric." <span class="right">Reality:</span> it means $Q^{-1}=Q^{\mathsf T}$, not $Q=Q^{\mathsf T}$.</p>
+      <p><span class="wrong">Trap:</span> "Projection changes a vector's length unpredictably." <span class="right">Reality:</span> a projection never lengthens; it gives the closest point.</p>
     </div>
-    <div class="quiz-feedback" data-fb="A">Only the zero matrix gives $0$ — not an invertible $Q$.</div>
-    <div class="quiz-feedback" data-fb="B">That would require $Q^{\mathsf T}=I$.</div>
-    <div class="quiz-feedback" data-fb="C">✅ Correct — orthonormal columns give $Q^{\mathsf T}Q=I$, so $Q^{-1}=Q^{\mathsf T}$.</div>
-    <div class="quiz-feedback" data-fb="D">No — orthogonality gives the identity, not $Q^2$.</div>
-  </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Vectors:</strong> orthogonal sets are a special, well-behaved kind of independent set.</li>
+      <li><strong>Eigenvalues:</strong> symmetric matrices → orthogonal eigenvectors.</li>
+      <li><strong>Diagonalization:</strong> symmetric ⇒ orthogonal diagonalization $A=QDQ^{\mathsf T}$.</li>
+      <li><strong>SVD &amp; PCA:</strong> $U$ and $V$ are orthogonal; principal axes are orthogonal.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Are $(1,2)$ and $(2,-1)$ orthogonal?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Dot $=1\cdot2+2\cdot(-1)=0$ → yes, orthogonal.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. For orthogonal $Q$, what is $\det Q$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\pm1$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Project $(0,5)$ onto $(0,1)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\dfrac{5}{1}(0,1)=(0,5)$ — it's already on that line.</div>
+    </div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If $Q$ is orthogonal, what is $Q^{\mathsf T}Q$?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $Q$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $I$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $Q^2$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Only the zero matrix gives $0$.</div>
+      <div class="quiz-feedback" data-fb="B">That needs $Q^{\mathsf T}=I$.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — orthonormal columns give $Q^{\mathsf T}Q=I$, so $Q^{-1}=Q^{\mathsf T}$.</div>
+      <div class="quiz-feedback" data-fb="D">No — orthogonality gives the identity.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Dot product $0$ ⇒ perpendicular; orthonormal = orthogonal + unit length.</li>
+        <li>$\operatorname{proj}_u v=\dfrac{u^{\mathsf T}v}{u^{\mathsf T}u}u$ (the shadow).</li>
+        <li>Orthogonal $Q$: $Q^{-1}=Q^{\mathsf T}$, $\det=\pm1$, lengths preserved.</li>
+        <li>Gram–Schmidt builds an orthonormal basis ⇒ $QR$.</li>
+      </ul>
+    </div>
+  </section>
 
   <div class="cta-band cta-takeaway">
     <p><strong>GATE takeaway —</strong> for an orthogonal matrix Q, Q⁻¹ = Qᵀ and lengths are preserved (‖Qx‖ = ‖x‖).</p>
