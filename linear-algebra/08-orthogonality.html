@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orthogonality · GATE DA</title>
+<meta name="description" content="Orthogonal and orthonormal sets, projections, Gram–Schmidt, and orthogonal matrices.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="08-orthogonality" data-content>
+  <div class="hero">
+    <span class="tag">Topic 8 · GATE weight: Medium</span>
+    <h1>Orthogonality</h1>
+    <p class="lede">Right angles make linear algebra easy: projections become simple, bases become
+      stable, and inverses become transposes.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">📐</span> Orthogonal &amp; orthonormal</div>
+    <p>Two vectors are <strong>orthogonal</strong> when their dot product is zero. A set is <strong>orthonormal</strong> if its vectors are mutually orthogonal and each has unit length.</p>
+    <div class="formula">$$ u \cdot v = u^{\mathsf T} v = 0 \quad(\text{orthogonal}),\qquad q_i^{\mathsf T} q_j=\begin{cases}1 & i=j\\ 0 & i\neq j\end{cases}\ (\text{orthonormal}) $$</div>
+    <p>Orthogonal sets of non-zero vectors are automatically linearly independent.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🔦</span> Projection</div>
+    <p>The projection of $v$ onto the line spanned by $u$ is the “shadow” of $v$ along $u$:</p>
+    <div class="formula">$$ \operatorname{proj}_u(v) = \frac{u^{\mathsf T} v}{u^{\mathsf T} u}\, u $$</div>
+    <p>This is the closest point to $v$ on that line — the foundation of least-squares fitting.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🧰</span> Gram–Schmidt</div>
+    <p>Turn any independent set $\{v_1,\dots,v_k\}$ into an orthogonal set by subtracting off the projections onto everything already chosen:</p>
+    <div class="formula">$$ u_1=v_1,\qquad u_k=v_k-\sum_{j<k}\operatorname{proj}_{u_j}(v_k) $$</div>
+    <p>Normalize each $u_i$ to get an orthonormal basis. This yields the $QR$ factorization $A=QR$.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🟦</span> Orthogonal matrices</div>
+    <p>A square matrix $Q$ is <strong>orthogonal</strong> when its columns are orthonormal:</p>
+    <div class="formula">$$ Q^{\mathsf T}Q = I \;\Rightarrow\; Q^{-1}=Q^{\mathsf T},\qquad \det Q=\pm1,\qquad \|Qx\|=\|x\| $$</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE insight</div>
+      <p>Orthogonal matrices preserve length and angle — they are exactly the rotations and reflections. That is why $\|Qx\|=\|x\|$.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. If $Q$ is orthogonal, what is $Q^{\mathsf T}Q$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $Q$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $I$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $Q^2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only the zero matrix gives $0$ — not an invertible $Q$.</div>
+    <div class="quiz-feedback" data-fb="B">That would require $Q^{\mathsf T}=I$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — orthonormal columns give $Q^{\mathsf T}Q=I$, so $Q^{-1}=Q^{\mathsf T}$.</div>
+    <div class="quiz-feedback" data-fb="D">No — orthogonality gives the identity, not $Q^2$.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

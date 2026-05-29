@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagonalization · GATE DA</title>
+<meta name="description" content="Diagonalization A = PDP⁻¹, when a matrix is diagonalizable, and computing matrix powers the easy way.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-topic="07-diagonalization" data-content>
+  <div class="hero">
+    <span class="tag">Topic 7 · GATE weight: Medium</span>
+    <h1>Diagonalization</h1>
+    <p class="lede">Rewrite a matrix in its eigenvector basis, where it acts as simple scaling. This
+      turns hard operations like high powers into one-liners.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">📊</span> The factorization</div>
+    <p>A square matrix $A$ is <strong>diagonalizable</strong> if it can be written</p>
+    <div class="formula">$$ A = P D P^{-1} $$</div>
+    <p>where $D$ is diagonal with the eigenvalues on its diagonal, and the columns of $P$ are the corresponding eigenvectors.</p>
+    <div class="formula">$$ P=\big[\,x_1\ \ x_2\ \cdots\ x_n\,\big],\qquad D=\operatorname{diag}(\lambda_1,\lambda_2,\dots,\lambda_n) $$</div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">✅</span> When is it possible?</div>
+    <ul class="styled">
+      <li>$A$ ($n\times n$) is diagonalizable $\iff$ it has $n$ <strong>linearly independent eigenvectors</strong>.</li>
+      <li>If all $n$ eigenvalues are <strong>distinct</strong>, $A$ is automatically diagonalizable.</li>
+      <li>Every <strong>symmetric</strong> matrix is diagonalizable — in fact orthogonally: $A=QDQ^{\mathsf T}$ with $Q^{\mathsf T}Q=I$.</li>
+      <li>A repeated eigenvalue is fine <em>only if</em> its geometric multiplicity matches its algebraic multiplicity.</li>
+    </ul>
+    <div class="callout tip">
+      <div class="callout-label">⚡ GATE check</div>
+      <p>Failure case: $\begin{bmatrix}1&1\\0&1\end{bmatrix}$ has $\lambda=1$ twice but only one independent eigenvector — <strong>not</strong> diagonalizable (it is <em>defective</em>).</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">⚡</span> Why it's useful — matrix powers</div>
+    <p>Because the $P^{-1}P$ pairs cancel, powers collapse to powering the diagonal:</p>
+    <div class="formula">$$ A^k = P D^k P^{-1},\qquad D^k=\operatorname{diag}(\lambda_1^{k},\dots,\lambda_n^{k}) $$</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Worked example</div>
+      <p>$A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$ is already diagonal, so $A^{10}=\begin{bmatrix}2^{10}&0\\0&3^{10}\end{bmatrix}=\begin{bmatrix}1024&0\\0&59049\end{bmatrix}$. For a general diagonalizable $A$, change to the eigenbasis, raise to the power, change back.</p>
+    </div>
+    <div class="callout memory">
+      <div class="callout-label">🧠 Big idea</div>
+      <p>$P^{-1}$ rotates into the eigenvector world, $D^k$ just stretches, $P$ rotates back. Hard work becomes easy work in the right basis.</p>
+    </div>
+  </div>
+
+  <h3>Practice</h3>
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Which matrix is <em>not</em> diagonalizable?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\begin{bmatrix}2&0\\0&5\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\begin{bmatrix}3&1\\1&3\end{bmatrix}$ (symmetric)</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\begin{bmatrix}1&1\\0&1\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ (distinct complex $\lambda$)</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Diagonal matrices are already diagonalized.</div>
+    <div class="quiz-feedback" data-fb="B">Symmetric matrices are always diagonalizable.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — repeated $\lambda=1$ with only one independent eigenvector; it is defective.</div>
+    <div class="quiz-feedback" data-fb="D">Distinct (complex) eigenvalues ⇒ diagonalizable over $\mathbb{C}$.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
