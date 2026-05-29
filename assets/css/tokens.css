@@ -1,0 +1,128 @@
+/* ============================================================
+   GATE DA — Design Tokens
+   Derived from `npx getdesign@latest add claude` (Claude design
+   system): warm cream canvas, coral accent, editorial serif.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Type families */
+  --font-display: 'Cormorant Garamond', 'Tiempos Headline', Garamond, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-pill: 9999px;
+
+  /* Spacing scale (4px base) */
+  --s-xxs: 4px;
+  --s-xs: 8px;
+  --s-sm: 12px;
+  --s-md: 16px;
+  --s-lg: 24px;
+  --s-xl: 32px;
+  --s-xxl: 48px;
+  --s-section: 96px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --speed: 0.25s;
+
+  /* ---- Light theme (default) ---- */
+  --canvas: #faf9f5;
+  --surface-soft: #f5f0e8;
+  --surface-card: #efe9de;
+  --surface-strong: #e8e0d2;
+  --elevated: #ffffff;
+  --ink: #141413;
+  --body: #3d3d3a;
+  --body-strong: #252523;
+  --muted: #6c6a64;
+  --muted-soft: #8e8b82;
+  --hairline: #e6dfd8;
+  --hairline-soft: #ebe6df;
+
+  --primary: #cc785c;
+  --primary-active: #a9583e;
+  --on-primary: #ffffff;
+
+  --teal: #5db8a6;
+  --amber: #e8a55a;
+  --success: #5db872;
+  --warning: #d4a017;
+  --error: #c64545;
+
+  /* Tinted surfaces for callouts (light) */
+  --teal-bg: rgba(93, 184, 166, 0.10);
+  --teal-border: rgba(93, 184, 166, 0.35);
+  --amber-bg: rgba(232, 165, 90, 0.12);
+  --amber-border: rgba(232, 165, 90, 0.40);
+  --coral-bg: rgba(204, 120, 92, 0.09);
+  --coral-border: rgba(204, 120, 92, 0.30);
+
+  --shadow-sm: 0 1px 2px rgba(20, 20, 19, 0.06);
+  --shadow-md: 0 4px 16px rgba(20, 20, 19, 0.08);
+  --shadow-lg: 0 12px 40px rgba(20, 20, 19, 0.12);
+
+  /* Canvas viz palette (resolved by grid.js) */
+  --viz-grid: #e0d8cb;
+  --viz-axis: #b6ada0;
+  --viz-fg: #141413;
+}
+
+/* ---- Dark theme ---- */
+[data-theme="dark"] {
+  --canvas: #181715;
+  --surface-soft: #1f1e1b;
+  --surface-card: #1f1e1b;
+  --surface-strong: #252320;
+  --elevated: #252320;
+  --ink: #faf9f5;
+  --body: #d6d3cb;
+  --body-strong: #ece9e1;
+  --muted: #a09d96;
+  --muted-soft: #8a8780;
+  --hairline: #2c2a26;
+  --hairline-soft: #262420;
+
+  --primary: #e0917a;
+  --primary-active: #cc785c;
+  --on-primary: #1a1714;
+
+  --teal: #6cc7b4;
+  --amber: #efb46e;
+  --success: #6cc784;
+  --warning: #e0b53a;
+  --error: #e06a6a;
+
+  --teal-bg: rgba(108, 199, 180, 0.10);
+  --teal-border: rgba(108, 199, 180, 0.28);
+  --amber-bg: rgba(239, 180, 110, 0.10);
+  --amber-border: rgba(239, 180, 110, 0.30);
+  --coral-bg: rgba(224, 145, 122, 0.10);
+  --coral-border: rgba(224, 145, 122, 0.30);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+  --viz-grid: #2e2b26;
+  --viz-axis: #4a463f;
+  --viz-fg: #faf9f5;
+}
+
+/* Smooth theme transitions on color-bearing properties */
+* {
+  transition: background-color var(--speed) var(--ease),
+              border-color var(--speed) var(--ease),
+              color var(--speed) var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
