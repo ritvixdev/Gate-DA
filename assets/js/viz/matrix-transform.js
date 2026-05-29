@@ -59,6 +59,7 @@
     Object.keys(ids).forEach(function (k) {
       var el = document.getElementById(ids[k]);
       if (!el) return;
+      el.setAttribute("aria-label", "Matrix entry " + k);
       var out = document.getElementById(ids[k] + "-val");
       function sync() { m[k] = parseFloat(el.value); if (out) out.textContent = parseFloat(el.value).toFixed(1); draw(); }
       el.addEventListener("input", sync);

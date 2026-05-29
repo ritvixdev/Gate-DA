@@ -82,9 +82,11 @@
 
     g.makeDraggable(function () { return [x]; }, function (i, p) { x = snap(p); draw(); });
 
+    var ariaNames = { a: "A row 1 column 1", b: "A row 1 column 2", c: "A row 2 column 1", d: "A row 2 column 2" };
     Object.keys(ids).forEach(function (k) {
       var el = document.getElementById(ids[k]);
       if (!el) return;
+      el.setAttribute("aria-label", ariaNames[k]);
       el.addEventListener("input", function () { m[k] = parseFloat(el.value) || 0; draw(); });
     });
 

@@ -71,6 +71,14 @@
   --shadow-md: 0 4px 16px rgba(20, 20, 19, 0.08);
   --shadow-lg: 0 12px 40px rgba(20, 20, 19, 0.12);
 
+  /* Formula "math card" surface */
+  --formula-bg: #f3ece1;
+
+  /* Accent text colors that meet WCAG AA (>=4.5:1) on tinted surfaces */
+  --teal-text: #277264;
+  --amber-text: #7a5600;
+  --coral-text: #8f4a33;
+
   /* Canvas viz palette (resolved by grid.js) */
   --viz-grid: #e0d8cb;
   --viz-axis: #b6ada0;
@@ -116,6 +124,13 @@
   --viz-grid: #2e2b26;
   --viz-axis: #4a463f;
   --viz-fg: #faf9f5;
+
+  --formula-bg: #221f1b;
+
+  /* On dark surfaces the bright accents already exceed AA, reuse them */
+  --teal-text: #6cc7b4;
+  --amber-text: #efb46e;
+  --coral-text: #e0917a;
 }
 
 /* Smooth theme transitions on color-bearing properties */

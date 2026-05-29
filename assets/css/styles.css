@@ -30,6 +30,10 @@ h1 { font-weight: 700; }
 a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* Visible keyboard focus indicator (WCAG 2.4.7) */
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: var(--r-sm); }
+:focus:not(:focus-visible) { outline: none; }
+
 ::selection { background: var(--primary); color: var(--on-primary); }
 
 /* Scrollbars */
@@ -165,7 +169,7 @@ a:hover { text-decoration: underline; }
 .tag {
   display: inline-block; font-family: var(--font-mono);
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--primary); background: var(--coral-bg);
+  color: var(--coral-text); background: var(--coral-bg);
   border: 1px solid var(--coral-border); border-radius: var(--r-pill);
   padding: 4px 14px; margin-bottom: var(--s-md);
 }
@@ -186,32 +190,40 @@ a:hover { text-decoration: underline; }
   padding: var(--s-xl);
   margin: var(--s-lg) 0;
   position: relative;
+  box-shadow: var(--shadow-sm);
   opacity: 0; transform: translateY(14px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease),
+              box-shadow var(--speed) var(--ease);
 }
 .concept-card.revealed { opacity: 1; transform: none; }
 .no-js .concept-card { opacity: 1; transform: none; }
+.concept-card.revealed:hover { box-shadow: var(--shadow-md); }
 .card-title {
-  font-family: var(--font-display); font-size: 23px; font-weight: 600; color: var(--ink);
-  margin-bottom: var(--s-sm); display: flex; align-items: center; gap: 10px; letter-spacing: -0.01em;
+  font-size: 20px; font-weight: 600; color: var(--ink);
+  margin-bottom: var(--s-md); display: flex; align-items: center; gap: 10px; letter-spacing: -0.01em;
 }
-.card-ico { font-size: 22px; }
+.card-title::before {
+  content: '✦'; color: var(--primary); font-size: 15px; line-height: 1; flex-shrink: 0;
+}
+.card-ico { display: none; }
 .concept-card p { font-size: 17px; line-height: 1.7; color: var(--body); margin: var(--s-xs) 0; }
 .concept-card strong { color: var(--body-strong); font-weight: 600; }
 
-/* Formula block (KaTeX lives inside) */
+/* Formula "math card" — soft light surface with a coral accent (KaTeX inside) */
 .formula {
-  background: var(--surface-dark, #181715);
-  background: #1b1a17;
+  background: var(--formula-bg);
   border: 1px solid var(--hairline);
+  border-left: 3px solid var(--primary);
   border-radius: var(--r-md);
   padding: var(--s-md) var(--s-lg);
   margin: var(--s-md) 0;
   overflow-x: auto;
-  color: #faf9f5;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.9;
 }
-.formula .katex { font-size: 1.12em; }
-[data-theme="dark"] .formula { background: #0f0e0c; }
+.formula .katex { font-size: 1.15em; color: var(--ink); }
+.formula .katex-display { margin: 0.5em 0; }
 
 /* Inline mono token */
 code, .mono { font-family: var(--font-mono); font-size: 0.92em; }
@@ -221,23 +233,26 @@ code, .mono { font-family: var(--font-mono); font-size: 0.92em; }
 }
 [data-theme="dark"] :not(pre) > code { color: var(--primary); }
 
-/* Callout boxes */
-.callout { border-radius: var(--r-md); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0; border: 1px solid; }
+/* Callout boxes — soft tint with a colored left accent */
+.callout {
+  border-radius: var(--r-md); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0;
+  border: 1px solid var(--hairline-soft); border-left-width: 3px;
+}
 .callout-label {
   font-family: var(--font-mono); font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: var(--s-xs);
   display: flex; align-items: center; gap: 8px;
 }
-.callout p, .callout li { font-size: 15px; line-height: 1.65; color: var(--body); }
+.callout p, .callout li { font-size: 15px; line-height: 1.7; color: var(--body); }
 .callout ol, .callout ul { padding-left: 20px; margin: 6px 0; }
-.callout li { margin: 4px 0; }
+.callout li { margin: 5px 0; }
 
-.example { background: var(--teal-bg); border-color: var(--teal-border); }
-.example .callout-label { color: var(--teal); }
-.tip { background: var(--amber-bg); border-color: var(--amber-border); }
-.tip .callout-label { color: var(--amber); }
-.memory { background: var(--coral-bg); border-color: var(--coral-border); }
-.memory .callout-label { color: var(--primary); }
+.example { background: var(--teal-bg); border-left-color: var(--teal); }
+.example .callout-label { color: var(--teal-text); }
+.tip { background: var(--amber-bg); border-left-color: var(--amber); }
+.tip .callout-label { color: var(--amber-text); }
+.memory { background: var(--coral-bg); border-left-color: var(--primary); }
+.memory .callout-label { color: var(--coral-text); }
 
 .highlight-eqn {
   text-align: center; font-family: var(--font-mono);
@@ -270,9 +285,9 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
   font-family: var(--font-mono); border: 1px solid var(--hairline);
   background: var(--surface-soft); color: var(--muted);
 }
-.chip-coral { color: var(--primary); border-color: var(--coral-border); background: var(--coral-bg); }
-.chip-teal { color: var(--teal); border-color: var(--teal-border); background: var(--teal-bg); }
-.chip-amber { color: var(--amber); border-color: var(--amber-border); background: var(--amber-bg); }
+.chip-coral { color: var(--coral-text); border-color: var(--coral-border); background: var(--coral-bg); }
+.chip-teal { color: var(--teal-text); border-color: var(--teal-border); background: var(--teal-bg); }
+.chip-amber { color: var(--amber-text); border-color: var(--amber-border); background: var(--amber-bg); }
 
 /* ---------------------------------------------------------- *
  * Visualization panel
