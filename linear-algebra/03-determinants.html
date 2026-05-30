@@ -81,8 +81,70 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— determinant &amp; inverse from zero</span></summary>
+
+        <p class="study-empty">The determinant is one number that captures what a square matrix does to area/volume — and whether the matrix can be undone (inverted). We build the determinant from zero and keep the inverse right beside it, since they are two sides of the same idea.</p>
+
+        <details class="study-item">
+          <summary>1. What is a determinant?</summary>
+          <p>The <strong>determinant</strong> is a single number for a square matrix, written <code>det(A)</code> or <code>|A|</code>.</p>
+          <pre>A = [a  b        det(A) = ad − bc
+     c  d]
+
+A = [1  2        det = 1×4 − 2×3 = −2
+     3  4]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Determinant = area / volume scaling</summary>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the determinant is how much the matrix <strong>scales area (2D) or volume (3D)</strong>.</p>
+          <pre>|det(A)| = 2   →  area doubles
+det(A)   = 0   →  area collapses to a line or point</pre>
+          <p>A zero determinant means the matrix <strong>loses a dimension</strong> — it squashes space flat.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Determinant of a triangular matrix</summary>
+          <p>For an upper or lower triangular matrix, the determinant is just the <strong>product of the diagonal entries</strong>.</p>
+          <pre>U = [2  5  7
+     0  3  9        det(U) = 2×3×4 = 24
+     0  0  4]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Invertible iff det ≠ 0</summary>
+          <p><span style="color:var(--coral-text)">GATE rule:</span> the inverse <code>A⁻¹</code> exists <strong>iff <code>det(A) ≠ 0</code></strong>.</p>
+          <pre>det(A) = 0   →  singular     (no inverse)
+det(A) ≠ 0   →  non-singular (invertible)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Inverse matrix — the undo button</summary>
+          <p>If A transforms a vector, <code>A⁻¹</code> reverses it.</p>
+          <pre>A A⁻¹ = A⁻¹ A = I</pre>
+          <p>Just as <code>5 × 1/5 = 1</code> for numbers. <span style="color:var(--coral-text)">🎮 Imagine:</span> A is a portal, <code>A⁻¹</code> the reverse portal, <code>I</code> the unchanged original.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. The 2×2 inverse formula</summary>
+          <pre>A = [a  b
+     c  d]
+
+A⁻¹ = 1/(ad−bc) · [ d  −b
+                     −c   a]      (only if ad−bc ≠ 0)</pre>
+          <p class="lead">Example:</p>
+          <pre>A = [1  2      det = −2
+     3  4]
+
+A⁻¹ = (1/−2)·[ 4  −2      = [−2    1
+              −3   1]         1.5 −0.5]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Inverse of a product</summary>
+          <p><strong><code>(AB)⁻¹ = B⁻¹A⁻¹</code></strong> — the order reverses.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> socks then shoes — to undo, remove shoes first, then socks. (Same reversal as transpose: <code>(AB)ᵀ = BᵀAᵀ</code>.)</p>
+        </details>
       </details>
     </section>
 

@@ -49,8 +49,21 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— orthogonal matrices from zero</span></summary>
+
+        <p class="study-empty">Orthogonal matrices are the pure rotation / reflection machines: they preserve length and angle, and their inverse is simply the transpose. They are the backbone of QR, least squares and SVD.</p>
+
+        <details class="study-item">
+          <summary>1. Orthogonal matrix</summary>
+          <p>A matrix is <strong>orthogonal</strong> if <code>AᵀA = I</code>, which means <code>A⁻¹ = Aᵀ</code> — the inverse is just the transpose.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a pure rotation / reflection machine — it preserves length, angle and distance.</p>
+          <p class="lead">GATE facts:</p>
+          <ul class="styled">
+            <li><code>AᵀA = I</code> and <code>A⁻¹ = Aᵀ</code></li>
+            <li><code>det(A) = ±1</code></li>
+            <li>columns (and rows) are <strong>orthonormal</strong> = orthogonal (90°) + unit length.</li>
+          </ul>
+        </details>
       </details>
     </section>
 

@@ -67,8 +67,20 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— eigenvalues &amp; eigenvectors from zero</span></summary>
+
+        <p class="study-empty">Some special vectors do not change direction under a matrix — they only stretch or shrink. Those are eigenvectors, and the stretch factor is the eigenvalue. This is the gateway to diagonalization, PCA and much of GATE DA.</p>
+
+        <details class="study-item">
+          <summary>1. Eigenvalues &amp; eigenvectors — the idea</summary>
+          <p>Most vectors change direction under a matrix. A few special ones do not — they only stretch or shrink. Those are <strong>eigenvectors</strong>; the stretch factor is the <strong>eigenvalue</strong> λ.</p>
+          <pre>A v = λ v     (A = matrix, v = eigenvector, λ = eigenvalue)</pre>
+          <pre>λ = 2   vector doubles
+λ = 1   vector unchanged
+λ = 0   vector collapses to zero
+λ = -1  vector flips direction</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> through the portal most arrows turn, but eigenvectors keep their direction — only their length changes.</p>
+        </details>
       </details>
     </section>
 

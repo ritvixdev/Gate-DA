@@ -60,8 +60,29 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— rank &amp; invertibility from zero</span></summary>
+
+        <p class="study-empty">Rank counts the genuinely useful directions a matrix keeps. It ties together independence, invertibility and the determinant into one chain of equivalences — one of the most tested ideas in GATE.</p>
+
+        <details class="study-item">
+          <summary>1. What is rank?</summary>
+          <p><strong>Rank</strong> = the number of independent rows/columns = the number of <em>useful directions</em> the matrix keeps.</p>
+          <pre>[1 0; 0 1] keeps 2D as 2D        → rank 2
+[1 0; 0 0] collapses to a line   → rank 1
+[0 0; 0 0] collapses to a point  → rank 0</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> rank 2 = plane stays a plane; rank 1 = plane → line; rank 0 = plane → point.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Singular vs non-singular — the big equivalence</summary>
+          <p>For an <code>n × n</code> matrix A, all of these say the same thing:</p>
+          <pre>A is invertible
+⇔ det(A) ≠ 0
+⇔ rank(A) = n
+⇔ columns are linearly independent
+⇔ Ax = 0 has only the trivial solution</pre>
+          <p>If instead <code>det(A) = 0</code>: A is <strong>singular</strong> — rank &lt; n, dependent columns, space collapses. GATE loves this chain.</p>
+        </details>
       </details>
     </section>
 
