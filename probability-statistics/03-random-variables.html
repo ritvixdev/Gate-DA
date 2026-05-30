@@ -48,8 +48,60 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— random variables from zero</span></summary>
+
+        <p class="study-empty">A random variable turns the result of a random experiment into a number, so we can do maths with chance — averages, variance and distributions. It is the bridge from probability to statistics and machine learning. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. What is a random variable?</summary>
+          <p>A <strong>random variable</strong> assigns a <strong>number</strong> to the outcome of a random experiment — a function from outcomes to numbers.</p>
+          <pre>roll a die, X = the number shown  →  X ∈ {1,2,3,4,5,6}</pre>
+          <p>Turning outcomes into numbers is what lets us do maths (averages, spread, distributions).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Why we need random variables</summary>
+          <p>Outcomes are not always numbers — a coin gives H/T. Define a random variable to make them numeric:</p>
+          <pre>X = 1 if Head, X = 0 if Tail
+P(X=1) = P(H) = 1/2 ,  P(X=0) = P(T) = 1/2</pre>
+          <p>Now expectation, variance, distributions and ML models can all operate on X.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Random variable from a die</summary>
+          <pre>X = outcome of a fair die,  P(X=k) = 1/6 for k = 1..6</pre>
+          <p>An event becomes a statement about X:</p>
+          <pre>"X is even" = {2,4,6} → P = P(X=2)+P(X=4)+P(X=6) = 3/6 = 1/2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Number of heads in two coins</summary>
+          <p>Toss two coins, let <code>X = number of heads</code>. Map each outcome to a value:</p>
+          <pre>HH→2 , HT→1 , TH→1 , TT→0</pre>
+          <div class="tbl-wrap"><table>
+            <tr><th>X</th><th>outcomes</th><th>P(X)</th></tr>
+            <tr><td>0</td><td>TT</td><td>1/4</td></tr>
+            <tr><td>1</td><td>HT, TH</td><td>1/2</td></tr>
+            <tr><td>2</td><td>HH</td><td>1/4</td></tr>
+          </table></div>
+          <p>This value-with-probability listing is the start of a <strong>probability distribution</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Random variable vs event</summary>
+          <pre>event           = a SET of outcomes        (e.g. "head" = {H})
+random variable = a NUMBER assigned to each outcome (X = 1 if head, 0 if tail)</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> an event and a random variable are not the same — but events can be written as conditions on a random variable, like <code>{X = 1}</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Mental model</summary>
+          <ul class="styled">
+            <li>Outcome = the raw result; <strong>random variable = a score assigned to that result</strong>.</li>
+            <li>Coin → X = 1/0; die → X = number shown; two coins → X = number of heads.</li>
+            <li>Listing each value with its probability gives a probability distribution — the next big idea.</li>
+          </ul>
+        </details>
       </details>
     </section>
 
