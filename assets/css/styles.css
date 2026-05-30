@@ -336,6 +336,14 @@ ol.steps li::before {
 .trap .right { color: var(--teal-text); font-weight: 600; }
 .trap p { margin: 8px 0; }
 
+/* Key "equivalence" highlight box */
+.keybox {
+  background: var(--surface-strong); border: 1px solid var(--hairline);
+  border-radius: var(--r-lg); padding: var(--s-md) var(--s-lg); margin: var(--s-md) 0;
+}
+.keybox .callout-label { color: var(--coral-text); }
+.keybox p { font-size: 15px; line-height: 1.8; color: var(--body-strong); margin: 4px 0; }
+
 /* Final memory box */
 .memory-box {
   background: var(--coral-bg); border: 1px solid var(--coral-border);

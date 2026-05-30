@@ -28,11 +28,17 @@
     <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
     <div class="imagine">
       <div class="callout-label">🎮 Imagine it</div>
-      <p>A matrix is a portal. <strong>Rank</strong> = how many dimensions come out the other side
-        (a plane → plane is rank 2; a plane squashed to a line is rank 1). <strong>Null space</strong> = all the
-        input arrows that get crushed to the origin; <strong>nullity</strong> = how many independent crushed
-        directions there are.</p>
+      <p>A matrix is a portal. <strong>Rank</strong> = how many dimensions come out the other side.
+        <strong>Null space</strong> = all the input arrows crushed to the origin; <strong>nullity</strong> = how many
+        independent crushed directions there are.</p>
     </div>
+    <p>Picture 3-D space going through the portal:</p>
+    <ul class="styled">
+      <li>3-D stays 3-D → <strong>rank 3</strong> (nothing lost).</li>
+      <li>3-D squashed to a plane → <strong>rank 2</strong>.</li>
+      <li>squashed to a line → <strong>rank 1</strong>; to a point → <strong>rank 0</strong>.</li>
+    </ul>
+    <p>So <strong>rank = the dimension of the output</strong> = how many independent directions survive.</p>
   </section>
 
   <section class="concept-card">
@@ -41,6 +47,10 @@
       the number of non-zero rows after row-reduction (row-echelon form).</p>
     <p><strong>Null space (kernel):</strong> all vectors $x$ with $Ax=0$. <strong>Nullity:</strong> its dimension.</p>
     <p><strong>Column space:</strong> all outputs $Ax$ (span of the columns). <strong>Row space:</strong> span of the rows.</p>
+    <p><strong>Pivot:</strong> the first non-zero entry of a row after row-reduction. Key fact:
+      <strong>rank = number of pivots = number of non-zero rows</strong> in row-echelon form.</p>
+    <p><strong>Row-echelon form:</strong> zero rows sit at the bottom, and each row's leading entry is further
+      right than the one above it. <strong>Full rank:</strong> rank $=\min(m,n)$ (nothing collapses).</p>
   </section>
 
   <section class="concept-card">
@@ -104,6 +114,11 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <div class="keybox">
+      <div class="callout-label">🔑 The invertibility chain (GATE gold)</div>
+      <p>For a square $A$ ($n\times n$):</p>
+      <p>$\operatorname{rank}(A)=n \iff \det(A)\neq0 \iff A^{-1}$ exists $\iff$ columns independent $\iff$ nullity $=0 \iff Ax=0$ only at $x=0$.</p>
+    </div>
     <ul class="styled">
       <li><strong>Vectors:</strong> rank = independent directions (this is the independence idea applied).</li>
       <li><strong>Determinant:</strong> square $\det=0 \iff$ rank $<n$.</li>

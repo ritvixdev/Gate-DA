@@ -4,8 +4,8 @@
     {
       "name": "gate-da",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8000"],
-      "port": 8000
+      "runtimeArgs": ["-m", "http.server"],
+      "autoPort": true
     }
   ]
 }

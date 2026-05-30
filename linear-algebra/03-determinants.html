@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Determinants · GATE DA</title>
-<meta name="description" content="Learn determinants from zero: meaning as area/volume scaling, how to compute, properties, Cramer's rule — simple language, GATE shortcuts, traps, practice.">
+<meta name="description" content="Learn determinants from zero: meaning as area/volume scaling and orientation, computation, all properties, row operations, Cramer's rule — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/styles.css">
@@ -14,8 +14,8 @@
   <div class="hero">
     <span class="tag">Topic 3 · GATE weight: High</span>
     <h1>Determinants</h1>
-    <p class="lede">One number that tells you whether a matrix is invertible, how much it scales
-      area/volume, and whether it flips space.</p>
+    <p class="lede">Think of it as the matrix's <strong>health meter</strong>: one number that says whether the
+      matrix can be reversed, how much it scales area/volume, and whether it flips space.</p>
   </div>
 
   <!-- 2 -->
@@ -23,8 +23,8 @@
     <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
     <p>The determinant squeezes a whole square matrix into a single number that answers the most
       important yes/no question: <strong>is this matrix invertible?</strong> If $\det=0$, the matrix crushes
-      space and can't be undone. It also measures how much the transformation scales area (2-D) or
-      volume (3-D), and its sign tells you if orientation flipped.</p>
+      space and can't be undone. The same number also measures how much area (2-D) or volume (3-D)
+      is scaled, and its sign tells you if orientation flipped.</p>
   </section>
 
   <!-- 3 -->
@@ -32,12 +32,20 @@
     <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
     <div class="imagine">
       <div class="callout-label">🎮 Imagine it</div>
-      <p>Take the unit square and push it through the matrix portal. <strong>$|\det|$ = the area of the
-        squished/stretched shape</strong>. $\det=2$ → area doubles. $\det=0$ → the square collapses to a
-        line (information lost, not invertible). $\det<0$ → space got flipped like a mirror.</p>
+      <p>Take a rubber unit square (area 1) and push it through the matrix portal.
+        <strong>$|\det|$ = the area of the squished/stretched shape.</strong> $\det=2$ → area doubles;
+        $\det=\tfrac12$ → area halves; $\det=0$ → it collapses to a line (info lost, not invertible);
+        $\det<0$ → space got mirror-flipped.</p>
     </div>
-    <p>Use the Matrix Transformer: the shaded square's area is $|\det|$; it turns coral when $\det<0$
-      (flip), and collapses to a line on the <em>Singular</em> preset ($\det=0$).</p>
+    <p>The sign is about <strong>orientation</strong>:</p>
+    <ul class="styled">
+      <li>$\det>0$ → orientation preserved (rotation/stretch, no mirror).</li>
+      <li>$\det<0$ → orientation flipped (a reflection happened).</li>
+      <li>$\det=0$ → space collapsed to a line/point; columns are dependent.</li>
+    </ul>
+    <p>In 2-D the two columns of $A$ form a parallelogram, and $\det$ is its <em>signed</em> area.
+      Play with the Matrix Transformer: the shaded square is $|\det|$, it turns coral when $\det<0$,
+      and the <em>Singular</em> preset collapses it to a line ($\det=0$).</p>
   </section>
 
   <div class="viz-panel">
@@ -59,9 +67,11 @@
   <!-- 4 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Determinant:</strong> a single number $\det(A)$ (also written $|A|$) defined only for <strong>square</strong> matrices.</p>
-    <p><strong>Singular:</strong> $\det(A)=0$ — not invertible, columns are dependent. <strong>Non-singular:</strong> $\det(A)\neq0$ — invertible.</p>
-    <p><strong>Minor / cofactor:</strong> a minor is the determinant of a smaller matrix left after deleting a row and column; a cofactor is a minor with a $+/-$ sign from the checkerboard pattern.</p>
+    <p><strong>Determinant:</strong> a single number $\det(A)$ (also $|A|$), defined only for <strong>square</strong> matrices.</p>
+    <p><strong>Singular:</strong> $\det=0$ — not invertible, dependent columns, space collapses.
+       <strong>Non-singular:</strong> $\det\neq0$ — invertible, independent columns.</p>
+    <p><strong>Minor:</strong> the determinant left after deleting an entry's row and column.
+       <strong>Cofactor:</strong> a minor with a $+/-$ sign from the checkerboard.</p>
   </section>
 
   <!-- 5 -->
@@ -71,7 +81,8 @@
       <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
       <tr><td>$\det(A)$, $|A|$</td><td>"determinant of A"</td><td>the scaling number</td></tr>
       <tr><td>$n$</td><td>"n"</td><td>size of the (square) matrix</td></tr>
-      <tr><td>$A_i$</td><td>"A sub i"</td><td>$A$ with column $i$ replaced (Cramer)</td></tr>
+      <tr><td>$M_{ij}$</td><td>"minor i j"</td><td>determinant after deleting row $i$, col $j$</td></tr>
+      <tr><td>$A_i$</td><td>"A sub i"</td><td>$A$ with column $i$ replaced by $b$ (Cramer)</td></tr>
       <tr><td>$\lambda$</td><td>"lambda"</td><td>eigenvalue; $\det=\prod\lambda_i$</td></tr>
     </table></div>
   </section>
@@ -79,30 +90,41 @@
   <!-- 6 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ \det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc $$</div>
+    <div class="formula">$$ \det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc \quad(\text{main diagonal} - \text{anti-diagonal}) $$</div>
     <div class="formula">$$ \det\begin{bmatrix}a&b&c\\d&e&f\\g&h&i\end{bmatrix}=a(ei-fh)-b(di-fg)+c(dh-eg) $$</div>
-    <p>Cofactor signs follow the checkerboard $\begin{smallmatrix}+&-&+\\-&+&-\\+&-&+\end{smallmatrix}$.</p>
+    <p>Cofactor signs follow the checkerboard $\begin{smallmatrix}+&-&+\\-&+&-\\+&-&+\end{smallmatrix}$. A minor is the $2\times2$ determinant left after crossing out a row and column.</p>
   </section>
 
   <!-- 7 -->
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">7</span> Step-by-step (3×3 by cofactors)</div>
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step methods</div>
+    <p><strong>Cofactor expansion (3×3):</strong></p>
     <ol class="steps">
-      <li>Pick a row (row 1 is fine). Take its three entries $a,b,c$.</li>
-      <li>For each, cross out its row and column; the leftover $2\times2$ determinant is its minor.</li>
-      <li>Apply the signs $+,-,+$ along the row.</li>
-      <li>Compute $a(\text{minor}) - b(\text{minor}) + c(\text{minor})$ and add up.</li>
-      <li>Shortcut: if the matrix is triangular, just multiply the diagonal.</li>
+      <li>Pick the row or column with the <strong>most zeros</strong> (less work).</li>
+      <li>For each entry, cross out its row and column → the leftover $2\times2$ determinant is its minor.</li>
+      <li>Apply the checkerboard signs.</li>
+      <li>Sum: $\text{entry}\times(\text{signed minor})$ across the line.</li>
+    </ol>
+    <p><strong>Row-reduction method (fast):</strong></p>
+    <ol class="steps">
+      <li>Use $R_i\to R_i+kR_j$ (these don't change $\det$) to make it triangular.</li>
+      <li>Track any row swaps (each flips the sign) and any row scaling (multiplies $\det$).</li>
+      <li>$\det=$ product of the diagonal of the triangular form (adjusted for swaps/scales).</li>
     </ol>
   </section>
 
   <!-- 8 -->
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="sec-head"><span class="sec-num">8</span> Worked examples</div>
     <div class="callout example">
-      <div class="callout-label">✦ Compute</div>
+      <div class="callout-label">✦ 3×3 by cofactors</div>
       <p>$\det\begin{bmatrix}2&1&3\\0&4&2\\1&0&5\end{bmatrix}=2(4\cdot5-2\cdot0)-1(0\cdot5-2\cdot1)+3(0\cdot0-4\cdot1)$</p>
       <p>$=2(20)-1(-2)+3(-4)=40+2-12=\mathbf{30}$.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">✦ Cramer's rule for $2x+y=5,\ x+3y=7$</div>
+      <p>$A=\begin{bmatrix}2&1\\1&3\end{bmatrix},\ \det A=5\neq0$ ⇒ unique solution.</p>
+      <p>$x=\dfrac{\det\begin{bmatrix}5&1\\7&3\end{bmatrix}}{\det A}=\dfrac{8}{5},\qquad y=\dfrac{\det\begin{bmatrix}2&5\\1&7\end{bmatrix}}{\det A}=\dfrac{9}{5}.$</p>
     </div>
   </section>
 
@@ -110,14 +132,25 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
     <div class="callout tip">
-      <div class="callout-label">⚡ High-value facts</div>
+      <div class="callout-label">⚡ Properties to memorize</div>
       <ul>
-        <li>$\det(AB)=\det(A)\det(B)$; &nbsp; $\det(A^{\mathsf T})=\det(A)$; &nbsp; $\det(A^{-1})=1/\det(A)$.</li>
-        <li>$\det(cA)=c^{\,n}\det(A)$ for an $n\times n$ matrix (the size is the exponent!).</li>
-        <li>Triangular / diagonal → $\det=$ product of the diagonal.</li>
-        <li>$\det(A)=\prod \lambda_i$ (product of eigenvalues).</li>
-        <li>Swap two rows → sign flips; add a multiple of one row to another → $\det$ unchanged.</li>
+        <li>$\det(AB)=\det A\det B$ &nbsp;⇒&nbsp; $\det(A^k)=(\det A)^k$, and $\det(AB)=\det(BA)$.</li>
+        <li>$\det(A^{\mathsf T})=\det A$; &nbsp; $\det(A^{-1})=1/\det A$.</li>
+        <li>$\det(cA)=c^{\,n}\det A$ for an $n\times n$ matrix (size is the exponent!).</li>
+        <li>$\det(cI_n)=c^n$; &nbsp; block-triangular $\det\begin{bmatrix}A&B\\0&D\end{bmatrix}=\det A\,\det D$.</li>
+        <li>Triangular / diagonal → $\det=$ product of the diagonal; $\det=\prod\lambda_i$.</li>
+        <li>Orthogonal matrix → $\det=\pm1$. Idempotent → $\det\in\{0,1\}$. Nilpotent → $\det=0$.</li>
       </ul>
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ Row / column operations</div>
+      <div class="tbl-wrap"><table>
+        <tr><th>Operation</th><th>Effect on $\det$</th></tr>
+        <tr><td>Swap two rows (or columns)</td><td>sign flips ($\times(-1)$)</td></tr>
+        <tr><td>Multiply a row by $k$</td><td>$\det\times k$</td></tr>
+        <tr><td>$R_i\to R_i+kR_j$</td><td>unchanged</td></tr>
+      </table></div>
+      <p style="margin-top:8px"><strong>$\det=0$ instantly if:</strong> a row/column is all zeros, two rows/columns are equal, or one row/column is a multiple of another.</p>
     </div>
   </section>
 
@@ -126,8 +159,9 @@
     <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
     <div class="callout trap">
       <div class="callout-label">✕ Watch out</div>
-      <p><span class="wrong">Trap:</span> "$\det(2A)=2\det(A)$." <span class="right">Reality:</span> $\det(2A)=2^n\det(A)$ — e.g. $2^3$ for a $3\times3$.</p>
-      <p><span class="wrong">Trap:</span> "$\det(A+B)=\det(A)+\det(B)$." <span class="right">Reality:</span> false in general.</p>
+      <p><span class="wrong">Trap:</span> "$\det(A+B)=\det A+\det B$." <span class="right">Reality:</span> false — det is multiplicative, not additive. (E.g. $A=B=I_2$: LHS $=4$, RHS $=2$.)</p>
+      <p><span class="wrong">Trap:</span> "$\det(2A)=2\det A$." <span class="right">Reality:</span> $\det(2A)=2^n\det A$ — e.g. $2^3$ for a $3\times3$.</p>
+      <p><span class="wrong">Trap:</span> "Triangular determinant is the <em>sum</em> of the diagonal." <span class="right">Reality:</span> it's the <em>product</em> (the sum is the trace).</p>
       <p><span class="wrong">Trap:</span> "Non-square matrices have determinants." <span class="right">Reality:</span> only square matrices do.</p>
     </div>
   </section>
@@ -135,11 +169,16 @@
   <!-- 11 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <div class="keybox">
+      <div class="callout-label">🔑 The invertibility chain (GATE gold)</div>
+      <p>For an $n\times n$ matrix $A$, all of these say the same thing:</p>
+      <p>$\det(A)\neq0 \iff A^{-1}$ exists $\iff \operatorname{rank}(A)=n \iff$ columns are independent $\iff Ax=0$ has only $x=0 \iff Ax=b$ has a unique solution.</p>
+    </div>
     <ul class="styled">
-      <li><strong>Inverse:</strong> $A^{-1}$ exists iff $\det(A)\neq0$.</li>
-      <li><strong>Rank:</strong> $\det=0$ means rank $<n$ (dependent columns).</li>
+      <li><strong>Rank:</strong> square $\det=0 \iff$ rank $<n$ (dependent columns).</li>
       <li><strong>Eigenvalues:</strong> $\det=\prod\lambda$; a zero eigenvalue ⇒ $\det=0$.</li>
-      <li><strong>Linear equations:</strong> $\det(A)\neq0$ ⇒ $Ax=b$ has a unique solution.</li>
+      <li><strong>Trace:</strong> don't confuse — trace is the <em>sum</em> of the diagonal/eigenvalues; det is the <em>product</em>.</li>
+      <li><strong>Linear equations:</strong> $\det\neq0$ ⇒ unique solution; $\det=0$ ⇒ none or infinite (check ranks).</li>
     </ul>
   </section>
 
@@ -149,31 +188,46 @@
     <div class="practice">
       <p class="pq">Q1. $\det(A)=5$ for a $3\times3$ matrix. Find $\det(2A)$.</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">$\det(2A)=2^3\cdot5=40$.</div>
+      <div class="ans">$2^3\cdot5=40$.</div>
     </div>
     <div class="practice">
-      <p class="pq">Q2. $\det\begin{bmatrix}3&0&0\\7&2&0\\1&9&5\end{bmatrix}=?$</p>
+      <p class="pq">Q2. $\det\begin{bmatrix}2&4&7\\0&3&8\\0&0&5\end{bmatrix}=?$</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">Lower-triangular → product of diagonal $=3\cdot2\cdot5=30$.</div>
+      <div class="ans">Upper-triangular → $2\cdot3\cdot5=30$.</div>
     </div>
     <div class="practice">
-      <p class="pq">Q3. If $\det(A)=4$ and $\det(B)=3$, find $\det(AB)$ and $\det(A^{-1})$.</p>
+      <p class="pq">Q3. $\det A=5,\ \det B=3$. Find $\det(AB)$ and $\det(A^{-1})$.</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">$\det(AB)=12$; $\det(A^{-1})=1/4$.</div>
+      <div class="ans">$\det(AB)=15$; $\det(A^{-1})=1/5$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. Eigenvalues of $A$ are $2,-1,4$. Find $\det A$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\det A=2\cdot(-1)\cdot4=-8$ (negative ⇒ orientation flips).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Is $A=\begin{bmatrix}2&6\\1&3\end{bmatrix}$ invertible?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\det=2\cdot3-6\cdot1=0$ → singular, <strong>not</strong> invertible (column 2 $=3\times$ column 1).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q6. If $A$ is orthogonal, what values can $\det A$ take?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\pm1$ (from $\det(A^{\mathsf T}A)=\det I=1$ ⇒ $(\det A)^2=1$).</div>
     </div>
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
-      <div class="quiz-q">If $\det(A)=5$ for a $3\times3$ matrix, what is $\det(2A)$?</div>
+      <div class="quiz-q">Which statement is <em>true</em>?</div>
       <div class="quiz-options">
-        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 10</button>
-        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 20</button>
-        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 40</button>
-        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 5</button>
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\det(A+B)=\det A+\det B$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\det(kA)=k\det A$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\det(AB)=\det(BA)$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> Triangular $\det$ = sum of diagonal</button>
       </div>
-      <div class="quiz-feedback" data-fb="A">$\det(cA)=c^n\det A=2^3\cdot5=40$, not 10.</div>
-      <div class="quiz-feedback" data-fb="B">That used $c^2$; for $3\times3$ the exponent is $3$.</div>
-      <div class="quiz-feedback" data-fb="C">✅ Correct — $2^3\cdot5=40$.</div>
-      <div class="quiz-feedback" data-fb="D">Scaling changes the determinant by $c^n$.</div>
+      <div class="quiz-feedback" data-fb="A">False — det is not additive.</div>
+      <div class="quiz-feedback" data-fb="B">False — it's $k^n\det A$.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — both equal $\det A\,\det B$.</div>
+      <div class="quiz-feedback" data-fb="D">False — that's the trace; det is the product.</div>
     </div>
   </section>
 
@@ -184,15 +238,16 @@
       <div class="callout-label">🧠 Remember</div>
       <ul>
         <li>$|\det|$ = area/volume scale; sign = orientation; $\det=0$ ⇒ collapse, not invertible.</li>
-        <li>$2\times2$: $ad-bc$. Triangular: product of diagonal.</li>
-        <li>$\det(AB)=\det A\det B$, $\det(A^{\mathsf T})=\det A$, $\det(A^{-1})=1/\det A$.</li>
-        <li>$\det(cA)=c^n\det A$; $\det=\prod\lambda_i$.</li>
+        <li>$2\times2$: $ad-bc$. Triangular/diagonal: product of diagonal.</li>
+        <li>$\det(AB)=\det A\det B$, $\det(A^{\mathsf T})=\det A$, $\det(A^{-1})=1/\det A$, $\det(cA)=c^n\det A$.</li>
+        <li>$\det=\prod\lambda_i$; zero row / equal rows / proportional rows ⇒ $\det=0$.</li>
+        <li>Invertible $\iff \det\neq0 \iff$ full rank $\iff$ independent columns.</li>
       </ul>
     </div>
   </section>
 
   <div class="cta-band cta-takeaway">
-    <p><strong>GATE takeaway —</strong> det(cA) = cⁿ·det(A), and a triangular matrix's det is the product of its diagonal.</p>
+    <p><strong>GATE takeaway —</strong> det(cA) = cⁿ·det(A), triangular det = product of the diagonal, and det(A+B) ≠ det(A)+det(B).</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

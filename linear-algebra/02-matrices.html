@@ -39,6 +39,9 @@
          The <strong>columns of the matrix</strong> tell you exactly where the basis arrows
          $\hat{\imath}=(1,0)$ and $\hat{\jmath}=(0,1)$ land — that's the whole transformation.</p>
     </div>
+    <p><strong>Column trick:</strong> for $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$, the first column $(a,c)$ is where
+      $\hat{\imath}$ goes and the second column $(b,d)$ is where $\hat{\jmath}$ goes. Read a matrix and you can
+      picture the transformation instantly.</p>
     <p>Drag the sliders below to build a $2\times2$ matrix and watch the grid deform. The shaded
       square's area is the determinant (it turns coral if the space flips); try the <em>Singular</em>
       preset to see the plane collapse to a line.</p>
@@ -164,6 +167,11 @@
   <!-- 11. CONNECTIONS -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <div class="keybox">
+      <div class="callout-label">🔑 The invertibility chain (GATE gold)</div>
+      <p>For a square $A$, these are all the same statement:</p>
+      <p>$A^{-1}$ exists $\iff \det(A)\neq0 \iff \operatorname{rank}(A)=n \iff$ columns independent $\iff Ax=0$ only at $x=0 \iff Ax=b$ has a unique solution.</p>
+    </div>
     <ul class="styled">
       <li><strong>Determinant &amp; inverse:</strong> built from a (square) matrix; $A^{-1}$ exists iff $\det\neq0$.</li>
       <li><strong>Rank:</strong> independent columns/rows of the matrix.</li>
@@ -195,6 +203,16 @@
       <p class="pq">Q4. For an orthogonal matrix $Q$, what is $Q^{-1}$?</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$Q^{-1}=Q^{\mathsf T}$ (its transpose), since $Q^{\mathsf T}Q=I$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Is $\begin{bmatrix}1&4\\4&9\end{bmatrix}$ symmetric? Is $\begin{bmatrix}0&5\\-5&0\end{bmatrix}$ skew-symmetric?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">First: $A=A^{\mathsf T}$ → yes, symmetric. Second: $A^{\mathsf T}=\begin{bmatrix}0&-5\\5&0\end{bmatrix}=-A$ → yes, skew-symmetric (note the zero diagonal).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q6. $\operatorname{tr}(AB)$ vs $\operatorname{tr}(BA)$ — equal or not?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Always equal (cyclic property), even though $AB\neq BA$ in general.</div>
     </div>
 
     <h3>Quick MCQ</h3>
