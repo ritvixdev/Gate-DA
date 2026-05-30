@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Cross-Validation — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 6</span>
+    <h1>Cross-Validation</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. In 10-fold CV, the model is trained…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> once</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> twice</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 10 times</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 100 times</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Once is a single split, not CV.</div>
+    <div class="quiz-feedback" data-fb="B">Not twice.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — once per fold, with each fold held out in turn.</div>
+    <div class="quiz-feedback" data-fb="D">That's $k^2$, not $k$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Train acc 99%, validation 70% indicates…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> underfitting</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> overfitting</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> a perfect model</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> data leakage only</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Underfitting shows both low.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — memorized training, poor generalization.</div>
+    <div class="quiz-feedback" data-fb="C">A big gap is the opposite of good.</div>
+    <div class="quiz-feedback" data-fb="D">The gap itself signals overfitting.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. LOOCV uses $k=$…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $5$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $n$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\sqrt{n}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's a single hold-out.</div>
+    <div class="quiz-feedback" data-fb="B">That's 5-fold.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — leave-one-out means $k=n$ folds.</div>
+    <div class="quiz-feedback" data-fb="D">Not the LOOCV definition.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. You should choose hyperparameters using…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the test set</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> the training accuracy</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> cross-validation / a validation set</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> random guessing</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Tuning on test leaks information.</div>
+    <div class="quiz-feedback" data-fb="B">Training accuracy rewards overfitting.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — use CV / a validation set, keep the test set untouched.</div>
+    <div class="quiz-feedback" data-fb="D">Not a method.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Both train and validation accuracy low ⇒…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> overfitting</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> underfitting</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> perfect fit</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> data leakage</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Overfitting has high train, low validation.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — model too simple to capture the pattern.</div>
+    <div class="quiz-feedback" data-fb="C">Both low is the opposite of perfect.</div>
+    <div class="quiz-feedback" data-fb="D">Leakage usually inflates scores.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. In k-fold CV, each point is used for validation…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> never</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> exactly once</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $k$ times</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> twice</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Every point is validated.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — once (and used for training in the other folds).</div>
+    <div class="quiz-feedback" data-fb="C">It's validated once, trained on $k-1$ times.</div>
+    <div class="quiz-feedback" data-fb="D">Once for validation.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. The CV score is the…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> best fold score</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> worst fold score</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> average over folds</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> training score</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Using the best is optimistic.</div>
+    <div class="quiz-feedback" data-fb="B">Using the worst is pessimistic.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — average the validation scores across folds.</div>
+    <div class="quiz-feedback" data-fb="D">Not the training score.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. CV is commonly used to choose…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> the random seed</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> hyperparameters like $k$ in kNN</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> the dataset</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> the labels</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Not for the seed.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — CV tunes hyperparameters reliably.</div>
+    <div class="quiz-feedback" data-fb="C">The dataset is given.</div>
+    <div class="quiz-feedback" data-fb="D">Labels come with the data.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="06-cross-validation.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

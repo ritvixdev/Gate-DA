@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Linear Regression — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 1</span>
+    <h1>Linear Regression</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. The least-squares line always passes through…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the origin</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> the first point</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $(\bar{x},\bar{y})$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the max point</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only if the means are at the origin.</div>
+    <div class="quiz-feedback" data-fb="B">No single data point is guaranteed.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — it always passes through the means.</div>
+    <div class="quiz-feedback" data-fb="D">Not the extreme point.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\operatorname{Cov}(x,y)=6,\ \operatorname{Var}(x)=10$. Slope $\beta_1$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $1.67$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0.6$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $60$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $16$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">You inverted the ratio.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\beta_1=\operatorname{Cov}/\operatorname{Var}=6/10=0.6$.</div>
+    <div class="quiz-feedback" data-fb="C">That's a product.</div>
+    <div class="quiz-feedback" data-fb="D">That's a sum.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. $\bar{x}=3,\ \bar{y}=4,\ \beta_1=0.6$. Intercept?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $4$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $2.2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $5.8$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $1.8$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $\bar{y}$; subtract $\beta_1\bar{x}$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\beta_0=4-0.6(3)=2.2$.</div>
+    <div class="quiz-feedback" data-fb="C">You added instead of subtracted.</div>
+    <div class="quiz-feedback" data-fb="D">That's $\beta_1\bar{x}$, not the intercept.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. In "linear" regression, linearity is in the…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> features</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> targets</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> coefficients</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> residuals</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">You can use $x^2$ as a feature and still be linear regression.</div>
+    <div class="quiz-feedback" data-fb="B">The target is the output, not the condition.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — linear in the $\beta$'s.</div>
+    <div class="quiz-feedback" data-fb="D">Residuals are errors.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. $R^2=1$ means…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> no relationship</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> half the variance explained</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a perfect fit</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> overfitting always</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $R^2=0$.</div>
+    <div class="quiz-feedback" data-fb="B">That's $R^2=0.5$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — all variance explained; residuals are zero.</div>
+    <div class="quiz-feedback" data-fb="D">A perfect fit on test data isn't necessarily overfitting.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. A residual is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\hat{y}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $y-\hat{y}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $y\cdot\hat{y}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> the slope</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the prediction.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the gap between actual and predicted.</div>
+    <div class="quiz-feedback" data-fb="C">Not a product.</div>
+    <div class="quiz-feedback" data-fb="D">The slope is $\beta_1$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. Predict $x=6$ for $\hat{y}=2.2+0.6x$.</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $3.6$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $8.2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $5.8$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $6$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's just $0.6\cdot6$; add the intercept.</div>
+    <div class="quiz-feedback" data-fb="B">Recompute: $2.2+3.6=5.8$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $2.2+0.6(6)=5.8$.</div>
+    <div class="quiz-feedback" data-fb="D">Plug into the equation.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. A great fit on data proves $x$ causes $y$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only if $R^2=1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only for multiple regression</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Correlation isn't causation.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — a strong fit shows association, not causation.</div>
+    <div class="quiz-feedback" data-fb="C">Even a perfect fit doesn't prove causation.</div>
+    <div class="quiz-feedback" data-fb="D">Adding features doesn't establish causation.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="01-linear-regression.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

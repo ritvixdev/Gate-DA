@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Least-Squares — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 2</span>
+    <h1>Least-Squares</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Least-squares minimizes…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> sum of absolute errors</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> sum of squared residuals</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> max residual</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> number of points</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's least <em>absolute</em> deviations, a different method.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — it minimizes $\sum(y_i-\hat{y}_i)^2$.</div>
+    <div class="quiz-feedback" data-fb="C">That's the minimax criterion.</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated to the objective.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. The normal-equations solution is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\beta=Xy$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\beta=X^{-1}y$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\beta=X^{\mathsf T}y$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Dimensions don't match.</div>
+    <div class="quiz-feedback" data-fb="B">$X$ isn't square / invertible in general.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — solve $X^{\mathsf T}X\beta=X^{\mathsf T}y$.</div>
+    <div class="quiz-feedback" data-fb="D">Missing the $(X^{\mathsf T}X)^{-1}$ factor.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Why is the least-squares solution unique?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the cost is linear</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> there's only one point</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> the squared-error cost is convex</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> it isn't unique</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The cost is quadratic (convex), not linear.</div>
+    <div class="quiz-feedback" data-fb="B">It's about the cost shape, not the data count.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — a convex bowl has a single global minimum.</div>
+    <div class="quiz-feedback" data-fb="D">It is unique when $X^{\mathsf T}X$ is invertible.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. OLS uses which residual distance?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> perpendicular</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> vertical</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> horizontal</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> radial</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Perpendicular distance is total least squares, not OLS.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — ordinary least squares uses vertical residuals in $y$.</div>
+    <div class="quiz-feedback" data-fb="C">No — it's the error in $y$, not $x$.</div>
+    <div class="quiz-feedback" data-fb="D">Not a thing here.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. $(X^{\mathsf T}X)^{-1}$ fails to exist when…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> there's noise</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $n$ is large</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> features are linearly dependent</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> never</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Noise doesn't make it singular.</div>
+    <div class="quiz-feedback" data-fb="B">More data usually helps.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — multicollinearity makes $X^{\mathsf T}X$ singular.</div>
+    <div class="quiz-feedback" data-fb="D">It can fail (collinear features).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. At the OLS optimum, the residuals…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> are all positive</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> are all zero</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> sum to zero</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> are maximized</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">They have mixed signs.</div>
+    <div class="quiz-feedback" data-fb="B">Only for a perfect fit.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — with an intercept, the residuals sum to zero.</div>
+    <div class="quiz-feedback" data-fb="D">They're minimized (squared), not maximized.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. Gradient descent on the SSE reaches…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> a different answer</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> the same least-squares solution</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> a local min only</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> never converges</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Same convex problem, same optimum.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the SSE is convex, so GD finds the global least-squares solution.</div>
+    <div class="quiz-feedback" data-fb="C">No local traps in a convex bowl.</div>
+    <div class="quiz-feedback" data-fb="D">It converges with a suitable rate.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. SSE is also called…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the gradient</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> the variance</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> RSS (residual sum of squares)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the determinant</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The gradient is its derivative.</div>
+    <div class="quiz-feedback" data-fb="B">Related but not the same.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — SSE = RSS = $\sum e_i^2$.</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="02-least-squares.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

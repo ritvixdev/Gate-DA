@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Symbols Glossary · Basic Machine Learning</title>
+<meta name="description" content="Every symbol used in GATE DA Basic Machine Learning — how to read it, what it means, with examples.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="symbols" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>Symbols Glossary</h1>
+    <p class="lede">Every notation used across Basic Machine Learning — how to <em>say</em> it, what it <em>means</em>, and a quick example.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Regression &amp; least-squares</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$y$ / $\hat{y}$</td><td>"y / y-hat"</td><td>actual / predicted target</td></tr>
+      <tr><td>$x,\ x_j$</td><td>"x, x j"</td><td>feature(s) / inputs</td></tr>
+      <tr><td>$\beta_0,\ \beta_j$</td><td>"betas"</td><td>intercept / coefficients</td></tr>
+      <tr><td>$e_i$</td><td>"residual"</td><td>$y_i-\hat{y}_i$</td></tr>
+      <tr><td>SSE / RSS</td><td>"squared error"</td><td>$\sum e_i^2$ (least-squares minimizes it)</td></tr>
+      <tr><td>$X^{\mathsf T}X\beta=X^{\mathsf T}y$</td><td>"normal equations"</td><td>$\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$</td></tr>
+      <tr><td>$R^2$</td><td>"R squared"</td><td>fraction of variance explained</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Classification (logistic, kNN)</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\sigma(z)$</td><td>"sigmoid"</td><td>$1/(1+e^{-z})$, in $(0,1)$</td></tr>
+      <tr><td>$z$</td><td>"score"</td><td>linear score $\beta_0+\beta^{\mathsf T}x$</td></tr>
+      <tr><td>$\hat{p}$</td><td>"p-hat"</td><td>predicted probability of class 1</td></tr>
+      <tr><td>$k$ (kNN)</td><td>"k"</td><td>number of neighbors that vote</td></tr>
+      <tr><td>$d(a,b)$</td><td>"distance"</td><td>Euclidean $\sqrt{\sum(a_i-b_i)^2}$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Clustering &amp; validation</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$k$ (k-means)</td><td>"k"</td><td>number of clusters</td></tr>
+      <tr><td>$\mu_j$</td><td>"mu j"</td><td>centroid (cluster mean)</td></tr>
+      <tr><td>WCSS / inertia</td><td>"inertia"</td><td>within-cluster sum of squares</td></tr>
+      <tr><td>$k$ (folds)</td><td>"k-fold"</td><td>number of CV folds</td></tr>
+      <tr><td>LOOCV</td><td>"leave-one-out"</td><td>$k=n$</td></tr>
+    </table></div>
+  </section>
+
+  <div class="practice-cta">
+    <span class="practice-cta-icon" aria-hidden="true">🎯</span>
+    <div class="practice-cta-body">
+      <div class="practice-cta-title">Ready to practice?</div>
+      <div class="practice-cta-sub">Drill each topic with explained questions.</div>
+    </div>
+    <a class="btn btn-primary" href="practice.html">Practice questions →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

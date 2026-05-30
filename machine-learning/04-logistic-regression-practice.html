@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Logistic Regression — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 4</span>
+    <h1>Logistic Regression</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Logistic regression is used for…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> regression (numbers)</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> classification</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> clustering</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> dimensionality reduction</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Despite the name, it classifies.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — it predicts class probabilities.</div>
+    <div class="quiz-feedback" data-fb="C">Clustering is unsupervised (k-means).</div>
+    <div class="quiz-feedback" data-fb="D">That's PCA.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\sigma(0)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $0.5$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\infty$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\sigma(z)\to0$ as $z\to-\infty$, not at 0.</div>
+    <div class="quiz-feedback" data-fb="B">$\sigma(z)\to1$ as $z\to+\infty$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $1/(1+1)=0.5$.</div>
+    <div class="quiz-feedback" data-fb="D">Sigmoid is bounded in $(0,1)$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. The decision boundary is where…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\hat{p}=1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $z=1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $z=0$ ($\hat{p}=0.5$)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $x=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's deep inside one class.</div>
+    <div class="quiz-feedback" data-fb="B">The boundary is at $z=0$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $z=0$ gives $\hat{p}=0.5$.</div>
+    <div class="quiz-feedback" data-fb="D">Not tied to $x=0$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Logistic regression minimizes…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> squared error</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> inertia</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> log-loss (cross-entropy)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the determinant</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's linear regression.</div>
+    <div class="quiz-feedback" data-fb="B">Inertia is for k-means.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — it minimizes log-loss.</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. The output of logistic regression is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> any real number</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a cluster id</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a probability in $(0,1)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a distance</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $z$ before the sigmoid.</div>
+    <div class="quiz-feedback" data-fb="B">That's k-means.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — the sigmoid gives a probability.</div>
+    <div class="quiz-feedback" data-fb="D">Not a distance.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. The model assumes the log-odds are…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> quadratic in $x$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> linear in $x$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> constant</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> random</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It's linear, not quadratic.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\log\frac{p}{1-p}=z=\beta_0+\beta^{\mathsf T}x$.</div>
+    <div class="quiz-feedback" data-fb="C">It varies with $x$.</div>
+    <div class="quiz-feedback" data-fb="D">It's a fitted linear function.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. If $z=2$, the prediction (threshold 0.5) is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> class 0</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> class 1</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> undefined</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> a tie</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$z\gt0$ ⇒ $\hat{p}\gt0.5$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma(2)\approx0.88\ge0.5$ → class 1.</div>
+    <div class="quiz-feedback" data-fb="C">It's well-defined.</div>
+    <div class="quiz-feedback" data-fb="D">Not a tie.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. The decision boundary in raw features is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> a circle</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> always curved</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> linear (a line/plane)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> nonexistent</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Not a circle for plain logistic regression.</div>
+    <div class="quiz-feedback" data-fb="B">It's straight where $z=0$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $z=0$ is a linear boundary.</div>
+    <div class="quiz-feedback" data-fb="D">There is one, at $z=0$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="04-logistic-regression.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

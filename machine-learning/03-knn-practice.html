@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>kNN — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 3</span>
+    <h1>k-Nearest Neighbors</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. kNN is a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> clustering method</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> supervised method (classification/regression)</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> dimensionality reducer</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> probability density</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Clustering is k-means; kNN uses labels.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — it uses labeled neighbors to predict.</div>
+    <div class="quiz-feedback" data-fb="C">That's PCA's job.</div>
+    <div class="quiz-feedback" data-fb="D">kNN isn't a density model.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Does kNN have a training phase?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes, a long one</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No — it's lazy</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only for regression</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only with scaling</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It just stores the data.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — lazy learner; work happens at prediction time.</div>
+    <div class="quiz-feedback" data-fb="C">No training either way.</div>
+    <div class="quiz-feedback" data-fb="D">Scaling is preprocessing, not training.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Neighbors (k=5) are {A,B,A,A,B}. Prediction?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> B</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> A</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> tie</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> undefined</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A has the majority (3 vs 2).</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — A appears 3 times, B 2 times.</div>
+    <div class="quiz-feedback" data-fb="C">5 votes can't tie between two classes.</div>
+    <div class="quiz-feedback" data-fb="D">It's well-defined: A.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Why use odd $k$ for two classes?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> faster</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> more accurate always</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> to avoid ties</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> required by the formula</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Speed is unaffected.</div>
+    <div class="quiz-feedback" data-fb="B">Not always more accurate.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — odd $k$ prevents tied votes.</div>
+    <div class="quiz-feedback" data-fb="D">Even $k$ is allowed (ties just need a rule).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. As $k$ grows, the model becomes…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> higher variance</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> more overfit</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> smoother / higher bias</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> unchanged</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Small $k$ is high variance.</div>
+    <div class="quiz-feedback" data-fb="B">Small $k$ overfits, not large.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — bigger $k$ smooths the boundary (more bias).</div>
+    <div class="quiz-feedback" data-fb="D">It changes with $k$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Before kNN, you should usually…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> remove the labels</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> scale the features</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> sort the data</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> nothing</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Labels are needed for classification.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — unscaled features distort the distance.</div>
+    <div class="quiz-feedback" data-fb="C">Sorting doesn't matter.</div>
+    <div class="quiz-feedback" data-fb="D">Scaling matters a lot.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. kNN prediction cost per query is about…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $O(1)$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $O(\log n)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $O(n)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $O(n^2)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It must look at all points.</div>
+    <div class="quiz-feedback" data-fb="B">Only with special index structures.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — basic kNN scans all $n$ training points.</div>
+    <div class="quiz-feedback" data-fb="D">One query is linear, not quadratic.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. The usual kNN distance metric is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> correlation</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> determinant</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> Euclidean</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> probability</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Not a distance metric here.</div>
+    <div class="quiz-feedback" data-fb="B">Unrelated.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — Euclidean distance is the default.</div>
+    <div class="quiz-feedback" data-fb="D">Distance, not probability.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="03-knn.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
