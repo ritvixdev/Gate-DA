@@ -49,92 +49,304 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— diagonalization from zero, one idea per card</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— diagonalization &amp; Cayley–Hamilton from zero</span></summary>
 
-        <p class="study-empty">Diagonalization rewrites a matrix in its own eigenvector coordinates as <code>A = PDP⁻¹</code>, turning a tangled transformation into simple independent stretches — which makes powers, recurrences and PCA easy. Whether it is possible comes down to having enough independent eigenvectors. Open each card in order.</p>
+        <p class="study-empty">Diagonalization rewrites a matrix in its own eigenvector coordinates as <code>A = PDP⁻¹</code>, turning a tangled transformation into simple independent stretches — which makes powers, inverses and PCA easy. Whether it is possible comes down to having enough independent eigenvectors (GM = AM). Cayley–Hamilton is the companion shortcut. Open each card in order.</p>
 
         <details class="study-item">
           <summary>1. What is diagonalization?</summary>
-          <p>Diagonalizing a square matrix means writing it as:</p>
+          <p>A square matrix A is <strong>diagonalizable</strong> if it can be written</p>
           <pre>A = P D P⁻¹
 
 D = diagonal matrix of eigenvalues
-P = matrix whose columns are the eigenvectors</pre>
-          <p>It expresses A in its own natural (eigenvector) coordinates, where it acts as simple scaling.</p>
+P = matrix whose columns are the matching eigenvectors</pre>
+          <p>If <code>Av₁=λ₁v₁</code>, <code>Av₂=λ₂v₂</code>, … then P = [v₁ v₂ …] and D = diag(λ₁, λ₂, …).</p>
         </details>
 
         <details class="study-item">
-          <summary>2. Why diagonalize? (easy powers)</summary>
-          <p>Powers become trivial:</p>
-          <pre>A² = PDP⁻¹·PDP⁻¹ = PD²P⁻¹
-Aᵏ = P Dᵏ P⁻¹   (just raise the diagonal entries to the k)</pre>
-          <p>This makes Markov chains, recurrences and matrix exponentials tractable.</p>
+          <summary>2. Why do we need it? (easy powers)</summary>
+          <p>Diagonal matrices are trivial to power:</p>
+          <pre>D = [2 0; 0 3]  →  D¹⁰ = [2¹⁰ 0; 0 3¹⁰] = [1024 0; 0 59049]</pre>
+          <p>Diagonalization gives the same ease for any matrix: <code>Aᵏ = P Dᵏ P⁻¹</code>.</p>
         </details>
 
         <details class="study-item">
-          <summary>3. Algebraic multiplicity (AM)</summary>
+          <summary>3. Game imagination</summary>
+          <p>In normal x–y coordinates a matrix looks tangled. Rotate to coordinates aligned with the <strong>eigenvectors</strong>, and it becomes pure independent stretching:</p>
+          <pre>direction 1 stretched by λ₁
+direction 2 stretched by λ₂   (no mixing, no twisting)</pre>
+          <p>Diagonalization = choosing the coordinate system where A is simplest.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Meaning of P, D and P⁻¹</summary>
+          <pre>A = P D P⁻¹
+
+P⁻¹ → convert into eigenvector coordinates
+D   → scale each eigen-direction by its eigenvalue
+P   → convert back to normal coordinates</pre>
+          <p>Read right to left: go into the eigenbasis, scale, come back.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Why D is diagonal (the derivation)</summary>
+          <pre>P = [v₁ v₂]
+AP = [Av₁ Av₂] = [λ₁v₁ λ₂v₂] = P·[λ₁ 0; 0 λ₂] = PD
+
+so  AP = PD   ⇒   A = P D P⁻¹</pre>
+          <p>That single line is the whole engine of diagonalization.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. When can a matrix be diagonalized?</summary>
+          <pre>A (n×n) is diagonalizable  ⟺  A has n linearly independent eigenvectors</pre>
+          <p>Because P must be invertible, and P's columns are the eigenvectors — they must be independent for <code>P⁻¹</code> to exist.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Rule 1: distinct eigenvalues ⇒ diagonalizable</summary>
+          <pre>3×3 with eigenvalues 1, 2, 5  → all distinct → diagonalizable</pre>
+          <p>Eigenvectors for distinct eigenvalues are automatically independent, so n distinct eigenvalues give n independent eigenvectors.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Rule 2: real symmetric ⇒ orthogonally diagonalizable</summary>
+          <p>If <code>A = Aᵀ</code> (real), then A is always diagonalizable, and even orthogonally:</p>
+          <pre>A = Q D Qᵀ      (Q orthogonal: Q⁻¹ = Qᵀ)</pre>
+          <p>This is the <strong>spectral theorem</strong> — the backbone of PCA.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Algebraic multiplicity (AM)</summary>
           <p><strong>AM</strong> = how many times an eigenvalue is a root of the characteristic polynomial.</p>
-          <pre>char poly = (λ − 2)²(λ − 5)
-AM(2) = 2 ,  AM(5) = 1</pre>
+          <pre>p(λ) = (λ − 2)²(λ − 5)   →   AM(2) = 2,  AM(5) = 1</pre>
         </details>
 
         <details class="study-item">
-          <summary>4. Geometric multiplicity (GM)</summary>
+          <summary>10. Geometric multiplicity (GM)</summary>
           <p><strong>GM</strong> = number of independent eigenvectors for that eigenvalue = dimension of its eigenspace.</p>
           <pre>GM(λ) = dim Null(A − λI) = n − rank(A − λI)</pre>
         </details>
 
         <details class="study-item">
-          <summary>5. The AM / GM rule</summary>
-          <pre>1 ≤ GM ≤ AM      (for every eigenvalue)</pre>
-          <p>So if <code>AM = 3</code>, GM can be 1, 2 or 3; if <code>AM = 1</code>, then GM = 1. Distinct eigenvalues therefore always give independent eigenvectors.</p>
+          <summary>11. The AM / GM rule</summary>
+          <pre>1 ≤ GM ≤ AM   (every eigenvalue)
+
+A is diagonalizable  ⟺  GM = AM for EVERY eigenvalue
+                     ⟺  total independent eigenvectors = n</pre>
         </details>
 
         <details class="study-item">
-          <summary>6. When is a matrix diagonalizable?</summary>
-          <p>An n×n matrix is diagonalizable iff it has <strong>n linearly independent eigenvectors</strong>, equivalently:</p>
-          <pre>GM = AM   for every eigenvalue</pre>
-          <p>If any eigenvalue has <code>GM &lt; AM</code>, the matrix is <strong>not</strong> diagonalizable (it is "defective").</p>
+          <summary>12. Repeated eigenvalue — must check GM</summary>
+          <pre>char poly = (λ − 2)²  →  λ = 2, AM = 2
+
+GM = 2 → 2 independent eigenvectors → diagonalizable
+GM = 1 → only 1 eigenvector        → NOT diagonalizable</pre>
+          <p>A repeated eigenvalue does <em>not</em> automatically block diagonalization — check GM.</p>
         </details>
 
         <details class="study-item">
-          <summary>7. Rule: n distinct eigenvalues ⇒ diagonalizable</summary>
-          <pre>3×3 with eigenvalues 1, 2, 3  →  all distinct  →  diagonalizable</pre>
-          <p>Distinct eigenvalues guarantee independent eigenvectors, so the matrix always diagonalizes.</p>
+          <summary>13. Example: identity (repeated but fine)</summary>
+          <pre>I = [1 0; 0 1]   char poly (λ−1)²,  λ = 1, AM = 2
+Ix = x for every x → eigenspace is all of ℝ² → GM = 2</pre>
+          <p>GM = AM = 2, so the identity <strong>is</strong> diagonalizable (it already is diagonal).</p>
         </details>
 
         <details class="study-item">
-          <summary>8. Rule: real symmetric ⇒ orthogonally diagonalizable</summary>
-          <p>A real symmetric matrix is always diagonalizable, and even better — <strong>orthogonally</strong>:</p>
-          <pre>A = Q D Qᵀ      (Q orthogonal: Q⁻¹ = Qᵀ)</pre>
-          <p>The eigenvectors can be chosen orthonormal. This is the engine behind PCA and the spectral theorem.</p>
+          <summary>14. Example: a defective matrix</summary>
+          <pre>A = [1 1; 0 1]   λ = 1, AM = 2
+A − I = [0 1; 0 0]  → x₂ = 0 → eigenvectors x₁·[1;0] only → GM = 1</pre>
+          <p>GM (1) &lt; AM (2) → <strong>not diagonalizable</strong>. Such matrices are called <em>defective</em>.</p>
         </details>
 
         <details class="study-item">
-          <summary>9. Repeated-eigenvalue example</summary>
-          <pre>char poly = (λ − 2)²   →  λ = 2, AM = 2
+          <summary>15. Full worked diagonalization</summary>
+          <pre>A = [4 1; 2 3]   →  λ = 5 (v = [1;1]),  λ = 2 (v = [1;−2])
 
-2 independent eigenvectors (GM = 2)  →  diagonalizable
-only 1 independent eigenvector (GM = 1)  →  NOT diagonalizable</pre>
-          <p>Repeated eigenvalues are exactly where you must check GM vs AM.</p>
+P = [1  1     D = [5  0
+     1 −2]         0  2]</pre>
+          <p>Then <code>A = P D P⁻¹</code>.</p>
         </details>
 
         <details class="study-item">
-          <summary>10. Similar matrices</summary>
-          <pre>B = P⁻¹ A P      →  A and B are "similar"</pre>
-          <p>Similar matrices share the <strong>same eigenvalues, trace, determinant and rank</strong>. Diagonalization is just finding a similar matrix that happens to be diagonal (<code>D = P⁻¹AP</code>).</p>
+          <summary>16. Order-matching warning</summary>
+          <pre>P = [v₁ v₂]  with v₁↔λ₁, v₂↔λ₂   ⇒   D = [λ₁ 0; 0 λ₂]</pre>
+          <p>The eigenvector order in P must match the eigenvalue order in D — mismatching gives a wrong result.</p>
         </details>
 
         <details class="study-item">
-          <summary>11. Cheatsheet &amp; mental model</summary>
+          <summary>17. Computing P⁻¹ (2×2)</summary>
+          <pre>P = [1  1;  1 −2]   det(P) = 1(−2) − 1(1) = −3
+
+P⁻¹ = (1/−3)·[−2 −1; −1  1] = [ 2/3  1/3
+                                1/3 −1/3]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Why diagonalization makes powers easy</summary>
+          <pre>A² = (PDP⁻¹)(PDP⁻¹) = PD(P⁻¹P)DP⁻¹ = P D² P⁻¹
+
+⇒  Aᵏ = P Dᵏ P⁻¹</pre>
+          <p>The inner <code>P⁻¹P = I</code> collapses everything to a clean diagonal power.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Computing Dᵏ</summary>
+          <pre>D = diag(λ₁, λ₂, λ₃)  →  Dᵏ = diag(λ₁ᵏ, λ₂ᵏ, λ₃ᵏ)</pre>
+          <pre>D = [5 0; 0 2]  →  D¹⁰ = [5¹⁰ 0; 0 2¹⁰]</pre>
+          <p>Just raise each diagonal entry to the power.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Powers — diagonal vs non-diagonal</summary>
+          <pre>already diagonal:  [2 0; 0 3]¹⁰ = [1024 0; 0 59049]
+
+non-diagonal A = PDP⁻¹:  A¹⁰ = P·[5¹⁰ 0; 0 2¹⁰]·P⁻¹</pre>
+          <p>GATE loves high powers (A⁵, A¹⁰, A¹⁰⁰) — diagonalization (or Cayley–Hamilton) is how you do them.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>21. The transformation meaning</summary>
+          <pre>any x = c₁v₁ + c₂v₂
+Ax = c₁·Av₁ + c₂·Av₂ = c₁λ₁v₁ + c₂λ₂v₂</pre>
+          <p>So A simply scales each eigen-direction independently — that is the deep meaning of being diagonalizable.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Symmetric &amp; orthogonal diagonalization</summary>
+          <pre>real symmetric A = A ᵀ  →  A = Q D Qᵀ   (QᵀQ = I)
+
+Q columns = orthonormal eigenvectors,  D = eigenvalues</pre>
+          <p>Called <strong>orthogonal diagonalization</strong> / spectral decomposition; the inverse is free (<code>Q⁻¹ = Qᵀ</code>).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. PCA connection</summary>
+          <pre>covariance matrix Σ (symmetric)  →  Σ = Q D Qᵀ
+Q = principal directions ,  D = variances</pre>
+          <p>Big eigenvalue = important direction (much spread); small = less important. (Full PCA in the SVD &amp; PCA topic.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Diagonalizable ≠ invertible</summary>
+          <pre>A = [1 0; 0 0]   diagonal → diagonalizable
+but det(A) = 0 (eigenvalue 0) → NOT invertible</pre>
+          <p>Diagonalizable = enough independent eigenvectors. Invertible = all eigenvalues non-zero. Different things!</p>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Diagonalizable vs distinct eigenvalues</summary>
+          <pre>distinct eigenvalues  ⇒  diagonalizable     (TRUE)
+diagonalizable        ⇒  distinct eigenvalues (FALSE — e.g. the identity)</pre>
+          <p>The implication only goes one way.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Cayley–Hamilton theorem</summary>
+          <p>Every square matrix <strong>satisfies its own characteristic equation</strong>.</p>
+          <pre>p(λ) = λ² − 5λ + 4   ⇒   p(A) = A² − 5A + 4I = 0</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> the constant becomes <code>4I</code>, not 4 — replace 1 with I.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Cayley–Hamilton — worked example</summary>
+          <pre>A = [3 1; 2 2]   tr = 5, det = 4
+p(λ) = λ² − 5λ + 4   ⇒   A² − 5A + 4I = 0
+
+⇒  A² = 5A − 4I</pre>
+          <p>This rewrites A² in terms of A and I — the key to reducing powers.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Cayley–Hamilton to find A⁻¹</summary>
+          <pre>A² − 5A + 4I = 0  ⇒  A(5I − A) = 4I  ⇒  A⁻¹ = (5I − A)/4</pre>
+          <p>General 2×2: if <code>λ² + aλ + b = 0</code> with b ≠ 0, then <code>A⁻¹ = −(A + aI)/b</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Cayley–Hamilton for higher powers</summary>
+          <pre>A² = 5A − 4I
+A³ = A·A² = A(5A − 4I) = 5A² − 4A = 5(5A − 4I) − 4A = 21A − 20I</pre>
+          <p>Any power of a 2×2 reduces to the form <code>αA + βI</code> — no repeated multiplication needed.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Diagonalization vs Cayley–Hamilton</summary>
+          <pre>Diagonalization:  best when eigenvectors are easy; gives Aᵏ = PDᵏP⁻¹
+Cayley–Hamilton:  best when you only need the char. polynomial,
+                  to reduce powers or find A⁻¹ (eigenvectors not needed)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Matrix exponential (preview)</summary>
+          <pre>A = PDP⁻¹  ⇒  e^A = P e^D P⁻¹ ,   e^D = diag(e^{λ₁}, e^{λ₂}, …)</pre>
+          <p>Used for dynamical systems and differential equations; appears rarely in GATE DA but the idea reuses diagonalization.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. trace, det &amp; similar matrices</summary>
+          <pre>A = PDP⁻¹  ⇒  trace(A) = trace(D) = Σλ ,  det(A) = det(D) = Πλ</pre>
+          <p><strong>Similar</strong> matrices (<code>B = P⁻¹AP</code>) share eigenvalues, trace, determinant, rank and characteristic polynomial. Diagonalization = A is similar to a diagonal matrix.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. How to check diagonalizability (steps)</summary>
+          <ol class="steps">
+            <li>Find eigenvalues from <code>det(A − λI) = 0</code>.</li>
+            <li>All eigenvalues distinct? → diagonalizable, stop.</li>
+            <li>Repeated λ? compute <code>GM = nullity(A − λI)</code> for each.</li>
+            <li><code>GM = AM</code> for all → diagonalizable; otherwise not.</li>
+          </ol>
+          <p>Shortcut: real symmetric → diagonalizable automatically.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Common facts &amp; traps</summary>
           <ul class="styled">
-            <li><code>A = PDP⁻¹</code>: D = eigenvalues, P = eigenvectors; <code>Aᵏ = PDᵏP⁻¹</code>.</li>
-            <li>AM = root multiplicity; GM = <code>nullity(A − λI)</code>; always <code>1 ≤ GM ≤ AM</code>.</li>
-            <li>Diagonalizable ⟺ GM = AM for all λ ⟺ n independent eigenvectors.</li>
-            <li>n distinct eigenvalues ⇒ diagonalizable; real symmetric ⇒ <code>A = QDQᵀ</code>.</li>
-            <li>Similar matrices (<code>P⁻¹AP</code>) share eigenvalues, trace, det, rank.</li>
+            <li>n distinct eigenvalues ⇒ diagonalizable. <strong>True.</strong></li>
+            <li>Diagonalizable ⇒ distinct eigenvalues? <strong>False</strong> (identity).</li>
+            <li>Real symmetric ⇒ diagonalizable (orthogonally). <strong>True.</strong></li>
+            <li>Every matrix is diagonalizable? <strong>False</strong> (defective ones).</li>
+            <li>Diagonalizable ⇒ invertible? <strong>False</strong> (zero eigenvalue allowed).</li>
+            <li>In <code>A = PDP⁻¹</code>, P holds eigen<strong>vectors</strong>, D holds eigen<strong>values</strong>.</li>
+            <li>Cayley–Hamilton: constant term becomes <code>·I</code> (e.g. <code>A²−5A+4I=0</code>).</li>
           </ul>
-          <p><span style="color:var(--coral-text)">Mental model:</span> diagonalization = rotating into the eigenvector axes, where the matrix is just independent stretches.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Practice problems</summary>
+          <p class="lead">Q1. 3×3 with eigenvalues 1, 2, 3 — diagonalizable?</p>
+          <pre>distinct → yes</pre>
+          <p class="lead">Q2. 2×2, (λ−4)², GM(4)=1 — diagonalizable?</p>
+          <pre>GM 1 < AM 2 → no</pre>
+          <p class="lead">Q3. Identity I₂ — diagonalizable?</p>
+          <pre>GM = AM = 2 → yes</pre>
+          <p class="lead">Q4. A = PDP⁻¹, D = [2 0; 0 5] — A¹⁰?</p>
+          <pre>A¹⁰ = P·[2¹⁰ 0; 0 5¹⁰]·P⁻¹</pre>
+          <p class="lead">Q5. p(λ)=λ²−7λ+10 — express A²?</p>
+          <pre>A² − 7A + 10I = 0 → A² = 7A − 10I</pre>
+          <p class="lead">Q6. A²−5A+6I=0 — find A⁻¹?</p>
+          <pre>A(5I−A)=6I → A⁻¹ = (5I − A)/6</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Cheatsheet</summary>
+          <ul class="styled">
+            <li><code>A = PDP⁻¹</code>: P = eigenvectors (order matters!), D = eigenvalues; <code>Aᵏ = PDᵏP⁻¹</code>.</li>
+            <li>Diagonalizable ⟺ n independent eigenvectors ⟺ GM = AM for every λ.</li>
+            <li>n distinct eigenvalues ⇒ diagonalizable; real symmetric ⇒ <code>A = QDQᵀ</code>.</li>
+            <li>Diagonalizable ≠ invertible; <code>trace = Σλ</code>, <code>det = Πλ</code>.</li>
+            <li>Cayley–Hamilton: <code>p(A) = 0</code> (constant → I) → reduce powers &amp; get <code>A⁻¹</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Best mental model</summary>
+          <pre>A = complicated machine
+eigenvectors = its natural directions
+eigenvalues = stretch factors there
+diagonalization = switch to those directions, where A = D (simple)</pre>
+          <p><code>A = PDP⁻¹</code> = go to the eigenbasis, scale, come back; <code>Aᵏ = PDᵏP⁻¹</code> = a hard power becomes an easy diagonal power.</p>
         </details>
       </details>
     </section>
