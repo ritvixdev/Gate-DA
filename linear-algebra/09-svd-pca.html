@@ -49,8 +49,331 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— SVD &amp; PCA from zero, one idea per card</span></summary>
+
+        <p class="study-empty">SVD is the universal decomposition <code>A = UΣVᵀ</code> that works for <em>any</em> matrix — reading every transformation as rotate → stretch → rotate. It powers rank, compression, the pseudo-inverse, and least squares; and PCA is simply SVD applied to data to find its most important directions. This is where Linear Algebra meets data science. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. Why SVD is needed</summary>
+          <p>Eigenvalue decomposition works mainly for <strong>square</strong> matrices. But real data is usually <strong>rectangular</strong> — e.g. a dataset <code>X = 1000 samples × 20 features</code> (1000×20).</p>
+          <p><strong>SVD works for every matrix</strong> — square, rectangular, singular, rank-deficient — which is why it is called the crown jewel of linear algebra.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. The main formula: A = UΣVᵀ</summary>
+          <pre>A (m×n) = U Σ Vᵀ
+
+U = m×m orthogonal     (UᵀU = I, U⁻¹ = Uᵀ)
+Σ = m×n diagonal-like  (singular values)
+V = n×n orthogonal     (VᵀV = I, V⁻¹ = Vᵀ)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Game imagination: rotate → stretch → rotate</summary>
+          <p>Reading <code>Ax = UΣVᵀx</code> right to left, every matrix is just three simple steps:</p>
+          <pre>Vᵀ → rotate/reflect the input into clean axes
+Σ  → stretch each axis by a singular value
+U  → rotate/reflect into the output space</pre>
+          <p><span style="color:var(--coral-text)">SVD = rotate → stretch → rotate.</span> The best mental model.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Singular values</summary>
+          <p>Σ holds the <strong>singular values</strong> <code>σ₁ ≥ σ₂ ≥ … ≥ 0</code> — always <strong>non-negative</strong>, sorted largest first.</p>
+          <pre>σ₁ = strongest stretch direction
+σ₂ = next strongest, …</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. The shape of Σ</summary>
+          <p>Σ has the same shape as A, with singular values on the diagonal positions:</p>
+          <pre>A is 3×2:  Σ = [σ₁ 0; 0 σ₂; 0 0]
+A is 2×3:  Σ = [σ₁ 0 0; 0 σ₂ 0]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>6. U and V (singular vectors)</summary>
+          <pre>V columns = right singular vectors → live in INPUT space (n-dim), V is n×n
+U columns = left  singular vectors → live in OUTPUT space (m-dim), U is m×m
+Σ connects them by stretching</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>7. The core relationship</summary>
+          <pre>A vᵢ = σᵢ uᵢ        (input direction vᵢ → output direction uᵢ, scaled by σᵢ)
+Aᵀuᵢ = σᵢ vᵢ</pre>
+          <p>Clean input direction <code>vᵢ</code> maps to clean output direction <code>uᵢ</code>, stretched by <code>σᵢ</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Relationship with eigenvalues (key)</summary>
+          <pre>singular values:  σᵢ = √( eigenvalue of AᵀA )
+eigenvalues of AᵀA = σᵢ²
+
+V = eigenvectors of AᵀA
+U = eigenvectors of AAᵀ</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> AᵀA gives V and σ²; AAᵀ gives U and σ².</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Why AᵀA's eigenvalues are ≥ 0</summary>
+          <pre>xᵀAᵀAx = (Ax)ᵀ(Ax) = ||Ax||² ≥ 0</pre>
+          <p>So <code>AᵀA</code> is <strong>positive semidefinite</strong> — its eigenvalues are non-negative, which is exactly why singular values are real and ≥ 0.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Rank &amp; nullity from singular values</summary>
+          <pre>rank(A) = number of NON-ZERO singular values
+nullity(A) = n − rank   (zero singular directions = null space)</pre>
+          <pre>σ = 5, 3, 0, 0  →  rank 2</pre>
+          <p>Zero singular values mark the directions the matrix destroys.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. SVD examples</summary>
+          <p class="lead">Diagonal matrix (already aligned):</p>
+          <pre>A = [3 0; 0 2]  →  U = I, Σ = [3 0; 0 2], V = I,  σ = 3, 2</pre>
+          <p class="lead">Negative diagonal — singular values are still positive:</p>
+          <pre>A = [−3 0; 0 2]  →  eigenvalues −3, 2  but  singular values 3, 2
+(the flip goes into U or V; Σ only stretches)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. SVD vs eigenvalue decomposition</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Eigen-decomposition</th><th>SVD</th></tr>
+            <tr><td>Works for</td><td>square (mostly)</td><td>any m×n</td></tr>
+            <tr><td>Formula</td><td><code>A = PDP⁻¹</code></td><td><code>A = UΣVᵀ</code></td></tr>
+            <tr><td>Values</td><td>can be −/complex</td><td>σ ≥ 0 real</td></tr>
+            <tr><td>Vectors</td><td>eigenvectors</td><td>singular vectors</td></tr>
+            <tr><td>Stability</td><td>less stable</td><td>very stable</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Compact (reduced) SVD</summary>
+          <p>If <code>rank = r</code>, keep only the non-zero part:</p>
+          <pre>A = Uᵣ Σᵣ Vᵣᵀ      (Uᵣ: m×r, Σᵣ: r×r, Vᵣ: n×r)</pre>
+          <p>This is what compression and PCA actually use.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Outer-product form</summary>
+          <pre>A = σ₁u₁v₁ᵀ + σ₂u₂v₂ᵀ + … + σᵣuᵣvᵣᵀ</pre>
+          <p>Each <code>σᵢuᵢvᵢᵀ</code> is a <strong>rank-1 pattern</strong>; A is a sum of patterns, the first being most important. This is the basis of low-rank approximation.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Low-rank approximation</summary>
+          <pre>Aₖ = σ₁u₁v₁ᵀ + … + σₖuₖvₖᵀ      (keep top k, discard the rest)</pre>
+          <p>Since <code>σ₁ ≥ σ₂ ≥ …</code>, the first few terms hold most of the information.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Why low-rank approximation works</summary>
+          <p>An image is a matrix of pixel intensities. SVD splits it into layers (strongest structure first). Keeping the top ~20 singular values can still look clear.</p>
+          <p>So SVD compresses by keeping important directions — used in <strong>image compression, noise reduction, recommender systems, latent semantic analysis, PCA</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Best rank-k approximation (Eckart–Young)</summary>
+          <p><code>Aₖ</code> is the <strong>best</strong> rank-k approximation of A in Frobenius norm — it minimizes <code>||A − Aₖ||_F</code> over all rank-k matrices.</p>
+          <pre>||A||_F = √(sum of squares of entries)
+||A||_F² = σ₁² + σ₂² + … + σᵣ²    (singular values = the matrix's "energy")</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Energy / variance captured</summary>
+          <pre>energy kept by top k = (σ₁² + … + σₖ²) / (σ₁² + … + σᵣ²)</pre>
+          <pre>σ = 10, 5, 1 → total 126; top 2 = 125 → 125/126 ≈ 99.2%</pre>
+          <p>A rank-2 approximation can keep almost all the information.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Pseudo-inverse via SVD</summary>
+          <pre>A = UΣVᵀ  →  A⁺ = V Σ⁺ Uᵀ
+Σ⁺: replace each non-zero σᵢ with 1/σᵢ, transpose the shape, keep zeros</pre>
+          <p>The pseudo-inverse works when A is rectangular, singular, or rank-deficient — where a normal inverse does not exist.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Condition number</summary>
+          <pre>κ(A) = σmax / σmin   (= σ₁ / σᵣ for full rank)</pre>
+          <pre>large κ → ill-conditioned (small input error → large output error)
+κ ≈ 1  → well-conditioned;  orthogonal matrix → all σ = 1 → κ = 1 (best)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. What is PCA?</summary>
+          <p><strong>Principal Component Analysis</strong> finds the directions where data varies the most — the best new axes for the data. They are <strong>orthogonal</strong> and <strong>ordered by importance</strong>:</p>
+          <pre>PC1 = max variance ;  PC2 = max remaining variance ⊥ PC1 ;  …</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>22. PCA game imagination</summary>
+          <p>A 2D data cloud stretched diagonally doesn't line up with the x/y axes. PCA <strong>rotates the coordinate system to match the data</strong>:</p>
+          <pre>PC1 = direction of maximum spread
+PC2 = perpendicular direction of next spread</pre>
+          <p>PCA = finding the natural directions of the data.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. PCA &amp; variance</summary>
+          <p>Variance = spread. PCA <strong>keeps high-variance directions and discards low-variance ones</strong>, because high variance usually carries the information and low variance is often noise.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. PCA step by step</summary>
+          <p>Data <code>X</code> is n samples × d features.</p>
+          <ol class="steps">
+            <li><strong>Center:</strong> <code>X̄ = X − mean(X)</code> (each feature mean 0) — PCA needs centered data.</li>
+            <li><strong>Covariance:</strong> <code>C = (1/n) X̄ᵀX̄</code> (a d×d symmetric matrix).</li>
+            <li><strong>Eigendecompose:</strong> <code>Cv = λv</code> (real eigenvalues, orthonormal eigenvectors).</li>
+            <li><strong>Sort</strong> eigenvalues descending: <code>λ₁ ≥ λ₂ ≥ …</code>; v₁, v₂, … are the principal components.</li>
+            <li><strong>Project:</strong> keep top k → <code>Vₖ</code>, then <code>Z = X̄Vₖ</code> (n×k reduced data).</li>
+          </ol>
+        </details>
+
+        <details class="study-item">
+          <summary>25. PCA &amp; SVD connection</summary>
+          <p>Instead of forming the covariance matrix, apply SVD directly to the centered data:</p>
+          <pre>X̄ = UΣVᵀ  ⇒  X̄ᵀX̄ = VΣᵀΣVᵀ  ⇒  C = (1/n)·VΣᵀΣVᵀ</pre>
+          <pre>principal components = columns of V
+covariance eigenvalues = σᵢ²/n   (or σᵢ²/(n−1) for sample covariance)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>26. PCA interpretation (explained variance)</summary>
+          <p>Each eigenvalue = variance along its principal component.</p>
+          <pre>explained variance ratio = λᵢ / (λ₁ + λ₂ + … + λd)</pre>
+          <pre>λ = 50, 10, 1 → PC1 ≈ 81.97%,  PC1+PC2 ≈ 98.36%</pre>
+          <p>So 2 components can preserve almost all the information.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. PCA for dimensionality reduction</summary>
+          <p>If 100 features have, say, 10 components explaining 95% variance, reduce <code>100 → 10</code> dimensions.</p>
+          <pre>benefits: less storage, faster training, less noise, easier visualization, less multicollinearity
+downside: components are combinations of features → less interpretable</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>28. PCA conditions (centering &amp; scaling)</summary>
+          <p>PCA must be done on <strong>centered</strong> data. If features have very different scales (income 0–10,00,000 vs age 0–100), the large-scale feature dominates — so <strong>standardize</strong> first:</p>
+          <pre>standardize = subtract mean, divide by standard deviation</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Covariance matrix properties</summary>
+          <pre>C = (1/n) X̄ᵀX̄  is symmetric and positive semidefinite
+vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
+          <p>So PCA eigenvalues are variances and can never be negative; eigenvectors can be chosen orthonormal.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>30. SVD applications (GATE DA)</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Application</th><th>SVD role</th></tr>
+            <tr><td>PCA</td><td>SVD of centered data</td></tr>
+            <tr><td>Least squares</td><td><code>A⁺ = VΣ⁺Uᵀ</code></td></tr>
+            <tr><td>Rank</td><td>count non-zero σ</td></tr>
+            <tr><td>Compression</td><td>keep top-k σ</td></tr>
+            <tr><td>Noise reduction</td><td>drop small σ</td></tr>
+            <tr><td>Condition number</td><td>σmax / σmin</td></tr>
+            <tr><td>Recommenders / LSA</td><td>low-rank factorization</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>31. SVD &amp; least squares</summary>
+          <p>When <code>Ax = b</code> has no exact solution, the least-squares answer is:</p>
+          <pre>x̂ = A⁺b = VΣ⁺Uᵀ b</pre>
+          <p>This works even for rectangular / rank-deficient A. For full column rank it matches the normal-equations answer <code>x̂ = (AᵀA)⁻¹Aᵀb</code> from the Orthogonality topic.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. SVD &amp; determinant</summary>
+          <pre>square A:  |det(A)| = product of singular values</pre>
+          <p>Any zero singular value ⇒ <code>det = 0</code> (singular). Singular values give the <em>magnitude</em> of the volume scaling, not its sign.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. SVD vs eigenvalues — careful!</summary>
+          <pre>A = [−2]:  eigenvalue = −2,  singular value = 2</pre>
+          <p>Singular values are non-negative stretch amounts; eigenvalues carry sign/complex behaviour. They align only for symmetric positive-semidefinite matrices (where eigenvalues are ≥ 0).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. PCA vs SVD</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>PCA</th><th>SVD</th></tr>
+            <tr><td>Goal</td><td>max-variance directions</td><td>decompose any matrix</td></tr>
+            <tr><td>Input</td><td>centered data</td><td>any matrix</td></tr>
+            <tr><td>Output</td><td>principal components</td><td>U, Σ, V</td></tr>
+            <tr><td>Values</td><td>eigenvalues = variance</td><td>singular values</td></tr>
+          </table></div>
+          <p>PCA is an <strong>application</strong> of SVD / eigendecomposition.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Key formulas</summary>
+          <ul class="styled">
+            <li><code>A = UΣVᵀ</code>; &nbsp; <code>σᵢ = √λᵢ(AᵀA)</code>; &nbsp; rank = #non-zero σ.</li>
+            <li><code>||A||_F² = σ₁² + … + σᵣ²</code>; &nbsp; <code>Aₖ = Σ_{i=1..k} σᵢuᵢvᵢᵀ</code>.</li>
+            <li>energy = <code>(σ₁²+…+σₖ²)/(σ₁²+…+σᵣ²)</code>; &nbsp; <code>A⁺ = VΣ⁺Uᵀ</code>; &nbsp; <code>κ = σmax/σmin</code>.</li>
+            <li>PCA: <code>C = (1/n)X̄ᵀX̄</code>, <code>Z = X̄Vₖ</code>, <code>λᵢ = σᵢ²/n</code> (or <code>/(n−1)</code>).</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Common GATE traps</summary>
+          <ul class="styled">
+            <li>SVD works only for square matrices? <strong>No</strong> — every m×n.</li>
+            <li>Singular values can be negative? <strong>No</strong> — always ≥ 0.</li>
+            <li>Singular values are eigenvalues of A? <strong>No</strong> — they are <code>√</code>(eigenvalues of AᵀA).</li>
+            <li>#non-zero σ = determinant? <strong>No</strong> — it equals the <em>rank</em>.</li>
+            <li>PCA on raw uncentered data? <strong>No</strong> — center (and often standardize) first.</li>
+            <li>First PC from the smallest eigenvalue? <strong>No</strong> — the largest. PCs are orthogonal; eigenvalues = variance. (All true.)</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Practice problems</summary>
+          <p class="lead">Q1. Eigenvalues of AᵀA = 25, 9, 0 → singular values &amp; rank?</p>
+          <pre>σ = 5, 3, 0 ;  rank 2</pre>
+          <p class="lead">Q2. σ = 10, 4, 0, 0 → rank?</p>
+          <pre>2</pre>
+          <p class="lead">Q3. σ = 6, 2, 1 → ||A||_F²?</p>
+          <pre>36 + 4 + 1 = 41</pre>
+          <p class="lead">Q4. σ = 10, 5, 1 → energy in top 2?</p>
+          <pre>125/126 ≈ 99.2%</pre>
+          <p class="lead">Q5. Centered X = UΣVᵀ → principal components?</p>
+          <pre>columns of V</pre>
+          <p class="lead">Q6. Covariance eigenvalues 40, 8, 2 → variance by PC1? top 2?</p>
+          <pre>40/50 = 80% ;  48/50 = 96%</pre>
+          <p class="lead">Q7. A orthogonal → singular values &amp; κ?</p>
+          <pre>all σ = 1 ;  κ = 1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>38. Cheatsheet</summary>
+          <ul class="styled">
+            <li><code>A = UΣVᵀ</code> for ANY matrix; U, V orthogonal; <code>σ ≥ 0</code> sorted descending.</li>
+            <li>V = eigenvectors of AᵀA; U = of AAᵀ; <code>σ = √λ(AᵀA)</code>; rank = #non-zero σ.</li>
+            <li>Best rank-k = top-k σ terms; energy = ratio of σ²; <code>A⁺ = VΣ⁺Uᵀ</code>; <code>κ = σmax/σmin</code>.</li>
+            <li>PCA = SVD/eigendecomposition of centered data; PCs = columns of V; eigenvalues = variance.</li>
+            <li>Center (and standardize) before PCA; covariance is symmetric PSD; largest eigenvalue = PC1.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Best mental model</summary>
+          <p><strong>SVD = a universal matrix X-ray.</strong> It reveals which input directions matter, how strongly they stretch, which output directions they become, and which are destroyed.</p>
+          <p><strong>PCA = SVD applied to data</strong> to find the most important directions: which feature-combination has maximum spread, the next, and how few directions still preserve most information.</p>
+          <pre>Eigen/eigenvectors → square matrices
+SVD               → ANY matrix
+PCA               → uses SVD/eigenvectors to reduce data</pre>
+        </details>
       </details>
     </section>
 
