@@ -135,33 +135,94 @@ P(E) = 2/6 = 1/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>8. Counting: the addition rule (OR)</summary>
+          <summary>8. Events as sets: ∪, ∩, complement</summary>
+          <p>Events are subsets of the sample space S, so set notation describes them:</p>
+          <pre>A ∪ B  = A OR B happens
+A ∩ B  = A AND B happen
+Aᶜ     = NOT A (complement)
+∅      = the impossible event (empty set)</pre>
+          <pre>die: A = even = {2,4,6}, B = ">4" = {5,6}
+A ∩ B = {6} ,  A ∪ B = {2,4,5,6} ,  Aᶜ = {1,3,5}</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. The three probability axioms</summary>
+          <p>Every probability must obey three rules — the "constitution" of probability:</p>
+          <pre>1. Non-negativity:  P(A) ≥ 0
+2. Normalization:   P(S) = 1
+3. Additivity:      if A ∩ B = ∅ then P(A ∪ B) = P(A) + P(B)</pre>
+          <p>From these it follows that <code>0 ≤ P(A) ≤ 1</code> for every event.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Impossible &amp; certain events</summary>
+          <pre>P(∅) = 0   impossible event (e.g. rolling a 7 on a 6-sided die)
+P(S) = 1   certain event   (e.g. rolling a number < 7)</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> impossible (<code>P = 0</code>) is not the same as "very unlikely" (<code>P ≈ 0</code>); certain (<code>P = 1</code>) is not the same as "very likely" (<code>P = 0.99</code>).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Mutually exclusive events &amp; the addition rule</summary>
+          <p><strong>Mutually exclusive</strong> = cannot happen together: <code>A ∩ B = ∅</code>. Then the axiom gives:</p>
+          <pre>P(A ∪ B) = P(A) + P(B)</pre>
+          <pre>card: P(king or queen) = 4/52 + 4/52 = 2/13
+die:  P(1 or 3 or 5) = 1/6 ×3 = 1/2</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> for mutually exclusive events the sum can't exceed 1 — so <code>P(A)=0.7, P(B)=0.5</code> mutually exclusive is impossible.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. The complement rule</summary>
+          <pre>P(Aᶜ) = 1 − P(A)        (since A ∪ Aᶜ = S and A ∩ Aᶜ = ∅)</pre>
+          <pre>P(not 6) = 1 − 1/6 = 5/6
+P(rain) = 0.3 → P(no rain) = 0.7</pre>
+          <p>The fastest tool for "not" and "at least one" problems — count the opposite and subtract from 1.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. The general addition rule (with overlap)</summary>
+          <p>When A and B can overlap, subtract the double-counted part:</p>
+          <pre>P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</pre>
+          <pre>die: even {2,4,6} OR ">3" {4,5,6}, overlap {4,6}
+P = 3/6 + 3/6 − 2/6 = 4/6 = 2/3</pre>
+          <p>It reduces to <code>P(A)+P(B)</code> exactly when A, B are mutually exclusive (overlap = 0).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Mutually exclusive vs independent (key trap)</summary>
+          <pre>Mutually exclusive:  A ∩ B = ∅   →  P(A ∩ B) = 0   (can't both happen)
+Independent:         one doesn't affect the other → P(A ∩ B) = P(A)·P(B)</pre>
+          <p>These are <strong>different</strong> ideas. Two non-trivial mutually exclusive events are actually <em>dependent</em>: if A happens, B becomes impossible — so A affects B.</p>
+          <p><span style="color:var(--coral-text)">GATE trap:</span> don't write <code>P(A∩B)=P(A)P(B)</code> for mutually exclusive events — there <code>P(A∩B)=0</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Counting: the addition rule (OR)</summary>
           <p>If a task can happen one way OR another (no overlap), <strong>add</strong> the counts.</p>
           <pre>choose 3 red balls OR 4 blue balls → 3 + 4 = 7 choices</pre>
           <p>OR (mutually exclusive) → add.</p>
         </details>
 
         <details class="study-item">
-          <summary>9. Counting: the multiplication rule (AND)</summary>
+          <summary>16. Counting: the multiplication rule (AND)</summary>
           <p>If a task has several steps done together, <strong>multiply</strong>.</p>
           <pre>3 shirts AND 2 pants → 3 × 2 = 6 outfits</pre>
           <p>AND (steps in sequence) → multiply.</p>
         </details>
 
         <details class="study-item">
-          <summary>10. Independent events multiply</summary>
+          <summary>17. Independent events multiply</summary>
           <pre>independent A, B:  P(A and B) = P(A∩B) = P(A)·P(B)</pre>
           <pre>two fair coins: P(HH) = 1/2 × 1/2 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>11. What 'independent' means</summary>
+          <summary>18. What 'independent' means</summary>
           <p>Independent = one event does <strong>not affect</strong> the other. Coin toss 1 doesn't change toss 2; rolling a die twice — the rolls are independent.</p>
           <pre>P(6 then 6) = 1/6 × 1/6 = 1/36</pre>
         </details>
 
         <details class="study-item">
-          <summary>12. With vs without replacement</summary>
+          <summary>19. With vs without replacement</summary>
           <p>Bag: 3 red, 2 blue (total 5).</p>
           <pre>WITH replacement (put it back): probabilities stay the same
  P(red, red) = 3/5 × 3/5 = 9/25
@@ -172,21 +233,21 @@ WITHOUT replacement (keep it): probabilities change
         </details>
 
         <details class="study-item">
-          <summary>13. Factorial</summary>
+          <summary>20. Factorial</summary>
           <pre>n! = n × (n−1) × … × 1
 5! = 120,  4! = 24,  3! = 6,  1! = 1,  0! = 1</pre>
           <p><code>0! = 1</code> by convention, so the counting formulas work.</p>
         </details>
 
         <details class="study-item">
-          <summary>14. Permutation (order matters)</summary>
+          <summary>21. Permutation (order matters)</summary>
           <p>An <strong>arrangement</strong> — order counts.</p>
           <pre>nPr = n! / (n−r)!
 1st &amp; 2nd prize from 5 people: 5P2 = 5!/3! = 5×4 = 20</pre>
         </details>
 
         <details class="study-item">
-          <summary>15. Combination (order doesn't matter)</summary>
+          <summary>22. Combination (order doesn't matter)</summary>
           <p>A <strong>selection</strong> — order doesn't count ({A,B} = {B,A}).</p>
           <pre>nCr = n! / (r!(n−r)!)
 team of 2 from 5: 5C2 = 10</pre>
@@ -194,7 +255,7 @@ team of 2 from 5: 5C2 = 10</pre>
         </details>
 
         <details class="study-item">
-          <summary>16. Counting by slots (no formula)</summary>
+          <summary>23. Counting by slots (no formula)</summary>
           <p>You can count arrangements by <strong>filling positions one at a time</strong> — often faster than a formula.</p>
           <pre>5 players, rank 1st &amp; 2nd:
 position 1 → 5 choices
@@ -203,7 +264,7 @@ total = 5 × 4 = 20   (= 5P2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>17. Permutation ↔ combination (nPr = nCr · r!)</summary>
+          <summary>24. Permutation ↔ combination (nPr = nCr · r!)</summary>
           <p>A permutation is "choose, then arrange":</p>
           <pre>nPr = nCr × r!      ⇒      nCr = nPr / r!</pre>
           <p>Combination <strong>divides by r!</strong> because the r! different orderings of the same group all count as ONE selection.</p>
@@ -211,14 +272,14 @@ total = 5 × 4 = 20   (= 5P2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. Combination shortcuts &amp; symmetry</summary>
+          <summary>25. Combination shortcuts &amp; symmetry</summary>
           <pre>nC0 = 1 ,  nC1 = n ,  nCn = 1 ,  nC(n−1) = n</pre>
           <p><span style="color:var(--coral-text)">Symmetry:</span> <code>nCr = nC(n−r)</code> — choosing r to <em>include</em> = choosing (n−r) to <em>exclude</em>.</p>
           <pre>100C98 = 100C2  (much easier to compute)</pre>
         </details>
 
         <details class="study-item">
-          <summary>19. Arranging repeated letters</summary>
+          <summary>26. Arranging repeated letters</summary>
           <p>With repeats, divide by the factorial of each repeat count:</p>
           <pre>arrangements = n! / (p! q! r! …)</pre>
           <pre>MOM:   3!/2!     = 3
@@ -228,7 +289,7 @@ LEVEL: 5!/(2!2!) = 30   (L×2, E×2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. Counting problems: committees, codes, seating</summary>
+          <summary>27. Counting problems: committees, codes, seating</summary>
           <p class="lead">Committee with exactly 2 boys + 1 girl (6 boys, 4 girls):</p>
           <pre>choose boys × choose girls = 6C2 × 4C1 = 15 × 4 = 60   (AND → multiply)</pre>
           <p class="lead">3-digit code from 0–9:</p>
@@ -240,7 +301,7 @@ seat 4 of 10 in 4 chairs:  10P4 = 5040</pre>
         </details>
 
         <details class="study-item">
-          <summary>21. Deciding: does order matter?</summary>
+          <summary>28. Deciding: does order matter?</summary>
           <p>First question on any counting problem: <strong>does order matter?</strong> Yes → permutation; No → combination. Then check: distinct or repeated items? replacement allowed? restrictions?</p>
           <div class="tbl-wrap"><table>
             <tr><th>Word in the question</th><th>Usually means</th></tr>
@@ -251,7 +312,7 @@ seat 4 of 10 in 4 chairs:  10P4 = 5040</pre>
         </details>
 
         <details class="study-item">
-          <summary>22. Counting → probability examples</summary>
+          <summary>29. Counting → probability examples</summary>
           <p class="lead">Bag of 5 red + 3 blue, pick one:</p>
           <pre>P(red) = 5/8</pre>
           <p class="lead">Standard 52-card deck:</p>
@@ -260,7 +321,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>23. Common GATE traps</summary>
+          <summary>30. Common GATE traps</summary>
           <ul class="styled">
             <li>Probability &gt; 1? <strong>No</strong> — always 0 ≤ P ≤ 1.</li>
             <li>Independent: <code>P(A and B) = P(A)+P(B)</code>? <strong>No</strong> — it's <code>P(A)·P(B)</code>.</li>
@@ -270,7 +331,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>24. Practice problems</summary>
+          <summary>31. Practice problems</summary>
           <p class="lead">Q1. Fair coin, P(head)?</p>
           <pre>1/2</pre>
           <p class="lead">Q2. Die, P(odd)?</p>
@@ -286,7 +347,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>25. Cheatsheet</summary>
+          <summary>32. Cheatsheet</summary>
           <ul class="styled">
             <li><code>P(E) = favorable/total</code>; &nbsp; <code>0 ≤ P ≤ 1</code>; sample space = all outcomes; event ⊂ S.</li>
             <li>OR (exclusive) → add; AND (steps) → multiply.</li>
@@ -297,7 +358,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Memory box &amp; mental model</summary>
+          <summary>33. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Probability = a <strong>chance meter</strong> from 0 to 1.</li>
             <li>Sample space = every outcome; event = the outcomes you care about.</li>
