@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Descriptive Statistics — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 6</span>
+    <h1>Descriptive Statistics</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Data 3, 5, 7. The mean is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $5$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $7$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $15$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the min.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $(3+5+7)/3=5$.</div>
+    <div class="quiz-feedback" data-fb="C">That's the max.</div>
+    <div class="quiz-feedback" data-fb="D">That's the sum, not the average.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Same data 3, 5, 7. Sample variance $s^2$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $8/3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $4$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $8$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That divides by $n=3$ (population style).</div>
+    <div class="quiz-feedback" data-fb="B">Recompute: $\sum(x-5)^2=8$, divide by $n-1=2$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $8/(3-1)=4$.</div>
+    <div class="quiz-feedback" data-fb="D">That's the sum of squared deviations, not divided.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Sample variance divides squared deviations by…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $n$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $n+1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $n-1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\sqrt n$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the biased (population) version.</div>
+    <div class="quiz-feedback" data-fb="B">Not a standard divisor.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $n-1$ (Bessel's correction).</div>
+    <div class="quiz-feedback" data-fb="D">That appears in the standard error, not the variance.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Which summary resists outliers best?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> mean</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> median</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> standard deviation</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> range</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The mean gets pulled by outliers.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the median (and IQR) are robust.</div>
+    <div class="quiz-feedback" data-fb="C">Std is sensitive to outliers.</div>
+    <div class="quiz-feedback" data-fb="D">Range is the most outlier-sensitive of all.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. IQR equals…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> max − min</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $Q_3-Q_1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $Q_2$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> mean − median</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the range.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — IQR $=Q_3-Q_1$ (middle 50%).</div>
+    <div class="quiz-feedback" data-fb="C">$Q_2$ is the median.</div>
+    <div class="quiz-feedback" data-fb="D">That measures skew, not spread.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. For a right-skewed dataset…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> mean $&lt;$ median</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> mean $=$ median</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> mean $&gt;$ median</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> no median exists</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's left-skew.</div>
+    <div class="quiz-feedback" data-fb="B">That's symmetric.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — the long right tail pulls the mean above the median.</div>
+    <div class="quiz-feedback" data-fb="D">Every dataset has a median.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A histogram is used for…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> categories</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> the shape of numeric data</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> two-variable relationships</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> exact values</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Categories use a bar chart.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — histograms bin numeric data to show its shape.</div>
+    <div class="quiz-feedback" data-fb="C">That's a scatter plot.</div>
+    <div class="quiz-feedback" data-fb="D">Binning hides exact values.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. A boxplot displays…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the mean only</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a density curve</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> the five-number summary &amp; outliers</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the correlation</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It shows the median, not the mean.</div>
+    <div class="quiz-feedback" data-fb="B">That's a different plot.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — min, Q1, median, Q3, max + outliers.</div>
+    <div class="quiz-feedback" data-fb="D">Correlation needs two variables.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="06-descriptive-stats.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

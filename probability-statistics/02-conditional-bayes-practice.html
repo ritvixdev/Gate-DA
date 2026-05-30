@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Conditional & Bayes — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 2</span>
+    <h1>Conditional &amp; Bayes</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $P(A\cap B)=0.2,\ P(B)=0.5$. $P(A\mid B)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0.1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0.4$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $0.7$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2.5$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the product $0.2\times0.5$, not the ratio.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $P(A\mid B)=0.2/0.5=0.4$.</div>
+    <div class="quiz-feedback" data-fb="C">That would be a sum; use the ratio.</div>
+    <div class="quiz-feedback" data-fb="D">You divided the wrong way — it's $P(A\cap B)/P(B)$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $A,B$ independent, $P(A)=0.3,\ P(B)=0.5$. $P(A\cap B)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0.8$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0.15$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $0.2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the sum, not the joint.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — independence ⇒ $0.3\times0.5=0.15$.</div>
+    <div class="quiz-feedback" data-fb="C">That would be mutually exclusive, not independent.</div>
+    <div class="quiz-feedback" data-fb="D">Multiply the two: $0.15$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Independence is equivalent to…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $P(A\cap B)=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $P(A\mid B)=P(B)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $P(A\mid B)=P(A)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $P(A)=P(B)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's mutually exclusive.</div>
+    <div class="quiz-feedback" data-fb="B">Should equal $P(A)$, not $P(B)$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — knowing $B$ doesn't change $A$: $P(A\mid B)=P(A)$.</div>
+    <div class="quiz-feedback" data-fb="D">Equal probabilities don't imply independence.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Bayes' theorem says the posterior is proportional to…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> prior ÷ likelihood</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> likelihood × prior</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> likelihood only</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> prior only</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It's a product, not a quotient.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — posterior $\propto$ likelihood × prior.</div>
+    <div class="quiz-feedback" data-fb="C">The prior matters too (base rate).</div>
+    <div class="quiz-feedback" data-fb="D">The likelihood (evidence) matters too.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Two urns, picked equally. Urn1: $P(\text{red})=0.8$; Urn2: $0.2$. Overall $P(\text{red})$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0.8$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0.5$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $1.0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $0.16$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That ignores urn 2.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — total probability $0.5(0.8)+0.5(0.2)=0.5$.</div>
+    <div class="quiz-feedback" data-fb="C">Can't exceed either conditional weighted average.</div>
+    <div class="quiz-feedback" data-fb="D">That's a product; use the weighted sum.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Is $P(A\mid B)$ always equal to $P(B\mid A)$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only if disjoint</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only if $P(A)=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — confusing the two is the classic Bayes error.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — they're equal only when $P(A)=P(B)$; Bayes relates them otherwise.</div>
+    <div class="quiz-feedback" data-fb="C">Disjointness makes both $0$, a trivial case.</div>
+    <div class="quiz-feedback" data-fb="D">$P(A)=0$ makes the conditional undefined.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A rare disease + accurate test gives a low $P(\text{disease}\mid+)$ because…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the test is broken</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> probabilities exceed 1</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> the low prior (base rate) dominates</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> Bayes doesn't apply</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — even a good test is overwhelmed by false positives from the healthy majority.</div>
+    <div class="quiz-feedback" data-fb="B">Probabilities stay in $[0,1]$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — most positives come from the large healthy group; the prior dominates.</div>
+    <div class="quiz-feedback" data-fb="D">Bayes is exactly what explains it.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. The multiplication rule for any $A,B$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $P(A\cap B)=P(A)+P(B)$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $P(A\cap B)=P(A)P(B)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $P(A\cap B)=P(A\mid B)P(B)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $P(A\cap B)=P(A)/P(B)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's (part of) the addition rule.</div>
+    <div class="quiz-feedback" data-fb="B">True only when independent.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $P(A\cap B)=P(A\mid B)P(B)$ holds always.</div>
+    <div class="quiz-feedback" data-fb="D">That's the conditional formula rearranged wrongly.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="02-conditional-bayes.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

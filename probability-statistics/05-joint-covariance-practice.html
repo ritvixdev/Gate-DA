@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Joint & Covariance — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 5</span>
+    <h1>Joint &amp; Covariance</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $E[XY]=10,\ E[X]=2,\ E[Y]=4$. $\operatorname{Cov}(X,Y)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $10$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $18$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $8$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Subtract $E[X]E[Y]$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $10-2\cdot4=2$.</div>
+    <div class="quiz-feedback" data-fb="C">That's a sum, not the covariance.</div>
+    <div class="quiz-feedback" data-fb="D">That's $E[X]E[Y]$ alone.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $X,Y$ independent, $\operatorname{Var}X=3,\ \operatorname{Var}Y=5$. $\operatorname{Var}(X+Y)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $15$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $8$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $18$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's a product; variances add.</div>
+    <div class="quiz-feedback" data-fb="B">That's a difference.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — independent ⇒ $3+5+0=8$.</div>
+    <div class="quiz-feedback" data-fb="D">There's no $+2\operatorname{Cov}$ here (Cov is 0).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Correlation $\rho$ always lies in…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $[0,1]$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $[0,\infty)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $[-1,1]$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> any real</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It can be negative too.</div>
+    <div class="quiz-feedback" data-fb="B">It can't exceed 1.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $-1\le\rho\le1$.</div>
+    <div class="quiz-feedback" data-fb="D">It's bounded to $[-1,1]$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Independent $X,Y$ ⇒ $\operatorname{Cov}(X,Y)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $\operatorname{Var}(X)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> undefined</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Independence forces 0, not 1.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $E[XY]=E[X]E[Y]$ ⇒ Cov $=0$.</div>
+    <div class="quiz-feedback" data-fb="C">That's $\operatorname{Cov}(X,X)$.</div>
+    <div class="quiz-feedback" data-fb="D">It's defined and equals 0.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Does $\rho=0$ guarantee independence?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only for Normal</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Always</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — zero correlation can hide a nonlinear relationship.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — independence ⇒ $\rho=0$, but not the reverse in general.</div>
+    <div class="quiz-feedback" data-fb="C">For jointly Normal it does, but the general answer is "no".</div>
+    <div class="quiz-feedback" data-fb="D">Not always.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. $\operatorname{Cov}(X,X)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\operatorname{Var}(X)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $E[X]$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only if $X$ is constant.</div>
+    <div class="quiz-feedback" data-fb="B">Not in general.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — covariance of a variable with itself is its variance.</div>
+    <div class="quiz-feedback" data-fb="D">That's the mean, not the spread.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. For dependent $X,Y$, $\operatorname{Var}(X+Y)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\operatorname{Var}X+\operatorname{Var}Y$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\operatorname{Var}X+\operatorname{Var}Y+2\operatorname{Cov}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $\operatorname{Var}X\cdot\operatorname{Var}Y$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $\operatorname{Var}X-\operatorname{Var}Y$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That drops the covariance term.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — add $2\operatorname{Cov}(X,Y)$ when dependent.</div>
+    <div class="quiz-feedback" data-fb="C">Variances don't multiply.</div>
+    <div class="quiz-feedback" data-fb="D">They add (plus covariance), not subtract.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. $\rho=1$ means…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> no relationship</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> independence</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a perfect increasing linear relationship</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a perfect decreasing one</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\rho=0$ means no <em>linear</em> relationship.</div>
+    <div class="quiz-feedback" data-fb="B">Independence gives $\rho=0$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\rho=1$ is a perfect positive line.</div>
+    <div class="quiz-feedback" data-fb="D">That's $\rho=-1$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="05-joint-covariance.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

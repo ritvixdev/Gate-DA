@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Random Variables — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 3</span>
+    <h1>Random Variables</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $X$: $P(X=0)=0.5,\ P(X=2)=0.5$. $E[X]=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $2$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $0.5$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It's a weighted average, not the minimum.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $0(0.5)+2(0.5)=1$.</div>
+    <div class="quiz-feedback" data-fb="C">That's the max value, not the mean.</div>
+    <div class="quiz-feedback" data-fb="D">That's a probability, not the mean.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Same $X$. $\operatorname{Var}(X)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $4$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Variance is 0 only if $X$ is constant.</div>
+    <div class="quiz-feedback" data-fb="B">That's $E[X^2]$, before subtracting $(E[X])^2$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $E[X^2]=2$, $\operatorname{Var}=2-1^2=1$.</div>
+    <div class="quiz-feedback" data-fb="D">That's $E[X^2]$ of the value 2 alone.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. $\operatorname{Var}(X)=4$. $\operatorname{Var}(3X+5)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $12$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $17$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $36$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $41$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $3\times4$; variance scales by $a^2$.</div>
+    <div class="quiz-feedback" data-fb="B">The $+5$ doesn't add to variance.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $3^2\cdot4=36$ (the $+5$ drops out).</div>
+    <div class="quiz-feedback" data-fb="D">Don't add the constant; just scale by $9$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. The fast formula for variance is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $(E[X])^2-E[X^2]$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $E[X^2]-(E[X])^2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $E[X^2]+(E[X])^2$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $E[X]-E[X^2]$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Sign flipped — this would be negative.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\operatorname{Var}(X)=E[X^2]-(E[X])^2$.</div>
+    <div class="quiz-feedback" data-fb="C">It's a difference, not a sum.</div>
+    <div class="quiz-feedback" data-fb="D">Units don't even match.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. $E[X+Y]$ equals $E[X]+E[Y]$…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> only if independent</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> never</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> always</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> only if disjoint</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Expectation is linear regardless of dependence.</div>
+    <div class="quiz-feedback" data-fb="B">It always holds.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — expectation is always linear (independence isn't needed).</div>
+    <div class="quiz-feedback" data-fb="D">No such condition is required.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$ requires…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> nothing</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> independence (or zero covariance)</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> equal means</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $X=Y$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">In general there's a $+2\operatorname{Cov}$ term.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — variances add only when the covariance is zero.</div>
+    <div class="quiz-feedback" data-fb="C">Means are irrelevant here.</div>
+    <div class="quiz-feedback" data-fb="D">If $X=Y$ the covariance is large, not zero.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A fair die: $E[X]=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $6$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $3.5$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $21$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Close, but the mean of 1–6 is $3.5$.</div>
+    <div class="quiz-feedback" data-fb="B">That's the max face.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $(1+\dots+6)/6=21/6=3.5$.</div>
+    <div class="quiz-feedback" data-fb="D">That's the sum, not the average.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Which is always true?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $E[X^2]=(E[X])^2$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $E[X^2]\ge(E[X])^2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $\operatorname{Var}(X)\lt 0$ possible</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $\operatorname{Var}(aX)=a\operatorname{Var}(X)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Equal only when variance is 0.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — since $\operatorname{Var}=E[X^2]-(E[X])^2\ge0$.</div>
+    <div class="quiz-feedback" data-fb="C">Variance is never negative.</div>
+    <div class="quiz-feedback" data-fb="D">It scales by $a^2$, not $a$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="03-random-variables.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

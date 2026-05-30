@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>z-test & t-test — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 8</span>
+    <h1>z-test &amp; t-test</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Use a <em>t</em>-test (not z) when…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the sample is huge</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\sigma$ is known</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\sigma$ is unknown / small sample</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> data is categorical</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Large samples lean toward z.</div>
+    <div class="quiz-feedback" data-fb="B">Known $\sigma$ → z-test.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — unknown $\sigma$ (use $s$), especially small $n$.</div>
+    <div class="quiz-feedback" data-fb="D">Categorical data uses chi-square.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\bar x=52,\ \mu_0=50,\ \sigma=8,\ n=64$. $z=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0.25$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $16$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $0.5$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">SE $=8/\sqrt{64}=1$, so $z=2$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $z=(52-50)/(8/8)=2$.</div>
+    <div class="quiz-feedback" data-fb="C">Don't forget to divide by the SE.</div>
+    <div class="quiz-feedback" data-fb="D">Recompute the standard error: it's 1.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. At $\alpha=0.05$ two-tailed, $z=2$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> not significant</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> significant (reject $H_0$)</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> impossible</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> proof $H_0$ is true</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$|2|\gt1.96$, so it <em>is</em> significant.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — beyond the critical $1.96$, reject $H_0$.</div>
+    <div class="quiz-feedback" data-fb="C">Perfectly possible value.</div>
+    <div class="quiz-feedback" data-fb="D">Tests never "prove" $H_0$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. The p-value is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $P(H_0\text{ true})$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> the significance level</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $P(\text{data this extreme}\mid H_0)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the effect size</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Common misread — it's not $P(H_0)$.</div>
+    <div class="quiz-feedback" data-fb="B">$\alpha$ is the threshold you choose, not the p-value.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — probability of data this extreme assuming $H_0$.</div>
+    <div class="quiz-feedback" data-fb="D">Effect size is a separate measure.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Two-tailed critical $z$ at $\alpha=0.05$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $1.64$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $1.96$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $2.58$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $1.00$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$1.64$ is the one-tailed value.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $1.96$ for two-tailed 5%.</div>
+    <div class="quiz-feedback" data-fb="C">$2.58$ is for $\alpha=0.01$.</div>
+    <div class="quiz-feedback" data-fb="D">Far too small.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. "Fail to reject $H_0$" means…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $H_0$ is proven true</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> not enough evidence against $H_0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $H_1$ is true</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> the test failed</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">We never prove $H_0$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the data wasn't surprising enough to reject $H_0$.</div>
+    <div class="quiz-feedback" data-fb="C">That would be rejecting $H_0$.</div>
+    <div class="quiz-feedback" data-fb="D">The test worked fine; the result is just "no evidence".</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A Type I error is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> failing to reject a false $H_0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a calculation mistake</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> rejecting a true $H_0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a small sample</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's a Type II error ($\beta$).</div>
+    <div class="quiz-feedback" data-fb="B">It's a statistical, not arithmetic, error.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — a false alarm; its rate is $\alpha$.</div>
+    <div class="quiz-feedback" data-fb="D">Sample size isn't the definition.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. $\sigma$ unknown, $n=12$. Which test &amp; df?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> z, df 12</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> z, df 11</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> t, df 11</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> t, df 12</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Unknown $\sigma$ → t, not z.</div>
+    <div class="quiz-feedback" data-fb="B">It's a t-test, and df $=n-1$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — t-test with $n-1=11$ degrees of freedom.</div>
+    <div class="quiz-feedback" data-fb="D">df is $n-1=11$, not $n$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="08-z-t-tests.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

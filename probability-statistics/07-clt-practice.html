@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Central Limit Theorem — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 7</span>
+    <h1>Central Limit Theorem</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. The standard error of $\bar X$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\sigma$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\sigma^2/n$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\sigma/\sqrt n$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $n\sigma$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the population std; the mean's spread is smaller.</div>
+    <div class="quiz-feedback" data-fb="B">That's the <em>variance</em> of $\bar X$; SE is its root.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — SE $=\sigma/\sqrt n$.</div>
+    <div class="quiz-feedback" data-fb="D">Spread shrinks with $n$, not grows.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\sigma=10,\ n=100$. Standard error?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $10$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $0.1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $100$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $\sigma$; divide by $\sqrt{100}$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $10/\sqrt{100}=1$.</div>
+    <div class="quiz-feedback" data-fb="C">You divided by $n$, not $\sqrt n$.</div>
+    <div class="quiz-feedback" data-fb="D">SE shrinks, it doesn't grow with $n$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. To halve the standard error you need…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $2\times$ data</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> half the data</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $4\times$ data</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the same data</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Doubling $n$ only divides SE by $\sqrt2$.</div>
+    <div class="quiz-feedback" data-fb="B">That increases SE.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — SE $\propto1/\sqrt n$, so $4n$ halves it.</div>
+    <div class="quiz-feedback" data-fb="D">Then SE stays the same.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. The CLT makes which thing approximately normal?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> the raw data</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> the sample mean $\bar X$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> the population</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> the variance</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The raw data keeps its own shape.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the distribution of $\bar X$ becomes normal.</div>
+    <div class="quiz-feedback" data-fb="C">The population is whatever it is.</div>
+    <div class="quiz-feedback" data-fb="D">The CLT is about the mean, not the variance.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Does the CLT require a normal population?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only for n &lt; 30</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only for discrete data</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — that's the whole power of the CLT.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — almost any population works for large $n$.</div>
+    <div class="quiz-feedback" data-fb="C">Larger $n$ is exactly when it kicks in.</div>
+    <div class="quiz-feedback" data-fb="D">It applies to continuous data too.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. If the population is already Normal, $\bar X$ is Normal for…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $n\ge30$ only</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> never</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> any $n$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $n=1$ only</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No threshold needed when the population is Normal.</div>
+    <div class="quiz-feedback" data-fb="B">It's exactly Normal.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — averaging Normals gives a Normal for any $n$.</div>
+    <div class="quiz-feedback" data-fb="D">It holds for all $n$, not just 1.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. The mean of the sampling distribution of $\bar X$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\mu/n$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\mu$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $n\mu$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The mean doesn't shrink — only the spread does.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\bar X$ is centered at the population mean $\mu$.</div>
+    <div class="quiz-feedback" data-fb="C">Only if $\mu=0$.</div>
+    <div class="quiz-feedback" data-fb="D">It's $\mu$, not scaled by $n$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Mean of 36 dice rolls: SE $\approx?$ ($\sigma\approx1.71$)</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $1.71$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $0.05$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $0.285$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $10.3$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $\sigma$; divide by $\sqrt{36}=6$.</div>
+    <div class="quiz-feedback" data-fb="B">You divided by $n$, not $\sqrt n$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $1.71/6\approx0.285$.</div>
+    <div class="quiz-feedback" data-fb="D">SE shrinks; it can't exceed $\sigma$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="07-clt.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

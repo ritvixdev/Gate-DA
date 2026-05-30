@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Symbols Glossary · Probability & Statistics</title>
+<meta name="description" content="Every symbol used in GATE DA Probability & Statistics — how to read it, what it means, with examples.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="symbols" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>Symbols Glossary</h1>
+    <p class="lede">Every notation used across Probability &amp; Statistics — how to <em>say</em> it,
+      what it <em>means</em>, and a quick example.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Probability</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$S$, $\Omega$</td><td>"sample space"</td><td>all possible outcomes</td></tr>
+      <tr><td>$P(A)$</td><td>"P of A"</td><td>probability of event $A$ (in $[0,1]$)</td></tr>
+      <tr><td>$A^c$</td><td>"A complement"</td><td>$A$ does not happen; $P(A^c)=1-P(A)$</td></tr>
+      <tr><td>$A\cup B$ / $A\cap B$</td><td>"union / intersection"</td><td>or / and</td></tr>
+      <tr><td>$P(A\mid B)$</td><td>"A given B"</td><td>conditional probability</td></tr>
+      <tr><td>$\varnothing$</td><td>"empty set"</td><td>impossible event</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Random variables &amp; distributions</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$X,\ Y$</td><td>"X, Y"</td><td>random variables</td></tr>
+      <tr><td>$E[X]$, $\mu$</td><td>"expectation / mean"</td><td>average value</td></tr>
+      <tr><td>$\operatorname{Var}(X)$, $\sigma^2$</td><td>"variance"</td><td>spread (squared); $\sigma$ = std dev</td></tr>
+      <tr><td>$p(x)$ / $f(x)$</td><td>"PMF / PDF"</td><td>$P(X=x)$ / density</td></tr>
+      <tr><td>$F(x)$</td><td>"CDF"</td><td>$P(X\le x)$</td></tr>
+      <tr><td>$\binom{n}{k}$</td><td>"n choose k"</td><td>combinations</td></tr>
+      <tr><td>$\lambda$</td><td>"lambda"</td><td>rate (Poisson / Exponential)</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Joint &amp; relationships</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$p(x,y)$, $f(x,y)$</td><td>"joint"</td><td>joint distribution of two variables</td></tr>
+      <tr><td>$\operatorname{Cov}(X,Y)$</td><td>"covariance"</td><td>$E[XY]-E[X]E[Y]$</td></tr>
+      <tr><td>$\rho$</td><td>"rho"</td><td>correlation, in $[-1,1]$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Statistics &amp; hypothesis testing</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\bar{x}$</td><td>"x-bar"</td><td>sample mean</td></tr>
+      <tr><td>$s^2$, $s$</td><td>"sample variance / std"</td><td>spread (divide by $n-1$)</td></tr>
+      <tr><td>$Q_1,Q_2,Q_3$, IQR</td><td>"quartiles, IQR"</td><td>25/50/75th percentiles; $Q_3-Q_1$</td></tr>
+      <tr><td>$H_0,\ H_1$</td><td>"null, alternative"</td><td>the hypotheses being tested</td></tr>
+      <tr><td>$\alpha$</td><td>"alpha"</td><td>significance level (false-alarm rate)</td></tr>
+      <tr><td>$z,\ t$</td><td>"z, t"</td><td>test statistics (mean tests)</td></tr>
+      <tr><td>$\chi^2$, $F$</td><td>"chi-square, F"</td><td>count test / variance-ratio test</td></tr>
+    </table></div>
+  </section>
+
+  <div class="practice-cta">
+    <span class="practice-cta-icon" aria-hidden="true">🎯</span>
+    <div class="practice-cta-body">
+      <div class="practice-cta-title">Ready to practice?</div>
+      <div class="practice-cta-sub">Drill each topic with explained questions.</div>
+    </div>
+    <a class="btn btn-primary" href="practice.html">Practice questions →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
