@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrices — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 2</span>
+    <h1>Matrices</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $A$ is $4\times3$, $B$ is $3\times5$. Size of $AB$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $3\times3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $4\times5$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $5\times4$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> undefined</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The inner $3$'s match (good), but the answer uses the outer numbers.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $(4\times3)(3\times5)=4\times5$ (outer numbers).</div>
+    <div class="quiz-feedback" data-fb="C">Right size but wrong order — rows of $A$ come first.</div>
+    <div class="quiz-feedback" data-fb="D">It's defined — the inner dimensions $3$ and $3$ match.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Can a $2\times3$ matrix multiply a $2\times2$ matrix (in that order)?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes, gives $2\times2$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Yes, gives $3\times2$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only if both are square</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — the product isn't defined here.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — inner dimensions $3$ and $2$ don't match, so $(2\times3)(2\times2)$ is undefined.</div>
+    <div class="quiz-feedback" data-fb="C">Undefined — you can't even form it.</div>
+    <div class="quiz-feedback" data-fb="D">Squareness isn't the rule; matching inner dimensions is.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. $(AB)^{\mathsf T}=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $A^{\mathsf T}B^{\mathsf T}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $AB$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $B^{\mathsf T}A^{\mathsf T}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $A^{\mathsf T}B$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Common trap — the order must reverse.</div>
+    <div class="quiz-feedback" data-fb="B">Transpose changes the matrix unless it's symmetric.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — transpose reverses order: $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$.</div>
+    <div class="quiz-feedback" data-fb="D">Both factors transpose, and the order flips.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $(AB)^{-1}=?$ (both invertible)</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $A^{-1}B^{-1}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A^{-1}B$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $B^{-1}A^{-1}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $(BA)^{-1}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Order must reverse (socks-then-shoes).</div>
+    <div class="quiz-feedback" data-fb="B">Both factors invert and the order flips.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $(AB)^{-1}=B^{-1}A^{-1}$.</div>
+    <div class="quiz-feedback" data-fb="D">Not equal in general since $AB\neq BA$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. $\operatorname{tr}\begin{bmatrix}2&9\\4&5\end{bmatrix}=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 20</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 13</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 7</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 18</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the determinant minus something — trace only uses the diagonal.</div>
+    <div class="quiz-feedback" data-fb="B">Trace is the diagonal sum, not the off-diagonal.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — trace $=2+5=7$ (sum of the diagonal).</div>
+    <div class="quiz-feedback" data-fb="D">That's $\det=2\cdot5-9\cdot4=-26$? No — trace is just $2+5$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. If $A^2=A$ (idempotent), its eigenvalues are…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> all $1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> only $0$ or $1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> all $0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> any real number</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only if $A=I$; in general a projection has $0$'s too.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\lambda^2=\lambda\Rightarrow\lambda(\lambda-1)=0\Rightarrow\lambda\in\{0,1\}$.</div>
+    <div class="quiz-feedback" data-fb="C">Only if $A=0$; projections also have eigenvalue $1$.</div>
+    <div class="quiz-feedback" data-fb="D">The relation $\lambda^2=\lambda$ forces $0$ or $1$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. For an orthogonal matrix $Q$, $Q^{-1}=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $Q$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $-Q$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $Q^{\mathsf T}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> doesn't exist</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only if $Q^2=I$; in general it's the transpose.</div>
+    <div class="quiz-feedback" data-fb="B">No — orthogonal means $Q^{\mathsf T}Q=I$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $Q^{\mathsf T}Q=I$ means $Q^{-1}=Q^{\mathsf T}$ (and $\det=\pm1$).</div>
+    <div class="quiz-feedback" data-fb="D">It always exists — the inverse is just the transpose.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Which statement is <em>always</em> true?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $AB=BA$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $(A+B)^2=A^2+2AB+B^2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\operatorname{tr}(AB)=\operatorname{tr}(BA)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $A^2=I\Rightarrow A=\pm I$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">False in general — matrices don't commute.</div>
+    <div class="quiz-feedback" data-fb="B">False — it's $A^2+AB+BA+B^2$, and $AB\neq BA$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — the trace is cyclic: $\operatorname{tr}(AB)=\operatorname{tr}(BA)$ always.</div>
+    <div class="quiz-feedback" data-fb="D">False — e.g. a reflection has $A^2=I$ but $A\neq\pm I$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="02-matrices.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

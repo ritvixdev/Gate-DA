@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Equations — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 5</span>
+    <h1>System of Linear Equations</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $r=\operatorname{rank}(A)=2$, $r'=\operatorname{rank}([A|b])=3$, $n=3$. Solutions?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> none</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> unique</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> infinite</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> exactly two</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $r\neq r'$ ⇒ inconsistent ⇒ no solution.</div>
+    <div class="quiz-feedback" data-fb="B">Unique needs $r=r'=n$.</div>
+    <div class="quiz-feedback" data-fb="C">Infinite needs $r=r'<n$.</div>
+    <div class="quiz-feedback" data-fb="D">Linear systems never have exactly two solutions.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $r=r'=2$, $n=4$. Solutions?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> none</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> unique</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> infinite ($2$ free vars)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> infinite ($4$ free vars)</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Consistent since $r=r'$.</div>
+    <div class="quiz-feedback" data-fb="B">Unique needs $r=n$; here $r=2<4$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $r=r'<n$ ⇒ infinite, with $n-r=2$ free variables.</div>
+    <div class="quiz-feedback" data-fb="D">Free vars $=n-r=2$, not $4$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. $Ax=0$ ($A$ square) has a non-trivial solution iff…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\det A\neq0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\det A=0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $b\neq0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> never</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That gives only the trivial solution $x=0$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det A=0 \iff \operatorname{rank}<n \iff$ non-trivial solutions exist.</div>
+    <div class="quiz-feedback" data-fb="C">Homogeneous means $b=0$ by definition.</div>
+    <div class="quiz-feedback" data-fb="D">It happens exactly when $A$ is singular.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. A homogeneous system $Ax=0$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> always consistent</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> sometimes inconsistent</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> always unique</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> never solvable</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $x=0$ always works, so it's never inconsistent.</div>
+    <div class="quiz-feedback" data-fb="B">It can never be inconsistent — $x=0$ is always a solution.</div>
+    <div class="quiz-feedback" data-fb="C">It may also have infinitely many (if singular).</div>
+    <div class="quiz-feedback" data-fb="D">It's always solvable (at least trivially).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Square $A$ gives a unique solution for <em>every</em> $b$ iff…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\det A=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A$ is symmetric</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\det A\neq0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $b=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\det=0$ means no <em>unique</em> solution.</div>
+    <div class="quiz-feedback" data-fb="B">Symmetry isn't the condition.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\det A\neq0$ ⇒ $A^{-1}$ exists ⇒ $x=A^{-1}b$ unique.</div>
+    <div class="quiz-feedback" data-fb="D">That's only the homogeneous case.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. The general solution of $Ax=b$ has the form…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $x_h$ only</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $x_p+x_h$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $x_p$ only</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $x_p\cdot x_h$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That solves $Ax=0$, not $Ax=b$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — particular solution $+$ any null-space vector: $x=x_p+x_h$.</div>
+    <div class="quiz-feedback" data-fb="C">Misses the infinitely many shifts by null-space vectors.</div>
+    <div class="quiz-feedback" data-fb="D">Solutions add, they don't multiply.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. For what $k$ does $x+2y=3,\ 2x+ky=7$ have <em>no</em> solution?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $k=3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $k=4$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $k=5$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $k=2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\det=k-4=-1\neq0$ ⇒ unique solution.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=k-4=0$ at $k=4$; then $R_2-2R_1$ gives $[0\,0\,|\,1]$, so $r'\neq r$ → no solution.</div>
+    <div class="quiz-feedback" data-fb="C">$\det\neq0$ ⇒ unique.</div>
+    <div class="quiz-feedback" data-fb="D">$\det=-2\neq0$ ⇒ unique.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Cramer's rule applies when…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\det A=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $A$ is non-square</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $A$ is square with $\det A\neq0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> always</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It divides by $\det A$, so $\det A=0$ breaks it.</div>
+    <div class="quiz-feedback" data-fb="B">It needs a square coefficient matrix.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $x_i=\det(A_i)/\det(A)$, valid for square $A$ with $\det A\neq0$.</div>
+    <div class="quiz-feedback" data-fb="D">Only for invertible square systems.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="05-linear-equations.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

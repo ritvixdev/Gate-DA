@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rank & Nullity — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 4</span>
+    <h1>Rank &amp; Nullity</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. A $5\times8$ matrix has rank $3$. Nullity?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 2</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 3</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 8</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Used rows ($5-3$)? Nullity uses <em>columns</em>.</div>
+    <div class="quiz-feedback" data-fb="B">That's the rank, not the nullity.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — nullity $=n-\operatorname{rank}=8-3=5$.</div>
+    <div class="quiz-feedback" data-fb="D">$8$ is the column count, not the nullity.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\operatorname{rank}(A)+\operatorname{nullity}(A)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> number of rows</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> number of columns</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $\min(m,n)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $\det(A)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A classic trap — it's columns, because null space is about the input $x$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — rank $+$ nullity $=n$ (columns).</div>
+    <div class="quiz-feedback" data-fb="C">That bounds the rank alone, not the sum.</div>
+    <div class="quiz-feedback" data-fb="D">Determinant isn't even defined for non-square matrices.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Maximum possible rank of a $6\times4$ matrix?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> 6</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> 4</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> 10</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> 24</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Rank can't exceed the smaller dimension.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\operatorname{rank}\le\min(6,4)=4$.</div>
+    <div class="quiz-feedback" data-fb="C">Rank is bounded by $\min(m,n)$, not $m+n$.</div>
+    <div class="quiz-feedback" data-fb="D">That's the entry count, unrelated to rank.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $A$ is $3\times3$ with $\det A=0$. Which is <em>certain</em>?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\operatorname{rank}=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\operatorname{rank}=3$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\operatorname{rank}<3$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\operatorname{rank}=2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Not necessarily $0$ — could be $1$ or $2$.</div>
+    <div class="quiz-feedback" data-fb="B">$\det=0$ means it's <em>not</em> full rank.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — singular ⇒ rank $<n$; exact value (0,1,2) needs more info.</div>
+    <div class="quiz-feedback" data-fb="D">Could be $2$, but also $0$ or $1$ — not certain.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Nullity equals…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> number of zero rows</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> number of free variables</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> number of pivots</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> number of rows minus rank</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Zero rows relate to rank, not directly nullity.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — nullity = free variables = columns $-$ rank.</div>
+    <div class="quiz-feedback" data-fb="C">Pivots count the rank, not the nullity.</div>
+    <div class="quiz-feedback" data-fb="D">It's columns $-$ rank, not rows $-$ rank.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. $\operatorname{rank}(A^{\mathsf T})$ compared with $\operatorname{rank}(A)$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> equal</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> always larger</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> always smaller</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> unrelated</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — row rank $=$ column rank, so $\operatorname{rank}(A^{\mathsf T})=\operatorname{rank}(A)$.</div>
+    <div class="quiz-feedback" data-fb="B">They're exactly equal.</div>
+    <div class="quiz-feedback" data-fb="C">They're exactly equal.</div>
+    <div class="quiz-feedback" data-fb="D">They're tightly linked — in fact identical.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. $\operatorname{rank}(AB)$ satisfies…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $=\operatorname{rank}A\cdot\operatorname{rank}B$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\le\min(\operatorname{rank}A,\operatorname{rank}B)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $=\operatorname{rank}A+\operatorname{rank}B$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $\ge\max(\operatorname{rank}A,\operatorname{rank}B)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">False — rank isn't multiplicative.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — a later map can't recover lost directions: $\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$.</div>
+    <div class="quiz-feedback" data-fb="C">False — it's bounded above by the smaller rank.</div>
+    <div class="quiz-feedback" data-fb="D">Backwards — multiplication can only lose rank.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Which subspaces are orthogonal?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> Column space ⊥ Null space</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> Row space ⊥ Column space</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> Row space ⊥ Null space</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> none are orthogonal</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Trap — they may live in different spaces ($\mathbb{R}^m$ vs $\mathbb{R}^n$).</div>
+    <div class="quiz-feedback" data-fb="B">These aren't the orthogonal pair.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — Row space ⊥ Null space (both in $\mathbb{R}^n$); also Column ⊥ Left-null.</div>
+    <div class="quiz-feedback" data-fb="D">Two orthogonal pairs do exist.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="04-rank-nullity.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

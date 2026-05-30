@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Determinants — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 3</span>
+    <h1>Determinants</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. $\det(A)=5$ for a $3\times3$ matrix. $\det(2A)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 10</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 20</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 40</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 5</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That used $2\times$; the rule is $c^n$, not $c$.</div>
+    <div class="quiz-feedback" data-fb="B">That used $2^2$; for a $3\times3$ the exponent is $3$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\det(cA)=c^n\det A=2^3\cdot5=40$.</div>
+    <div class="quiz-feedback" data-fb="D">Scaling the matrix scales the determinant by $c^n$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\det\begin{bmatrix}2&7&1\\0&3&8\\0&0&5\end{bmatrix}=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> 30</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> 10</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> 0</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> 17</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — upper-triangular → product of diagonal $=2\cdot3\cdot5=30$.</div>
+    <div class="quiz-feedback" data-fb="B">Triangular det is the product, not a partial one.</div>
+    <div class="quiz-feedback" data-fb="C">No zero on the diagonal, so the product isn't $0$.</div>
+    <div class="quiz-feedback" data-fb="D">$17$ is the diagonal <em>sum</em> (trace), not the determinant.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Which is <em>true</em>?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\det(A+B)=\det A+\det B$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> triangular det = diagonal sum</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\det(AB)=\det A\,\det B$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\det(A^{\mathsf T})=-\det A$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">False — det is multiplicative, not additive.</div>
+    <div class="quiz-feedback" data-fb="B">False — that's the trace; det is the <em>product</em>.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — determinant is multiplicative over products.</div>
+    <div class="quiz-feedback" data-fb="D">False — $\det(A^{\mathsf T})=\det A$ (no sign change).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $\det A=4,\ \det B=3$. $\det(AB)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> 7</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> 12</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> 1</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> 4/3</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the sum; det multiplies.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det(AB)=\det A\,\det B=4\cdot3=12$.</div>
+    <div class="quiz-feedback" data-fb="C">That would need $\det B=1/\det A$.</div>
+    <div class="quiz-feedback" data-fb="D">$4/3=\det(AB^{-1})$, not $\det(AB)$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. $\det A=5$. $\det(A^{-1})=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> 5</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $1/5$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $-5$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> 25</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Inverse flips the determinant to its reciprocal.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det(A^{-1})=1/\det A=1/5$.</div>
+    <div class="quiz-feedback" data-fb="C">Sign doesn't flip; it's the reciprocal.</div>
+    <div class="quiz-feedback" data-fb="D">$25=(\det A)^2=\det(A^2)$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Eigenvalues of $A$ are $2,-1,4$. $\det A=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> 5</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $-8$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> 8</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> 0</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$5$ is the trace (sum), not the determinant.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=\prod\lambda=2\cdot(-1)\cdot4=-8$ (negative ⇒ orientation flips).</div>
+    <div class="quiz-feedback" data-fb="C">Watch the sign — one eigenvalue is $-1$.</div>
+    <div class="quiz-feedback" data-fb="D">No eigenvalue is $0$, so the product isn't $0$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. $\det\begin{bmatrix}1&2\\2&4\end{bmatrix}=?$ — and what does it mean?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> $0$, singular</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> $8$, invertible</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> $-8$, invertible</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> $2$, invertible</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $1\cdot4-2\cdot2=0$; column 2 $=2\times$ column 1, so it's singular (collapses to a line).</div>
+    <div class="quiz-feedback" data-fb="B">$ad-bc=4-4=0$, not $8$.</div>
+    <div class="quiz-feedback" data-fb="C">It's $0$ — the rows are proportional.</div>
+    <div class="quiz-feedback" data-fb="D">Recompute: $4-4=0$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. If $A$ is orthogonal, $\det A$ can be…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> any value</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> only $0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> only $+1$ or $-1$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> only $+1$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — orthogonality pins it down.</div>
+    <div class="quiz-feedback" data-fb="B">$0$ is impossible — orthogonal matrices are invertible.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\det(A^{\mathsf T}A)=\det I=1\Rightarrow(\det A)^2=1\Rightarrow\det A=\pm1$.</div>
+    <div class="quiz-feedback" data-fb="D">$-1$ is allowed too (a reflection).</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="03-determinants.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
