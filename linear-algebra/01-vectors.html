@@ -84,20 +84,20 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— learn vectors from zero, one idea at a time</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— vectors from zero, one idea per card</span></summary>
 
-        <p class="study-empty">Linear algebra is the maths of <strong>movement, direction, space and transformation</strong>. In a game world, everything has a position — the player, the enemy, the camera, a push of force. Vectors are the language for all of it. Open any card below and go at your own pace.</p>
+        <p class="study-empty">Linear algebra is the maths of <strong>movement, direction, space and transformation</strong>. In a game world, everything has a position — the player, the enemy, the camera, a push of force. Vectors are the language for all of it. Each idea below is its own card — open them one at a time, in order.</p>
 
         <details class="study-item">
-          <summary>1. What is a vector, really?</summary>
-          <p>A <strong>vector</strong> is simply a list of numbers.</p>
+          <summary>1. What is a vector?</summary>
+          <p>A <strong>vector</strong> is a list of numbers.</p>
           <p class="lead">Example:</p>
           <pre>v = [1, 2]</pre>
           <p class="lead">This means:</p>
           <pre>move 1 step in the x direction
 move 2 steps in the y direction</pre>
-          <p class="lead">So on a 2D game map, <code>[1, 2]</code> means:</p>
-          <pre>from the origin (0, 0)
+          <p class="lead">So in a 2D game map, <code>[1, 2]</code> means:</p>
+          <pre>from origin (0, 0)
 go right 1
 go up 2</pre>
           <p class="lead">Visually:</p>
@@ -111,29 +111,60 @@ go up 2</pre>
         </details>
 
         <details class="study-item">
-          <summary>2. Components, subscripts &amp; transpose</summary>
-          <p>Each number inside a vector is called a <strong>component</strong>.</p>
+          <summary>2. What do x and y mean?</summary>
+          <p>In 2D, <code>[x, y]</code> means:</p>
+          <pre>x = left / right movement
+y = up / down movement</pre>
+          <p class="lead">Usually:</p>
+          <pre>positive x = right
+negative x = left
+positive y = up
+negative y = down</pre>
+          <p class="lead">Examples:</p>
+          <pre>[3, 0]   = move 3 right
+[-2, 0]  = move 2 left
+[0, 4]   = move 4 up
+[0, -5]  = move 5 down
+[2, 3]   = move 2 right and 3 up</pre>
+          <p><span style="color:var(--coral-text)">🎮 Game imagination:</span> the player starts at the origin <code>[0, 0]</code>. The input vector <code>[2, 3]</code> means: right 2 tiles, up 3 tiles.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. What is a component?</summary>
+          <p>In <code>v = [1, 2]</code>, the numbers 1 and 2 are called <strong>components</strong>.</p>
+          <pre>1 = first component  = x component
+2 = second component = y component</pre>
+          <p class="lead">For a 3D vector:</p>
           <pre>v = [v₁, v₂, v₃]
 
 v₁ = first component
 v₂ = second component
 v₃ = third component</pre>
-          <p>The small numbers ₁, ₂, ₃ are <strong>subscripts</strong> — just <em>labels</em> ("v one", "v two"), <strong>not powers</strong>.</p>
-          <p class="lead">A vector can be written as a row or a column:</p>
-          <pre>row vector:     v = [1, 2]
-
-column vector:  v = [1
-                     2]</pre>
-          <p>The little <code>ᵀ</code> means <strong>transpose</strong> — it flips a row into a column (or back):</p>
-          <pre>[v₁, v₂, v₃]ᵀ  =  [v₁
-                   v₂
-                   v₃]</pre>
-          <p>For GATE, remember one thing: <code>ᵀ</code> = transpose = swap row and column.</p>
+          <p>The small numbers are called <strong>subscripts</strong>: <code>v₁</code> means "v one", <code>v₂</code> means "v two". They are <strong>not powers</strong> — they are labels.</p>
         </details>
 
         <details class="study-item">
-          <summary>3. What is ℝⁿ, and "belongs to" (∈)?</summary>
-          <p>This symbol turns up everywhere:</p>
+          <summary>4. Row vector vs column vector</summary>
+          <p class="lead">You may see a <strong>row vector</strong>:</p>
+          <pre>v = [1, 2]</pre>
+          <p class="lead">Or a <strong>column vector</strong>:</p>
+          <pre>v = [1
+     2]</pre>
+          <p>In books, vectors are often written as columns:</p>
+          <pre>v = [v₁
+     v₂
+     ...
+     vₙ]</pre>
+          <p>When they write <code>v = [v₁, v₂, ..., vₙ]ᵀ</code>, the <strong>T</strong> means <strong>transpose</strong> — turn a row into a column:</p>
+          <pre>[v₁, v₂, v₃]ᵀ  =  [v₁
+                   v₂
+                   v₃]</pre>
+          <p>For GATE, just remember: <code>ᵀ</code> = transpose = flip row / column.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. What is ℝⁿ?</summary>
+          <p>This symbol is very important:</p>
           <pre>ℝⁿ</pre>
           <p class="lead">Read it as:</p>
           <pre>R n</pre>
@@ -146,107 +177,291 @@ column vector:  v = [1
 ℝ³ = all 3D vectors
 ℝⁿ = all n-dimensional vectors</pre>
           <p class="lead">Examples:</p>
-          <pre>[1, 2]      belongs to ℝ²
-[3, 4, 5]   belongs to ℝ³
+          <pre>[1, 2]       belongs to ℝ²
+[3, 4, 5]    belongs to ℝ³
 [1, 0, 2, 7] belongs to ℝ⁴</pre>
-          <p>The symbol <code>∈</code> means <strong>belongs to</strong>. So:</p>
-          <pre>[1, 2] ∈ ℝ²</pre>
-          <p>reads "<code>[1, 2]</code> belongs to 2D real vector space".</p>
+          <p>The symbol <code>∈</code> means <strong>belongs to</strong>. So <code>[1, 2] ∈ ℝ²</code> means "<code>[1, 2]</code> belongs to 2D real vector space".</p>
         </details>
 
         <details class="study-item">
-          <summary>4. Adding vectors &amp; scaling them</summary>
-          <p><strong>Addition is component by component.</strong></p>
+          <summary>6. Vector addition</summary>
+          <p class="lead">Suppose:</p>
           <pre>u = [1, 2]
-v = [3, 1]
+v = [3, 1]</pre>
+          <p class="lead">Then add component by component:</p>
+          <pre>u + v = [1+3, 2+1] = [4, 3]</pre>
+          <p><span style="color:var(--coral-text)">🎮 Game imagination:</span></p>
+          <pre>u = right 1, up 2
+v = right 3, up 1
+total = right 4, up 3</pre>
+          <p>Visually: first follow arrow <code>u</code>, then from its tip follow arrow <code>v</code>. The final arrow is <code>u + v</code>. This is called <strong>tip-to-tail</strong> addition.</p>
+        </details>
 
-u + v = [1+3, 2+1] = [4, 3]</pre>
-          <p>Picture it <strong>tip-to-tail</strong>: follow arrow <code>u</code>, then from its tip follow <code>v</code>. The final arrow is <code>u + v</code>.</p>
-          <p class="lead">A <strong>scalar</strong> is just a number. Multiplying stretches or flips the arrow:</p>
+        <details class="study-item">
+          <summary>7. Scalar multiplication</summary>
+          <p>A <strong>scalar</strong> is just a normal number.</p>
+          <p class="lead">Example:</p>
+          <pre>c = 3
+v = [2, 1]
+
+c · v = 3 · [2, 1] = [6, 3]</pre>
+          <p>It means <strong>stretch</strong> the vector 3 times.</p>
+          <p class="lead">More examples:</p>
           <pre>2 · [1, 2]    = [2, 4]      bigger, same direction
 0.5 · [2, 4]  = [1, 2]      smaller, same direction
--1 · [1, 2]   = [-1, -2]    flipped, opposite way
-0 · [1, 2]    = [0, 0]      collapses to zero</pre>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the vector is your movement direction and the scalar is a speed multiplier — <code>5 · [1, 0]</code> is "move right, five times as fast".</p>
+-1 · [1, 2]   = [-1, -2]    flipped, opposite direction
+0 · [1, 2]    = [0, 0]      becomes the zero vector</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> vector = movement direction, scalar = speed multiplier. <code>5 · [1, 0] = [5, 0]</code> means move faster to the right.</p>
         </details>
 
         <details class="study-item">
-          <summary>5. Vector space &amp; closure</summary>
-          <p>A <strong>vector space</strong> is a collection of vectors where two moves are always safe: <strong>add any two</strong>, or <strong>scale any one</strong> — and the answer <em>stays inside the same set</em>.</p>
-          <p>That "stays inside" property is called <strong>closure</strong>.</p>
+          <summary>8. Zero vector</summary>
+          <p>The <strong>zero vector</strong> means no movement.</p>
+          <pre>2D:  0 = [0, 0]
+3D:  0 = [0, 0, 0]</pre>
+          <p>It is the origin point.</p>
+          <p><strong>For GATE, remember:</strong> every vector space and every subspace <strong>must</strong> contain the zero vector. If the zero vector is missing, it is not a subspace.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Vector space</summary>
+          <p>A <strong>vector space</strong> is a collection of vectors where two operations are safe:</p>
+          <pre>1. add two vectors
+2. multiply a vector by a scalar</pre>
+          <p>...and after doing them, the answer still stays inside the same space. This property is called <strong>closure</strong>.</p>
           <p class="lead">Example — ℝ² is a vector space:</p>
-          <pre>[1, 2] + [3, 4] = [4, 6]    still in ℝ²
-5 · [1, 2]      = [5, 10]   still in ℝ²</pre>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a game map is "closed" if your character can move and still stay on the map. Add → still inside. Scale → still inside. That is closure.</p>
+          <pre>u = [1, 2]   v = [3, 4]
+
+u + v = [4, 6]   still in ℝ²
+5 · u = [5, 10]  still in ℝ²</pre>
+          <p>So ℝ² is closed under addition and scaling.</p>
         </details>
 
         <details class="study-item">
-          <summary>6. Subspace + the 3-point test</summary>
-          <p>A <strong>subspace</strong> is a smaller vector space living inside a bigger one — for example a <strong>line through the origin</strong> inside ℝ².</p>
-          <p class="lead">To check if a set W is a subspace, test only three things:</p>
+          <summary>10. What is closure?</summary>
+          <p><strong>Closure</strong> means: you do something inside the world, and the result stays inside the same world.</p>
+          <p><span style="color:var(--coral-text)">🎮 Game imagination:</span> imagine a game map. If your character moves and still stays inside the map, the map is "closed" for that movement.</p>
+          <p class="lead">For vector spaces:</p>
+          <pre>add vectors   → still inside
+scale vector  → still inside</pre>
+          <p>That is closure.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. The 8 vector space axioms</summary>
+          <p>Do not fear the word <strong>axiom</strong> — an axiom is just a rule that must be true. For GATE you usually only need to <em>recognize</em> them, not prove them.</p>
+          <p class="lead">Let:</p>
+          <pre>u, v, w = vectors
+c, d    = scalars
+0       = zero vector</pre>
+          <p class="lead">Rule 1 — Commutativity (order does not matter):</p>
+          <pre>u + v = v + u
+
+[1,2] + [3,4] = [4,6]
+[3,4] + [1,2] = [4,6]   same answer</pre>
+          <p class="lead">Rule 2 — Associativity (grouping does not matter):</p>
+          <pre>(u + v) + w = u + (v + w)</pre>
+          <p class="lead">Rule 3 — Zero vector (adding zero does nothing):</p>
+          <pre>v + 0 = v</pre>
+          <p class="lead">Rule 4 — Additive inverse (every vector has an opposite):</p>
+          <pre>v + (-v) = 0
+
+v  = [2, 3]
+-v = [-2, -3]
+[2,3] + [-2,-3] = [0, 0]</pre>
+          <p class="lead">Rule 5 — Scalar identity (multiplying by 1 changes nothing):</p>
+          <pre>1 · v = v</pre>
+          <p class="lead">Rule 6 — Scalar associativity:</p>
+          <pre>c(d·v) = (c·d)·v        e.g.  2(3v) = 6v</pre>
+          <p class="lead">Rule 7 — Scalar distributes over vector addition:</p>
+          <pre>c(u + v) = c·u + c·v
+
+2([1,2] + [3,4]) = 2[4,6]      = [8,12]
+2[1,2] + 2[3,4]  = [2,4]+[6,8] = [8,12]</pre>
+          <p class="lead">Rule 8 — Scalar addition distributes:</p>
+          <pre>(c + d)v = c·v + d·v    e.g.  (2+3)v = 2v + 3v</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Subspace</summary>
+          <p>A <strong>subspace</strong> is a smaller vector space inside a bigger vector space. Example: a line through the origin inside ℝ².</p>
+          <p class="lead">Think of ℝ² as the whole flat game map. One subspace is a line through the origin:</p>
+          <pre>W = { (x, y) : x + y = 0 }</pre>
+          <p>This means all points where x + y = 0. Some examples:</p>
+          <pre>(1, -1)   because  1 + (-1) = 0
+(2, -2)   because  2 + (-2) = 0
+(0, 0)    because  0 + 0    = 0</pre>
+          <p>This is the line <code>y = -x</code>, and it passes through the origin — so it is a subspace.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Subspace test</summary>
+          <p class="lead">To check if something is a subspace, test only these 3 things:</p>
           <ol class="steps">
-            <li>Does <code>W</code> contain the <strong>zero vector</strong>? If no — <strong>stop, not a subspace</strong>.</li>
+            <li>Does it contain the <strong>zero vector</strong>?</li>
             <li>Is it <strong>closed under addition</strong>?</li>
-            <li>Is it <strong>closed under scaling</strong>?</li>
+            <li>Is it <strong>closed under scalar multiplication</strong>?</li>
           </ol>
-          <p class="lead">Quick test:</p>
+          <p><strong>Most important shortcut:</strong> if the zero vector is not present, it is <strong>NOT</strong> a subspace — stop immediately.</p>
+          <p class="lead">Example:</p>
           <pre>W = { (x, y) : x + y = 1 }
 
-check zero:  (0, 0) → 0 + 0 = 0 ≠ 1
-so (0, 0) is NOT in W
-→ NOT a subspace   (stop here)</pre>
+check zero:  (0, 0) → 0 + 0 = 0
+but the condition says x + y = 1
+so (0, 0) is NOT inside W
+
+→ W is NOT a subspace   (no need to check anything else)</pre>
         </details>
 
         <details class="study-item">
-          <summary>7. Span &amp; linear combinations</summary>
-          <p>A <strong>linear combination</strong> means: scale some vectors, then add them.</p>
-          <pre>c₁·v₁ + c₂·v₂ + ... + cₖ·vₖ</pre>
-          <p>The <strong>span</strong> is <em>every</em> vector you can build this way.</p>
+          <summary>14. Span</summary>
+          <p><strong>Span</strong> means: all possible vectors you can create using the given vectors.</p>
+          <p class="lead">Formula:</p>
+          <pre>span{v₁, v₂, ..., vₖ} = { c₁v₁ + c₂v₂ + ... + cₖvₖ }</pre>
+          <p>Do not fear the formula. It just says: scale each vector by any number, add them, and see all the places you can reach.</p>
+          <p><span style="color:var(--coral-text)">🎮 Game imagination:</span></p>
+          <pre>v₁ = [1, 0]   move right
+v₂ = [0, 1]   move up
+
+2v₁ + 3v₂ = [2, 0] + [0, 3] = [2, 3]</pre>
+          <p>You can reach any point in 2D, so <code>span{[1,0], [0,1]} = ℝ²</code> — these two vectors span the whole plane.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Linear combination</summary>
+          <p>This expression is called a <strong>linear combination</strong>:</p>
+          <pre>c₁v₁ + c₂v₂ + ... + cₖvₖ</pre>
+          <p>Meaning: scale the vectors, then add them.</p>
           <p class="lead">Example:</p>
-          <pre>v₁ = [1, 0]   (right)
-v₂ = [0, 1]   (up)
+          <pre>v₁ = [1, 0]   v₂ = [0, 1]
 
-2·v₁ + 3·v₂ = [2, 3]
-→ you can reach ANY point, so span{v₁, v₂} = ℝ²</pre>
-          <p>These two arrows cover the whole plane.</p>
+3v₁ + 4v₂ = [3, 0] + [0, 4] = [3, 4]</pre>
+          <p>So <code>[3, 4]</code> is a linear combination of <code>[1, 0]</code> and <code>[0, 1]</code>.</p>
         </details>
 
         <details class="study-item">
-          <summary>8. Independent vs dependent</summary>
-          <p>Vectors are <strong>independent</strong> when no vector is redundant — none can be built from the others.</p>
-          <p class="lead">The test (only the all-zero solution works):</p>
-          <pre>c₁·v₁ + c₂·v₂ + ... + cₖ·vₖ = 0
-only when  c₁ = c₂ = ... = cₖ = 0</pre>
-          <p class="lead">When one vector is redundant, they are dependent:</p>
+          <summary>16. Linear independence</summary>
+          <p>This is extremely important for GATE. Vectors are <strong>linearly independent</strong> if no vector is useless or a duplicate.</p>
+          <p class="lead">Formal rule:</p>
+          <pre>c₁v₁ + c₂v₂ + ... + cₖvₖ = 0
+
+has only one solution:
+c₁ = c₂ = ... = cₖ = 0</pre>
+          <p>This is called the <strong>trivial solution</strong> — the only way to make zero is to use nothing.</p>
+          <p><span style="color:var(--coral-text)">🎮 Game imagination:</span></p>
+          <pre>v₁ = [1, 0]   right
+v₂ = [0, 1]   up
+
+Can one be made from the other?  No.
+Right cannot create up. Up cannot create right.
+→ they are independent.</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Linear dependence</summary>
+          <p>Vectors are <strong>dependent</strong> if one vector can be built from the others.</p>
+          <p class="lead">Example:</p>
           <pre>v₁ = [1, 0]   v₂ = [0, 1]   v₃ = [2, 3]
 
-v₃ = 2·v₁ + 3·v₂   ← adds no new direction
-→ dependent</pre>
-          <p><strong>Memory:</strong> independent = no waste; dependent = at least one vector is redundant.</p>
+v₃ = 2v₁ + 3v₂ = [2, 0] + [0, 3] = [2, 3]</pre>
+          <p>So <code>v₃</code> gives no new direction — it is already built from <code>v₁</code> and <code>v₂</code>. Therefore <code>v₁, v₂, v₃</code> are linearly dependent.</p>
+          <p class="lead">Memory trick:</p>
+          <pre>independent = no vector is redundant
+dependent   = at least one vector is redundant</pre>
         </details>
 
         <details class="study-item">
-          <summary>9. GATE shortcut: more than n ⇒ dependent</summary>
-          <p>In ℝⁿ you can have <strong>at most n independent vectors</strong>. So any set with <em>more than n</em> vectors is <strong>automatically dependent</strong> — no calculation needed.</p>
-          <pre>3 vectors in ℝ²  →  always dependent
-4 vectors in ℝ³  →  always dependent
-5 vectors in ℝ⁴  →  always dependent</pre>
-          <p>Count first — this is one of the fastest marks in a GATE question.</p>
+          <summary>18. Very important GATE rule</summary>
+          <p class="lead">In ℝ², maximum independent vectors = 2. So:</p>
+          <pre>any 3 vectors in ℝ² are always dependent</pre>
+          <p class="lead">In ℝ³, maximum independent vectors = 3. So:</p>
+          <pre>any 4 vectors in ℝ³ are always dependent</pre>
+          <p class="lead">General rule:</p>
+          <pre>in ℝⁿ, more than n vectors are always dependent</pre>
+          <p class="lead">Examples:</p>
+          <pre>3 vectors in ℝ²  → dependent
+4 vectors in ℝ³  → dependent
+5 vectors in ℝ⁴  → dependent</pre>
+          <p>This is a common GATE shortcut — count first.</p>
         </details>
 
         <details class="study-item">
-          <summary>10. Basis &amp; dimension</summary>
-          <p>A <strong>basis</strong> is the "perfect team": <strong>independent</strong> <em>and</em> it <strong>spans</strong> the space — enough vectors to reach everywhere, with none wasted.</p>
-          <p class="lead">Standard basis of ℝ²:</p>
-          <pre>e₁ = [1, 0]
-e₂ = [0, 1]
+          <summary>19. Basis</summary>
+          <p>A <strong>basis</strong> is the perfect team of vectors. A set is a basis if:</p>
+          <pre>1. it spans the space
+2. it is linearly independent</pre>
+          <p>So a basis has enough vectors to cover the whole space, but no extra useless vector.</p>
+          <p class="lead">For ℝ², the standard basis is:</p>
+          <pre>e₁ = [1, 0]    gives the x direction
+e₂ = [0, 1]    gives the y direction</pre>
+          <p class="lead">Any vector can be built from them:</p>
+          <pre>[x, y] = x[1,0] + y[0,1]
 
-any [x, y] = x·e₁ + y·e₂</pre>
-          <p class="lead">The <strong>dimension</strong> is the number of vectors in a basis:</p>
-          <pre>dim(ℝ²) = 2
-dim(ℝ³) = 3
-dim(ℝⁿ) = n</pre>
-          <p>Every basis of the same space has the same size — that count <em>is</em> the dimension.</p>
+[5, 7] = 5[1,0] + 7[0,1]</pre>
+          <p>They span ℝ² and are independent, so <code>{[1,0], [0,1]}</code> is a basis of ℝ².</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Dimension</summary>
+          <p><strong>Dimension</strong> means the number of vectors in a basis.</p>
+          <pre>ℝ² → basis has 2 vectors → dim(ℝ²) = 2
+ℝ³ → basis has 3 vectors → dim(ℝ³) = 3</pre>
+          <p class="lead">General:</p>
+          <pre>dim(ℝⁿ) = n</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Game-based imagination</summary>
+          <p>Imagine a 3D game character.</p>
+          <p class="lead">Vector = an arrow / movement command:</p>
+          <pre>[2, 1, 0]  means:  move 2 right, 1 up, 0 forward</pre>
+          <p class="lead">Span = all places you can reach with your movement arrows:</p>
+          <pre>only [1,0]              → move along x-axis only  (span = a line)
+[1,0] and [0,1]        → move anywhere in 2D      (span = the plane)
+[1,0,0],[0,1,0],[0,0,1] → move anywhere in 3D     (span = all of space)</pre>
+          <p class="lead">Independence:</p>
+          <pre>independent = each move unlocks a NEW direction
+dependent   = a move is already possible from the others</pre>
+          <p>Example: right + up = diagonal. So if you already have right and up, diagonal is not a new power.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Symbols you must know</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Symbol</th><th>Meaning</th></tr>
+            <tr><td><code>v</code></td><td>a vector</td></tr>
+            <tr><td><code>u, v, w</code></td><td>different vectors</td></tr>
+            <tr><td><code>c, d</code></td><td>scalars / normal numbers</td></tr>
+            <tr><td><code>v₁, v₂</code></td><td>components, or different vectors (depends on context)</td></tr>
+            <tr><td><code>ℝ</code></td><td>real numbers</td></tr>
+            <tr><td><code>ℝ²</code></td><td>2D real space</td></tr>
+            <tr><td><code>ℝ³</code></td><td>3D real space</td></tr>
+            <tr><td><code>ℝⁿ</code></td><td>n-dimensional real space</td></tr>
+            <tr><td><code>∈</code></td><td>belongs to</td></tr>
+            <tr><td><code>∉</code></td><td>does not belong to</td></tr>
+            <tr><td><code>⊂</code></td><td>subset of</td></tr>
+            <tr><td><code>0</code></td><td>zero vector</td></tr>
+            <tr><td><code>span{ }</code></td><td>all possible linear combinations</td></tr>
+            <tr><td><code>dim(V)</code></td><td>dimension of vector space V</td></tr>
+            <tr><td><code>ᵀ</code></td><td>transpose</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>23. GATE DA memory cheatsheet</summary>
+          <ul class="styled">
+            <li><strong>Vector</strong> = ordered list of numbers</li>
+            <li><strong>ℝⁿ</strong> = all vectors with n real components</li>
+            <li><strong>Subspace</strong> = smaller vector space inside a bigger one</li>
+            <li>A subspace <strong>must contain the zero vector</strong></li>
+            <li><strong>Span</strong> = all vectors you can create</li>
+            <li><strong>Linear combination</strong> = scaled vectors added together</li>
+            <li><strong>Independent</strong> = no vector can be made from the others</li>
+            <li><strong>Dependent</strong> = at least one vector is redundant</li>
+            <li><strong>Basis</strong> = independent + spans</li>
+            <li><strong>Dimension</strong> = number of vectors in a basis</li>
+            <li>In ℝⁿ, <strong>more than n vectors are always dependent</strong></li>
+          </ul>
         </details>
 
       </details>
