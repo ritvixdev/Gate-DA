@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eigenvalues — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 6</span>
+    <h1>Eigenvalues &amp; Eigenvectors</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Eigenvalues are $2,3,5$. Trace and determinant?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> tr $30$, det $10$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> tr $10$, det $10$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> tr $10$, det $30$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> tr $30$, det $30$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Swapped — trace is the sum, det is the product.</div>
+    <div class="quiz-feedback" data-fb="B">det is the product $=30$, not $10$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\operatorname{tr}=\sum\lambda=10$, $\det=\prod\lambda=30$.</div>
+    <div class="quiz-feedback" data-fb="D">trace is the sum $=10$, not $30$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $A$ is triangular with diagonal $1,4,7$. Eigenvalues?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> $1,4,7$</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> $12$</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> $0,0,0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> need full matrix</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — for triangular/diagonal matrices the eigenvalues are the diagonal entries.</div>
+    <div class="quiz-feedback" data-fb="B">$12$ is the trace, not the set of eigenvalues.</div>
+    <div class="quiz-feedback" data-fb="C">Diagonal entries are non-zero, so eigenvalues aren't $0$.</div>
+    <div class="quiz-feedback" data-fb="D">No need — triangular gives them for free.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Eigenvalues of $A$ are $2,3$. Eigenvalues of $A^{-1}$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $4,9$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $-2,-3$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\tfrac12,\tfrac13$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $2,3$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$4,9$ are eigenvalues of $A^2$ ($\lambda^2$).</div>
+    <div class="quiz-feedback" data-fb="B">Inversion gives reciprocals, not negatives.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $A^{-1}$ has eigenvalues $1/\lambda$.</div>
+    <div class="quiz-feedback" data-fb="D">$A^{\mathsf T}$ keeps them; $A^{-1}$ flips to reciprocals.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Find the eigenvalues of $\begin{bmatrix}4&1\\2&3\end{bmatrix}$.</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $4,3$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $5,2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $7,10$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $1,2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Eigenvalues aren't the diagonal unless triangular.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\lambda^2-7\lambda+10=0\Rightarrow(\lambda-5)(\lambda-2)=0$.</div>
+    <div class="quiz-feedback" data-fb="C">$7$ and $10$ are the trace and det, not the eigenvalues.</div>
+    <div class="quiz-feedback" data-fb="D">Solve $\det(A-\lambda I)=0$ → $5,2$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Can the <em>zero vector</em> be an eigenvector?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes, always</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only if $\lambda=0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only for symmetric $A$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — eigenvectors are required to be non-zero.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — eigenvectors must be non-zero (though $\lambda$ itself can be $0$).</div>
+    <div class="quiz-feedback" data-fb="C">Even with $\lambda=0$ the eigenvector must be non-zero.</div>
+    <div class="quiz-feedback" data-fb="D">Symmetry doesn't change the non-zero requirement.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. A real symmetric matrix always has…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> complex eigenvalues</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> equal eigenvalues</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> real eigenvalues, orthogonal eigenvectors</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> determinant $1$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Opposite — symmetric ⇒ all eigenvalues real.</div>
+    <div class="quiz-feedback" data-fb="B">Eigenvalues can differ; they're just guaranteed real.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — symmetric matrices have real eigenvalues and orthogonal eigenvectors.</div>
+    <div class="quiz-feedback" data-fb="D">No constraint forces $\det=1$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. If $0$ is an eigenvalue of $A$, then $A$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> invertible</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> singular</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> orthogonal</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> symmetric</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Opposite — a zero eigenvalue means $\det=0$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\det=\prod\lambda$ includes $0$, so $\det=0$ ⇒ singular.</div>
+    <div class="quiz-feedback" data-fb="C">Unrelated to orthogonality.</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated to symmetry.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Eigenvalues of $A$ are $1,2$. Eigenvalues of $A^3$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $3,6$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $1,6$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $1,8$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $1,2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $3\lambda$; powers use $\lambda^k$, not $k\lambda$.</div>
+    <div class="quiz-feedback" data-fb="B">$2^3=8$, not $6$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $A^k$ has eigenvalues $\lambda^k$: $1^3=1$, $2^3=8$.</div>
+    <div class="quiz-feedback" data-fb="D">$A^3$ cubes each eigenvalue.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="06-eigenvalues.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

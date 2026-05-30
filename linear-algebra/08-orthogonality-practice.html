@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orthogonality — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 8</span>
+    <h1>Orthogonality</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Are $(1,2)$ and $(2,-1)$ orthogonal?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> Only if normalized</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> Can't tell</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — dot product $=1\cdot2+2\cdot(-1)=0$, so they're perpendicular.</div>
+    <div class="quiz-feedback" data-fb="B">The dot product is $0$, so they are orthogonal.</div>
+    <div class="quiz-feedback" data-fb="C">Orthogonality only needs dot $=0$; length doesn't matter.</div>
+    <div class="quiz-feedback" data-fb="D">Just compute the dot product — it's $0$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. "Orthonormal" means…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> just perpendicular</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> just unit length</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> perpendicular <em>and</em> unit length</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> parallel</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's just "orthogonal" — orthonormal adds unit length.</div>
+    <div class="quiz-feedback" data-fb="B">Unit length alone isn't orthonormal.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — orthonormal = orthogonal + each vector has length $1$.</div>
+    <div class="quiz-feedback" data-fb="D">Orthogonal means perpendicular, the opposite of parallel.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. For an orthogonal matrix $Q$, $Q^{\mathsf T}Q=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $Q$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $I$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $Q^2$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only the zero matrix gives $0$.</div>
+    <div class="quiz-feedback" data-fb="B">That would need $Q^{\mathsf T}=I$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — orthonormal columns give $Q^{\mathsf T}Q=I$, so $Q^{-1}=Q^{\mathsf T}$.</div>
+    <div class="quiz-feedback" data-fb="D">Orthogonality gives the identity, not $Q^2$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. An orthogonal transformation preserves…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> nothing</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> only direction</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> lengths and angles</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> only area</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It preserves a lot — it's a rigid motion.</div>
+    <div class="quiz-feedback" data-fb="B">It keeps more than direction.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\|Qx\|=\|x\|$, so lengths (and hence angles) are preserved.</div>
+    <div class="quiz-feedback" data-fb="D">Area too, but the key fact is lengths and angles.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. Project $(3,4)$ onto $(1,0)$.</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> $(3,0)$</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> $(0,4)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> $(3,4)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> $(7,0)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $\frac{u^{\mathsf T}v}{u^{\mathsf T}u}u=\frac{3}{1}(1,0)=(3,0)$ (the $x$-shadow).</div>
+    <div class="quiz-feedback" data-fb="B">That's the projection onto the $y$-axis.</div>
+    <div class="quiz-feedback" data-fb="C">Projecting onto a line can't keep the full vector.</div>
+    <div class="quiz-feedback" data-fb="D">The coefficient is $u^{\mathsf T}v/u^{\mathsf T}u=3$, giving $(3,0)$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. A set of mutually orthogonal non-zero vectors is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> always dependent</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> automatically independent</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> never a basis</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> always unit length</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Opposite — orthogonality forces independence.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — orthogonal non-zero vectors are always linearly independent.</div>
+    <div class="quiz-feedback" data-fb="C">They can form a basis (an orthogonal basis).</div>
+    <div class="quiz-feedback" data-fb="D">Orthogonal doesn't imply unit length (that's orthonormal).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. Gram–Schmidt is used to…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> find eigenvalues</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> invert a matrix</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> build an orthonormal basis</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> compute determinants</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the characteristic equation, not Gram–Schmidt.</div>
+    <div class="quiz-feedback" data-fb="B">Not its purpose (though it gives $QR$).</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — it turns any basis into an orthonormal one (and yields $A=QR$).</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated to determinants.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. $Q^{\mathsf T}Q=I$ implies $Q$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> symmetric</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> invertible with $Q^{-1}=Q^{\mathsf T}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> singular</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> idempotent</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Trap — it means $Q^{-1}=Q^{\mathsf T}$, not $Q=Q^{\mathsf T}$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the inverse is simply the transpose.</div>
+    <div class="quiz-feedback" data-fb="C">Orthogonal matrices are invertible ($\det=\pm1$).</div>
+    <div class="quiz-feedback" data-fb="D">That would need $Q^2=Q$.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="08-orthogonality.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

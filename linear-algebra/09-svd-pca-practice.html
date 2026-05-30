@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVD & PCA — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 9</span>
+    <h1>SVD &amp; PCA</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. The singular values of $A$ are the…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> eigenvalues of $A$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\sqrt{\text{eigenvalues of }A^{\mathsf T}A}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> diagonal entries of $A$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> reciprocals of eigenvalues</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only for symmetric PSD matrices.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$, always real and $\ge0$.</div>
+    <div class="quiz-feedback" data-fb="C">Unrelated in general.</div>
+    <div class="quiz-feedback" data-fb="D">That relates to $A^{-1}$, not singular values.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. In $A=U\Sigma V^{\mathsf T}$, $U$ and $V$ are…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> diagonal</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> singular</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> orthogonal</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> triangular</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$\Sigma$ is diagonal; $U,V$ are not.</div>
+    <div class="quiz-feedback" data-fb="B">They're invertible (orthogonal), not singular.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $U$ and $V$ are orthogonal; $\Sigma$ is the diagonal of singular values.</div>
+    <div class="quiz-feedback" data-fb="D">They're orthogonal, not triangular.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Can a singular value be negative?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> No, $\sigma_i\ge0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Only if $A$ is</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only in 3-D</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — they're square roots of non-negative numbers.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — singular values are always $\ge0$ by definition.</div>
+    <div class="quiz-feedback" data-fb="C">Even if $A$ has negative entries, $\sigma_i\ge0$.</div>
+    <div class="quiz-feedback" data-fb="D">Dimension is irrelevant — they're never negative.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $A^{\mathsf T}A$ has eigenvalues $16,9$. Singular values of $A$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $16,9$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $4,3$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $256,81$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $8,4.5$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Those are the eigenvalues; take square roots.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma_i=\sqrt{\lambda_i}=\sqrt{16},\sqrt{9}=4,3$.</div>
+    <div class="quiz-feedback" data-fb="C">That squares them; you need the square root.</div>
+    <div class="quiz-feedback" data-fb="D">Halving isn't the same as square-rooting.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. A matrix has singular values $5,2,0,0$. Its rank?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> 4</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> 2</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> 0</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> 7</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Only the <em>non-zero</em> singular values count.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — rank = number of non-zero singular values $=2$.</div>
+    <div class="quiz-feedback" data-fb="C">Two singular values are non-zero, so rank $>0$.</div>
+    <div class="quiz-feedback" data-fb="D">That's their sum, not the rank.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Which matrices have an SVD?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> only square</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> only symmetric</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> every matrix</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> only invertible</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">SVD works for rectangular matrices too.</div>
+    <div class="quiz-feedback" data-fb="B">No symmetry needed.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — every $m\times n$ matrix has an SVD (unlike diagonalization).</div>
+    <div class="quiz-feedback" data-fb="D">Even rank-deficient matrices have one.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. PCA is essentially…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Gaussian elimination</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> the SVD of centered data</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> matrix inversion</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Cramer's rule</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Unrelated — that solves systems.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — PCA = SVD of the centered data; components are eigenvectors of the covariance.</div>
+    <div class="quiz-feedback" data-fb="C">PCA doesn't invert anything.</div>
+    <div class="quiz-feedback" data-fb="D">Cramer's rule solves small systems, not PCA.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. The best rank-$k$ approximation of $A$ keeps the…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> smallest $k$ singular values</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> last $k$ columns</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> largest $k$ singular values</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> negative singular values</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Keeping the smallest loses the most information.</div>
+    <div class="quiz-feedback" data-fb="B">It's about singular values, not raw columns.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — keep the top-$k$ $\sigma_i u_i v_i^{\mathsf T}$ terms (strongest directions).</div>
+    <div class="quiz-feedback" data-fb="D">Singular values are never negative.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="09-svd-pca.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagonalization — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 7</span>
+    <h1>Diagonalization</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. A $3\times3$ matrix has eigenvalues $2,4,7$ (all distinct). Diagonalizable?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> Yes</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> No</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> Only if symmetric</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> Need the matrix</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — $n$ distinct eigenvalues guarantee $n$ independent eigenvectors.</div>
+    <div class="quiz-feedback" data-fb="B">Distinct eigenvalues always give diagonalizability.</div>
+    <div class="quiz-feedback" data-fb="C">Symmetry is sufficient but not necessary; distinct $\lambda$ already suffice.</div>
+    <div class="quiz-feedback" data-fb="D">Distinct eigenvalues settle it without the full matrix.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. In $A=PDP^{-1}$, what are $P$ and $D$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $P$ eigenvalues, $D$ eigenvectors</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $P$ eigenvectors, $D$ eigenvalues</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> both eigenvalues</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> both eigenvectors</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Swapped.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $P$'s columns are eigenvectors; $D$'s diagonal holds the matching eigenvalues.</div>
+    <div class="quiz-feedback" data-fb="C">$P$ holds eigenvectors.</div>
+    <div class="quiz-feedback" data-fb="D">$D$ is diagonal with eigenvalues.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Which matrix is <em>not</em> diagonalizable?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\begin{bmatrix}2&0\\0&5\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\begin{bmatrix}3&1\\1&3\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\begin{bmatrix}1&1\\0&1\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $I$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Already diagonal.</div>
+    <div class="quiz-feedback" data-fb="B">Symmetric ⇒ always diagonalizable.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — repeated $\lambda=1$ but only one eigenvector (defective).</div>
+    <div class="quiz-feedback" data-fb="D">$I$ is already diagonal.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $A$ is diagonalizable iff…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\det A\neq0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> it has $n$ independent eigenvectors</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> it is invertible</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> all eigenvalues are distinct</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Invertibility is unrelated — a defective invertible matrix exists.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — needs a full set of $n$ independent eigenvectors.</div>
+    <div class="quiz-feedback" data-fb="C">Same issue as A.</div>
+    <div class="quiz-feedback" data-fb="D">Distinct is <em>sufficient</em> but not necessary (e.g. $I$).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. If $A=PDP^{-1}$, then $A^k=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $P^kDP^{-k}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $PD^kP$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $PD^kP^{-1}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $kPDP^{-1}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The $P$'s telescope — only $D$ gets the power.</div>
+    <div class="quiz-feedback" data-fb="B">Needs $P^{-1}$ on the right, not $P$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $A^k=PD^kP^{-1}$; only the diagonal gets raised to $k$.</div>
+    <div class="quiz-feedback" data-fb="D">Powers aren't linear in $k$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Every symmetric matrix can be diagonalized…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> never</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> orthogonally: $A=QDQ^{\mathsf T}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> only if invertible</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> only over $\mathbb{C}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Symmetric matrices are always diagonalizable.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the spectral theorem: $A=QDQ^{\mathsf T}$ with orthogonal $Q$.</div>
+    <div class="quiz-feedback" data-fb="C">No invertibility needed.</div>
+    <div class="quiz-feedback" data-fb="D">Real symmetric matrices diagonalize over the reals.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A repeated eigenvalue means the matrix is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> never diagonalizable</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> always diagonalizable</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> diagonalizable only if it still has enough eigenvectors</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> singular</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Not necessarily — $I$ has a repeated eigenvalue and is diagonal.</div>
+    <div class="quiz-feedback" data-fb="B">Not always — defective matrices repeat $\lambda$ with too few eigenvectors.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — it works iff geometric = algebraic multiplicity for that $\lambda$.</div>
+    <div class="quiz-feedback" data-fb="D">Repetition says nothing about $\det$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. $D=\operatorname{diag}(1,2)$, $A=PDP^{-1}$. $A^5$ uses which diagonal?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $\operatorname{diag}(5,10)$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\operatorname{diag}(1,32)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $\operatorname{diag}(1,2)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $\operatorname{diag}(5,7)$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $5\times$; you need $\lambda^5$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $D^5=\operatorname{diag}(1^5,2^5)=\operatorname{diag}(1,32)$.</div>
+    <div class="quiz-feedback" data-fb="C">That's $D^1$, not $D^5$.</div>
+    <div class="quiz-feedback" data-fb="D">Each entry is raised to the 5th power individually.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="07-diagonalization.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
