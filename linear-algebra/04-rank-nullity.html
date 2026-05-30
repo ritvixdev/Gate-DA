@@ -116,7 +116,7 @@
       <div class="callout-label">✕ Watch out</div>
       <p><span class="wrong">Trap:</span> "Nullity $=m-\operatorname{rank}$." <span class="right">Reality:</span> it's $n-\operatorname{rank}$ — use the number of <strong>columns</strong>.</p>
       <p><span class="wrong">Trap:</span> "Rank can exceed $\min(m,n)$." <span class="right">Reality:</span> never.</p>
-      <p><span class="wrong">Trap:</span> "$\det(A)=0$ means $\operatorname{rank}=0$." <span class="right">Reality:</span> it means rank $<n$; a $3\times3$ singular matrix can have rank 1 or 2.</p>
+      <p><span class="wrong">Trap:</span> "$\det(A)=0$ means $\operatorname{rank}=0$." <span class="right">Reality:</span> it means rank $&lt;n$; a $3\times3$ singular matrix can have rank 1 or 2.</p>
       <p><span class="wrong">Trap:</span> "$\operatorname{rank}(AB)=\operatorname{rank}A\cdot\operatorname{rank}B$ or $\operatorname{rank}(A+B)=\operatorname{rank}A+\operatorname{rank}B$." <span class="right">Reality:</span> both false — only inequalities hold.</p>
       <p><span class="wrong">Trap:</span> "Nullity = number of zero rows." <span class="right">Reality:</span> nullity = free variables = columns $-$ rank.</p>
     </div>
@@ -131,7 +131,7 @@
     </div>
     <ul class="styled">
       <li><strong>Vectors:</strong> rank = independent directions (this is the independence idea applied).</li>
-      <li><strong>Determinant:</strong> square $\det=0 \iff$ rank $<n$.</li>
+      <li><strong>Determinant:</strong> square $\det=0 \iff$ rank $&lt;n$.</li>
       <li><strong>Linear equations:</strong> compare $\operatorname{rank}(A)$ with $\operatorname{rank}([A|b])$ to count solutions.</li>
       <li><strong>Four fundamental subspaces:</strong> column/row spaces have dim = rank; null spaces use nullity.</li>
     </ul>
@@ -182,7 +182,7 @@
     <div class="practice">
       <p class="pq">Q6. $A$ is $3\times3$ with $\det(A)=0$. What can you say (and not say) about its rank?</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">Rank $<3$ (singular, dependent columns, $Ax=0$ has non-trivial solutions). You can't pin the exact rank — it could be 0, 1, or 2 without more info.</div>
+      <div class="ans">Rank $&lt;3$ (singular, dependent columns, $Ax=0$ has non-trivial solutions). You can't pin the exact rank — it could be 0, 1, or 2 without more info.</div>
     </div>
     <h3>Quick MCQ</h3>
     <div class="quiz-card">

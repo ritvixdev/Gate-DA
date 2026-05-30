@@ -35,16 +35,16 @@
       <p>Take a rubber unit square (area 1) and push it through the matrix portal.
         <strong>$|\det|$ = the area of the squished/stretched shape.</strong> $\det=2$ → area doubles;
         $\det=\tfrac12$ → area halves; $\det=0$ → it collapses to a line (info lost, not invertible);
-        $\det<0$ → space got mirror-flipped.</p>
+        $\det&lt;0$ → space got mirror-flipped.</p>
     </div>
     <p>The sign is about <strong>orientation</strong>:</p>
     <ul class="styled">
-      <li>$\det>0$ → orientation preserved (rotation/stretch, no mirror).</li>
-      <li>$\det<0$ → orientation flipped (a reflection happened).</li>
+      <li>$\det&gt;0$ → orientation preserved (rotation/stretch, no mirror).</li>
+      <li>$\det&lt;0$ → orientation flipped (a reflection happened).</li>
       <li>$\det=0$ → space collapsed to a line/point; columns are dependent.</li>
     </ul>
     <p>In 2-D the two columns of $A$ form a parallelogram, and $\det$ is its <em>signed</em> area.
-      Play with the Matrix Transformer: the shaded square is $|\det|$, it turns coral when $\det<0$,
+      Play with the Matrix Transformer: the shaded square is $|\det|$, it turns coral when $\det&lt;0$,
       and the <em>Singular</em> preset collapses it to a line ($\det=0$).</p>
   </section>
 
@@ -175,7 +175,7 @@
       <p>$\det(A)\neq0 \iff A^{-1}$ exists $\iff \operatorname{rank}(A)=n \iff$ columns are independent $\iff Ax=0$ has only $x=0 \iff Ax=b$ has a unique solution.</p>
     </div>
     <ul class="styled">
-      <li><strong>Rank:</strong> square $\det=0 \iff$ rank $<n$ (dependent columns).</li>
+      <li><strong>Rank:</strong> square $\det=0 \iff$ rank $&lt;n$ (dependent columns).</li>
       <li><strong>Eigenvalues:</strong> $\det=\prod\lambda$; a zero eigenvalue ⇒ $\det=0$.</li>
       <li><strong>Trace:</strong> don't confuse — trace is the <em>sum</em> of the diagonal/eigenvalues; det is the <em>product</em>.</li>
       <li><strong>Linear equations:</strong> $\det\neq0$ ⇒ unique solution; $\det=0$ ⇒ none or infinite (check ranks).</li>

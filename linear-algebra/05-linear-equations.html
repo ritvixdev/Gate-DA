@@ -59,7 +59,7 @@
     <div class="sec-head"><span class="sec-num">6</span> Main rule (the decider)</div>
     <div class="formula">$$ r \neq r' \;\Rightarrow\; \textbf{no solution} $$</div>
     <div class="formula">$$ r = r' = n \;\Rightarrow\; \textbf{unique solution} $$</div>
-    <div class="formula">$$ r = r' < n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} \ \ (n-r \text{ free variables}) $$</div>
+    <div class="formula">$$ r = r' &lt; n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} \ \ (n-r \text{ free variables}) $$</div>
   </section>
 
   <section class="concept-card">
@@ -78,7 +78,7 @@
     <div class="callout example">
       <div class="callout-label">✦ Solve $x+2y=5,\ 2x+4y=10$</div>
       <p>$\left[\begin{array}{cc|c}1&2&5\\2&4&10\end{array}\right]\xrightarrow{R_2-2R_1}\left[\begin{array}{cc|c}1&2&5\\0&0&0\end{array}\right]$</p>
-      <p>$r=r'=1<2$ ⇒ infinitely many solutions. $y$ is free; $x=5-2y$.</p>
+      <p>$r=r'=1&lt;2$ ⇒ infinitely many solutions. $y$ is free; $x=5-2y$.</p>
     </div>
   </section>
 
@@ -88,7 +88,7 @@
       <div class="callout-label">⚡ High-value facts</div>
       <ul>
         <li>Homogeneous $Ax=0$ <strong>always</strong> has the trivial solution $x=0$.</li>
-        <li>$Ax=0$ has non-trivial solutions $\iff \operatorname{rank}(A)<n \iff \det A=0$ (square).</li>
+        <li>$Ax=0$ has non-trivial solutions $\iff \operatorname{rank}(A)&lt;n \iff \det A=0$ (square).</li>
         <li>Square system has a unique solution for every $b$ $\iff \det A\neq0$.</li>
         <li>General solution $=$ one particular solution $+$ any null-space vector: $x=x_p+x_h$.</li>
         <li><strong>Cramer's rule</strong> (small square systems, $\det A\neq0$): $x_i=\dfrac{\det(A_i)}{\det(A)}$, where $A_i$ is $A$ with column $i$ replaced by $b$. Clean but costly — use Gaussian elimination for big systems.</li>
@@ -126,12 +126,12 @@
     <div class="practice">
       <p class="pq">Q2. $r=r'=2$, $n=4$. How many solutions?</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">$r=r'<n$ ⇒ infinitely many, with $4-2=2$ free variables.</div>
+      <div class="ans">$r=r'&lt;n$ ⇒ infinitely many, with $4-2=2$ free variables.</div>
     </div>
     <div class="practice">
       <p class="pq">Q3. When does $Ax=0$ (square $A$) have a non-trivial solution?</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">When $\det A=0$ (equivalently $\operatorname{rank}<n$).</div>
+      <div class="ans">When $\det A=0$ (equivalently $\operatorname{rank}&lt;n$).</div>
     </div>
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -154,8 +154,8 @@
     <div class="memory-box">
       <div class="callout-label">🧠 Remember</div>
       <ul>
-        <li>$r\neq r'$ → none; $r=r'=n$ → unique; $r=r'<n$ → infinite ($n-r$ free).</li>
-        <li>$Ax=0$ always has $x=0$; non-trivial iff $\operatorname{rank}<n$ iff $\det=0$.</li>
+        <li>$r\neq r'$ → none; $r=r'=n$ → unique; $r=r'&lt;n$ → infinite ($n-r$ free).</li>
+        <li>$Ax=0$ always has $x=0$; non-trivial iff $\operatorname{rank}&lt;n$ iff $\det=0$.</li>
         <li>General solution $x=x_p+x_h$ (particular + null space).</li>
         <li>Solve by Gaussian elimination on $[A\,|\,b]$.</li>
       </ul>
