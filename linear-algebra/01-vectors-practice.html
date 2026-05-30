@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vectors — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 1</span>
+    <h1>Vectors &amp; Spaces</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. Which set is <em>not</em> a subspace of $\mathbb{R}^2$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="D"><span class="opt-letter">A</span> $\{(x,y):2x-y=0\}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="D"><span class="opt-letter">B</span> $\{(0,0)\}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="D"><span class="opt-letter">C</span> $\mathbb{R}^2$</button>
+      <button class="quiz-opt" data-val="D" data-correct="D"><span class="opt-letter">D</span> $\{(x,y):x+y=1\}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A line <em>through the origin</em> — contains $0$ and is closed. It <b>is</b> a subspace.</div>
+    <div class="quiz-feedback" data-fb="B">The trivial subspace $\{0\}$ — it <b>is</b> a subspace.</div>
+    <div class="quiz-feedback" data-fb="C">$\mathbb{R}^2$ is a subspace of itself.</div>
+    <div class="quiz-feedback" data-fb="D">✅ Correct — $x+y=1$ excludes $(0,0)$, so it can't be a subspace.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. $\dim\big(\operatorname{span}\{(1,2,3),(2,4,6)\}\big)=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> 1</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> 2</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> 3</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> 0</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — the second vector is $2\times$ the first, so they're parallel; the span is a line.</div>
+    <div class="quiz-feedback" data-fb="B">They're dependent (one is a multiple of the other), so the span is 1-D, not 2-D.</div>
+    <div class="quiz-feedback" data-fb="C">Two vectors span at most 2-D, and here they're dependent → 1-D.</div>
+    <div class="quiz-feedback" data-fb="D">Both vectors are non-zero, so the span is at least 1-D.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. In $\mathbb{R}^3$, how many vectors can be linearly independent at most?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 1</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 2</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 3</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> infinitely many</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Too few — the standard basis already gives 3 independent vectors.</div>
+    <div class="quiz-feedback" data-fb="B">In $\mathbb{R}^3$ you can have 3 (e.g. the axes).</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\dim(\mathbb{R}^n)=n$, so at most $n=3$; any 4 vectors are dependent.</div>
+    <div class="quiz-feedback" data-fb="D">Impossible — more than $n$ vectors in $\mathbb{R}^n$ are always dependent.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. Are $(1,0),(0,1),(4,5)$ linearly independent?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> Independent</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> Dependent</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> Can't tell</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> Only if $(4,5)=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">No — 3 vectors in $\mathbb{R}^2$ can't all be independent.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — 3 vectors in $\mathbb{R}^2$ ($>n$) are always dependent. Indeed $(4,5)=4(1,0)+5(0,1)$.</div>
+    <div class="quiz-feedback" data-fb="C">You can tell instantly: count $>n$ ⇒ dependent.</div>
+    <div class="quiz-feedback" data-fb="D">Independence doesn't require any vector to be zero.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. A set of vectors is a <strong>basis</strong> when it is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> just spanning</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> just independent</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> independent <em>and</em> spanning</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the largest possible set</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Spanning alone may include redundant vectors.</div>
+    <div class="quiz-feedback" data-fb="B">Independent alone may not reach the whole space.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — a basis is the minimal team: independent <em>and</em> spans.</div>
+    <div class="quiz-feedback" data-fb="D">A basis is minimal, not maximal — no redundant vectors.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. Which is a subspace of $\mathbb{R}^2$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> $\{(x,y):y=3x\}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> $\{(x,y):x\ge0\}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> $\{(x,y):x^2+y^2=1\}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> $\{(x,y):xy=0\}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✅ Correct — a line through the origin; contains $0$ and is closed under $+$ and scaling.</div>
+    <div class="quiz-feedback" data-fb="B">A half-plane isn't closed under scaling by $-1$ — not a subspace.</div>
+    <div class="quiz-feedback" data-fb="C">A circle doesn't contain $(0,0)$ — not a subspace.</div>
+    <div class="quiz-feedback" data-fb="D">The two axes together aren't closed under addition (e.g. $(1,0)+(0,1)$).</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. $(5,7)$ as a linear combination of $(1,0)$ and $(0,1)$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $7(1,0)+5(0,1)$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $5(1,0)+7(0,1)$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $5(1,0)-7(0,1)$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> impossible</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Coefficients are swapped — that gives $(7,5)$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the coefficients are exactly the components: $(5,7)=5(1,0)+7(0,1)$.</div>
+    <div class="quiz-feedback" data-fb="C">That gives $(5,-7)$.</div>
+    <div class="quiz-feedback" data-fb="D">The standard basis spans $\mathbb{R}^2$, so every vector is such a combination.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. What is $\dim(\mathbb{R}^5)$?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 1</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 4</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> infinite</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's a line, not all of $\mathbb{R}^5$.</div>
+    <div class="quiz-feedback" data-fb="B">Off by one — the standard basis has 5 vectors.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\dim(\mathbb{R}^n)=n$, so $\dim(\mathbb{R}^5)=5$.</div>
+    <div class="quiz-feedback" data-fb="D">$\mathbb{R}^5$ is finite-dimensional with dimension 5.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="01-vectors.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

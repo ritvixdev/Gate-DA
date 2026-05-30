@@ -55,6 +55,7 @@
   function buildChrome() {
     var body = document.body;
     var slug = body.getAttribute("data-topic");      // e.g. "03-determinants" or null
+    var page = body.getAttribute("data-page");        // e.g. "symbols" | "practice" | null
     var root = body.getAttribute("data-root") || ".";  // path back to site root
     var topics = window.LA_TOPICS || [];
     var laRoot = root + "/linear-algebra";
@@ -94,6 +95,11 @@
         "</div>" +
         '<div class="nav-section-label">Topics</div>' +
         links +
+        '<div class="nav-section-label">Reference</div>' +
+        '<a class="topic-link' + (page === "symbols" ? " active" : "") + '" href="' + laRoot + '/symbols.html">' +
+          '<span class="topic-ico">🔣</span><span>Symbols glossary</span></a>' +
+        '<a class="topic-link' + (page === "practice" ? " active" : "") + '" href="' + laRoot + '/practice.html">' +
+          '<span class="topic-ico">🎯</span><span>Practice questions</span></a>' +
         '<div class="sidebar-footer">' +
           '<a href="' + root + '/index.html">← All subjects</a>' +
         "</div>" +
@@ -112,10 +118,16 @@
     var main = document.querySelector("[data-content]");
     var inner = main ? main.innerHTML : "";
 
+    // Topic pages get an auto practice CTA before the nav row.
+    var practiceCTA = current
+      ? '<div class="cta-band"><span class="cta-title">Test yourself on ' + current.name + '</span>' +
+        '<a class="btn btn-secondary" href="' + laRoot + "/" + slug + '-practice.html">🎯 Practice questions →</a></div>'
+      : "";
+
     var shell =
       '<div class="app">' + sidebar +
         '<div class="main">' + topbar +
-          '<main class="content" id="content">' + inner + buildNav(slug, topics, laRoot) + "</main>" +
+          '<main class="content" id="content">' + inner + practiceCTA + buildNav(slug, topics, laRoot) + "</main>" +
           '<footer class="site-footer">GATE DA · Linear Algebra · Theme by <a href="https://getdesign.app">getdesign · claude</a></footer>' +
         "</div>" +
       "</div>" +

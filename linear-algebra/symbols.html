@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symbols Glossary · GATE DA Linear Algebra</title>
+<meta name="description" content="Every math symbol used in GATE DA Linear Algebra — how to read it, what it means, and a quick example.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-page="symbols" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>Symbols Glossary</h1>
+    <p class="lede">Stuck on a symbol? Every notation used across these Linear Algebra notes —
+      how to <em>say</em> it, what it <em>means</em>, and a tiny example.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Sets &amp; vectors</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>$v,\ u,\ w$</td><td>"vee, you, double-u"</td><td>vectors (arrows / ordered lists)</td><td>$v=(3,1)$</td></tr>
+      <tr><td>$c,\ d$</td><td>"see, dee"</td><td>scalars (ordinary numbers)</td><td>$c=2$</td></tr>
+      <tr><td>$\mathbb{R}$</td><td>"R"</td><td>the real numbers</td><td>$2,\ -3,\ \sqrt2$</td></tr>
+      <tr><td>$\mathbb{R}^n$</td><td>"R n"</td><td>all vectors with $n$ real components</td><td>$\mathbb{R}^2$ = the plane</td></tr>
+      <tr><td>$\in,\ \notin$</td><td>"belongs to / not in"</td><td>membership in a set</td><td>$(1,2)\in\mathbb{R}^2$</td></tr>
+      <tr><td>$\subset$</td><td>"subset of"</td><td>one set sits inside another</td><td>line $\subset\mathbb{R}^2$</td></tr>
+      <tr><td>$0$</td><td>"zero vector"</td><td>the all-zeros vector (origin)</td><td>$0=(0,0)$</td></tr>
+      <tr><td>$\operatorname{span}\{\dots\}$</td><td>"span of"</td><td>all linear combinations of the set</td><td>$\operatorname{span}\{(1,0),(0,1)\}=\mathbb{R}^2$</td></tr>
+      <tr><td>$\dim(V)$</td><td>"dim of V"</td><td>dimension = size of a basis</td><td>$\dim(\mathbb{R}^3)=3$</td></tr>
+      <tr><td>$\|v\|$</td><td>"norm of v"</td><td>length of a vector $=\sqrt{v\cdot v}$</td><td>$\|(3,4)\|=5$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Matrix notation</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>$A,\ B$</td><td>"A, B"</td><td>matrices (transformation machines)</td><td>$A=\begin{bmatrix}1&2\\3&4\end{bmatrix}$</td></tr>
+      <tr><td>$a_{ij}$</td><td>"a i j"</td><td>entry in row $i$, column $j$</td><td>$a_{21}=3$ above</td></tr>
+      <tr><td>$m\times n$</td><td>"m by n"</td><td>$m$ rows, $n$ columns</td><td>$2\times3$</td></tr>
+      <tr><td>$I$</td><td>"identity"</td><td>does nothing: $AI=IA=A$</td><td>$I_2=\begin{bmatrix}1&0\\0&1\end{bmatrix}$</td></tr>
+      <tr><td>$O$</td><td>"zero matrix"</td><td>all entries zero; $Ov=0$</td><td>—</td></tr>
+      <tr><td>$A^{\mathsf T}$</td><td>"A transpose"</td><td>rows ↔ columns</td><td>$(A^{\mathsf T})_{ij}=a_{ji}$</td></tr>
+      <tr><td>$A^{-1}$</td><td>"A inverse"</td><td>the undo matrix; $AA^{-1}=I$</td><td>exists iff $\det A\neq0$</td></tr>
+      <tr><td>$\operatorname{tr}(A)$</td><td>"trace of A"</td><td>sum of the diagonal $=\sum\lambda_i$</td><td>$\operatorname{tr}I_3=3$</td></tr>
+      <tr><td>$\det(A),\ |A|$</td><td>"determinant of A"</td><td>area/volume scale; $0$ ⇒ singular</td><td>$\det\begin{bmatrix}1&2\\3&4\end{bmatrix}=-2$</td></tr>
+      <tr><td>$\operatorname{rank}(A)$</td><td>"rank of A"</td><td>number of independent directions kept</td><td>$\operatorname{rank}(I_3)=3$</td></tr>
+      <tr><td>$N(A)$</td><td>"null space"</td><td>all $x$ with $Ax=0$</td><td>nullity $=n-\operatorname{rank}$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Operations &amp; relations</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>$u\cdot v,\ u^{\mathsf T}v$</td><td>"u dot v"</td><td>dot product (a number); $0$ ⇒ perpendicular</td><td>$(1,0)\cdot(0,1)=0$</td></tr>
+      <tr><td>$\perp$</td><td>"perp"</td><td>perpendicular (right angle)</td><td>row space $\perp$ null space</td></tr>
+      <tr><td>$\sum$</td><td>"sigma / sum"</td><td>add up a series</td><td>$\sum_{i}a_{ii}=\operatorname{tr}(A)$</td></tr>
+      <tr><td>$\prod$</td><td>"pi / product"</td><td>multiply a series</td><td>$\det A=\prod\lambda_i$</td></tr>
+      <tr><td>$\Rightarrow$</td><td>"implies"</td><td>if … then …</td><td>$\det A\neq0\Rightarrow A^{-1}$ exists</td></tr>
+      <tr><td>$\iff$</td><td>"if and only if"</td><td>both directions true (equivalent)</td><td>invertible $\iff \det\neq0$</td></tr>
+      <tr><td>$\le,\ \ne$</td><td>"at most / not equal"</td><td>comparison</td><td>$\operatorname{rank}\le\min(m,n)$</td></tr>
+      <tr><td>$\sqrt{\ }$</td><td>"square root"</td><td>root</td><td>$\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Greek letters &amp; decompositions</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th><th>Used in</th></tr>
+      <tr><td>$\lambda$</td><td>"lambda"</td><td>eigenvalue (stretch factor)</td><td>$Ax=\lambda x$</td></tr>
+      <tr><td>$\sigma$</td><td>"sigma"</td><td>singular value ($\ge0$)</td><td>SVD</td></tr>
+      <tr><td>$\Sigma$</td><td>"capital sigma"</td><td>diagonal matrix of singular values</td><td>$A=U\Sigma V^{\mathsf T}$</td></tr>
+      <tr><td>$\beta$</td><td>"beta"</td><td>parameter / coefficient vector</td><td>regression $X\beta=y$</td></tr>
+      <tr><td>$Q$</td><td>"Q"</td><td>orthogonal matrix ($Q^{\mathsf T}Q=I$)</td><td>orthogonality, $QR$</td></tr>
+      <tr><td>$P,\ D$</td><td>"P, D"</td><td>eigenvectors / diagonal eigenvalues</td><td>$A=PDP^{-1}$</td></tr>
+      <tr><td>$U,\ V$</td><td>"U, V"</td><td>orthogonal singular-vector matrices</td><td>$A=U\Sigma V^{\mathsf T}$</td></tr>
+      <tr><td>$\hat{\imath},\ \hat{\jmath}$</td><td>"i-hat, j-hat"</td><td>standard basis arrows $(1,0),(0,1)$</td><td>matrix columns</td></tr>
+    </table></div>
+  </section>
+
+  <div class="cta-band">
+    <span class="cta-title">Ready to practice?</span>
+    <a class="btn btn-secondary" href="practice.html">🎯 Practice questions →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
