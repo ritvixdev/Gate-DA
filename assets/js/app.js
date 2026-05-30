@@ -8,7 +8,6 @@
   document.documentElement.classList.remove("no-js");
 
   var THEME_KEY = "gateda:theme";
-  var VISITED_KEY = "gateda:la:visited";
   var BRAND_MARK =
     '<svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">' +
     '<path fill="currentColor" d="M12 1.5l1.9 6.7 6.6-2-4 5.8 4 5.8-6.6-2L12 22.5l-1.9-6.7-6.6 2 4-5.8-4-5.8 6.6 2z"/>' +
@@ -40,14 +39,14 @@
   // Apply ASAP to avoid flash.
   applyTheme(getInitialTheme());
 
-  // ---- Progress (localStorage) ------------------------------
-  function getVisited() {
-    try { return JSON.parse(localStorage.getItem(VISITED_KEY)) || []; } catch (e) { return []; }
+  // ---- Progress (localStorage, per subject) -----------------
+  function getVisited(key) {
+    try { return JSON.parse(localStorage.getItem(key)) || []; } catch (e) { return []; }
   }
-  function markVisited(slug) {
-    if (!slug) return getVisited();
-    var v = getVisited();
-    if (v.indexOf(slug) === -1) { v.push(slug); try { localStorage.setItem(VISITED_KEY, JSON.stringify(v)); } catch (e) {} }
+  function markVisited(key, slug) {
+    if (!slug) return getVisited(key);
+    var v = getVisited(key);
+    if (v.indexOf(slug) === -1) { v.push(slug); try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
     return v;
   }
 
@@ -57,10 +56,13 @@
     var slug = body.getAttribute("data-topic");      // e.g. "03-determinants" or null
     var page = body.getAttribute("data-page");        // e.g. "symbols" | "practice" | null
     var root = body.getAttribute("data-root") || ".";  // path back to site root
-    var topics = window.LA_TOPICS || [];
-    var laRoot = root + "/linear-algebra";
+    var subject = body.getAttribute("data-subject") || "linear-algebra";
+    var cfg = (window.SUBJECTS || {})[subject] || {};
+    var topics = cfg.topics || window.LA_TOPICS || [];
+    var laRoot = root + "/" + (cfg.dir || "linear-algebra");  // subject root
+    var visitedKey = "gateda:" + subject + ":visited";
 
-    var visited = slug ? markVisited(slug) : getVisited();
+    var visited = slug ? markVisited(visitedKey, slug) : getVisited(visitedKey);
     var current = topics.filter(function (t) { return t.slug === slug; })[0];
 
     // Sidebar topic links
@@ -85,7 +87,7 @@
       '<aside class="sidebar" id="sidebar">' +
         '<div class="sidebar-header">' +
           '<a class="brand" href="' + laRoot + '/index.html">' + BRAND_MARK +
-            '<span class="brand-text">Linear<span>Algebra</span></span>' +
+            '<span class="brand-text">' + (cfg.brandHtml || 'Linear<span>Algebra</span>') + "</span>" +
           "</a>" +
           '<div class="brand-sub">GATE DA · Complete Guide</div>' +
           '<div class="progress-wrap">' +
@@ -108,7 +110,7 @@
     var topbar =
       '<header class="topbar">' +
         '<button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>' +
-        '<span class="topbar-title">' + (current ? current.name : "Linear Algebra") + "</span>" +
+        '<span class="topbar-title">' + (current ? current.name : (cfg.name || "Linear Algebra")) + "</span>" +
         '<div class="topbar-actions">' +
           '<button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>' +
         "</div>" +

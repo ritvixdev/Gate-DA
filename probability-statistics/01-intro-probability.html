@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Introduction to Probability · GATE DA</title>
+<meta name="description" content="Learn probability from zero: sample space, events, axioms, addition rule — simple language, GATE shortcuts, traps, practice, and a live probability simulator.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="01-intro-probability" data-content>
+  <!-- 1 -->
+  <div class="hero">
+    <span class="tag">Topic 1 · GATE weight: Very High</span>
+    <h1>Introduction to<br>Probability</h1>
+    <p class="lede">Probability is just a number between 0 and 1 that measures how likely something is.
+      Master the language here and every later topic — distributions, Bayes, testing — follows.</p>
+  </div>
+
+  <!-- 2 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>The world is uncertain — a coin, a customer's choice, a measurement error. Probability gives us
+      a <strong>number for "how likely"</strong> so we can reason about uncertainty instead of guessing.</p>
+    <p>It's the foundation of all of statistics and machine learning: every model that estimates,
+      predicts, or is "confident" is built on the rules you learn here.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Sample space</strong> = a bag holding every possible outcome.<br>
+         <strong>Event</strong> = grab a handful (a subset of outcomes you care about).<br>
+         <strong>Probability</strong> = the fraction of the bag your handful covers.<br>
+         Roll a fair die: the bag is $\{1,2,3,4,5,6\}$; the event "even" is $\{2,4,6\}$, which is half the bag → $P=\tfrac12$.</p>
+    </div>
+    <p>Probability is the <em>long-run</em> fraction. Flip a coin a few times and it's noisy; flip it
+      thousands of times and the fraction settles on the true value. Try it — roll the die below and
+      watch each bar approach the teal "theoretical" line.</p>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Probability Simulator</span>
+      <span class="viz-hint">Bars approach the theoretical line as trials grow</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="prob-sim"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn" id="ps-coin">Coin</button>
+        <button class="preset-btn active" id="ps-die">Die</button>
+      </div>
+      <div class="viz-presets">
+        <button class="preset-btn" id="ps-roll1">+1</button>
+        <button class="preset-btn" id="ps-roll100">+100</button>
+        <button class="preset-btn" id="ps-roll1000">+1000</button>
+        <button class="preset-btn" id="ps-reset">Reset</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="prob-sim-readout"></div>
+  </div>
+
+  <!-- 4 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Random experiment:</strong> a process with an uncertain outcome (a die roll).</p>
+    <p><strong>Sample space $S$:</strong> the set of all possible outcomes. <strong>Outcome:</strong> one element of $S$.</p>
+    <p><strong>Event:</strong> a subset of $S$ (a collection of outcomes). <strong>$P(A)$:</strong> the probability of event $A$.</p>
+    <p><strong>Equally likely:</strong> every outcome has the same chance (a <em>fair</em> die/coin).</p>
+    <p><strong>Complement $A^c$:</strong> "$A$ does not happen". <strong>Mutually exclusive:</strong> $A$ and $B$ can't both happen ($A\cap B=\varnothing$). <strong>Exhaustive:</strong> events that together cover all of $S$.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$S$ (or $\Omega$)</td><td>"S / omega"</td><td>sample space (all outcomes)</td></tr>
+      <tr><td>$A,\ B$</td><td>"A, B"</td><td>events (subsets of $S$)</td></tr>
+      <tr><td>$P(A)$</td><td>"P of A"</td><td>probability of $A$, between 0 and 1</td></tr>
+      <tr><td>$A^c$ (or $A'$)</td><td>"A complement"</td><td>$A$ does not occur</td></tr>
+      <tr><td>$A\cup B$</td><td>"A union B"</td><td>$A$ <em>or</em> $B$ (at least one)</td></tr>
+      <tr><td>$A\cap B$</td><td>"A intersect B"</td><td>$A$ <em>and</em> $B$ (both)</td></tr>
+      <tr><td>$\varnothing$</td><td>"empty set"</td><td>impossible event, $P=0$</td></tr>
+      <tr><td>$|A|$</td><td>"size of A"</td><td>number of outcomes in $A$</td></tr>
+    </table></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p><strong>Classical (equally likely) probability:</strong></p>
+    <div class="formula">$$ P(A)=\frac{\text{favorable outcomes}}{\text{total outcomes}}=\frac{|A|}{|S|} $$</div>
+    <p><strong>Axioms (Kolmogorov):</strong> $0\le P(A)\le 1$, &nbsp; $P(S)=1$, &nbsp; and for disjoint events probabilities add.</p>
+    <div class="formula">$$ P(A^c)=1-P(A) \qquad P(A\cup B)=P(A)+P(B)-P(A\cap B) $$</div>
+    <p>If $A$ and $B$ are mutually exclusive, $P(A\cap B)=0$, so $P(A\cup B)=P(A)+P(B)$.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Write the sample space $S$ and count its size $|S|$.</li>
+      <li>Describe the event $A$ as a set of outcomes; count $|A|$.</li>
+      <li>For a single event use $P(A)=|A|/|S|$.</li>
+      <li>For "$A$ or $B$", use the addition rule (subtract the overlap).</li>
+      <li>For "at least one", it's often easier to use the complement: $1-P(\text{none})$.</li>
+    </ol>
+  </section>
+
+  <!-- 8 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked examples</div>
+    <div class="callout example">
+      <div class="callout-label">✦ One die</div>
+      <p>$S=\{1,2,3,4,5,6\}$, so $|S|=6$. Event "even" $=\{2,4,6\}$ → $P=\tfrac{3}{6}=\tfrac12$.
+        Event "greater than 4" $=\{5,6\}$ → $P=\tfrac{2}{6}=\tfrac13$.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">✦ Two dice — sum equals 7</div>
+      <p>$|S|=36$. Favorable: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$ → 6 ways. $P=\tfrac{6}{36}=\tfrac16$.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">✦ Addition rule</div>
+      <p>One card from 52: $P(\text{King or Heart})=P(K)+P(H)-P(K\cap H)=\tfrac{4}{52}+\tfrac{13}{52}-\tfrac{1}{52}=\tfrac{16}{52}=\tfrac{4}{13}$.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Equally likely ⇒ probability is just <strong>counting</strong>: favorable ÷ total.</li>
+        <li>"At least one" → use the complement: $1-P(\text{none})$ (huge time-saver).</li>
+        <li>Addition rule always subtracts the overlap: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
+        <li>All outcome probabilities sum to $1$; a valid probability is always in $[0,1]$.</li>
+        <li>Mutually exclusive means they <em>can't co-occur</em> — not the same as independent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Mutually exclusive = independent." <span class="right">Reality:</span> opposite, really — if disjoint events both have $P\gt 0$, they are <em>dependent</em> (one happening rules the other out).</p>
+      <p><span class="wrong">Trap:</span> "$P(A\cup B)=P(A)+P(B)$ always." <span class="right">Reality:</span> only if disjoint; otherwise subtract $P(A\cap B)$.</p>
+      <p><span class="wrong">Trap:</span> "Probability can exceed 1." <span class="right">Reality:</span> never — $0\le P\le 1$.</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Conditional &amp; Bayes:</strong> updating probability once you know extra information.</li>
+      <li><strong>Random variables:</strong> attach numbers to outcomes so we can average them.</li>
+      <li><strong>Distributions:</strong> the full list of probabilities over all outcomes.</li>
+      <li><strong>Statistics:</strong> probability run in reverse — infer the unknown chance from data.</li>
+    </ul>
+  </section>
+
+  <!-- 12 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. A fair die is rolled. $P(\text{odd})=?$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Odd $=\{1,3,5\}$ → $\tfrac{3}{6}=\tfrac12$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Two fair coins. $P(\text{at least one head})=?$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Use complement: $1-P(\text{no heads})=1-\tfrac14=\tfrac34$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. $P(A)=0.5,\ P(B)=0.4,\ P(A\cap B)=0.2$. Find $P(A\cup B)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$0.5+0.4-0.2=0.7$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. Two dice. $P(\text{sum}=7)$ vs $P(\text{sum}=2)$ — which is larger?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Sum 7 has 6 ways ($\tfrac{6}{36}$); sum 2 has 1 way ($\tfrac{1}{36}$). Sum 7 is larger.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. If $P(A)=0.3$, what is $P(A^c)$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$1-0.3=0.7$.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">For events with $P(A)=0.6,\ P(B)=0.5,\ P(A\cap B)=0.3$, what is $P(A\cup B)$?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $1.1$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $0.3$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $0.8$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $0.9$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's $P(A)+P(B)$ — you forgot to subtract the overlap.</div>
+      <div class="quiz-feedback" data-fb="B">That's just the intersection.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $0.6+0.5-0.3=0.8$.</div>
+      <div class="quiz-feedback" data-fb="D">Close, but subtract the full overlap $0.3$, giving $0.8$.</div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Sample space = bag of outcomes; event = subset; $P(A)=|A|/|S|$.</li>
+        <li>$0\le P\le 1$, $P(S)=1$, $P(A^c)=1-P(A)$.</li>
+        <li>Addition rule: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
+        <li>"At least one" → $1-P(\text{none})$.</li>
+        <li>Mutually exclusive $\ne$ independent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/prob-sim.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

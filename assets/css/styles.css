@@ -291,6 +291,10 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
 .chip-teal { color: var(--teal-text); border-color: var(--teal-border); background: var(--teal-bg); }
 .chip-amber { color: var(--amber-text); border-color: var(--amber-border); background: var(--amber-bg); }
 
+/* Chart-shaped canvas (Probability labs) — wide, not square */
+.viz-canvas-wrap.chart { aspect-ratio: auto; height: 300px; max-width: none; }
+@media (min-width: 900px) { .viz-canvas-wrap.chart { max-width: none; } }
+
 /* ---------------------------------------------------------- *
  * Lesson sections (13-section template)
  * ---------------------------------------------------------- */
