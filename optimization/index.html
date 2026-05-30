@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Optimization · GATE DA</title>
+<meta name="description" content="Complete Optimization guide for GATE DA — types of optimization, univariate & multivariate unconstrained optimization, and gradient descent, with an interactive lab.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-content>
+  <div class="hero">
+    <span class="tag">Subject · Mathematics</span>
+    <h1>Optimization<br>for GATE DA</h1>
+    <p class="lede">Every model "learns" by minimizing something. This subject is how — finding the
+      lowest point of a function, by calculus and by <strong>gradient descent</strong>, with a lab where
+      you watch it roll downhill.</p>
+  </div>
+
+  <div class="concept-card">
+    <div class="card-title"><span class="card-ico">🎯</span> Why it matters</div>
+    <p>Optimization is the engine of machine learning: training = minimizing a loss. GATE DA tests the
+      core ideas — finding minima with derivatives, the role of the gradient and Hessian, and how
+      <strong>gradient descent</strong> steps toward the answer.</p>
+    <div class="chips">
+      <span class="chip chip-coral">Minima &amp; maxima</span>
+      <span class="chip chip-teal">Gradient</span>
+      <span class="chip chip-amber">Hessian</span>
+      <span class="chip">Gradient descent</span>
+    </div>
+    <p style="margin-top:var(--s-md)"><a class="btn btn-primary" href="01-types-of-optimization.html">Start Topic 1 →</a></p>
+  </div>
+
+  <h3>All topics</h3>
+  <div class="topic-grid">
+    <a class="topic-card" href="01-types-of-optimization.html"><span class="card-eyebrow">Topic 1 · High</span><span class="card-name">🧭 Types of Optimization</span><span class="card-desc">Objective, minima/maxima, local vs global, convex vs non-convex, constrained vs unconstrained.</span></a>
+    <a class="topic-card" href="02-univariate.html"><span class="card-eyebrow" style="display:flex;align-items:center;gap:8px">Topic 2 <span class="badge badge-coral">Very High</span></span><span class="card-name">📉 Univariate Optimization</span><span class="card-desc">One variable: set $f'(x)=0$, second-derivative test.</span></a>
+    <a class="topic-card" href="03-multivariate.html"><span class="card-eyebrow" style="display:flex;align-items:center;gap:8px">Topic 3 <span class="badge badge-coral">Very High</span></span><span class="card-name">🗺️ Multivariate Optimization</span><span class="card-desc">Gradient $=0$, the Hessian and its definiteness.</span></a>
+    <a class="topic-card" href="04-gradient-descent.html"><span class="card-eyebrow" style="display:flex;align-items:center;gap:8px">Topic 4 <span class="badge badge-coral">Very High</span></span><span class="card-name">⛰️ Gradient Descent</span><span class="card-desc">The iterative downhill algorithm, learning rate, convergence. Includes the GD Lab.</span></a>
+  </div>
+
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

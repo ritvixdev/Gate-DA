@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Types of Optimization · GATE DA</title>
+<meta name="description" content="Types of optimization from zero: objective functions, minima/maxima, local vs global, convex vs non-convex, constrained vs unconstrained — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-topic="01-types-of-optimization" data-content>
+  <div class="hero">
+    <span class="tag">Topic 1 · GATE weight: High</span>
+    <h1>Types of Optimization</h1>
+    <p class="lede">Optimization means finding the <strong>best</strong> value — the lowest (or highest) point of a
+      function. First, learn the vocabulary and the kinds of problems.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Almost every model "learns" by <strong>minimizing</strong> something — a loss, an error, a cost. Before we
+      compute minima, we need the language: what's the objective, what can we change, are there
+      restrictions, and is the landscape friendly (convex) or full of traps (non-convex)?</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>The objective function is a <strong>landscape</strong> of hills and valleys. Optimization = find the
+        <strong>lowest valley</strong> (a minimum). A <strong>convex</strong> problem is a single smooth bowl — wherever you are,
+        roll downhill and you reach the bottom. A <strong>non-convex</strong> one has many valleys, so you can get
+        <strong>stuck in a local one</strong> that isn't the deepest.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Objective (cost) function $f(x)$:</strong> what we minimize or maximize. <strong>Decision variables $x$:</strong> what we're free to change.</p>
+    <p><strong>Global minimum:</strong> the lowest value anywhere. <strong>Local minimum:</strong> lowest only in a small neighborhood.</p>
+    <p><strong>Unconstrained:</strong> $x$ can be anything. <strong>Constrained:</strong> $x$ must satisfy conditions (e.g. $x\ge0$).</p>
+    <p><strong>Convex function:</strong> its graph is a bowl — the line between any two points stays above the curve. <strong>Convex set:</strong> the line between any two feasible points stays feasible.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$f(x)$</td><td>"f of x"</td><td>objective / cost function</td></tr>
+      <tr><td>$x^*$</td><td>"x star"</td><td>the optimal point (minimizer)</td></tr>
+      <tr><td>$\min f$ / $\max f$</td><td>"min / max"</td><td>smallest / largest value</td></tr>
+      <tr><td>$\arg\min f$</td><td>"argmin"</td><td>the $x$ that achieves the min</td></tr>
+      <tr><td>$\nabla f$</td><td>"grad f"</td><td>gradient (slope direction)</td></tr>
+      <tr><td>s.t.</td><td>"subject to"</td><td>introduces constraints</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main idea</div>
+    <div class="formula">$$ \min_{x} \ f(x) \qquad \text{s.t. (optional) constraints} $$</div>
+    <p>Maximizing is the same as minimizing the negative:</p>
+    <div class="formula">$$ \max_x f(x) = -\min_x\big(-f(x)\big) $$</div>
+    <p>So every method for minima also handles maxima — just flip the sign.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: classify a problem</div>
+    <ol class="steps">
+      <li>What is the objective $f(x)$, and are we minimizing or maximizing?</li>
+      <li>What are the decision variables — one ($\mathbb{R}$) or many ($\mathbb{R}^n$)?</li>
+      <li>Any constraints? If none → unconstrained.</li>
+      <li>Is $f$ convex? If yes, any local minimum is the global minimum.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Classify $\min (x-3)^2$</div>
+      <p>Objective $f(x)=(x-3)^2$; one variable; no constraints → <strong>unconstrained univariate</strong>.</p>
+      <p>$f$ is a parabola opening up → <strong>convex</strong>, single bowl. The minimum is at $x^*=3$ with $f=0$, and it's <strong>global</strong>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Maximize $f$ = minimize $-f$ (flip the sign).</li>
+        <li><strong>Convex ⇒ every local minimum is global</strong> (no traps).</li>
+        <li>A sum of convex functions is convex; affine (linear) functions are convex.</li>
+        <li>Linear objective + linear constraints = a Linear Program (LP).</li>
+        <li>Unconstrained means the optimum is found purely from derivatives/gradients.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Local minimum = global minimum." <span class="right">Reality:</span> true only when $f$ is convex; otherwise you can be stuck locally.</p>
+      <p><span class="wrong">Trap:</span> "Convex function and convex set are the same." <span class="right">Reality:</span> one is about the curve's shape, the other about the feasible region.</p>
+      <p><span class="wrong">Trap:</span> "Maximizing needs a different method." <span class="right">Reality:</span> just minimize $-f$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Univariate / multivariate:</strong> the methods that actually find these minima.</li>
+      <li><strong>Gradient descent:</strong> a general algorithm that works even when calculus is hard.</li>
+      <li><strong>Linear algebra:</strong> the Hessian (a matrix) decides if a point is a min, max, or saddle.</li>
+      <li><strong>Machine learning:</strong> training = minimizing a (often non-convex) loss function.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Is $f(x)=x^2$ convex or non-convex?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Convex — an upward parabola (single bowl).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Rewrite "maximize $g(x)$" as a minimization.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Minimize $-g(x)$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. For a convex $f$, is a local minimum guaranteed to be global?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Yes.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. "$\min f(x)$ subject to $x\ge0$" is constrained or unconstrained?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Constrained (there's a restriction on $x$).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">For a <em>convex</em> function, a local minimum is…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> never the global min</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> only sometimes global</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> always the global min</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a maximum</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Opposite — convexity guarantees it.</div>
+      <div class="quiz-feedback" data-fb="B">For convex $f$ it's always global, not sometimes.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — convexity means no local-minimum traps; local = global.</div>
+      <div class="quiz-feedback" data-fb="D">A minimum isn't a maximum.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Objective $f(x)$ = the landscape; optimization = find the lowest valley.</li>
+        <li>$\max f=-\min(-f)$.</li>
+        <li>Convex ⇒ local min is global (single bowl, no traps).</li>
+        <li>Unconstrained = free $x$; constrained = $x$ must satisfy conditions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

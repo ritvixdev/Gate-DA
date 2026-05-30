@@ -33,6 +33,17 @@ window.SUBJECTS = {
       { slug: "09-chi-f-tests",         name: "Chi-square & F-test",     icon: "🧪", weight: "High" },
     ],
   },
+  "optimization": {
+    dir: "optimization",
+    name: "Optimization",
+    brandHtml: 'Opti<span>mization</span>',
+    topics: [
+      { slug: "01-types-of-optimization", name: "Types of Optimization", icon: "🧭", weight: "High" },
+      { slug: "02-univariate",            name: "Univariate Optimization", icon: "📉", weight: "Very High" },
+      { slug: "03-multivariate",          name: "Multivariate Optimization", icon: "🗺️", weight: "Very High" },
+      { slug: "04-gradient-descent",      name: "Gradient Descent",        icon: "⛰️", weight: "Very High" },
+    ],
+  },
 };
 
 /* Back-compat alias (older code / any direct references). */

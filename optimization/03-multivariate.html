@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Multivariate Optimization · GATE DA</title>
+<meta name="description" content="Unconstrained multivariate optimization: gradient = 0, the Hessian and its definiteness, critical points — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-topic="03-multivariate" data-content>
+  <div class="hero">
+    <span class="tag">Topic 3 · GATE weight: Very High</span>
+    <h1>Multivariate Optimization</h1>
+    <p class="lede">Many variables, same idea — but now "slope zero" becomes the <strong>gradient</strong> being zero,
+      and "curvature" becomes a matrix: the <strong>Hessian</strong>.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Real models have many parameters. Optimizing $f(x_1,\dots,x_n)$ needs the multivariable version
+      of the derivative test: set the <strong>gradient</strong> to zero to find candidates, then use the
+      <strong>Hessian</strong> to tell minima from maxima and saddle points.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>The function is a <strong>terrain</strong> over the $(x,y)$ plane. The <strong>gradient $\nabla f$</strong> is an arrow
+        pointing in the steepest-uphill direction; at a peak, valley, or pass it's the zero arrow.
+        A <strong>saddle</strong> is a mountain pass — uphill one way, downhill the other — neither a min nor a max.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Gradient $\nabla f$:</strong> the vector of partial derivatives $\big(\partial f/\partial x_1,\dots\big)$ — steepest-ascent direction.</p>
+    <p><strong>Critical point:</strong> where $\nabla f=0$ (every partial derivative is zero).</p>
+    <p><strong>Hessian $H$:</strong> the matrix of second partial derivatives. <strong>Positive definite</strong> ⇒ minimum; <strong>negative definite</strong> ⇒ maximum; <strong>indefinite</strong> ⇒ saddle.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\nabla f$</td><td>"grad f"</td><td>vector of first partials</td></tr>
+      <tr><td>$\partial f/\partial x_i$</td><td>"partial f partial x i"</td><td>slope in the $x_i$ direction</td></tr>
+      <tr><td>$H$ (or $\nabla^2 f$)</td><td>"Hessian"</td><td>matrix of second partials</td></tr>
+      <tr><td>PD / ND</td><td>"positive/negative definite"</td><td>all eigenvalues $\gt0$ / $\lt0$</td></tr>
+      <tr><td>saddle</td><td>"saddle point"</td><td>$\nabla f=0$ but neither min nor max</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \textbf{Necessary: } \nabla f(x^*)=0 $$</div>
+    <div class="formula">$$ H \succ 0 \Rightarrow \text{min}, \qquad H \prec 0 \Rightarrow \text{max}, \qquad H \text{ indefinite} \Rightarrow \text{saddle} $$</div>
+    <p>Definiteness is read from the Hessian's <strong>eigenvalues</strong>: all positive → min, all negative → max, mixed signs → saddle.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Compute the gradient $\nabla f$ (all first partials).</li>
+      <li>Solve $\nabla f=0$ → critical points.</li>
+      <li>Build the Hessian $H$ (second partials) at each point.</li>
+      <li>Check definiteness via eigenvalues: all $+$ → min, all $-$ → max, mixed → saddle.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ $f(x,y)=x^2+y^2$</div>
+      <p>$\nabla f=(2x,\ 2y)=0 \Rightarrow (x,y)=(0,0)$.</p>
+      <p>$H=\begin{bmatrix}2&0\\0&2\end{bmatrix}$, eigenvalues $2,2\gt0$ → positive definite → <strong>minimum</strong> at the origin.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">✦ A saddle: $f(x,y)=x^2-y^2$</div>
+      <p>$\nabla f=(2x,-2y)=0\Rightarrow(0,0)$. $H=\begin{bmatrix}2&0\\0&-2\end{bmatrix}$, eigenvalues $2,-2$ (mixed) → <strong>saddle</strong>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Critical points: solve $\nabla f=0$.</li>
+        <li>Hessian eigenvalues — all $+$ → min, all $-$ → max, mixed signs → saddle.</li>
+        <li>$2\times2$ Hessian: positive definite iff the top-left entry $\gt0$ <em>and</em> $\det(H)\gt0$.</li>
+        <li>Saddle points have $\det(H)\lt0$.</li>
+        <li>Convex $f$ ⇒ Hessian is positive semi-definite everywhere; any critical point is a global min.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$\nabla f=0$ means a minimum." <span class="right">Reality:</span> could be a max or a saddle — check the Hessian.</p>
+      <p><span class="wrong">Trap:</span> "Positive Hessian entries ⇒ minimum." <span class="right">Reality:</span> need positive <em>definiteness</em> (e.g. $\det(H)\gt0$ too), not just positive entries.</p>
+      <p><span class="wrong">Trap:</span> "Saddles can't have $\nabla f=0$." <span class="right">Reality:</span> they do — that's exactly why the Hessian test is needed.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Univariate:</strong> $f'=0$ generalizes to $\nabla f=0$; $f''$ to the Hessian.</li>
+      <li><strong>Linear algebra:</strong> definiteness = signs of the Hessian's eigenvalues (this subject leans on it).</li>
+      <li><strong>Gradient descent:</strong> follows $-\nabla f$ downhill toward a minimum.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Critical point of $f(x,y)=(x-1)^2+(y+2)^2$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\nabla f=(2(x-1),2(y+2))=0\Rightarrow(1,-2)$; Hessian $=2I$ (PD) → minimum.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Hessian eigenvalues are $3$ and $-1$. What kind of point?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Mixed signs → saddle point.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. $2\times2$ Hessian with top-left $=2$ and $\det(H)=-5$. Min, max, or saddle?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\det(H)\lt0$ → saddle.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If the Hessian at a critical point has eigenvalues $\{4, 2\}$, the point is a…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> maximum</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> saddle</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> minimum</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> inflection</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">A max needs all-negative eigenvalues.</div>
+      <div class="quiz-feedback" data-fb="B">Saddles need mixed signs.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — all eigenvalues positive (PD) → minimum.</div>
+      <div class="quiz-feedback" data-fb="D">Inflection isn't a multivariate classification here.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Critical points: $\nabla f=0$.</li>
+        <li>Hessian eigenvalues: all $+$ → min, all $-$ → max, mixed → saddle.</li>
+        <li>$2\times2$: PD iff top-left $\gt0$ and $\det(H)\gt0$; saddle iff $\det(H)\lt0$.</li>
+        <li>Convex ⇒ critical point is the global minimum.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

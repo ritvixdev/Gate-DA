@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Gradient Descent · GATE DA</title>
+<meta name="description" content="Gradient descent: the iterative downhill algorithm, learning rate, convergence and divergence — with an interactive lab, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-topic="04-gradient-descent" data-content>
+  <div class="hero">
+    <span class="tag">Topic 4 · GATE weight: Very High</span>
+    <h1>Gradient Descent</h1>
+    <p class="lede">When you can't solve $\nabla f=0$ by hand, just <strong>walk downhill</strong>: take small steps in
+      the direction the slope falls fastest. This is how almost all ML models train.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Setting derivatives to zero works on paper, but real loss functions have millions of variables
+      and no closed-form solution. <strong>Gradient descent</strong> finds the minimum <em>iteratively</em> — it's the
+      workhorse algorithm behind training neural networks and most of modern ML.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>You're a ball on a hilly surface in fog — you can only feel the <strong>slope</strong> under your feet.
+        Each step, move a little in the <strong>downhill</strong> direction ($-\nabla f$). The <strong>learning rate</strong> is your
+        step size: too small and you crawl; too big and you overshoot or bounce out; just right and you
+        settle into the valley.</p>
+    </div>
+    <p>Try it: step or run, change the learning rate, and switch to the <em>Double-well</em> to see how a bad
+      start can leave you stuck in a <strong>local</strong> minimum.</p>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Gradient Descent Lab</span>
+      <span class="viz-hint">Watch the point roll downhill</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="gd-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="gd-bowl">Bowl</button>
+        <button class="preset-btn" id="gd-well">Double-well</button>
+      </div>
+      <div class="viz-control"><label>learning rate η <span id="gd-eta-val">0.3</span></label><input type="range" id="gd-eta" min="0.01" max="1.2" step="0.01" value="0.3"></div>
+      <div class="viz-presets">
+        <button class="preset-btn" id="gd-step">Step</button>
+        <button class="preset-btn" id="gd-run">Run</button>
+        <button class="preset-btn" id="gd-reset">Reset</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="gd-lab-readout"></div>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Gradient descent:</strong> repeatedly step against the gradient to reduce $f$.</p>
+    <p><strong>Learning rate $\eta$:</strong> the step-size multiplier (also called step size).</p>
+    <p><strong>Convergence:</strong> the steps settle at a point where $\nabla f\approx0$ (a minimum).</p>
+    <p><strong>Divergence:</strong> if $\eta$ is too big, steps overshoot and $f$ grows instead of shrinking.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$x_k$</td><td>"x sub k"</td><td>the point at step $k$</td></tr>
+      <tr><td>$\eta$</td><td>"eta"</td><td>learning rate (step size)</td></tr>
+      <tr><td>$\nabla f$</td><td>"grad f"</td><td>gradient (uphill direction)</td></tr>
+      <tr><td>$-\nabla f$</td><td>"minus grad f"</td><td>steepest-descent direction</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <div class="formula">$$ x_{k+1} = x_k - \eta\,\nabla f(x_k) $$</div>
+    <p>In one variable this is $x_{k+1}=x_k-\eta\,f'(x_k)$. Repeat until the gradient is tiny (converged).</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Pick a starting point $x_0$ and a learning rate $\eta$.</li>
+      <li>Compute the gradient $\nabla f(x_k)$.</li>
+      <li>Update: $x_{k+1}=x_k-\eta\,\nabla f(x_k)$.</li>
+      <li>Repeat until $\nabla f\approx0$ (or $f$ stops decreasing).</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Minimize $f(x)=(x-3)^2$, $\eta=0.1$, start $x_0=0$</div>
+      <p>$f'(x)=2(x-3)$. Step 1: $x_1=0-0.1\cdot(2)(0-3)=0-0.1(-6)=0.6$.</p>
+      <p>Step 2: $x_2=0.6-0.1\cdot2(0.6-3)=0.6+0.48=1.08$. Each step moves toward $x^*=3$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Update rule: $x_{k+1}=x_k-\eta\nabla f(x_k)$ — always <em>minus</em> the gradient.</li>
+        <li>Too-small $\eta$ → slow; too-large $\eta$ → overshoot / diverge.</li>
+        <li>On a <strong>convex</strong> function it converges to the global minimum (with a suitable $\eta$).</li>
+        <li>On a <strong>non-convex</strong> function it can get stuck in a local minimum (start matters).</li>
+        <li>At a minimum the gradient is $0$, so the update stops moving.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Move in the $+\nabla f$ direction." <span class="right">Reality:</span> that's uphill; descent uses $-\nabla f$.</p>
+      <p><span class="wrong">Trap:</span> "Bigger learning rate is always faster." <span class="right">Reality:</span> too big overshoots and can diverge.</p>
+      <p><span class="wrong">Trap:</span> "Gradient descent always finds the global minimum." <span class="right">Reality:</span> only guaranteed for convex $f$; otherwise it may stop at a local min.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Univariate/multivariate:</strong> GD is the iterative way to reach $f'(x)=0$ / $\nabla f=0$.</li>
+      <li><strong>Types of optimization:</strong> convex vs non-convex decides whether GD finds the global min.</li>
+      <li><strong>Linear algebra:</strong> the gradient is a vector; the step direction is $-\nabla f$.</li>
+      <li><strong>Machine learning:</strong> training = gradient descent on a loss function.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. The update rule for gradient descent is?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$x_{k+1}=x_k-\eta\,\nabla f(x_k)$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. $f(x)=x^2$, $\eta=0.1$, $x_0=5$. Find $x_1$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$f'=2x$; $x_1=5-0.1(10)=4$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. What happens if the learning rate is far too large?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">The steps overshoot the minimum and the value can diverge (grow).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. On a non-convex function, what can gradient descent get stuck in?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">A local minimum (not necessarily the global one).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">Gradient descent steps in which direction?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $+\nabla f$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $-\nabla f$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> perpendicular to $\nabla f$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> random</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the uphill (ascent) direction.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — descent moves against the gradient, $-\nabla f$.</div>
+      <div class="quiz-feedback" data-fb="C">That direction doesn't change $f$ to first order.</div>
+      <div class="quiz-feedback" data-fb="D">It's deterministic: the negative gradient.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$x_{k+1}=x_k-\eta\,\nabla f(x_k)$ — step against the gradient.</li>
+        <li>Learning rate $\eta$: too small = slow, too big = overshoot/diverge.</li>
+        <li>Convex ⇒ reaches the global min; non-convex ⇒ may stick in a local min.</li>
+        <li>Stops when $\nabla f\approx0$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/gd-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

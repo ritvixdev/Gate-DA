@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Univariate Optimization · GATE DA</title>
+<meta name="description" content="Unconstrained univariate optimization: f'(x)=0, second-derivative test, finding minima and maxima — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-topic="02-univariate" data-content>
+  <div class="hero">
+    <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <h1>Univariate Optimization</h1>
+    <p class="lede">One variable, one rule: the bottom of a smooth valley is <strong>flat</strong>. Set the slope
+      to zero, then check whether it curves up (min) or down (max).</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>The simplest optimization is a function of <strong>one variable</strong>. Calculus gives an exact recipe:
+      a minimum or maximum can only happen where the slope is zero. This is the foundation the
+      multivariate and gradient-descent methods generalize.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Walk along the curve. At the very bottom of a valley the ground is <strong>level</strong> — slope $f'(x)=0$.
+        To tell a valley (min) from a hilltop (max), feel the <strong>curvature</strong>: curving up like a smile
+        ($f''\gt0$) is a min; curving down like a frown ($f''\lt0$) is a max.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$.</p>
+    <p><strong>Local minimum:</strong> $f'(x)=0$ and $f''(x)\gt0$ (curves up). <strong>Local maximum:</strong> $f'(x)=0$ and $f''(x)\lt0$.</p>
+    <p><strong>Inflection / inconclusive:</strong> $f''(x)=0$ — the simple test fails; check higher derivatives or the sign of $f'$ around the point.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$f'(x)$</td><td>"f prime"</td><td>first derivative (slope)</td></tr>
+      <tr><td>$f''(x)$</td><td>"f double prime"</td><td>second derivative (curvature)</td></tr>
+      <tr><td>$x^*$</td><td>"x star"</td><td>the optimal point</td></tr>
+      <tr><td>$\tfrac{df}{dx}$</td><td>"d f d x"</td><td>another notation for $f'$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \textbf{Necessary: } f'(x^*)=0 $$</div>
+    <div class="formula">$$ f''(x^*)\gt0 \Rightarrow \text{local min}, \qquad f''(x^*)\lt0 \Rightarrow \text{local max} $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Differentiate to get $f'(x)$.</li>
+      <li>Solve $f'(x)=0$ for the stationary points.</li>
+      <li>Compute $f''$ at each: positive → min, negative → max.</li>
+      <li>If $f''=0$, use the first-derivative sign change (or higher derivatives).</li>
+      <li>Compare values to find the global optimum on the range.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Minimize $f(x)=x^2-4x+7$</div>
+      <p>$f'(x)=2x-4=0 \Rightarrow x^*=2$. &nbsp; $f''(x)=2\gt0$ → it's a minimum.</p>
+      <p>Minimum value $f(2)=4-8+7=3$.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">✦ Two stationary points</div>
+      <p>$f(x)=x^3-3x$: $f'=3x^2-3=0\Rightarrow x=\pm1$. $f''=6x$: at $x=1$, $f''=6\gt0$ (min); at $x=-1$, $f''=-6\lt0$ (max).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Minima/maxima of a smooth $f$ occur only where $f'(x)=0$.</li>
+        <li>Second-derivative test: $f''\gt0$ → min, $f''\lt0$ → max.</li>
+        <li>For a quadratic $ax^2+bx+c$: vertex at $x=-b/(2a)$; min if $a\gt0$, max if $a\lt0$.</li>
+        <li>Convex (e.g. upward parabola) ⇒ the single stationary point is the global min.</li>
+        <li>Don't forget endpoints when the domain is a closed interval.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$f'(x)=0$ means it's a minimum." <span class="right">Reality:</span> it could be a max or an inflection — check $f''$.</p>
+      <p><span class="wrong">Trap:</span> "$f''=0$ means an inflection." <span class="right">Reality:</span> inconclusive; it can still be a min/max (e.g. $x^4$ at 0).</p>
+      <p><span class="wrong">Trap:</span> "Ignore endpoints." <span class="right">Reality:</span> on a closed interval the optimum can sit at an endpoint.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Types of optimization:</strong> this is the unconstrained, single-variable case.</li>
+      <li><strong>Multivariate:</strong> $f'=0$ becomes $\nabla f=0$; $f''$ becomes the Hessian.</li>
+      <li><strong>Gradient descent:</strong> the iterative way to reach $f'(x)=0$ without solving it by hand.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Minimize $f(x)=x^2-6x+10$. Find $x^*$ and the minimum value.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$f'=2x-6=0\Rightarrow x^*=3$; $f(3)=9-18+10=1$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. $f'(x_0)=0$ and $f''(x_0)=-4$. Min or max?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Maximum ($f''\lt0$).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Vertex of $3x^2-12x+1$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$x=-b/(2a)=12/6=2$; it's a minimum since $a=3\gt0$.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">At a stationary point, $f''(x)\gt0$ indicates a…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> local maximum</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> local minimum</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> saddle</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> nothing</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">A max needs $f''\lt0$.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — curving upward ($f''\gt0$) is a local minimum.</div>
+      <div class="quiz-feedback" data-fb="C">Saddles appear in multivariate problems, not 1-D.</div>
+      <div class="quiz-feedback" data-fb="D">It's decisive: positive curvature → min.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Find stationary points: $f'(x)=0$.</li>
+        <li>Classify: $f''\gt0$ → min, $f''\lt0$ → max, $f''=0$ → inconclusive.</li>
+        <li>Quadratic vertex: $x=-b/(2a)$.</li>
+        <li>Check endpoints on closed intervals.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
