@@ -357,7 +357,17 @@ nullity > 0 → infinitely many (move freely along the null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Common GATE traps</summary>
+          <summary>37. LU decomposition</summary>
+          <p>Factor a square matrix into a <strong>lower</strong> × <strong>upper</strong> triangular matrix:</p>
+          <pre>A = L U      (L lower-triangular, U upper-triangular)</pre>
+          <p>It comes straight out of Gaussian elimination (U = the echelon form; L records the multipliers). To solve <code>Ax = b</code>:</p>
+          <pre>1. forward-substitute  Ly = b   (find y)
+2. back-substitute     Ux = y   (find x)</pre>
+          <p>Efficient when solving for <strong>many</strong> right-hand sides b with the same A. (Row swaps give <code>PA = LU</code>.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>38. Common GATE traps</summary>
           <ul class="styled">
             <li><code>rank(A)=rank([A|b])</code> ⇒ unique? <strong>No</strong> — that only guarantees a solution exists; unique also needs <code>rank = n</code>.</li>
             <li><code>rank(A) &lt; n</code> ⇒ no solution? <strong>No</strong> — if consistent it means infinitely many.</li>
@@ -369,7 +379,7 @@ nullity > 0 → infinitely many (move freely along the null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Practice problems</summary>
+          <summary>39. Practice problems</summary>
           <p class="lead">Q1. r=2, r'=3, n=4?</p>
           <pre>r ≠ r' → no solution</pre>
           <p class="lead">Q2. r=3, r'=3, n=3?</p>
@@ -385,7 +395,7 @@ nullity > 0 → infinitely many (move freely along the null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>39. Cheatsheet</summary>
+          <summary>40. Cheatsheet</summary>
           <ul class="styled">
             <li>Write it as <code>Ax = b</code>; compare <code>r = rank(A)</code> and <code>r' = rank([A|b])</code> with n = unknowns.</li>
             <li><code>r ≠ r'</code> → none; <code>r = r' = n</code> → unique; <code>r = r' < n</code> → infinite.</li>
@@ -397,7 +407,7 @@ nullity > 0 → infinitely many (move freely along the null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>40. Best mental model</summary>
+          <summary>41. Best mental model</summary>
           <pre>A = machine ,  x = input/control ,  b = target output
 Ax = b  →  find the input x that produces target b</pre>
           <ul class="styled">

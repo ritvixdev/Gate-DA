@@ -312,7 +312,20 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Common GATE traps</summary>
+          <summary>38. Cauchy–Schwarz inequality</summary>
+          <pre>|u·v| ≤ ||u|| · ||v||     (equality ⟺ u and v are parallel)</pre>
+          <p>It follows from <code>u·v = ||u|| ||v|| cos θ</code> and <code>|cos θ| ≤ 1</code>. It guarantees the cosine/correlation between two vectors stays in <code>[−1, 1]</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Reflection &amp; Householder matrices</summary>
+          <p>Besides rotations, orthogonal matrices include <strong>reflections</strong>. A <strong>Householder</strong> matrix reflects across the hyperplane perpendicular to a unit vector v:</p>
+          <pre>H = I − 2 v vᵀ        (v a unit vector)</pre>
+          <p>Properties: <code>H</code> is symmetric and orthogonal, <code>H² = I</code> (its own inverse), and <code>det(H) = −1</code> (orientation flips). Householder reflections are the workhorse of QR decomposition.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>40. Common GATE traps</summary>
           <ul class="styled">
             <li>"Orthogonal means length 1"? <strong>No</strong> — orthogonal = dot product 0; length 1 = unit; both = orthonormal.</li>
             <li><code>u·v = 0</code> ⇒ one vector is zero? <strong>No</strong> ([1;0]·[0;1]=0, both non-zero).</li>
@@ -324,7 +337,7 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
         </details>
 
         <details class="study-item">
-          <summary>39. Practice problems</summary>
+          <summary>41. Practice problems</summary>
           <p class="lead">Q1. [1;2] and [2;−1] orthogonal?</p>
           <pre>1×2 + 2×(−1) = 0 → yes</pre>
           <p class="lead">Q2. ||[6;8]||?</p>
@@ -340,7 +353,7 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
         </details>
 
         <details class="study-item">
-          <summary>40. GATE cheatsheet</summary>
+          <summary>42. GATE cheatsheet</summary>
           <ul class="styled">
             <li><code>u·v = uᵀv</code>; &nbsp; <code>||v|| = √(v·v)</code>; &nbsp; orthogonal ⟺ <code>u·v = 0</code>.</li>
             <li>Orthonormal = orthogonal + unit; non-zero orthogonal vectors are independent.</li>
@@ -353,7 +366,7 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
         </details>
 
         <details class="study-item">
-          <summary>41. Best mental model</summary>
+          <summary>43. Best mental model</summary>
           <ul class="styled">
             <li><strong>Orthogonality</strong> = clean 90° directions that don't interfere.</li>
             <li><strong>Dot product</strong> = interference test (0 = none); <strong>norm</strong> = length.</li>

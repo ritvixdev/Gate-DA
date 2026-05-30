@@ -367,7 +367,23 @@ Ae₂ = second column of A</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Common GATE traps (matrix algebra)</summary>
+          <summary>26. Hermitian &amp; skew-Hermitian matrices</summary>
+          <p>For <strong>complex</strong> matrices, the conjugate-transpose is <code>A* = (Ā)ᵀ</code>.</p>
+          <pre>Hermitian:       A* = A     (aᵢⱼ = conj(aⱼᵢ); diagonal is real)
+skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
+          <p>A real symmetric matrix is the real case of Hermitian. <span style="color:var(--coral-text)">GATE facts:</span> a Hermitian matrix has <strong>real eigenvalues</strong>; a skew-Hermitian matrix has purely imaginary (or zero) eigenvalues.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Block (partitioned) matrices</summary>
+          <p>A matrix can be split into <strong>sub-matrices (blocks)</strong> and then added/multiplied block-by-block like ordinary entries — as long as the block sizes are conformable.</p>
+          <pre>M = [A  B        block-triangular (C = 0 or B = 0):
+     0  D]        det(M) = det(A)·det(D)</pre>
+          <p>Block form simplifies large structured matrices and block-diagonal inverses (<code>diag(A,D)⁻¹ = diag(A⁻¹, D⁻¹)</code>).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Common GATE traps (matrix algebra)</summary>
           <ul class="styled">
             <li><code>AB = BA</code>? <strong>Usually false</strong> — <code>AB ≠ BA</code> in general.</li>
             <li><code>(AB)ᵀ = AᵀBᵀ</code>? <strong>False</strong> — it is <code>BᵀAᵀ</code>.</li>
@@ -378,7 +394,7 @@ Ae₂ = second column of A</pre>
         </details>
 
         <details class="study-item">
-          <summary>27. Special matrices — quick table</summary>
+          <summary>29. Special matrices — quick table</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Type / op</th><th>Meaning</th><th>Key fact</th></tr>
             <tr><td><code>A + B</code></td><td>add entries</td><td>same size required</td></tr>
@@ -395,7 +411,7 @@ Ae₂ = second column of A</pre>
         </details>
 
         <details class="study-item">
-          <summary>28. Quick self-check</summary>
+          <summary>30. Quick self-check</summary>
           <p class="lead">Q1. Size of [[1,2,3],[4,5,6]]?</p>
           <pre>2 rows, 3 columns  →  2 × 3</pre>
           <p class="lead">Q2. A = 2×3, B = 3×4 — is AB possible?</p>
@@ -409,7 +425,7 @@ Ae₂ = second column of A</pre>
         </details>
 
         <details class="study-item">
-          <summary>29. Final mental model</summary>
+          <summary>31. Final mental model</summary>
           <ul class="styled">
             <li><strong>Vector</strong> = arrow; <strong>matrix</strong> = machine that transforms arrows.</li>
             <li><strong>Multiplication</strong> = applying machines one after another (order matters).</li>

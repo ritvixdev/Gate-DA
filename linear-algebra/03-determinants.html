@@ -386,7 +386,18 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
         </details>
 
         <details class="study-item">
-          <summary>36. Common GATE shortcuts</summary>
+          <summary>36. Adjoint (adjugate) &amp; the inverse formula</summary>
+          <p>The <strong>cofactor matrix</strong> C has entries <code>Cᵢⱼ = (−1)^{i+j}·minorᵢⱼ</code>. Its transpose is the <strong>adjugate</strong>:</p>
+          <pre>adj(A) = Cᵀ
+A · adj(A) = adj(A) · A = det(A) · I
+A⁻¹ = adj(A) / det(A)        (det(A) ≠ 0)</pre>
+          <p class="lead">2×2 shortcut:</p>
+          <pre>A = [a b; c d]  →  adj(A) = [d −b; −c a]  →  A⁻¹ = (1/(ad−bc))·adj(A)</pre>
+          <p><span style="color:var(--coral-text)">GATE fact:</span> for an n×n matrix, <code>det(adj A) = det(A)^{n−1}</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Common GATE shortcuts</summary>
           <ul class="styled">
             <li>Triangular / diagonal → det = product of diagonal.</li>
             <li>Any zero row/column, or repeated/proportional rows → det = 0.</li>
@@ -397,7 +408,7 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Important true / false</summary>
+          <summary>38. Important true / false</summary>
           <ul class="styled">
             <li><code>det(A) = 0 ⇒ A invertible</code>? <strong>False</strong> — it is NOT invertible.</li>
             <li><code>det(A+B) = det(A) + det(B)</code>? <strong>False</strong> — det is multiplicative, not additive (e.g. <code>det(I+I)=4 ≠ 2</code>).</li>
@@ -408,7 +419,7 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Determinant decision tree</summary>
+          <summary>39. Determinant decision tree</summary>
           <pre>1. Square?            no → not defined
 2. Triangular/diag?   yes → product of diagonal
 3. Zero row/col?      yes → 0
@@ -420,7 +431,7 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
         </details>
 
         <details class="study-item">
-          <summary>39. Quick practice</summary>
+          <summary>40. Quick practice</summary>
           <p class="lead">Q1. det of [[3,4],[2,5]]?</p>
           <pre>3×5 − 4×2 = 7   (invertible)</pre>
           <p class="lead">Q2. Is [[2,6],[1,3]] invertible?</p>
@@ -440,7 +451,7 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
         </details>
 
         <details class="study-item">
-          <summary>40. Best mental model</summary>
+          <summary>41. Best mental model</summary>
           <ul class="styled">
             <li><strong>Determinant = how the matrix-machine changes space.</strong></li>
             <li><code>det = 0</code> → space crushed, no reverse possible.</li>

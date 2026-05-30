@@ -278,7 +278,26 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Common GATE traps</summary>
+          <summary>26. Quadratic &amp; bilinear forms</summary>
+          <p>A <strong>quadratic form</strong> packs a degree-2 expression into a symmetric matrix:</p>
+          <pre>Q(x) = xᵀA x = Σ aᵢⱼ xᵢ xⱼ     (A symmetric)
+e.g. 2x² + 3y² + 4xy  →  A = [2 2; 2 3]   (diagonal = squares, off-diag = half the cross term)</pre>
+          <p>A <strong>bilinear form</strong> is <code>xᵀA y</code>. The matrix of a quadratic form is always taken symmetric.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Definiteness (positive/negative definite)</summary>
+          <p>Classify a symmetric matrix A by the sign of <code>xᵀAx</code> — read straight off its eigenvalues:</p>
+          <pre>positive definite (PD):      xᵀAx > 0 ∀ x≠0   ⟺  all eigenvalues > 0
+positive semidefinite (PSD): xᵀAx ≥ 0          ⟺  all eigenvalues ≥ 0
+negative definite:           xᵀAx < 0          ⟺  all eigenvalues < 0
+indefinite:                  mixed signs       ⟺  eigenvalues of both signs</pre>
+          <p><span style="color:var(--coral-text)">Sylvester's criterion:</span> A is PD ⟺ every <strong>leading principal minor</strong> is &gt; 0.</p>
+          <p>Why it matters: covariance matrices are PSD; the Hessian's definiteness decides minima/maxima in optimization.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Common GATE traps</summary>
           <ul class="styled">
             <li>Zero vector is an eigenvector? <strong>No</strong> — eigenvectors are non-zero.</li>
             <li>Every real matrix has real eigenvalues? <strong>No</strong> — only real <em>symmetric</em> ones are guaranteed real.</li>
@@ -290,7 +309,7 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
         </details>
 
         <details class="study-item">
-          <summary>27. Practice problems</summary>
+          <summary>29. Practice problems</summary>
           <p class="lead">Q1. Eigenvalues of [2 5; 0 3]?</p>
           <pre>triangular → 2, 3</pre>
           <p class="lead">Q2. 2×2 with trace 7, det 10?</p>
@@ -308,7 +327,7 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
         </details>
 
         <details class="study-item">
-          <summary>28. Cheatsheet</summary>
+          <summary>30. Cheatsheet</summary>
           <ul class="styled">
             <li><code>Ax = λx</code>, x ≠ 0; eigenvalues from <code>det(A − λI) = 0</code>; eigenvectors from <code>(A − λI)x = 0</code>.</li>
             <li>2×2: <code>λ² − tr·λ + det = 0</code>; &nbsp; sum λ = trace, product λ = det.</li>
@@ -319,7 +338,7 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
         </details>
 
         <details class="study-item">
-          <summary>29. Best mental model</summary>
+          <summary>31. Best mental model</summary>
           <pre>Matrix = transformation machine
 Eigenvector = special direction that stays on its own line
 Eigenvalue  = the multiplier on that direction</pre>
