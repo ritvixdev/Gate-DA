@@ -176,6 +176,11 @@
         if (chosen !== correct) this.classList.add("wrong");
         var fb = card.querySelector('.quiz-feedback[data-fb="' + chosen + '"]');
         if (fb) { fb.classList.add("show", chosen === correct ? "ok" : "bad"); }
+        // On a wrong pick, also reveal why the correct answer is correct.
+        if (chosen !== correct) {
+          var fbc = card.querySelector('.quiz-feedback[data-fb="' + correct + '"]');
+          if (fbc) fbc.classList.add("show", "ok");
+        }
       });
     }
   }
