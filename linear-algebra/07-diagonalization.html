@@ -49,8 +49,93 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— diagonalization from zero, one idea per card</span></summary>
+
+        <p class="study-empty">Diagonalization rewrites a matrix in its own eigenvector coordinates as <code>A = PDP⁻¹</code>, turning a tangled transformation into simple independent stretches — which makes powers, recurrences and PCA easy. Whether it is possible comes down to having enough independent eigenvectors. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. What is diagonalization?</summary>
+          <p>Diagonalizing a square matrix means writing it as:</p>
+          <pre>A = P D P⁻¹
+
+D = diagonal matrix of eigenvalues
+P = matrix whose columns are the eigenvectors</pre>
+          <p>It expresses A in its own natural (eigenvector) coordinates, where it acts as simple scaling.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Why diagonalize? (easy powers)</summary>
+          <p>Powers become trivial:</p>
+          <pre>A² = PDP⁻¹·PDP⁻¹ = PD²P⁻¹
+Aᵏ = P Dᵏ P⁻¹   (just raise the diagonal entries to the k)</pre>
+          <p>This makes Markov chains, recurrences and matrix exponentials tractable.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Algebraic multiplicity (AM)</summary>
+          <p><strong>AM</strong> = how many times an eigenvalue is a root of the characteristic polynomial.</p>
+          <pre>char poly = (λ − 2)²(λ − 5)
+AM(2) = 2 ,  AM(5) = 1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Geometric multiplicity (GM)</summary>
+          <p><strong>GM</strong> = number of independent eigenvectors for that eigenvalue = dimension of its eigenspace.</p>
+          <pre>GM(λ) = dim Null(A − λI) = n − rank(A − λI)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. The AM / GM rule</summary>
+          <pre>1 ≤ GM ≤ AM      (for every eigenvalue)</pre>
+          <p>So if <code>AM = 3</code>, GM can be 1, 2 or 3; if <code>AM = 1</code>, then GM = 1. Distinct eigenvalues therefore always give independent eigenvectors.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. When is a matrix diagonalizable?</summary>
+          <p>An n×n matrix is diagonalizable iff it has <strong>n linearly independent eigenvectors</strong>, equivalently:</p>
+          <pre>GM = AM   for every eigenvalue</pre>
+          <p>If any eigenvalue has <code>GM &lt; AM</code>, the matrix is <strong>not</strong> diagonalizable (it is "defective").</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Rule: n distinct eigenvalues ⇒ diagonalizable</summary>
+          <pre>3×3 with eigenvalues 1, 2, 3  →  all distinct  →  diagonalizable</pre>
+          <p>Distinct eigenvalues guarantee independent eigenvectors, so the matrix always diagonalizes.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Rule: real symmetric ⇒ orthogonally diagonalizable</summary>
+          <p>A real symmetric matrix is always diagonalizable, and even better — <strong>orthogonally</strong>:</p>
+          <pre>A = Q D Qᵀ      (Q orthogonal: Q⁻¹ = Qᵀ)</pre>
+          <p>The eigenvectors can be chosen orthonormal. This is the engine behind PCA and the spectral theorem.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Repeated-eigenvalue example</summary>
+          <pre>char poly = (λ − 2)²   →  λ = 2, AM = 2
+
+2 independent eigenvectors (GM = 2)  →  diagonalizable
+only 1 independent eigenvector (GM = 1)  →  NOT diagonalizable</pre>
+          <p>Repeated eigenvalues are exactly where you must check GM vs AM.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Similar matrices</summary>
+          <pre>B = P⁻¹ A P      →  A and B are "similar"</pre>
+          <p>Similar matrices share the <strong>same eigenvalues, trace, determinant and rank</strong>. Diagonalization is just finding a similar matrix that happens to be diagonal (<code>D = P⁻¹AP</code>).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Cheatsheet &amp; mental model</summary>
+          <ul class="styled">
+            <li><code>A = PDP⁻¹</code>: D = eigenvalues, P = eigenvectors; <code>Aᵏ = PDᵏP⁻¹</code>.</li>
+            <li>AM = root multiplicity; GM = <code>nullity(A − λI)</code>; always <code>1 ≤ GM ≤ AM</code>.</li>
+            <li>Diagonalizable ⟺ GM = AM for all λ ⟺ n independent eigenvectors.</li>
+            <li>n distinct eigenvalues ⇒ diagonalizable; real symmetric ⇒ <code>A = QDQᵀ</code>.</li>
+            <li>Similar matrices (<code>P⁻¹AP</code>) share eigenvalues, trace, det, rank.</li>
+          </ul>
+          <p><span style="color:var(--coral-text)">Mental model:</span> diagonalization = rotating into the eigenvector axes, where the matrix is just independent stretches.</p>
+        </details>
       </details>
     </section>
 

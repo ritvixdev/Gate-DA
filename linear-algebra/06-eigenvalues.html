@@ -67,37 +67,264 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— eigenvalues &amp; eigenvectors from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— eigenvalues &amp; eigenvectors from zero, one idea per card</span></summary>
 
-        <p class="study-empty">Some special vectors do not change direction under a matrix — they only stretch or shrink. Those are eigenvectors, and the stretch factor is the eigenvalue. This is the gateway to diagonalization, PCA and much of GATE DA.</p>
+        <p class="study-empty">Some special vectors do not change direction under a matrix — they only stretch or shrink. Those are <strong>eigenvectors</strong>, and the stretch factor is the <strong>eigenvalue</strong> λ. They unlock trace/determinant shortcuts, diagonalization, PCA and stability. Open each card in order.</p>
 
         <details class="study-item">
-          <summary>1. Eigenvalues &amp; eigenvectors — the idea</summary>
-          <p>Most vectors change direction under a matrix. A few special ones do not — they only stretch or shrink. Those are <strong>eigenvectors</strong>; the stretch factor is the <strong>eigenvalue</strong> λ.</p>
-          <pre>A v = λ v     (A = matrix, v = eigenvector, λ = eigenvalue)</pre>
-          <pre>λ = 2   vector doubles
-λ = 1   vector unchanged
-λ = 0   vector collapses to zero
-λ = -1  vector flips direction</pre>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> through the portal most arrows turn, but eigenvectors keep their direction — only their length changes.</p>
+          <summary>1. The core idea</summary>
+          <p>A matrix usually changes a vector's direction. But a few <strong>special vectors</strong> come out on the <em>same line</em> — only their length changes. Those are <strong>eigenvectors</strong>; the scaling factor is the <strong>eigenvalue</strong>.</p>
+          <pre>A x = λ x        (A = matrix, x = eigenvector, λ = eigenvalue)</pre>
+          <p><span style="color:var(--coral-text)">Important:</span> <code>x ≠ 0</code> — the eigenvector is never the zero vector.</p>
         </details>
 
         <details class="study-item">
-          <summary>2. The characteristic equation</summary>
-          <p>Eigenvalues are the λ that solve the <strong>characteristic equation</strong>:</p>
-          <pre>det(A − λI) = 0</pre>
-          <pre>A = [2  0        A − λI = [2−λ   0
-     0  3]                   0   3−λ]
-
-det = (2−λ)(3−λ) = 0   →   λ = 2  or  λ = 3</pre>
+          <summary>2. What is λ?</summary>
+          <p><code>λ</code> ("lambda") is the eigenvalue = the scaling factor along the eigenvector's direction.</p>
+          <pre>λ = 2    doubles        λ = 1    unchanged
+λ = 3    triples        λ = 0    collapses to zero
+λ = 0.5  halves         λ = -1   flips direction</pre>
         </details>
 
         <details class="study-item">
-          <summary>3. det = product, trace = sum of eigenvalues</summary>
-          <pre>det(A) = λ₁ · λ₂ · … · λₙ      (product of eigenvalues)
-tr(A)  = λ₁ + λ₂ + … + λₙ      (sum of eigenvalues)</pre>
-          <pre>eigenvalues 2, 3, 5  →  trace = 10,  det = 30</pre>
-          <p>These two give fast checks on your eigenvalues in GATE.</p>
+          <summary>3. Game imagination</summary>
+          <p>A matrix is a transformation portal. Shoot arrows in: most come out turned. But some <strong>special arrows come out on the same line</strong> (longer, shorter, or reversed).</p>
+          <pre>eigenvector = special direction
+eigenvalue  = power multiplier in that direction</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Simple visual example</summary>
+          <pre>A = [2  0      maps [x; y] → [2x; 3y]
+     0  3]
+
+A·[1;0] = [2;0] = 2·[1;0]   → eigenvector [1;0], λ = 2
+A·[0;1] = [0;3] = 3·[0;1]   → eigenvector [0;1], λ = 3</pre>
+          <p>The x-axis stretches by 2, the y-axis by 3.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Why eigenvectors matter</summary>
+          <p>Eigenvectors reveal a matrix's <strong>natural directions</strong> — the ones it only stretches/shrinks. They power <strong>PCA, dimensionality reduction, covariance analysis, Markov chains, stability analysis, SVD, spectral clustering</strong>, and connect to trace, determinant, rank, invertibility and diagonalization.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. The eigenvector cannot be zero</summary>
+          <p><code>Ax = λx</code> technically holds for <code>x = 0</code> (both sides 0), but the zero vector has no direction.</p>
+          <p><span style="color:var(--coral-text)">GATE point:</span> an eigenvector must be <strong>non-zero</strong> (eigenvalue 0 is allowed; eigenvector 0 is not).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. How to find eigenvalues</summary>
+          <pre>Ax = λx
+Ax − λx = 0   →   Ax − λIx = 0   (since Ix = x)
+(A − λI)x = 0</pre>
+          <p>This homogeneous system has a non-zero solution only if the matrix is singular:</p>
+          <pre>det(A − λI) = 0      ← the characteristic equation</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>8. The step-by-step method</summary>
+          <ol class="steps">
+            <li>Form <code>A − λI</code>.</li>
+            <li>Compute <code>det(A − λI)</code>.</li>
+            <li>Set it to 0 and solve for λ (the eigenvalues).</li>
+            <li>For each λ, solve <code>(A − λI)x = 0</code>.</li>
+            <li>The non-zero solutions x are the eigenvectors.</li>
+          </ol>
+          <p>Defined only for <strong>square</strong> matrices.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Worked example — eigenvalues</summary>
+          <pre>A = [4  1
+     2  3]
+
+A − λI = [4−λ   1
+           2   3−λ]
+
+det = (4−λ)(3−λ) − 2 = λ² − 7λ + 10 = 0
+(λ − 5)(λ − 2) = 0   →   λ = 5, 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Worked example — eigenvector for λ = 5</summary>
+          <pre>A − 5I = [−1   1
+           2  −2]
+
+−x₁ + x₂ = 0  →  x₂ = x₁
+x = t·[1; 1]   →  eigenvector [1; 1]</pre>
+          <p>Every non-zero multiple ([2;2], [−5;−5], …) is the same eigen-direction.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Worked example — eigenvector for λ = 2</summary>
+          <pre>A − 2I = [2  1
+          2  1]
+
+2x₁ + x₂ = 0  →  x₂ = −2x₁
+x = t·[1; −2]   →  eigenvector [1; −2]</pre>
+          <p><strong>Result:</strong> direction [1;1] stretches ×5; direction [1;−2] stretches ×2.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Check with trace &amp; determinant</summary>
+          <pre>A = [4 1; 2 3]:  tr = 4+3 = 7,  det = 12−2 = 10
+eigenvalues 5, 2:  5+2 = 7 ✓ (= trace),  5×2 = 10 ✓ (= det)</pre>
+          <p><span style="color:var(--coral-text)">Shortcut:</span> sum of eigenvalues = trace; product = determinant.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. The characteristic polynomial (2×2 fast form)</summary>
+          <pre>A = [a b; c d]
+λ² − tr(A)·λ + det(A) = 0</pre>
+          <pre>A = [4 1; 2 3]: λ² − 7λ + 10 = 0  →  λ = 5, 2</pre>
+          <p>Much faster than expanding the determinant for 2×2 matrices.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Triangular / diagonal eigenvalues (shortcut)</summary>
+          <p>For diagonal, upper- or lower-triangular matrices, the <strong>eigenvalues are simply the diagonal entries</strong> — no work needed.</p>
+          <pre>[2 5 7; 0 3 8; 0 0 4]  → eigenvalues 2, 3, 4
+diag(5, −1, 7)         → eigenvalues 5, −1, 7</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Trace / determinant &amp; the missing eigenvalue</summary>
+          <pre>tr(A) = λ₁ + λ₂ + … + λₙ ;   det(A) = λ₁·λ₂·…·λₙ</pre>
+          <p class="lead">Find a missing eigenvalue:</p>
+          <pre>3×3, trace 9, eigenvalues 2, 3, λ₃  →  2+3+λ₃ = 9 → λ₃ = 4
+3×3, det 24,  eigenvalues 2, 4, λ₃  →  2·4·λ₃ = 24 → λ₃ = 3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Zero eigenvalue ⟺ singular</summary>
+          <pre>0 is an eigenvalue of A  ⟺  det(A) = 0  ⟺  A is singular</pre>
+          <p>Because <code>det = product of eigenvalues</code>: one zero eigenvalue forces det 0 → not invertible, rank &lt; n, <code>Ax=0</code> has non-trivial solutions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. How eigenvalues transform (key rules)</summary>
+          <p>If <code>Ax = λx</code>, then for the same eigenvector x:</p>
+          <ul class="styled">
+            <li><strong>Aᵏ</strong> has eigenvalue <code>λᵏ</code> &nbsp;(A² → λ², A³ → λ³).</li>
+            <li><strong>A⁻¹</strong> has eigenvalue <code>1/λ</code> (if A is invertible, so λ ≠ 0).</li>
+            <li><strong>A + cI</strong> has eigenvalue <code>λ + c</code>.</li>
+            <li><strong>cA</strong> has eigenvalue <code>cλ</code>.</li>
+            <li><strong>Aᵀ</strong> has the <em>same</em> eigenvalues as A (eigenvectors may differ).</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Eigenvalues of basic special matrices</summary>
+          <pre>Identity I   →  every eigenvalue = 1
+Zero O       →  every eigenvalue = 0
+Diagonal     →  the diagonal entries
+Triangular   →  the diagonal entries</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Symmetric matrices (very friendly)</summary>
+          <p>If <code>A = Aᵀ</code> (real symmetric):</p>
+          <ul class="styled">
+            <li>all eigenvalues are <strong>real</strong>;</li>
+            <li>eigenvectors for <strong>distinct</strong> eigenvalues are <strong>orthogonal</strong>;</li>
+            <li>the matrix is always <strong>diagonalizable</strong>.</li>
+          </ul>
+          <p>Covariance matrices are symmetric — this is the foundation of PCA.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Orthogonal matrices: |λ| = 1</summary>
+          <p>If <code>AᵀA = I</code>, length is preserved, so <code>||Ax|| = ||x||</code>, giving <code>|λ| = 1</code>.</p>
+          <pre>real orthogonal eigenvalues → +1 or −1
+(complex ones lie on the unit circle)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Idempotent &amp; nilpotent eigenvalues</summary>
+          <pre>idempotent (A² = A):  λ² = λ  →  λ = 0 or 1
+nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Complex eigenvalues</summary>
+          <p>A real matrix can have <strong>complex</strong> eigenvalues. The 90° rotation has no real eigen-direction:</p>
+          <pre>R = [0  −1
+     1   0]   →  eigenvalues  i  and  −i</pre>
+          <p>Complex eigenvalues of real matrices come in conjugate pairs <code>a ± bi</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Eigenvalues in PCA (data meaning)</summary>
+          <p>A covariance matrix is symmetric; its <strong>eigenvectors = principal directions</strong> and <strong>eigenvalues = variance</strong> along them.</p>
+          <pre>λ₁ = 100, λ₂ = 5  →  data spreads far along direction 1, little along 2</pre>
+          <p>PCA keeps the top eigenvectors. (Full treatment in the SVD &amp; PCA topic.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Eigenvalues &amp; stability</summary>
+          <p>Repeatedly applying A (<code>x, Ax, A²x, …</code>) — eigenvalues govern long-term behaviour:</p>
+          <pre>|λ| < 1  → that direction decays
+|λ| > 1  → it grows
+λ < 0    → it flips sign each step</pre>
+          <p>Used in dynamical systems, Markov chains and iterative algorithms.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Projection matrices</summary>
+          <p>Projection matrices are idempotent (<code>P² = P</code>), so their eigenvalues are <strong>0 or 1</strong>.</p>
+          <pre>P = [1 0; 0 0]:  P[1;0]=[1;0] (λ=1, kept),  P[0;1]=[0;0] (λ=0, destroyed)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Zero vector is an eigenvector? <strong>No</strong> — eigenvectors are non-zero.</li>
+            <li>Every real matrix has real eigenvalues? <strong>No</strong> — only real <em>symmetric</em> ones are guaranteed real.</li>
+            <li>Eigenvalues of <code>A+B</code> = eigenvalues of A + eigenvalues of B? <strong>No</strong> (true only for <code>A + cI</code>).</li>
+            <li><code>det(A)=0</code> ⇒ 0 is an eigenvalue? <strong>True.</strong></li>
+            <li>Triangular ⇒ eigenvalues are diagonal entries? <strong>True.</strong></li>
+            <li>Idempotent ⇒ λ ∈ {0,1}; nilpotent ⇒ all λ = 0; symmetric ⇒ real λ &amp; orthogonal eigenvectors? <strong>All true.</strong></li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Practice problems</summary>
+          <p class="lead">Q1. Eigenvalues of [2 5; 0 3]?</p>
+          <pre>triangular → 2, 3</pre>
+          <p class="lead">Q2. 2×2 with trace 7, det 10?</p>
+          <pre>λ² − 7λ + 10 = 0 → 5, 2</pre>
+          <p class="lead">Q3. Eigenvalues 2,3,4 → det, trace?</p>
+          <pre>det = 24,  trace = 9</pre>
+          <p class="lead">Q4. A has 2,−1,5 → eigenvalues of A²?</p>
+          <pre>4, 1, 25</pre>
+          <p class="lead">Q5. A has 2,−1,5 → eigenvalues of 3A and of A+4I?</p>
+          <pre>3A → 6, −3, 15 ;  A+4I → 6, 3, 9</pre>
+          <p class="lead">Q6. A has 2,4,5 → eigenvalues of A⁻¹?</p>
+          <pre>1/2, 1/4, 1/5</pre>
+          <p class="lead">Q7. Idempotent? Nilpotent? Real symmetric?</p>
+          <pre>{0,1} ;  all 0 ;  real eigenvalues + orthogonal eigenvectors</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Cheatsheet</summary>
+          <ul class="styled">
+            <li><code>Ax = λx</code>, x ≠ 0; eigenvalues from <code>det(A − λI) = 0</code>; eigenvectors from <code>(A − λI)x = 0</code>.</li>
+            <li>2×2: <code>λ² − tr·λ + det = 0</code>; &nbsp; sum λ = trace, product λ = det.</li>
+            <li>Triangular/diagonal → diagonal entries; 0 is an eigenvalue ⟺ det = 0 ⟺ singular.</li>
+            <li><code>Aᵏ→λᵏ</code>, <code>A⁻¹→1/λ</code>, <code>A+cI→λ+c</code>, <code>cA→cλ</code>, <code>Aᵀ</code> same λ.</li>
+            <li>Symmetric → real λ, orthogonal eigenvectors; orthogonal → |λ|=1; idempotent → 0/1; nilpotent → 0.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Best mental model</summary>
+          <pre>Matrix = transformation machine
+Eigenvector = special direction that stays on its own line
+Eigenvalue  = the multiplier on that direction</pre>
+          <pre>λ>1 stretch · 0<λ<1 shrink · λ=1 unchanged · λ=0 collapsed · λ<0 flipped</pre>
+          <p>And remember: trace = Σλ, determinant = Πλ, and a zero eigenvalue means the matrix is singular.</p>
         </details>
       </details>
     </section>
