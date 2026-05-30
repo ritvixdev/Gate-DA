@@ -92,8 +92,435 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— matrices from zero, one idea per card</span></summary>
+
+        <p class="study-empty">Think of matrices as the next level after vectors. A vector is an arrow; a <strong>matrix is a machine that changes arrows</strong> — it can move, stretch, rotate, flip, shear or project them, and it can also hold a data table or a system of equations. Matrices connect to almost everything in GATE DA: linear equations, rank, determinant, inverse, eigenvalues, orthogonality, projection, PCA, least squares and ML. Open each card below in order.</p>
+
+        <details class="study-item">
+          <summary>1. What is a matrix?</summary>
+          <p>A <strong>matrix</strong> is a rectangular table of numbers.</p>
+          <pre>A = [1  2
+     3  4]</pre>
+          <p>This has 2 rows and 2 columns, so its size is <code>2 × 2</code> ("two by two").</p>
+          <pre>B = [1  2  3
+     4  5  6]      →  B is a 2 × 3 matrix</pre>
+          <p>An <code>m × n</code> matrix has <strong>m rows and n columns</strong> — rows first, columns second.</p>
+          <p><span style="color:var(--coral-text)">Memory trick:</span> <strong>RC cola</strong> — Rows first, Columns second.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Matrix entry: what aᵢⱼ means</summary>
+          <p>Every number has a position, written <code>aᵢⱼ</code> ("a i j") = the entry in <strong>row i, column j</strong>.</p>
+          <pre>A = [1  2
+     3  4]
+
+a₁₁ = row 1, col 1 = 1
+a₁₂ = row 1, col 2 = 2
+a₂₁ = row 2, col 1 = 3
+a₂₂ = row 2, col 2 = 4</pre>
+          <p>Always <strong>row first, column second</strong>. For example, in</p>
+          <pre>A = [5  8  2
+     7  1  9]
+
+a₂₃ = row 2, col 3 = 9
+a₁₂ = row 1, col 2 = 8</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Matrix as a data table</summary>
+          <p>At the simplest level a matrix is just a table. Marks of students:</p>
+          <pre>          Math  CS  Stats
+Amit       80   90   70
+Ravi       60   85   75
+Sita       95   88   91</pre>
+          <p>As a matrix (rows = samples, columns = features):</p>
+          <pre>M = [80  90  70
+     60  85  75
+     95  88  91]</pre>
+          <p>But in linear algebra the more powerful meaning is: <strong>matrix = transformation machine</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Matrix as a transformation machine</summary>
+          <p>A matrix <em>acts</em> on a vector to produce a new vector.</p>
+          <pre>A = [2  0      v = [1
+     0  2]          3]
+
+Av = [2×1 + 0×3     = [2
+      0×1 + 2×3]       6]</pre>
+          <p>So <code>[1, 3]</code> becomes <code>[2, 6]</code> — the vector is stretched by 2.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the vector is the player's position and the matrix is a transformation portal — walk through it and your coordinates change.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Matrix size (and row / column vectors)</summary>
+          <pre>A = [1  2  3
+     4  5  6]      →  2 × 3
+
+B = [1
+     2
+     3]            →  3 × 1   (a column vector)
+
+C = [1  2  3]      →  1 × 3   (a row vector)</pre>
+          <p>So a <strong>column vector</strong> is an <code>n × 1</code> matrix and a <strong>row vector</strong> is a <code>1 × n</code> matrix.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Why matrix size matters</summary>
+          <p>Multiplication is allowed only when the <strong>inner dimensions match</strong>.</p>
+          <pre>A is m × n
+B is n × p
+→ AB is possible, and AB is m × p
+
+(m × n)(n × p) = m × p
+        ↑    ↑  these must match</pre>
+          <pre>A = 2 × 3,  B = 3 × 4   → AB = 2 × 4   ✓
+A = 2 × 3,  B = 2 × 4   → not possible (3 ≠ 2)</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> outside numbers become the answer size; inside numbers must match.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Matrix multiplication (worked)</summary>
+          <pre>A = [1  2      B = [5  6
+     3  4]          7  8]</pre>
+          <p>Each entry of <code>C = AB</code> is a <strong>row of A dotted with a column of B</strong>.</p>
+          <pre>C₁₁ = [1 2]·[5;7] = 1×5 + 2×7 = 19
+C₁₂ = [1 2]·[6;8] = 1×6 + 2×8 = 22
+C₂₁ = [3 4]·[5;7] = 3×5 + 4×7 = 43
+C₂₂ = [3 4]·[6;8] = 3×6 + 4×8 = 50
+
+AB = [19  22
+      43  50]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Why multiplication looks strange</summary>
+          <p>Matrix multiplication is not just number multiplication — it means <strong>applying one transformation after another</strong>.</p>
+          <pre>A = rotate,  B = stretch
+AB means: first apply B, then apply A</pre>
+          <p>Order matters: "rotate then stretch" is not the same as "stretch then rotate". That is why <code>AB ≠ BA</code> in general — one of the biggest GATE traps.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. AB ≠ BA</summary>
+          <p>For numbers <code>2×3 = 3×2</code>, but for matrices order usually matters.</p>
+          <pre>A = [1  2      B = [1  0
+     0  1]          3  1]
+
+AB = [7  2          BA = [1  2
+      3  1]                3  7]
+
+→ AB ≠ BA</pre>
+          <p><span style="color:var(--coral-text)">GATE memory:</span> matrix multiplication is <strong>associative</strong> — <code>A(BC) = (AB)C</code> — but <strong>not commutative</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Matrix addition</summary>
+          <p>Add matrices <strong>only if they are the same size</strong>; addition is component-wise.</p>
+          <pre>A = [1  2      B = [5  6
+     3  4]          7  8]
+
+A + B = [6   8
+         10  12]</pre>
+          <pre>allowed:    2×2 + 2×2,   3×4 + 3×4
+not allowed: 2×3 + 3×2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Scalar multiplication</summary>
+          <p>A scalar multiplies <strong>every</strong> entry.</p>
+          <pre>A = [1  2          3A = [3   6
+     3  4]                9   12]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Identity matrix</summary>
+          <p>The identity <code>I</code> is the matrix version of the number 1: <code>AI = IA = A</code>.</p>
+          <pre>I₂ = [1  0       I₃ = [1  0  0
+      0  1]            0  1  0
+                       0  0  1]</pre>
+          <p>1 on the diagonal, 0 everywhere else. A vector passes through unchanged:</p>
+          <pre>I·[3      [3
+   4]  =   4]</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the identity is the "no-effect" portal.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Diagonal matrix</summary>
+          <p>A diagonal matrix has non-zero values only on the diagonal — it scales each axis independently.</p>
+          <pre>D = [2  0          Dv = [2x
+     0  3]                3y]</pre>
+          <p>x is stretched by 2, y by 3. <span style="color:var(--coral-text)">🎮 Imagine:</span> a stretch machine.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Square matrix</summary>
+          <p>A matrix is <strong>square</strong> when rows = columns (2×2, 3×3, …). Only square matrices can have a <strong>determinant, inverse, eigenvalues</strong> and <strong>trace</strong> — most GATE matrix properties are about square matrices.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Zero matrix</summary>
+          <p>The zero matrix has all entries 0 and sends every vector to the origin: <code>Ov = 0</code>.</p>
+          <pre>O = [0  0
+     0  0]</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a black-hole portal — everything collapses to the origin.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Transpose (Aᵀ)</summary>
+          <p><strong>Transpose</strong> flips rows into columns. If A is <code>m × n</code>, then <code>Aᵀ</code> is <code>n × m</code>.</p>
+          <pre>A = [1  2  3        Aᵀ = [1  4
+     4  5  6]              2  5
+                           3  6]</pre>
+          <p class="lead">Properties:</p>
+          <ul class="styled">
+            <li><code>(Aᵀ)ᵀ = A</code></li>
+            <li><code>(A + B)ᵀ = Aᵀ + Bᵀ</code></li>
+            <li><code>(cA)ᵀ = cAᵀ</code></li>
+            <li><strong><code>(AB)ᵀ = BᵀAᵀ</code> — the order reverses</strong> (a classic GATE trap).</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Symmetric matrix</summary>
+          <p>A matrix is <strong>symmetric</strong> if <code>A = Aᵀ</code> — a mirror image across the diagonal (must be square).</p>
+          <pre>A = [1  2  3
+     2  5  6
+     3  6  9]      aᵢⱼ = aⱼᵢ</pre>
+          <p class="lead">GATE facts:</p>
+          <ul class="styled">
+            <li>Real symmetric matrices have <strong>real eigenvalues</strong>.</li>
+            <li>Eigenvectors for distinct eigenvalues are <strong>orthogonal</strong>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Skew-symmetric matrix</summary>
+          <p>A matrix is <strong>skew-symmetric</strong> if <code>A = −Aᵀ</code>, i.e. <code>aᵢⱼ = −aⱼᵢ</code>.</p>
+          <pre>A = [ 0   2  -3
+     -2   0   4
+      3  -4   0]</pre>
+          <p><span style="color:var(--coral-text)">GATE fact:</span> the diagonal entries are always <strong>0</strong>, because <code>aᵢᵢ = −aᵢᵢ ⇒ aᵢᵢ = 0</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Upper triangular matrix</summary>
+          <p>Everything <strong>below</strong> the diagonal is zero.</p>
+          <pre>U = [2  5  7
+     0  3  9
+     0  0  4]      det(U) = 2×3×4 = 24</pre>
+          <p><span style="color:var(--coral-text)">GATE fact:</span> <code>det = product of the diagonal entries</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Lower triangular matrix</summary>
+          <p>Everything <strong>above</strong> the diagonal is zero.</p>
+          <pre>L = [2  0  0
+     5  3  0
+     7  9  4]      det(L) = 2×3×4 = 24</pre>
+          <p>Same rule: <code>det = product of the diagonal</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Trace</summary>
+          <p><strong>Trace</strong> = sum of the diagonal entries, written <code>tr(A)</code>.</p>
+          <pre>A = [1  2  3
+     4  5  6        tr(A) = 1 + 5 + 9 = 15
+     7  8  9]</pre>
+          <p class="lead">Properties:</p>
+          <ul class="styled">
+            <li><code>tr(A + B) = tr(A) + tr(B)</code>, &nbsp; <code>tr(cA) = c·tr(A)</code>, &nbsp; <code>tr(Aᵀ) = tr(A)</code></li>
+            <li><strong><code>tr(AB) = tr(BA)</code></strong> even though <code>AB ≠ BA</code>.</li>
+            <li><strong>Trace = sum of eigenvalues</strong> — if eigenvalues are 2, 3, 5 then <code>tr(A) = 10</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Determinant</summary>
+          <p>The <strong>determinant</strong> is a single number for a square matrix, written <code>det(A)</code> or <code>|A|</code>.</p>
+          <pre>A = [a  b        det(A) = ad − bc
+     c  d]
+
+A = [1  2        det = 1×4 − 2×3 = −2
+     3  4]</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the determinant is the <strong>area / volume scaling factor</strong>. <code>det = 2</code> doubles area; <code>det = 0</code> collapses space to a line or point (the matrix loses a dimension).</p>
+          <p><span style="color:var(--coral-text)">GATE rule:</span> <code>A⁻¹</code> exists <strong>iff <code>det(A) ≠ 0</code></strong>. det = 0 → singular (not invertible); det ≠ 0 → non-singular (invertible).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Inverse matrix</summary>
+          <p>The <strong>inverse</strong> is the "undo" button: it reverses the transformation.</p>
+          <pre>A A⁻¹ = A⁻¹ A = I</pre>
+          <p>Just as <code>5 × 1/5 = 1</code> for numbers. <span style="color:var(--coral-text)">🎮 Imagine:</span> A is a portal, <code>A⁻¹</code> is the reverse portal, and <code>I</code> is the unchanged original.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. The 2×2 inverse formula</summary>
+          <pre>A = [a  b
+     c  d]
+
+A⁻¹ = 1/(ad−bc) · [ d  −b
+                     −c   a]      (only if ad−bc ≠ 0)</pre>
+          <p class="lead">Example:</p>
+          <pre>A = [1  2      det = −2
+     3  4]
+
+A⁻¹ = (1/−2)·[ 4  −2      = [−2    1
+              −3   1]         1.5 −0.5]</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Inverse of a product</summary>
+          <p><strong><code>(AB)⁻¹ = B⁻¹A⁻¹</code></strong> — the order reverses.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> socks then shoes — to undo, remove shoes first, then socks. Same reversal as transpose: <code>(AB)ᵀ = BᵀAᵀ</code>.</p>
+          <p><span style="color:var(--coral-text)">Memory:</span> reverse the order for both inverse and transpose.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Orthogonal matrix</summary>
+          <p>A matrix is <strong>orthogonal</strong> if <code>AᵀA = I</code>, which means <code>A⁻¹ = Aᵀ</code> — the inverse is just the transpose.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a pure rotation / reflection machine — it preserves length, angle and distance.</p>
+          <p class="lead">GATE facts:</p>
+          <ul class="styled">
+            <li><code>AᵀA = I</code> and <code>A⁻¹ = Aᵀ</code></li>
+            <li><code>det(A) = ±1</code></li>
+            <li>columns (and rows) are <strong>orthonormal</strong> = orthogonal (90°) + unit length.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Idempotent matrix</summary>
+          <p><strong>Idempotent</strong> means <code>A² = A</code> — applying it twice is the same as once.</p>
+          <pre>P = [1  0       P[x      [x        P² = P
+     0  0]         y]  =   0]   (a projection onto the x-axis)</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a projection / snap-to-ground machine. <span style="color:var(--coral-text)">GATE fact:</span> eigenvalues are only <strong>0 or 1</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Nilpotent matrix</summary>
+          <p><strong>Nilpotent</strong> means <code>Aᵏ = 0</code> for some positive integer k — enough applications send everything to zero.</p>
+          <pre>A = [0  1        A² = [0  0
+     0  0]              0  0]</pre>
+          <p><span style="color:var(--coral-text)">GATE facts:</span> all eigenvalues are <strong>0</strong>; also <code>det(A) = 0</code> and <code>tr(A) = 0</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Matrix–vector multiplication is the heart</summary>
+          <pre>A = [2  0        Av = [2x      (stretch x×2, y×3)
+     0  3]              3y]
+
+A = [0  -1       A[1     [0       (90° rotation:
+     1   0]        0] =   1]       [1,0] → [0,1])</pre>
+          <p>So a matrix is not just a table — it is an <strong>action on space</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>30. How the columns explain a transformation</summary>
+          <p>The columns of <code>A</code> tell you <strong>where the basis vectors go</strong>.</p>
+          <pre>e₁ = [1      e₂ = [0
+      0]            1]
+
+Ae₁ = first column of A
+Ae₂ = second column of A</pre>
+          <pre>A = [2  1       Ae₁ = [2      Ae₂ = [1
+     0  3]             0]            3]</pre>
+          <p>The x-axis direction moves to <code>[2,0]</code> and the y-axis to <code>[1,3]</code> — the matrix transforms the whole grid. This is the best way to <em>see</em> a matrix.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Rank</summary>
+          <p><strong>Rank</strong> = the number of independent rows/columns = the number of <em>useful directions</em> the matrix keeps.</p>
+          <pre>[1 0; 0 1] keeps 2D as 2D        → rank 2
+[1 0; 0 0] collapses to a line   → rank 1
+[0 0; 0 0] collapses to a point  → rank 0</pre>
+          <p><span style="color:var(--coral-text)">GATE:</span> for an n×n matrix, <code>det(A) ≠ 0 ⇔ rank(A) = n ⇔ inverse exists</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Singular vs non-singular (the big equivalence)</summary>
+          <p>For an <code>n × n</code> matrix A, all of these say the same thing:</p>
+          <pre>A is invertible
+⇔ det(A) ≠ 0
+⇔ rank(A) = n
+⇔ columns are linearly independent
+⇔ Ax = 0 has only the trivial solution</pre>
+          <p>If instead <code>det(A) = 0</code>: A is <strong>singular</strong> — not invertible, rank &lt; n, dependent columns, space collapses. GATE loves this chain.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. Eigenvalues &amp; eigenvectors (a first look)</summary>
+          <p>Most vectors change direction under a matrix. A few special ones do not — they only stretch or shrink. Those are <strong>eigenvectors</strong>; the stretch factor is the <strong>eigenvalue</strong> λ.</p>
+          <pre>A v = λ v     (A = matrix, v = eigenvector, λ = eigenvalue)</pre>
+          <pre>λ = 2   vector doubles
+λ = 1   vector unchanged
+λ = 0   vector collapses to zero
+λ = -1  vector flips direction</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> through the portal most arrows turn, but eigenvectors keep their direction — only their length changes.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Matrix properties — GATE table</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Property</th><th>Meaning</th><th>GATE shortcut</th></tr>
+            <tr><td><code>A + B</code></td><td>add entries</td><td>same size required</td></tr>
+            <tr><td><code>AB</code></td><td>row × column</td><td>inner dimensions must match</td></tr>
+            <tr><td><code>AB ≠ BA</code></td><td>order matters</td><td>common trap</td></tr>
+            <tr><td><code>Aᵀ</code></td><td>transpose</td><td>rows become columns</td></tr>
+            <tr><td><code>(AB)ᵀ</code></td><td>transpose of product</td><td><code>BᵀAᵀ</code></td></tr>
+            <tr><td><code>A⁻¹</code></td><td>inverse</td><td>undo matrix</td></tr>
+            <tr><td><code>(AB)⁻¹</code></td><td>inverse of product</td><td><code>B⁻¹A⁻¹</code></td></tr>
+            <tr><td><code>I</code></td><td>identity</td><td><code>AI = IA = A</code></td></tr>
+            <tr><td><code>det(A)</code></td><td>area/volume scale</td><td>non-zero ⇒ invertible</td></tr>
+            <tr><td><code>tr(A)</code></td><td>sum of diagonal</td><td>= sum of eigenvalues</td></tr>
+            <tr><td><code>rank(A)</code></td><td>independent directions</td><td>full rank ⇒ no collapse</td></tr>
+            <tr><td>symmetric</td><td><code>A = Aᵀ</code></td><td>real eigenvalues</td></tr>
+            <tr><td>skew-symmetric</td><td><code>A = −Aᵀ</code></td><td>diagonal zero</td></tr>
+            <tr><td>orthogonal</td><td><code>AᵀA = I</code></td><td>inverse is transpose</td></tr>
+            <tr><td>idempotent</td><td><code>A² = A</code></td><td>eigenvalues 0 or 1</td></tr>
+            <tr><td>nilpotent</td><td><code>Aᵏ = 0</code></td><td>eigenvalues all 0</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Common GATE traps</summary>
+          <ul class="styled">
+            <li><code>AB = BA</code>? <strong>Usually false</strong> — <code>AB ≠ BA</code> in general.</li>
+            <li><code>(AB)ᵀ = AᵀBᵀ</code>? <strong>False</strong> — it is <code>BᵀAᵀ</code>.</li>
+            <li><code>(AB)⁻¹ = A⁻¹B⁻¹</code>? <strong>False</strong> — it is <code>B⁻¹A⁻¹</code>.</li>
+            <li><code>det(A) = 0</code> but inverse exists? <strong>No</strong> — det = 0 means no inverse.</li>
+            <li>A orthogonal ⇒ <code>A⁻¹ = Aᵀ</code>. <strong>True.</strong></li>
+            <li>A skew-symmetric ⇒ diagonal entries are 0. <strong>True.</strong></li>
+            <li>A triangular ⇒ <code>det =</code> product of diagonal. <strong>True.</strong></li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Quick self-check</summary>
+          <p class="lead">Q1. Size of [[1,2,3],[4,5,6]]?</p>
+          <pre>2 rows, 3 columns  →  2 × 3</pre>
+          <p class="lead">Q2. A = 2×3, B = 3×4 — is AB possible?</p>
+          <pre>Yes — inner 3 = 3.  AB is 2 × 4.</pre>
+          <p class="lead">Q3. A = 2×3, B = 2×4 — is AB possible?</p>
+          <pre>No — inner 3 ≠ 2.</pre>
+          <p class="lead">Q4. det of [[2,3],[4,5]]?</p>
+          <pre>2×5 − 3×4 = −2  → non-zero, so A is invertible.</pre>
+          <p class="lead">Q5. Is [[1,4],[4,9]] symmetric?</p>
+          <pre>Aᵀ = [[1,4],[4,9]] = A  → yes, symmetric.</pre>
+          <p class="lead">Q6. Is [[0,5],[−5,0]] skew-symmetric?</p>
+          <pre>−Aᵀ = [[0,5],[−5,0]] = A  → yes, skew-symmetric.</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Final mental model</summary>
+          <ul class="styled">
+            <li><strong>Vector</strong> = arrow; <strong>matrix</strong> = machine that transforms arrows.</li>
+            <li><strong>Multiplication</strong> = applying machines one after another (order matters).</li>
+            <li><strong>Identity</strong> = no-change machine; <strong>inverse</strong> = undo machine.</li>
+            <li><strong>Determinant</strong> = area/volume scaling; 0 means a collapse.</li>
+            <li><strong>Rank</strong> = number of useful directions left; <strong>trace</strong> = sum of diagonal = sum of eigenvalues.</li>
+            <li><strong>Transpose</strong> = flip rows/columns; <strong>orthogonal</strong> = rotation/reflection; <strong>idempotent</strong> = projection; <strong>nilpotent</strong> = eventually-zero.</li>
+          </ul>
+        </details>
       </details>
     </section>
 
