@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Multivariate Optimization — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 3</span>
+    <h1>Multivariate Optimization</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. The condition for a critical point of $f(x,y)$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $f=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> Hessian $=0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\nabla f=0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $x=y$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The function value isn't the condition.</div>
+    <div class="quiz-feedback" data-fb="B">The Hessian classifies; it isn't the condition.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — all partial derivatives zero: $\nabla f=0$.</div>
+    <div class="quiz-feedback" data-fb="D">No such requirement.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Hessian eigenvalues $\{4,2\}$ ⇒ the point is a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> maximum</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> saddle</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> minimum</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> inflection</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A max needs all-negative eigenvalues.</div>
+    <div class="quiz-feedback" data-fb="B">Saddle needs mixed signs.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — all positive (PD) → minimum.</div>
+    <div class="quiz-feedback" data-fb="D">Not a multivariate category here.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Hessian eigenvalues $\{3,-1\}$ ⇒…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> saddle</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> maximum</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> minimum at the boundary</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">All would need to be positive.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — mixed signs (indefinite) → saddle.</div>
+    <div class="quiz-feedback" data-fb="C">All would need to be negative.</div>
+    <div class="quiz-feedback" data-fb="D">Definiteness here points to a saddle.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. The gradient $\nabla f$ points in the direction of…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> steepest descent</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> steepest ascent</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> no change</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> the minimum</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Descent is $-\nabla f$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the gradient points uphill (steepest ascent).</div>
+    <div class="quiz-feedback" data-fb="C">That's the perpendicular direction.</div>
+    <div class="quiz-feedback" data-fb="D">It points uphill, away from a minimum.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. A $2\times2$ Hessian with top-left $2$ and $\det(H)=-5$ ⇒…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> maximum</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> saddle</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> minimum</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A min needs $\det(H)\gt0$.</div>
+    <div class="quiz-feedback" data-fb="B">A max needs $\det(H)\gt0$ and top-left $\lt0$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\det(H)\lt0$ ⇒ saddle.</div>
+    <div class="quiz-feedback" data-fb="D">Negative determinant rules out a min.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. The Hessian is the matrix of…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> first partials</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> second partials</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> eigenvalues</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> constraints</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Those form the gradient.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — second-order partial derivatives.</div>
+    <div class="quiz-feedback" data-fb="C">Eigenvalues come <em>from</em> the Hessian.</div>
+    <div class="quiz-feedback" data-fb="D">Constraints are separate.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. $\nabla f=0$ alone tells you the point is a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> definite minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> definite maximum</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> candidate (need the Hessian)</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> saddle</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Could be max or saddle too.</div>
+    <div class="quiz-feedback" data-fb="B">Could be min or saddle too.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — it's just a critical point; classify with the Hessian.</div>
+    <div class="quiz-feedback" data-fb="D">Not necessarily a saddle.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. For convex $f$, a point with $\nabla f=0$ is a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> saddle</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> local max</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> global minimum</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> none of these</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Convex functions have no saddles.</div>
+    <div class="quiz-feedback" data-fb="B">Convexity rules out interior maxima.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — for convex $f$, $\nabla f=0$ ⇒ global minimum.</div>
+    <div class="quiz-feedback" data-fb="D">It is the global minimum.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="03-multivariate.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

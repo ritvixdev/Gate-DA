@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Gradient Descent — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 4</span>
+    <h1>Gradient Descent</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. The gradient descent update is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $x_{k+1}=x_k+\eta\nabla f$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $x_{k+1}=x_k-\eta\nabla f$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $x_{k+1}=\eta\nabla f$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $x_{k+1}=x_k-\nabla^2 f$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's gradient <em>ascent</em> (uphill).</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — step against the gradient by $\eta$.</div>
+    <div class="quiz-feedback" data-fb="C">You must start from the current $x_k$.</div>
+    <div class="quiz-feedback" data-fb="D">That's a Newton-style step, not plain GD.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. GD steps in the direction of…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $+\nabla f$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $-\nabla f$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> perpendicular to $\nabla f$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> random</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's uphill.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — downhill is $-\nabla f$.</div>
+    <div class="quiz-feedback" data-fb="C">That direction doesn't reduce $f$ to first order.</div>
+    <div class="quiz-feedback" data-fb="D">It's deterministic.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. $f(x)=x^2$, $\eta=0.1$, $x_0=5$. Find $x_1$.</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $5$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $6$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $4$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">It must move; $f'(5)=10\neq0$.</div>
+    <div class="quiz-feedback" data-fb="B">That's ascent; descent decreases $x$ here.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $x_1=5-0.1(2\cdot5)=4$.</div>
+    <div class="quiz-feedback" data-fb="D">One step lands at 4, not 0.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. If the learning rate is far too large, GD…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> converges faster, always</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> stays put</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> overshoots / can diverge</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> finds the global min for sure</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Too big breaks convergence.</div>
+    <div class="quiz-feedback" data-fb="B">It moves a lot — too much.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — large steps overshoot the minimum and may diverge.</div>
+    <div class="quiz-feedback" data-fb="D">A bad rate can prevent convergence entirely.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. On a non-convex function, GD may get stuck in a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> global min</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> local min</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> constraint</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> maximum</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the goal, not a trap.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — it can settle into a local minimum; the start matters.</div>
+    <div class="quiz-feedback" data-fb="C">Constraints aren't relevant to unconstrained GD.</div>
+    <div class="quiz-feedback" data-fb="D">GD moves away from maxima.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. GD stops moving when…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $f=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\eta=1$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\nabla f\approx0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $x=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The function value isn't the stopping rule.</div>
+    <div class="quiz-feedback" data-fb="B">The rate doesn't decide stopping.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — at a minimum the gradient vanishes, so the update is zero.</div>
+    <div class="quiz-feedback" data-fb="D">The minimizer need not be at 0.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. For a convex $f$ with a good learning rate, GD converges to…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> a saddle</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> the global minimum</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> a local max</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> a random point</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Convex functions have no saddles.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — convexity ⇒ GD reaches the global min.</div>
+    <div class="quiz-feedback" data-fb="C">It descends, away from maxima.</div>
+    <div class="quiz-feedback" data-fb="D">It converges deterministically to the min.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. The learning rate $\eta$ controls…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the direction</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> the function shape</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> the step size</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the number of variables</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Direction is set by $-\nabla f$.</div>
+    <div class="quiz-feedback" data-fb="B">$f$ is fixed; $\eta$ doesn't change it.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $\eta$ scales how far each step moves.</div>
+    <div class="quiz-feedback" data-fb="D">Unrelated to the dimension.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="04-gradient-descent.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

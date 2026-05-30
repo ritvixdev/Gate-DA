@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Univariate Optimization — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 2</span>
+    <h1>Univariate Optimization</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. At a stationary point, $f''(x)\gt0$ indicates a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> maximum</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> minimum</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> saddle</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> nothing</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A max needs $f''\lt0$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — positive curvature → local minimum.</div>
+    <div class="quiz-feedback" data-fb="C">Saddles are multivariate.</div>
+    <div class="quiz-feedback" data-fb="D">It's decisive.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. Minimize $f(x)=x^2-6x+10$. $x^*=?$</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $6$</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $-3$</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $3$</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $10$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's $-b$, not $-b/(2a)$.</div>
+    <div class="quiz-feedback" data-fb="B">Sign error — $-b/(2a)=6/2=3$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — $f'=2x-6=0\Rightarrow x=3$.</div>
+    <div class="quiz-feedback" data-fb="D">That's the constant term.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. Vertex of $3x^2-12x+1$ is at…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $x=-2$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $x=2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $x=12$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $x=6$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Sign — it's $-b/(2a)=12/6=2$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $x=-b/(2a)=12/6=2$ (a min since $a\gt0$).</div>
+    <div class="quiz-feedback" data-fb="C">That's $-b$, not divided by $2a$.</div>
+    <div class="quiz-feedback" data-fb="D">Divide by $2a=6$, giving 2.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $f'(x_0)=0$ and $f''(x_0)=-4$. The point is a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> maximum</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> inflection</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> nothing</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">A min needs $f''\gt0$.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — negative curvature → maximum.</div>
+    <div class="quiz-feedback" data-fb="C">Inflection is when $f''=0$.</div>
+    <div class="quiz-feedback" data-fb="D">It's a max.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. If $f''(x_0)=0$, the second-derivative test is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> definitely a min</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> definitely a max</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> inconclusive</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> definitely an inflection</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Can't conclude min from $f''=0$.</div>
+    <div class="quiz-feedback" data-fb="B">Can't conclude max either.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — inconclusive; use sign changes / higher derivatives (e.g. $x^4$ is a min).</div>
+    <div class="quiz-feedback" data-fb="D">Not necessarily — $x^4$ at 0 is a min.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. The necessary condition for an interior optimum of smooth $f$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $f''(x)=0$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $f'(x)=0$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $f(x)=0$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $x=0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the curvature, used to classify.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the slope must be zero at an interior optimum.</div>
+    <div class="quiz-feedback" data-fb="C">The function value being zero is unrelated.</div>
+    <div class="quiz-feedback" data-fb="D">The optimum needn't be at the origin.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. $f(x)=x^3-3x$: how many stationary points?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $1$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $2$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $3$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $0$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$f'=3x^2-3=0$ has two roots.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $x=\pm1$ (a min and a max).</div>
+    <div class="quiz-feedback" data-fb="C">Only $x=\pm1$ solve $f'=0$.</div>
+    <div class="quiz-feedback" data-fb="D">There are two.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. On a closed interval, the optimum can occur…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> only at stationary points</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> only at the center</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> at a stationary point or an endpoint</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> nowhere</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Endpoints can win too.</div>
+    <div class="quiz-feedback" data-fb="B">No reason it's the center.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — check interior stationary points <em>and</em> the endpoints.</div>
+    <div class="quiz-feedback" data-fb="D">A continuous function on a closed interval attains its optimum.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="02-univariate.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

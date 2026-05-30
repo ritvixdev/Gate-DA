@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Symbols Glossary · Optimization</title>
+<meta name="description" content="Every symbol used in GATE DA Optimization — how to read it, what it means, with examples.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-page="symbols" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>Symbols Glossary</h1>
+    <p class="lede">Every notation used across Optimization — how to <em>say</em> it, what it <em>means</em>, and a quick example.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Objective &amp; optima</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$f(x)$</td><td>"f of x"</td><td>objective / cost function</td></tr>
+      <tr><td>$x^*$</td><td>"x star"</td><td>the optimal point (minimizer)</td></tr>
+      <tr><td>$\min f$ / $\max f$</td><td>"min / max"</td><td>smallest / largest value</td></tr>
+      <tr><td>$\arg\min f$</td><td>"argmin"</td><td>the $x$ that achieves the min</td></tr>
+      <tr><td>s.t.</td><td>"subject to"</td><td>introduces constraints</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Derivatives &amp; curvature</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$f'(x)$, $\tfrac{df}{dx}$</td><td>"f prime"</td><td>first derivative (slope)</td></tr>
+      <tr><td>$f''(x)$</td><td>"f double prime"</td><td>second derivative (curvature)</td></tr>
+      <tr><td>$\nabla f$</td><td>"grad f"</td><td>gradient = vector of first partials</td></tr>
+      <tr><td>$\partial f/\partial x_i$</td><td>"partial"</td><td>slope in the $x_i$ direction</td></tr>
+      <tr><td>$H$, $\nabla^2 f$</td><td>"Hessian"</td><td>matrix of second partials</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Gradient descent &amp; conditions</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$x_k$</td><td>"x sub k"</td><td>point at iteration $k$</td></tr>
+      <tr><td>$\eta$</td><td>"eta"</td><td>learning rate (step size)</td></tr>
+      <tr><td>$-\nabla f$</td><td>"minus grad f"</td><td>steepest-descent direction</td></tr>
+      <tr><td>PD / ND</td><td>"positive/negative definite"</td><td>all eigenvalues $\gt0$ / $\lt0$ → min / max</td></tr>
+      <tr><td>saddle</td><td>"saddle point"</td><td>$\nabla f=0$, Hessian indefinite</td></tr>
+    </table></div>
+  </section>
+
+  <div class="practice-cta">
+    <span class="practice-cta-icon" aria-hidden="true">🎯</span>
+    <div class="practice-cta-body">
+      <div class="practice-cta-title">Ready to practice?</div>
+      <div class="practice-cta-sub">Drill each topic with explained questions.</div>
+    </div>
+    <a class="btn btn-primary" href="practice.html">Practice questions →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

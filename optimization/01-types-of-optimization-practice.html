@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Types of Optimization — Practice · GATE DA</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="optimization" data-page="practice" data-content>
+  <div class="hero">
+    <span class="tag">Practice · Topic 1</span>
+    <h1>Types of Optimization</h1>
+    <p class="lede">8 questions. Tap any option — you'll see why it's right or wrong, and the correct one lights up.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. For a convex function, a local minimum is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> never global</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> sometimes global</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> always global</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a maximum</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Convexity guarantees it's global.</div>
+    <div class="quiz-feedback" data-fb="B">Always, not sometimes, for convex $f$.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — no traps in a convex bowl: local = global.</div>
+    <div class="quiz-feedback" data-fb="D">A min isn't a max.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. "Maximize $g$" is the same as…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> minimize $g$</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> minimize $-g$</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> maximize $-g$</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> nothing equivalent</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">That's the opposite goal.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — $\max g=-\min(-g)$.</div>
+    <div class="quiz-feedback" data-fb="C">That flips it the wrong way.</div>
+    <div class="quiz-feedback" data-fb="D">There is a standard equivalence.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. "$\min f(x)$ subject to $x\ge0$" is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> unconstrained</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> constrained</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> always convex</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> impossible</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">There's a restriction, so it's constrained.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — the condition $x\ge0$ is a constraint.</div>
+    <div class="quiz-feedback" data-fb="C">Convexity depends on $f$, not the constraint alone.</div>
+    <div class="quiz-feedback" data-fb="D">It's a perfectly valid problem.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. $f(x)=x^2$ is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> non-convex</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> convex</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> concave</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> linear</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">An upward parabola is convex.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — a single upward bowl is convex.</div>
+    <div class="quiz-feedback" data-fb="C">Concave is the upside-down version.</div>
+    <div class="quiz-feedback" data-fb="D">It's quadratic, not linear.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. A non-convex landscape can trap you in a…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> global minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> constraint</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> local minimum</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> maximum only</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">The global min is the goal, not a trap.</div>
+    <div class="quiz-feedback" data-fb="B">Constraints define the region, not a trap valley.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — extra valleys mean you can stall in a local min.</div>
+    <div class="quiz-feedback" data-fb="D">It's about local minima, not maxima.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. The objective function is also called the…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> constraint</button>
+      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> cost / loss function</button>
+      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> gradient</button>
+      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> feasible set</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Constraints restrict $x$; they're separate.</div>
+    <div class="quiz-feedback" data-fb="B">✅ Correct — objective = cost / loss we minimize.</div>
+    <div class="quiz-feedback" data-fb="C">The gradient is its slope, not the function.</div>
+    <div class="quiz-feedback" data-fb="D">That's the set of allowed $x$.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. A sum of two convex functions is…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> always non-convex</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> always concave</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> convex</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> undefined</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">Convexity is preserved under addition.</div>
+    <div class="quiz-feedback" data-fb="B">Adding convex functions stays convex.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — a sum of convex functions is convex.</div>
+    <div class="quiz-feedback" data-fb="D">It's well-defined and convex.</div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. "Convex function" vs "convex set" — they describe…</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the same thing</button>
+      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> nothing useful</button>
+      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a curve's shape vs a region's shape</button>
+      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> maxima vs minima</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">They're related but distinct concepts.</div>
+    <div class="quiz-feedback" data-fb="B">Both are central to optimization.</div>
+    <div class="quiz-feedback" data-fb="C">✅ Correct — function shape (bowl) vs feasible region shape.</div>
+    <div class="quiz-feedback" data-fb="D">Neither is about max vs min directly.</div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="01-types-of-optimization.html">← Back to lesson</a>
+    <a class="nav-btn primary" href="practice.html">All practice →</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
