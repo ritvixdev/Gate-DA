@@ -50,59 +50,362 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— solving systems: determinant &amp; rank tests</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— solving systems from zero, one idea per card</span></summary>
 
-        <p class="study-empty">Solving a system <code>Ax = b</code> is the practical heart of linear algebra. Two tools decide everything: the <strong>determinant</strong> (for square systems) and the <strong>rank</strong> of A versus the augmented matrix [A|b] (for any system). Open each card in order.</p>
+        <p class="study-empty">A system of linear equations means solving many equations at once — written compactly as <code>Ax = b</code>. The whole topic answers two questions: does a solution exist, and how many? Rank, the determinant, and the column/null spaces give the complete answer. Open each card in order.</p>
 
         <details class="study-item">
-          <summary>1. Cramer's Rule — when it applies</summary>
-          <p><strong>Cramer's Rule</strong> solves <code>Ax = b</code> using determinants. It works <strong>only when <code>det(A) ≠ 0</code></strong> — then the solution is unique.</p>
+          <summary>1. What is a system of linear equations?</summary>
+          <p>A <strong>system</strong> is several linear equations together — and the question is always: does a common solution exist, and how many?</p>
+          <pre>x + 2y = 5
+2x + 4y = 10</pre>
+          <p>In 2D each equation is a line, so solving asks: <strong>where do the lines meet?</strong></p>
         </details>
 
         <details class="study-item">
-          <summary>2. Cramer's Rule — worked 2×2</summary>
-          <pre>2x + y = 5 ,  x + 3y = 7
-A = [2 1; 1 3]   b = [5; 7]
-det(A) = 2×3 − 1×1 = 5  (≠ 0)
+          <summary>2. Matrix form: Ax = b</summary>
+          <p>Every linear system packs into one equation:</p>
+          <pre>x + 2y = 5        A = [1  2     x = [x     b = [5
+3x + 4y = 6            3  4]         y]         6]
 
-A₁ = [5 1; 7 3] det = 8 → x = 8/5
-A₂ = [2 5; 1 7] det = 9 → y = 9/5</pre>
+[1 2; 3 4]·[x; y] = [5; 6]   ⇒   Ax = b</pre>
+          <p><code>A</code> = coefficient matrix, <code>x</code> = unknowns, <code>b</code> = constants.</p>
         </details>
 
         <details class="study-item">
-          <summary>3. When to use Cramer's Rule</summary>
-          <p>Best for theory and small (2×2, 3×3) systems. For large systems use Gaussian elimination.</p>
-          <pre>Cramer = clean but costly ;  elimination = practical</pre>
+          <summary>3. The augmented matrix [A|b]</summary>
+          <p>Attach b to A as an extra column:</p>
+          <pre>[A | b] = [1  2 | 5
+           3  4 | 6]</pre>
+          <p><span style="color:var(--coral-text)">Key names:</span> <code>A</code> = coefficient matrix, <code>[A|b]</code> = augmented matrix. Comparing their ranks decides everything.</p>
         </details>
 
         <details class="study-item">
-          <summary>4. Determinant decides the solution count (square systems)</summary>
-          <pre>Ax = b, A is n×n
-det(A) ≠ 0 → unique solution (x = A⁻¹b)
-det(A) = 0 → no unique solution (none, or infinitely many)</pre>
+          <summary>4. Game imagination</summary>
+          <p>Each equation is a rule/wall; the solution is the position satisfying <strong>all</strong> rules at once.</p>
+          <pre>No solution       = rules contradict
+Unique solution   = exactly one position fits
+Infinite solutions = many positions fit</pre>
         </details>
 
         <details class="study-item">
-          <summary>5. Homogeneous systems Ax = 0</summary>
-          <pre>det(A) ≠ 0 → only the trivial solution x = 0
-det(A) = 0 → non-trivial (non-zero) solutions exist</pre>
+          <summary>5. Geometric meaning in 2D</summary>
+          <pre>Unique:   lines cross once     x+y=3 , x−y=1
+No soln:  parallel, different  x+y=3 , x+y=5
+Infinite: same line            x+2y=5 , 2x+4y=10</pre>
+          <p>The second of each pair shows the give-away: same left side with a different (or proportional) right side.</p>
         </details>
 
         <details class="study-item">
-          <summary>6. Consistency: rank(A) vs rank([A|b])</summary>
-          <p>For any system (even non-square), compare the coefficient matrix A with the augmented matrix [A|b]:</p>
-          <pre>rank(A) = rank([A|b])  →  consistent (at least one solution)
-rank(A) ≠ rank([A|b])  →  no solution</pre>
-          <p>Adding b must not introduce a new independent direction, or the equations contradict.</p>
+          <summary>6. Geometric meaning in 3D</summary>
+          <p>With three unknowns each equation is a <strong>plane</strong>:</p>
+          <pre>planes meet at a point  → unique
+planes meet on a line   → infinite
+planes share no common point → no solution</pre>
+          <p>Solving a system is really geometry.</p>
         </details>
 
         <details class="study-item">
-          <summary>7. Unique, infinite, or no solution — the rank test</summary>
-          <p>Let A be m×n with n unknowns:</p>
-          <pre>rank(A) ≠ rank([A|b])            →  no solution
-rank(A) = rank([A|b]) = n        →  unique solution (no free variables)
-rank(A) = rank([A|b]) < n        →  infinitely many (free variables exist)</pre>
-          <p>This single test handles every linear system in GATE.</p>
+          <summary>7. The golden rule (rank test)</summary>
+          <pre>r  = rank(A) ,  r' = rank([A|b]) ,  n = number of unknowns
+
+r ≠ r'        → No solution
+r = r' = n    → Unique solution
+r = r' < n    → Infinitely many solutions</pre>
+          <p>This single rule answers every system question in GATE.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Why rank decides the solutions</summary>
+          <p>Rank = number of <strong>independent equations</strong>; n = number of variables to pin down.</p>
+          <pre>enough independent equations (r = n)  → all variables fixed → unique
+too few (r < n)                       → free variables remain → infinite
+[A|b] gains rank over A               → a contradiction row    → none</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. What each case looks like</summary>
+          <p class="lead">Contradiction (r ≠ r'):</p>
+          <pre>[0 0 | 5]  →  0 = 5  →  impossible  →  no solution</pre>
+          <p class="lead">All variables fixed (r = r' = n):</p>
+          <pre>2 independent equations, 2 unknowns → unique</pre>
+          <p class="lead">Free variable (r = r' < n):</p>
+          <pre>2 independent equations, 3 unknowns → free variables = n − r = 1 → infinite</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Gaussian elimination</summary>
+          <p>The main method: row-reduce <code>[A|b]</code> to echelon form using operations that <strong>do not change the solution set</strong>:</p>
+          <pre>1. swap two rows
+2. multiply a row by a non-zero scalar
+3. add a multiple of one row to another</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the same mission rewritten with simpler instructions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Row echelon form &amp; back substitution</summary>
+          <pre>[1  2  3 | 4
+ 0  1  5 | 6
+ 0  0  2 | 8]</pre>
+          <p>Once triangular, solve from the bottom up (<strong>back substitution</strong>): the last row gives the last variable, then substitute upward.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Worked: unique solution</summary>
+          <pre>x + y = 3 , x − y = 1
+[1 1 | 3; 1 −1 | 1]  →  R2−R1  →  [1 1 | 3; 0 −2 | −2]
+
+−2y = −2 → y = 1 ;  x + 1 = 3 → x = 2
+
+rank(A)=rank([A|b])=2=n  →  unique:  x=2, y=1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Worked: infinitely many solutions</summary>
+          <pre>x + 2y = 5 , 2x + 4y = 10
+[1 2 | 5; 2 4 | 10]  →  R2−2R1  →  [1 2 | 5; 0 0 | 0]
+
+rank = rank' = 1 < 2  →  infinite
+let y = t:  x = 5 − 2t
+
+[x; y] = [5; 0] + t·[−2; 1],   t ∈ ℝ</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Worked: no solution</summary>
+          <pre>x + 2y = 5 , 2x + 4y = 11
+[1 2 | 5; 2 4 | 11]  →  R2−2R1  →  [1 2 | 5; 0 0 | 1]
+
+last row: 0 = 1  →  impossible
+rank(A)=1 ≠ rank([A|b])=2  →  no solution</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Homogeneous systems Ax = 0</summary>
+          <p>When the right side is all zeros, <code>Ax = 0</code> <strong>always</strong> has the <strong>trivial solution</strong> x = 0.</p>
+          <pre>x + 2y = 0 , 3x + 4y = 0   →   x = 0, y = 0 always works</pre>
+          <p>The real question is whether a <strong>non-trivial</strong> (non-zero) solution also exists.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Trivial vs non-trivial solution</summary>
+          <pre>trivial:     x = 0  (all variables zero)
+non-trivial: at least one variable ≠ 0  (e.g. x=2, y=−1)</pre>
+          <p>GATE asks: "does <code>Ax = 0</code> have a non-trivial solution?" = is there a non-zero x with <code>Ax = 0</code>?</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Homogeneous golden rule</summary>
+          <pre>Ax = 0 has ONLY the trivial solution  ⟺  rank(A) = n</pre>
+          <p>Because <code>rank + nullity = n</code>: if rank = n then nullity = 0 (no free variable → only x = 0). If <code>rank &lt; n</code>, free variables exist → non-trivial solutions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Homogeneous system for a square matrix</summary>
+          <p>For n×n A, these are all equivalent:</p>
+          <pre>Ax = 0 only trivial  ⟺  rank = n  ⟺  det(A) ≠ 0
+                     ⟺  invertible ⟺ columns independent ⟺ nullity 0</pre>
+          <p>And the opposite chain:</p>
+          <pre>Ax = 0 has non-trivial  ⟺  rank < n  ⟺  det(A) = 0  ⟺  singular</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Non-homogeneous systems (b ≠ 0)</summary>
+          <p>With <code>b ≠ 0</code>, a solution is <strong>not</strong> guaranteed — <code>Ax = b</code> may have <strong>none, one, or infinitely many</strong> solutions (unlike the homogeneous case, which always has at least x = 0).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Solution structure: x = xₚ + xₕ</summary>
+          <pre>x = xₚ + xₕ
+xₚ = one particular solution of Ax = b
+xₕ = any solution of Ax = 0  (the null space)</pre>
+          <p>One real solution, plus every "invisible" null-space move that doesn't change the output.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Why x = xₚ + xₕ works</summary>
+          <pre>A xₚ = b ,  A xₕ = 0
+A(xₚ + xₕ) = Axₚ + Axₕ = b + 0 = b  ✓</pre>
+          <p>So once you have one solution, adding any null-space vector keeps you a solution — the full solution set is a <strong>shifted null space</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Example of the solution structure</summary>
+          <pre>x + 2y = 5  →  [x; y] = [5; 0] + t·[−2; 1]
+
+xₚ = [5; 0]      (check: 5 + 2·0 = 5 ✓)
+xₕ = t·[−2; 1]   (solves x + 2y = 0)</pre>
+          <p>general = particular + homogeneous.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Free variables and pivot variables</summary>
+          <pre>x₁ + 2x₂ + 3x₃ = 5
+        x₂ + 4x₃ = 6
+
+pivot variables: x₁, x₂   → count = rank
+free variable:   x₃       → count = nullity = n − rank</pre>
+          <p>Free variables = <code>n − rank(A)</code>; if any exist (and the system is consistent), there are infinitely many solutions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Worked: 3-variable unique solution</summary>
+          <pre>x+y+z=6 , 2x+3y+z=11 , x+2y+3z=14
+R2−2R1, R3−R1 → [1 1 1|6; 0 1 −1|−1; 0 1 2|8]
+R3−R2          → [1 1 1|6; 0 1 −1|−1; 0 0 3|9]
+
+3z = 9 → z = 3 ;  y − 3 = −1 → y = 2 ;  x + 5 = 6 → x = 1
+rank = rank' = 3 = n → unique:  (1, 2, 3)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Overdetermined &amp; underdetermined systems</summary>
+          <pre>Overdetermined: more equations than unknowns (A is 5×2)
+   → often NO exact solution → least squares (regression)
+
+Underdetermined: fewer equations than unknowns (A is 2×5)
+   → if consistent, infinitely many solutions (free variables)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>26. More unknowns than equations (key result)</summary>
+          <p>For <code>Ax = 0</code> with <code>n &gt; m</code> (more unknowns than equations):</p>
+          <pre>rank(A) ≤ m < n  ⇒  rank < n  ⇒  nullity > 0
+⇒  a non-trivial solution ALWAYS exists</pre>
+          <pre>e.g. 2 equations, 3 unknowns → Ax = 0 has non-zero solutions</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Square system Ax = b</summary>
+          <pre>A is n×n:
+det(A) ≠ 0 → unique solution for EVERY b  (x = A⁻¹b)
+det(A) = 0 → not unique: no solution OR infinitely many (depends on b)
+              for Ax = 0 specifically → infinitely many</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Consistent vs inconsistent &amp; row types</summary>
+          <pre>consistent   ⟺ rank(A) = rank([A|b])   (a solution exists)
+inconsistent ⟺ rank(A) ≠ rank([A|b])   (no solution)</pre>
+          <p class="lead">Watch these rows after reduction:</p>
+          <pre>[0 0 0 | 5]  contradiction → no solution
+[0 0 0 | 0]  no new info   → dependency / free variables
+[0 1 3 | 4]  pivot row     → useful equation</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Reduced row echelon form (RREF)</summary>
+          <p>Gauss–Jordan goes one step further than echelon form, making pivots 1 with zeros above and below:</p>
+          <pre>[1 0 | 2
+ 0 1 | 1]   →   reads off directly:  x = 2, y = 1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Cramer's Rule</summary>
+          <p>For a square system with <code>det(A) ≠ 0</code>:</p>
+          <pre>xᵢ = det(Aᵢ) / det(A)     (Aᵢ = A with column i replaced by b)</pre>
+          <pre>2x+y=5 , x+3y=7 :  det(A)=5
+x = |5 1; 7 3|/5 = 8/5 ,  y = |2 5; 1 7|/5 = 9/5</pre>
+          <p>Great for theory and small systems; for big systems use elimination.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Connection with the column space</summary>
+          <p><code>Ax</code> is a combination of A's columns: <code>Ax = x₁·col₁ + x₂·col₂ + …</code>. So:</p>
+          <pre>Ax = b has a solution  ⟺  b lies in the column space of A</pre>
+          <p>Solving the system = "can b be built from the columns of A?" — the deepest way to see it.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Column-space example</summary>
+          <pre>A = [1 2; 2 4]   (col₂ = 2·col₁ → column space is a line)
+
+b = [3; 6] = 3·[1;2]  → in the column space → Ax = b solvable
+b = [3; 7]            → not on that line   → no solution</pre>
+          <p>This matches the rank test exactly.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. Connection with the null space</summary>
+          <pre>if A xₚ = b, every solution is  x = xₚ + z,  where A z = 0 (z in Null(A))
+
+nullity 0  → unique solution
+nullity > 0 → infinitely many (move freely along the null space)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Number-of-solutions summary</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Result</th><th>Condition</th></tr>
+            <tr><td>No solution</td><td>b ∉ C(A) ; rank(A) ≠ rank([A|b])</td></tr>
+            <tr><td>Unique solution</td><td>b ∈ C(A) ; rank(A) = n ; nullity 0</td></tr>
+            <tr><td>Infinitely many</td><td>b ∈ C(A) ; rank(A) < n ; nullity > 0</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Where this shows up in GATE DA / ML</summary>
+          <p>Linear regression is a system: <code>Xβ = y</code> (X = data matrix, β = parameters, y = targets). Usually there are far more rows (data points) than columns (parameters), so an exact solution rarely exists.</p>
+          <p>Systems of equations lead directly to <strong>least squares, projection, normal equations and optimization</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Least-squares preview</summary>
+          <p>When <code>Ax = b</code> has <strong>no exact solution</strong> (b outside the column space), find the x that makes <code>Ax</code> <em>closest</em> to b:</p>
+          <pre>minimize || Ax − b ||²   ⇔   project b onto the column space of A</pre>
+          <p>The full method (projection / normal equations) comes in the Orthogonality and SVD &amp; PCA topics.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Common GATE traps</summary>
+          <ul class="styled">
+            <li><code>rank(A)=rank([A|b])</code> ⇒ unique? <strong>No</strong> — that only guarantees a solution exists; unique also needs <code>rank = n</code>.</li>
+            <li><code>rank(A) &lt; n</code> ⇒ no solution? <strong>No</strong> — if consistent it means infinitely many.</li>
+            <li>Homogeneous <code>Ax=0</code> can have no solution? <strong>No</strong> — x = 0 always works.</li>
+            <li>Square <code>det(A)=0</code> ⇒ <code>Ax=b</code> has no solution? <strong>No</strong> — it means <em>not unique</em> (none or infinite).</li>
+            <li>A invertible ⇒ unique solution for every b? <strong>True.</strong></li>
+            <li>More unknowns than equations (homogeneous) ⇒ non-trivial exists? <strong>True.</strong></li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>38. Practice problems</summary>
+          <p class="lead">Q1. r=2, r'=3, n=4?</p>
+          <pre>r ≠ r' → no solution</pre>
+          <p class="lead">Q2. r=3, r'=3, n=3?</p>
+          <pre>r = r' = n → unique</pre>
+          <p class="lead">Q3. r=2, r'=2, n=5?</p>
+          <pre>r = r' < n → infinite; free variables = 5 − 2 = 3</pre>
+          <p class="lead">Q4. A is 3×5, Ax = 0 — only trivial?</p>
+          <pre>rank ≤ 3 < 5 → nullity > 0 → non-trivial solutions exist</pre>
+          <p class="lead">Q5. A is 4×4, det ≠ 0?</p>
+          <pre>Ax=b: unique for every b ; Ax=0: only trivial</pre>
+          <p class="lead">Q6. A is 4×4, det = 0?</p>
+          <pre>Ax=0: non-trivial solutions ; Ax=b: none or infinitely many</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Cheatsheet</summary>
+          <ul class="styled">
+            <li>Write it as <code>Ax = b</code>; compare <code>r = rank(A)</code> and <code>r' = rank([A|b])</code> with n = unknowns.</li>
+            <li><code>r ≠ r'</code> → none; <code>r = r' = n</code> → unique; <code>r = r' < n</code> → infinite.</li>
+            <li>Free variables = <code>n − rank(A)</code>.</li>
+            <li><code>Ax=0</code> always has x = 0; only trivial ⟺ rank = n; non-trivial ⟺ rank &lt; n.</li>
+            <li>Square: <code>rank = n ⟺ det ≠ 0 ⟺ invertible</code>.</li>
+            <li>General solution <code>x = xₚ + xₕ</code>; solvable ⟺ <code>b ∈ C(A)</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>40. Best mental model</summary>
+          <pre>A = machine ,  x = input/control ,  b = target output
+Ax = b  →  find the input x that produces target b</pre>
+          <ul class="styled">
+            <li><strong>No solution</strong> = target b is unreachable.</li>
+            <li><strong>Unique</strong> = exactly one input reaches b.</li>
+            <li><strong>Infinite</strong> = many inputs reach the same b (move along the null space).</li>
+          </ul>
+          <p>So <code>x = xₚ + xₕ</code> = one valid input + invisible moves that don't change the output.</p>
         </details>
       </details>
     </section>
