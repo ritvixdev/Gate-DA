@@ -62,22 +62,19 @@
   <!-- 4. BASIC DEFINITIONS -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Vector:</strong> an ordered list of numbers, e.g. $v=(3,1)$. Each number is a
-      <strong>component</strong> (the amount of movement along one axis).</p>
-    <p><strong>$\mathbb{R}^n$:</strong> the space of all vectors with $n$ real components.
-      $(1,2)\in\mathbb{R}^2$, $(3,4,5)\in\mathbb{R}^3$. The symbol $\in$ means "belongs to".</p>
-    <p><strong>Zero vector ($0$):</strong> all components zero, e.g. $(0,0)$ — "no movement", the origin.</p>
-    <p><strong>Vector space:</strong> a set of vectors that is <em>closed</em> — add any two, or scale any
-      one, and the result is still inside the set. ($\mathbb{R}^2$ is the flat plane; $\mathbb{R}^3$ is 3-D space.)</p>
-    <p style="font-size:15px;color:var(--muted)"><strong>The 8 axioms</strong> (just recognize them for GATE): commutativity $u+v=v+u$; associativity $(u+v)+w=u+(v+w)$; a zero vector $v+0=v$; an inverse $v+(-v)=0$; $1\cdot v=v$; $c(dv)=(cd)v$; $c(u+v)=cu+cv$; $(c+d)v=cv+dv$.</p>
-    <p><strong>Subspace:</strong> a smaller vector space sitting inside a bigger one — for example a line
-      through the origin inside $\mathbb{R}^2$.</p>
-    <p><strong>Span:</strong> all vectors you can build from a given set by scaling and adding.
-      <strong>Linear combination:</strong> one such built vector, $c_1v_1+c_2v_2+\dots$.</p>
-    <p><strong>Linearly independent:</strong> no vector in the set can be built from the others (no waste).
-      <strong>Dependent:</strong> at least one is redundant.</p>
-    <p><strong>Basis:</strong> a set that is independent <em>and</em> spans the space — the minimum team that
-      reaches everywhere. <strong>Dimension:</strong> how many vectors are in a basis.</p>
+    <ul class="deflist">
+      <li><strong>Vector:</strong> an ordered list of numbers, e.g. $v=(3,1)$. Each number is a <strong>component</strong> (the amount of movement along one axis).</li>
+      <li><strong>$\mathbb{R}^n$:</strong> the space of all vectors with $n$ real components — $(1,2)\in\mathbb{R}^2$, $(3,4,5)\in\mathbb{R}^3$. The symbol $\in$ means "belongs to".</li>
+      <li><strong>Zero vector ($0$):</strong> all components zero, e.g. $(0,0)$ — "no movement", the origin.</li>
+      <li><strong>Vector space:</strong> a set of vectors that is <em>closed</em> — add any two, or scale any one, and the result is still inside the set. ($\mathbb{R}^2$ is the flat plane; $\mathbb{R}^3$ is 3-D space.)</li>
+      <li><strong>Subspace:</strong> a smaller vector space sitting inside a bigger one — for example a line through the origin inside $\mathbb{R}^2$.</li>
+      <li><strong>Span:</strong> all vectors you can build from a given set by scaling and adding.</li>
+      <li><strong>Linear combination:</strong> one such built vector, $c_1v_1+c_2v_2+\dots$.</li>
+      <li><strong>Linearly independent:</strong> no vector in the set can be built from the others (no waste). <strong>Dependent:</strong> at least one is redundant.</li>
+      <li><strong>Basis:</strong> a set that is independent <em>and</em> spans the space — the minimum team that reaches everywhere.</li>
+      <li><strong>Dimension:</strong> how many vectors are in a basis.</li>
+    </ul>
+    <p class="deflist-note"><strong>The 8 axioms</strong> (just recognize them for GATE): commutativity $u+v=v+u$; associativity $(u+v)+w=u+(v+w)$; a zero vector $v+0=v$; an inverse $v+(-v)=0$; $1\cdot v=v$; $c(dv)=(cd)v$; $c(u+v)=cu+cv$; $(c+d)v=cv+dv$.</p>
   </section>
 
   <!-- STUDY IN DEPTH (optional deep-dive) -->

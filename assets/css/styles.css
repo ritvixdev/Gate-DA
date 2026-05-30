@@ -266,6 +266,22 @@ ul.styled { list-style: none; padding-left: 0; margin: var(--s-xs) 0; }
 ul.styled li { position: relative; padding: 5px 0 5px 22px; font-size: 16px; line-height: 1.65; color: var(--body); }
 ul.styled li::before { content: '▸'; position: absolute; left: 0; color: var(--primary); }
 
+/* Definition list — point-wise terms with generous spacing */
+ul.deflist { list-style: none; padding-left: 0; margin: var(--s-sm) 0 0; }
+ul.deflist > li {
+  position: relative; padding-left: 26px; margin: 0 0 var(--s-md);
+  font-size: 16px; line-height: 1.75; color: var(--body);
+}
+ul.deflist > li:last-child { margin-bottom: 0; }
+ul.deflist > li::before {
+  content: '▸'; position: absolute; left: 0; top: 0; color: var(--primary);
+}
+.deflist-note {
+  font-size: 15px; color: var(--muted); line-height: 1.7;
+  margin: var(--s-lg) 0 0; padding-top: var(--s-md);
+  border-top: 1px solid var(--hairline-soft);
+}
+
 /* Table */
 .tbl-wrap { overflow-x: auto; margin: var(--s-md) 0; border-radius: var(--r-md); border: 1px solid var(--hairline); }
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
