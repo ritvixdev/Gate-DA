@@ -338,35 +338,48 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
 .study[open] > summary::after { transform: rotate(180deg); }
 .study-empty { color: var(--muted); font-size: 15px; margin: var(--s-md) 0 0; }
 
-/* Nested mini-cards — one concept each */
+/* Nested mini-cards — one concept each. Airy, "label → panel" rhythm. */
 .study-item {
   background: var(--surface-soft);
   border: 1px solid var(--hairline-soft);
-  border-radius: var(--r-md);
-  padding: var(--s-sm) var(--s-md);
-  margin: var(--s-sm) 0;
+  border-radius: var(--r-lg);
+  padding: var(--s-md) var(--s-lg);
+  margin: var(--s-md) 0;
 }
 .study-item > summary {
   display: flex; align-items: center; gap: 10px;
-  font-size: 16px; font-weight: 600; color: var(--body-strong); line-height: 1.5;
+  font-size: 17px; font-weight: 600; color: var(--body-strong); line-height: 1.5;
 }
 .study-item > summary::after {
   content: '+'; margin-left: auto; color: var(--primary);
   font-family: var(--font-mono); font-size: 18px; font-weight: 700;
 }
 .study-item[open] > summary::after { content: '\2212'; } /* − minus */
-.study-item[open] > summary { margin-bottom: var(--s-sm); }
-.study-item p { font-size: 16px; line-height: 1.7; color: var(--body); margin: var(--s-xs) 0; }
-.study-item ul.styled li { font-size: 15px; }
-.study-item .formula { margin: var(--s-md) 0; padding: var(--s-md) var(--s-lg); }
-
-/* Monospace ASCII diagram block */
-pre.ascii {
-  font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
-  background: var(--surface-strong); border: 1px solid var(--hairline-soft);
-  border-radius: var(--r-sm); padding: var(--s-md); overflow-x: auto;
-  color: var(--body); margin: var(--s-sm) 0; white-space: pre;
+.study-item[open] > summary {
+  margin-bottom: var(--s-lg); padding-bottom: var(--s-sm);
+  border-bottom: 1px solid var(--hairline-soft);
 }
+.study-item p { font-size: 16px; line-height: 1.75; color: var(--body); margin: var(--s-md) 0; }
+.study-item p:first-of-type { margin-top: 0; }
+.study-item ul.styled { margin: var(--s-sm) 0 var(--s-md); }
+.study-item ul.styled li { font-size: 16px; padding: 6px 0 6px 22px; }
+.study-item .formula { margin: var(--s-md) 0 var(--s-lg); padding: var(--s-md) var(--s-lg); }
+.study-item ol.steps { margin: var(--s-sm) 0 var(--s-md); }
+
+/* Short lead-in label above a panel ("Example:", "This means:") */
+.study-item .lead {
+  font-size: 16px; color: var(--body); margin: var(--s-lg) 0 var(--s-xs);
+}
+.study-item .lead:first-child, .study-item p:first-of-type + .lead { margin-top: 0; }
+
+/* Clean recessed mono panel — the core of the readable look */
+.study-item pre {
+  font-family: var(--font-mono); font-size: 14px; line-height: 1.85;
+  background: var(--surface-strong); border: 1px solid var(--hairline);
+  border-radius: var(--r-md); padding: 14px 18px; overflow-x: auto;
+  color: var(--body-strong); margin: var(--s-xs) 0 var(--s-lg); white-space: pre;
+}
+.study-item pre.ascii { line-height: 1.5; }
 
 /* "Imagine it" — game / visual block */
 .imagine {
