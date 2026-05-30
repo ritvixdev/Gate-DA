@@ -49,19 +49,317 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— orthogonal matrices from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— orthogonality, projections &amp; least squares from zero</span></summary>
 
-        <p class="study-empty">Orthogonal matrices are the pure rotation / reflection machines: they preserve length and angle, and their inverse is simply the transpose. They are the backbone of QR, least squares and SVD.</p>
+        <p class="study-empty">Orthogonality means perpendicular directions that do not interfere — the cleanest way to organise space. From the dot product and norms it builds to projections, least squares (the maths behind regression), Gram–Schmidt, QR, and orthogonal matrices that preserve length and angle. Open each card in order.</p>
 
         <details class="study-item">
-          <summary>1. Orthogonal matrix</summary>
-          <p>A matrix is <strong>orthogonal</strong> if <code>AᵀA = I</code>, which means <code>A⁻¹ = Aᵀ</code> — the inverse is just the transpose.</p>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a pure rotation / reflection machine — it preserves length, angle and distance.</p>
-          <p class="lead">GATE facts:</p>
+          <summary>1. What is orthogonality?</summary>
+          <p><strong>Orthogonal = perpendicular</strong>. The x-axis <code>[1;0]</code> and y-axis <code>[0;1]</code> meet at 90°, so they are orthogonal.</p>
+          <p>The power of linear algebra: orthogonality works in <strong>any dimension</strong> (ℝ¹⁰, ℝ¹⁰⁰⁰), not just 2D/3D — which is why it underpins data science.</p>
+          <p><span style="color:var(--coral-text)">Plain idea:</span> orthogonal directions do not disturb each other.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. The dot product</summary>
+          <pre>u·v = u₁v₁ + u₂v₂ + … + uₙvₙ = uᵀv</pre>
+          <p>For column vectors, <code>uᵀ</code> is a row, so <code>uᵀv</code> multiplies out to the sum of products.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Dot product example</summary>
+          <pre>u = [1; 2] ,  v = [3; 4]
+u·v = 1×3 + 2×4 = 3 + 8 = 11</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. The orthogonality condition</summary>
+          <pre>u ⊥ v  ⟺  u·v = 0</pre>
+          <pre>[1;0]·[0;1] = 0  → perpendicular</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Finding a perpendicular vector</summary>
+          <pre>u = [1; 2] ,  v = [2; −1]
+u·v = 1×2 + 2×(−1) = 0  → orthogonal</pre>
+          <p>In 2D, a vector perpendicular to <code>[a; b]</code> is <code>[b; −a]</code> (or <code>[−b; a]</code>) — swap and negate one.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Dot product &amp; angle</summary>
+          <pre>u·v = ||u|| ||v|| cos θ</pre>
+          <p>If θ = 90°, then cos 90° = 0, so <code>u·v = 0</code>. That is exactly why a zero dot product means perpendicular.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Norm (length) of a vector</summary>
+          <pre>||v|| = √(v₁² + v₂² + … + vₙ²) = √(v·v)</pre>
+          <pre>v = [3; 4] → ||v|| = √(9+16) = √25 = 5</pre>
+          <p>It is just Pythagoras in n dimensions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Unit vector</summary>
+          <p>A <strong>unit vector</strong> has length 1.</p>
+          <pre>[1;0] and [0;1] both have norm 1 → unit vectors</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Normalization (make length 1)</summary>
+          <p>Divide a vector by its norm:</p>
+          <pre>v = [3; 4] ,  ||v|| = 5
+u = v/||v|| = [3/5; 4/5]   (check: √(9/25+16/25) = 1)</pre>
+          <p>This process is called <strong>normalization</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Orthogonal vs orthonormal</summary>
+          <pre>orthogonal : u·v = 0                 (e.g. [2;0] & [0;5])
+orthonormal: orthogonal AND each length 1  (e.g. [1;0] & [0;1])</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> orthonormal = orthogonal + normalized.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Orthogonal basis</summary>
+          <p>A basis whose vectors are mutually orthogonal. The cleanest example is the standard basis of ℝ²: <code>[1;0], [0;1]</code> (orthonormal).</p>
+          <p><span style="color:var(--coral-text)">🎮 Game terms:</span> moving right never accidentally moves you up — the directions do not interfere.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Orthogonal ⇒ independent</summary>
+          <p><strong>Non-zero, mutually orthogonal vectors are automatically linearly independent.</strong></p>
+          <pre>v₁·v₂ = v₁·v₃ = v₂·v₃ = 0 (all non-zero)  ⇒  independent</pre>
+          <p>None can be built from the others when they point in completely separate directions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Inner product</summary>
+          <p>The dot product is the standard <strong>inner product</strong>: <code>⟨u,v⟩ = u·v = uᵀv</code>. For GATE DA, treat them as the same thing.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Projection — the core idea</summary>
+          <p><strong>Projection</strong> = the shadow of one vector onto another. With light falling straight down, vector b casts a shadow on vector a:</p>
+          <pre>proj_a(b) = the part of b lying along a</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Projection of b onto a (formula)</summary>
+          <pre>proj_a(b) = (a·b / a·a) a = (a·b / ||a||²) a</pre>
+          <p>The denominator <code>a·a = ||a||²</code> adjusts for the length of a.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Projection example + the error vector</summary>
+          <pre>a = [1; 0] ,  b = [3; 4]
+a·b = 3 ,  a·a = 1  →  proj = 3·[1;0] = [3; 0]
+
+error e = b − proj = [0; 4]   and  e·a = 0  → e ⊥ a</pre>
+          <p><span style="color:var(--coral-text)">Key idea:</span> <code>b = projection + orthogonal error</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Projection onto a unit vector</summary>
+          <p>If a is not unit length the denominator handles it; <code>a=[2;0], b=[3;4]</code> still gives <code>[3;0]</code>.</p>
+          <p>If <code>u</code> is a <strong>unit</strong> vector, <code>u·u = 1</code>, so it simplifies:</p>
+          <pre>proj_u(b) = (u·b) u</pre>
+          <p>For an orthonormal basis, the coefficient along uᵢ is just <code>b·uᵢ</code> — no denominator. That is why orthonormal bases are so clean.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Projection onto a subspace</summary>
+          <p>To project b onto the column space of A (independent columns):</p>
+          <pre>p = A(AᵀA)⁻¹Aᵀ b
+projection matrix  P = A(AᵀA)⁻¹Aᵀ ,   p = Pb</pre>
+          <p>(AᵀA is invertible when A's columns are independent.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Projection matrix &amp; its properties</summary>
+          <pre>P² = P     (idempotent — projecting twice changes nothing)
+Pᵀ = P     (orthogonal projection is symmetric)
+eigenvalues of P are 0 or 1   (since λ² = λ)</pre>
+          <p>λ = 1 directions are kept (already in the subspace); λ = 0 directions are removed. The error <code>e = b − Pb</code> is orthogonal to the subspace, so <code>Aᵀe = 0</code> → least squares.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. The least-squares problem</summary>
+          <p>When <code>Ax = b</code> has <strong>no exact solution</strong> (overdetermined: more equations than unknowns), find the best approximation:</p>
+          <pre>minimize ||Ax − b||²    (make the error e = b − Ax as small as possible)</pre>
+          <p>This is the heart of fitting models to data.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Least-squares geometry</summary>
+          <p><code>Ax</code> always lies in the column space of A, but b may not. The closest point is the <strong>projection</strong> of b onto C(A):</p>
+          <pre>p = Ax̂ ,  error e = b − Ax̂ ⊥ C(A)  ⇒  Aᵀe = 0  ⇒  Aᵀ(b − Ax̂) = 0</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>22. The normal equations</summary>
+          <pre>AᵀA x̂ = Aᵀb        (the normal equations)
+if AᵀA invertible:  x̂ = (AᵀA)⁻¹Aᵀb
+projection:  p = A x̂ = A(AᵀA)⁻¹Aᵀ b</pre>
+          <p>This is exactly where the projection matrix <code>P = A(AᵀA)⁻¹Aᵀ</code> comes from.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Least squares in linear regression</summary>
+          <pre>Xβ ≈ y   (X = features, β = parameters, y = targets)
+normal equation:  XᵀX β = Xᵀy   →   β = (XᵀX)⁻¹Xᵀy</pre>
+          <p>The residual <code>e = y − Xβ</code> is orthogonal to the column space of X (<code>Xᵀe = 0</code>). This is why orthogonality powers data science.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Gram–Schmidt — the idea</summary>
+          <p>Gram–Schmidt turns a set of independent vectors into an <strong>orthonormal</strong> basis: messy independent directions → clean perpendicular unit vectors.</p>
+          <pre>keep v₁'s direction → remove from v₂ the part along v₁ → normalize the leftover → repeat</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Gram–Schmidt — the formula</summary>
+          <pre>u₁ = v₁ / ||v₁||
+w₂ = v₂ − (v₂·u₁)u₁ ,        u₂ = w₂ / ||w₂||
+w₃ = v₃ − (v₃·u₁)u₁ − (v₃·u₂)u₂ , u₃ = w₃ / ||w₃||
+
+general:  wₖ = vₖ − Σ_{i<k}(vₖ·uᵢ)uᵢ ,  uₖ = wₖ / ||wₖ||</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Gram–Schmidt — worked example</summary>
+          <pre>v₁ = [1; 0] ,  v₂ = [1; 1]
+
+u₁ = [1; 0]
+v₂·u₁ = 1 → w₂ = [1;1] − 1·[1;0] = [0; 1] → u₂ = [0; 1]
+
+orthonormal basis: [1;0], [0;1]</pre>
+          <p>Messy vectors became clean x–y axes.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Orthogonal matrix</summary>
+          <p>A matrix <code>Q</code> is <strong>orthogonal</strong> when its columns are orthonormal:</p>
+          <pre>QᵀQ = I ;   if Q is square, Q⁻¹ = Qᵀ</pre>
+          <pre>Q = [0 −1; 1 0]  (90° rotation): columns [0;1], [−1;0] — unit &amp; perpendicular</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Why QᵀQ = I</summary>
+          <p>The (i, j) entry of <code>QᵀQ</code> is <code>qᵢ·qⱼ</code>. For orthonormal columns: <code>qᵢ·qᵢ = 1</code> and <code>qᵢ·qⱼ = 0</code> (i ≠ j) — exactly the identity matrix.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Properties of orthogonal matrices</summary>
           <ul class="styled">
-            <li><code>AᵀA = I</code> and <code>A⁻¹ = Aᵀ</code></li>
-            <li><code>det(A) = ±1</code></li>
-            <li>columns (and rows) are <strong>orthonormal</strong> = orthogonal (90°) + unit length.</li>
+            <li><code>QᵀQ = QQᵀ = I</code>, &nbsp; <code>Q⁻¹ = Qᵀ</code> (square Q).</li>
+            <li><code>det(Q) = ±1</code>.</li>
+            <li><code>||Qx|| = ||x||</code> (lengths preserved).</li>
+            <li><code>(Qu)·(Qv) = u·v</code> (angles preserved).</li>
+            <li>eigenvalues satisfy <code>|λ| = 1</code>.</li>
+          </ul>
+          <p>They represent rotations, reflections, or combinations.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Length &amp; angle preservation (proofs)</summary>
+          <pre>||Qx||² = (Qx)ᵀ(Qx) = xᵀQᵀQx = xᵀIx = xᵀx = ||x||²
+(Qu)·(Qv) = uᵀQᵀQv = uᵀv = u·v</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> rotate/flip an object without stretching it.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Determinant of an orthogonal matrix</summary>
+          <pre>QᵀQ = I ⇒ det(Qᵀ)det(Q) = 1 ⇒ det(Q)² = 1 ⇒ det(Q) = ±1</pre>
+          <p><code>+1</code> = rotation (orientation kept); <code>−1</code> = reflection (orientation flipped).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Eigenvalues of an orthogonal matrix</summary>
+          <pre>Qx = λx ⇒ ||Qx|| = |λ|·||x||, but ||Qx|| = ||x|| ⇒ |λ| = 1</pre>
+          <p>Real eigenvalues can only be <code>±1</code>; complex ones lie on the unit circle.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. Orthogonal matrix vs orthogonal vectors</summary>
+          <pre>orthogonal vectors:  u·v = 0
+orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
+          <p>An orthogonal matrix is NOT "a matrix with dot product zero" — it is a matrix whose columns are unit perpendicular directions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Orthogonal complement (W⊥)</summary>
+          <p><code>W⊥</code> ("W perp") = all vectors perpendicular to every vector in W.</p>
+          <pre>W = x-axis = span{[1;0]}   →   W⊥ = y-axis = span{[0;1]}</pre>
+          <p>The four-subspace relations (<code>Row ⊥ Null</code>, <code>Col ⊥ Left-null</code>) are the big example — see the Rank &amp; Nullity topic.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Symmetric matrices &amp; orthogonality</summary>
+          <p>For a real symmetric matrix (<code>A = Aᵀ</code>), eigenvectors for <strong>distinct eigenvalues are orthogonal</strong>, so they can be chosen orthonormal.</p>
+          <p>That gives orthogonal diagonalization <code>A = QDQᵀ</code> (the spectral theorem) — built out fully in the Diagonalization topic.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>36. PCA connection (preview)</summary>
+          <p>A covariance matrix is symmetric, so its eigenvectors are orthonormal — these become the <strong>principal components</strong>: orthogonal directions of maximum variance (PC1 the most, PC2 ⊥ PC1 the next, …). Full PCA lives in the SVD &amp; PCA topic.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>37. QR decomposition (preview)</summary>
+          <p>Gram–Schmidt on the columns of A produces:</p>
+          <pre>A = Q R     (Q orthonormal columns, R upper triangular)</pre>
+          <p>Used for stable least squares and numerical linear algebra. Know the idea: Q comes from orthonormalizing A's columns.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>38. Common GATE traps</summary>
+          <ul class="styled">
+            <li>"Orthogonal means length 1"? <strong>No</strong> — orthogonal = dot product 0; length 1 = unit; both = orthonormal.</li>
+            <li><code>u·v = 0</code> ⇒ one vector is zero? <strong>No</strong> ([1;0]·[0;1]=0, both non-zero).</li>
+            <li>Normal equation is <code>Ax = b</code>? <strong>No</strong> — it is <code>AᵀA x = Aᵀb</code>.</li>
+            <li><code>det(Q) = 1</code> only? <strong>No</strong> — <code>±1</code>.</li>
+            <li>Non-zero orthogonal vectors can be dependent? <strong>No</strong> — they are independent.</li>
+            <li>Projection matrix <code>P² = P</code>, orthogonal projection <code>Pᵀ = P</code>, residual ⊥ C(A)? <strong>All true.</strong></li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Practice problems</summary>
+          <p class="lead">Q1. [1;2] and [2;−1] orthogonal?</p>
+          <pre>1×2 + 2×(−1) = 0 → yes</pre>
+          <p class="lead">Q2. ||[6;8]||?</p>
+          <pre>√(36+64) = 10</pre>
+          <p class="lead">Q3. Normalize [6;8]?</p>
+          <pre>[6/10; 8/10] = [3/5; 4/5]</pre>
+          <p class="lead">Q4. Projection of [5;7] onto [1;0]?</p>
+          <pre>(5/1)·[1;0] = [5; 0]</pre>
+          <p class="lead">Q5. Is [0 −1; 1 0] orthogonal?</p>
+          <pre>columns unit &amp; perpendicular → yes</pre>
+          <p class="lead">Q6. Q orthogonal → Q⁻¹? det(Q)? P projection → eigenvalues?</p>
+          <pre>Q⁻¹ = Qᵀ ;  det = ±1 ;  P eigenvalues 0 or 1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>40. GATE cheatsheet</summary>
+          <ul class="styled">
+            <li><code>u·v = uᵀv</code>; &nbsp; <code>||v|| = √(v·v)</code>; &nbsp; orthogonal ⟺ <code>u·v = 0</code>.</li>
+            <li>Orthonormal = orthogonal + unit; non-zero orthogonal vectors are independent.</li>
+            <li><code>proj_a(b) = (aᵀb/aᵀa)a</code>; unit a → <code>(aᵀb)a</code>.</li>
+            <li>Projection matrix <code>P = A(AᵀA)⁻¹Aᵀ</code>; <code>P² = P</code>, <code>Pᵀ = P</code>, eigenvalues 0/1.</li>
+            <li>Least squares: minimize <code>||Ax−b||²</code> → normal equations <code>AᵀAx̂ = Aᵀb</code>; residual ⊥ C(A).</li>
+            <li>Orthogonal Q: <code>QᵀQ = I</code>, <code>Q⁻¹ = Qᵀ</code>, <code>det = ±1</code>, <code>|λ| = 1</code>, preserves length &amp; angle.</li>
+            <li>Gram–Schmidt → orthonormal basis → <code>A = QR</code>; symmetric → <code>A = QDQᵀ</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>41. Best mental model</summary>
+          <ul class="styled">
+            <li><strong>Orthogonality</strong> = clean 90° directions that don't interfere.</li>
+            <li><strong>Dot product</strong> = interference test (0 = none); <strong>norm</strong> = length.</li>
+            <li><strong>Orthonormal basis</strong> = the perfect coordinate system.</li>
+            <li><strong>Projection</strong> = shadow onto a direction/subspace; <strong>least squares</strong> = closest shadow when no exact solution exists.</li>
+            <li><strong>Orthogonal matrix</strong> = rotation/reflection that preserves shape.</li>
           </ul>
         </details>
       </details>
