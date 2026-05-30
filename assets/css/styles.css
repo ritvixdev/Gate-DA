@@ -339,7 +339,7 @@ ol.steps li::before {
 /* Practice call-to-action — refined card (not a coral slab) */
 .practice-cta {
   display: flex; align-items: center; gap: var(--s-lg);
-  background: var(--surface-card); border: 1px solid var(--hairline);
+  background: var(--surface-strong); border: 1px solid var(--hairline);
   border-radius: var(--r-lg); padding: var(--s-lg) var(--s-xl);
   margin: var(--s-xl) 0; box-shadow: var(--shadow-sm);
 }
