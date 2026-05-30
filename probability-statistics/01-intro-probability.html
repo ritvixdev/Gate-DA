@@ -7,8 +7,8 @@
 <title>Introduction to Probability · GATE DA</title>
 <meta name="description" content="Learn probability from zero: sample space, events, axioms, addition rule — simple language, GATE shortcuts, traps, practice, and a live probability simulator.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="01-intro-probability" data-content>
   <!-- 1 -->
@@ -67,11 +67,13 @@
   <!-- 4 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Random experiment:</strong> a process with an uncertain outcome (a die roll).</p>
-    <p><strong>Sample space $S$:</strong> the set of all possible outcomes. <strong>Outcome:</strong> one element of $S$.</p>
-    <p><strong>Event:</strong> a subset of $S$ (a collection of outcomes). <strong>$P(A)$:</strong> the probability of event $A$.</p>
-    <p><strong>Equally likely:</strong> every outcome has the same chance (a <em>fair</em> die/coin).</p>
-    <p><strong>Complement $A^c$:</strong> "$A$ does not happen". <strong>Mutually exclusive:</strong> $A$ and $B$ can't both happen ($A\cap B=\varnothing$). <strong>Exhaustive:</strong> events that together cover all of $S$.</p>
+        <ul class="styled deflist">
+      <li><strong>Random experiment:</strong> a process with an uncertain outcome (a die roll).</li>
+      <li><strong>Sample space $S$:</strong> the set of all possible outcomes. <strong>Outcome:</strong> one element of $S$.</li>
+      <li><strong>Event:</strong> a subset of $S$ (a collection of outcomes). <strong>$P(A)$:</strong> the probability of event $A$.</li>
+      <li><strong>Equally likely:</strong> every outcome has the same chance (a <em>fair</em> die/coin).</li>
+      <li><strong>Complement $A^c$:</strong> "$A$ does not happen". <strong>Mutually exclusive:</strong> $A$ and $B$ can't both happen ($A\cap B=\varnothing$). <strong>Exhaustive:</strong> events that together cover all of $S$.</li>
+    </ul>
   </section>
 
 
@@ -143,10 +145,10 @@
 
   <!-- 9 -->
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Equally likely ⇒ probability is just <strong>counting</strong>: favorable ÷ total.</li>
         <li>"At least one" → use the complement: $1-P(\text{none})$ (huge time-saver).</li>
         <li>Addition rule always subtracts the overlap: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
@@ -240,9 +242,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/chart.js"></script>
-  <script src="../assets/js/viz/prob-sim.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/chart.js?v=20260530"></script>
+  <script src="../assets/js/viz/prob-sim.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

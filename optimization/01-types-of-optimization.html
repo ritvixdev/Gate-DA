@@ -7,8 +7,8 @@
 <title>Types of Optimization · GATE DA</title>
 <meta name="description" content="Types of optimization from zero: objective functions, minima/maxima, local vs global, convex vs non-convex, constrained vs unconstrained — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="optimization" data-topic="01-types-of-optimization" data-content>
   <div class="hero">
@@ -38,10 +38,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Objective (cost) function $f(x)$:</strong> what we minimize or maximize. <strong>Decision variables $x$:</strong> what we're free to change.</p>
-    <p><strong>Global minimum:</strong> the lowest value anywhere. <strong>Local minimum:</strong> lowest only in a small neighborhood.</p>
-    <p><strong>Unconstrained:</strong> $x$ can be anything. <strong>Constrained:</strong> $x$ must satisfy conditions (e.g. $x\ge0$).</p>
-    <p><strong>Convex function:</strong> its graph is a bowl — the line between any two points stays above the curve. <strong>Convex set:</strong> the line between any two feasible points stays feasible.</p>
+        <ul class="styled deflist">
+      <li><strong>Objective (cost) function $f(x)$:</strong> what we minimize or maximize. <strong>Decision variables $x$:</strong> what we're free to change.</li>
+      <li><strong>Global minimum:</strong> the lowest value anywhere. <strong>Local minimum:</strong> lowest only in a small neighborhood.</li>
+      <li><strong>Unconstrained:</strong> $x$ can be anything. <strong>Constrained:</strong> $x$ must satisfy conditions (e.g. $x\ge0$).</li>
+      <li><strong>Convex function:</strong> its graph is a bowl — the line between any two points stays above the curve. <strong>Convex set:</strong> the line between any two feasible points stays feasible.</li>
+    </ul>
   </section>
 
 
@@ -96,10 +98,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Maximize $f$ = minimize $-f$ (flip the sign).</li>
         <li><strong>Convex ⇒ every local minimum is global</strong> (no traps).</li>
         <li>A sum of convex functions is convex; affine (linear) functions are convex.</li>
@@ -183,7 +185,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <title>System of Linear Equations · GATE DA</title>
 <meta name="description" content="Learn systems of linear equations from zero: when Ax=b has none, one, or infinite solutions, Gaussian elimination, homogeneous systems — simple language, shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="05-linear-equations" data-content>
   <div class="hero">
@@ -38,10 +38,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>System:</strong> $Ax=b$, where $A$ is the coefficient matrix, $x$ the unknowns, $b$ the right side.</p>
-    <p><strong>Augmented matrix $[A\,|\,b]$:</strong> $A$ with the $b$ column attached.</p>
-    <p><strong>Consistent:</strong> at least one solution exists. <strong>Inconsistent:</strong> none.</p>
-    <p><strong>Homogeneous:</strong> $b=0$ (i.e. $Ax=0$). <strong>Free variable:</strong> an unknown not pinned down — each one gives an infinite family.</p>
+        <ul class="styled deflist">
+      <li><strong>System:</strong> $Ax=b$, where $A$ is the coefficient matrix, $x$ the unknowns, $b$ the right side.</li>
+      <li><strong>Augmented matrix $[A\,|\,b]$:</strong> $A$ with the $b$ column attached.</li>
+      <li><strong>Consistent:</strong> at least one solution exists. <strong>Inconsistent:</strong> none.</li>
+      <li><strong>Homogeneous:</strong> $b=0$ (i.e. $Ax=0$). <strong>Free variable:</strong> an unknown not pinned down — each one gives an infinite family.</li>
+    </ul>
   </section>
 
 
@@ -95,10 +97,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Homogeneous $Ax=0$ <strong>always</strong> has the trivial solution $x=0$.</li>
         <li>$Ax=0$ has non-trivial solutions $\iff \operatorname{rank}(A)&lt;n \iff \det A=0$ (square).</li>
         <li>Square system has a unique solution for every $b$ $\iff \det A\neq0$.</li>
@@ -180,7 +182,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

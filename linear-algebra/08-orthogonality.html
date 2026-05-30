@@ -7,8 +7,8 @@
 <title>Orthogonality · GATE DA</title>
 <meta name="description" content="Learn orthogonality from zero: dot product, projections, Gram-Schmidt, orthogonal matrices — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="08-orthogonality" data-content>
   <div class="hero">
@@ -37,10 +37,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Dot product:</strong> $u\cdot v=u^{\mathsf T}v=\sum u_iv_i$. Zero means perpendicular.</p>
-    <p><strong>Orthogonal set:</strong> every pair is perpendicular. <strong>Orthonormal:</strong> orthogonal <em>and</em> each has length 1.</p>
-    <p><strong>Projection:</strong> the closest point to $v$ on another vector's line.</p>
-    <p><strong>Orthogonal matrix:</strong> a square matrix whose columns are orthonormal ($Q^{\mathsf T}Q=I$).</p>
+        <ul class="styled deflist">
+      <li><strong>Dot product:</strong> $u\cdot v=u^{\mathsf T}v=\sum u_iv_i$. Zero means perpendicular.</li>
+      <li><strong>Orthogonal set:</strong> every pair is perpendicular. <strong>Orthonormal:</strong> orthogonal <em>and</em> each has length 1.</li>
+      <li><strong>Projection:</strong> the closest point to $v$ on another vector's line.</li>
+      <li><strong>Orthogonal matrix:</strong> a square matrix whose columns are orthonormal ($Q^{\mathsf T}Q=I$).</li>
+    </ul>
   </section>
 
 
@@ -93,10 +95,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Orthogonal matrix: $Q^{-1}=Q^{\mathsf T}$ (inverse for free), $\det=\pm1$, preserves length.</li>
         <li>Orthogonal sets of non-zero vectors are automatically independent.</li>
         <li>Symmetric matrices have orthogonal eigenvectors (for distinct $\lambda$).</li>
@@ -177,7 +179,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

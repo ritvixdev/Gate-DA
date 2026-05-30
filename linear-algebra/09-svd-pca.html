@@ -7,8 +7,8 @@
 <title>SVD & PCA · GATE DA</title>
 <meta name="description" content="Learn SVD and PCA from zero: A = UΣVᵀ, singular values, low-rank approximation, link to PCA — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="09-svd-pca" data-content>
   <div class="hero">
@@ -37,10 +37,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>SVD:</strong> $A=U\Sigma V^{\mathsf T}$ for any $m\times n$ matrix.</p>
-    <p><strong>$U$ ($m\times m$):</strong> orthogonal, left singular vectors. <strong>$V$ ($n\times n$):</strong> orthogonal, right singular vectors.</p>
-    <p><strong>$\Sigma$:</strong> diagonal of <strong>singular values</strong> $\sigma_1\ge\sigma_2\ge\dots\ge0$.</p>
-    <p><strong>PCA:</strong> finds the directions of maximum variance in centered data — the principal components.</p>
+        <ul class="styled deflist">
+      <li><strong>SVD:</strong> $A=U\Sigma V^{\mathsf T}$ for any $m\times n$ matrix.</li>
+      <li><strong>$U$ ($m\times m$):</strong> orthogonal, left singular vectors. <strong>$V$ ($n\times n$):</strong> orthogonal, right singular vectors.</li>
+      <li><strong>$\Sigma$:</strong> diagonal of <strong>singular values</strong> $\sigma_1\ge\sigma_2\ge\dots\ge0$.</li>
+      <li><strong>PCA:</strong> finds the directions of maximum variance in centered data — the principal components.</li>
+    </ul>
   </section>
 
 
@@ -94,10 +96,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Singular values are $\sqrt{\text{eigenvalues of }A^{\mathsf T}A}$ — always real and $\ge0$.</li>
         <li>Number of non-zero singular values $=\operatorname{rank}(A)$.</li>
         <li>$U,V$ are orthogonal; $\Sigma$ is diagonal.</li>
@@ -178,7 +180,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

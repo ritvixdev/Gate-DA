@@ -7,8 +7,8 @@
 <title>Conditional Probability & Bayes · GATE DA</title>
 <meta name="description" content="Conditional and joint probability, independence, total probability, and Bayes' theorem — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="02-conditional-bayes" data-content>
   <div class="hero">
@@ -38,10 +38,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Joint probability $P(A\cap B)$:</strong> both $A$ and $B$ happen.</p>
-    <p><strong>Conditional probability $P(A\mid B)$:</strong> probability of $A$ <em>given</em> $B$ already happened.</p>
-    <p><strong>Independence:</strong> $A,B$ are independent if knowing one doesn't change the other: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)\,P(B)$.</p>
-    <p><strong>Partition:</strong> events $B_1,\dots,B_n$ that are disjoint and cover all of $S$ (used in total probability / Bayes).</p>
+        <ul class="styled deflist">
+      <li><strong>Joint probability $P(A\cap B)$:</strong> both $A$ and $B$ happen.</li>
+      <li><strong>Conditional probability $P(A\mid B)$:</strong> probability of $A$ <em>given</em> $B$ already happened.</li>
+      <li><strong>Independence:</strong> $A,B$ are independent if knowing one doesn't change the other: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)\,P(B)$.</li>
+      <li><strong>Partition:</strong> events $B_1,\dots,B_n$ that are disjoint and cover all of $S$ (used in total probability / Bayes).</li>
+    </ul>
   </section>
 
 
@@ -98,10 +100,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Multiplication: $P(A\cap B)=P(A\mid B)P(B)=P(B\mid A)P(A)$.</li>
         <li>Independent ⇒ $P(A\cap B)=P(A)P(B)$ and $P(A\mid B)=P(A)$.</li>
         <li>Bayes in words: posterior $\propto$ likelihood $\times$ prior.</li>
@@ -185,7 +187,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

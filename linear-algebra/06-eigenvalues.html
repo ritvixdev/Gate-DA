@@ -7,8 +7,8 @@
 <title>Eigenvalues & Eigenvectors · GATE DA</title>
 <meta name="description" content="Learn eigenvalues and eigenvectors from zero: meaning, characteristic equation, key properties — simple language, GATE shortcuts, traps, practice, and an interactive Eigen Lab.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="06-eigenvalues" data-content>
   <div class="hero">
@@ -55,10 +55,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Eigenvector:</strong> a non-zero vector $x$ with $Ax=\lambda x$ — it keeps its direction.</p>
-    <p><strong>Eigenvalue $\lambda$:</strong> the stretch factor for that eigenvector.</p>
-    <p><strong>Characteristic equation:</strong> $\det(A-\lambda I)=0$ — the equation whose roots are the eigenvalues.</p>
-    <p><strong>Eigenspace:</strong> all eigenvectors for a given $\lambda$ (plus zero) — a subspace.</p>
+        <ul class="styled deflist">
+      <li><strong>Eigenvector:</strong> a non-zero vector $x$ with $Ax=\lambda x$ — it keeps its direction.</li>
+      <li><strong>Eigenvalue $\lambda$:</strong> the stretch factor for that eigenvector.</li>
+      <li><strong>Characteristic equation:</strong> $\det(A-\lambda I)=0$ — the equation whose roots are the eigenvalues.</li>
+      <li><strong>Eigenspace:</strong> all eigenvectors for a given $\lambda$ (plus zero) — a subspace.</li>
+    </ul>
   </section>
 
 
@@ -113,10 +115,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ GATE gold</div>
-      <ul>
+      <ul class="styled">
         <li>$\sum\lambda_i=\operatorname{tr}(A)$ and $\prod\lambda_i=\det(A)$ — fast checks.</li>
         <li>Triangular/diagonal matrix → eigenvalues are the diagonal entries.</li>
         <li>$A^k$ has $\lambda^k$; $A^{-1}$ has $1/\lambda$; $A+cI$ has $\lambda+c$; $A^{\mathsf T}$ has the same $\lambda$.</li>
@@ -199,9 +201,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/grid.js"></script>
-  <script src="../assets/js/viz/eigen-lab.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/grid.js?v=20260530"></script>
+  <script src="../assets/js/viz/eigen-lab.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

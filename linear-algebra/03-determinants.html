@@ -7,8 +7,8 @@
 <title>Determinants · GATE DA</title>
 <meta name="description" content="Learn determinants from zero: meaning as area/volume scaling and orientation, computation, all properties, row operations, Cramer's rule — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="03-determinants" data-content>
   <!-- 1 -->
@@ -68,11 +68,13 @@
   <!-- 4 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Determinant:</strong> a single number $\det(A)$ (also $|A|$), defined only for <strong>square</strong> matrices.</p>
-    <p><strong>Singular:</strong> $\det=0$ — not invertible, dependent columns, space collapses.
-       <strong>Non-singular:</strong> $\det\neq0$ — invertible, independent columns.</p>
-    <p><strong>Minor:</strong> the determinant left after deleting an entry's row and column.
-       <strong>Cofactor:</strong> a minor with a $+/-$ sign from the checkerboard.</p>
+        <ul class="styled deflist">
+      <li><strong>Determinant:</strong> a single number $\det(A)$ (also $|A|$), defined only for <strong>square</strong> matrices.</li>
+      <li><strong>Singular:</strong> $\det=0$ — not invertible, dependent columns, space collapses.
+       <strong>Non-singular:</strong> $\det\neq0$ — invertible, independent columns.</li>
+      <li><strong>Minor:</strong> the determinant left after deleting an entry's row and column.
+       <strong>Cofactor:</strong> a minor with a $+/-$ sign from the checkerboard.</li>
+    </ul>
   </section>
 
 
@@ -142,10 +144,10 @@
 
   <!-- 9 -->
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ Properties to memorize</div>
-      <ul>
+      <ul class="styled">
         <li>$\det(AB)=\det A\det B$ &nbsp;⇒&nbsp; $\det(A^k)=(\det A)^k$, and $\det(AB)=\det(BA)$.</li>
         <li>$\det(A^{\mathsf T})=\det A$; &nbsp; $\det(A^{-1})=1/\det A$.</li>
         <li>$\det(cA)=c^{\,n}\det A$ for an $n\times n$ matrix (size is the exponent!).</li>
@@ -154,7 +156,7 @@
         <li>Orthogonal matrix → $\det=\pm1$. Idempotent → $\det\in\{0,1\}$. Nilpotent → $\det=0$.</li>
       </ul>
     </div>
-    <div class="callout tip">
+    <div class="imagine">
       <div class="callout-label">⚡ Row / column operations</div>
       <div class="tbl-wrap"><table>
         <tr><th>Operation</th><th>Effect on $\det$</th></tr>
@@ -264,9 +266,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/grid.js"></script>
-  <script src="../assets/js/viz/matrix-transform.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/grid.js?v=20260530"></script>
+  <script src="../assets/js/viz/matrix-transform.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

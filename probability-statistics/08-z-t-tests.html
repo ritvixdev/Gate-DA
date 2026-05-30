@@ -7,8 +7,8 @@
 <title>Hypothesis Testing: z-test & t-test · GATE DA</title>
 <meta name="description" content="Hypothesis testing framework, p-values, significance, z-test and t-test — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="08-z-t-tests" data-content>
   <div class="hero">
@@ -37,10 +37,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Null $H_0$:</strong> the "no effect / no difference" claim. <strong>Alternative $H_1$:</strong> what you suspect.</p>
-    <p><strong>Significance level $\alpha$:</strong> the risk of a false alarm you'll tolerate (often 0.05).</p>
-    <p><strong>p-value:</strong> probability of data this extreme <em>if $H_0$ were true</em>. Reject $H_0$ when p $\lt\alpha$.</p>
-    <p><strong>z-test:</strong> population $\sigma$ known (or large $n$). <strong>t-test:</strong> $\sigma$ unknown, estimated by $s$ (small samples).</p>
+        <ul class="styled deflist">
+      <li><strong>Null $H_0$:</strong> the "no effect / no difference" claim. <strong>Alternative $H_1$:</strong> what you suspect.</li>
+      <li><strong>Significance level $\alpha$:</strong> the risk of a false alarm you'll tolerate (often 0.05).</li>
+      <li><strong>p-value:</strong> probability of data this extreme <em>if $H_0$ were true</em>. Reject $H_0$ when p $\lt\alpha$.</li>
+      <li><strong>z-test:</strong> population $\sigma$ known (or large $n$). <strong>t-test:</strong> $\sigma$ unknown, estimated by $s$ (small samples).</li>
+    </ul>
   </section>
 
 
@@ -93,10 +95,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>$\sigma$ known / large $n$ → <strong>z</strong>; $\sigma$ unknown / small $n$ → <strong>t</strong> (with $n-1$ df).</li>
         <li>Two-tailed critical $z$: $1.96$ at $\alpha=0.05$, $2.58$ at $\alpha=0.01$.</li>
         <li>Reject when p $\lt\alpha$ (equivalently $|z|\gt z_{\alpha/2}$).</li>
@@ -175,7 +177,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

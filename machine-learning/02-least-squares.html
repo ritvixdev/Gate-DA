@@ -7,8 +7,8 @@
 <title>Least-Squares · GATE DA</title>
 <meta name="description" content="Least-squares: minimizing the sum of squared residuals, the normal equations, the best-fit line — with an interactive regression lab, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="machine-learning" data-topic="02-least-squares" data-content>
   <div class="hero">
@@ -54,10 +54,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Residual $e_i=y_i-\hat{y}_i$:</strong> the vertical gap between a point and the line.</p>
-    <p><strong>Sum of squared errors (SSE):</strong> $\sum e_i^2$ — the quantity least-squares minimizes (also called RSS).</p>
-    <p><strong>Normal equations:</strong> the linear system whose solution gives the optimal coefficients.</p>
-    <p><strong>Ordinary Least Squares (OLS):</strong> the standard least-squares method for linear regression.</p>
+        <ul class="styled deflist">
+      <li><strong>Residual $e_i=y_i-\hat{y}_i$:</strong> the vertical gap between a point and the line.</li>
+      <li><strong>Sum of squared errors (SSE):</strong> $\sum e_i^2$ — the quantity least-squares minimizes (also called RSS).</li>
+      <li><strong>Normal equations:</strong> the linear system whose solution gives the optimal coefficients.</li>
+      <li><strong>Ordinary Least Squares (OLS):</strong> the standard least-squares method for linear regression.</li>
+    </ul>
   </section>
 
 
@@ -111,10 +113,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Least-squares minimizes $\sum e_i^2$ (not $\sum|e_i|$).</li>
         <li>Closed form: $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$ (when $X^{\mathsf T}X$ is invertible).</li>
         <li>At the optimum the residuals sum to zero and are uncorrelated with the predictors.</li>
@@ -192,9 +194,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/chart.js"></script>
-  <script src="../assets/js/viz/regression-lab.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/chart.js?v=20260530"></script>
+  <script src="../assets/js/viz/regression-lab.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

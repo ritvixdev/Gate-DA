@@ -7,8 +7,8 @@
 <title>PMF, PDF & Distributions · GATE DA</title>
 <meta name="description" content="Probability mass and density functions, CDF, and the key distributions (Bernoulli, Binomial, Poisson, Uniform, Normal, Exponential) — with an interactive Distribution Explorer.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="04-pmf-pdf" data-content>
   <div class="hero">
@@ -55,10 +55,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>PMF $p(x)=P(X=x)$:</strong> for discrete $X$; each $p(x)\ge0$ and $\sum p(x)=1$.</p>
-    <p><strong>PDF $f(x)$:</strong> for continuous $X$; $f(x)\ge0$ and $\int f(x)\,dx=1$. Probability is area: $P(a\le X\le b)=\int_a^b f(x)\,dx$.</p>
-    <p><strong>CDF $F(x)=P(X\le x)$:</strong> works for both; non-decreasing from 0 to 1.</p>
-    <p><strong>Key point:</strong> for continuous $X$, $P(X=x)=0$ exactly — only intervals have positive probability.</p>
+        <ul class="styled deflist">
+      <li><strong>PMF $p(x)=P(X=x)$:</strong> for discrete $X$; each $p(x)\ge0$ and $\sum p(x)=1$.</li>
+      <li><strong>PDF $f(x)$:</strong> for continuous $X$; $f(x)\ge0$ and $\int f(x)\,dx=1$. Probability is area: $P(a\le X\le b)=\int_a^b f(x)\,dx$.</li>
+      <li><strong>CDF $F(x)=P(X\le x)$:</strong> works for both; non-decreasing from 0 to 1.</li>
+      <li><strong>Key point:</strong> for continuous $X$, $P(X=x)=0$ exactly — only intervals have positive probability.</li>
+    </ul>
   </section>
 
 
@@ -118,10 +120,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Binomial: mean $np$, variance $np(1-p)$. Poisson: mean = variance = $\lambda$.</li>
         <li>Binomial $\to$ Poisson when $n$ large, $p$ small ($\lambda=np$).</li>
         <li>Normal: ~68% within $\mu\pm\sigma$, ~95% within $\mu\pm2\sigma$, ~99.7% within $\mu\pm3\sigma$.</li>
@@ -199,9 +201,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/chart.js"></script>
-  <script src="../assets/js/viz/dist-explorer.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/chart.js?v=20260530"></script>
+  <script src="../assets/js/viz/dist-explorer.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <title>Gradient Descent · GATE DA</title>
 <meta name="description" content="Gradient descent: the iterative downhill algorithm, learning rate, convergence and divergence — with an interactive lab, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="optimization" data-topic="04-gradient-descent" data-content>
   <div class="hero">
@@ -61,10 +61,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Gradient descent:</strong> repeatedly step against the gradient to reduce $f$.</p>
-    <p><strong>Learning rate $\eta$:</strong> the step-size multiplier (also called step size).</p>
-    <p><strong>Convergence:</strong> the steps settle at a point where $\nabla f\approx0$ (a minimum).</p>
-    <p><strong>Divergence:</strong> if $\eta$ is too big, steps overshoot and $f$ grows instead of shrinking.</p>
+        <ul class="styled deflist">
+      <li><strong>Gradient descent:</strong> repeatedly step against the gradient to reduce $f$.</li>
+      <li><strong>Learning rate $\eta$:</strong> the step-size multiplier (also called step size).</li>
+      <li><strong>Convergence:</strong> the steps settle at a point where $\nabla f\approx0$ (a minimum).</li>
+      <li><strong>Divergence:</strong> if $\eta$ is too big, steps overshoot and $f$ grows instead of shrinking.</li>
+    </ul>
   </section>
 
 
@@ -115,10 +117,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Update rule: $x_{k+1}=x_k-\eta\nabla f(x_k)$ — always <em>minus</em> the gradient.</li>
         <li>Too-small $\eta$ → slow; too-large $\eta$ → overshoot / diverge.</li>
         <li>On a <strong>convex</strong> function it converges to the global minimum (with a suitable $\eta$).</li>
@@ -202,9 +204,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/chart.js"></script>
-  <script src="../assets/js/viz/gd-lab.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/chart.js?v=20260530"></script>
+  <script src="../assets/js/viz/gd-lab.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

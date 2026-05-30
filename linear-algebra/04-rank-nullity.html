@@ -7,8 +7,8 @@
 <title>Rank & Nullity · GATE DA</title>
 <meta name="description" content="Learn rank and nullity from zero: meaning, the rank-nullity theorem, four fundamental subspaces — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-topic="04-rank-nullity" data-content>
   <div class="hero">
@@ -44,14 +44,16 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Rank:</strong> the number of linearly independent rows (= independent columns). Equivalently,
-      the number of non-zero rows after row-reduction (row-echelon form).</p>
-    <p><strong>Null space (kernel):</strong> all vectors $x$ with $Ax=0$. <strong>Nullity:</strong> its dimension.</p>
-    <p><strong>Column space:</strong> all outputs $Ax$ (span of the columns). <strong>Row space:</strong> span of the rows.</p>
-    <p><strong>Pivot:</strong> the first non-zero entry of a row after row-reduction. Key fact:
-      <strong>rank = number of pivots = number of non-zero rows</strong> in row-echelon form.</p>
-    <p><strong>Row-echelon form:</strong> zero rows sit at the bottom, and each row's leading entry is further
-      right than the one above it. <strong>Full rank:</strong> rank $=\min(m,n)$ (nothing collapses).</p>
+        <ul class="styled deflist">
+      <li><strong>Rank:</strong> the number of linearly independent rows (= independent columns). Equivalently,
+      the number of non-zero rows after row-reduction (row-echelon form).</li>
+      <li><strong>Null space (kernel):</strong> all vectors $x$ with $Ax=0$. <strong>Nullity:</strong> its dimension.</li>
+      <li><strong>Column space:</strong> all outputs $Ax$ (span of the columns). <strong>Row space:</strong> span of the rows.</li>
+      <li><strong>Pivot:</strong> the first non-zero entry of a row after row-reduction. Key fact:
+      <strong>rank = number of pivots = number of non-zero rows</strong> in row-echelon form.</li>
+      <li><strong>Row-echelon form:</strong> zero rows sit at the bottom, and each row's leading entry is further
+      right than the one above it. <strong>Full rank:</strong> rank $=\min(m,n)$ (nothing collapses).</li>
+    </ul>
   </section>
 
 
@@ -108,10 +110,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$ (columns). Memorize this above all.</li>
         <li><strong>rank = number of pivots = pivot variables</strong>; <strong>nullity = number of free variables</strong>.</li>
         <li>$\operatorname{rank}(A)=$ order of the <strong>largest square submatrix with non-zero determinant</strong> (handy for matrices with parameters).</li>
@@ -231,7 +233,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <title>Logistic Regression · GATE DA</title>
 <meta name="description" content="Logistic regression from zero: the sigmoid, probabilities, decision boundary, log-loss — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="machine-learning" data-topic="04-logistic-regression" data-content>
   <div class="hero">
@@ -37,10 +37,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Sigmoid $\sigma(z)$:</strong> the S-curve mapping any real number to $(0,1)$.</p>
-    <p><strong>Linear score $z=\beta_0+\beta_1 x_1+\dots$:</strong> the input to the sigmoid.</p>
-    <p><strong>Decision boundary:</strong> where $\hat{p}=0.5$ (equivalently $z=0$); classify 1 if $\hat{p}\ge0.5$.</p>
-    <p><strong>Log-loss (cross-entropy):</strong> the cost function logistic regression minimizes.</p>
+        <ul class="styled deflist">
+      <li><strong>Sigmoid $\sigma(z)$:</strong> the S-curve mapping any real number to $(0,1)$.</li>
+      <li><strong>Linear score $z=\beta_0+\beta_1 x_1+\dots$:</strong> the input to the sigmoid.</li>
+      <li><strong>Decision boundary:</strong> where $\hat{p}=0.5$ (equivalently $z=0$); classify 1 if $\hat{p}\ge0.5$.</li>
+      <li><strong>Log-loss (cross-entropy):</strong> the cost function logistic regression minimizes.</li>
+    </ul>
   </section>
 
 
@@ -92,10 +94,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>$\sigma(0)=0.5$; $\sigma(-z)=1-\sigma(z)$; output always in $(0,1)$.</li>
         <li>Decision boundary is <strong>linear</strong> in $x$ (where $z=0$) — same shape as linear regression's line.</li>
         <li>Logistic regression models the <strong>log-odds</strong> as linear: $\log\frac{p}{1-p}=z$.</li>
@@ -173,7 +175,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

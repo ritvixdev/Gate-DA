@@ -7,8 +7,8 @@
 <title>Univariate Optimization · GATE DA</title>
 <meta name="description" content="Unconstrained univariate optimization: f'(x)=0, second-derivative test, finding minima and maxima — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="optimization" data-topic="02-univariate" data-content>
   <div class="hero">
@@ -37,9 +37,11 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$.</p>
-    <p><strong>Local minimum:</strong> $f'(x)=0$ and $f''(x)\gt0$ (curves up). <strong>Local maximum:</strong> $f'(x)=0$ and $f''(x)\lt0$.</p>
-    <p><strong>Inflection / inconclusive:</strong> $f''(x)=0$ — the simple test fails; check higher derivatives or the sign of $f'$ around the point.</p>
+        <ul class="styled deflist">
+      <li><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$.</li>
+      <li><strong>Local minimum:</strong> $f'(x)=0$ and $f''(x)\gt0$ (curves up). <strong>Local maximum:</strong> $f'(x)=0$ and $f''(x)\lt0$.</li>
+      <li><strong>Inflection / inconclusive:</strong> $f''(x)=0$ — the simple test fails; check higher derivatives or the sign of $f'$ around the point.</li>
+    </ul>
   </section>
 
 
@@ -95,10 +97,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Minima/maxima of a smooth $f$ occur only where $f'(x)=0$.</li>
         <li>Second-derivative test: $f''\gt0$ → min, $f''\lt0$ → max.</li>
         <li>For a quadratic $ax^2+bx+c$: vertex at $x=-b/(2a)$; min if $a\gt0$, max if $a\lt0$.</li>
@@ -176,7 +178,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

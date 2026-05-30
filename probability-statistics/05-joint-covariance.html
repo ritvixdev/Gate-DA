@@ -7,8 +7,8 @@
 <title>Joint Distributions & Covariance · GATE DA</title>
 <meta name="description" content="Joint and marginal distributions, independence of random variables, covariance and correlation — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="05-joint-covariance" data-content>
   <div class="hero">
@@ -37,10 +37,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Joint distribution:</strong> $p(x,y)=P(X=x,Y=y)$ (discrete) or $f(x,y)$ (continuous).</p>
-    <p><strong>Marginal:</strong> the distribution of one variable alone, by summing/integrating out the other.</p>
-    <p><strong>Independence:</strong> $X,Y$ independent if $p(x,y)=p(x)\,p(y)$ for all $x,y$.</p>
-    <p><strong>Covariance:</strong> signed measure of joint variation. <strong>Correlation $\rho$:</strong> covariance rescaled to $[-1,1]$.</p>
+        <ul class="styled deflist">
+      <li><strong>Joint distribution:</strong> $p(x,y)=P(X=x,Y=y)$ (discrete) or $f(x,y)$ (continuous).</li>
+      <li><strong>Marginal:</strong> the distribution of one variable alone, by summing/integrating out the other.</li>
+      <li><strong>Independence:</strong> $X,Y$ independent if $p(x,y)=p(x)\,p(y)$ for all $x,y$.</li>
+      <li><strong>Covariance:</strong> signed measure of joint variation. <strong>Correlation $\rho$:</strong> covariance rescaled to $[-1,1]$.</li>
+    </ul>
   </section>
 
 
@@ -93,10 +95,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$; $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$.</li>
         <li>Independent ⇒ $\operatorname{Cov}=0$ (and $\rho=0$). The converse is <em>not</em> guaranteed.</li>
         <li>$\rho\in[-1,1]$; $\rho=\pm1$ means a perfect straight-line relationship.</li>
@@ -174,7 +176,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>

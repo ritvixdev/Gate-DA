@@ -7,8 +7,8 @@
 <title>k-Means Clustering · GATE DA</title>
 <meta name="description" content="k-Means clustering from zero: assigning points to centroids, the iterative algorithm, choosing k — with an interactive lab, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
 </head>
 <body data-root=".." data-subject="machine-learning" data-topic="05-kmeans" data-content>
   <div class="hero">
@@ -54,10 +54,12 @@
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
-    <p><strong>Cluster:</strong> a group of similar points. <strong>Centroid:</strong> the mean (center) of a cluster.</p>
-    <p><strong>k:</strong> the number of clusters you choose in advance.</p>
-    <p><strong>Inertia (WCSS):</strong> total squared distance of points to their centroid — k-Means minimizes it.</p>
-    <p><strong>Unsupervised:</strong> no labels are used; structure is found from the data alone.</p>
+        <ul class="styled deflist">
+      <li><strong>Cluster:</strong> a group of similar points. <strong>Centroid:</strong> the mean (center) of a cluster.</li>
+      <li><strong>k:</strong> the number of clusters you choose in advance.</li>
+      <li><strong>Inertia (WCSS):</strong> total squared distance of points to their centroid — k-Means minimizes it.</li>
+      <li><strong>Unsupervised:</strong> no labels are used; structure is found from the data alone.</li>
+    </ul>
   </section>
 
 
@@ -108,10 +110,10 @@
   </section>
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
-    <div class="callout tip">
+    <div class="sec-head"><span class="sec-num">9</span> GATE cheat sheet</div>
+    <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
-      <ul>
+      <ul class="styled">
         <li>Two steps per iteration: <strong>assign</strong> (nearest centroid) then <strong>update</strong> (cluster mean).</li>
         <li>It minimizes the within-cluster sum of squares (inertia); inertia never increases.</li>
         <li>Converges to a <strong>local</strong> optimum — the result depends on the initialization.</li>
@@ -189,9 +191,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js"></script>
-  <script src="../assets/js/viz/chart.js"></script>
-  <script src="../assets/js/viz/kmeans-lab.js"></script>
-  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/topics.js?v=20260530"></script>
+  <script src="../assets/js/viz/chart.js?v=20260530"></script>
+  <script src="../assets/js/viz/kmeans-lab.js?v=20260530"></script>
+  <script src="../assets/js/app.js?v=20260530"></script>
 </body>
 </html>
