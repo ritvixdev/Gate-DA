@@ -80,7 +80,6 @@
       reaches everywhere. <strong>Dimension:</strong> how many vectors are in a basis.</p>
   </section>
 
-
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
@@ -371,22 +370,7 @@ dependent   = at least one vector is redundant</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. Very important GATE rule</summary>
-          <p class="lead">In ℝ², maximum independent vectors = 2. So:</p>
-          <pre>any 3 vectors in ℝ² are always dependent</pre>
-          <p class="lead">In ℝ³, maximum independent vectors = 3. So:</p>
-          <pre>any 4 vectors in ℝ³ are always dependent</pre>
-          <p class="lead">General rule:</p>
-          <pre>in ℝⁿ, more than n vectors are always dependent</pre>
-          <p class="lead">Examples:</p>
-          <pre>3 vectors in ℝ²  → dependent
-4 vectors in ℝ³  → dependent
-5 vectors in ℝ⁴  → dependent</pre>
-          <p>This is a common GATE shortcut — count first.</p>
-        </details>
-
-        <details class="study-item">
-          <summary>19. Basis</summary>
+          <summary>18. Basis</summary>
           <p>A <strong>basis</strong> is the perfect team of vectors. A set is a basis if:</p>
           <pre>1. it spans the space
 2. it is linearly independent</pre>
@@ -402,7 +386,7 @@ e₂ = [0, 1]    gives the y direction</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. Dimension</summary>
+          <summary>19. Dimension</summary>
           <p><strong>Dimension</strong> means the number of vectors in a basis.</p>
           <pre>ℝ² → basis has 2 vectors → dim(ℝ²) = 2
 ℝ³ → basis has 3 vectors → dim(ℝ³) = 3</pre>
@@ -411,7 +395,7 @@ e₂ = [0, 1]    gives the y direction</pre>
         </details>
 
         <details class="study-item">
-          <summary>21. Game-based imagination</summary>
+          <summary>20. Game-based imagination</summary>
           <p>Imagine a 3D game character.</p>
           <p class="lead">Vector = an arrow / movement command:</p>
           <pre>[2, 1, 0]  means:  move 2 right, 1 up, 0 forward</pre>
@@ -425,45 +409,6 @@ dependent   = a move is already possible from the others</pre>
           <p>Example: right + up = diagonal. So if you already have right and up, diagonal is not a new power.</p>
         </details>
 
-        <details class="study-item">
-          <summary>22. Symbols you must know</summary>
-          <div class="tbl-wrap"><table>
-            <tr><th>Symbol</th><th>Meaning</th></tr>
-            <tr><td><code>v</code></td><td>a vector</td></tr>
-            <tr><td><code>u, v, w</code></td><td>different vectors</td></tr>
-            <tr><td><code>c, d</code></td><td>scalars / normal numbers</td></tr>
-            <tr><td><code>v₁, v₂</code></td><td>components, or different vectors (depends on context)</td></tr>
-            <tr><td><code>ℝ</code></td><td>real numbers</td></tr>
-            <tr><td><code>ℝ²</code></td><td>2D real space</td></tr>
-            <tr><td><code>ℝ³</code></td><td>3D real space</td></tr>
-            <tr><td><code>ℝⁿ</code></td><td>n-dimensional real space</td></tr>
-            <tr><td><code>∈</code></td><td>belongs to</td></tr>
-            <tr><td><code>∉</code></td><td>does not belong to</td></tr>
-            <tr><td><code>⊂</code></td><td>subset of</td></tr>
-            <tr><td><code>0</code></td><td>zero vector</td></tr>
-            <tr><td><code>span{ }</code></td><td>all possible linear combinations</td></tr>
-            <tr><td><code>dim(V)</code></td><td>dimension of vector space V</td></tr>
-            <tr><td><code>ᵀ</code></td><td>transpose</td></tr>
-          </table></div>
-        </details>
-
-        <details class="study-item">
-          <summary>23. GATE DA memory cheatsheet</summary>
-          <ul class="styled">
-            <li><strong>Vector</strong> = ordered list of numbers</li>
-            <li><strong>ℝⁿ</strong> = all vectors with n real components</li>
-            <li><strong>Subspace</strong> = smaller vector space inside a bigger one</li>
-            <li>A subspace <strong>must contain the zero vector</strong></li>
-            <li><strong>Span</strong> = all vectors you can create</li>
-            <li><strong>Linear combination</strong> = scaled vectors added together</li>
-            <li><strong>Independent</strong> = no vector can be made from the others</li>
-            <li><strong>Dependent</strong> = at least one vector is redundant</li>
-            <li><strong>Basis</strong> = independent + spans</li>
-            <li><strong>Dimension</strong> = number of vectors in a basis</li>
-            <li>In ℝⁿ, <strong>more than n vectors are always dependent</strong></li>
-          </ul>
-        </details>
-
       </details>
     </section>
 
@@ -472,17 +417,23 @@ dependent   = a move is already possible from the others</pre>
     <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
     <div class="tbl-wrap"><table>
       <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
-      <tr><td>$v$, $u$, $w$</td><td>"vee, you, double-u"</td><td>vectors (arrows)</td></tr>
+      <tr><td>$v$</td><td>"vee"</td><td>a single vector</td></tr>
+      <tr><td>$u$, $v$, $w$</td><td>"you, vee, double-u"</td><td>different vectors</td></tr>
       <tr><td>$c$, $d$</td><td>"see, dee"</td><td>scalars (ordinary numbers)</td></tr>
+      <tr><td>$v_1$, $v_2$</td><td>"v one, v two"</td><td>components, or different vectors (by context)</td></tr>
+      <tr><td>$\mathbb{R}$</td><td>"R"</td><td>the real numbers</td></tr>
+      <tr><td>$\mathbb{R}^2$</td><td>"R two"</td><td>2-D real space</td></tr>
+      <tr><td>$\mathbb{R}^3$</td><td>"R three"</td><td>3-D real space</td></tr>
       <tr><td>$\mathbb{R}^n$</td><td>"R n"</td><td>all vectors with $n$ real components</td></tr>
-      <tr><td>$\in$ / $\notin$</td><td>"belongs to / not in"</td><td>membership in a set</td></tr>
+      <tr><td>$\in$</td><td>"belongs to"</td><td>membership in a set</td></tr>
+      <tr><td>$\notin$</td><td>"not in"</td><td>not a member of the set</td></tr>
+      <tr><td>$\subset$</td><td>"subset of"</td><td>one set sits inside another</td></tr>
       <tr><td>$0$</td><td>"zero vector"</td><td>the all-zeros vector (origin)</td></tr>
       <tr><td>$\operatorname{span}\{\dots\}$</td><td>"span of"</td><td>all linear combinations</td></tr>
       <tr><td>$\dim(V)$</td><td>"dim of V"</td><td>dimension = size of a basis</td></tr>
       <tr><td>$v^{\mathsf T}$</td><td>"v transpose"</td><td>flip a column into a row (or back)</td></tr>
     </table></div>
   </section>
-
 
   <!-- 6. MAIN FORMULA -->
   <section class="concept-card">
@@ -542,6 +493,30 @@ dependent   = a move is already possible from the others</pre>
         <li>$\dim(\mathbb{R}^n)=n$; every basis of a space has the same number of vectors.</li>
         <li>Two vectors are dependent iff one is a scalar multiple of the other (they're parallel).</li>
         <li>The span of $k$ vectors has dimension = number of <em>independent</em> ones among them.</li>
+      </ul>
+    </div>
+    <p><strong>The "more than $n$" rule, in detail:</strong></p>
+    <ul class="styled">
+      <li>In $\mathbb{R}^2$ the maximum number of independent vectors is $2$ — so <strong>any 3 vectors in $\mathbb{R}^2$ are always dependent</strong>.</li>
+      <li>In $\mathbb{R}^3$ the maximum is $3$ — so <strong>any 4 vectors in $\mathbb{R}^3$ are always dependent</strong>.</li>
+      <li>General rule: in $\mathbb{R}^n$, <strong>more than $n$ vectors are always dependent</strong>.</li>
+    </ul>
+    <p>Quick examples: 3 vectors in $\mathbb{R}^2$ → dependent; 4 in $\mathbb{R}^3$ → dependent; 5 in $\mathbb{R}^4$ → dependent. Count first — it is a fast mark.</p>
+  </section>
+
+  <!-- GATE MEMORY CHEAT SHEET -->
+  <section class="concept-card">
+    <div class="sec-head"><span class="study-badge">🧠</span> GATE Vectors memory cheat sheet</div>
+    <div class="memory-box">
+      <div class="callout-label">📋 Quick recall</div>
+      <ul>
+        <li><strong>Vector</strong> = ordered list of numbers.</li>
+        <li><strong>$\mathbb{R}^n$</strong> = all vectors with $n$ real components.</li>
+        <li><strong>Subspace</strong> = a smaller vector space inside a bigger one; it <strong>must contain the zero vector</strong>.</li>
+        <li><strong>Span</strong> = all vectors you can create; a <strong>linear combination</strong> is scaled vectors added together.</li>
+        <li><strong>Independent</strong> = no vector can be built from the others; <strong>dependent</strong> = at least one is redundant.</li>
+        <li><strong>Basis</strong> = independent + spans; <strong>dimension</strong> = number of vectors in a basis, with $\dim(\mathbb{R}^n)=n$.</li>
+        <li>In $\mathbb{R}^n$, <strong>more than $n$ vectors are always dependent</strong>.</li>
       </ul>
     </div>
   </section>
