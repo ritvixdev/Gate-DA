@@ -66,8 +66,131 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— sampling &amp; standard error from zero</span></summary>
+
+        <p class="study-empty">Before the Central Limit Theorem itself, you need the language of sampling: population vs sample, parameter vs statistic, and how much a sample estimate wobbles — the standard error <code>σ/√n</code>. These foundations are what the CLT is built on. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. Sampling</summary>
+          <p><strong>Sampling</strong> = selecting some items from a bigger group instead of measuring everyone.</p>
+          <p>To estimate the average height of all college students, measure a selected 100 rather than all 10,000.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Population vs sample</summary>
+          <pre>Population = the COMPLETE group you want to study (all 10,000 students)
+Sample     = a smaller selected part (500 of them)</pre>
+          <p>We sample because measuring everyone is often expensive, slow, or impossible.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Game imagination</summary>
+          <p>You have 10,000 loot boxes but can't open them all. Open 100 and estimate the drop rate.</p>
+          <pre>10,000 boxes = population ;  100 opened = sample
+estimated drop rate = statistic ;  true drop rate = parameter</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Random sampling</summary>
+          <p><strong>Random sampling</strong> uses chance to pick, to avoid <strong>bias</strong>.</p>
+          <pre>biased:  ask only your friends about exam difficulty
+random:  pick students randomly from the full class list</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Simple random sampling</summary>
+          <p><strong>Every individual has an equal chance</strong> of being selected (and every group of that size is equally likely).</p>
+          <p><span style="color:var(--coral-text)">Memory:</span> simple random sampling = equal-chance selection.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Why random sampling matters</summary>
+          <p>A biased sample gives a wrong conclusion. For average city salary: asking only IT-park workers reads too high; only students too low. Random sampling makes the sample <strong>represent</strong> the population.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Parameter vs statistic</summary>
+          <pre>Parameter = a POPULATION value (fixed, usually unknown)
+   μ = population mean, σ = population SD, p = population proportion
+Statistic = a SAMPLE value (changes sample to sample)
+   x̄ = sample mean, s = sample SD, p̂ = sample proportion</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> Parameter ↔ Population, Statistic ↔ Sample.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Parameter vs statistic — table</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Concept</th><th>Describes</th><th>Symbol</th></tr>
+            <tr><td>Parameter</td><td>population (fixed, often unknown)</td><td>μ, σ, p</td></tr>
+            <tr><td>Statistic</td><td>sample (varies)</td><td>x̄, s, p̂</td></tr>
+          </table></div>
+          <p>We use the statistic to <strong>estimate</strong> the parameter.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Example</summary>
+          <pre>Company has 1,00,000 users; want average daily usage.
+population = all users ;  parameter = true average of all
+sample = random 1,000 users ;  statistic = their average</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Sampling error</summary>
+          <p><strong>Sampling error</strong> = difference between the sample statistic and the population parameter.</p>
+          <pre>μ = 170 cm, x̄ = 168 cm  →  sampling error = x̄ − μ = −2 cm</pre>
+          <p>It happens because a sample is only part of the population — even with random sampling.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Standard error: SE = σ/√n</summary>
+          <p><strong>Standard error</strong> measures how much a statistic varies from sample to sample. For the mean:</p>
+          <pre>SE = σ / √n      (use s/√n if σ is unknown)</pre>
+          <p>Bigger samples → smaller SE. Make n <strong>4×</strong> bigger and SE <strong>halves</strong> (√4 = 2).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Standard-error intuition</summary>
+          <p>Take many samples of size 100 and compute each mean — you get 68, 70, 69, 71, … The <strong>spread of those sample means</strong> is the standard error.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Standard deviation vs standard error</summary>
+          <pre>Standard deviation (σ, s) = spread of individual data values
+Standard error (σ/√n)     = spread of the sample MEAN</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> SD = data spread; SE = uncertainty of the estimate.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Sample = population? <strong>No</strong> — sample is a selected part.</li>
+            <li>Statistic = parameter? <strong>No</strong> — statistic ↔ sample, parameter ↔ population.</li>
+            <li>SD = SE? <strong>No</strong> — SD is data spread; SE = σ/√n is estimate spread.</li>
+            <li>SE increases with n? <strong>No</strong> — it <em>decreases</em> (SE = σ/√n).</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Practice problems</summary>
+          <p class="lead">Q1. σ = 20, n = 100 — find SE.</p>
+          <pre>SE = 20/√100 = 20/10 = 2</pre>
+          <p class="lead">Q2. n goes 100 → 400 — what happens to SE?</p>
+          <pre>√100=10, √400=20 → SE halves</pre>
+          <p class="lead">Q3. True average salary of all employees is a … ?</p>
+          <pre>parameter (population)</pre>
+          <p class="lead">Q4. Average salary of 50 selected employees is a … ?</p>
+          <pre>statistic (sample)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Population = the full world; sample = a selected mini-world.</li>
+            <li>Parameter = true value of the full world (μ, σ, p); statistic = measured value from the sample (x̄, s, p̂).</li>
+            <li>Sampling error = how far the estimate landed; standard error <code>σ/√n</code> = how shaky the estimate is.</li>
+            <li>More data (larger n) → smaller standard error → more reliable estimate.</li>
+          </ul>
+        </details>
       </details>
     </section>
 

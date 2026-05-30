@@ -80,8 +80,174 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— probability from zero, one idea per card</span></summary>
+
+        <p class="study-empty">Probability is the maths of uncertainty — it gives every event a number between 0 (impossible) and 1 (certain). It is the foundation for random variables, distributions, Bayes' theorem, expectation, sampling and all of statistics and ML. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. Why probability exists</summary>
+          <p>Real life is full of uncertainty — will it rain, will a user click an ad, will a model predict correctly? <strong>Probability puts a number between 0 and 1 on how likely something is.</strong></p>
+          <pre>0   = impossible
+1   = certain
+0–1 = possible but uncertain   (fair coin head = 0.5 = 50%)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Game imagination</summary>
+          <p>Think of a loot box that can drop a common, rare, epic or legendary item. Probability is the <strong>chance meter</strong>:</p>
+          <pre>legendary drop = 0.01  →  1% chance</pre>
+          <p>Drop rates, critical-hit chance, spawn chance — all are probability.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Basic definition</summary>
+          <pre>P(E) = (favorable outcomes) / (total possible outcomes)</pre>
+          <pre>fair die, even number: favorable {2,4,6}=3, total 6 → P = 3/6 = 1/2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. The probability range</summary>
+          <pre>0 ≤ P(E) ≤ 1</pre>
+          <pre>0 impossible · 0.5 even chance · 1 certain
+P = −0.2 or 1.5 are IMPOSSIBLE values</pre>
+          <p><span style="color:var(--coral-text)">GATE trap:</span> probability is never negative and never above 1.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Experiment, outcome, sample space, event</summary>
+          <pre>Experiment  = a process with an uncertain result (roll a die)
+Outcome     = one possible result (a 4)
+Sample space S = the set of ALL outcomes:  S = {1,2,3,4,5,6}
+Event E     = a subset of S, e.g. "even" → E = {2,4,6} ⊂ S</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Dice example</summary>
+          <pre>S = {1,2,3,4,5,6}
+E = "greater than 4" = {5,6}
+P(E) = 2/6 = 1/3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Equally likely outcomes</summary>
+          <p>The formula <code>favorable/total</code> works <strong>only when outcomes are equally likely</strong> (a fair coin/die).</p>
+          <p>If a coin is biased, <code>P(H) ≠ 1/2</code>. <span style="color:var(--coral-text)">Memory:</span> classical probability assumes equally likely outcomes.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Counting: the addition rule (OR)</summary>
+          <p>If a task can happen one way OR another (no overlap), <strong>add</strong> the counts.</p>
+          <pre>choose 3 red balls OR 4 blue balls → 3 + 4 = 7 choices</pre>
+          <p>OR (mutually exclusive) → add.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Counting: the multiplication rule (AND)</summary>
+          <p>If a task has several steps done together, <strong>multiply</strong>.</p>
+          <pre>3 shirts AND 2 pants → 3 × 2 = 6 outfits</pre>
+          <p>AND (steps in sequence) → multiply.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Independent events multiply</summary>
+          <pre>independent A, B:  P(A and B) = P(A∩B) = P(A)·P(B)</pre>
+          <pre>two fair coins: P(HH) = 1/2 × 1/2 = 1/4</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>11. What 'independent' means</summary>
+          <p>Independent = one event does <strong>not affect</strong> the other. Coin toss 1 doesn't change toss 2; rolling a die twice — the rolls are independent.</p>
+          <pre>P(6 then 6) = 1/6 × 1/6 = 1/36</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. With vs without replacement</summary>
+          <p>Bag: 3 red, 2 blue (total 5).</p>
+          <pre>WITH replacement (put it back): probabilities stay the same
+ P(red, red) = 3/5 × 3/5 = 9/25
+
+WITHOUT replacement (keep it): probabilities change
+ P(red, red) = 3/5 × 2/4 = 3/10</pre>
+          <p><span style="color:var(--coral-text)">GATE trap:</span> with replacement → same; without → the second probability changes.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Factorial</summary>
+          <pre>n! = n × (n−1) × … × 1
+5! = 120,  4! = 24,  3! = 6,  1! = 1,  0! = 1</pre>
+          <p><code>0! = 1</code> by convention, so the counting formulas work.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Permutation (order matters)</summary>
+          <p>An <strong>arrangement</strong> — order counts.</p>
+          <pre>nPr = n! / (n−r)!
+1st &amp; 2nd prize from 5 people: 5P2 = 5!/3! = 5×4 = 20</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Combination (order doesn't matter)</summary>
+          <p>A <strong>selection</strong> — order doesn't count ({A,B} = {B,A}).</p>
+          <pre>nCr = n! / (r!(n−r)!)
+team of 2 from 5: 5C2 = 10</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> Permutation = positions/order; Combination = group only.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Counting → probability examples</summary>
+          <p class="lead">Bag of 5 red + 3 blue, pick one:</p>
+          <pre>P(red) = 5/8</pre>
+          <p class="lead">Standard 52-card deck:</p>
+          <pre>P(ace)   = 4/52 = 1/13
+P(heart) = 13/52 = 1/4</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Probability &gt; 1? <strong>No</strong> — always 0 ≤ P ≤ 1.</li>
+            <li>Independent: <code>P(A and B) = P(A)+P(B)</code>? <strong>No</strong> — it's <code>P(A)·P(B)</code>.</li>
+            <li>With vs without replacement give the same answer? <strong>No</strong> — without replacement changes the probabilities.</li>
+            <li>Permutation = combination? <strong>No</strong> — order matters vs doesn't.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Practice problems</summary>
+          <p class="lead">Q1. Fair coin, P(head)?</p>
+          <pre>1/2</pre>
+          <p class="lead">Q2. Die, P(odd)?</p>
+          <pre>{1,3,5}/6 = 1/2</pre>
+          <p class="lead">Q3. Two coins, P(both heads)?</p>
+          <pre>1/2 × 1/2 = 1/4</pre>
+          <p class="lead">Q4. Two dice, P(6 on both)?</p>
+          <pre>1/6 × 1/6 = 1/36</pre>
+          <p class="lead">Q5. 1st &amp; 2nd prize from 6 people — how many ways?</p>
+          <pre>6P2 = 30</pre>
+          <p class="lead">Q6. Pick a 3-person committee from 6 — how many ways?</p>
+          <pre>6C3 = 20</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Cheatsheet</summary>
+          <ul class="styled">
+            <li><code>P(E) = favorable/total</code>; &nbsp; <code>0 ≤ P ≤ 1</code>; sample space = all outcomes; event ⊂ S.</li>
+            <li>OR (exclusive) → add; AND (steps) → multiply.</li>
+            <li>Independent: <code>P(A∩B) = P(A)P(B)</code>.</li>
+            <li>With replacement → unchanged; without → changes.</li>
+            <li><code>nPr = n!/(n−r)!</code> (order matters); <code>nCr = n!/(r!(n−r)!)</code> (order doesn't).</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Probability = a <strong>chance meter</strong> from 0 to 1.</li>
+            <li>Sample space = every outcome; event = the outcomes you care about.</li>
+            <li>Independent events multiply; OR adds, AND multiplies.</li>
+            <li>Permutation = order matters; combination = order doesn't.</li>
+          </ul>
+        </details>
       </details>
     </section>
 
