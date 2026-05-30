@@ -120,8 +120,14 @@
 
     // Topic pages get an auto practice CTA before the nav row.
     var practiceCTA = current
-      ? '<div class="cta-band"><span class="cta-title">Test yourself on ' + current.name + '</span>' +
-        '<a class="btn btn-secondary" href="' + laRoot + "/" + slug + '-practice.html">🎯 Practice questions →</a></div>'
+      ? '<div class="practice-cta">' +
+          '<span class="practice-cta-icon" aria-hidden="true">🎯</span>' +
+          '<div class="practice-cta-body">' +
+            '<div class="practice-cta-title">Test yourself on ' + current.name + '</div>' +
+            '<div class="practice-cta-sub">8 quick questions — every answer explained.</div>' +
+          "</div>" +
+          '<a class="btn btn-primary" href="' + laRoot + "/" + slug + '-practice.html">Practice questions →</a>' +
+        "</div>"
       : "";
 
     var shell =
