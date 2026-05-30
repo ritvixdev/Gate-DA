@@ -44,6 +44,19 @@ window.SUBJECTS = {
       { slug: "04-gradient-descent",      name: "Gradient Descent",        icon: "⛰️", weight: "Very High" },
     ],
   },
+  "machine-learning": {
+    dir: "machine-learning",
+    name: "Basic Machine Learning",
+    brandHtml: 'Machine<span>Learning</span>',
+    topics: [
+      { slug: "01-linear-regression",   name: "Linear Regression",  icon: "📈", weight: "Very High" },
+      { slug: "02-least-squares",       name: "Least-Squares",      icon: "📐", weight: "Very High" },
+      { slug: "03-knn",                 name: "k-Nearest Neighbors",icon: "👥", weight: "High" },
+      { slug: "04-logistic-regression", name: "Logistic Regression",icon: "🔘", weight: "Very High" },
+      { slug: "05-kmeans",              name: "k-Means Clustering",  icon: "🎯", weight: "High" },
+      { slug: "06-cross-validation",    name: "Cross-Validation",   icon: "🔁", weight: "High" },
+    ],
+  },
 };
 
 /* Back-compat alias (older code / any direct references). */

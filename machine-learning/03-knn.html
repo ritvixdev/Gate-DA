@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>k-Nearest Neighbors · GATE DA</title>
+<meta name="description" content="k-Nearest Neighbors (kNN) from zero: classify by the closest examples, choosing k, distance — with an interactive lab, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-topic="03-knn" data-content>
+  <div class="hero">
+    <span class="tag">Topic 3 · GATE weight: High</span>
+    <h1>k-Nearest Neighbors</h1>
+    <p class="lede">The laziest learner: to classify a new point, just look at its <strong>k closest</strong> known
+      examples and take a majority vote. No training, no formula — only distance.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Sometimes "similar things behave similarly" is all you need. <strong>kNN</strong> classifies a new point by
+      its nearest neighbors in the data — simple, intuitive, and a great baseline that needs <em>no</em> training
+      phase (it just stores the data).</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Drop a new point on a map of colored dots. Draw a circle that grows until it captures the
+        <strong>k closest</strong> dots, then colour the new point by the <strong>majority</strong> inside. Small $k$ = jumpy,
+        noise-sensitive; large $k$ = smooth but blurry. Try it below — drag the query point and change $k$.</p>
+    </div>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 kNN Lab</span>
+      <span class="viz-hint">Drag the black point · change k</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="knn-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>k <span id="knn-k-val">3</span></label><input type="range" id="knn-k" min="1" max="9" step="2" value="3"></div>
+    </div>
+    <div class="viz-readout" id="knn-lab-readout"></div>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>kNN:</strong> classify a query by the majority label among its $k$ nearest training points (or average their values for regression).</p>
+    <p><strong>Distance:</strong> usually Euclidean, $\sqrt{\sum (a_i-b_i)^2}$.</p>
+    <p><strong>$k$:</strong> how many neighbors vote — a hyperparameter you choose.</p>
+    <p><strong>Lazy learner:</strong> no training; all the work happens at prediction time.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$k$</td><td>"k"</td><td>number of neighbors</td></tr>
+      <tr><td>$d(a,b)$</td><td>"distance"</td><td>how far apart two points are</td></tr>
+      <tr><td>$x_q$</td><td>"query"</td><td>the new point to classify</td></tr>
+      <tr><td>$\|a-b\|$</td><td>"norm"</td><td>Euclidean distance</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <div class="formula">$$ d(a,b)=\sqrt{\sum_{i}(a_i-b_i)^2} $$</div>
+    <p>Predict $x_q$ = the majority class among the $k$ points with the smallest $d(x_q,\cdot)$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Pick $k$ and a distance metric.</li>
+      <li>Compute the distance from the query to <em>every</em> training point.</li>
+      <li>Take the $k$ smallest distances (the nearest neighbors).</li>
+      <li>Classification: majority vote. Regression: average their target values.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ k=3 vote</div>
+      <p>A query's 3 nearest neighbors have labels {A, A, B}. Majority is <strong>A</strong> → predict class A.</p>
+      <p>Use <strong>odd $k$</strong> for two classes to avoid ties.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>No training cost; prediction is $O(n)$ per query (must scan all points).</li>
+        <li>Small $k$ → low bias, high variance (overfits noise); large $k$ → smoother, higher bias.</li>
+        <li>Use <strong>odd $k$</strong> for binary classification to avoid ties.</li>
+        <li><strong>Feature scaling matters</strong> — distance is dominated by large-range features.</li>
+        <li>kNN can do regression too (average the neighbors' values).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "kNN has a training phase." <span class="right">Reality:</span> it's a lazy learner — it just stores the data.</p>
+      <p><span class="wrong">Trap:</span> "Bigger $k$ is always better." <span class="right">Reality:</span> too large blurs class boundaries (underfits).</p>
+      <p><span class="wrong">Trap:</span> "No need to scale features." <span class="right">Reality:</span> unscaled features distort distances — always normalize.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Linear algebra / vectors:</strong> distance is a vector norm.</li>
+      <li><strong>Cross-validation:</strong> the usual way to pick the best $k$.</li>
+      <li><strong>k-Means:</strong> different idea — same "distance to centers" intuition, but unsupervised.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Why use an odd $k$ for two classes?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">To avoid tied votes.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Does kNN train a model?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">No — it's lazy; it stores data and computes at prediction time.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Neighbors (k=5) are {A,B,A,A,B}. Prediction?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">A (3 vs 2).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">As $k$ increases, the decision boundary becomes…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> jumpier</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> smoother</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> unchanged</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> always perfect</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Small $k$ is jumpy; large $k$ smooths.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — more neighbors averages out noise, smoothing the boundary (more bias).</div>
+      <div class="quiz-feedback" data-fb="C">It definitely changes with $k$.</div>
+      <div class="quiz-feedback" data-fb="D">Too large $k$ underfits.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Classify by majority of the $k$ nearest points (Euclidean distance).</li>
+        <li>Lazy learner: no training, $O(n)$ prediction.</li>
+        <li>Small $k$ overfits; large $k$ underfits; use odd $k$ for 2 classes.</li>
+        <li>Scale features before measuring distance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/knn-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

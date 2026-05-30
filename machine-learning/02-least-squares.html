@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Least-Squares · GATE DA</title>
+<meta name="description" content="Least-squares: minimizing the sum of squared residuals, the normal equations, the best-fit line — with an interactive regression lab, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-topic="02-least-squares" data-content>
+  <div class="hero">
+    <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <h1>Least-Squares</h1>
+    <p class="lede">"Best fit" needs a definition of <strong>best</strong>. Least-squares picks the line that makes the
+      total <strong>squared error</strong> as small as possible.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Many lines pass near the data — which is "best"? Least-squares answers it precisely: minimize the
+      sum of squared <strong>residuals</strong> (vertical gaps). Squaring punishes big misses and gives a clean,
+      solvable formula — the foundation of regression.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Each data point hangs a little vertical spring to the line — the <strong>residual</strong>. The energy in a
+        spring is its length <strong>squared</strong>. Least-squares finds the line where the <strong>total spring energy</strong> (SSE)
+        is smallest. Drag the line below and watch the SSE; "Best fit" snaps to the minimum.</p>
+    </div>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Regression Lab</span>
+      <span class="viz-hint">Grey segments = residuals · minimize SSE</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="regression-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>slope β₁ <span id="reg-slope-val">1.0</span></label><input type="range" id="reg-slope" min="-1" max="5" step="0.1" value="1"></div>
+      <div class="viz-control"><label>intercept β₀ <span id="reg-int-val">3.0</span></label><input type="range" id="reg-int" min="-5" max="15" step="0.5" value="3"></div>
+      <div class="viz-presets">
+        <button class="preset-btn" id="reg-best">Best fit</button>
+        <button class="preset-btn" id="reg-new">New data</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="regression-lab-readout"></div>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Residual $e_i=y_i-\hat{y}_i$:</strong> the vertical gap between a point and the line.</p>
+    <p><strong>Sum of squared errors (SSE):</strong> $\sum e_i^2$ — the quantity least-squares minimizes (also called RSS).</p>
+    <p><strong>Normal equations:</strong> the linear system whose solution gives the optimal coefficients.</p>
+    <p><strong>Ordinary Least Squares (OLS):</strong> the standard least-squares method for linear regression.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$e_i$</td><td>"residual"</td><td>$y_i-\hat{y}_i$</td></tr>
+      <tr><td>SSE / RSS</td><td>"sum of squared errors"</td><td>$\sum e_i^2$</td></tr>
+      <tr><td>$X$</td><td>"design matrix"</td><td>rows = data, columns = features (with a 1s column)</td></tr>
+      <tr><td>$\beta$</td><td>"beta"</td><td>vector of coefficients</td></tr>
+      <tr><td>$X^{\mathsf T}X$</td><td>"X transpose X"</td><td>appears in the normal equations</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \min_{\beta}\ \text{SSE}=\sum_{i=1}^{n}\big(y_i-\hat{y}_i\big)^2 $$</div>
+    <p>Setting the derivative to zero gives the <strong>normal equations</strong>:</p>
+    <div class="formula">$$ X^{\mathsf T}X\,\beta = X^{\mathsf T}y \qquad\Rightarrow\qquad \beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Write predictions $\hat{y}_i=\beta_0+\beta_1 x_i$ and the SSE $=\sum(y_i-\hat{y}_i)^2$.</li>
+      <li>Take partial derivatives w.r.t. $\beta_0,\beta_1$ and set them to zero.</li>
+      <li>Solve the resulting two equations (the normal equations) for the coefficients.</li>
+      <li>In matrix form: $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Why squared (not absolute)?</div>
+      <p>Squaring makes the SSE a smooth bowl in $(\beta_0,\beta_1)$, so setting derivatives to zero gives a
+        single exact solution. For the points $(1,2),(2,4),(3,5),(4,4),(5,5)$ this yields $\hat{y}=2.2+0.6x$ —
+        the same line the lab snaps to with <em>Best fit</em>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Least-squares minimizes $\sum e_i^2$ (not $\sum|e_i|$).</li>
+        <li>Closed form: $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$ (when $X^{\mathsf T}X$ is invertible).</li>
+        <li>At the optimum the residuals sum to zero and are uncorrelated with the predictors.</li>
+        <li>Squared error is convex ⇒ a unique global minimum (no local traps).</li>
+        <li>Gradient descent reaches the same solution iteratively (link to Optimization).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Least-squares minimizes absolute error." <span class="right">Reality:</span> it minimizes <em>squared</em> error.</p>
+      <p><span class="wrong">Trap:</span> "It minimizes perpendicular distance." <span class="right">Reality:</span> ordinary least squares uses <em>vertical</em> residuals.</p>
+      <p><span class="wrong">Trap:</span> "$(X^{\mathsf T}X)^{-1}$ always exists." <span class="right">Reality:</span> it fails when features are linearly dependent (multicollinearity).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Linear regression:</strong> least-squares is how its coefficients are found.</li>
+      <li><strong>Optimization:</strong> minimizing a convex SSE — exactly Topic-2/4 material.</li>
+      <li><strong>Linear algebra:</strong> the normal equations are $Ax=b$ with $A=X^{\mathsf T}X$; rank decides solvability.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Least-squares minimizes which quantity?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">The sum of squared residuals, $\sum(y_i-\hat{y}_i)^2$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Write the normal-equations solution for $\beta$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Why is the least-squares solution unique?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">The squared-error cost is convex (a single bowl), so there's one global minimum.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The normal equations are…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $X\beta=y$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\beta=Xy$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $X^{\mathsf T}X\beta=X^{\mathsf T}y$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $X^{\mathsf T}\beta=y$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the (usually unsolvable) overdetermined system.</div>
+      <div class="quiz-feedback" data-fb="B">Dimensions don't even match.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $X^{\mathsf T}X\beta=X^{\mathsf T}y$, giving $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</div>
+      <div class="quiz-feedback" data-fb="D">Not the least-squares condition.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Minimize SSE $=\sum(y_i-\hat{y}_i)^2$ (squared, vertical residuals).</li>
+        <li>Normal equations: $X^{\mathsf T}X\beta=X^{\mathsf T}y$ ⇒ $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</li>
+        <li>Convex cost ⇒ unique global minimum.</li>
+        <li>$X^{\mathsf T}X$ singular ⇒ multicollinearity (no unique solution).</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/regression-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

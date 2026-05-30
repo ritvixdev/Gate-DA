@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Cross-Validation · GATE DA</title>
+<meta name="description" content="Cross-validation from zero: train/test split, k-fold CV, overfitting vs underfitting, choosing hyperparameters — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-topic="06-cross-validation" data-content>
+  <div class="hero">
+    <span class="tag">Topic 6 · GATE weight: High</span>
+    <h1>Cross-Validation</h1>
+    <p class="lede">How good is your model on data it hasn't seen? Cross-validation estimates that
+      honestly — and stops you from fooling yourself with <strong>overfitting</strong>.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>A model can ace the data it trained on yet fail on new data (<strong>overfitting</strong>). Cross-validation
+      reliably estimates real-world performance and helps choose hyperparameters (like $k$ in kNN) —
+      without peeking at the final test set.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Studying for an exam: practicing on the answer key (training) isn't a fair test. <strong>Hold out</strong> some
+        questions you never studied (validation) to see if you really learned. <strong>k-fold CV</strong> rotates which
+        chunk is held out, so every example gets a turn as the "exam" — a fairer average score.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Train/test split:</strong> fit on one part, evaluate on a held-out part.</p>
+    <p><strong>k-fold CV:</strong> split data into $k$ folds; train on $k-1$, validate on the remaining one; rotate; average the scores.</p>
+    <p><strong>Overfitting:</strong> great on training, poor on new data. <strong>Underfitting:</strong> poor on both (too simple).</p>
+    <p><strong>LOOCV:</strong> leave-one-out CV — $k$ equals the number of data points.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$k$ (folds)</td><td>"k-fold"</td><td>number of CV folds (e.g. 5, 10)</td></tr>
+      <tr><td>train / val / test</td><td>"splits"</td><td>fit / tune / final-evaluate sets</td></tr>
+      <tr><td>LOOCV</td><td>"leave-one-out"</td><td>$k=n$</td></tr>
+      <tr><td>bias / variance</td><td>"bias-variance"</td><td>under- vs over-fitting trade-off</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main idea</div>
+    <div class="formula">$$ \text{CV score}=\frac{1}{k}\sum_{i=1}^{k}\text{(score on fold } i \text{ as validation)} $$</div>
+    <p>Train on the other $k-1$ folds each time; average the $k$ validation scores for an honest estimate.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method (k-fold)</div>
+    <ol class="steps">
+      <li>Shuffle and split the data into $k$ equal folds.</li>
+      <li>For each fold: train on the other $k-1$, validate on this fold, record the score.</li>
+      <li>Average the $k$ scores → the cross-validation estimate.</li>
+      <li>Use it to pick hyperparameters; report final performance on a separate untouched test set.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ 5-fold CV</div>
+      <p>100 points → 5 folds of 20. Train on 80, validate on 20, five times (each fold held out once).</p>
+      <p>If validation scores are $0.80,0.82,0.78,0.85,0.80$, the CV estimate is their mean $=0.81$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$k$-fold trains the model $k$ times; every point is validated exactly once.</li>
+        <li>LOOCV is $k=n$ — nearly unbiased but expensive and higher variance.</li>
+        <li>Large gap (train ≫ validation accuracy) ⇒ <strong>overfitting</strong>.</li>
+        <li>Both low ⇒ <strong>underfitting</strong> (model too simple).</li>
+        <li>Never tune on the test set — keep it untouched for the final estimate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Tune hyperparameters on the test set." <span class="right">Reality:</span> that leaks information — use CV / a validation set.</p>
+      <p><span class="wrong">Trap:</span> "High training accuracy = good model." <span class="right">Reality:</span> it may be overfitting; check validation.</p>
+      <p><span class="wrong">Trap:</span> "More folds is always better." <span class="right">Reality:</span> more folds cost more compute and can raise variance (LOOCV).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>kNN:</strong> CV is the standard way to choose the best $k$.</li>
+      <li><strong>Linear/logistic regression:</strong> CV compares models and guards against overfitting.</li>
+      <li><strong>All ML:</strong> the honest performance check behind every method here.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. In 10-fold CV, how many times is the model trained?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">10 times (once per fold).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Train accuracy 99%, validation 70%. What's happening?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Overfitting — great on training, poor on unseen data.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. What is LOOCV?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Leave-one-out CV: $k=n$, each point is the validation set once.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">A large gap between training and validation accuracy indicates…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> underfitting</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a perfect model</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> overfitting</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> too few features</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Underfitting shows <em>both</em> scores low.</div>
+      <div class="quiz-feedback" data-fb="B">A big gap is the opposite of good generalization.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — memorized training but fails to generalize = overfitting.</div>
+      <div class="quiz-feedback" data-fb="D">More features usually worsens overfitting, not fixes it.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>k-fold: rotate the held-out fold; average the $k$ validation scores.</li>
+        <li>LOOCV = $k=n$.</li>
+        <li>Train ≫ validation ⇒ overfitting; both low ⇒ underfitting.</li>
+        <li>Never tune on the test set; keep it for the final report.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

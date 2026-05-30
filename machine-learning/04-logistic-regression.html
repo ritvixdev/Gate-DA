@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Logistic Regression · GATE DA</title>
+<meta name="description" content="Logistic regression from zero: the sigmoid, probabilities, decision boundary, log-loss — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="machine-learning" data-topic="04-logistic-regression" data-content>
+  <div class="hero">
+    <span class="tag">Topic 4 · GATE weight: Very High</span>
+    <h1>Logistic Regression</h1>
+    <p class="lede">Despite the name, it's a <strong>classifier</strong>. It squashes a linear score through an S-curve
+      to output a <strong>probability</strong> between 0 and 1.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Linear regression can output any number — useless for "yes/no". <strong>Logistic regression</strong> feeds the
+      linear score into the <strong>sigmoid</strong>, turning it into a probability. It's the standard, interpretable
+      baseline for binary classification.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Take the straight-line score $z=\beta_0+\beta_1 x$ and pour it through an <strong>S-shaped funnel</strong>
+        (the sigmoid): very negative $z$ → near 0, very positive → near 1, $z=0$ → exactly 0.5.
+        The <strong>decision boundary</strong> is where the probability crosses 0.5 (i.e. $z=0$).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Sigmoid $\sigma(z)$:</strong> the S-curve mapping any real number to $(0,1)$.</p>
+    <p><strong>Linear score $z=\beta_0+\beta_1 x_1+\dots$:</strong> the input to the sigmoid.</p>
+    <p><strong>Decision boundary:</strong> where $\hat{p}=0.5$ (equivalently $z=0$); classify 1 if $\hat{p}\ge0.5$.</p>
+    <p><strong>Log-loss (cross-entropy):</strong> the cost function logistic regression minimizes.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\sigma(z)$</td><td>"sigmoid"</td><td>$1/(1+e^{-z})$, in $(0,1)$</td></tr>
+      <tr><td>$z$</td><td>"z"</td><td>linear score $\beta_0+\beta^{\mathsf T}x$</td></tr>
+      <tr><td>$\hat{p}$</td><td>"p-hat"</td><td>predicted probability of class 1</td></tr>
+      <tr><td>$\beta$</td><td>"beta"</td><td>coefficients (weights)</td></tr>
+      <tr><td>odds</td><td>"odds"</td><td>$p/(1-p)$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \sigma(z)=\frac{1}{1+e^{-z}}, \qquad z=\beta_0+\beta_1 x_1+\dots+\beta_p x_p $$</div>
+    <div class="formula">$$ \hat{p}=\sigma(z),\qquad \log\!\frac{p}{1-p}=z \ \ (\text{the log-odds / logit}) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>Compute the linear score $z=\beta_0+\beta^{\mathsf T}x$.</li>
+      <li>Apply the sigmoid: $\hat{p}=\sigma(z)$.</li>
+      <li>Classify: predict 1 if $\hat{p}\ge0.5$ (i.e. $z\ge0$), else 0.</li>
+      <li>Train by minimizing log-loss (via gradient descent) to find $\beta$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Probability from a score</div>
+      <p>If $z=0$, $\hat{p}=\sigma(0)=\tfrac{1}{1+1}=0.5$ (right on the boundary).</p>
+      <p>If $z=2$, $\hat{p}=\tfrac{1}{1+e^{-2}}\approx0.88$ → predict class 1.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$\sigma(0)=0.5$; $\sigma(-z)=1-\sigma(z)$; output always in $(0,1)$.</li>
+        <li>Decision boundary is <strong>linear</strong> in $x$ (where $z=0$) — same shape as linear regression's line.</li>
+        <li>Logistic regression models the <strong>log-odds</strong> as linear: $\log\frac{p}{1-p}=z$.</li>
+        <li>Trained by minimizing <strong>log-loss</strong> (cross-entropy), not squared error.</li>
+        <li>It outputs a probability — threshold at 0.5 (or another value) to decide the class.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Logistic regression predicts a number (regression)." <span class="right">Reality:</span> it's a <em>classifier</em> outputting a probability.</p>
+      <p><span class="wrong">Trap:</span> "It minimizes squared error." <span class="right">Reality:</span> it minimizes log-loss (cross-entropy).</p>
+      <p><span class="wrong">Trap:</span> "The decision boundary is curved." <span class="right">Reality:</span> in the raw features it's linear ($z=0$).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Linear regression:</strong> same linear score $z$, then squashed by the sigmoid.</li>
+      <li><strong>Optimization / gradient descent:</strong> how the coefficients are learned (no closed form).</li>
+      <li><strong>Probability:</strong> the output is a genuine probability; log-loss comes from likelihood.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $\sigma(0)=?$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$0.5$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. At the decision boundary, what is $z$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$z=0$ (so $\hat{p}=0.5$).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. What loss does logistic regression minimize?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Log-loss (cross-entropy).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The output of logistic regression is…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> any real number</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> exactly 0 or 1</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a probability in $(0,1)$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a cluster id</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the raw score $z$, before the sigmoid.</div>
+      <div class="quiz-feedback" data-fb="B">The decision is 0/1, but the model output is a probability.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — the sigmoid gives a probability between 0 and 1.</div>
+      <div class="quiz-feedback" data-fb="D">Clusters come from k-means, not logistic regression.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$\hat{p}=\sigma(z)=1/(1+e^{-z})$, with $z=\beta_0+\beta^{\mathsf T}x$.</li>
+        <li>$\sigma(0)=0.5$; boundary at $z=0$ (linear in $x$).</li>
+        <li>It's a <strong>classifier</strong> outputting a probability.</li>
+        <li>Trained by minimizing log-loss via gradient descent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
