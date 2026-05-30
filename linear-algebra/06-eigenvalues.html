@@ -81,6 +81,24 @@
 λ = -1  vector flips direction</pre>
           <p><span style="color:var(--coral-text)">🎮 Imagine:</span> through the portal most arrows turn, but eigenvectors keep their direction — only their length changes.</p>
         </details>
+
+        <details class="study-item">
+          <summary>2. The characteristic equation</summary>
+          <p>Eigenvalues are the λ that solve the <strong>characteristic equation</strong>:</p>
+          <pre>det(A − λI) = 0</pre>
+          <pre>A = [2  0        A − λI = [2−λ   0
+     0  3]                   0   3−λ]
+
+det = (2−λ)(3−λ) = 0   →   λ = 2  or  λ = 3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>3. det = product, trace = sum of eigenvalues</summary>
+          <pre>det(A) = λ₁ · λ₂ · … · λₙ      (product of eigenvalues)
+tr(A)  = λ₁ + λ₂ + … + λₙ      (sum of eigenvalues)</pre>
+          <pre>eigenvalues 2, 3, 5  →  trace = 10,  det = 30</pre>
+          <p>These two give fast checks on your eigenvalues in GATE.</p>
+        </details>
       </details>
     </section>
 

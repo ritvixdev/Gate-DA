@@ -50,8 +50,51 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— solving systems with determinants</span></summary>
+
+        <p class="study-empty">Solving a system <code>Ax = b</code> is the practical heart of linear algebra. The determinant of the coefficient matrix tells you, in one number, whether a unique solution exists — and Cramer's Rule turns determinants directly into the answer for small systems.</p>
+
+        <details class="study-item">
+          <summary>1. Cramer's Rule — when it applies</summary>
+          <p><strong>Cramer's Rule</strong> solves <code>Ax = b</code> (A = coefficients, b = constants) using determinants. It works <strong>only when <code>det(A) ≠ 0</code></strong> — then the solution is unique.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Cramer's Rule — worked 2×2</summary>
+          <pre>2x + y = 5
+ x + 3y = 7
+
+A = [2  1     b = [5
+     1  3]         7]
+
+det(A) = 2×3 − 1×1 = 5   (≠ 0, unique solution)</pre>
+          <p>Replace a column of A with b, take determinants:</p>
+          <pre>A₁ = [5 1; 7 3]  det = 15 − 7 = 8   → x = 8/5
+A₂ = [2 5; 1 7]  det = 14 − 5 = 9   → y = 9/5</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>3. When to use Cramer's Rule</summary>
+          <p>Good for <strong>theory and small (2×2, 3×3) systems</strong>, or when a question is determinant-based. For large systems it is slow.</p>
+          <pre>Cramer            = clean but costly
+Gaussian elimination = practical for big systems</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Determinant decides the solution count</summary>
+          <pre>Ax = b,  A is n×n
+
+det(A) ≠ 0   →  unique solution   (x = A⁻¹b)
+det(A) = 0   →  no unique solution
+                (either none, or infinitely many — needs rank analysis)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Homogeneous systems Ax = 0</summary>
+          <pre>det(A) ≠ 0   →  only the trivial solution x = 0
+det(A) = 0   →  non-trivial (non-zero) solutions exist</pre>
+          <p>So for square A: <code>Ax = 0</code> has a non-zero solution <strong>⇔ <code>det(A) = 0</code></strong> — a very common GATE result.</p>
+        </details>
       </details>
     </section>
 

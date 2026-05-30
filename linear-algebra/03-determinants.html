@@ -81,69 +81,373 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— determinant &amp; inverse from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— determinants from zero, one idea per card</span></summary>
 
-        <p class="study-empty">The determinant is one number that captures what a square matrix does to area/volume — and whether the matrix can be undone (inverted). We build the determinant from zero and keep the inverse right beside it, since they are two sides of the same idea.</p>
+        <p class="study-empty">A determinant is one number from a square matrix that tells you what the matrix does to space — whether it stretches or shrinks area/volume, whether it flips orientation, and crucially whether it can be reversed. <strong>det = 0</strong> means space collapsed and there is no inverse. Open each card in order.</p>
 
         <details class="study-item">
           <summary>1. What is a determinant?</summary>
-          <p>The <strong>determinant</strong> is a single number for a square matrix, written <code>det(A)</code> or <code>|A|</code>.</p>
-          <pre>A = [a  b        det(A) = ad − bc
-     c  d]
-
-A = [1  2        det = 1×4 − 2×3 = −2
+          <p>A <strong>determinant</strong> is a single number computed from a <strong>square</strong> matrix, written <code>det(A)</code> or <code>|A|</code> (same thing).</p>
+          <pre>A = [1  2        det(A) or |A|
      3  4]</pre>
+          <p><span style="color:var(--coral-text)">Important:</span> only square matrices (2×2, 3×3, n×n) have a determinant — a 2×3 has none.</p>
         </details>
 
         <details class="study-item">
-          <summary>2. Determinant = area / volume scaling</summary>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the determinant is how much the matrix <strong>scales area (2D) or volume (3D)</strong>.</p>
-          <pre>|det(A)| = 2   →  area doubles
-det(A)   = 0   →  area collapses to a line or point</pre>
-          <p>A zero determinant means the matrix <strong>loses a dimension</strong> — it squashes space flat.</p>
+          <summary>2. What the determinant tells you</summary>
+          <p>For a square matrix, <code>det(A)</code> answers three things at once:</p>
+          <ul class="styled">
+            <li>Is the matrix <strong>invertible</strong>?</li>
+            <li>How much does <strong>area / volume</strong> change?</li>
+            <li>Does <strong>orientation</strong> flip?</li>
+          </ul>
+          <p><span style="color:var(--coral-text)">Most important rule:</span></p>
+          <pre>det(A) = 0   →  singular     →  inverse does NOT exist
+det(A) ≠ 0   →  non-singular →  inverse exists</pre>
         </details>
 
         <details class="study-item">
-          <summary>3. Determinant of a triangular matrix</summary>
-          <p>For an upper or lower triangular matrix, the determinant is just the <strong>product of the diagonal entries</strong>.</p>
-          <pre>U = [2  5  7
-     0  3  9        det(U) = 2×3×4 = 24
-     0  0  4]</pre>
+          <summary>3. Game imagination: the rubber tile</summary>
+          <p>Picture a unit square rubber tile (area 1). A matrix stretches, squashes, rotates, flips or collapses it. The determinant says what happened to the area:</p>
+          <pre>det = 2     area becomes 2× bigger
+det = 0.5   area becomes half
+det = -3    area 3× bigger AND orientation flipped
+det = 0     area becomes zero — space collapsed to a line/point</pre>
         </details>
 
         <details class="study-item">
-          <summary>4. Invertible iff det ≠ 0</summary>
-          <p><span style="color:var(--coral-text)">GATE rule:</span> the inverse <code>A⁻¹</code> exists <strong>iff <code>det(A) ≠ 0</code></strong>.</p>
-          <pre>det(A) = 0   →  singular     (no inverse)
-det(A) ≠ 0   →  non-singular (invertible)</pre>
+          <summary>4. Determinant = area scaling (2D)</summary>
+          <p>In 2D, <code>|det(A)|</code> is the <strong>area scaling factor</strong>.</p>
+          <pre>|det(A)| = 5   any area becomes 5× bigger
+|det(A)| = 1   area unchanged
+|det(A)| = 0   area collapses to zero</pre>
+          <p><code>det = 0</code> means the 2D map became a 1D road or a point — you cannot recover the plane, so there is no inverse.</p>
         </details>
 
         <details class="study-item">
-          <summary>5. Inverse matrix — the undo button</summary>
-          <p>If A transforms a vector, <code>A⁻¹</code> reverses it.</p>
-          <pre>A A⁻¹ = A⁻¹ A = I</pre>
-          <p>Just as <code>5 × 1/5 = 1</code> for numbers. <span style="color:var(--coral-text)">🎮 Imagine:</span> A is a portal, <code>A⁻¹</code> the reverse portal, <code>I</code> the unchanged original.</p>
+          <summary>5. Determinant = volume scaling (3D)</summary>
+          <p>In 3D, <code>|det(A)|</code> is the <strong>volume scaling factor</strong>.</p>
+          <pre>det = 8    volume 8× bigger
+det = -2   volume 2× bigger, orientation flipped
+det = 0    3D space collapsed into a plane, line, or point</pre>
         </details>
 
         <details class="study-item">
-          <summary>6. The 2×2 inverse formula</summary>
-          <pre>A = [a  b
-     c  d]
+          <summary>6. Positive, negative, zero determinant</summary>
+          <pre>det > 0   orientation preserved   (e.g. rotation + stretch)
+det < 0   orientation flipped     (a reflection / mirror)
+det = 0   space collapsed: singular, dependent columns, rank < n</pre>
+          <p>The sign is the orientation; the size is the scaling.</p>
+        </details>
 
-A⁻¹ = 1/(ad−bc) · [ d  −b
-                     −c   a]      (only if ad−bc ≠ 0)</pre>
-          <p class="lead">Example:</p>
-          <pre>A = [1  2      det = −2
+        <details class="study-item">
+          <summary>7. The 2×2 formula: ad − bc</summary>
+          <pre>A = [a  b        det(A) = ad − bc
+     c  d]        (main diagonal − other diagonal)</pre>
+          <pre>A = [1  2        det = 1×4 − 2×3 = −2
+     3  4]</pre>
+          <p>So area becomes 2×, orientation flips, and (det ≠ 0) the matrix is invertible.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. The 2×2 visual: signed area</summary>
+          <p>The two columns of A form a parallelogram; <code>det</code> is its <strong>signed area</strong>.</p>
+          <pre>A = [1  0     columns [1,0] and [0,1] → unit square
+     0  1]    det = 1
+
+A = [2  0     stretch x×2, y×3
+     0  3]    det = 6  → area 6×</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Why det = 0 means collapse</summary>
+          <pre>A = [1  2        det = 1×4 − 2×2 = 0
+     2  4]
+
+columns: [1,2] and [2,4] = 2·[1,2]  (same direction!)</pre>
+          <p>Both columns point the same way, so they span only a <strong>line</strong>, not an area — area 0. Hence <code>det = 0 ⇔</code> dependent columns, rank &lt; n, no inverse.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. The 3×3 determinant (cofactor expansion)</summary>
+          <pre>A = [a  b  c
+     d  e  f
+     g  h  i]
+
+det = a(ei−fh) − b(di−fg) + c(dh−eg)</pre>
+          <p>This is cofactor expansion along the first row; the signs alternate <code>+ − +</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. What is a minor?</summary>
+          <p>The <strong>minor</strong> of an entry is the smaller determinant left after deleting that entry's row and column.</p>
+          <pre>minor of a = |e  f|  = ei − fh
+             |h  i|
+
+minor of b = |d  f|  = di − fg
+             |g  i|</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Cofactor = sign × minor</summary>
+          <p>A <strong>cofactor</strong> attaches the checkerboard sign to a minor.</p>
+          <pre>sign pattern:  + − +
+               − + −
+               + − +</pre>
+          <p>So <code>det = a·(+minor_a) + b·(−minor_b) + c·(+minor_c) = a(ei−fh) − b(di−fg) + c(dh−eg)</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Worked 3×3 example</summary>
+          <pre>A = [2  1  3
+     0  4  2
+     1  0  5]
+
+det = 2·|4 2; 0 5| − 1·|0 2; 1 5| + 3·|0 4; 1 0|
+    = 2(20) − 1(−2) + 3(−4)
+    = 40 + 2 − 12
+    = 30</pre>
+          <p>Volume scales by 30, orientation preserved, matrix invertible.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Expand along any row or column</summary>
+          <p>You may expand along <strong>any</strong> row or column — pick the one with the <strong>most zeros</strong> to save work.</p>
+          <pre>A = [2  1  3
+     0  4  2     ← row 2 / column 1 each have a zero
+     1  0  5]</pre>
+          <p><span style="color:var(--coral-text)">GATE shortcut:</span> more zeros = faster expansion.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Determinant of a diagonal matrix</summary>
+          <pre>D = [2  0  0
+     0  3  0      det(D) = 2 × 3 × 5 = 30
+     0  0  5]</pre>
+          <p>Diagonal determinant = <strong>product of the diagonal</strong> — no expansion needed.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Determinant of a triangular matrix</summary>
+          <p>Upper or lower triangular — same rule:</p>
+          <pre>U = [2  7  8        L = [2  0  0
+     0  3  4             7  3  0
+     0  0  5]            8  4  5]
+
+det(U) = det(L) = 2 × 3 × 5 = 30</pre>
+          <p>A huge GATE time-saver.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Determinant of the identity</summary>
+          <pre>det(Iₙ) = 1</pre>
+          <p>The identity changes nothing, so it scales area/volume by 1.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Determinant of the zero matrix</summary>
+          <pre>det(O) = 0</pre>
+          <p>It collapses everything to the origin, so it is never invertible.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Property: det(AB) = det(A)·det(B)</summary>
+          <pre>det(AB) = det(A) × det(B)</pre>
+          <p>Scalings multiply: if A scales by 4 and B by 5, then AB scales by 20.</p>
+          <pre>det(A²) = det(A)²,   det(Aᵏ) = det(A)ᵏ</pre>
+          <p>Note <code>det(AB) = det(BA)</code> even though <code>AB ≠ BA</code> — both equal <code>det(A)det(B)</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Property: det(Aᵀ) = det(A)</summary>
+          <p>Transpose does not change the determinant.</p>
+          <pre>A = [1  2        det(A)  = 1×4 − 2×3 = −2
      3  4]
 
-A⁻¹ = (1/−2)·[ 4  −2      = [−2    1
-              −3   1]         1.5 −0.5]</pre>
+Aᵀ = [1  3       det(Aᵀ) = 1×4 − 3×2 = −2</pre>
         </details>
 
         <details class="study-item">
-          <summary>7. Inverse of a product</summary>
-          <p><strong><code>(AB)⁻¹ = B⁻¹A⁻¹</code></strong> — the order reverses.</p>
-          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> socks then shoes — to undo, remove shoes first, then socks. (Same reversal as transpose: <code>(AB)ᵀ = BᵀAᵀ</code>.)</p>
+          <summary>21. Property: det(A⁻¹) = 1 / det(A)</summary>
+          <pre>det(A⁻¹) = 1 / det(A)      (when A is invertible)</pre>
+          <p>Why? <code>A A⁻¹ = I ⇒ det(A)·det(A⁻¹) = 1</code>. So if <code>det(A) = 5</code>, then <code>det(A⁻¹) = 1/5</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Property: det(cA) = cⁿ·det(A)  (trap!)</summary>
+          <p>For an <code>n × n</code> matrix, multiplying the whole matrix by c multiplies <strong>every one of the n rows</strong> by c:</p>
+          <pre>det(cA) = cⁿ · det(A)      (NOT c · det(A))</pre>
+          <pre>A is 3×3, det(A) = 4
+det(2A) = 2³ × 4 = 8 × 4 = 32</pre>
+          <p><span style="color:var(--coral-text)">GATE trap:</span> the power is the matrix size n.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Row operations and the determinant</summary>
+          <ul class="styled">
+            <li><strong>Swap two rows</strong> → determinant <strong>changes sign</strong>.</li>
+            <li><strong>Multiply a row by k</strong> → determinant <strong>× k</strong>.</li>
+            <li><strong>Add a multiple of one row to another</strong> → determinant <strong>unchanged</strong>.</li>
+          </ul>
+          <pre>R₂ → R₂ − 3R₁ on [1 2; 3 4]  gives  [1 2; 0 −2]
+det stays −2.   (used in Gaussian elimination)</pre>
+          <p>The same three rules hold for columns.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. When the determinant is automatically 0</summary>
+          <ul class="styled">
+            <li>Two <strong>identical</strong> rows (or columns) → <code>det = 0</code>.</li>
+            <li>A completely <strong>zero</strong> row (or column) → <code>det = 0</code>.</li>
+            <li>One row/column is a <strong>multiple</strong> of another (dependent) → <code>det = 0</code>.</li>
+          </ul>
+          <pre>[1 2; 2 4]  → row2 = 2·row1 → det = 0</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Determinant and rank</summary>
+          <pre>det(A) ≠ 0   ⇔   rank(A) = n   (full rank)
+det(A) = 0   ⇔   rank(A) < n</pre>
+          <p>For a 3×3 with <code>det = 0</code>, the rank is 0, 1, or 2 — never 3.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Determinant, inverse &amp; the 2×2 formula</summary>
+          <pre>A = [a  b        A⁻¹ = 1/(ad−bc) · [ d  −b
+     c  d]                            −c   a]</pre>
+          <p>The denominator <code>ad − bc</code> <em>is</em> <code>det(A)</code>. If <code>det(A) = 0</code> the denominator is 0 — so the inverse cannot exist. That is exactly why <code>det = 0 ⇒</code> no inverse.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Determinant of an orthogonal matrix</summary>
+          <p>If <code>AᵀA = I</code> then <code>det(A)² = 1</code>, so:</p>
+          <pre>det(A) = ±1</pre>
+          <p><code>+1</code> = rotation (orientation preserved); <code>−1</code> = reflection (flipped). Orthogonal maps preserve area/volume.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Determinant of idempotent / nilpotent</summary>
+          <pre>idempotent (A² = A):  det = 0 or 1
+nilpotent  (Aᵏ = 0):  det = 0</pre>
+          <p>From <code>det(A)² = det(A)</code> ⇒ det ∈ {0,1}; and <code>det(A)ᵏ = 0</code> ⇒ det = 0.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Determinant of a scalar matrix</summary>
+          <pre>A = cIₙ        det(cIₙ) = cⁿ</pre>
+          <pre>5·I₃ = diag(5,5,5)   det = 5³ = 125</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Determinant of a block triangular matrix</summary>
+          <pre>M = [A  B        M = [A  0
+     0  D]            C  D]
+
+det(M) = det(A) · det(D)   (A, D square blocks)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Determinant by row reduction</summary>
+          <p>Reduce to triangular form with row ops (the "add a multiple" op keeps det unchanged), then multiply the diagonal.</p>
+          <pre>[1 2 3; 2 5 6; 3 8 10]
+ → R₂−2R₁, R₃−3R₁ → [1 2 3; 0 1 0; 0 2 1]
+ → R₃−2R₂          → [1 2 3; 0 1 0; 0 0 1]
+
+det = 1 × 1 × 1 = 1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Determinant as an independence test</summary>
+          <p>Put n vectors of ℝⁿ as columns; <code>det ≠ 0 ⇔</code> they are <strong>independent</strong>.</p>
+          <pre>v₁=[1,2], v₂=[3,4] → A = [1 3; 2 4]
+det = 1×4 − 3×2 = −2 ≠ 0  → independent</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>33. det(A) = product of eigenvalues</summary>
+          <pre>det(A) = λ₁ · λ₂ · … · λₙ          (product of eigenvalues)
+tr(A)  = λ₁ + λ₂ + … + λₙ          (sum — that is the trace)</pre>
+          <pre>eigenvalues 2, 3, 5  →  det = 30,  trace = 10</pre>
+          <p>(The characteristic equation that produces these λ lives in the Eigenvalues topic.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Determinant vs trace — don't confuse them</summary>
+          <pre>trace(A)       = sum of diagonal     = sum of eigenvalues
+determinant(A) = area/volume scale  = product of eigenvalues</pre>
+          <pre>A = [2 0; 0 3]   trace = 5,   det = 6</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Determinant and orientation</summary>
+          <pre>I = [1 0; 0 1]      det = 1   → orientation preserved
+R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
+          <p>Positive det = no mirror flip; negative det = mirror flip.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Common GATE shortcuts</summary>
+          <ul class="styled">
+            <li>Triangular / diagonal → det = product of diagonal.</li>
+            <li>Any zero row/column, or repeated/proportional rows → det = 0.</li>
+            <li><code>det = 0</code> ⇒ singular, rank-deficient, dependent, no unique solution.</li>
+            <li><code>det ≠ 0</code> ⇒ invertible, full rank, independent, unique <code>Ax=b</code> solution.</li>
+            <li><code>det(cA) = cⁿ det(A)</code> &nbsp;·&nbsp; <code>det(AB) = det(A)det(B)</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Important true / false</summary>
+          <ul class="styled">
+            <li><code>det(A) = 0 ⇒ A invertible</code>? <strong>False</strong> — it is NOT invertible.</li>
+            <li><code>det(A+B) = det(A) + det(B)</code>? <strong>False</strong> — det is multiplicative, not additive (e.g. <code>det(I+I)=4 ≠ 2</code>).</li>
+            <li><code>det(kA) = k·det(A)</code>? <strong>False</strong> — it is <code>kⁿ·det(A)</code>.</li>
+            <li>Triangular det = <em>sum</em> of diagonal? <strong>False</strong> — it is the <em>product</em> (sum is the trace).</li>
+            <li><code>det(Aᵀ)=det(A)</code>, orthogonal ⇒ <code>det=±1</code>, <code>det=∏λ</code>? <strong>All true.</strong></li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>38. Determinant decision tree</summary>
+          <pre>1. Square?            no → not defined
+2. Triangular/diag?   yes → product of diagonal
+3. Zero row/col?      yes → 0
+4. Repeated/proportional row/col? yes → 0
+5. 2×2?               ad − bc
+6. 3×3?               cofactor expansion / row-reduce
+7. Eigenvalues given? product of eigenvalues
+8. Product/inverse/transpose/scalar? use properties</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Quick practice</summary>
+          <p class="lead">Q1. det of [[3,4],[2,5]]?</p>
+          <pre>3×5 − 4×2 = 7   (invertible)</pre>
+          <p class="lead">Q2. Is [[2,6],[1,3]] invertible?</p>
+          <pre>det = 2×3 − 6×1 = 0  → no.</pre>
+          <p class="lead">Q3. det of upper-triangular [[2,4,7],[0,3,8],[0,0,5]]?</p>
+          <pre>2 × 3 × 5 = 30</pre>
+          <p class="lead">Q4. det(A)=4, A is 3×3 — det(2A)?</p>
+          <pre>2³ × 4 = 32</pre>
+          <p class="lead">Q5. det(A)=5, det(B)=3 — det(AB)?</p>
+          <pre>5 × 3 = 15</pre>
+          <p class="lead">Q6. det(A)=5 — det(A⁻¹)?</p>
+          <pre>1/5</pre>
+          <p class="lead">Q7. eigenvalues 2, −1, 4 — det(A)?</p>
+          <pre>2 × (−1) × 4 = −8</pre>
+          <p class="lead">Q8. A orthogonal — det(A)?</p>
+          <pre>±1</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>40. Best mental model</summary>
+          <ul class="styled">
+            <li><strong>Determinant = how the matrix-machine changes space.</strong></li>
+            <li><code>det = 0</code> → space crushed, no reverse possible.</li>
+            <li><code>det &gt; 0</code> → scales, orientation kept.</li>
+            <li><code>det &lt; 0</code> → scales and mirror-flips.</li>
+            <li><code>|det|</code> → the area/volume multiplier.</li>
+          </ul>
         </details>
       </details>
     </section>
