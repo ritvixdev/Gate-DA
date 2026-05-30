@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Hypothesis Testing: z-test & t-test · GATE DA</title>
+<meta name="description" content="Hypothesis testing framework, p-values, significance, z-test and t-test — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="08-z-t-tests" data-content>
+  <div class="hero">
+    <span class="tag">Topic 8 · GATE weight: Very High</span>
+    <h1>Hypothesis Testing:<br>z-test &amp; t-test</h1>
+    <p class="lede">A courtroom for data: assume "nothing's going on", then check whether the evidence is
+      surprising enough to reject that assumption.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Is a new drug actually better, or did we just get lucky? <strong>Hypothesis testing</strong> gives a disciplined
+      yes/no: assume no effect (the null), measure how extreme the data is under that assumption, and reject
+      only if it's too unlikely to be chance.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>It's a <strong>trial</strong>. The null hypothesis $H_0$ is "innocent" (no effect). The <strong>test statistic</strong>
+        measures how far your data is from $H_0$ in standard-error units. The <strong>p-value</strong> is "how often pure
+        chance would give evidence this extreme". Small p ⇒ the evidence is surprising ⇒ reject $H_0$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Null $H_0$:</strong> the "no effect / no difference" claim. <strong>Alternative $H_1$:</strong> what you suspect.</p>
+    <p><strong>Significance level $\alpha$:</strong> the risk of a false alarm you'll tolerate (often 0.05).</p>
+    <p><strong>p-value:</strong> probability of data this extreme <em>if $H_0$ were true</em>. Reject $H_0$ when p $\lt\alpha$.</p>
+    <p><strong>z-test:</strong> population $\sigma$ known (or large $n$). <strong>t-test:</strong> $\sigma$ unknown, estimated by $s$ (small samples).</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$H_0,\ H_1$</td><td>"H-naught, H-one"</td><td>null &amp; alternative hypotheses</td></tr>
+      <tr><td>$\alpha$</td><td>"alpha"</td><td>significance level (false-alarm rate)</td></tr>
+      <tr><td>$z,\ t$</td><td>"z, t"</td><td>test statistics</td></tr>
+      <tr><td>$\mu_0$</td><td>"mu-naught"</td><td>the value claimed under $H_0$</td></tr>
+      <tr><td>p-value</td><td>"p"</td><td>$P(\text{data this extreme}\mid H_0)$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\quad(\sigma\text{ known}) \qquad t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\quad(\sigma\text{ unknown}) $$</div>
+    <p>The $t$ statistic uses $n-1$ degrees of freedom. Reject $H_0$ if $|z|$ (or $|t|$) exceeds the critical value, or equivalently if p $\lt\alpha$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>
+    <ol class="steps">
+      <li>State $H_0$ and $H_1$ (one- or two-tailed) and pick $\alpha$.</li>
+      <li>Choose the test: $\sigma$ known / large $n$ → z; $\sigma$ unknown / small $n$ → t.</li>
+      <li>Compute the test statistic from $\bar{x},\mu_0,$ and the standard error.</li>
+      <li>Find the p-value (or compare to the critical value).</li>
+      <li>If p $\lt\alpha$, reject $H_0$; otherwise fail to reject.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ z-test</div>
+      <p>Claim $\mu_0=100$. Sample: $\bar{x}=104$, $\sigma=15$, $n=36$. SE $=15/6=2.5$.</p>
+      <p>$z=(104-100)/2.5=1.6$. At $\alpha=0.05$ two-tailed the critical $z$ is $1.96$. Since $1.6\lt1.96$, <strong>fail to reject</strong> $H_0$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$\sigma$ known / large $n$ → <strong>z</strong>; $\sigma$ unknown / small $n$ → <strong>t</strong> (with $n-1$ df).</li>
+        <li>Two-tailed critical $z$: $1.96$ at $\alpha=0.05$, $2.58$ at $\alpha=0.01$.</li>
+        <li>Reject when p $\lt\alpha$ (equivalently $|z|\gt z_{\alpha/2}$).</li>
+        <li>The t-distribution is fatter-tailed than z and approaches z as $n$ grows.</li>
+        <li>Type I error = reject a true $H_0$ (rate $\alpha$); Type II = fail to reject a false $H_0$ (rate $\beta$).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "p-value = probability $H_0$ is true." <span class="right">Reality:</span> it's $P(\text{data}\mid H_0)$, not $P(H_0\mid\text{data})$.</p>
+      <p><span class="wrong">Trap:</span> "Fail to reject = $H_0$ is proven true." <span class="right">Reality:</span> just not enough evidence against it.</p>
+      <p><span class="wrong">Trap:</span> "Use z when $\sigma$ is unknown." <span class="right">Reality:</span> use t (estimate with $s$).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>CLT:</strong> why $\bar{x}$ (and hence z/t) is approximately Normal.</li>
+      <li><strong>Distributions:</strong> z uses Normal; t uses the t-distribution.</li>
+      <li><strong>Chi-square &amp; F:</strong> the same framework with different test statistics (next topic).</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $\bar{x}=52,\ \mu_0=50,\ \sigma=8,\ n=64$. Find $z$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">SE $=8/8=1$; $z=(52-50)/1=2$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. At $\alpha=0.05$ two-tailed, is $z=2$ significant?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Yes — $|2|\gt1.96$, so reject $H_0$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Population $\sigma$ unknown and $n=12$. z or t?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">t-test, with $n-1=11$ degrees of freedom.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">You use a <em>t</em>-test (instead of z) when…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> the sample is huge</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\sigma$ is known</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\sigma$ is unknown / small sample</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> the data is categorical</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Large samples lean toward z (t approaches z anyway).</div>
+      <div class="quiz-feedback" data-fb="B">Known $\sigma$ → z-test.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — unknown $\sigma$ (estimated by $s$), especially small $n$ → t-test.</div>
+      <div class="quiz-feedback" data-fb="D">Categorical data uses chi-square, not t.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$H_0$ = no effect; reject when p $\lt\alpha$.</li>
+        <li>$z=(\bar x-\mu_0)/(\sigma/\sqrt n)$; $t$ same with $s$, $n-1$ df.</li>
+        <li>z: $\sigma$ known / large $n$. t: $\sigma$ unknown / small $n$.</li>
+        <li>Two-tailed critical z: 1.96 ($\alpha=.05$), 2.58 ($\alpha=.01$).</li>
+        <li>p-value $=P(\text{data}\mid H_0)$, not $P(H_0)$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

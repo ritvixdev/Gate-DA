@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Random Variables · GATE DA</title>
+<meta name="description" content="Random variables from zero: discrete vs continuous, expectation, variance — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="03-random-variables" data-content>
+  <div class="hero">
+    <span class="tag">Topic 3 · GATE weight: High</span>
+    <h1>Random Variables</h1>
+    <p class="lede">A random variable turns messy outcomes into <strong>numbers</strong> — so we can average
+      them, measure their spread, and do real math with chance.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>"Heads/tails" or "red/blue" can't be averaged. A <strong>random variable</strong> attaches a number to each
+      outcome (heads → 1, tails → 0), so we can talk about its <strong>average (expectation)</strong> and its
+      <strong>spread (variance)</strong> — the two numbers that summarize almost any uncertain quantity.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>A random variable $X$ is a <strong>labeling machine</strong>: each outcome walks in, $X$ stamps a number on it.
+        <strong>Expectation $E[X]$</strong> = the balance point of all those numbers weighted by their probability.
+        <strong>Variance</strong> = how far the numbers spread from that balance point.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Random variable $X$:</strong> a rule assigning a real number to each outcome.</p>
+    <p><strong>Discrete:</strong> takes countable values (die face, # of heads). <strong>Continuous:</strong> takes any value in a range (height, time).</p>
+    <p><strong>Expectation (mean) $E[X]$:</strong> the probability-weighted average. <strong>Variance $\operatorname{Var}(X)$:</strong> average squared distance from the mean. <strong>Standard deviation:</strong> $\sqrt{\operatorname{Var}(X)}$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$X,\ Y$</td><td>"X, Y"</td><td>random variables</td></tr>
+      <tr><td>$E[X]$ (or $\mu$)</td><td>"expectation / mu"</td><td>mean / average value</td></tr>
+      <tr><td>$\operatorname{Var}(X)$ (or $\sigma^2$)</td><td>"variance"</td><td>spread (squared)</td></tr>
+      <tr><td>$\sigma$</td><td>"sigma"</td><td>standard deviation $=\sqrt{\operatorname{Var}}$</td></tr>
+      <tr><td>$p(x)$</td><td>"PMF"</td><td>$P(X=x)$ for discrete $X$</td></tr>
+      <tr><td>$f(x)$</td><td>"PDF"</td><td>density for continuous $X$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ E[X]=\sum_x x\,p(x)\quad\text{(discrete)}\qquad E[X]=\int x\,f(x)\,dx\quad\text{(continuous)} $$</div>
+    <div class="formula">$$ \operatorname{Var}(X)=E[(X-\mu)^2]=E[X^2]-\big(E[X]\big)^2 $$</div>
+    <p><strong>Linearity:</strong> $E[aX+b]=aE[X]+b$, and $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: mean &amp; variance (discrete)</div>
+    <ol class="steps">
+      <li>List the values $x$ and their probabilities $p(x)$.</li>
+      <li>$E[X]=\sum x\,p(x)$.</li>
+      <li>$E[X^2]=\sum x^2\,p(x)$.</li>
+      <li>$\operatorname{Var}(X)=E[X^2]-(E[X])^2$; std $=\sqrt{\operatorname{Var}}$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ A fair die</div>
+      <p>$E[X]=\tfrac{1}{6}(1+2+3+4+5+6)=3.5$.</p>
+      <p>$E[X^2]=\tfrac{1}{6}(1+4+9+16+25+36)=\tfrac{91}{6}\approx15.17$.</p>
+      <p>$\operatorname{Var}(X)=15.17-3.5^2=15.17-12.25=2.92$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Computing formula: $\operatorname{Var}(X)=E[X^2]-(E[X])^2$ (faster than the definition).</li>
+        <li>$E[aX+b]=aE[X]+b$; $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ (the $+b$ shift doesn't change variance).</li>
+        <li>$E[X+Y]=E[X]+E[Y]$ <em>always</em>; $\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$ only if independent.</li>
+        <li>Variance is never negative; std has the same units as $X$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$\operatorname{Var}(aX)=a\operatorname{Var}(X)$." <span class="right">Reality:</span> it's $a^2\operatorname{Var}(X)$.</p>
+      <p><span class="wrong">Trap:</span> "$\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$ always." <span class="right">Reality:</span> only when independent (else add $2\operatorname{Cov}$).</p>
+      <p><span class="wrong">Trap:</span> "$E[X^2]=(E[X])^2$." <span class="right">Reality:</span> equal only if variance is 0; in general $E[X^2]\ge(E[X])^2$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>PMF/PDF:</strong> the distribution that feeds the expectation/variance sums.</li>
+      <li><strong>Joint &amp; covariance:</strong> $\operatorname{Var}(X+Y)$ needs covariance when dependent.</li>
+      <li><strong>CLT:</strong> sums of random variables become normal; mean and variance set its shape.</li>
+      <li><strong>Estimation:</strong> sample mean estimates $E[X]$; sample variance estimates $\operatorname{Var}(X)$.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $X$: $P(X=0)=0.5,\ P(X=2)=0.5$. Find $E[X]$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$0(0.5)+2(0.5)=1$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Same $X$. Find $\operatorname{Var}(X)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$E[X^2]=0+4(0.5)=2$; $\operatorname{Var}=2-1^2=1$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. If $\operatorname{Var}(X)=4$, find $\operatorname{Var}(3X+5)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$3^2\cdot4=36$ (the $+5$ doesn't matter).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">$\operatorname{Var}(2X-3)=?$ given $\operatorname{Var}(X)=5$.</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $7$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $10$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $20$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $17$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">The $-3$ shift doesn't change variance; scale by $a^2$.</div>
+      <div class="quiz-feedback" data-fb="B">That's $2\cdot5$; variance scales by $a^2=4$.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $\operatorname{Var}(2X-3)=2^2\cdot5=20$.</div>
+      <div class="quiz-feedback" data-fb="D">Don't subtract anything — the constant shift drops out.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>Random variable = number attached to each outcome (discrete or continuous).</li>
+        <li>$E[X]=\sum x\,p(x)$; $\operatorname{Var}(X)=E[X^2]-(E[X])^2$.</li>
+        <li>$E[aX+b]=aE[X]+b$; $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$.</li>
+        <li>$E[X+Y]=E[X]+E[Y]$ always; variances add only if independent.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

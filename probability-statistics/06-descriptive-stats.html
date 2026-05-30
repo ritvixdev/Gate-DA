@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Descriptive Statistics · GATE DA</title>
+<meta name="description" content="Sample statistics and graphical descriptive statistics: mean, variance, median, quartiles, histograms, boxplots — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="06-descriptive-stats" data-content>
+  <div class="hero">
+    <span class="tag">Topic 6 · GATE weight: High</span>
+    <h1>Descriptive Statistics</h1>
+    <p class="lede">Probability predicts data from a model; statistics summarizes data we already have —
+      with a few numbers and a few pictures.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Given a pile of numbers, we need to <strong>summarize</strong> them: where's the center, how spread out, any
+      outliers, what shape? <strong>Sample statistics</strong> (mean, variance) and <strong>graphical descriptive statistics</strong>
+      (histograms, boxplots) answer this — the first thing any data scientist does with a dataset.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Mean</strong> = the balance point of the data on a seesaw. <strong>Median</strong> = the middle person when
+        everyone lines up by value. <strong>Histogram</strong> = stack the data into bins to see the shape.
+        <strong>Boxplot</strong> = a five-number summary (min, Q1, median, Q3, max) drawn as a box with whiskers.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Sample mean $\bar{x}$:</strong> the average. <strong>Median:</strong> the middle value (robust to outliers). <strong>Mode:</strong> most frequent value.</p>
+    <p><strong>Sample variance $s^2$:</strong> average squared distance from $\bar{x}$, dividing by $n-1$. <strong>Std $s$:</strong> $\sqrt{s^2}$.</p>
+    <p><strong>Quartiles $Q_1,Q_2,Q_3$:</strong> 25th, 50th, 75th percentiles. <strong>IQR $=Q_3-Q_1$.</strong> <strong>Range:</strong> max − min.</p>
+    <p><strong>Graphical:</strong> histogram (shape), boxplot (spread &amp; outliers), bar chart (categories), scatter plot (two variables).</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\bar{x}$</td><td>"x-bar"</td><td>sample mean</td></tr>
+      <tr><td>$s^2$ / $s$</td><td>"sample variance / std"</td><td>spread (divide by $n-1$)</td></tr>
+      <tr><td>$n$</td><td>"n"</td><td>sample size</td></tr>
+      <tr><td>$Q_1,Q_2,Q_3$</td><td>"quartiles"</td><td>25/50/75th percentiles</td></tr>
+      <tr><td>IQR</td><td>"inter-quartile range"</td><td>$Q_3-Q_1$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \bar{x}=\frac{1}{n}\sum_{i=1}^{n} x_i \qquad s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2 $$</div>
+    <p>Outlier rule of thumb: a point below $Q_1-1.5\,\text{IQR}$ or above $Q_3+1.5\,\text{IQR}$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: summarize a dataset</div>
+    <ol class="steps">
+      <li>Sort the data; read off min, max, and the median.</li>
+      <li>Find $Q_1$ and $Q_3$ (medians of the lower/upper halves); IQR $=Q_3-Q_1$.</li>
+      <li>Compute $\bar{x}$ and $s^2$ (divide by $n-1$).</li>
+      <li>Draw a histogram for shape and a boxplot for spread/outliers.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Data: 2, 4, 4, 4, 5, 7, 9</div>
+      <p>$n=7$, $\bar{x}=35/7=5$. Median $=4$ (4th value). Mode $=4$.</p>
+      <p>$\sum(x-5)^2=9+1+1+1+0+4+16=32$, so $s^2=32/6\approx5.33$, $s\approx2.31$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Sample variance divides by $n-1$ (not $n$) — this is the unbiased estimator.</li>
+        <li>Median &amp; IQR are robust to outliers; mean &amp; std are not.</li>
+        <li>Right-skew: mean $&gt;$ median; left-skew: mean $&lt;$ median.</li>
+        <li>Boxplot whiskers + the $1.5\times$IQR rule flag outliers fast.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Sample variance divides by $n$." <span class="right">Reality:</span> divide by $n-1$ for the sample variance.</p>
+      <p><span class="wrong">Trap:</span> "Mean is always the best center." <span class="right">Reality:</span> with outliers or skew, the median is more representative.</p>
+      <p><span class="wrong">Trap:</span> "Histogram = bar chart." <span class="right">Reality:</span> histograms bin <em>numeric</em> data; bar charts compare <em>categories</em>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Random variables:</strong> $\bar{x}$ estimates $E[X]$; $s^2$ estimates $\operatorname{Var}(X)$.</li>
+      <li><strong>CLT:</strong> the sampling distribution of $\bar{x}$ is what testing relies on.</li>
+      <li><strong>Hypothesis testing:</strong> test statistics are built from $\bar{x}$ and $s$.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Data 3, 5, 7. Find the mean.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$(3+5+7)/3=5$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Same data. Sample variance $s^2$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\sum(x-5)^2=4+0+4=8$; $s^2=8/(3-1)=4$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Which summary is robust to a huge outlier — mean or median?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">The median.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The sample variance $s^2$ divides the squared deviations by…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $n$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $n+1$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $n-1$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\sqrt{n}$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Dividing by $n$ gives a biased (population-style) estimate.</div>
+      <div class="quiz-feedback" data-fb="B">Not a standard estimator.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $n-1$ (Bessel's correction) gives the unbiased sample variance.</div>
+      <div class="quiz-feedback" data-fb="D">That's used in the standard error, not the variance.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$\bar{x}=\frac1n\sum x_i$; $s^2=\frac{1}{n-1}\sum(x_i-\bar{x})^2$.</li>
+        <li>Median &amp; IQR resist outliers; mean &amp; std don't.</li>
+        <li>Histogram = numeric shape; boxplot = five-number summary + outliers.</li>
+        <li>Right-skew ⇒ mean above median.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

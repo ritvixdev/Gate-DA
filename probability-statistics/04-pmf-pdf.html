@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>PMF, PDF & Distributions · GATE DA</title>
+<meta name="description" content="Probability mass and density functions, CDF, and the key distributions (Bernoulli, Binomial, Poisson, Uniform, Normal, Exponential) — with an interactive Distribution Explorer.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="04-pmf-pdf" data-content>
+  <div class="hero">
+    <span class="tag">Topic 4 · GATE weight: Very High</span>
+    <h1>PMF, PDF &amp;<br>Distributions</h1>
+    <p class="lede">A distribution is the full "menu" of probabilities for a random variable. Discrete ones
+      use a <strong>PMF</strong>; continuous ones use a <strong>PDF</strong>.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Once a random variable has numbers, we need to know <em>how the probability is spread</em> across those
+      numbers. That spread is the <strong>distribution</strong> — and a handful of named distributions (Binomial,
+      Poisson, Normal…) describe almost everything you'll meet in GATE DA and ML.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>PMF</strong> = a bar chart: each bar's height is the probability of that exact value (bars sum to 1).
+        <strong>PDF</strong> = a smooth curve: probability is the <em>area</em> under it (total area = 1); the height alone
+        is <em>not</em> a probability. Play below — switch between a Binomial PMF and a Normal PDF.</p>
+    </div>
+    <p>Move the sliders and watch the shape change: more trials and the Binomial looks bell-shaped (a hint of the CLT to come).</p>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Distribution Explorer</span>
+      <span class="viz-hint">Bars = PMF · curve = PDF</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="dist-explorer"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="de-binom">Binomial</button>
+        <button class="preset-btn" id="de-normal">Normal</button>
+      </div>
+      <div class="viz-control"><label><span id="de-a-lab">n</span> <span id="de-a-val">10</span></label><input type="range" id="de-a" min="1" max="20" step="1" value="10"></div>
+      <div class="viz-control"><label><span id="de-b-lab">p</span> <span id="de-b-val">0.5</span></label><input type="range" id="de-b" min="0" max="1" step="0.05" value="0.5"></div>
+    </div>
+    <div class="viz-readout" id="dist-explorer-readout"></div>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>PMF $p(x)=P(X=x)$:</strong> for discrete $X$; each $p(x)\ge0$ and $\sum p(x)=1$.</p>
+    <p><strong>PDF $f(x)$:</strong> for continuous $X$; $f(x)\ge0$ and $\int f(x)\,dx=1$. Probability is area: $P(a\le X\le b)=\int_a^b f(x)\,dx$.</p>
+    <p><strong>CDF $F(x)=P(X\le x)$:</strong> works for both; non-decreasing from 0 to 1.</p>
+    <p><strong>Key point:</strong> for continuous $X$, $P(X=x)=0$ exactly — only intervals have positive probability.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$p(x)$</td><td>"PMF"</td><td>$P(X=x)$, discrete</td></tr>
+      <tr><td>$f(x)$</td><td>"PDF"</td><td>density, continuous</td></tr>
+      <tr><td>$F(x)$</td><td>"CDF"</td><td>$P(X\le x)$</td></tr>
+      <tr><td>$\binom{n}{k}$</td><td>"n choose k"</td><td>number of ways to pick $k$ from $n$</td></tr>
+      <tr><td>$\lambda$</td><td>"lambda"</td><td>rate (Poisson / Exponential)</td></tr>
+      <tr><td>$\mu,\ \sigma$</td><td>"mu, sigma"</td><td>mean, standard deviation</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Key distributions (must-know)</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Distribution</th><th>PMF / PDF</th><th>Mean</th><th>Variance</th></tr>
+      <tr><td>Bernoulli(p)</td><td>$p^x(1-p)^{1-x}$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+      <tr><td>Binomial(n,p)</td><td>$\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+      <tr><td>Poisson(λ)</td><td>$e^{-\lambda}\lambda^k/k!$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+      <tr><td>Uniform(a,b)</td><td>$1/(b-a)$</td><td>$(a+b)/2$</td><td>$(b-a)^2/12$</td></tr>
+      <tr><td>Normal(μ,σ²)</td><td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/2\sigma^2}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+      <tr><td>Exponential(λ)</td><td>$\lambda e^{-\lambda x}$</td><td>$1/\lambda$</td><td>$1/\lambda^2$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: use a distribution</div>
+    <ol class="steps">
+      <li>Identify the situation: fixed trials &amp; success prob → Binomial; rare counts in an interval → Poisson; "bell-shaped" measurement → Normal.</li>
+      <li>Read off the parameters ($n,p$ / $\lambda$ / $\mu,\sigma$).</li>
+      <li>Plug into the PMF/PDF for a specific probability, or use mean/variance for summaries.</li>
+      <li>For Normal, standardize: $Z=(X-\mu)/\sigma$, then use the $Z$-table.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Binomial</div>
+      <p>10 fair coin flips, $P(\text{exactly 3 heads})=\binom{10}{3}(0.5)^3(0.5)^7=120\cdot(0.5)^{10}\approx0.117$.</p>
+      <p>Mean $=np=10(0.5)=5$; variance $=np(1-p)=2.5$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Binomial: mean $np$, variance $np(1-p)$. Poisson: mean = variance = $\lambda$.</li>
+        <li>Binomial $\to$ Poisson when $n$ large, $p$ small ($\lambda=np$).</li>
+        <li>Normal: ~68% within $\mu\pm\sigma$, ~95% within $\mu\pm2\sigma$, ~99.7% within $\mu\pm3\sigma$.</li>
+        <li>Standardize Normal with $Z=(X-\mu)/\sigma$ to use tables.</li>
+        <li>For continuous $X$, $P(X=x)=0$; height of a PDF can exceed 1 (it's a density, not a probability).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$f(x)$ is a probability." <span class="right">Reality:</span> a PDF value is a density; probability is the <em>area</em> under it.</p>
+      <p><span class="wrong">Trap:</span> "Binomial variance is $np$." <span class="right">Reality:</span> $np(1-p)$; the mean is $np$.</p>
+      <p><span class="wrong">Trap:</span> "Poisson mean and variance differ." <span class="right">Reality:</span> both equal $\lambda$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Random variables:</strong> the PMF/PDF is exactly what you sum/integrate for $E[X]$ and variance.</li>
+      <li><strong>CLT:</strong> sums of many variables become Normal regardless of the original distribution.</li>
+      <li><strong>Hypothesis testing:</strong> z/t/chi-square/F are all specific distributions of test statistics.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Binomial(20, 0.5): mean and variance?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Mean $=np=10$; variance $=np(1-p)=5$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Poisson(λ=3): mean and variance?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Both equal $\lambda=3$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. For Normal, roughly what % lies within μ±2σ?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">About 95%.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">For a continuous random variable $X$, what is $P(X=2)$?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $f(2)$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $1$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $F(2)$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">$f(2)$ is the density, not the probability of an exact point.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — for continuous $X$, any single point has probability $0$; only intervals count.</div>
+      <div class="quiz-feedback" data-fb="C">Probabilities of single points aren't 1.</div>
+      <div class="quiz-feedback" data-fb="D">$F(2)=P(X\le2)$, not $P(X=2)$.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>PMF: bars, $\sum=1$. PDF: curve, area $=1$; height isn't probability.</li>
+        <li>CDF $F(x)=P(X\le x)$, rises 0→1.</li>
+        <li>Binomial: $np$, $np(1-p)$. Poisson: $\lambda,\lambda$. Normal: $\mu,\sigma^2$.</li>
+        <li>Normal 68–95–99.7 rule; standardize with $Z=(X-\mu)/\sigma$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/dist-explorer.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

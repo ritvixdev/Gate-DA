@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Chi-square & F-test · GATE DA</title>
+<meta name="description" content="Chi-square test (goodness-of-fit, independence) and F-test (comparing variances / ANOVA) — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="09-chi-f-tests" data-content>
+  <div class="hero">
+    <span class="tag">Topic 9 · GATE weight: High</span>
+    <h1>Chi-square &amp; F-test</h1>
+    <p class="lede">Two more tests in the same framework: chi-square for <strong>counts &amp; categories</strong>,
+      and the F-test for <strong>comparing variances</strong>.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>z and t handle <em>means</em>. But often we have <strong>category counts</strong> ("does diet relate to disease?")
+      or need to <strong>compare spreads</strong> ("do two machines vary equally?"). Chi-square and F tests answer
+      exactly those — and underpin ANOVA and feature-selection in ML.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p><strong>Chi-square</strong> compares the counts you <em>observed</em> with the counts you'd <em>expect</em> if nothing
+        special were happening — big mismatch ⇒ big statistic ⇒ reject. <strong>F</strong> is a <em>ratio of two variances</em>:
+        far from 1 means the spreads really differ.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Chi-square goodness-of-fit:</strong> do observed category counts match a claimed distribution?</p>
+    <p><strong>Chi-square test of independence:</strong> are two categorical variables related? (uses a contingency table).</p>
+    <p><strong>F-test:</strong> compares two variances via their ratio; also the engine of <strong>ANOVA</strong> (comparing several means).</p>
+    <p><strong>Degrees of freedom (df):</strong> control the shape of the chi-square / F distributions.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\chi^2$</td><td>"chi-square"</td><td>observed-vs-expected statistic</td></tr>
+      <tr><td>$O_i,\ E_i$</td><td>"observed, expected"</td><td>category counts</td></tr>
+      <tr><td>$F$</td><td>"F"</td><td>ratio of two variances</td></tr>
+      <tr><td>df</td><td>"degrees of freedom"</td><td>shape parameter(s)</td></tr>
+      <tr><td>$s_1^2,s_2^2$</td><td>"sample variances"</td><td>the two variances compared</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ \chi^2=\sum_i \frac{(O_i-E_i)^2}{E_i} $$</div>
+    <div class="formula">$$ F=\frac{s_1^2}{s_2^2}\qquad(\text{larger variance on top}) $$</div>
+    <p>Goodness-of-fit df $=k-1$ (k categories). Independence df $=(r-1)(c-1)$ for an $r\times c$ table. F has two df: $(n_1-1,\ n_2-1)$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: chi-square</div>
+    <ol class="steps">
+      <li>State $H_0$ (fits the claimed distribution / variables independent).</li>
+      <li>Compute expected counts $E_i$ under $H_0$.</li>
+      <li>$\chi^2=\sum (O_i-E_i)^2/E_i$.</li>
+      <li>Find df and compare to the critical $\chi^2$ (or use the p-value); reject if $\chi^2$ is too large.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Is a die fair?</div>
+      <p>60 rolls, expected $E_i=10$ each. Observed: $8,12,9,11,13,7$.</p>
+      <p>$\chi^2=\tfrac{(8-10)^2+(12-10)^2+(9-10)^2+(11-10)^2+(13-10)^2+(7-10)^2}{10}=\tfrac{4+4+1+1+9+9}{10}=2.8$.</p>
+      <p>df $=6-1=5$; critical $\chi^2_{0.05}=11.07$. Since $2.8\lt11.07$, the die looks fair (fail to reject).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>$\chi^2=\sum (O-E)^2/E$; it's always $\ge0$, right-skewed.</li>
+        <li>Goodness-of-fit df $=k-1$; independence df $=(r-1)(c-1)$.</li>
+        <li>F is a variance ratio with two df; put the larger variance on top so $F\ge1$.</li>
+        <li>Big $\chi^2$ or F far from 1 ⇒ reject $H_0$.</li>
+        <li>Chi-square &amp; F are right-tailed tests (reject in the upper tail).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "Chi-square uses proportions." <span class="right">Reality:</span> it uses raw <em>counts</em> $O_i,E_i$.</p>
+      <p><span class="wrong">Trap:</span> "Independence df $=k-1$." <span class="right">Reality:</span> it's $(r-1)(c-1)$ for a table.</p>
+      <p><span class="wrong">Trap:</span> "F can be negative." <span class="right">Reality:</span> it's a ratio of variances, always $\ge0$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>z &amp; t tests:</strong> same hypothesis-testing framework, different statistics.</li>
+      <li><strong>Descriptive stats:</strong> F compares the sample variances you computed there.</li>
+      <li><strong>ANOVA / ML:</strong> the F-test compares group means; chi-square drives feature-independence checks.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. Goodness-of-fit with 4 categories. Degrees of freedom?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$k-1=3$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. A $3\times4$ contingency table. df for the independence test?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$(3-1)(4-1)=6$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. $s_1^2=20,\ s_2^2=5$. Compute the F-statistic.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$F=20/5=4$ (larger variance on top).</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The chi-square statistic is computed from…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> sample means</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> observed vs expected counts</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> a ratio of variances</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> correlation</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Means drive z/t tests, not chi-square.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $\chi^2=\sum (O-E)^2/E$ from category counts.</div>
+      <div class="quiz-feedback" data-fb="C">That's the F-test.</div>
+      <div class="quiz-feedback" data-fb="D">Correlation is a different measure entirely.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$\chi^2=\sum (O-E)^2/E$ from counts; right-tailed.</li>
+        <li>df: goodness-of-fit $k-1$; independence $(r-1)(c-1)$.</li>
+        <li>$F=s_1^2/s_2^2$ (larger on top); compares variances / ANOVA.</li>
+        <li>Big statistic ⇒ reject $H_0$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

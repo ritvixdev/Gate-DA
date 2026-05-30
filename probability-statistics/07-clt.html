@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Central Limit Theorem · GATE DA</title>
+<meta name="description" content="The Central Limit Theorem: why sample means become normal, standard error — with an interactive CLT sampler, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="07-clt" data-content>
+  <div class="hero">
+    <span class="tag">Topic 7 · GATE weight: High</span>
+    <h1>Central Limit Theorem</h1>
+    <p class="lede">The "magic" of statistics: average enough independent samples and the average is
+      <strong>always</strong> bell-shaped — no matter what the original data looked like.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>The CLT is why the Normal distribution is everywhere and why hypothesis testing works. Even if
+      individual data is weird (a lopsided die, skewed incomes), the <strong>mean of many samples</strong> follows a
+      Normal curve. That lets us put error bars and confidence on averages.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Roll $n$ dice, write down the <em>average</em>, repeat thousands of times, and stack those averages into a
+        histogram. Even though one die is flat (uniform), the averages pile into a <strong>bell curve</strong> centered at
+        the true mean — and it gets <strong>narrower</strong> as $n$ grows. Watch it happen below.</p>
+    </div>
+    <p>Increase the sample size $n$ and the bell tightens (spread $=\sigma/\sqrt{n}$); the coral curve is the CLT's prediction.</p>
+  </section>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 CLT Sampler</span>
+      <span class="viz-hint">Histogram of dice-roll sample means</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="clt-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>sample size n <span id="clt-n-val">5</span></label><input type="range" id="clt-n" min="1" max="40" step="1" value="5"></div>
+      <div class="viz-presets">
+        <button class="preset-btn" id="clt-1">+1 mean</button>
+        <button class="preset-btn" id="clt-1000">+1000</button>
+        <button class="preset-btn" id="clt-reset">Reset</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="clt-lab-readout"></div>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Sampling distribution:</strong> the distribution of a statistic (like $\bar{X}$) over many samples.</p>
+    <p><strong>Standard error (SE):</strong> the standard deviation of $\bar{X}$, equal to $\sigma/\sqrt{n}$.</p>
+    <p><strong>Central Limit Theorem:</strong> for large $n$, $\bar{X}$ is approximately Normal with mean $\mu$ and SE $\sigma/\sqrt{n}$ — whatever the population's shape.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$\bar{X}$</td><td>"X-bar"</td><td>sample mean (a random variable)</td></tr>
+      <tr><td>$\mu$</td><td>"mu"</td><td>population mean</td></tr>
+      <tr><td>$\sigma$</td><td>"sigma"</td><td>population standard deviation</td></tr>
+      <tr><td>$n$</td><td>"n"</td><td>sample size</td></tr>
+      <tr><td>$\sigma/\sqrt{n}$</td><td>"standard error"</td><td>spread of $\bar{X}$</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <div class="formula">$$ \bar{X}\ \approx\ \mathcal{N}\!\left(\mu,\ \frac{\sigma^2}{n}\right)\quad\text{for large }n $$</div>
+    <div class="formula">$$ Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\ \approx\ \mathcal{N}(0,1) $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: use the CLT</div>
+    <ol class="steps">
+      <li>Find the population mean $\mu$ and std $\sigma$.</li>
+      <li>Compute the standard error of the mean: $\sigma/\sqrt{n}$.</li>
+      <li>Model $\bar{X}$ as Normal$(\mu,\ \sigma^2/n)$.</li>
+      <li>Standardize and use the $Z$-table for probabilities about $\bar{X}$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Mean of 36 dice</div>
+      <p>One die: $\mu=3.5$, $\sigma\approx1.71$. For $n=36$, SE $=1.71/\sqrt{36}=0.285$.</p>
+      <p>So the average of 36 rolls is $\approx\mathcal{N}(3.5,\ 0.285^2)$ — tightly around 3.5, and bell-shaped.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Mean of $\bar{X}$ is $\mu$; SE is $\sigma/\sqrt{n}$ — spread shrinks like $1/\sqrt{n}$.</li>
+        <li>To halve the SE, you need <strong>4×</strong> the data.</li>
+        <li>CLT needs independent samples; "large $n$" (often $n\ge30$) makes $\bar X$ approximately Normal.</li>
+        <li>If the population is already Normal, $\bar X$ is Normal for <em>any</em> $n$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "The CLT makes the <em>data</em> normal." <span class="right">Reality:</span> it makes the <em>sample mean</em> normal, not the raw data.</p>
+      <p><span class="wrong">Trap:</span> "SE $=\sigma$." <span class="right">Reality:</span> SE $=\sigma/\sqrt{n}$ — it shrinks with sample size.</p>
+      <p><span class="wrong">Trap:</span> "SE halves when $n$ doubles." <span class="right">Reality:</span> it falls by $\sqrt{2}$; you need $4n$ to halve it.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Distributions:</strong> the limiting shape is the Normal from Topic 4.</li>
+      <li><strong>Descriptive stats:</strong> $\bar X$ and $s$ are the inputs; the CLT gives their behavior.</li>
+      <li><strong>Hypothesis testing:</strong> z and t tests rely directly on the CLT.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $\sigma=10$, $n=100$. Standard error of the mean?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$10/\sqrt{100}=1$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. To halve a standard error, how much more data do you need?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">4× the sample size (since SE $\propto 1/\sqrt{n}$).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Does the CLT require the population to be normal?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">No — that's the whole point; it works for almost any population given large $n$.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The standard error of the sample mean is…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $\sigma$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\sigma^2/n$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $\sigma/\sqrt{n}$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $n\sigma$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the population std; the mean's spread is smaller.</div>
+      <div class="quiz-feedback" data-fb="B">That's the <em>variance</em> of $\bar X$; SE is its square root.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — SE $=\sigma/\sqrt{n}$.</div>
+      <div class="quiz-feedback" data-fb="D">Spread shrinks with $n$, it doesn't grow.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$\bar X\approx\mathcal{N}(\mu,\ \sigma^2/n)$ for large $n$, any population.</li>
+        <li>Standard error $=\sigma/\sqrt{n}$; shrinks like $1/\sqrt{n}$.</li>
+        <li>It normalizes the <em>mean</em>, not the raw data.</li>
+        <li>Already-Normal population ⇒ $\bar X$ Normal for any $n$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/viz/chart.js"></script>
+  <script src="../assets/js/viz/clt-lab.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

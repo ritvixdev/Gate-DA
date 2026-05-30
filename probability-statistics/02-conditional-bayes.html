@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Conditional Probability & Bayes · GATE DA</title>
+<meta name="description" content="Conditional and joint probability, independence, total probability, and Bayes' theorem — simple language, GATE shortcuts, traps, practice.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-topic="02-conditional-bayes" data-content>
+  <div class="hero">
+    <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <h1>Conditional Probability<br>&amp; Bayes</h1>
+    <p class="lede">How does knowing one fact change the probability of another? This is the engine
+      behind Bayes' theorem — and almost every inference question in GATE DA.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Why this topic exists</div>
+    <p>Real decisions use <em>partial information</em>: a test came back positive, the first card was red.
+      <strong>Conditional probability</strong> updates a probability once you learn something, and <strong>Bayes' theorem</strong>
+      flips a conditional you know into the one you want — the heart of diagnosis, spam filters, and ML classifiers.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Game / visual imagination</div>
+    <div class="imagine">
+      <div class="callout-label">🎮 Imagine it</div>
+      <p>Knowing $B$ happened <strong>shrinks the sample space</strong> down to just $B$. $P(A\mid B)$ asks:
+        within that smaller world of $B$, what fraction is also $A$? &nbsp;
+        <strong>Bayes</strong> = walking the conditional backwards: you know $P(\text{test}\mid \text{disease})$ but want
+        $P(\text{disease}\mid \text{test})$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
+    <p><strong>Joint probability $P(A\cap B)$:</strong> both $A$ and $B$ happen.</p>
+    <p><strong>Conditional probability $P(A\mid B)$:</strong> probability of $A$ <em>given</em> $B$ already happened.</p>
+    <p><strong>Independence:</strong> $A,B$ are independent if knowing one doesn't change the other: $P(A\mid B)=P(A)$, equivalently $P(A\cap B)=P(A)\,P(B)$.</p>
+    <p><strong>Partition:</strong> events $B_1,\dots,B_n$ that are disjoint and cover all of $S$ (used in total probability / Bayes).</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr>
+      <tr><td>$P(A\mid B)$</td><td>"P of A given B"</td><td>probability of $A$ once $B$ is known</td></tr>
+      <tr><td>$P(A\cap B)$</td><td>"P of A and B"</td><td>joint probability</td></tr>
+      <tr><td>$\perp\!\!\!\perp$</td><td>"independent"</td><td>$P(A\cap B)=P(A)P(B)$</td></tr>
+      <tr><td>$B_i$</td><td>"B sub i"</td><td>pieces of a partition of $S$</td></tr>
+      <tr><td>$P(B)$</td><td>"prior"</td><td>belief before evidence (Bayes)</td></tr>
+      <tr><td>$P(B\mid A)$</td><td>"posterior"</td><td>updated belief after evidence</td></tr>
+    </table></div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <div class="formula">$$ P(A\mid B)=\frac{P(A\cap B)}{P(B)} \qquad\Rightarrow\qquad P(A\cap B)=P(A\mid B)\,P(B) $$</div>
+    <p><strong>Total probability</strong> (over a partition $B_1,\dots,B_n$):</p>
+    <div class="formula">$$ P(A)=\sum_{i} P(A\mid B_i)\,P(B_i) $$</div>
+    <p><strong>Bayes' theorem:</strong></p>
+    <div class="formula">$$ P(B_k\mid A)=\frac{P(A\mid B_k)\,P(B_k)}{\sum_i P(A\mid B_i)\,P(B_i)} $$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Step-by-step: a Bayes problem</div>
+    <ol class="steps">
+      <li>Identify the hypotheses $B_i$ (e.g. disease / no disease) and their <strong>priors</strong> $P(B_i)$.</li>
+      <li>Write the <strong>likelihoods</strong> $P(A\mid B_i)$ (e.g. test accuracy).</li>
+      <li>Compute the evidence $P(A)=\sum_i P(A\mid B_i)P(B_i)$ (total probability).</li>
+      <li>Divide: $P(B_k\mid A)=P(A\mid B_k)P(B_k)/P(A)$.</li>
+    </ol>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Worked example</div>
+    <div class="callout example">
+      <div class="callout-label">✦ Medical test</div>
+      <p>Disease prevalence $P(D)=0.01$. Test: $P(+\mid D)=0.99$, $P(+\mid D^c)=0.05$.</p>
+      <p>$P(+)=0.99(0.01)+0.05(0.99)=0.0099+0.0495=0.0594$.</p>
+      <p>$P(D\mid +)=\dfrac{0.99\times0.01}{0.0594}\approx 0.167$. Only ~17%! — rare disease + false positives.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> GATE shortcuts</div>
+    <div class="callout tip">
+      <div class="callout-label">⚡ High-value facts</div>
+      <ul>
+        <li>Multiplication: $P(A\cap B)=P(A\mid B)P(B)=P(B\mid A)P(A)$.</li>
+        <li>Independent ⇒ $P(A\cap B)=P(A)P(B)$ and $P(A\mid B)=P(A)$.</li>
+        <li>Bayes in words: posterior $\propto$ likelihood $\times$ prior.</li>
+        <li>With a rare event, even an accurate test gives a low posterior (base-rate effect).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Common traps</div>
+    <div class="callout trap">
+      <div class="callout-label">✕ Watch out</div>
+      <p><span class="wrong">Trap:</span> "$P(A\mid B)=P(B\mid A)$." <span class="right">Reality:</span> generally not equal — that's exactly what Bayes corrects.</p>
+      <p><span class="wrong">Trap:</span> "Independent = mutually exclusive." <span class="right">Reality:</span> different! Disjoint events with positive probability are <em>dependent</em>.</p>
+      <p><span class="wrong">Trap:</span> "Ignore the prior / base rate." <span class="right">Reality:</span> the prior can dominate — that's the medical-test surprise.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>Intro probability:</strong> conditional probability lives inside the addition/joint rules.</li>
+      <li><strong>Random variables:</strong> conditional expectation extends this idea to numbers.</li>
+      <li><strong>Joint distributions:</strong> independence of random variables generalizes event independence.</li>
+      <li><strong>Machine learning:</strong> Naive Bayes classifiers are Bayes' theorem applied to features.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. $P(A\cap B)=0.2,\ P(B)=0.5$. Find $P(A\mid B)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$0.2/0.5=0.4$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. $A,B$ independent with $P(A)=0.3,\ P(B)=0.5$. Find $P(A\cap B)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$0.3\times0.5=0.15$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. Two urns picked equally; urn1 has $P(\text{red})=0.8$, urn2 has $0.2$. Overall $P(\text{red})$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Total probability: $0.5(0.8)+0.5(0.2)=0.5$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. Why is $P(\text{disease}\mid+)$ low even when the test is 99% accurate?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Because the disease is rare — most positives come from the many healthy people (false positives). The prior dominates.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If $A$ and $B$ are <em>independent</em>, which is true?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $P(A\cap B)=0$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $P(A\mid B)=P(B)$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $P(A\cap B)=P(A)P(B)$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $P(A\cup B)=1$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's mutually <em>exclusive</em>, not independent.</div>
+      <div class="quiz-feedback" data-fb="B">Independence gives $P(A\mid B)=P(A)$, not $P(B)$.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — independence means the joint factorizes: $P(A\cap B)=P(A)P(B)$.</div>
+      <div class="quiz-feedback" data-fb="D">No general relation forces the union to be 1.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>$P(A\mid B)=P(A\cap B)/P(B)$; knowing $B$ shrinks the sample space.</li>
+        <li>Independent ⇒ $P(A\cap B)=P(A)P(B)$, $P(A\mid B)=P(A)$.</li>
+        <li>Total probability: $P(A)=\sum P(A\mid B_i)P(B_i)$.</li>
+        <li>Bayes: posterior $\propto$ likelihood $\times$ prior; $P(A\mid B)\ne P(B\mid A)$.</li>
+        <li>Independent $\ne$ mutually exclusive.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
