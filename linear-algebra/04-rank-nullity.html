@@ -87,6 +87,12 @@
       <p>$A=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$. Row 2 $=2\times$ Row 1, so it vanishes.</p>
       <p>Row-reduce → two non-zero rows remain ⇒ $\operatorname{rank}(A)=2$, and nullity $=3-2=1$.</p>
     </div>
+    <div class="callout example">
+      <div class="callout-label">✦ Find the null space (solve $Ax=0$)</div>
+      <p>$A=\begin{bmatrix}1&2&3\\2&4&6\end{bmatrix}$. Both rows give the same equation $x_1+2x_2+3x_3=0$, so $\operatorname{rank}=1$.</p>
+      <p>Let the free variables be $x_2=s,\ x_3=t$. Then $x_1=-2s-3t$, so</p>
+      <p>$x=s\begin{bmatrix}-2\\1\\0\end{bmatrix}+t\begin{bmatrix}-3\\0\\1\end{bmatrix}$. Two basis vectors ⇒ <strong>nullity $=2$</strong>; check $1+2=3=n$ ✓.</p>
+    </div>
   </section>
 
   <section class="concept-card">
@@ -95,9 +101,11 @@
       <div class="callout-label">⚡ High-value facts</div>
       <ul>
         <li>$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$ (columns). Memorize this above all.</li>
-        <li>Square $A$ is invertible $\iff \operatorname{rank}=n \iff \det\neq0 \iff$ nullity $=0$.</li>
+        <li><strong>rank = number of pivots = pivot variables</strong>; <strong>nullity = number of free variables</strong>.</li>
+        <li>$\operatorname{rank}(A)=$ order of the <strong>largest square submatrix with non-zero determinant</strong> (handy for matrices with parameters).</li>
         <li>$\operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T})$; rank = number of non-zero eigenvalues only for diagonalizable cases — safer: use echelon form.</li>
-        <li>$\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$.</li>
+        <li>$\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$; multiplying by <em>invertible</em> $P,Q$ keeps it: $\operatorname{rank}(PAQ)=\operatorname{rank}(A)$ (row operations preserve rank).</li>
+        <li>$\operatorname{rank}(A^{\mathsf T}A)=\operatorname{rank}(AA^{\mathsf T})=\operatorname{rank}(A)$ — used in least squares, projections, PCA.</li>
       </ul>
     </div>
   </section>
@@ -108,7 +116,9 @@
       <div class="callout-label">✕ Watch out</div>
       <p><span class="wrong">Trap:</span> "Nullity $=m-\operatorname{rank}$." <span class="right">Reality:</span> it's $n-\operatorname{rank}$ — use the number of <strong>columns</strong>.</p>
       <p><span class="wrong">Trap:</span> "Rank can exceed $\min(m,n)$." <span class="right">Reality:</span> never.</p>
-      <p><span class="wrong">Trap:</span> "Row rank and column rank can differ." <span class="right">Reality:</span> they're always equal.</p>
+      <p><span class="wrong">Trap:</span> "$\det(A)=0$ means $\operatorname{rank}=0$." <span class="right">Reality:</span> it means rank $<n$; a $3\times3$ singular matrix can have rank 1 or 2.</p>
+      <p><span class="wrong">Trap:</span> "$\operatorname{rank}(AB)=\operatorname{rank}A\cdot\operatorname{rank}B$ or $\operatorname{rank}(A+B)=\operatorname{rank}A+\operatorname{rank}B$." <span class="right">Reality:</span> both false — only inequalities hold.</p>
+      <p><span class="wrong">Trap:</span> "Nullity = number of zero rows." <span class="right">Reality:</span> nullity = free variables = columns $-$ rank.</p>
     </div>
   </section>
 
@@ -132,6 +142,14 @@
       <tr><td>Row space $C(A^{\mathsf T})$</td><td>span of rows</td><td>$\operatorname{rank}$</td></tr>
       <tr><td>Left null space $N(A^{\mathsf T})$</td><td>$\{y:A^{\mathsf T}y=0\}$</td><td>$m-\operatorname{rank}$</td></tr>
     </table></div>
+    <div class="keybox">
+      <div class="callout-label">🔑 Orthogonality of the four subspaces</div>
+      <p>Row space $\perp$ Null space (both live in $\mathbb{R}^n$). &nbsp; Column space $\perp$ Left null space (both in $\mathbb{R}^m$).</p>
+      <p>Why: if $Ax=0$, then every row dotted with $x$ is $0$, so $x$ is perpendicular to the row space.</p>
+    </div>
+    <ul class="styled">
+      <li><strong>Data science:</strong> rank = number of truly independent features. Low rank ⇒ redundancy / multicollinearity; in regression $X\beta=y$ a rank-deficient $X$ gives non-unique, unstable parameters — the motivation for PCA and feature selection.</li>
+    </ul>
   </section>
 
   <section class="concept-card">
@@ -150,6 +168,21 @@
       <p class="pq">Q3. What is the maximum possible rank of a $3\times7$ matrix?</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$\min(3,7)=3$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. $A$ is $4\times7$ with rank 3. Find the nullity.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$7-3=4$ (use columns).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. $A$ is $5\times3$ with rank 3. Find the nullity, and what does it say about $Ax=0$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$3-3=0$; so $Ax=0$ has only the trivial solution $x=0$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q6. $A$ is $3\times3$ with $\det(A)=0$. What can you say (and not say) about its rank?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Rank $<3$ (singular, dependent columns, $Ax=0$ has non-trivial solutions). You can't pin the exact rank — it could be 0, 1, or 2 without more info.</div>
     </div>
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
