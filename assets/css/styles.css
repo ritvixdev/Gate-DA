@@ -311,6 +311,63 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
   display: flex; align-items: center; justify-content: center;
 }
 
+/* Study in Depth — optional collapsible deep-dive (native <details>) */
+.study, .study-item { position: relative; }
+.study > summary, .study-item > summary {
+  cursor: pointer; list-style: none; user-select: none;
+}
+.study > summary::-webkit-details-marker,
+.study-item > summary::-webkit-details-marker { display: none; }
+
+.study > summary {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+  padding-bottom: var(--s-sm); border-bottom: 1px solid var(--hairline-soft);
+}
+.study[open] > summary { margin-bottom: var(--s-md); }
+.study-badge {
+  width: 26px; height: 26px; border-radius: var(--r-pill); flex-shrink: 0;
+  background: var(--primary-active); color: var(--on-primary);
+  font-size: 14px; display: flex; align-items: center; justify-content: center;
+}
+.study-sub { font-size: 14px; font-weight: 400; color: var(--muted); }
+.study > summary::after {
+  content: '▾'; margin-left: auto; color: var(--primary); font-size: 16px;
+  transition: transform var(--speed) var(--ease);
+}
+.study[open] > summary::after { transform: rotate(180deg); }
+.study-empty { color: var(--muted); font-size: 15px; margin: var(--s-md) 0 0; }
+
+/* Nested mini-cards — one concept each */
+.study-item {
+  background: var(--surface-soft);
+  border: 1px solid var(--hairline-soft);
+  border-radius: var(--r-md);
+  padding: var(--s-sm) var(--s-md);
+  margin: var(--s-sm) 0;
+}
+.study-item > summary {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 16px; font-weight: 600; color: var(--body-strong); line-height: 1.5;
+}
+.study-item > summary::after {
+  content: '+'; margin-left: auto; color: var(--primary);
+  font-family: var(--font-mono); font-size: 18px; font-weight: 700;
+}
+.study-item[open] > summary::after { content: '\2212'; } /* − minus */
+.study-item[open] > summary { margin-bottom: var(--s-sm); }
+.study-item p { font-size: 16px; line-height: 1.7; color: var(--body); margin: var(--s-xs) 0; }
+.study-item ul.styled li { font-size: 15px; }
+.study-item .formula { margin: var(--s-md) 0; padding: var(--s-md) var(--s-lg); }
+
+/* Monospace ASCII diagram block */
+pre.ascii {
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.5;
+  background: var(--surface-strong); border: 1px solid var(--hairline-soft);
+  border-radius: var(--r-sm); padding: var(--s-md); overflow-x: auto;
+  color: var(--body); margin: var(--s-sm) 0; white-space: pre;
+}
+
 /* "Imagine it" — game / visual block */
 .imagine {
   background: var(--surface-soft); border: 1px solid var(--hairline-soft);

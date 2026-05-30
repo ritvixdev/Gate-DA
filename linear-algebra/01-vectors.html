@@ -80,6 +80,116 @@
       reaches everywhere. <strong>Dimension:</strong> how many vectors are in a basis.</p>
   </section>
 
+
+  <!-- STUDY IN DEPTH (optional deep-dive) -->
+  <section class="concept-card study-section">
+      <details class="study">
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— learn vectors from zero, one idea at a time</span></summary>
+
+        <p class="study-empty" style="color:var(--body)">Linear algebra is the maths of <strong>movement, direction, space and transformation</strong>. In a game world everything has a position — the player, the enemy, the camera, a push of force. Vectors are the language for all of it. Open any card below to go deep at your own pace.</p>
+
+        <details class="study-item">
+          <summary>1. What is a vector, really?</summary>
+          <p>A <strong>vector</strong> is just an ordered list of numbers — but read it as an <em>instruction to move</em>. The vector $v=(1,2)$ means: from the origin, go <strong>1 step right</strong> and <strong>2 steps up</strong>.</p>
+          <pre class="ascii">y
+↑
+2 |        ● (1,2)
+1 |
+0 |__ __ __→ x
+   0  1  2</pre>
+          <p>So $(1,2)$ is not "two loose numbers" — it is an <strong>arrow from $(0,0)$ to $(1,2)$</strong>. In 2-D, $[x,y]$ means left/right then up/down: $(3,0)$ = 3 right, $(0,-5)$ = 5 down, $(2,3)$ = 2 right and 3 up.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Components, subscripts, row vs column, transpose</summary>
+          <p>In $v=(v_1,v_2,v_3)$ each number is a <strong>component</strong>. The small numbers are <strong>subscripts</strong> — they are <em>labels</em> ("$v$ one", "$v$ two"), <strong>not powers</strong>.</p>
+          <p>A <strong>row vector</strong> is written across, $v=(1,2)$; a <strong>column vector</strong> is written down. Textbooks often prefer columns. The symbol $v^{\mathsf T}$ ("$v$ transpose") just <strong>flips a row into a column</strong> (or back):</p>
+          <div class="formula">$$ (v_1,v_2,v_3)^{\mathsf T} \;=\; \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} $$</div>
+          <p>For GATE, remember one thing: $^{\mathsf T}$ = transpose = swap row and column.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. What is $\mathbb{R}^n$, and "belongs to" ($\in$)?</summary>
+          <p>$\mathbb{R}$ means the <strong>real numbers</strong> — ordinary numbers like $1, -3, 0, 4.5, \tfrac12, \sqrt2$. Then $\mathbb{R}^n$ is the <strong>space of all vectors with $n$ real components</strong>:</p>
+          <ul class="styled">
+            <li>$\mathbb{R}^2$ = all 2-D vectors, e.g. $(1,2)$</li>
+            <li>$\mathbb{R}^3$ = all 3-D vectors, e.g. $(3,4,5)$</li>
+            <li>$\mathbb{R}^n$ = all $n$-dimensional vectors</li>
+          </ul>
+          <p>The symbol $\in$ means <strong>"belongs to"</strong>, and $\notin$ means "does not belong to". So $(1,2)\in\mathbb{R}^2$ reads "$(1,2)$ belongs to 2-D real space".</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Vector addition &amp; scalar multiplication</summary>
+          <p><strong>Addition is component-wise.</strong> If $u=(1,2)$ and $v=(3,1)$ then $u+v=(4,3)$. Picture it as <strong>tip-to-tail</strong>: follow arrow $u$, then from its tip follow $v$; the final arrow is $u+v$.</p>
+          <p>A <strong>scalar</strong> is just a number. Multiplying <strong>stretches or flips</strong> the arrow:</p>
+          <ul class="styled">
+            <li>$2(1,2)=(2,4)$ — bigger, same direction</li>
+            <li>$0.5(2,4)=(1,2)$ — smaller, same direction</li>
+            <li>$-1(1,2)=(-1,-2)$ — flipped, opposite direction</li>
+            <li>$0(1,2)=(0,0)$ — collapses to the zero vector</li>
+          </ul>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the vector is your movement direction and the scalar is a speed multiplier — $5(1,0)$ is "move right, five times as fast".</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Vector space &amp; closure</summary>
+          <p>A <strong>vector space</strong> is a collection of vectors where two operations are always "safe": you can <strong>add any two</strong> and <strong>scale any one</strong>, and the result <em>stays inside the same set</em>. That staying-inside property is called <strong>closure</strong>.</p>
+          <p>$\mathbb{R}^2$ is a vector space: $(1,2)+(3,4)=(4,6)$ is still in $\mathbb{R}^2$, and $5(1,2)=(5,10)$ is still in $\mathbb{R}^2$.</p>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> a game map is "closed" if your character can move and still be on the map. Add vectors → still inside; scale a vector → still inside. That is closure.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Subspace + the 3-point test</summary>
+          <p>A <strong>subspace</strong> is a smaller vector space living inside a bigger one — for example a <strong>line through the origin</strong> inside $\mathbb{R}^2$. To check whether a set $W$ is a subspace, test only three things:</p>
+          <ol class="steps">
+            <li>Does $W$ contain the <strong>zero vector</strong>? If no — <strong>stop, it is not a subspace</strong>.</li>
+            <li>Is it <strong>closed under addition</strong> ($u,v\in W \Rightarrow u+v\in W$)?</li>
+            <li>Is it <strong>closed under scaling</strong> ($u\in W,\,c\in\mathbb{R}\Rightarrow cu\in W$)?</li>
+          </ol>
+          <div class="callout example">
+            <div class="callout-label">✦ Quick test</div>
+            <p>$W=\{(x,y):x+y=1\}$. Check zero: $(0,0)$ gives $0+0=0\neq 1$, so $(0,0)\notin W$. <strong>Not a subspace</strong> — no need to check anything else.</p>
+          </div>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Span &amp; linear combinations</summary>
+          <p>A <strong>linear combination</strong> means: scale some vectors, then add them — $c_1v_1+c_2v_2+\dots+c_kv_k$. The <strong>span</strong> is <em>every</em> vector you can build this way:</p>
+          <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\} = \{\, c_1v_1+\dots+c_kv_k \;:\; c_i\in\mathbb{R} \,\} $$</div>
+          <p>With movement powers $v_1=(1,0)$ (right) and $v_2=(0,1)$ (up) you can reach <em>any</em> point: $2(1,0)+3(0,1)=(2,3)$. So $\operatorname{span}\{(1,0),(0,1)\}=\mathbb{R}^2$ — these two arrows cover the whole plane.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Linear independence vs dependence</summary>
+          <p>Vectors are <strong>independent</strong> when <em>no vector is redundant</em> — none can be built from the others. Formally, the only way to reach zero is to use nothing (the <strong>trivial solution</strong>):</p>
+          <div class="formula">$$ c_1v_1+\dots+c_kv_k=0 \;\Longrightarrow\; c_1=c_2=\dots=c_k=0 $$</div>
+          <p>$(1,0)$ and $(0,1)$ are independent — right can't make up, up can't make right. But add $(2,3)$ and they become <strong>dependent</strong>, because $(2,3)=2(1,0)+3(0,1)$ adds no new direction.</p>
+          <p><strong>Memory:</strong> independent = no waste; dependent = at least one vector is redundant.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. GATE shortcut: "more than $n$ ⇒ dependent"</summary>
+          <p>In $\mathbb{R}^n$ you can have <strong>at most $n$ independent vectors</strong>. So any set with <em>more than $n$</em> vectors is <strong>automatically dependent</strong> — no calculation needed:</p>
+          <ul class="styled">
+            <li>3 vectors in $\mathbb{R}^2$ → always dependent</li>
+            <li>4 vectors in $\mathbb{R}^3$ → always dependent</li>
+            <li>5 vectors in $\mathbb{R}^4$ → always dependent</li>
+          </ul>
+          <p>This is one of the fastest marks in a GATE linear-algebra question — count first.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Basis &amp; dimension</summary>
+          <p>A <strong>basis</strong> is the "perfect team": a set that is <strong>independent</strong> <em>and</em> <strong>spans</strong> the space — enough vectors to reach everywhere, with none wasted. For $\mathbb{R}^2$ the standard basis is $e_1=(1,0),\,e_2=(0,1)$, and any $(x,y)=x(1,0)+y(0,1)$.</p>
+          <p>The <strong>dimension</strong> is simply the number of vectors in a basis:</p>
+          <div class="formula">$$ \dim(\mathbb{R}^2)=2,\qquad \dim(\mathbb{R}^3)=3,\qquad \dim(\mathbb{R}^n)=n $$</div>
+          <p>Every basis of the same space has the same size — that count <em>is</em> the dimension.</p>
+        </details>
+
+      </details>
+    </section>
+
   <!-- 5. SYMBOLS & MEANING -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">5</span> Symbols &amp; their meaning</div>
@@ -95,6 +205,7 @@
       <tr><td>$v^{\mathsf T}$</td><td>"v transpose"</td><td>flip a column into a row (or back)</td></tr>
     </table></div>
   </section>
+
 
   <!-- 6. MAIN FORMULA -->
   <section class="concept-card">

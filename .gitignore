@@ -4,3 +4,14 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+
+# graphify knowledge-graph output (generated, not source)
+graphify-out/
+.graphify_python
+.graphify_*.json
+.graphify_*.py
+
+# Python / tooling caches
+__pycache__/
+*.pyc
+.cache/
