@@ -60,28 +60,336 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— rank &amp; invertibility from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— rank &amp; nullity from zero, one idea per card</span></summary>
 
-        <p class="study-empty">Rank counts the genuinely useful directions a matrix keeps. It ties together independence, invertibility and the determinant into one chain of equivalences — one of the most tested ideas in GATE.</p>
+        <p class="study-empty">Rank counts the independent directions a matrix keeps; nullity counts the directions it destroys. Together (rank + nullity = number of columns) they decide invertibility, how many solutions a system has, and how much real information your data carries. Open each card in order.</p>
 
         <details class="study-item">
-          <summary>1. What is rank?</summary>
-          <p><strong>Rank</strong> = the number of independent rows/columns = the number of <em>useful directions</em> the matrix keeps.</p>
-          <pre>[1 0; 0 1] keeps 2D as 2D        → rank 2
-[1 0; 0 0] collapses to a line   → rank 1
-[0 0; 0 0] collapses to a point  → rank 0</pre>
-          <p><span style="color:var(--coral-text)">Memory:</span> rank 2 = plane stays a plane; rank 1 = plane → line; rank 0 = plane → point.</p>
+          <summary>1. What is rank? (intuition)</summary>
+          <p>Picture a 3D game world with full movement (x, y, z = 3 independent directions). A matrix transforms it; <strong>rank = how many independent directions survive</strong>.</p>
+          <pre>3D stays 3D            → rank 3
+3D crushed to a plane  → rank 2
+3D crushed to a line   → rank 1
+everything → a point   → rank 0</pre>
+          <p>So <strong>rank = dimension of the output space</strong> after the transformation.</p>
         </details>
 
         <details class="study-item">
-          <summary>2. Singular vs non-singular — the big equivalence</summary>
-          <p>For an <code>n × n</code> matrix A, all of these say the same thing:</p>
-          <pre>A is invertible
+          <summary>2. Matrix as an information carrier</summary>
+          <p>A matrix maps input <code>x</code> to output <code>Ax</code>. Keeping more independent directions = preserving more information.</p>
+          <pre>[1 0; 0 1] keeps everything       → rank 2
+[1 0; 0 0] destroys the y-direction → rank 1
+[0 0; 0 0] destroys everything      → rank 0</pre>
+          <p>High rank = more information preserved; low rank = more lost.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Formal definition</summary>
+          <p>The <strong>rank</strong> is the maximum number of linearly independent rows — or columns.</p>
+          <p><span style="color:var(--coral-text)">Beautiful fact:</span> <strong>row rank = column rank</strong>. That common number is <code>rank(A)</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Independent rows — example</summary>
+          <pre>A = [1  2  3
+     2  4  6        R2 = 2·R1  (dependent, no new info)
+     1  1  1]       R3 is not a multiple of R1</pre>
+          <p>Useful independent rows are R1 and R3, so <code>rank(A) = 2</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Rank via row echelon form (the practical method)</summary>
+          <ol class="steps">
+            <li>Row-reduce A to echelon form.</li>
+            <li>Count the <strong>non-zero rows</strong>.</li>
+            <li>That count is the rank.</li>
+          </ol>
+          <p>Allowed row ops (swap, scale by non-zero, add a multiple of a row) <strong>do not change rank</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>6. What is row echelon form?</summary>
+          <p>Echelon form: zero rows at the bottom; each row's first non-zero entry sits to the right of the one above; entries below each pivot are zero.</p>
+          <pre>[1 2 3; 0 1 4; 0 0 5]  → 3 non-zero rows → rank 3
+[1 2 3; 0 1 4; 0 0 0]  → 2 non-zero rows → rank 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Pivots — rank = number of pivots</summary>
+          <p>A <strong>pivot</strong> is the first non-zero entry of a row after reduction.</p>
+          <pre>[1 2 3; 0 5 6; 0 0 0]  → pivots: 1, 5 → rank = 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Worked rank example</summary>
+          <pre>A = [1 2 3; 2 4 6; 1 1 1]
+R2 → R2 − 2R1  ⇒ [0,0,0]
+R3 → R3 − R1   ⇒ [0,−1,−2]
+
+[1  2  3
+ 0 -1 -2     → 2 non-zero rows
+ 0  0  0]    → rank(A) = 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Rank limit: ≤ min(m, n)</summary>
+          <pre>rank(A) ≤ min(m, n)        (A is m×n)
+
+3×5 → rank ≤ 3
+5×3 → rank ≤ 3
+4×4 → rank ≤ 4</pre>
+          <p>You cannot have more independent rows than rows, nor more independent columns than columns.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Full rank</summary>
+          <p><strong>Full rank</strong> means <code>rank = min(m, n)</code>. For a square n×n matrix, full rank = n, and:</p>
+          <pre>rank(A) = n
 ⇔ det(A) ≠ 0
-⇔ rank(A) = n
-⇔ columns are linearly independent
-⇔ Ax = 0 has only the trivial solution</pre>
-          <p>If instead <code>det(A) = 0</code>: A is <strong>singular</strong> — rank &lt; n, dependent columns, space collapses. GATE loves this chain.</p>
+⇔ A is invertible
+⇔ columns independent
+⇔ rows independent</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Rank and determinant</summary>
+          <pre>det(A) ≠ 0   →  rank = n  (full): invertible, independent, unique solution
+det(A) = 0   →  rank < n: singular, dependent, Ax=0 has non-zero solutions</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> det ≠ 0 = full-power matrix; det = 0 = collapsed matrix.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Rank by the largest non-zero minor</summary>
+          <p><code>rank(A)</code> = the order of the <strong>largest square submatrix with non-zero determinant</strong>.</p>
+          <pre>A = [1 2 3; 2 4 6; 1 1 1]
+full 3×3 det = 0  → rank < 3
+2×2 [1 2; 1 1] det = −1 ≠ 0  → rank ≥ 2
+⇒ rank = 2</pre>
+          <p>Handy for small or parameter matrices.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Rank by eigenvalues (careful)</summary>
+          <p>For <strong>diagonal / triangular / symmetric / diagonalizable</strong> matrices, <code>rank = number of non-zero eigenvalues</code>.</p>
+          <pre>D = diag(3, 0, 5)  → non-zero: 3, 5 → rank 2</pre>
+          <p><span style="color:var(--coral-text)">Caution:</span> for defective (non-diagonalizable) matrices this can fail — algebraic multiplicity matters. GATE usually gives the friendly cases.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Null space</summary>
+          <p>The <strong>null space</strong> is every input that the matrix sends to zero:</p>
+          <pre>Null(A) = { x ∈ ℝⁿ : Ax = 0 }</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> the portal's "disappearing directions" — non-zero vectors that come out as 0 are destroyed directions.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Nullity</summary>
+          <p><strong>Nullity</strong> = dimension of the null space = number of independent directions the matrix destroys.</p>
+          <pre>nullity 0  → destroys no non-zero direction
+nullity 1  → destroys one independent direction
+nullity 2  → destroys two</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>16. The Rank–Nullity Theorem</summary>
+          <pre>rank(A) + nullity(A) = n        (n = number of COLUMNS)</pre>
+          <p>The input <code>x</code> has n components, and the input space splits into surviving directions (rank) + destroyed directions (nullity).</p>
+          <p><span style="color:var(--coral-text)">Memory:</span> columns = input variables, so rank + nullity = columns (not rows!).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Rank–nullity — game imagination</summary>
+          <pre>3D input (n = 3):
+rank 2 → nullity 1   (2 survive, 1 crushed)
+rank 1 → nullity 2   (1 survives, 2 crushed)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Example: rank and nullity</summary>
+          <pre>A = [1 0; 0 0]  maps [x,y] → [x,0]
+
+x survives → rank = 1
+n = 2 columns → nullity = 2 − 1 = 1
+destroyed direction: [0,1]  (since A[0,1]ᵀ = 0)
+Null(A) = span{[0,1]}</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Solving for a null space</summary>
+          <pre>A = [1  2]   (1×2)
+Ax = 0  ⇒  x₁ + 2x₂ = 0  ⇒  x₁ = −2x₂
+
+let x₂ = t:  x = t·[−2, 1]
+Null(A) = span{[−2, 1]},  nullity = 1
+rank = 1  ✓  (rank + nullity = 1 + 1 = 2 = columns)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Free variables = nullity</summary>
+          <p>When solving <code>Ax = 0</code>, the <strong>number of free variables = nullity</strong>, and the <strong>number of pivot variables = rank</strong>.</p>
+          <pre>pivot variables + free variables = total variables
+        rank      +    nullity     =    columns</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Pivot variable vs free variable</summary>
+          <pre>x₁ + 2x₂ + 3x₃ = 0
+      x₂ + 4x₃ = 0
+
+pivots: x₁, x₂   → rank = 2
+free:   x₃       → nullity = 1
+variables = 3    → 2 + 1 = 3  ✓</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Rank of the transpose</summary>
+          <pre>rank(A) = rank(Aᵀ)     (row rank = column rank)</pre>
+          <p>If A is 3×5 with rank 3, then Aᵀ (5×3) also has rank 3.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Rank of a product</summary>
+          <pre>rank(AB) ≤ min(rank(A), rank(B))</pre>
+          <p><span style="color:var(--coral-text)">🎮 Imagine:</span> if one portal already crushes 3D to a line, a later portal cannot recover the lost information.</p>
+          <pre>rank(A)=2, rank(B)=5 → rank(AB) ≤ 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Rank under invertible multiplication</summary>
+          <p>If P and Q are invertible, <code>rank(PAQ) = rank(A)</code> — invertible maps only rotate/relabel, they destroy no information.</p>
+          <p>This is why <strong>elementary row operations preserve rank</strong> (they are multiplication by invertible elementary matrices).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>25. rank(AᵀA) = rank(A)</summary>
+          <pre>rank(AᵀA) = rank(AAᵀ) = rank(A)</pre>
+          <p>Key in least squares, projections, PCA and the normal equations.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>26. The four fundamental subspaces</summary>
+          <p>For an m×n matrix A:</p>
+          <ul class="styled">
+            <li><strong>Column space C(A)</strong> — span of columns; all outputs <code>Ax</code>; lives in ℝᵐ; dim = rank.</li>
+            <li><strong>Row space C(Aᵀ)</strong> — span of rows; lives in ℝⁿ; dim = rank.</li>
+            <li><strong>Null space N(A)</strong> — all x with <code>Ax = 0</code>; lives in ℝⁿ; dim = n − rank.</li>
+            <li><strong>Left null space N(Aᵀ)</strong> — all y with <code>Aᵀy = 0</code>; lives in ℝᵐ; dim = m − rank.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Four subspaces — table</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Subspace</th><th>Definition</th><th>Lives in</th><th>Dimension</th></tr>
+            <tr><td>Column space C(A)</td><td>span of columns</td><td>ℝᵐ</td><td>rank</td></tr>
+            <tr><td>Row space C(Aᵀ)</td><td>span of rows</td><td>ℝⁿ</td><td>rank</td></tr>
+            <tr><td>Null space N(A)</td><td>Ax = 0</td><td>ℝⁿ</td><td>n − rank</td></tr>
+            <tr><td>Left null space N(Aᵀ)</td><td>Aᵀy = 0</td><td>ℝᵐ</td><td>m − rank</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Orthogonality of the subspaces</summary>
+          <pre>Row space    ⊥  Null space        (both in ℝⁿ)
+Column space ⊥  Left null space   (both in ℝᵐ)</pre>
+          <p><span style="color:var(--coral-text)">Why?</span> If <code>Ax = 0</code> then every row · x = 0, so x ⊥ every row ⇒ x ⊥ row space.</p>
+          <p><span style="color:var(--coral-text)">Trap:</span> do NOT say "column space ⊥ null space" — for m ≠ n they live in different spaces.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Worked: rank, nullity &amp; null space (2×3)</summary>
+          <pre>A = [1 2 3; 2 4 6]   (R2 = 2R1)  → rank = 1
+n = 3 columns → nullity = 2
+
+x₁ + 2x₂ + 3x₃ = 0 ⇒ x₁ = −2x₂ − 3x₃
+Null(A) = span{ [−2,1,0], [−3,0,1] }   → 2 basis vectors
+rank + nullity = 1 + 2 = 3  ✓</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Rank &amp; nullity for square matrices</summary>
+          <pre>n×n:  rank + nullity = n
+
+rank = n → nullity 0, det ≠ 0, invertible, Ax=0 only x=0
+rank < n → nullity > 0, det = 0, singular, Ax=0 has non-zero solutions</pre>
+          <pre>3×3 with rank 2 → nullity = 1 (one free variable)</pre>
+          <p>So <code>Ax = 0</code> has a non-trivial solution ⇔ <code>nullity &gt; 0</code> ⇔ (square) <code>det(A) = 0</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Rank in data &amp; machine learning</summary>
+          <p>For a data matrix (rows = samples, columns = features), rank = <strong>number of truly independent features</strong>.</p>
+          <pre>features: height, weight, BMI, age
+BMI depends on height &amp; weight → that column is redundant → dependent columns</pre>
+          <p>Low rank ⇒ redundancy / correlated features ⇒ dimensionality can be reduced — this is the basis of <strong>PCA, SVD, feature selection</strong>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Rank in linear regression</summary>
+          <pre>Xβ = y   (X = feature matrix)</pre>
+          <p>If columns of X are dependent, <code>rank(X) &lt; #features</code> → <strong>multicollinearity</strong>: the parameter solution is non-unique and the model is unstable. Rank tells you whether features are genuinely independent.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>33. GATE shortcuts</summary>
+          <ul class="styled">
+            <li>rank = non-zero rows in echelon form = number of pivots.</li>
+            <li><code>rank ≤ min(m, n)</code>; &nbsp; <code>rank(A) = rank(Aᵀ)</code>.</li>
+            <li><code>rank(AB) ≤ min(rank A, rank B)</code>.</li>
+            <li><code>rank + nullity = n</code> (columns).</li>
+            <li>Square: <code>det ≠ 0 ⇔ rank = n ⇔ nullity = 0</code>.</li>
+            <li><code>Ax=0</code> has a non-trivial solution ⇔ nullity &gt; 0.</li>
+            <li>Row space ⊥ null space; column space ⊥ left null space.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Common GATE traps</summary>
+          <ul class="styled">
+            <li>rank can exceed the number of rows? <strong>No</strong> — <code>rank ≤ min(m,n)</code>.</li>
+            <li>rank + nullity = number of rows? <strong>No</strong> — it equals the number of <em>columns</em>.</li>
+            <li>det = 0 ⇒ rank = 0? <strong>No</strong> — only rank &lt; n (a 3×3 could be rank 1 or 2).</li>
+            <li>rank(AB) = rank(A)·rank(B)? <strong>No</strong> — it is <code>≤ min</code>.</li>
+            <li>nullity = number of zero rows? <strong>No</strong> — nullity = free variables = columns − rank.</li>
+            <li>column space ⊥ null space (always)? <strong>No</strong> — row space ⊥ null space.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Practice problems</summary>
+          <p class="lead">Q1. A = [1 2 3; 2 4 6] — rank &amp; nullity?</p>
+          <pre>R2 = 2R1 → rank 1; columns 3 → nullity 2</pre>
+          <p class="lead">Q2. A is 4×7, rank 3 — nullity?</p>
+          <pre>nullity = 7 − 3 = 4</pre>
+          <p class="lead">Q3. A is 5×3, rank 3 — nullity?</p>
+          <pre>nullity = 3 − 3 = 0  (Ax=0 only x=0)</pre>
+          <p class="lead">Q4. A is 3×3, det ≠ 0 — rank &amp; nullity?</p>
+          <pre>rank 3, nullity 0</pre>
+          <p class="lead">Q5. A is 6×4 — maximum rank?</p>
+          <pre>min(6,4) = 4</pre>
+          <p class="lead">Q6. rank 2, 5 columns — nullity?</p>
+          <pre>5 − 2 = 3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Cheatsheet</summary>
+          <ul class="styled">
+            <li>Rank = independent rows/cols = pivots = dim of column space = dim of row space.</li>
+            <li>Null space = all x with Ax = 0; nullity = its dimension = free variables.</li>
+            <li><code>rank + nullity = n</code>; &nbsp; <code>rank ≤ min(m,n)</code>; &nbsp; <code>rank(A)=rank(Aᵀ)</code>.</li>
+            <li><code>rank(AB) ≤ min(rank A, rank B)</code>; invertible P,Q ⇒ <code>rank(PAQ)=rank(A)</code>.</li>
+            <li>Square: det ≠ 0 ⇔ rank n ⇔ nullity 0.</li>
+            <li>Row space ⊥ null space; column space ⊥ left null space.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Best mental model</summary>
+          <ul class="styled">
+            <li><strong>Input space</strong> = all directions before the matrix.</li>
+            <li><strong>Rank</strong> = directions that survive; <strong>nullity</strong> = directions crushed to zero.</li>
+            <li><strong>rank + nullity = total input directions (columns).</strong></li>
+          </ul>
         </details>
       </details>
     </section>
