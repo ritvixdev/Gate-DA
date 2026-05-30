@@ -194,7 +194,64 @@ team of 2 from 5: 5C2 = 10</pre>
         </details>
 
         <details class="study-item">
-          <summary>16. Counting → probability examples</summary>
+          <summary>16. Counting by slots (no formula)</summary>
+          <p>You can count arrangements by <strong>filling positions one at a time</strong> — often faster than a formula.</p>
+          <pre>5 players, rank 1st &amp; 2nd:
+position 1 → 5 choices
+position 2 → 4 choices
+total = 5 × 4 = 20   (= 5P2)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Permutation ↔ combination (nPr = nCr · r!)</summary>
+          <p>A permutation is "choose, then arrange":</p>
+          <pre>nPr = nCr × r!      ⇒      nCr = nPr / r!</pre>
+          <p>Combination <strong>divides by r!</strong> because the r! different orderings of the same group all count as ONE selection.</p>
+          <pre>5P2 = 20 ,  r! = 2!  →  5C2 = 20/2 = 10</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Combination shortcuts &amp; symmetry</summary>
+          <pre>nC0 = 1 ,  nC1 = n ,  nCn = 1 ,  nC(n−1) = n</pre>
+          <p><span style="color:var(--coral-text)">Symmetry:</span> <code>nCr = nC(n−r)</code> — choosing r to <em>include</em> = choosing (n−r) to <em>exclude</em>.</p>
+          <pre>100C98 = 100C2  (much easier to compute)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Arranging repeated letters</summary>
+          <p>With repeats, divide by the factorial of each repeat count:</p>
+          <pre>arrangements = n! / (p! q! r! …)</pre>
+          <pre>MOM:   3!/2!     = 3
+BALL:  4!/2!     = 12
+LEVEL: 5!/(2!2!) = 30   (L×2, E×2)</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> forgetting to divide by repeats overcounts.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Counting problems: committees, codes, seating</summary>
+          <p class="lead">Committee with exactly 2 boys + 1 girl (6 boys, 4 girls):</p>
+          <pre>choose boys × choose girls = 6C2 × 4C1 = 15 × 4 = 60   (AND → multiply)</pre>
+          <p class="lead">3-digit code from 0–9:</p>
+          <pre>repetition allowed:     10 × 10 × 10 = 1000
+repetition not allowed: 10 × 9 × 8   = 720  (= 10P3)</pre>
+          <p class="lead">Seating:</p>
+          <pre>seat 4 people in 4 chairs: 4! = 24
+seat 4 of 10 in 4 chairs:  10P4 = 5040</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Deciding: does order matter?</summary>
+          <p>First question on any counting problem: <strong>does order matter?</strong> Yes → permutation; No → combination. Then check: distinct or repeated items? replacement allowed? restrictions?</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>Word in the question</th><th>Usually means</th></tr>
+            <tr><td>arrange, rank, order, seat, password, number plate</td><td>permutation</td></tr>
+            <tr><td>choose, select, committee, team, group, hand of cards</td><td>combination</td></tr>
+          </table></div>
+          <p><span style="color:var(--coral-text)">Memory:</span> P = Position (order); C = Choose (group). And <code>10P3 = 720 ≠ 10C3 = 120</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Counting → probability examples</summary>
           <p class="lead">Bag of 5 red + 3 blue, pick one:</p>
           <pre>P(red) = 5/8</pre>
           <p class="lead">Standard 52-card deck:</p>
@@ -203,7 +260,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>17. Common GATE traps</summary>
+          <summary>23. Common GATE traps</summary>
           <ul class="styled">
             <li>Probability &gt; 1? <strong>No</strong> — always 0 ≤ P ≤ 1.</li>
             <li>Independent: <code>P(A and B) = P(A)+P(B)</code>? <strong>No</strong> — it's <code>P(A)·P(B)</code>.</li>
@@ -213,7 +270,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. Practice problems</summary>
+          <summary>24. Practice problems</summary>
           <p class="lead">Q1. Fair coin, P(head)?</p>
           <pre>1/2</pre>
           <p class="lead">Q2. Die, P(odd)?</p>
@@ -229,7 +286,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>19. Cheatsheet</summary>
+          <summary>25. Cheatsheet</summary>
           <ul class="styled">
             <li><code>P(E) = favorable/total</code>; &nbsp; <code>0 ≤ P ≤ 1</code>; sample space = all outcomes; event ⊂ S.</li>
             <li>OR (exclusive) → add; AND (steps) → multiply.</li>
@@ -240,7 +297,7 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. Memory box &amp; mental model</summary>
+          <summary>26. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Probability = a <strong>chance meter</strong> from 0 to 1.</li>
             <li>Sample space = every outcome; event = the outcomes you care about.</li>
