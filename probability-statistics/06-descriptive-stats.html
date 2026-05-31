@@ -49,8 +49,222 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— mean, median, mode &amp; skewness from zero</span></summary>
+
+        <p class="study-empty">Central tendency is a single number that represents the centre of a dataset — the typical value. Mean, median and mode each capture "centre" differently, while the geometric and harmonic means handle growth and rates. Knowing which to use, and how skew shifts them, is the heart of descriptive statistics. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. Why central tendency exists</summary>
+          <p>Instead of staring at every value (40, 50, 60, 70, 80) you ask: <strong>what single number represents the centre?</strong> That number is a <strong>measure of central tendency</strong>.</p>
+          <pre>the main ones: mean, median, mode (+ geometric &amp; harmonic mean)</pre>
+          <p>Each describes "centre" differently.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Game imagination</summary>
+          <pre>leaderboard scores: 10, 20, 30, 40, 1000
+mean   = 220   (dragged up by one huge score)
+median = 30    (feels like a normal player)</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> mean = average/balance, median = middle, mode = most repeated.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Arithmetic mean</summary>
+          <pre>x̄ = (x₁ + x₂ + … + xₙ) / n = Σxᵢ / n     (x̄ sample, μ population)</pre>
+          <pre>2, 4, 6, 8, 10 → 30/5 = 6</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Mean is the balance point (and outlier-sensitive)</summary>
+          <p>The mean is where the values would balance on a number line.</p>
+          <pre>2,4,6,8,10  → mean 6
+2,4,6,8,100 → mean 24   (pulled toward 100)</pre>
+          <p><span style="color:var(--coral-text)">Key:</span> the mean is strongly affected by extreme values / outliers.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. Weighted &amp; frequency mean</summary>
+          <p>When values carry weights or frequencies, weight each value:</p>
+          <pre>weighted mean = Σwᵢxᵢ / Σwᵢ      (frequency mean: wᵢ = fᵢ)</pre>
+          <pre>x:10,20,30  f:2,3,5 → (20+60+150)/(2+3+5) = 230/10 = 23</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Mean for grouped data</summary>
+          <p>Use the <strong>class midpoint</strong> <code>m = (lower+upper)/2</code>, then <code>x̄ = Σfm / Σf</code>.</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>Class</th><th>f</th><th>m</th><th>fm</th></tr>
+            <tr><td>0–10</td><td>2</td><td>5</td><td>10</td></tr>
+            <tr><td>10–20</td><td>5</td><td>15</td><td>75</td></tr>
+            <tr><td>20–30</td><td>3</td><td>25</td><td>75</td></tr>
+          </table></div>
+          <pre>x̄ = (10+75+75)/(2+5+3) = 160/10 = 16</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Median — the middle value</summary>
+          <p>Sort first, then take the middle. It splits the data into two equal halves.</p>
+          <pre>odd n:  3,7,2,9,5 → 2,3,5,7,9 → position (n+1)/2 = 3rd → 5
+even n: 2,4,6,8 → average of n/2 and n/2+1 → (4+6)/2 = 5</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Median is robust to outliers</summary>
+          <pre>10,20,30,40,1000 → mean 220, median 30</pre>
+          <p>The median barely moves with extreme values, so it represents <strong>skewed data</strong> far better than the mean.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Median for grouped data</summary>
+          <pre>Median = L + [(N/2 − cf)/f] × h</pre>
+          <p>L = lower boundary of the median class, N = total frequency, cf = cumulative freq before it, f = its frequency, h = class width. The <strong>median class</strong> is the first class whose cumulative frequency ≥ N/2.</p>
+          <pre>0–10(5,cf5) 10–20(8,cf13) 20–30(12,cf25) 30–40(5,cf30); N=30, N/2=15
+median class 20–30: 20 + (15−13)/12 × 10 ≈ 21.67</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Mode — the most frequent value</summary>
+          <pre>2,3,3,4,5,5,5,6 → mode 5</pre>
+          <ul class="styled">
+            <li>no value repeats → <strong>no mode</strong> (e.g. 1,2,3,4,5)</li>
+            <li>one peak → <strong>unimodal</strong>; two → <strong>bimodal</strong>; more → multimodal</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Mode for grouped data</summary>
+          <pre>Mode = L + [(f₁ − f₀)/(2f₁ − f₀ − f₂)] × h</pre>
+          <p>Modal class = the class with the highest frequency; f₁ its frequency, f₀ before, f₂ after.</p>
+          <pre>0–10(5) 10–20(8) 20–30(12) 30–40(6); modal class 20–30
+Mode = 20 + (12−8)/(24−8−6) × 10 = 20 + 4 = 24</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Mean vs median vs mode — when to use</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Measure</th><th>Meaning</th><th>Best for</th></tr>
+            <tr><td>Mean</td><td>average / balance</td><td>symmetric data</td></tr>
+            <tr><td>Median</td><td>middle value</td><td>skewed data / outliers</td></tr>
+            <tr><td>Mode</td><td>most frequent</td><td>categorical / repeated data</td></tr>
+          </table></div>
+          <pre>salaries 20k,25k,30k,35k,500k → mean is inflated; median is better</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Empirical relation (moderately skewed)</summary>
+          <pre>Mode ≈ 3·Median − 2·Mean      ⇔   Mean − Mode ≈ 3(Mean − Median)</pre>
+          <pre>Mean=20, Median=18 → Mode ≈ 3(18) − 2(20) = 14</pre>
+          <p>Approximate — use it only when GATE asks for the empirical relation on a moderately skewed distribution.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Skewness — symmetric, positive, negative</summary>
+          <pre>symmetric:      Mean = Median = Mode
+positive (right tail):  Mean > Median > Mode   (e.g. income)
+negative (left tail):   Mean < Median < Mode</pre>
+          <p><span style="color:var(--coral-text)">Rule:</span> the <strong>mean is pulled toward the tail</strong> — right tail pulls it right, left tail pulls it left. Read the order to identify the skew.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Geometric mean (growth &amp; ratios)</summary>
+          <pre>GM = (x₁·x₂·…·xₙ)^(1/n)        two values: GM = √(ab)</pre>
+          <pre>GM of 2,8 = √16 = 4 ;  GM of 2,4,8 = 64^(1/3) = 4</pre>
+          <p>Use the GM for things that <strong>multiply</strong>: growth rates, returns, compound interest, population growth, ratios.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Geometric mean for compound growth</summary>
+          <pre>grows 10% then 20% → factors 1.10, 1.20
+GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
+          <p>For compounding, use the GM — the arithmetic mean (15%) is wrong in general.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Harmonic mean (rates &amp; speeds)</summary>
+          <pre>HM = n / Σ(1/xᵢ)        two values: HM = 2ab/(a+b)</pre>
+          <pre>equal distances at 40 and 60 km/h: avg speed = HM = 2·40·60/100 = 48 km/h
+(NOT 50 — time differs on each half)</pre>
+          <p>Use the HM for averaging rates with a fixed numerator (speed, price per unit, work rates).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>18. AM ≥ GM ≥ HM</summary>
+          <pre>for positive numbers:  AM ≥ GM ≥ HM   (equal only if all values are equal)</pre>
+          <pre>2 and 8:  AM = 5 ≥ GM = 4 ≥ HM = 3.2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Which mean to use</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Mean</th><th>Use case</th></tr>
+            <tr><td>Arithmetic</td><td>normal average (add ÷ count)</td></tr>
+            <tr><td>Geometric</td><td>growth, ratios, compounding (multiply)</td></tr>
+            <tr><td>Harmonic</td><td>rates / speeds (reciprocals)</td></tr>
+          </table></div>
+          <pre>Add → arithmetic · Multiply → geometric · Rates → harmonic</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>20. Symbols</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Symbol</th><th>Meaning</th></tr>
+            <tr><td>x̄ , μ</td><td>sample mean, population mean</td></tr>
+            <tr><td>n , N</td><td>#observations, total frequency</td></tr>
+            <tr><td>f , m</td><td>frequency, class midpoint</td></tr>
+            <tr><td>cf , L , h</td><td>cumulative freq before class, lower boundary, class width</td></tr>
+            <tr><td>f₁ , f₀ , f₂</td><td>modal-class freq, the one before, the one after</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Mean is always best? <strong>No</strong> — median is better with outliers/skew.</li>
+            <li>Median without sorting? <strong>No</strong> — always sort first.</li>
+            <li>Mode always exists / is unique? <strong>No</strong> — there may be none, or several.</li>
+            <li>Grouped mean from class limits? <strong>No</strong> — use the midpoint.</li>
+            <li>Median class = highest-frequency class? <strong>No</strong> — that's the modal class; the median class comes from cumulative frequency &amp; N/2.</li>
+            <li>GM for normal averages / HM for everything? <strong>No</strong> — GM for growth, HM for rates.</li>
+            <li>Positive skew ⇒ mean smallest? <strong>No</strong> — Mean &gt; Median &gt; Mode.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Practice problems</summary>
+          <p class="lead">Q1. Mean of 4,6,8,10,12?</p>
+          <pre>40/5 = 8</pre>
+          <p class="lead">Q2. Median of 9,3,7,1,5?</p>
+          <pre>sort 1,3,5,7,9 → 5</pre>
+          <p class="lead">Q3. Mode of 1,2,2,3,3,3,4?</p>
+          <pre>3</pre>
+          <p class="lead">Q4. GM of 4 and 9? HM of 40 and 60?</p>
+          <pre>√36 = 6 ;  2·40·60/100 = 48</pre>
+          <p class="lead">Q5. Mean=20, Median=18 → mode (empirical)?</p>
+          <pre>3(18) − 2(20) = 14</pre>
+          <p class="lead">Q6. Mean=50, Median=40, Mode=30 → skew?</p>
+          <pre>Mean>Median>Mode → positive (right) skew</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Cheatsheet</summary>
+          <ul class="styled">
+            <li>Mean <code>x̄=Σx/n</code>; frequency <code>Σfx/Σf</code>; grouped <code>Σfm/Σf</code>.</li>
+            <li>Grouped median <code>L+[(N/2−cf)/f]h</code>; grouped mode <code>L+[(f₁−f₀)/(2f₁−f₀−f₂)]h</code>.</li>
+            <li>GM <code>(∏xᵢ)^(1/n)</code> (√ab); HM <code>n/Σ(1/xᵢ)</code> (2ab/(a+b)); <code>AM ≥ GM ≥ HM</code>.</li>
+            <li>Symmetric: Mean=Median=Mode; positive skew Mean&gt;Median&gt;Mode; negative skew Mean&lt;Median&lt;Mode.</li>
+            <li>Empirical: <code>Mode ≈ 3·Median − 2·Mean</code>.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Mean = balance point; median = middle person in the queue; mode = most crowded value.</li>
+            <li>GM = growth average; HM = speed/rate average; <strong>AM ≥ GM ≥ HM</strong>.</li>
+            <li>Mean is dragged by outliers; median resists them.</li>
+            <li>The mean is pulled toward the tail → right tail ⇒ Mean &gt; Median &gt; Mode; left tail ⇒ the reverse.</li>
+          </ul>
+        </details>
       </details>
     </section>
 
