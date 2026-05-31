@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the t-distribution &amp; small-sample inference from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the t-distribution plus z / t / paired tests from zero</span></summary>
         <details class="study-item">
           <summary>1. Why the t-distribution exists</summary>
           <p>If the population SD σ is <strong>known</strong>, standardize with z. But usually σ is unknown, so we estimate it with the sample SD <code>s</code> — and that estimate adds uncertainty.</p>
@@ -99,7 +99,82 @@ df → ∞     → t approaches the standard normal</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>8. Common GATE traps</summary>
+          <summary>8. One- vs two-tailed tests &amp; critical values</summary>
+          <p>The alternative hypothesis decides which tail(s) you check (α = 0.05):</p>
+          <pre>two-tailed  H₁: μ ≠ μ₀  → reject if Z < −1.96 or Z > 1.96
+right-tailed H₁: μ > μ₀ → reject if Z > 1.645
+left-tailed  H₁: μ < μ₀ → reject if Z < −1.645</pre>
+          <p>"Different" → two tails; "greater/less" → one tail. A one-tailed test puts all of α in a single tail, so its cutoff is closer to 0.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Z critical values to memorize</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Confidence / α</th><th>Two-tailed</th><th>One-tailed</th></tr>
+            <tr><td>90% / 0.10</td><td>±1.645</td><td>1.282</td></tr>
+            <tr><td>95% / 0.05</td><td>±1.96</td><td>1.645</td></tr>
+            <tr><td>99% / 0.01</td><td>±2.576</td><td>2.326</td></tr>
+          </table></div>
+          <p>Most-used in GATE: <strong>±1.96</strong> (95% two-tailed) and <strong>1.645</strong> (95% one-tailed).</p>
+        </details>
+        <details class="study-item">
+          <summary>10. One-sample z-test — worked</summary>
+          <pre>claim μ₀ = 100, σ = 15 (known), n = 25, x̄ = 106, α = 0.05 two-tailed
+SE = σ/√n = 15/5 = 3
+Z = (106 − 100)/3 = 2
+2 > 1.96 → reject H₀</pre>
+          <p>Conclusion: significant evidence the mean differs from 100. (Z = how many standard errors x̄ sits from μ₀.)</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Two-sample z-test (independent means)</summary>
+          <p>Compare two independent means when both σ are known / samples large:</p>
+          <pre>Z = (x̄₁ − x̄₂) / √(σ₁²/n₁ + σ₂²/n₂)</pre>
+          <p>Testing a claimed gap Δ₀: <code>Z = [(x̄₁ − x̄₂) − Δ₀] / √(σ₁²/n₁ + σ₂²/n₂)</code>; usually Δ₀ = 0 (H₀: μ₁ = μ₂).</p>
+        </details>
+        <details class="study-item">
+          <summary>12. One-sample t-test — worked</summary>
+          <pre>μ₀ = 50, n = 16, x̄ = 52, s = 8 (σ unknown), α = 0.05 two-tailed
+t = (52 − 50)/(8/√16) = 2/2 = 1
+df = n − 1 = 15 → critical t ≈ ±2.131
+|1| < 2.131 → fail to reject H₀</pre>
+          <p>Not enough evidence the mean differs from 50.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Independent samples t-test (pooled variance)</summary>
+          <p>Two independent groups, σ unknown, assumed equal variances:</p>
+          <pre>pooled  sp² = [(n₁−1)s₁² + (n₂−1)s₂²] / (n₁ + n₂ − 2)
+t = (x̄₁ − x̄₂) / [ sp · √(1/n₁ + 1/n₂) ]
+df = n₁ + n₂ − 2</pre>
+          <p>The pooled variance blends both samples' spreads into one estimate.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Paired samples t-test — why &amp; how</summary>
+          <p>When the two samples are <strong>linked</strong> — same subject measured twice (before/after), or matched pairs — they are <em>not</em> independent. Work with the per-pair differences:</p>
+          <pre>d = after − before
+H₀: μ_d = 0     t = d̄ / (s_d/√n)     df = n − 1</pre>
+          <p>One mean difference replaces two separate means — that's the whole trick.</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Paired t-test — worked</summary>
+          <pre>5 students, d = after − before = 5, 5, 3, 4, 5
+d̄ = 22/5 = 4.4
+Σ(d − d̄)² = 0.36+0.36+1.96+0.16+0.36 = 3.2
+s_d² = 3.2/(5−1) = 0.8 → s_d ≈ 0.894
+t = 4.4 / (0.894/√5) = 4.4/0.4 = 11 ,  df = 4</pre>
+          <p>Huge t ⇒ reject H₀: the training significantly improved performance.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Paired vs independent — pick correctly</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Situation</th><th>Test</th></tr>
+            <tr><td>same subject before/after</td><td>paired t-test</td></tr>
+            <tr><td>matched pairs</td><td>paired t-test</td></tr>
+            <tr><td>two unrelated groups</td><td>independent t-test</td></tr>
+            <tr><td>two separate classes</td><td>independent t-test</td></tr>
+          </table></div>
+          <p><span style="color:var(--coral-text)">Trap:</span> "before-after" is <strong>paired</strong>, never independent.</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Common GATE traps</summary>
           <ul class="styled">
             <li>Use z when σ is unknown and n small? <strong>No</strong> — use t.</li>
             <li>t has thinner tails than normal? <strong>No</strong> — heavier (fatter) tails.</li>
@@ -108,7 +183,7 @@ df → ∞     → t approaches the standard normal</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>9. Practice problems</summary>
+          <summary>18. Practice problems</summary>
           <p class="lead">Q1. n = 12, σ unknown — which test &amp; df?</p>
           <pre>t-test, df = 11</pre>
           <p class="lead">Q2. x̄=50, s=8, n=16, μ₀=46 — t statistic?</p>
@@ -119,7 +194,7 @@ df → ∞     → t approaches the standard normal</pre>
           <pre>z</pre>
         </details>
         <details class="study-item">
-          <summary>10. Memory box &amp; mental model</summary>
+          <summary>19. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>σ known → z; σ unknown → t (df = n − 1).</li>
             <li>t = (x̄ − μ)/(s/√n); heavier tails than z.</li>
@@ -149,6 +224,9 @@ df → ∞     → t approaches the standard normal</pre>
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
     <div class="formula">$$ z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}\quad(\sigma\text{ known}) \qquad t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\quad(\sigma\text{ unknown}) $$</div>
     <p>The $t$ statistic uses $n-1$ degrees of freedom. Reject $H_0$ if $|z|$ (or $|t|$) exceeds the critical value, or equivalently if p $\lt\alpha$.</p>
+    <p><strong>Two-sample &amp; paired versions:</strong></p>
+    <div class="formula">$$ z=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}} \qquad t=\frac{\bar{x}_1-\bar{x}_2}{s_p\sqrt{1/n_1+1/n_2}},\ \ s_p^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2} $$</div>
+    <div class="formula">$$ \text{paired: } t=\frac{\bar{d}}{s_d/\sqrt{n}},\quad d=\text{after}-\text{before},\ \ df=n-1 $$</div>
   </section>
 
   <section class="concept-card">
@@ -177,7 +255,9 @@ df → ∞     → t approaches the standard normal</pre>
       <div class="callout-label">⚡ High-value facts</div>
       <ul class="styled">
         <li>$\sigma$ known / large $n$ → <strong>z</strong>; $\sigma$ unknown / small $n$ → <strong>t</strong> (with $n-1$ df).</li>
-        <li>Two-tailed critical $z$: $1.96$ at $\alpha=0.05$, $2.58$ at $\alpha=0.01$.</li>
+        <li>Two-tailed critical $z$: $1.96$ at $\alpha=0.05$, $2.58$ at $\alpha=0.01$; <strong>one-tailed</strong> $1.645$ at $\alpha=0.05$.</li>
+        <li>Paired t-test = run a one-sample t-test on the differences $d=\text{after}-\text{before}$ ($H_0:\mu_d=0$).</li>
+        <li>Independent two-group t uses pooled variance with $df=n_1+n_2-2$.</li>
         <li>Reject when p $\lt\alpha$ (equivalently $|z|\gt z_{\alpha/2}$).</li>
         <li>The t-distribution is fatter-tailed than z and approaches z as $n$ grows.</li>
         <li>Type I error = reject a true $H_0$ (rate $\alpha$); Type II = fail to reject a false $H_0$ (rate $\beta$).</li>
@@ -192,6 +272,7 @@ df → ∞     → t approaches the standard normal</pre>
       <p><span class="wrong">Trap:</span> "p-value = probability $H_0$ is true." <span class="right">Reality:</span> it's $P(\text{data}\mid H_0)$, not $P(H_0\mid\text{data})$.</p>
       <p><span class="wrong">Trap:</span> "Fail to reject = $H_0$ is proven true." <span class="right">Reality:</span> just not enough evidence against it.</p>
       <p><span class="wrong">Trap:</span> "Use z when $\sigma$ is unknown." <span class="right">Reality:</span> use t (estimate with $s$).</p>
+      <p><span class="wrong">Trap:</span> "Before-after data uses an independent two-sample test." <span class="right">Reality:</span> it's <em>paired</em> — test the per-pair differences.</p>
     </div>
   </section>
 
@@ -221,6 +302,16 @@ df → ∞     → t approaches the standard normal</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">t-test, with $n-1=11$ degrees of freedom.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q4. Differences (after−before): 5,5,3,4,5. Compute the paired-t numerator $\bar d$ and state the df.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\bar d=22/5=4.4$; $df=n-1=4$. (Then $t=\bar d/(s_d/\sqrt n)$ with $s_d\approx0.894$ gives $t=11$.)</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Comparing the <em>same</em> patients' blood pressure before and after a drug — which test?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Paired t-test (the two readings are linked per patient).</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -246,7 +337,9 @@ df → ∞     → t approaches the standard normal</pre>
         <li>$H_0$ = no effect; reject when p $\lt\alpha$.</li>
         <li>$z=(\bar x-\mu_0)/(\sigma/\sqrt n)$; $t$ same with $s$, $n-1$ df.</li>
         <li>z: $\sigma$ known / large $n$. t: $\sigma$ unknown / small $n$.</li>
-        <li>Two-tailed critical z: 1.96 ($\alpha=.05$), 2.58 ($\alpha=.01$).</li>
+        <li>Two-tailed critical z: 1.96 ($\alpha=.05$), 2.58 ($\alpha=.01$); one-tailed 1.645.</li>
+        <li>Two-sample: $z=(\bar x_1-\bar x_2)/\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$; pooled-t df $=n_1+n_2-2$.</li>
+        <li>Paired (before-after): test $\bar d$ via $t=\bar d/(s_d/\sqrt n)$, df $=n-1$.</li>
         <li>p-value $=P(\text{data}\mid H_0)$, not $P(H_0)$.</li>
       </ul>
     </div>
