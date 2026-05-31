@@ -458,6 +458,9 @@ P(heart) = 13/52 = 1/4</pre>
       <tr><td>$A\cap B$</td><td>"A intersect B"</td><td>$A$ <em>and</em> $B$ (both)</td></tr>
       <tr><td>$\varnothing$</td><td>"empty set"</td><td>impossible event, $P=0$</td></tr>
       <tr><td>$|A|$</td><td>"size of A"</td><td>number of outcomes in $A$</td></tr>
+      <tr><td>$n!$</td><td>"n factorial"</td><td>$n(n{-}1)\cdots1$ — ways to arrange $n$ items</td></tr>
+      <tr><td>$^nP_r$</td><td>"n perm r"</td><td>ordered selections: $n!/(n{-}r)!$</td></tr>
+      <tr><td>$^nC_r$ (or $\binom{n}{r}$)</td><td>"n choose r"</td><td>unordered selections: $n!/[r!(n{-}r)!]$</td></tr>
     </table></div>
   </section>
 
@@ -471,6 +474,9 @@ P(heart) = 13/52 = 1/4</pre>
     <p><strong>Axioms (Kolmogorov):</strong> $0\le P(A)\le 1$, &nbsp; $P(S)=1$, &nbsp; and for disjoint events probabilities add.</p>
     <div class="formula">$$ P(A^c)=1-P(A) \qquad P(A\cup B)=P(A)+P(B)-P(A\cap B) $$</div>
     <p>If $A$ and $B$ are mutually exclusive, $P(A\cap B)=0$, so $P(A\cup B)=P(A)+P(B)$.</p>
+    <p><strong>Counting (how to get $|A|$ and $|S|$):</strong></p>
+    <div class="formula">$$ ^nP_r=\frac{n!}{(n-r)!}\quad(\text{order matters}) \qquad ^nC_r=\binom{n}{r}=\frac{n!}{r!\,(n-r)!}\quad(\text{order doesn't}) $$</div>
+    <p>Multiplication principle: if step 1 has $m$ ways and step 2 has $n$ ways, together they have $m\times n$ ways.</p>
   </section>
 
   <!-- 7 -->
@@ -514,6 +520,8 @@ P(heart) = 13/52 = 1/4</pre>
         <li>Addition rule always subtracts the overlap: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
         <li>All outcome probabilities sum to $1$; a valid probability is always in $[0,1]$.</li>
         <li>Mutually exclusive means they <em>can't co-occur</em> — not the same as independent.</li>
+        <li>Order matters → permutation $^nP_r$; order doesn't → combination $^nC_r$ (always $^nC_r\le{}^nP_r$).</li>
+        <li>Multiplication principle: independent choices multiply ($m\times n$).</li>
       </ul>
     </div>
   </section>
@@ -526,6 +534,7 @@ P(heart) = 13/52 = 1/4</pre>
       <p><span class="wrong">Trap:</span> "Mutually exclusive = independent." <span class="right">Reality:</span> opposite, really — if disjoint events both have $P\gt 0$, they are <em>dependent</em> (one happening rules the other out).</p>
       <p><span class="wrong">Trap:</span> "$P(A\cup B)=P(A)+P(B)$ always." <span class="right">Reality:</span> only if disjoint; otherwise subtract $P(A\cap B)$.</p>
       <p><span class="wrong">Trap:</span> "Probability can exceed 1." <span class="right">Reality:</span> never — $0\le P\le 1$.</p>
+      <p><span class="wrong">Trap:</span> "Use permutations to pick a committee." <span class="right">Reality:</span> a committee is unordered — use combinations $^nC_r$; permutations over-count by $r!$.</p>
     </div>
   </section>
 
@@ -568,6 +577,16 @@ P(heart) = 13/52 = 1/4</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$1-0.3=0.7$.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q6. From 5 people, how many ways to choose a committee of 2?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Unordered: $^5C_2=\dfrac{5!}{2!\,3!}=10$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q7. From 5 people, how many ways to choose a president then a VP?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Ordered: $^5P_2=5\times4=20$ (twice $^5C_2$ because roles differ).</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -596,6 +615,7 @@ P(heart) = 13/52 = 1/4</pre>
         <li>Addition rule: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.</li>
         <li>"At least one" → $1-P(\text{none})$.</li>
         <li>Mutually exclusive $\ne$ independent.</li>
+        <li>Counting: order matters → $^nP_r$; order doesn't → $^nC_r$; independent steps multiply.</li>
       </ul>
     </div>
   </section>

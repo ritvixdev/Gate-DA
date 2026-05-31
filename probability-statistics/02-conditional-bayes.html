@@ -477,6 +477,10 @@ Mutually exclusive = cannot happen together</pre>
     <div class="formula">$$ P(A)=\sum_{i} P(A\mid B_i)\,P(B_i) $$</div>
     <p><strong>Bayes' theorem:</strong></p>
     <div class="formula">$$ P(B_k\mid A)=\frac{P(A\mid B_k)\,P(B_k)}{\sum_i P(A\mid B_i)\,P(B_i)} $$</div>
+    <p><strong>Conditional expectation &amp; the tower property</strong> (law of total expectation):</p>
+    <div class="formula">$$ E(X\mid A)=\sum_x x\,P(X=x\mid A) \qquad E(X)=\sum_i E(X\mid B_i)\,P(B_i) $$</div>
+    <p><strong>Conditional variance &amp; law of total variance:</strong></p>
+    <div class="formula">$$ \mathrm{Var}(X\mid A)=E(X^2\mid A)-[E(X\mid A)]^2 \qquad \mathrm{Var}(X)=E[\mathrm{Var}(X\mid Y)]+\mathrm{Var}[E(X\mid Y)] $$</div>
   </section>
 
   <section class="concept-card">
@@ -508,6 +512,9 @@ Mutually exclusive = cannot happen together</pre>
         <li>Independent ⇒ $P(A\cap B)=P(A)P(B)$ and $P(A\mid B)=P(A)$.</li>
         <li>Bayes in words: posterior $\propto$ likelihood $\times$ prior.</li>
         <li>With a rare event, even an accurate test gives a low posterior (base-rate effect).</li>
+        <li>Tower property: $E(X)=\sum_i E(X\mid B_i)P(B_i)$ — average the conditional means, weighted by their probabilities.</li>
+        <li>Conditioning <em>reduces</em> variance on average: $\mathrm{Var}(X)=E[\mathrm{Var}(X\mid Y)]+\mathrm{Var}[E(X\mid Y)]$ (within + between).</li>
+        <li>In ML, the regression function is a conditional expectation: $\hat{y}=E(Y\mid X)$.</li>
       </ul>
     </div>
   </section>
@@ -519,6 +526,8 @@ Mutually exclusive = cannot happen together</pre>
       <p><span class="wrong">Trap:</span> "$P(A\mid B)=P(B\mid A)$." <span class="right">Reality:</span> generally not equal — that's exactly what Bayes corrects.</p>
       <p><span class="wrong">Trap:</span> "Independent = mutually exclusive." <span class="right">Reality:</span> different! Disjoint events with positive probability are <em>dependent</em>.</p>
       <p><span class="wrong">Trap:</span> "Ignore the prior / base rate." <span class="right">Reality:</span> the prior can dominate — that's the medical-test surprise.</p>
+      <p><span class="wrong">Trap:</span> "$E(X\mid A)$ equals $E(X)$." <span class="right">Reality:</span> only if $X$ is independent of $A$; otherwise conditioning shifts the mean (die: $E(X\mid\text{even})=4\ne3.5$).</p>
+      <p><span class="wrong">Trap:</span> "Total variance is just the average of conditional variances." <span class="right">Reality:</span> add the between-group spread $\mathrm{Var}[E(X\mid Y)]$ too.</p>
     </div>
   </section>
 
@@ -554,6 +563,16 @@ Mutually exclusive = cannot happen together</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">Because the disease is rare — most positives come from the many healthy people (false positives). The prior dominates.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q5. Fair die $X$. Find $E(X\mid X\text{ is even})$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Even values $\{2,4,6\}$ equally likely: $(2+4+6)/3=4$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q6. A factory uses machine A (prob 0.6, mean output 50) or B (prob 0.4, mean 70). Expected output?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Tower property: $0.6(50)+0.4(70)=30+28=58$.</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -581,6 +600,8 @@ Mutually exclusive = cannot happen together</pre>
         <li>Total probability: $P(A)=\sum P(A\mid B_i)P(B_i)$.</li>
         <li>Bayes: posterior $\propto$ likelihood $\times$ prior; $P(A\mid B)\ne P(B\mid A)$.</li>
         <li>Independent $\ne$ mutually exclusive.</li>
+        <li>Tower: $E(X)=\sum E(X\mid B_i)P(B_i)$; total variance = within $+$ between.</li>
+        <li>$E(Y\mid X)$ is the regression function — the bridge to machine learning.</li>
       </ul>
     </div>
   </section>
