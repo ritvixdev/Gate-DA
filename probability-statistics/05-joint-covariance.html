@@ -49,8 +49,114 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— joint &amp; marginal distributions, covariance &amp; correlation from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Joint distribution — two variables together</summary>
+          <p>When two random variables are studied as a pair, we use a <strong>joint distribution</strong>:</p>
+          <pre>p(x, y) = P(X = x AND Y = y)        (discrete)
+f(x, y)                            (continuous)</pre>
+          <p>It answers "how likely is this <em>combination</em>?" — e.g. X = first die, Y = second die.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. The joint probability table</summary>
+          <p>For two fair dice every pair is equally likely:</p>
+          <pre>P(X = x, Y = y) = 1/36   for each of the 36 (x,y) pairs</pre>
+          <p>Lay it out as a grid: 6 rows (X) × 6 columns (Y), each cell 1/36, all cells summing to 1.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Marginal distribution — one variable alone</summary>
+          <p>The <strong>marginal</strong> is the distribution of one variable when we ignore the other, by summing it out:</p>
+          <pre>P(X = x) = Σ_y P(X = x, Y = y)      (sum across all y)
+P(Y = y) = Σ_x P(X = x, Y = y)      (sum across all x)</pre>
+          <p>Continuous version: <code>f(x) = ∫ f(x,y) dy</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. Why “marginal”? — row &amp; column totals</summary>
+          <p>In the joint table, summing a row gives that X-value's probability; summing a column gives that Y-value's. These totals are written in the <strong>margins</strong> of the table — hence the name.</p>
+          <pre>marginal of X = row totals
+marginal of Y = column totals</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. Two-dice marginal example</summary>
+          <p>Find P(X = 3): first die is 3, second die anything — sum that row.</p>
+          <pre>P(X = 3) = Σ_{y=1..6} P(X=3, Y=y) = 6 × 1/36 = 6/36 = 1/6</pre>
+          <p>We "marginalized out" Y by summing over all its values.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. Marginalization in ML &amp; statistics</summary>
+          <p>When a joint model has a variable you don't care about, sum (or integrate) it away:</p>
+          <pre>P(X) = Σ_Y P(X, Y)            (discrete)
+p(x) = ∫ p(x, y) dy           (continuous)</pre>
+          <p>This "averaging over the unknown" powers Bayesian inference, Naive Bayes, hidden Markov models and probabilistic graphical models.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Independence of random variables</summary>
+          <p>X and Y are <strong>independent</strong> when the joint factorizes into the marginals:</p>
+          <pre>p(x, y) = p(x) · p(y)        for every x, y</pre>
+          <p>Two dice are independent (each cell 1/36 = 1/6 × 1/6). Independence of variables generalizes event independence.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Covariance — do they move together?</summary>
+          <p>Covariance measures whether X and Y rise and fall together:</p>
+          <pre>Cov(X,Y) = E[(X−E X)(Y−E Y)] = E[XY] − E[X]·E[Y]</pre>
+          <pre>Cov > 0 → move together · Cov < 0 → move oppositely · Cov = 0 → no linear link
+Cov(X,X) = Var(X)</pre>
+        </details>
+        <details class="study-item">
+          <summary>9. Covariance — worked</summary>
+          <pre>E[X]=2, E[Y]=3, E[XY]=8  →  Cov = 8 − 2·3 = 2 > 0  (rise together)
+if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
+          <p>Scaling rule: <code>Cov(aX, bY) = ab·Cov(X,Y)</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Correlation ρ — covariance on a fixed scale</summary>
+          <p>Covariance's size depends on units, so we rescale it to a unitless number in [−1, 1]:</p>
+          <pre>ρ = Cov(X,Y) / (σ_X · σ_Y) ,   −1 ≤ ρ ≤ 1</pre>
+          <p><code>ρ = ±1</code> → perfect straight-line relationship; <code>ρ = 0</code> → no <em>linear</em> relationship.</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Variance of a sum</summary>
+          <pre>Var(X + Y) = Var(X) + Var(Y) + 2·Cov(X,Y)</pre>
+          <p>If X and Y are independent (or just uncorrelated), the covariance term vanishes and variances simply add.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Zero covariance ≠ independent</summary>
+          <p>Independence ⇒ <code>Cov = 0</code>. But the reverse can fail — a perfectly curved relationship can have zero covariance yet be fully dependent.</p>
+          <pre>X uniform on {−2,−1,0,1,2}, Y = X²:  Cov(X,Y) = 0, but Y is determined by X</pre>
+          <p>Covariance only sees the <em>linear</em> part of a relationship.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Marginal = conditional? <strong>No</strong> — marginal sums out the other variable; conditional fixes it.</li>
+            <li>Zero correlation ⇒ independent? <strong>No</strong> — only the linear link is gone.</li>
+            <li>Correlation can be 2? <strong>No</strong> — always in [−1, 1].</li>
+            <li>Var(X+Y) = VarX + VarY always? <strong>No</strong> — add 2·Cov unless uncorrelated.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>14. Practice problems</summary>
+          <p class="lead">Q1. Two fair dice — find P(Y = 5).</p>
+          <pre>Σ_x P(X=x, Y=5) = 6 × 1/36 = 1/6</pre>
+          <p class="lead">Q2. E[XY]=10, E[X]=2, E[Y]=4 — covariance?</p>
+          <pre>10 − 8 = 2</pre>
+          <p class="lead">Q3. σ_X=2, σ_Y=5, Cov=4 — correlation?</p>
+          <pre>ρ = 4 / (2·5) = 0.4</pre>
+          <p class="lead">Q4. VarX=3, VarY=5, independent — Var(X+Y)?</p>
+          <pre>3 + 5 + 0 = 8</pre>
+        </details>
+        <details class="study-item">
+          <summary>15. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Joint = the full grid of (X,Y) probabilities; rows/cols sum to 1.</li>
+            <li>Marginal = row/column totals (sum out the other variable).</li>
+            <li>Independent: <code>p(x,y)=p(x)p(y)</code>; then Cov = 0.</li>
+            <li><code>Cov = E[XY]−E[X]E[Y]</code>; <code>ρ = Cov/(σ_Xσ_Y) ∈ [−1,1]</code>.</li>
+            <li><code>Var(X+Y)=VarX+VarY+2Cov</code>.</li>
+          </ul>
+          <pre>Joint = scatter cloud · Marginal = its shadow on an axis
+Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
+        </details>
       </details>
     </section>
 
@@ -104,6 +210,8 @@
         <li>$\rho\in[-1,1]$; $\rho=\pm1$ means a perfect straight-line relationship.</li>
         <li>$\operatorname{Var}(X+Y)=\operatorname{Var}X+\operatorname{Var}Y+2\operatorname{Cov}$; independence drops the last term.</li>
         <li>$\operatorname{Cov}(aX,bY)=ab\,\operatorname{Cov}(X,Y)$.</li>
+        <li>Marginalize by summing out the other variable: $P(X{=}x)=\sum_y P(x,y)$ (or $\int f(x,y)\,dy$).</li>
+        <li>Independent ⇔ the joint factorizes: $p(x,y)=p(x)\,p(y)$.</li>
       </ul>
     </div>
   </section>
@@ -115,6 +223,7 @@
       <p><span class="wrong">Trap:</span> "Zero correlation ⇒ independent." <span class="right">Reality:</span> independence ⇒ $\rho=0$, but $\rho=0$ can still hide a nonlinear relationship.</p>
       <p><span class="wrong">Trap:</span> "Correlation can be 2." <span class="right">Reality:</span> $\rho$ is always in $[-1,1]$.</p>
       <p><span class="wrong">Trap:</span> "$\operatorname{Var}(X+Y)=\operatorname{Var}X+\operatorname{Var}Y$ always." <span class="right">Reality:</span> only if uncorrelated.</p>
+      <p><span class="wrong">Trap:</span> "Marginal probability = conditional probability." <span class="right">Reality:</span> the marginal <em>sums out</em> the other variable; the conditional <em>fixes</em> it.</p>
     </div>
   </section>
 
@@ -138,6 +247,11 @@
       <p class="pq">Q2. $X,Y$ independent, $\operatorname{Var}X=3,\ \operatorname{Var}Y=5$. Find $\operatorname{Var}(X+Y)$.</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$3+5+0=8$ (covariance is 0).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2b. Two fair dice. Find the marginal $P(X=3)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\sum_{y=1}^{6}P(3,y)=6\times\tfrac1{36}=\tfrac16$.</div>
     </div>
     <div class="practice">
       <p class="pq">Q3. Can correlation be $1.5$?</p>
