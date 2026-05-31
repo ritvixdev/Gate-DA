@@ -374,13 +374,6 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
   border: 1px solid var(--hairline-soft); border-radius: var(--r-pill);
   padding: 1px 8px; flex-shrink: 0;
 }
-/* Per-topic IITM note inside Study in Depth */
-.study-iitm {
-  font-size: 14px; color: var(--muted); margin: 0 0 var(--s-md);
-  padding: 10px 14px; background: var(--surface-soft);
-  border: 1px solid var(--hairline-soft); border-left: 3px solid var(--coral-border); border-radius: var(--r-md);
-}
-.study-iitm strong { color: var(--body-strong); }
 
 /* Nested mini-cards — one concept each. Airy, "label → panel" rhythm. */
 .study-item {
