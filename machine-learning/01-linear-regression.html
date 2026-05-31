@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— supervised learning &amp; the ML workflow from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— supervised learning, predictive models &amp; the ML workflow</span></summary>
         <details class="study-item">
           <summary>1. What supervised learning is</summary>
           <p>The model learns from <strong>labeled data</strong> — examples where the answer is already given:</p>
@@ -142,7 +142,50 @@ methods: least squares (closed form) · gradient descent (iterative)</pre>
           <p>Theme: wherever labelled historical data exists, supervised learning applies.</p>
         </details>
         <details class="study-item">
-          <summary>13. Common GATE traps</summary>
+          <summary>13. Predictive model — input → prediction</summary>
+          <p>A <strong>predictive model</strong> takes inputs and produces an output for an unknown/future case — it answers "given this information, what is likely to happen?"</p>
+          <pre>age, BMI, smoker → predicted premium
+humidity, pressure, temperature → rain / no rain</pre>
+          <p>Not every predictive model is machine learning — there are three flavours below.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Three kinds of predictive model</summary>
+          <ul class="styled">
+            <li><strong>Numerical:</strong> a mathematical equation.</li>
+            <li><strong>Rule-based:</strong> human-written if–else logic.</li>
+            <li><strong>ML-based:</strong> rules learned automatically from data.</li>
+          </ul>
+          <pre>numerical → equation · rule-based → human logic · ML-based → data-learned logic</pre>
+        </details>
+        <details class="study-item">
+          <summary>15. Numerical model (the equation view)</summary>
+          <p>A numerical model is just a formula:</p>
+          <pre>house price = 5000·area + 200000     (area=1000 → ₹52,00,000)
+marks       = 20 + 10·hours          (hours=5 → 70)</pre>
+          <p>Linear regression is exactly this, with the numbers <em>learned</em>:</p>
+          <pre>ŷ = w₁x₁ + w₂x₂ + … + wₙxₙ + b</pre>
+        </details>
+        <details class="study-item">
+          <summary>16. Rule-based model &amp; why it doesn't scale</summary>
+          <pre>if smoker: premium += 10000
+if age > 50: premium += 15000
+if BMI > 30: premium += 8000</pre>
+          <p>Clear for simple problems, but with many variables (age, BMI, city, history, claims, …) the combinations <strong>explode</strong>, rules conflict, and updating becomes a nightmare.</p>
+          <pre>more variables → more rules → unmaintainable</pre>
+        </details>
+        <details class="study-item">
+          <summary>17. Rule-based vs ML-based</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Rule-based</th><th>ML-based</th></tr>
+            <tr><td>How</td><td>human writes rules</td><td>learns from data</td></tr>
+            <tr><td>Many variables</td><td>becomes hard</td><td>handles well</td></tr>
+            <tr><td>Hidden patterns</td><td>hard to capture</td><td>can discover</td></tr>
+            <tr><td>Updating</td><td>edit rules by hand</td><td>retrain on new data</td></tr>
+          </table></div>
+          <p>ML can even learn <em>interactions</em> — e.g. smoking risk that grows with age — which fixed rules miss.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Common GATE traps</summary>
           <ul class="styled">
             <li>Supervised learning needs no labels? <strong>No</strong> — labels are required.</li>
             <li>Classification predicts numbers? <strong>No</strong> — it predicts categories; regression predicts numbers.</li>
@@ -152,7 +195,7 @@ methods: least squares (closed form) · gradient descent (iterative)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>14. Practice questions</summary>
+          <summary>19. Practice questions</summary>
           <p class="lead">Q1. Email + spam/not-spam label — supervised? task type?</p>
           <pre>Yes (labels given); classification</pre>
           <p class="lead">Q2. Predict house price (₹)?</p>
@@ -165,7 +208,7 @@ methods: least squares (closed form) · gradient descent (iterative)</pre>
           <pre>Learn a mapping f: X → Y from labelled examples that generalizes to new data</pre>
         </details>
         <details class="study-item">
-          <summary>15. Memory box &amp; mental model</summary>
+          <summary>20. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Supervised learning = learning from labelled examples (X → Y).</li>
             <li>Goal: learn <code>f(X) ≈ Y</code> that generalizes to unseen data.</li>

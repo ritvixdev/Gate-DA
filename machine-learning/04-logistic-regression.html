@@ -49,8 +49,142 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification (binary/multi-class) &amp; logistic regression from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Classification — predicting a category</summary>
+          <p>Classification is the supervised task where the target is a <strong>discrete class</strong>, not a number:</p>
+          <pre>spam / not spam · cat / dog · fraud / not · rain / no-rain · disease / healthy</pre>
+          <p>Logistic regression (this topic) is the workhorse binary classifier — first the general picture, then its sigmoid mechanics.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Class labels &amp; discrete targets</summary>
+          <p>The output Y is one of a fixed set of <strong>class labels</strong>, usually coded as integers:</p>
+          <pre>spam: 0 = not spam, 1 = spam
+sentiment: 0 = negative, 1 = neutral, 2 = positive</pre>
+          <p>The codes are just names — for unordered classes their numeric size is meaningless.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Binary classification</summary>
+          <p>Exactly <strong>two</strong> classes, coded 0 / 1:</p>
+          <pre>spam/not · fraud/not · churn/not · pass/fail · disease/healthy</pre>
+          <p>Logistic regression natively solves the binary case.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. Multi-class classification</summary>
+          <p><strong>More than two</strong> classes:</p>
+          <pre>digits 0–9 · cat/dog/car/bird · sports/politics/tech/business · blood group A/B/AB/O</pre>
+          <p>Built from binary classifiers (one-vs-rest) or a softmax output.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. Categorical variables need encoding</summary>
+          <p>Most algorithms need numbers, so category <em>inputs</em> must be encoded.</p>
+          <pre>smoker: yes→1, no→0
+risk (ordinal): low→0, medium→1, high→2   ✓ order is real</pre>
+        </details>
+        <details class="study-item">
+          <summary>6. Ordinal vs one-hot — the fake-order trap</summary>
+          <p>For <strong>unordered</strong> (nominal) categories, integer codes invent a false ranking:</p>
+          <pre>Delhi=0, Kolkata=1, Bangalore=2  ⇒ implies Bangalore > Kolkata?? (nonsense)</pre>
+          <p>Use <strong>one-hot encoding</strong> instead — one 0/1 column per category:</p>
+          <pre>Delhi → (1,0,0) · Kolkata → (0,1,0) · Bangalore → (0,0,1)</pre>
+          <p>Ordinal data → integer codes; nominal data → one-hot.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Class probability P(class | input)</summary>
+          <p>Most classifiers output <strong>probabilities</strong>, not just a label:</p>
+          <pre>P(spam | email) = 0.92 ,  P(not spam | email) = 0.08
+P(cat)=0.70, P(dog)=0.20, P(car)=0.10   (sum to 1)</pre>
+          <p>Logistic regression's sigmoid produces exactly this probability.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Threshold — turning probability into a label</summary>
+          <p>For binary problems, compare the probability to a <strong>threshold</strong> (default 0.5):</p>
+          <pre>if P(class=1) ≥ 0.5 → predict 1, else 0
+P(churn)=0.72 → churn ; P(churn)=0.35 → not churn</pre>
+          <p>The threshold is tunable: for fraud you might use 0.3 — missing a fraud is costlier than a false alarm.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Multi-class: pick the argmax</summary>
+          <pre>Cat 0.10 · Dog 0.75 · Car 0.15 → predict Dog</pre>
+          <p><strong>argmax</strong> = choose the class with the highest probability. (Thresholds are mainly a binary tool.)</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Classification algorithms</summary>
+          <ul class="styled">
+            <li>Logistic Regression · Naive Bayes · k-Nearest Neighbors</li>
+            <li>Decision Tree · Random Forest · SVM · Neural Network</li>
+          </ul>
+          <p>GATE-favourites: <strong>logistic regression, kNN, Naive Bayes, decision-tree basics</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Classification vs regression</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Classification</th><th>Regression</th></tr>
+            <tr><td>Output</td><td>category / class</td><td>number</td></tr>
+            <tr><td>Target</td><td>discrete</td><td>continuous</td></tr>
+            <tr><td>Example</td><td>spam / not spam</td><td>house price</td></tr>
+            <tr><td>Metrics</td><td>accuracy, precision, recall</td><td>MSE, RMSE, MAE</td></tr>
+          </table></div>
+        </details>
+        <details class="study-item">
+          <summary>12. Imbalanced data &amp; the accuracy trap</summary>
+          <p>When one class is rare, plain accuracy lies:</p>
+          <pre>99% transactions normal, 1% fraud
+"always predict not-fraud" → 99% accuracy, 0 frauds caught!</pre>
+          <p>So for imbalanced problems use <strong>precision, recall, F1</strong> — not accuracy alone.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Evaluation metrics — a preview</summary>
+          <pre>accuracy = correct / total</pre>
+          <ul class="styled">
+            <li><strong>precision</strong> — of predicted-positives, how many were right</li>
+            <li><strong>recall (sensitivity)</strong> — of actual-positives, how many we caught</li>
+            <li><strong>F1</strong> — harmonic mean of precision &amp; recall; <strong>ROC-AUC</strong> — ranking quality</li>
+          </ul>
+          <p>Medical diagnosis prizes <em>recall</em> (a missed disease is dangerous); spam filters prize <em>precision</em>.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Where classification is used</summary>
+          <ul class="styled">
+            <li>spam detection, fraud detection, churn prediction</li>
+            <li>image / object recognition, face recognition (multi-class)</li>
+            <li>medical diagnosis, sentiment analysis, webpage categorization</li>
+            <li>speech recognition, click/buy prediction for recommendations</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>15. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
+            <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
+            <li>Code nominal categories as 0,1,2? <strong>No</strong> — one-hot, to avoid fake order.</li>
+            <li>Probability <em>is</em> the label? <strong>No</strong> — convert via threshold (binary) or argmax (multi-class).</li>
+            <li>Accuracy is always enough? <strong>No</strong> — imbalanced data needs precision/recall/F1.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>16. Practice questions</summary>
+          <p class="lead">Q1. Spam / not-spam — task type?</p>
+          <pre>binary classification</pre>
+          <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
+          <pre>multi-class (10 classes)</pre>
+          <p class="lead">Q3. P(spam)=0.82, threshold 0.5 — prediction?</p>
+          <pre>spam (0.82 ≥ 0.5)</pre>
+          <p class="lead">Q4. Cat 0.2, Dog 0.6, Car 0.2 — predicted class?</p>
+          <pre>Dog (argmax)</pre>
+          <p class="lead">Q5. 99% one class — why is accuracy misleading?</p>
+          <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
+        </details>
+        <details class="study-item">
+          <summary>17. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
+            <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>
+            <li>Encode categories: ordinal → integers, nominal → one-hot.</li>
+            <li>Imbalanced data → judge with precision/recall/F1, not accuracy.</li>
+          </ul>
+          <pre>Classification = sort inputs into bins · probability says how confident · threshold/argmax picks the bin.</pre>
+        </details>
       </details>
     </section>
 
