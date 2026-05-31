@@ -292,7 +292,22 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <p>Strengths: learns complex non-linear maps, flexible, foundation of deep learning. Weaknesses: needs lots of data, compute-heavy, overfits, hard to interpret, <strong>needs scaled inputs</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>36. Common GATE traps</summary>
+          <summary>36. Regularizing a neural network</summary>
+          <p>Networks overfit easily, so they use their own regularizers (beyond L1/L2 on weights):</p>
+          <ul class="styled">
+            <li><strong>Dropout</strong> — randomly switch off some neurons each training step, so the net can't lean on any one neuron ("random neuron sleeping").</li>
+            <li><strong>Early stopping</strong> — halt training once validation error starts rising (training error still falling = overfitting begins).</li>
+            <li><strong>Data augmentation</strong> — create more training data by transforming it (rotate/flip/crop/brighten images).</li>
+            <li><strong>Batch normalization</strong> — normalize layer activations; stabilizes &amp; speeds training, with a mild regularizing effect.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>37. Feed-forward vs recurrent</summary>
+          <p>An FFNN/MLP flows <strong>one way</strong> (input → hidden → output) with no cycles. A <strong>recurrent</strong> network (RNN) has loops that feed a layer's output back in — giving it memory for <em>sequences</em> (text, time series).</p>
+          <pre>feed-forward = no loops (static input) · recurrent = loops (sequential data)</pre>
+        </details>
+        <details class="study-item">
+          <summary>38. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -302,7 +317,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           </ul>
         </details>
         <details class="study-item">
-          <summary>37. Practice questions</summary>
+          <summary>39. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -315,7 +330,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>38. Memory box &amp; mental model</summary>
+          <summary>40. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>

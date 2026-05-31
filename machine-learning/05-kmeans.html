@@ -175,7 +175,19 @@ Cosine      = 1 − cosθ            angle between vectors (good for text)</pre>
           <p>Applications: market segmentation, document/image clustering, gene-expression, anomaly detection.</p>
         </details>
         <details class="study-item">
-          <summary>16. Common GATE traps</summary>
+          <summary>16. Evaluating clusters — the silhouette score</summary>
+          <p>WCSS/inertia only measures <em>tightness</em>; the <strong>silhouette score</strong> also rewards <em>separation</em>.</p>
+          <pre>for each point: compare its avg distance to its own cluster (a) vs the nearest other cluster (b)
+silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
+          <ul class="styled">
+            <li>near <strong>+1</strong> → well inside its cluster, far from others (good)</li>
+            <li>near <strong>0</strong> → on a boundary between clusters</li>
+            <li><strong>negative</strong> → probably in the wrong cluster</li>
+          </ul>
+          <p>Average it over all points to compare clusterings (and even to help pick K).</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Common GATE traps</summary>
           <ul class="styled">
             <li>k-means needs labels? <strong>No</strong> — it's unsupervised.</li>
             <li>More clusters = better (lower WCSS)? <strong>Misleading</strong> — WCSS always drops; use the elbow.</li>
@@ -185,7 +197,7 @@ Cosine      = 1 − cosθ            angle between vectors (good for text)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>17. Practice problems</summary>
+          <summary>18. Practice problems</summary>
           <p class="lead">Q1. Supervised or unsupervised: group customers with no labels?</p>
           <pre>unsupervised (clustering)</pre>
           <p class="lead">Q2. WCSS 900,400,170,150,140 for K=1..5 — best K?</p>
@@ -196,7 +208,7 @@ Cosine      = 1 − cosθ            angle between vectors (good for text)</pre>
           <pre>hierarchical</pre>
         </details>
         <details class="study-item">
-          <summary>18. Memory box &amp; mental model</summary>
+          <summary>19. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Unsupervised = no labels; clustering groups similar points.</li>
             <li>k-means: assign to nearest centroid ↔ recompute centroid; minimizes WCSS; pick K via elbow; scale features.</li>
