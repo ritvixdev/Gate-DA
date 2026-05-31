@@ -41,6 +41,8 @@
       <li><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$.</li>
       <li><strong>Local minimum:</strong> $f'(x)=0$ and $f''(x)\gt0$ (curves up). <strong>Local maximum:</strong> $f'(x)=0$ and $f''(x)\lt0$.</li>
       <li><strong>Inflection / inconclusive:</strong> $f''(x)=0$ — the simple test fails; check higher derivatives or the sign of $f'$ around the point.</li>
+      <li><strong>Limit</strong> $\lim_{x\to a}f(x)$: the value $f$ approaches near $a$ (exists iff left limit $=$ right limit). <strong>Continuous at $a$:</strong> $\lim_{x\to a}f(x)=f(a)$.</li>
+      <li><strong>Differentiable $\Rightarrow$ continuous</strong> (not the reverse — e.g. $|x|$ at $0$ is continuous but has a corner).</li>
     </ul>
   </section>
 
@@ -48,27 +50,107 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— optimizing f(x) of one variable, from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— functions, limits, continuity &amp; optimizing f(x) of one variable, from zero</span></summary>
         <details class="study-item">
-          <summary>1. What univariate optimization is</summary>
+          <summary>1. Function — an input→output rule</summary>
+          <p>A <strong>function</strong> maps each valid input to <strong>exactly one</strong> output.</p>
+          <pre>f(x) = x²   →   f(2)=4, f(−3)=9   (an input-output machine)</pre>
+          <p>Optimization lives on top of functions: we hunt for the input that makes the output best.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Function as a map (the height idea)</summary>
+          <p>Read a 1-variable function as a landscape:</p>
+          <pre>x = your position · f(x) = the height there
+f(x)=x² is a U-shaped bowl; lowest point at x=0</pre>
+          <p>Minimum = valley, maximum = peak — the whole point of optimization.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Functions in ML — model &amp; loss</summary>
+          <p>A model is a function (<code>price = f(area)</code>, e.g. <code>ŷ = 5000x + 200000</code>). The key one to optimize is the <strong>loss function</strong>:</p>
+          <pre>Loss(w) = error of the model when its weight is w
+goal: minimize Loss(w)  → find the best w</pre>
+        </details>
+        <details class="study-item">
+          <summary>4. Domain &amp; range</summary>
+          <pre>domain = allowed inputs · range = possible outputs</pre>
+          <pre>f(x)=1/x : domain = all reals except 0 (1/0 undefined)
+f(x)=x²  : range  = f(x) ≥ 0 (never negative)</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. Function types you meet in optimization</summary>
+          <ul class="styled">
+            <li><strong>Linear</strong> <code>f=mx+c</code> — straight line</li>
+            <li><strong>Quadratic</strong> <code>f=ax²+bx+c</code> — parabola (the bread-and-butter of optimization)</li>
+            <li><strong>Exponential</strong> <code>eˣ</code> &amp; <strong>log</strong> <code>log x</code> — appear in sigmoid &amp; cross-entropy</li>
+            <li><strong>Sigmoid</strong> <code>σ(x)=1/(1+e⁻ˣ)</code> — logistic regression</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>6. What a limit is</summary>
+          <p>A <strong>limit</strong> asks what value f(x) <em>approaches</em> as x gets close to a point (x need not equal it):</p>
+          <pre>lim(x→3) (x+2) = 5</pre>
+          <p>"approaches a" ≠ "equals a" — this distinction is the whole idea.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Left- &amp; right-hand limits</summary>
+          <pre>x→a⁻ : approach from below (1.9, 1.99, …)
+x→a⁺ : approach from above (2.1, 2.01, …)
+limit EXISTS only if  LHL = RHL</pre>
+          <pre>f(x)=1 for x<0, 2 for x>0 : at 0, LHL=1 ≠ RHL=2 → limit does NOT exist (a jump)</pre>
+        </details>
+        <details class="study-item">
+          <summary>8. Why limits matter — the derivative</summary>
+          <p>The derivative — the engine of optimization — is <em>defined</em> as a limit:</p>
+          <pre>f′(x) = lim(h→0) [ f(x+h) − f(x) ] / h     (slope as the step shrinks to 0)</pre>
+          <pre>Limits → Derivatives → Optimization → Gradient Descent</pre>
+        </details>
+        <details class="study-item">
+          <summary>9. Standard limits &amp; small-x approximations</summary>
+          <pre>lim(x→a) c = c · lim(x→a) x = a · lim(x→0) sin x / x = 1 · lim(x→0)(1−cos x)/x = 0</pre>
+          <p>Near x = 0 (handy for limits &amp; later for Taylor/optimization):</p>
+          <pre>sin x ≈ x · cos x ≈ 1 − x²/2 · eˣ ≈ 1 + x · log(1+x) ≈ x</pre>
+        </details>
+        <details class="study-item">
+          <summary>10. Continuity — the smooth-road test</summary>
+          <p>f is <strong>continuous</strong> at x=a (no jump, hole or break — drawable without lifting the pen) when all three hold:</p>
+          <pre>1. f(a) exists
+2. lim(x→a) f(x) exists
+3. lim(x→a) f(x) = f(a)</pre>
+          <pre>f(x)=x²+1 at x=2: f(2)=5 and lim=5 → continuous ✓</pre>
+        </details>
+        <details class="study-item">
+          <summary>11. Two kinds of discontinuity</summary>
+          <pre>jump:      f=1 (x<0), 5 (x≥0) → LHL=1, RHL=5 → break at 0
+removable (hole): f(x)=(x²−1)/(x−1) = x+1 for x≠1, but f(1) undefined
+                  limit = 2 exists, yet f(1) doesn't → not continuous</pre>
+        </details>
+        <details class="study-item">
+          <summary>12. Differentiable ⇒ continuous; &amp; the extreme-value theorem</summary>
+          <pre>Differentiable ⇒ Continuous   (but Continuous ⇏ Differentiable)</pre>
+          <p><code>f(x)=|x|</code> is continuous at 0 but has a sharp corner → not differentiable there.</p>
+          <p><strong>Extreme Value Theorem:</strong> a continuous function on a closed interval [a,b] always attains a global max and min — which is why we check stationary points <em>and</em> endpoints.</p>
+          <pre>GATE-style: f=x+1 (x<2), k (x=2), 3x−3 (x>2): LHL=3, RHL=3 → continuity needs k=3</pre>
+        </details>
+        <details class="study-item">
+          <summary>13. What univariate optimization is</summary>
           <p>Optimizing a function of <strong>one</strong> variable — find the x that minimizes (or maximizes) f(x).</p>
           <pre>min f(x),  x ∈ ℝ      (one knob to turn)</pre>
           <p>It's the simplest case and the foundation for the multivariate version.</p>
         </details>
         <details class="study-item">
-          <summary>2. Stationary points: f′(x) = 0</summary>
+          <summary>14. Stationary points: f′(x) = 0</summary>
           <p>At a smooth peak or valley the tangent is flat, so the <strong>necessary</strong> condition is:</p>
           <pre>f′(x*) = 0     (x* is a stationary / critical point)</pre>
           <p>This finds <em>candidates</em> — they could be a min, a max, or an inflection. The next test decides which.</p>
         </details>
         <details class="study-item">
-          <summary>3. Second-derivative test</summary>
+          <summary>15. Second-derivative test</summary>
           <pre>f′(x*) = 0  and  f″(x*) > 0  → local MINIMUM (curves up, ∪)
 f′(x*) = 0  and  f″(x*) < 0  → local MAXIMUM (curves down, ∩)
 f″(x*) = 0                   → test fails (inconclusive)</pre>
         </details>
         <details class="study-item">
-          <summary>4. Worked example</summary>
+          <summary>16. Worked example</summary>
           <pre>f(x) = x² − 4x + 5
 f′(x) = 2x − 4 = 0  → x* = 2
 f″(x) = 2 > 0       → local (and here global) minimum
@@ -76,7 +158,7 @@ f(2) = 4 − 8 + 5 = 1</pre>
           <p>So the minimum value is 1 at x = 2.</p>
         </details>
         <details class="study-item">
-          <summary>5. When f″ = 0 — the test is inconclusive</summary>
+          <summary>17. When f″ = 0 — the test is inconclusive</summary>
           <p>Then check the <strong>sign of f′ around</strong> the point (or higher derivatives):</p>
           <pre>f′ goes − → + across x*  → minimum
 f′ goes + → − across x*  → maximum
@@ -84,24 +166,24 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <pre>f(x)=x³ at x=0: f′=3x²=0, f″=0; f′ stays ≥0 → inflection, not an extremum</pre>
         </details>
         <details class="study-item">
-          <summary>6. Global optima &amp; closed intervals</summary>
+          <summary>18. Global optima &amp; closed intervals</summary>
           <p>On a closed interval [a, b], the global optimum is the best among:</p>
           <pre>interior stationary points (f′=0)  AND  the endpoints a, b</pre>
           <p>Endpoints can win even when the derivative isn't zero there — always check them.</p>
         </details>
         <details class="study-item">
-          <summary>7. Convex (unimodal) functions</summary>
+          <summary>19. Convex (unimodal) functions</summary>
           <p>If <code>f″(x) ≥ 0 everywhere</code>, f is <strong>convex</strong> — a single bowl. Then any stationary point is the <strong>global</strong> minimum (no other valleys to worry about).</p>
           <pre>x², eˣ, x² − 4x + 5 are convex → one global min</pre>
         </details>
         <details class="study-item">
-          <summary>8. Numerical method: Newton's method</summary>
+          <summary>20. Numerical method: Newton's method</summary>
           <p>When f′(x)=0 can't be solved by hand, iterate using both derivatives:</p>
           <pre>xₙ₊₁ = xₙ − f′(xₙ) / f″(xₙ)</pre>
           <p>Fast (quadratic) convergence near the optimum, but needs f″ and a good start.</p>
         </details>
         <details class="study-item">
-          <summary>9. Bracketing methods: bisection &amp; golden section</summary>
+          <summary>21. Bracketing methods: bisection &amp; golden section</summary>
           <ul class="styled">
             <li><strong>Bisection on f′</strong>: f′ changes sign across a min — halve the bracket repeatedly.</li>
             <li><strong>Golden-section search</strong>: for a <em>unimodal</em> f, shrink an interval [a,b] using golden-ratio probes — no derivatives needed.</li>
@@ -109,7 +191,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <p>These need the function to be unimodal on the bracket.</p>
         </details>
         <details class="study-item">
-          <summary>10. Where it's used</summary>
+          <summary>22. Where it's used</summary>
           <ul class="styled">
             <li>line search inside larger optimizers (pick the best step size)</li>
             <li>tuning a single hyperparameter</li>
@@ -117,7 +199,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>11. Common GATE traps</summary>
+          <summary>23. Common GATE traps</summary>
           <ul class="styled">
             <li>f′(x*)=0 guarantees a minimum? <strong>No</strong> — could be max or inflection; check f″.</li>
             <li>f″=0 means inflection? <strong>Not necessarily</strong> — the test is just inconclusive.</li>
@@ -126,7 +208,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>12. Practice &amp; memory box</summary>
+          <summary>24. Practice &amp; memory box</summary>
           <p class="lead">Q1. Extremum of f(x)=x²−6x+4?</p>
           <pre>f′=2x−6=0→x=3; f″=2>0→min; f(3)=−5</pre>
           <p class="lead">Q2. f(x)=−x²+8x. Max?</p>
