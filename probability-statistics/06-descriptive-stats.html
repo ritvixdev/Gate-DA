@@ -305,7 +305,17 @@ population: σ² = 8/3, σ ≈ 1.633 ;  sample: s² = 8/2 = 4, s = 2</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Shortcut &amp; frequency variance</summary>
+          <summary>31. Standard deviation = root-mean-square deviation</summary>
+          <p>The standard deviation's other name decodes its recipe — read it back to front:</p>
+          <pre>Deviation  : (x − mean)
+Square     : (x − mean)²
+Mean       : average of those squares  = variance
+Root       : √variance                 = SD</pre>
+          <p>So <code>SD = √[ mean of (x − mean)² ]</code> — the <strong>R</strong>oot of the <strong>M</strong>ean of the <strong>S</strong>quared deviations. It also makes clear why <strong>direct</strong> (deviations from the mean) and <strong>shortcut</strong> (<code>Σx²/n − mean²</code>) methods give the same variance — they're two routes to the same average squared deviation.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Shortcut &amp; frequency variance</summary>
           <pre>σ² = Σx²/N − (Σx/N)²        (mean of squares − square of mean)
 frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
           <pre>x:10,20,30  f:2,3,5 → mean 23, Σfx²=5900
@@ -313,14 +323,14 @@ frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
         </details>
 
         <details class="study-item">
-          <summary>32. Coefficient of variation (CV)</summary>
+          <summary>33. Coefficient of variation (CV)</summary>
           <pre>CV = (SD / Mean) × 100  %</pre>
           <p>A <strong>relative</strong> spread — it lets you compare datasets with different means/units. Lower CV = more consistent.</p>
           <pre>mean 50, SD 5 → CV = 10%</pre>
         </details>
 
         <details class="study-item">
-          <summary>33. Comparing distributions (SD vs CV)</summary>
+          <summary>34. Comparing distributions (SD vs CV)</summary>
           <pre>same means      → compare SD  (lower = more consistent)
 different means → compare CV  (lower = more consistent)</pre>
           <pre>Student A: mean 80, SD 8 → CV 10%
@@ -329,7 +339,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>34. Dispersion measures compared</summary>
+          <summary>35. Dispersion measures compared</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Measure</th><th>Uses</th><th>Outlier-sensitive?</th></tr>
             <tr><td>Range</td><td>max − min only</td><td>very high</td></tr>
@@ -341,7 +351,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>35. Common traps (dispersion)</summary>
+          <summary>36. Common traps (dispersion)</summary>
           <ul class="styled">
             <li>Same mean ⇒ same distribution? <strong>No</strong> — spread can differ.</li>
             <li>Range uses all values? <strong>No</strong> — only max and min.</li>
@@ -353,7 +363,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>36. Practice (dispersion)</summary>
+          <summary>37. Practice (dispersion)</summary>
           <p class="lead">Q1. Range of 5,8,12,20,25?</p>
           <pre>25 − 5 = 20</pre>
           <p class="lead">Q2. Population variance of 2,4,6?</p>
@@ -369,7 +379,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Cheatsheet</summary>
+          <summary>38. Cheatsheet</summary>
           <ul class="styled">
             <li>Mean <code>x̄=Σx/n</code>; frequency <code>Σfx/Σf</code>; grouped <code>Σfm/Σf</code>.</li>
             <li>Grouped median <code>L+[(N/2−cf)/f]h</code>; grouped mode <code>L+[(f₁−f₀)/(2f₁−f₀−f₂)]h</code>.</li>
@@ -384,7 +394,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Memory box &amp; mental model</summary>
+          <summary>39. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Mean = balance point; median = middle person in the queue; mode = most crowded value.</li>
             <li>GM = growth average; HM = speed/rate average; <strong>AM ≥ GM ≥ HM</strong>.</li>
