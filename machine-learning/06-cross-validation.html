@@ -49,8 +49,78 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— generalization, overfitting &amp; cross-validation from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Why split the data?</summary>
+          <p>If we judge a model on the same data it trained on, it can simply <strong>memorize</strong> and look perfect. So we split:</p>
+          <pre>training set → fit the model
+test set     → judge it on data it has never seen</pre>
+          <p>The test set is the honest exam; the training set is the homework.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Generalization — the real goal</summary>
+          <p><strong>Generalization</strong> = performing well on <em>new, unseen</em> data, not just the training data.</p>
+          <pre>seen 1000 house prices → should price a brand-new house well</pre>
+          <p>A good model learns the underlying pattern, not the specific rows.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Overfitting — memorizing noise</summary>
+          <p>The model fits the training data <em>too</em> closely, capturing noise as if it were signal:</p>
+          <pre>training accuracy HIGH · test accuracy LOW</pre>
+          <p>Like a student who memorized last year's exact questions but can't solve new ones. Causes: model too complex, data too small, noise high, trained too long.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. Underfitting — too simple</summary>
+          <p>The model is too weak to capture the pattern:</p>
+          <pre>training accuracy LOW · test accuracy LOW</pre>
+          <p>Like a student who never understood the topic. Fix: a richer model / more features.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. Good fit &amp; the bias–variance balance</summary>
+          <p>A good model sits between the two extremes — learns the signal, ignores the noise, and generalizes.</p>
+          <pre>underfit  → high bias  (too simple)
+overfit   → high variance (too sensitive to the training sample)
+good fit  → balanced bias &amp; variance</pre>
+          <p>Total error trades off: lowering bias often raises variance, and vice-versa.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. From one split to k-fold cross-validation</summary>
+          <p>A single train/test split is noisy — the score depends on <em>which</em> rows landed in the test set. <strong>k-fold CV</strong> fixes this:</p>
+          <pre>split data into k folds
+for each fold: train on the other k−1, validate on this fold
+average the k scores</pre>
+          <p>Every example gets one turn as validation, so the estimate is fairer and more stable.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. LOOCV &amp; choosing k</summary>
+          <pre>LOOCV = leave-one-out: k = n (each point is its own validation set)</pre>
+          <ul class="styled">
+            <li>large k → less bias, more computation (LOOCV is the extreme)</li>
+            <li>small k (e.g. 5 or 10) → cheaper, slightly more bias — the common choice</li>
+          </ul>
+          <p>CV is also how we tune <strong>hyperparameters</strong> (like k in kNN) without touching the final test set.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Real-world caveats — bias &amp; drift</summary>
+          <ul class="styled">
+            <li><strong>Biased data</strong> → biased model (e.g. historically unfair loan data).</li>
+            <li><strong>Distribution shift</strong> → data changes over time (fraud tactics, customer behavior), so accuracy drops and models need retraining.</li>
+          </ul>
+          <pre>garbage / biased data → garbage / biased model</pre>
+        </details>
+        <details class="study-item">
+          <summary>9. Traps, practice &amp; memory box</summary>
+          <ul class="styled">
+            <li>High training accuracy ⇒ good model? <strong>No</strong> — could be overfitting; check validation/test.</li>
+            <li>Tune hyperparameters on the test set? <strong>No</strong> — use CV / a validation set; keep the test set untouched.</li>
+            <li>Overfit = high bias? <strong>No</strong> — overfit = high <em>variance</em>; underfit = high bias.</li>
+          </ul>
+          <p class="lead">Q. Train acc 99%, test acc 70% — what's happening?</p>
+          <pre>Overfitting (memorized training data, poor generalization)</pre>
+          <p class="lead">Q. 10-fold CV on 200 rows — validation size per fold?</p>
+          <pre>200/10 = 20 rows validate, 180 train, repeated 10×</pre>
+          <pre>Memory: overfit = memorize (↑variance) · underfit = too simple (↑bias) · CV = fair averaged score</pre>
+        </details>
       </details>
     </section>
 

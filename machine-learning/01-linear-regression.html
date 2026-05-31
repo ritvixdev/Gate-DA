@@ -49,8 +49,131 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— supervised learning &amp; the ML workflow from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What supervised learning is</summary>
+          <p>The model learns from <strong>labeled data</strong> — examples where the answer is already given:</p>
+          <pre>study hours = 5  → marks = 75
+email text       → spam / not spam
+house = 1000 sqft → price = ₹50 lakh</pre>
+          <p>After seeing many such examples it learns the pattern, then predicts the answer for a <em>new</em> input. Linear regression (this topic) is the simplest supervised algorithm.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Labeled data = features (X) + target (Y)</summary>
+          <pre>X = inputs / features   (height, weight, age, pixels, text …)
+Y = output / label / target   (price, spam?, cat/dog …)</pre>
+          <p>Every training row carries both: the question (X) and its correct answer (Y). No labels ⇒ it isn't supervised learning.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Teacher–student mental model</summary>
+          <p>"Supervised" = there is a <strong>teacher</strong>. A teacher shows a child many labelled pictures (cat, dog, car); the child learns, then names a new picture correctly.</p>
+          <pre>training data = teacher's examples · labels = correct answers
+model = student · algorithm = the learning process · prediction = the child's answer</pre>
+        </details>
+        <details class="study-item">
+          <summary>4. The goal: learn a function f(X) ≈ Y</summary>
+          <pre>X  →  f (model)  →  Ŷ  (prediction)
+goal: f(X) ≈ Y  on new, unseen data</pre>
+          <pre>f(study hours = 5) → 75 marks</pre>
+          <p>Training picks the function that best reproduces the known answers <em>and</em> generalizes beyond them.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. The supervised-learning workflow</summary>
+          <pre>1. collect labeled data
+2. split into training + test sets
+3. choose an algorithm
+4. train the model
+5. evaluate on the test set
+6. predict on new data</pre>
+          <p>e.g. past house data → linear regression → price model → predict a new house. (Why the train/test split matters — generalization, overfitting — is covered in the Cross-Validation topic.)</p>
+        </details>
+        <details class="study-item">
+          <summary>6. Regression vs classification</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Type</th><th>Output</th><th>Examples</th></tr>
+            <tr><td>Regression</td><td>a number (continuous)</td><td>price, marks, temperature, rainfall mm</td></tr>
+            <tr><td>Classification</td><td>a category (discrete)</td><td>spam/not, cat/dog, pass/fail, rain/no-rain</td></tr>
+          </table></div>
+          <pre>Regression predicts a quantity · Classification predicts a class</pre>
+          <p>Linear regression is the canonical <em>regression</em> method; logistic regression (later topic) handles <em>classification</em>.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Error &amp; the loss function</summary>
+          <p>During training the model predicts, and we compare with the truth:</p>
+          <pre>actual = 80, predicted = 75 → error = 5</pre>
+          <p>A <strong>loss function</strong> scores the total error; training tries to <strong>minimize</strong> it.</p>
+          <pre>regression loss: MSE, MAE   ·   classification loss: cross-entropy</pre>
+        </details>
+        <details class="study-item">
+          <summary>8. Training = optimization</summary>
+          <p>Training is an optimization problem: find the parameters that minimize the loss.</p>
+          <pre>linear model: ŷ = w·x + b      (w = weight/slope, b = bias/intercept)
+methods: least squares (closed form) · gradient descent (iterative)</pre>
+          <p>So "learning" literally means searching parameter space for the lowest-loss model.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. The algorithm toolbox</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Regression</th><th>Classification</th></tr>
+            <tr><td>Linear / Ridge / Lasso</td><td>Logistic regression</td></tr>
+            <tr><td>Decision-tree / RF regressor</td><td>Decision tree / Random forest</td></tr>
+            <tr><td>kNN / NN regressor</td><td>Naive Bayes, SVM, kNN, Neural net</td></tr>
+          </table></div>
+          <p>Many algorithms (kNN, trees, neural nets) can do <em>either</em> task depending on the output.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Why machine learning at all?</summary>
+          <p>Use ML when rules are <strong>hard to hand-write but data is plentiful</strong>. You can't easily code "if ears triangular and whiskers… then cat", but a model can learn it from thousands of labelled images.</p>
+          <pre>complex pattern + lots of labelled data → let the model learn the rule</pre>
+        </details>
+        <details class="study-item">
+          <summary>11. Connections — linear algebra &amp; probability</summary>
+          <p>Data is stored as matrices/vectors: <code>X</code> = feature matrix (rows = examples, columns = features), <code>y</code> = target vector. So least squares, projections and matrix multiply all reappear here.</p>
+          <p>Classifiers often output <strong>probabilities</strong>: <code>P(spam | email) = 0.92</code> — logistic regression, Naive Bayes and neural nets all do this.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Applications</summary>
+          <ul class="styled">
+            <li>spam &amp; fraud detection, credit scoring, loan approval</li>
+            <li>medical diagnosis, insurance premium prediction, churn prediction</li>
+            <li>house-price prediction, weather forecasting, object recognition</li>
+            <li>speech recognition, sentiment analysis, recommendations</li>
+          </ul>
+          <p>Theme: wherever labelled historical data exists, supervised learning applies.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Supervised learning needs no labels? <strong>No</strong> — labels are required.</li>
+            <li>Classification predicts numbers? <strong>No</strong> — it predicts categories; regression predicts numbers.</li>
+            <li>High training accuracy = good model? <strong>No</strong> — could be overfitting; check test performance.</li>
+            <li>Test data is used to train? <strong>No</strong> — train on the training set, evaluate on the test set.</li>
+            <li>More complex model is always better? <strong>No</strong> — it may overfit.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>14. Practice questions</summary>
+          <p class="lead">Q1. Email + spam/not-spam label — supervised? task type?</p>
+          <pre>Yes (labels given); classification</pre>
+          <p class="lead">Q2. Predict house price (₹)?</p>
+          <pre>Regression (numeric output)</pre>
+          <p class="lead">Q3. Predict rain / no-rain?</p>
+          <pre>Classification</pre>
+          <p class="lead">Q4. Predict rainfall in mm?</p>
+          <pre>Regression</pre>
+          <p class="lead">Q5. Goal of supervised learning?</p>
+          <pre>Learn a mapping f: X → Y from labelled examples that generalizes to new data</pre>
+        </details>
+        <details class="study-item">
+          <summary>15. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Supervised learning = learning from labelled examples (X → Y).</li>
+            <li>Goal: learn <code>f(X) ≈ Y</code> that generalizes to unseen data.</li>
+            <li>Regression → number; classification → category.</li>
+            <li>Training = minimize a loss (optimization); evaluate on a held-out test set.</li>
+          </ul>
+          <pre>Learning with an answer key: question + answer → student learns → answers new questions.</pre>
+        </details>
       </details>
     </section>
 
