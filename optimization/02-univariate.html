@@ -224,13 +224,20 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <pre>x², eˣ, x² − 4x + 5 are convex → one global min</pre>
         </details>
         <details class="study-item">
-          <summary>26. Numerical method: Newton's method</summary>
+          <summary>26. Concave functions (the mirror of convex)</summary>
+          <p><strong>Concave</strong> is convex flipped upside-down — a single dome ∩. The chord between any two points lies <em>below</em> the curve.</p>
+          <pre>f″(x) ≤ 0 everywhere → concave ;  f″(x) < 0 → strictly concave
+f(x) = −x² : f″ = −2 < 0 → concave (clean hill)</pre>
+          <p>The key payoff mirrors convexity: for a concave function any <strong>local maximum is the global maximum</strong>. (A function that is both convex and concave is a straight line.)</p>
+        </details>
+        <details class="study-item">
+          <summary>27. Numerical method: Newton's method</summary>
           <p>When f′(x)=0 can't be solved by hand, iterate using both derivatives:</p>
           <pre>xₙ₊₁ = xₙ − f′(xₙ) / f″(xₙ)</pre>
           <p>Fast (quadratic) convergence near the optimum, but needs f″ and a good start.</p>
         </details>
         <details class="study-item">
-          <summary>27. Bracketing methods: bisection &amp; golden section</summary>
+          <summary>28. Bracketing methods: bisection &amp; golden section</summary>
           <ul class="styled">
             <li><strong>Bisection on f′</strong>: f′ changes sign across a min — halve the bracket repeatedly.</li>
             <li><strong>Golden-section search</strong>: for a <em>unimodal</em> f, shrink an interval [a,b] using golden-ratio probes — no derivatives needed.</li>
@@ -238,7 +245,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <p>These need the function to be unimodal on the bracket.</p>
         </details>
         <details class="study-item">
-          <summary>28. Where it's used</summary>
+          <summary>29. Where it's used</summary>
           <ul class="styled">
             <li>line search inside larger optimizers (pick the best step size)</li>
             <li>tuning a single hyperparameter</li>
@@ -246,7 +253,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>29. Common GATE traps</summary>
+          <summary>30. Common GATE traps</summary>
           <ul class="styled">
             <li>f′(x*)=0 guarantees a minimum? <strong>No</strong> — could be max or inflection; check f″.</li>
             <li>f″=0 means inflection? <strong>Not necessarily</strong> — the test is just inconclusive.</li>
@@ -255,7 +262,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>30. Practice &amp; memory box</summary>
+          <summary>31. Practice &amp; memory box</summary>
           <p class="lead">Q1. Extremum of f(x)=x²−6x+4?</p>
           <pre>f′=2x−6=0→x=3; f″=2>0→min; f(3)=−5</pre>
           <p class="lead">Q2. f(x)=−x²+8x. Max?</p>
@@ -325,6 +332,7 @@ check endpoints on [a,b] · convex (f″≥0) ⇒ global min · Newton: x−f′
         <li>Second-derivative test: $f''\gt0$ → min, $f''\lt0$ → max.</li>
         <li>For a quadratic $ax^2+bx+c$: vertex at $x=-b/(2a)$; min if $a\gt0$, max if $a\lt0$.</li>
         <li>Convex (e.g. upward parabola) ⇒ the single stationary point is the global min.</li>
+        <li>Concave ($f''\le0$, e.g. downward parabola) ⇒ local max = global max; convex ($f''\ge0$) ⇒ local min = global min.</li>
         <li>Don't forget endpoints when the domain is a closed interval.</li>
       </ul>
     </div>
