@@ -362,13 +362,22 @@ for continuous X,  P(X = 2) = 0</pre>
       <tr><td>$\binom{n}{k}$</td><td>"n choose k"</td><td>number of ways to pick $k$ from $n$</td></tr>
       <tr><td>$\lambda$</td><td>"lambda"</td><td>rate (Poisson / Exponential)</td></tr>
       <tr><td>$\mu,\ \sigma$</td><td>"mu, sigma"</td><td>mean, standard deviation</td></tr>
+      <tr><td>$\sum p(x)$</td><td>"sum of"</td><td>add PMF over all values (discrete total)</td></tr>
+      <tr><td>$\int f(x)\,dx$</td><td>"integral of"</td><td>area under PDF (continuous total / probability)</td></tr>
+      <tr><td>$P(X\le x)$</td><td>"X at most x"</td><td>cumulative probability — the CDF</td></tr>
     </table></div>
   </section>
 
 
 
   <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">6</span> Key distributions (must-know)</div>
+    <div class="sec-head"><span class="sec-num">6</span> Main formulas &amp; key distributions</div>
+    <div class="formula">
+      <p><strong>PMF</strong> (discrete): $p(x)=P(X=x)$, &nbsp; $p(x)\ge 0$, &nbsp; $\sum_x p(x)=1$.</p>
+      <p><strong>PDF</strong> (continuous): $f(x)\ge 0$, &nbsp; $\int_{-\infty}^{\infty} f(x)\,dx=1$, &nbsp; $P(a\le X\le b)=\int_a^b f(x)\,dx$.</p>
+      <p><strong>CDF</strong>: $F(x)=P(X\le x)$; &nbsp; discrete $F(x)=\sum_{t\le x}p(t)$, &nbsp; continuous $F(x)=\int_{-\infty}^{x} f(t)\,dt$ and $f(x)=F'(x)$.</p>
+      <p><strong>Interval from CDF</strong>: continuous $P(a\le X\le b)=F(b)-F(a)$; &nbsp; discrete integer $P(a\le X\le b)=F(b)-F(a-1)$.</p>
+    </div>
     <div class="tbl-wrap"><table>
       <tr><th>Distribution</th><th>PMF / PDF</th><th>Mean</th><th>Variance</th></tr>
       <tr><td>Bernoulli(p)</td><td>$p^x(1-p)^{1-x}$</td><td>$p$</td><td>$p(1-p)$</td></tr>
@@ -409,6 +418,10 @@ for continuous X,  P(X = 2) = 0</pre>
         <li>Normal: ~68% within $\mu\pm\sigma$, ~95% within $\mu\pm2\sigma$, ~99.7% within $\mu\pm3\sigma$.</li>
         <li>Standardize Normal with $Z=(X-\mu)/\sigma$ to use tables.</li>
         <li>For continuous $X$, $P(X=x)=0$; height of a PDF can exceed 1 (it's a density, not a probability).</li>
+        <li>Find an unknown constant by forcing total $=1$: set $\sum p(x)=1$ (discrete) or $\int f(x)\,dx=1$ (continuous).</li>
+        <li>Recover the PMF from a CDF: $P(X=k)=F(k)-F(k-1)$ — the jump size of the staircase.</li>
+        <li>Interval probability: continuous $F(b)-F(a)$; <strong>integer discrete</strong> $F(b)-F(a-1)$ (keep the lower endpoint).</li>
+        <li>CDF is always non-decreasing and runs $0\to1$; for continuous $X$, $\le$ and $<$ give the same probability.</li>
       </ul>
     </div>
   </section>
@@ -420,6 +433,9 @@ for continuous X,  P(X = 2) = 0</pre>
       <p><span class="wrong">Trap:</span> "$f(x)$ is a probability." <span class="right">Reality:</span> a PDF value is a density; probability is the <em>area</em> under it.</p>
       <p><span class="wrong">Trap:</span> "Binomial variance is $np$." <span class="right">Reality:</span> $np(1-p)$; the mean is $np$.</p>
       <p><span class="wrong">Trap:</span> "Poisson mean and variance differ." <span class="right">Reality:</span> both equal $\lambda$.</p>
+      <p><span class="wrong">Trap:</span> "$P(X=k)=F(k)$ for discrete $X$." <span class="right">Reality:</span> $P(X=k)=F(k)-F(k-1)$.</p>
+      <p><span class="wrong">Trap:</span> "The CDF can decrease." <span class="right">Reality:</span> it is non-decreasing — it only rises or stays flat.</p>
+      <p><span class="wrong">Trap:</span> "Discrete $P(a\le X\le b)=F(b)-F(a)$." <span class="right">Reality:</span> for integers it is $F(b)-F(a-1)$, else you drop the value $a$.</p>
     </div>
   </section>
 
@@ -449,6 +465,21 @@ for continuous X,  P(X = 2) = 0</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">About 95%.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q4. $p(x)=kx$ for $x=1,2,3,4$. Find $k$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$k(1{+}2{+}3{+}4)=1\Rightarrow 10k=1\Rightarrow k=1/10$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. $f(x)=1/5$ on $[0,5]$. Find $P(1\le X\le 3)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Area $=(3-1)\times\tfrac15=\tfrac25$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q6. Fair die, $F$ its CDF. Find $P(3\le X\le 5)$ using the CDF.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$F(5)-F(2)=\tfrac56-\tfrac26=\tfrac12$ (integer rule uses $a-1=2$).</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -472,7 +503,9 @@ for continuous X,  P(X = 2) = 0</pre>
       <div class="callout-label">🧠 Remember</div>
       <ul>
         <li>PMF: bars, $\sum=1$. PDF: curve, area $=1$; height isn't probability.</li>
-        <li>CDF $F(x)=P(X\le x)$, rises 0→1.</li>
+        <li>CDF $F(x)=P(X\le x)$, non-decreasing, rises 0→1; PMF $=$ jumps: $P(X{=}k)=F(k)-F(k{-}1)$.</li>
+        <li>Interval: continuous $F(b)-F(a)$; integer discrete $F(b)-F(a-1)$.</li>
+        <li>Find unknown constant by setting the total to 1 ($\sum p=1$ or $\int f=1$).</li>
         <li>Binomial: $np$, $np(1-p)$. Poisson: $\lambda,\lambda$. Normal: $\mu,\sigma^2$.</li>
         <li>Normal 68–95–99.7 rule; standardize with $Z=(X-\mu)/\sigma$.</li>
       </ul>
