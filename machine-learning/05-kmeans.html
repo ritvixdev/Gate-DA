@@ -315,19 +315,10 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
       <div class="ans">No — only a local optimum; depends on initialization.</div>
     </div>
 
-    <h3>Quick MCQ</h3>
-    <div class="quiz-card">
-      <div class="quiz-q">Each k-Means iteration consists of…</div>
-      <div class="quiz-options">
-        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> one assignment step</button>
-        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> one update step</button>
-        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> assign then update</button>
-        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a gradient step</button>
-      </div>
-      <div class="quiz-feedback" data-fb="A">Assignment alone doesn't move the centers.</div>
-      <div class="quiz-feedback" data-fb="B">Updating alone needs assignments first.</div>
-      <div class="quiz-feedback" data-fb="C">✅ Correct — assign points to nearest centroid, then move centroids to cluster means.</div>
-      <div class="quiz-feedback" data-fb="D">k-Means uses assign/update, not gradients.</div>
+    <div class="practice">
+      <p class="pq">Q4. Each k-Means iteration consists of… &nbsp; <strong>(A)</strong> one assignment step &nbsp; <strong>(B)</strong> one update step &nbsp; <strong>(C)</strong> assign then update &nbsp; <strong>(D)</strong> a gradient step</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><strong>(C)</strong> assign then update — assign points to nearest centroid, then move centroids to cluster means.</div>
     </div>
   </section>
 
