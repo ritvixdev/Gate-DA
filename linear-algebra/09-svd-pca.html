@@ -326,7 +326,14 @@ vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>36. Common GATE traps</summary>
+          <summary>36. Dimensionality reduction — the landscape</summary>
+          <p>Too many features cause the <strong>curse of dimensionality</strong>: data gets sparse, distances lose meaning, models overfit, and plots are impossible beyond 3-D. <strong>Dimensionality reduction</strong> keeps the useful information in fewer features.</p>
+          <pre>feature selection  = keep a subset of original features
+feature extraction = build new combined features (PCA, autoencoders); LDA uses labels</pre>
+          <p>Benefits: faster training, less storage, easier visualization, reduced overfitting. (PCA — the main extraction method — is detailed in the cards above.)</p>
+        </details>
+        <details class="study-item">
+          <summary>37. Common GATE traps</summary>
           <ul class="styled">
             <li>SVD works only for square matrices? <strong>No</strong> — every m×n.</li>
             <li>Singular values can be negative? <strong>No</strong> — always ≥ 0.</li>
@@ -338,7 +345,7 @@ vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Practice problems</summary>
+          <summary>38. Practice problems</summary>
           <p class="lead">Q1. Eigenvalues of AᵀA = 25, 9, 0 → singular values &amp; rank?</p>
           <pre>σ = 5, 3, 0 ;  rank 2</pre>
           <p class="lead">Q2. σ = 10, 4, 0, 0 → rank?</p>
@@ -356,7 +363,7 @@ vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Cheatsheet</summary>
+          <summary>39. Cheatsheet</summary>
           <ul class="styled">
             <li><code>A = UΣVᵀ</code> for ANY matrix; U, V orthogonal; <code>σ ≥ 0</code> sorted descending.</li>
             <li>V = eigenvectors of AᵀA; U = of AAᵀ; <code>σ = √λ(AᵀA)</code>; rank = #non-zero σ.</li>
@@ -367,7 +374,7 @@ vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>39. Best mental model</summary>
+          <summary>40. Best mental model</summary>
           <p><strong>SVD = a universal matrix X-ray.</strong> It reveals which input directions matter, how strongly they stretch, which output directions they become, and which are destroyed.</p>
           <p><strong>PCA = SVD applied to data</strong> to find the most important directions: which feature-combination has maximum spread, the next, and how few directions still preserve most information.</p>
           <pre>Eigen/eigenvectors → square matrices

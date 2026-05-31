@@ -66,8 +66,145 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— unsupervised learning, k-means &amp; hierarchical clustering from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Unsupervised learning — no labels</summary>
+          <p>Unlike supervised learning, there is <strong>no target Y</strong> — only inputs X. The model finds structure on its own.</p>
+          <pre>supervised:   X + labels → learn f(X)≈Y
+unsupervised: X only      → discover patterns/groups</pre>
+        </details>
+        <details class="study-item">
+          <summary>2. What unsupervised learning does</summary>
+          <ul class="styled">
+            <li><strong>Clustering</strong> — group similar points (k-means, hierarchical)</li>
+            <li><strong>Association rules</strong> — "people who buy X also buy Y"</li>
+            <li><strong>Collaborative filtering</strong> — recommendations</li>
+            <li><strong>Dimensionality reduction</strong> — compress features (PCA)</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>3. Clustering — grouping similar points</summary>
+          <p><strong>Clustering</strong> puts similar points together and separates dissimilar ones — with no labels to guide it.</p>
+          <pre>good clusters: tight inside, far apart from each other</pre>
+          <p>Uses: customer segmentation, image/document grouping, anomaly detection.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. K-means — the idea</summary>
+          <p>Partition data into <strong>K clusters</strong>, each represented by a <strong>centroid</strong> (its mean point). A point belongs to the nearest centroid.</p>
+          <pre>K = number of clusters (you choose it)
+centroid = average of the points currently in that cluster</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. WCSS / inertia — the objective</summary>
+          <p>K-means minimizes the <strong>within-cluster sum of squares</strong> (also called inertia):</p>
+          <pre>WCSS = Σ_clusters Σ_points ‖ point − centroid ‖²</pre>
+          <p>Low WCSS = tight clusters. Adding more clusters always lowers WCSS (that's why we need the elbow method, below).</p>
+        </details>
+        <details class="study-item">
+          <summary>6. The k-means algorithm (assign ↔ update)</summary>
+          <pre>1. pick K; initialise K centroids
+2. ASSIGN: put each point in its nearest centroid's cluster
+3. UPDATE: move each centroid to the mean of its points
+4. repeat 2–3 until centroids stop moving (converged)</pre>
+          <p>Each round can only lower WCSS, so it converges — though possibly to a local optimum.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Choosing K — the elbow method</summary>
+          <p>Plot WCSS vs K. It always falls, but the drop suddenly flattens — the <strong>elbow</strong> marks a good K.</p>
+          <pre>K:    1    2    3    4    5
+WCSS: 900  400  170  150  140   → elbow at K=3</pre>
+          <p>Before the elbow each extra cluster helps a lot; after it, barely.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Feature scaling matters</summary>
+          <p>K-means uses distance, so a large-range feature dominates — <strong>scale features first</strong> (standardize / min-max).</p>
+          <pre>income 0–100000 vs age 0–100 → income hijacks the clustering unless scaled</pre>
+        </details>
+        <details class="study-item">
+          <summary>9. Interpreting clusters (worked intuition)</summary>
+          <p>After clustering students on performance, you read each cluster's centroid to <em>name</em> it:</p>
+          <pre>high marks + high effort      → "high achievers"
+high effort + low marks       → "remedial"
+low effort + decent marks     → "careless" / "conservative"</pre>
+          <p>Cluster numbers are arbitrary — you relabel them by what the centroid means.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. K-means limitations</summary>
+          <ul class="styled">
+            <li>must choose K in advance</li>
+            <li>sensitive to initial centroids (run several times / k-means++)</li>
+            <li>sensitive to scaling &amp; outliers</li>
+            <li>assumes roughly round, similar-size clusters</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>11. Hierarchical clustering — two directions</summary>
+          <p>Builds a <strong>tree</strong> of clusters; no need to fix K upfront.</p>
+          <pre>Agglomerative (bottom-up): start with each point alone, merge the closest pairs
+Divisive (top-down):       start with one big cluster, split repeatedly</pre>
+          <p>Agglomerative is the common one.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Dendrogram — the cluster tree</summary>
+          <p>A <strong>dendrogram</strong> draws the merge history; the height of a join = distance at which clusters merged.</p>
+          <pre>cut the tree at a chosen height → that many clusters</pre>
+          <p>So you can pick the number of clusters <em>after</em> seeing the structure.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Linkage — how to measure cluster distance</summary>
+          <pre>single linkage   = distance between the two closest points (can chain)
+complete linkage = distance between the two farthest points (compact clusters)
+average linkage  = average pairwise distance</pre>
+          <p>Linkage choice changes the shape of the clusters formed.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Distance metrics</summary>
+          <pre>Euclidean   = √Σ(aᵢ−bᵢ)²        straight-line distance
+Manhattan   = Σ|aᵢ−bᵢ|           grid / city-block distance
+Cosine      = 1 − cosθ            angle between vectors (good for text)</pre>
+          <p>Cosine ignores magnitude — ideal when only direction matters (documents).</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Hierarchical vs k-means</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>k-means</th><th>Hierarchical</th></tr>
+            <tr><td>Choose K first?</td><td>yes</td><td>no (cut the tree later)</td></tr>
+            <tr><td>Output</td><td>flat clusters</td><td>a dendrogram</td></tr>
+            <tr><td>Speed</td><td>fast (large data)</td><td>slower (≈ O(n²))</td></tr>
+          </table></div>
+          <p>Applications: market segmentation, document/image clustering, gene-expression, anomaly detection.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Common GATE traps</summary>
+          <ul class="styled">
+            <li>k-means needs labels? <strong>No</strong> — it's unsupervised.</li>
+            <li>More clusters = better (lower WCSS)? <strong>Misleading</strong> — WCSS always drops; use the elbow.</li>
+            <li>Skip feature scaling? <strong>No</strong> — distance is scale-sensitive.</li>
+            <li>Hierarchical needs K upfront? <strong>No</strong> — cut the dendrogram afterwards.</li>
+            <li>k-means always finds the global best? <strong>No</strong> — can land in a local optimum (depends on init).</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>17. Practice problems</summary>
+          <p class="lead">Q1. Supervised or unsupervised: group customers with no labels?</p>
+          <pre>unsupervised (clustering)</pre>
+          <p class="lead">Q2. WCSS 900,400,170,150,140 for K=1..5 — best K?</p>
+          <pre>K=3 (elbow — biggest bend)</pre>
+          <p class="lead">Q3. A new centroid is computed how?</p>
+          <pre>the mean of all points currently assigned to that cluster</pre>
+          <p class="lead">Q4. Which clustering gives a dendrogram?</p>
+          <pre>hierarchical</pre>
+        </details>
+        <details class="study-item">
+          <summary>18. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>Unsupervised = no labels; clustering groups similar points.</li>
+            <li>k-means: assign to nearest centroid ↔ recompute centroid; minimizes WCSS; pick K via elbow; scale features.</li>
+            <li>Hierarchical: agglomerative/divisive → dendrogram; single/complete/average linkage.</li>
+            <li>Distances: Euclidean, Manhattan, cosine.</li>
+          </ul>
+          <pre>k-means = K moving magnets pulling nearby points; centroids settle where WCSS is lowest.</pre>
+        </details>
       </details>
     </section>
 

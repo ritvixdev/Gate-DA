@@ -66,7 +66,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— least squares, normal equations, projection &amp; ridge regularization</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— least squares, normal equations, projection, ridge &amp; lasso</span></summary>
         <details class="study-item">
           <summary>1. What least squares does</summary>
           <p>Least squares is the <strong>method that picks the regression line/plane</strong> — it chooses the parameters that make the squared residuals as small as possible.</p>
@@ -170,7 +170,49 @@ Ridge: β̂ = (XᵀX + λI)⁻¹ Xᵀy</pre>
           <p>Use it with many correlated features (house prices, medical measurements, ad-spend channels, pixel features).</p>
         </details>
         <details class="study-item">
-          <summary>16. Traps, practice &amp; memory box</summary>
+          <summary>16. The regularization landscape</summary>
+          <p><strong>Regularization</strong> = adding a penalty/constraint so the model stays simple and generalizes. The main flavours:</p>
+          <ul class="styled">
+            <li><strong>L2 / Ridge</strong> — penalize Σβ² (shrinks coefficients)</li>
+            <li><strong>L1 / Lasso</strong> — penalize Σ|β| (shrinks <em>and</em> zeros coefficients)</li>
+            <li><strong>Elastic Net</strong> — mix of L1 + L2</li>
+            <li>For neural nets: <strong>dropout, early stopping, data augmentation, batch normalization</strong></li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>17. Lasso regression (L1)</summary>
+          <p>Lasso adds an <strong>L1</strong> penalty — the sum of <em>absolute</em> coefficients:</p>
+          <pre>minimize  RSS + λ Σ |βⱼ|</pre>
+          <p>The absolute-value penalty is what lets coefficients hit <strong>exactly zero</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Lasso does feature selection</summary>
+          <p>Because L1 can drive weights to <strong>0</strong>, lasso effectively <strong>drops</strong> useless features — an automatic feature selector giving a sparse, interpretable model.</p>
+          <pre>ridge: β = 12, −9, 5   (all kept, just smaller)
+lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
+        </details>
+        <details class="study-item">
+          <summary>19. Ridge vs Lasso</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Ridge (L2)</th><th>Lasso (L1)</th></tr>
+            <tr><td>Penalty</td><td>Σβ²</td><td>Σ|β|</td></tr>
+            <tr><td>Coefficients</td><td>shrink toward 0</td><td>some become exactly 0</td></tr>
+            <tr><td>Feature selection</td><td>no</td><td>yes (sparse)</td></tr>
+            <tr><td>Correlated features</td><td>keeps &amp; shares</td><td>tends to pick one</td></tr>
+          </table></div>
+          <p><strong>Elastic Net</strong> blends both (<code>λ₁Σ|β| + λ₂Σβ²</code>) — sparsity plus stability with correlated features.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Choosing the penalty &amp; tuning λ</summary>
+          <ul class="styled">
+            <li>Want a simpler, interpretable model / feature selection → <strong>Lasso</strong>.</li>
+            <li>Many correlated features, want stability → <strong>Ridge</strong>.</li>
+            <li>Both → <strong>Elastic Net</strong>.</li>
+          </ul>
+          <p>Pick λ (a.k.a. α) by <strong>grid search with cross-validation</strong> — the value with the best validation score.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>Least squares minimizes raw errors? <strong>No</strong> — squared errors (raw ones cancel).</li>
             <li><code>(XᵀX)⁻¹</code> always exists? <strong>No</strong> — only with full-rank (independent) features.</li>

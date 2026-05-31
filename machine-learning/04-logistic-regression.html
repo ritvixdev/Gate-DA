@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss &amp; Naive Bayes from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss, Naive Bayes &amp; neural nets</span></summary>
         <details class="study-item">
           <summary>1. Classification — predicting a category</summary>
           <p>Classification is the supervised task where the target is a <strong>discrete class</strong>, not a number:</p>
@@ -244,7 +244,30 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>Gaussian = continuous · Multinomial = counts · Bernoulli = yes/no</pre>
         </details>
         <details class="study-item">
-          <summary>28. Common GATE traps</summary>
+          <summary>28. Feed-forward neural network — the idea</summary>
+          <p>A <strong>feed-forward neural network (FFNN)</strong> sends information one way — input → hidden layers → output — with <strong>no cycles or loops</strong>. Loosely inspired by neurons in the brain.</p>
+          <pre>input layer → hidden layer(s) → output layer   (information never flows back)</pre>
+        </details>
+        <details class="study-item">
+          <summary>29. A neuron = a tiny logistic-style unit</summary>
+          <p>Each neuron does the same two steps as logistic regression: a weighted sum, then an activation.</p>
+          <pre>z = w·x + b ;  a = activation(z)   (e.g. sigmoid / ReLU)</pre>
+          <p>So a network is just <strong>many logistic-like units stacked in layers</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>30. Hidden layers learn patterns</summary>
+          <p>Hidden layers build features of increasing abstraction. Classifying a pizza image:</p>
+          <pre>layer 1: edges → layer 2: shapes (circle, toppings) → output: pizza? yes/no</pre>
+          <p>Stacking layers lets the network learn complex, non-linear patterns a single logistic unit can't.</p>
+        </details>
+        <details class="study-item">
+          <summary>31. FFNN — when &amp; why</summary>
+          <p>Output neurons give the final prediction: one sigmoid for binary, a softmax over several for multi-class, or a linear unit for regression.</p>
+          <pre>binary → 1 sigmoid · multi-class → softmax · regression → linear output</pre>
+          <p>Use FFNNs when relationships are complex and there is plenty of data; they generalize logistic regression.</p>
+        </details>
+        <details class="study-item">
+          <summary>32. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -254,7 +277,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           </ul>
         </details>
         <details class="study-item">
-          <summary>29. Practice questions</summary>
+          <summary>33. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -267,7 +290,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>30. Memory box &amp; mental model</summary>
+          <summary>34. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>
