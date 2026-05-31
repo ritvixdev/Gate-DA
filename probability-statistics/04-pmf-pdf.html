@@ -31,8 +31,13 @@
       <div class="callout-label">🎮 Imagine it</div>
       <p><strong>PMF</strong> = a bar chart: each bar's height is the probability of that exact value (bars sum to 1).
         <strong>PDF</strong> = a smooth curve: probability is the <em>area</em> under it (total area = 1); the height alone
-        is <em>not</em> a probability. Play below — switch between a Binomial PMF and a Normal PDF.</p>
+        is <em>not</em> a probability. <strong>CDF</strong> = a <em>progress bar</em>: how much probability has piled up from the left
+        up to $x$ — it only rises, from 0 to 1. Play below — switch between a Binomial PMF and a Normal PDF.</p>
     </div>
+    <p class="lead">One-line mental model</p>
+    <pre class="ascii">PMF  →  coins placed on exact points   (discrete)
+PDF  →  paint spread along a line       (continuous)
+CDF  →  total coin/paint collected from the far left up to x</pre>
     <p>Move the sliders and watch the shape change: more trials and the Binomial looks bell-shaped (a hint of the CLT to come).</p>
   </section>
 
