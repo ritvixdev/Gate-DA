@@ -140,7 +140,20 @@ Mode = 20 + (12−8)/(24−8−6) × 10 = 20 + 4 = 24</pre>
         </details>
 
         <details class="study-item">
-          <summary>12. Mean vs median vs mode — when to use</summary>
+          <summary>12. Missing-frequency problems (GATE favourite)</summary>
+          <p>A grouped table hides one frequency and gives you a central measure. Plug the given value into <em>that</em> measure's formula and solve for the unknown.</p>
+          <ul class="styled">
+            <li>Mean given → use <code>x̄ = Σfm/Σf</code></li>
+            <li>Median given → use <code>Median = L + [(N/2 − F)/f]·h</code></li>
+            <li>Mode given → use <code>Mode = L + [(f₁ − f₀)/(2f₁ − f₀ − f₂)]·h</code></li>
+          </ul>
+          <pre>Steps:
+1. Identify the relevant class (median class / modal class).
+2. Substitute every known number into the formula.
+3. Solve the resulting linear equation for the missing frequency.</pre>
+        </details>
+        <details class="study-item">
+          <summary>13. Mean vs median vs mode — when to use</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Measure</th><th>Meaning</th><th>Best for</th></tr>
             <tr><td>Mean</td><td>average / balance</td><td>symmetric data</td></tr>
@@ -151,14 +164,14 @@ Mode = 20 + (12−8)/(24−8−6) × 10 = 20 + 4 = 24</pre>
         </details>
 
         <details class="study-item">
-          <summary>13. Empirical relation (moderately skewed)</summary>
+          <summary>14. Empirical relation (moderately skewed)</summary>
           <pre>Mode ≈ 3·Median − 2·Mean      ⇔   Mean − Mode ≈ 3(Mean − Median)</pre>
           <pre>Mean=20, Median=18 → Mode ≈ 3(18) − 2(20) = 14</pre>
           <p>Approximate — use it only when GATE asks for the empirical relation on a moderately skewed distribution.</p>
         </details>
 
         <details class="study-item">
-          <summary>14. Skewness — symmetric, positive, negative</summary>
+          <summary>15. Skewness — symmetric, positive, negative</summary>
           <pre>symmetric:      Mean = Median = Mode
 positive (right tail):  Mean > Median > Mode   (e.g. income)
 negative (left tail):   Mean < Median < Mode</pre>
@@ -166,21 +179,40 @@ negative (left tail):   Mean < Median < Mode</pre>
         </details>
 
         <details class="study-item">
-          <summary>15. Geometric mean (growth &amp; ratios)</summary>
+          <summary>16. Coefficient of skewness (a number, not just a direction)</summary>
+          <p>Card 14 told you the <em>direction</em>; Pearson's coefficient gives a <em>number</em>:</p>
+          <pre>Sk = (Mean − Mode) / SD        (if mode is unknown)  Sk = 3(Mean − Median) / SD</pre>
+          <ul class="styled">
+            <li><code>Sk = 0</code> → symmetric</li>
+            <li><code>Sk &gt; 0</code> → positively (right) skewed</li>
+            <li><code>Sk &lt; 0</code> → negatively (left) skewed</li>
+          </ul>
+          <pre>Mean=50, Median=40, SD=10 → Sk = 3(50−40)/10 = 3  → positively skewed</pre>
+          <p>Dividing by SD makes it <strong>unitless</strong>, so skew is comparable across datasets.</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Geometric mean (growth &amp; ratios)</summary>
           <pre>GM = (x₁·x₂·…·xₙ)^(1/n)        two values: GM = √(ab)</pre>
           <pre>GM of 2,8 = √16 = 4 ;  GM of 2,4,8 = 64^(1/3) = 4</pre>
           <p>Use the GM for things that <strong>multiply</strong>: growth rates, returns, compound interest, population growth, ratios.</p>
         </details>
 
         <details class="study-item">
-          <summary>16. Geometric mean for compound growth</summary>
+          <summary>18. Geometric mean for compound growth</summary>
           <pre>grows 10% then 20% → factors 1.10, 1.20
 GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
           <p>For compounding, use the GM — the arithmetic mean (15%) is wrong in general.</p>
         </details>
 
         <details class="study-item">
-          <summary>17. Harmonic mean (rates &amp; speeds)</summary>
+          <summary>19. Geometric mean via logarithms</summary>
+          <p>For many values the product overflows, so take logs and turn multiply into add:</p>
+          <pre>log(GM) = (Σ log x) / n        →   GM = antilog[(Σ log x)/n]
+frequency form:  log(GM) = (Σ f·log x) / Σf</pre>
+          <p>Positive values only — <code>log 0</code> and <code>log(negative)</code> are undefined, so the GM needs all <code>xᵢ &gt; 0</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Harmonic mean (rates &amp; speeds)</summary>
           <pre>HM = n / Σ(1/xᵢ)        two values: HM = 2ab/(a+b)</pre>
           <pre>equal distances at 40 and 60 km/h: avg speed = HM = 2·40·60/100 = 48 km/h
 (NOT 50 — time differs on each half)</pre>
@@ -188,13 +220,13 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. AM ≥ GM ≥ HM</summary>
+          <summary>21. AM ≥ GM ≥ HM</summary>
           <pre>for positive numbers:  AM ≥ GM ≥ HM   (equal only if all values are equal)</pre>
           <pre>2 and 8:  AM = 5 ≥ GM = 4 ≥ HM = 3.2</pre>
         </details>
 
         <details class="study-item">
-          <summary>19. Which mean to use</summary>
+          <summary>22. Which mean to use</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Mean</th><th>Use case</th></tr>
             <tr><td>Arithmetic</td><td>normal average (add ÷ count)</td></tr>
@@ -205,7 +237,7 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. Symbols</summary>
+          <summary>23. Symbols</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Symbol</th><th>Meaning</th></tr>
             <tr><td>x̄ , μ</td><td>sample mean, population mean</td></tr>
@@ -217,7 +249,7 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>21. Common GATE traps</summary>
+          <summary>24. Common GATE traps</summary>
           <ul class="styled">
             <li>Mean is always best? <strong>No</strong> — median is better with outliers/skew.</li>
             <li>Median without sorting? <strong>No</strong> — always sort first.</li>
@@ -230,7 +262,7 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>22. Practice problems</summary>
+          <summary>25. Practice problems</summary>
           <p class="lead">Q1. Mean of 4,6,8,10,12?</p>
           <pre>40/5 = 8</pre>
           <p class="lead">Q2. Median of 9,3,7,1,5?</p>
@@ -246,7 +278,7 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>23. Why dispersion exists</summary>
+          <summary>26. Why dispersion exists</summary>
           <p>Two datasets can share a mean yet be totally different.</p>
           <pre>A: 490, 500, 510   mean 500   (tight)
 B: 100, 500, 900   mean 500   (spread out)</pre>
@@ -254,14 +286,14 @@ B: 100, 500, 900   mean 500   (spread out)</pre>
         </details>
 
         <details class="study-item">
-          <summary>24. Game imagination — stability vs risk</summary>
+          <summary>27. Game imagination — stability vs risk</summary>
           <pre>Player A: 48, 50, 52   → stable / predictable (low dispersion)
 Player B: 10, 50, 90   → risky / inconsistent (high dispersion)</pre>
           <p>Mean = average power; dispersion = stability/risk.</p>
         </details>
 
         <details class="study-item">
-          <summary>25. Range (and its weakness)</summary>
+          <summary>28. Range (and its weakness)</summary>
           <pre>Range = Max − Min
 Coefficient of Range = (Max − Min)/(Max + Min)</pre>
           <pre>10,20,30,40,50 → 50−10 = 40</pre>
@@ -269,21 +301,21 @@ Coefficient of Range = (Max − Min)/(Max + Min)</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Quartiles &amp; the interquartile range</summary>
+          <summary>29. Quartiles &amp; the interquartile range</summary>
           <pre>Q1 = 25th percentile, Q2 = median, Q3 = 75th percentile
 IQR = Q3 − Q1   (spread of the middle 50%)</pre>
           <p>Because it ignores the extreme tails, the IQR is <strong>robust to outliers</strong> — unlike the range.</p>
         </details>
 
         <details class="study-item">
-          <summary>27. Quartile deviation</summary>
+          <summary>30. Quartile deviation</summary>
           <pre>Quartile Deviation = (Q3 − Q1)/2 = IQR/2
 Coefficient of QD = (Q3 − Q1)/(Q3 + Q1)</pre>
           <pre>10,20,30,40,50,60,70 → Q1=20, Q3=60 → QD = 40/2 = 20</pre>
         </details>
 
         <details class="study-item">
-          <summary>28. Mean (average) deviation</summary>
+          <summary>31. Mean (average) deviation</summary>
           <p>The average distance from a centre A (mean or median), using absolute values so deviations don't cancel:</p>
           <pre>MD = Σ|xᵢ − A| / n      (frequency: Σf|x − A| / Σf)</pre>
           <pre>2,4,6 (mean 4): (|−2|+0+|2|)/3 = 4/3 ≈ 1.33</pre>
@@ -291,21 +323,21 @@ Coefficient of QD = (Q3 − Q1)/(Q3 + Q1)</pre>
         </details>
 
         <details class="study-item">
-          <summary>29. Variance — population vs sample</summary>
+          <summary>32. Variance — population vs sample</summary>
           <pre>population:  σ² = Σ(xᵢ − μ)² / N
 sample:      s² = Σ(xᵢ − x̄)² / (n − 1)</pre>
           <p>We square the deviations so they don't cancel and large gaps count more. <span style="color:var(--coral-text)">Why n−1?</span> the sample mean is estimated from the data, costing one degree of freedom.</p>
         </details>
 
         <details class="study-item">
-          <summary>30. Standard deviation (data)</summary>
+          <summary>33. Standard deviation (data)</summary>
           <pre>σ = √σ²    (same units as the data; variance is units²)</pre>
           <pre>2,4,6 (mean 4): Σ(x−x̄)² = 4+0+4 = 8
 population: σ² = 8/3, σ ≈ 1.633 ;  sample: s² = 8/2 = 4, s = 2</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Standard deviation = root-mean-square deviation</summary>
+          <summary>34. Standard deviation = root-mean-square deviation</summary>
           <p>The standard deviation's other name decodes its recipe — read it back to front:</p>
           <pre>Deviation  : (x − mean)
 Square     : (x − mean)²
@@ -315,7 +347,7 @@ Root       : √variance                 = SD</pre>
         </details>
 
         <details class="study-item">
-          <summary>32. Shortcut &amp; frequency variance</summary>
+          <summary>35. Shortcut &amp; frequency variance</summary>
           <pre>σ² = Σx²/N − (Σx/N)²        (mean of squares − square of mean)
 frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
           <pre>x:10,20,30  f:2,3,5 → mean 23, Σfx²=5900
@@ -323,14 +355,14 @@ frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
         </details>
 
         <details class="study-item">
-          <summary>33. Coefficient of variation (CV)</summary>
+          <summary>36. Coefficient of variation (CV)</summary>
           <pre>CV = (SD / Mean) × 100  %</pre>
           <p>A <strong>relative</strong> spread — it lets you compare datasets with different means/units. Lower CV = more consistent.</p>
           <pre>mean 50, SD 5 → CV = 10%</pre>
         </details>
 
         <details class="study-item">
-          <summary>34. Comparing distributions (SD vs CV)</summary>
+          <summary>37. Comparing distributions (SD vs CV)</summary>
           <pre>same means      → compare SD  (lower = more consistent)
 different means → compare CV  (lower = more consistent)</pre>
           <pre>Student A: mean 80, SD 8 → CV 10%
@@ -339,7 +371,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>35. Dispersion measures compared</summary>
+          <summary>38. Dispersion measures compared</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Measure</th><th>Uses</th><th>Outlier-sensitive?</th></tr>
             <tr><td>Range</td><td>max − min only</td><td>very high</td></tr>
@@ -351,7 +383,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>36. Common traps (dispersion)</summary>
+          <summary>39. Common traps (dispersion)</summary>
           <ul class="styled">
             <li>Same mean ⇒ same distribution? <strong>No</strong> — spread can differ.</li>
             <li>Range uses all values? <strong>No</strong> — only max and min.</li>
@@ -363,7 +395,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Practice (dispersion)</summary>
+          <summary>40. Practice (dispersion)</summary>
           <p class="lead">Q1. Range of 5,8,12,20,25?</p>
           <pre>25 − 5 = 20</pre>
           <p class="lead">Q2. Population variance of 2,4,6?</p>
@@ -379,7 +411,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>38. Cheatsheet</summary>
+          <summary>41. Cheatsheet</summary>
           <ul class="styled">
             <li>Mean <code>x̄=Σx/n</code>; frequency <code>Σfx/Σf</code>; grouped <code>Σfm/Σf</code>.</li>
             <li>Grouped median <code>L+[(N/2−cf)/f]h</code>; grouped mode <code>L+[(f₁−f₀)/(2f₁−f₀−f₂)]h</code>.</li>
@@ -394,7 +426,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>39. Memory box &amp; mental model</summary>
+          <summary>42. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Mean = balance point; median = middle person in the queue; mode = most crowded value.</li>
             <li>GM = growth average; HM = speed/rate average; <strong>AM ≥ GM ≥ HM</strong>.</li>
@@ -431,6 +463,9 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
     <p><strong>Other measures of spread:</strong></p>
     <div class="formula">$$ R=\max-\min \qquad \text{MAD}=\frac1n\sum|x_i-\bar{x}| \qquad \text{CV}=\frac{\sigma}{\mu}\times100\% $$</div>
     <p><strong>Empirical relation (moderately skewed):</strong> $\text{Mean}-\text{Mode}\approx 3(\text{Mean}-\text{Median})$.</p>
+    <p><strong>Pearson's coefficient of skewness</strong> (a unitless number):</p>
+    <div class="formula">$$ \text{Sk}=\frac{\text{Mean}-\text{Mode}}{\text{SD}} \qquad\text{or}\qquad \text{Sk}=\frac{3(\text{Mean}-\text{Median})}{\text{SD}} $$</div>
+    <p>Grouped formulas: $\text{Median}=L+\dfrac{N/2-F}{f}\,h$, &nbsp; $\text{Mode}=L+\dfrac{f_1-f_0}{2f_1-f_0-f_2}\,h$.</p>
     <p>Outlier rule of thumb: a point below $Q_1-1.5\,\text{IQR}$ or above $Q_3+1.5\,\text{IQR}$.</p>
   </section>
 
@@ -465,6 +500,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         <li>CV $=\sigma/\mu$ is <strong>unitless</strong> — use it to compare spread across different scales/units (e.g. height vs weight).</li>
         <li>Range uses only two points (very sensitive to outliers); MAD &amp; SD use all points.</li>
         <li>Empirical skew shortcut: Mode $\approx 3\,$Median $-\,2\,$Mean.</li>
+        <li>Skewness sign: $\text{Sk}=0$ symmetric, $\text{Sk}&gt;0$ right-skewed, $\text{Sk}&lt;0$ left-skewed (dividing by SD makes it unitless).</li>
+        <li>Missing frequency? Plug the given mean/median/mode into its grouped formula and solve for the unknown $f$.</li>
       </ul>
     </div>
   </section>
@@ -478,6 +515,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <p><span class="wrong">Trap:</span> "Histogram = bar chart." <span class="right">Reality:</span> histograms bin <em>numeric</em> data; bar charts compare <em>categories</em>.</p>
       <p><span class="wrong">Trap:</span> "A bigger SD always means more relative spread." <span class="right">Reality:</span> compare with CV — a large mean inflates SD; CV normalizes it.</p>
       <p><span class="wrong">Trap:</span> "CV works for any data." <span class="right">Reality:</span> meaningless when $\mu\approx0$ or for data with negatives (you can divide by ~0).</p>
+      <p><span class="wrong">Trap:</span> "Median class = the class with the highest frequency." <span class="right">Reality:</span> that's the <em>modal</em> class; the median class is the first whose cumulative frequency reaches $N/2$.</p>
+      <p><span class="wrong">Trap:</span> "Grouped mean uses the class limits." <span class="right">Reality:</span> use the class <em>midpoints</em> $m$.</p>
     </div>
   </section>
 
@@ -517,6 +556,16 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">CV$_A=15\%$, CV$_B=20\%$ → B is relatively more volatile despite a smaller SD.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q6. Mean $=50$, Median $=40$, SD $=10$. Pearson's coefficient of skewness?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\text{Sk}=3(50-40)/10=3>0$ → positively (right) skewed.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q7. A frequency table's modal class gives $L=20,f_0=8,f_2=6,h=10$ and the mode is $24$. Find $f_1$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$24=20+\dfrac{f_1-8}{2f_1-14}\cdot10\Rightarrow \dfrac{f_1-8}{2f_1-14}=0.4\Rightarrow f_1=12$.</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -544,6 +593,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         <li>Histogram = numeric shape; boxplot = five-number summary + outliers.</li>
         <li>Right-skew ⇒ mean above median.</li>
         <li>Spread menu: range (2 points), MAD (all, absolute), variance/SD (all, squared), CV (unitless = $\sigma/\mu$).</li>
+        <li>Skewness number: $\text{Sk}=(\text{Mean}-\text{Mode})/\text{SD}$; sign tells the direction.</li>
+        <li>Grouped: median class via cumulative $N/2$ (not the modal class); use class midpoints for the mean.</li>
       </ul>
     </div>
   </section>
