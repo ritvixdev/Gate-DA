@@ -95,7 +95,31 @@ random variable = a NUMBER assigned to each outcome (X = 1 if head, 0 if tail)</
         </details>
 
         <details class="study-item">
-          <summary>6. Mental model</summary>
+          <summary>6. Discrete vs continuous random variables</summary>
+          <pre>Discrete   = countable values (die: 1–6, #heads, #defects, #arrivals)
+Continuous = any value in an interval (height, weight, time, temperature)</pre>
+          <p>Continuous variables take infinitely many values (170.1, 170.12, 170.123, …).</p>
+          <p><span style="color:var(--coral-text)">Preview:</span> discrete variables are described by a <strong>PMF</strong>, continuous ones by a <strong>PDF</strong> (next topics).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. Probability distribution &amp; its rules</summary>
+          <p>A <strong>probability distribution</strong> lists every value of X with its probability (the die and two-coin tables above are distributions).</p>
+          <pre>two valid rules for a discrete distribution:
+1.  P(X = x) ≥ 0   for every value
+2.  Σ P(X = x) = 1  (all probabilities add to 1)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>8. Expectation — a preview</summary>
+          <p>The <strong>expected value</strong> is the long-run average of a random variable:</p>
+          <pre>E[X] = Σ x · P(X = x)</pre>
+          <pre>fair die: E[X] = (1+2+3+4+5+6)/6 = 21/6 = 3.5</pre>
+          <p>The die never shows 3.5 — it's the average over many rolls. (Variance and full expectation come later.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Mental model</summary>
           <ul class="styled">
             <li>Outcome = the raw result; <strong>random variable = a score assigned to that result</strong>.</li>
             <li>Coin → X = 1/0; die → X = number shown; two coins → X = number of heads.</li>
