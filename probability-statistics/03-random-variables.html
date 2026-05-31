@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="probability-statistics" data-topic="03-random-variables" data-content>
   <div class="hero">
     <span class="tag">Topic 3 · GATE weight: High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Random Variables</h1>
     <p class="lede">A random variable turns messy outcomes into <strong>numbers</strong> — so we can average
       them, measure their spread, and do real math with chance.</p>
@@ -153,7 +154,7 @@ Var(X + Y)  = Var(X) + Var(Y)   ONLY if X, Y are independent</pre>
         </details>
 
         <details class="study-item">
-          <summary>13. Geometric RV: failures before first success</summary>
+          <summary>13. Geometric RV: failures before first success <span class="study-extra">GATE extra</span></summary>
           <p>Repeat a trial until the first success (probability <code>p</code>, failure <code>q = 1−p</code>). Let <code>X = number of failures before that success</code>:</p>
           <pre>X ∈ {0,1,2,…} ,  P(X=k) = qᵏ·p      (k failures, then a success)
 E[X] = q/p ,  Var(X) = q/p²</pre>
@@ -162,7 +163,7 @@ p=0.3: P(X=2)=0.7²·0.3=0.147, E[X]=0.7/0.3=7/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>14. Trials until success vs failures before (the trap)</summary>
+          <summary>14. Trials until success vs failures before (the trap) <span class="study-extra">GATE extra</span></summary>
           <p>Two versions of the geometric variable — don't mix them up:</p>
           <pre>X = failures before success: values 0,1,2,…  P=qᵏp   E[X]=q/p
 Y = trials  until  success:  values 1,2,3,…  P=qᵏ⁻¹p E[Y]=1/p

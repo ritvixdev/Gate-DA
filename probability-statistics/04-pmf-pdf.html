@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="probability-statistics" data-topic="04-pmf-pdf" data-content>
   <div class="hero">
     <span class="tag">Topic 4 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>PMF, PDF &amp;<br>Distributions</h1>
     <p class="lede">A distribution is the full "menu" of probabilities for a random variable. Discrete ones
       use a <strong>PMF</strong>; continuous ones use a <strong>PDF</strong>.</p>
@@ -361,7 +362,7 @@ E(X) = m        Var(X) = m        (mean = variance — the Poisson signature)</p
           <p>This turns an awkward <code>ⁿCr pʳ qⁿ⁻ʳ</code> with huge n into a quick <code>e⁻ᵐmʳ/r!</code> — the go-to move for rare-event GATE problems.</p>
         </details>
         <details class="study-item">
-          <summary>37. Exponential distribution — waiting time</summary>
+          <summary>37. Exponential distribution — waiting time <span class="study-extra">GATE extra</span></summary>
           <p>The waiting time <em>between</em> events of a Poisson process, with rate <code>λ&gt;0</code>.</p>
           <pre>PDF:  f(x) = λe^(−λx) , x &gt; 0
 CDF:  F(x) = P(X ≤ x) = 1 − e^(−λx)
@@ -371,7 +372,7 @@ E(X) = 1/λ        Var(X) = 1/λ²        SD = 1/λ</pre>
           <p><span style="color:var(--coral-text)">Pair it up:</span> Poisson counts <em>how many</em> events; Exponential measures <em>how long</em> until the next one.</p>
         </details>
         <details class="study-item">
-          <summary>38. Memoryless property (exponential)</summary>
+          <summary>38. Memoryless property (exponential) <span class="study-extra">GATE extra</span></summary>
           <p>The exponential forgets how long you've already waited:</p>
           <pre>P(X &gt; s + t | X &gt; s) = P(X &gt; t)</pre>
           <p>Already waited 10 min for a bus? The chance of 5 more minutes is the same as a fresh 5-minute wait. The exponential is the <strong>only</strong> continuous distribution with this property — a favourite GATE one-liner.</p>
@@ -412,7 +413,7 @@ Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
           <p>For the normal distribution <code>skewness = 0</code> (perfectly symmetric); kurtosis is the reference baseline that other distributions are compared against.</p>
         </details>
         <details class="study-item">
-          <summary>43. The 68–95–99.7 tail split</summary>
+          <summary>43. The 68–95–99.7 tail split <span class="study-extra">GATE extra</span></summary>
           <p>Turn the empirical rule into one-tail probabilities by splitting the leftover area in two:</p>
           <pre>within ±1σ = 68%  → outside 32%  → each tail 16%
 within ±2σ = 95%  → outside 5%   → each tail 2.5%
@@ -421,7 +422,7 @@ within ±3σ = 99.7% → outside 0.3% → each tail 0.15%</pre>
           <p>Lets you answer many normal questions without the full Z-table.</p>
         </details>
         <details class="study-item">
-          <summary>44. Gaussian = Normal; the Gaussian process (intro)</summary>
+          <summary>44. Gaussian = Normal; the Gaussian process (intro) <span class="study-extra">GATE extra</span></summary>
           <p><strong>Gaussian distribution = normal = bell curve</strong> — just another name, <code>X ~ N(μ, σ²)</code>.</p>
           <p>A <strong>Gaussian process</strong> goes one level up: a distribution over <em>functions</em>, not numbers. At any finite set of input points the outputs are jointly multivariate normal, so it predicts a whole curve <em>plus</em> its uncertainty.</p>
           <pre>Gaussian distribution → random number

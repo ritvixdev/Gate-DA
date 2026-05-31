@@ -14,6 +14,7 @@
   <!-- 1 -->
   <div class="hero">
     <span class="tag">Topic 1 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Introduction to<br>Probability</h1>
     <p class="lede">Probability is just a number between 0 and 1 that measures how likely something is.
       Master the language here and every later topic — distributions, Bayes, testing — follows.</p>
@@ -308,21 +309,21 @@ WITHOUT replacement (keep it): probabilities change
         </details>
 
         <details class="study-item">
-          <summary>27. Factorial</summary>
+          <summary>27. Factorial <span class="study-extra">GATE extra</span></summary>
           <pre>n! = n × (n−1) × … × 1
 5! = 120,  4! = 24,  3! = 6,  1! = 1,  0! = 1</pre>
           <p><code>0! = 1</code> by convention, so the counting formulas work.</p>
         </details>
 
         <details class="study-item">
-          <summary>28. Permutation (order matters)</summary>
+          <summary>28. Permutation (order matters) <span class="study-extra">GATE extra</span></summary>
           <p>An <strong>arrangement</strong> — order counts.</p>
           <pre>nPr = n! / (n−r)!
 1st &amp; 2nd prize from 5 people: 5P2 = 5!/3! = 5×4 = 20</pre>
         </details>
 
         <details class="study-item">
-          <summary>29. Combination (order doesn't matter)</summary>
+          <summary>29. Combination (order doesn't matter) <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>selection</strong> — order doesn't count ({A,B} = {B,A}).</p>
           <pre>nCr = n! / (r!(n−r)!)
 team of 2 from 5: 5C2 = 10</pre>
@@ -330,7 +331,7 @@ team of 2 from 5: 5C2 = 10</pre>
         </details>
 
         <details class="study-item">
-          <summary>30. Counting by slots (no formula)</summary>
+          <summary>30. Counting by slots (no formula) <span class="study-extra">GATE extra</span></summary>
           <p>You can count arrangements by <strong>filling positions one at a time</strong> — often faster than a formula.</p>
           <pre>5 players, rank 1st &amp; 2nd:
 position 1 → 5 choices
@@ -339,7 +340,7 @@ total = 5 × 4 = 20   (= 5P2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Permutation ↔ combination (nPr = nCr · r!)</summary>
+          <summary>31. Permutation ↔ combination (nPr = nCr · r!) <span class="study-extra">GATE extra</span></summary>
           <p>A permutation is "choose, then arrange":</p>
           <pre>nPr = nCr × r!      ⇒      nCr = nPr / r!</pre>
           <p>Combination <strong>divides by r!</strong> because the r! different orderings of the same group all count as ONE selection.</p>
@@ -347,14 +348,14 @@ total = 5 × 4 = 20   (= 5P2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>32. Combination shortcuts &amp; symmetry</summary>
+          <summary>32. Combination shortcuts &amp; symmetry <span class="study-extra">GATE extra</span></summary>
           <pre>nC0 = 1 ,  nC1 = n ,  nCn = 1 ,  nC(n−1) = n</pre>
           <p><span style="color:var(--coral-text)">Symmetry:</span> <code>nCr = nC(n−r)</code> — choosing r to <em>include</em> = choosing (n−r) to <em>exclude</em>.</p>
           <pre>100C98 = 100C2  (much easier to compute)</pre>
         </details>
 
         <details class="study-item">
-          <summary>33. Arranging repeated letters</summary>
+          <summary>33. Arranging repeated letters <span class="study-extra">GATE extra</span></summary>
           <p>With repeats, divide by the factorial of each repeat count:</p>
           <pre>arrangements = n! / (p! q! r! …)</pre>
           <pre>MOM:   3!/2!     = 3
@@ -364,7 +365,7 @@ LEVEL: 5!/(2!2!) = 30   (L×2, E×2)</pre>
         </details>
 
         <details class="study-item">
-          <summary>34. Counting problems: committees, codes, seating</summary>
+          <summary>34. Counting problems: committees, codes, seating <span class="study-extra">GATE extra</span></summary>
           <p class="lead">Committee with exactly 2 boys + 1 girl (6 boys, 4 girls):</p>
           <pre>choose boys × choose girls = 6C2 × 4C1 = 15 × 4 = 60   (AND → multiply)</pre>
           <p class="lead">3-digit code from 0–9:</p>
@@ -376,7 +377,7 @@ seat 4 of 10 in 4 chairs:  10P4 = 5040</pre>
         </details>
 
         <details class="study-item">
-          <summary>35. Deciding: does order matter?</summary>
+          <summary>35. Deciding: does order matter? <span class="study-extra">GATE extra</span></summary>
           <p>First question on any counting problem: <strong>does order matter?</strong> Yes → permutation; No → combination. Then check: distinct or repeated items? replacement allowed? restrictions?</p>
           <div class="tbl-wrap"><table>
             <tr><th>Word in the question</th><th>Usually means</th></tr>

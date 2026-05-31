@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="probability-statistics" data-topic="09-chi-f-tests" data-content>
   <div class="hero">
     <span class="tag">Topic 9 · GATE weight: High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Chi-square &amp; F-test</h1>
     <p class="lede">Two more tests in the same framework: chi-square for <strong>counts &amp; categories</strong>,
       and the F-test for <strong>comparing variances</strong>.</p>
@@ -49,7 +50,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the chi-square distribution &amp; its tests from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— chi-square &amp; F distributions and their tests, from zero</span></summary>
         <details class="study-item">
           <summary>1. What the chi-square distribution is</summary>
           <p>Add up squared independent standard normals and you get a <strong>chi-square</strong> variable:</p>
@@ -118,7 +119,51 @@ df = (R−1)(C−1) = (2−1)(2−1) = 1 ;  critical χ²₀.₀₅ = 3.841</pre
           <p>Theme: chi-square is the tool for <strong>counts and categories</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>10. Common GATE traps</summary>
+          <summary>10. The F-distribution</summary>
+          <p>The <strong>F-distribution</strong> is the ratio of two independent chi-squares, each divided by its degrees of freedom:</p>
+          <pre>F = (χ²₁ / d₁) / (χ²₂ / d₂)     two df parameters: d₁ (numerator), d₂ (denominator)</pre>
+          <ul class="styled">
+            <li>always ≥ 0 (a ratio of non-negative quantities)</li>
+            <li>right-skewed; shape depends on both df</li>
+            <li>since it's a ratio of variances, it's the tool for <strong>comparing two variances</strong></li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>11. The F-test — comparing two variances</summary>
+          <p>Tests whether two populations have the <strong>same variance</strong> (<code>H₀: σ₁² = σ₂²</code>) using the ratio of sample variances:</p>
+          <pre>F = s₁² / s₂²     (put the LARGER variance on top so F ≥ 1)
+df = (n₁ − 1, n₂ − 1) ;  right-tailed test</pre>
+          <p>F far above 1 ⇒ the variances differ ⇒ reject H₀. F near 1 ⇒ variances look equal.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. F-test — worked</summary>
+          <pre>sample 1: n₁=13, s₁²=45 ; sample 2: n₂=10, s₂²=20
+F = 45/20 = 2.25 ,  df = (12, 9)
+compare with the critical F₀.₀₅(12,9) ≈ 3.07
+2.25 < 3.07 → fail to reject H₀ (no evidence variances differ)</pre>
+        </details>
+        <details class="study-item">
+          <summary>13. ANOVA basics (the F-test for several means)</summary>
+          <p><strong>ANOVA</strong> (analysis of variance) uses an F-test to compare <strong>3+ group means</strong> at once — by comparing two kinds of variation:</p>
+          <pre>F = MSB / MSW = (between-group variance) / (within-group variance)</pre>
+          <ul class="styled">
+            <li>groups far apart vs tight within ⇒ large F ⇒ at least one mean differs</li>
+            <li>one-way ANOVA H₀: μ₁ = μ₂ = … = μₖ</li>
+          </ul>
+          <p>It avoids running many t-tests (which would inflate the error rate).</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Which test? z · t · χ² · F</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Test</th><th>Use for</th><th>Statistic</th></tr>
+            <tr><td>z / t</td><td>a mean (σ known / unknown)</td><td>(x̄−μ)/SE</td></tr>
+            <tr><td>χ²</td><td>category counts: fit / independence</td><td>Σ(O−E)²/E</td></tr>
+            <tr><td>F</td><td>compare variances / ANOVA means</td><td>s₁²/s₂² or MSB/MSW</td></tr>
+          </table></div>
+          <p><span style="color:var(--coral-text)">Traps:</span> F is never negative; always put the larger variance on top; F &amp; χ² are right-tailed.</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Common GATE traps</summary>
           <ul class="styled">
             <li>χ² can be negative? <strong>No</strong> — it's a sum of squares, always ≥ 0.</li>
             <li>df is always n − 1? <strong>No</strong> — goodness-of-fit uses categories − 1; independence uses (r−1)(c−1).</li>
@@ -126,7 +171,7 @@ df = (R−1)(C−1) = (2−1)(2−1) = 1 ;  critical χ²₀.₀₅ = 3.841</pre
           </ul>
         </details>
         <details class="study-item">
-          <summary>11. Practice problems</summary>
+          <summary>16. Practice problems</summary>
           <p class="lead">Q1. χ² with k = 8 — mean and variance?</p>
           <pre>mean = 8, variance = 16</pre>
           <p class="lead">Q2. Goodness-of-fit over 6 die faces — df?</p>
@@ -137,7 +182,7 @@ df = (R−1)(C−1) = (2−1)(2−1) = 1 ;  critical χ²₀.₀₅ = 3.841</pre
           <pre>(4+4+0+0)/10 = 0.8</pre>
         </details>
         <details class="study-item">
-          <summary>12. Memory box &amp; mental model</summary>
+          <summary>17. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>χ² = sum of squared standard normals; always ≥ 0.</li>
             <li>E = k, Var = 2k; right-skewed, → normal as k grows.</li>

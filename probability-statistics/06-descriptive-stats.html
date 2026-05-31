@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="probability-statistics" data-topic="06-descriptive-stats" data-content>
   <div class="hero">
     <span class="tag">Topic 6 · GATE weight: High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Descriptive Statistics</h1>
     <p class="lede">Probability predicts data from a model; statistics summarizes data we already have —
       with a few numbers and a few pictures.</p>
@@ -89,7 +90,7 @@ median = 30    (feels like a normal player)</pre>
         </details>
 
         <details class="study-item">
-          <summary>6. Mean for grouped data</summary>
+          <summary>6. Mean for grouped data <span class="study-extra">GATE extra</span></summary>
           <p>Use the <strong>class midpoint</strong> <code>m = (lower+upper)/2</code>, then <code>x̄ = Σfm / Σf</code>.</p>
           <div class="tbl-wrap"><table>
             <tr><th>Class</th><th>f</th><th>m</th><th>fm</th></tr>
@@ -114,7 +115,7 @@ even n: 2,4,6,8 → average of n/2 and n/2+1 → (4+6)/2 = 5</pre>
         </details>
 
         <details class="study-item">
-          <summary>9. Median for grouped data</summary>
+          <summary>9. Median for grouped data <span class="study-extra">GATE extra</span></summary>
           <pre>Median = L + [(N/2 − cf)/f] × h</pre>
           <p>L = lower boundary of the median class, N = total frequency, cf = cumulative freq before it, f = its frequency, h = class width. The <strong>median class</strong> is the first class whose cumulative frequency ≥ N/2.</p>
           <pre>0–10(5,cf5) 10–20(8,cf13) 20–30(12,cf25) 30–40(5,cf30); N=30, N/2=15
@@ -131,7 +132,7 @@ median class 20–30: 20 + (15−13)/12 × 10 ≈ 21.67</pre>
         </details>
 
         <details class="study-item">
-          <summary>11. Mode for grouped data</summary>
+          <summary>11. Mode for grouped data <span class="study-extra">GATE extra</span></summary>
           <pre>Mode = L + [(f₁ − f₀)/(2f₁ − f₀ − f₂)] × h</pre>
           <p>Modal class = the class with the highest frequency; f₁ its frequency, f₀ before, f₂ after.</p>
           <pre>0–10(5) 10–20(8) 20–30(12) 30–40(6); modal class 20–30
@@ -139,7 +140,7 @@ Mode = 20 + (12−8)/(24−8−6) × 10 = 20 + 4 = 24</pre>
         </details>
 
         <details class="study-item">
-          <summary>12. Missing-frequency problems (GATE favourite)</summary>
+          <summary>12. Missing-frequency problems (GATE favourite) <span class="study-extra">GATE extra</span></summary>
           <p>A grouped table hides one frequency and gives you a central measure. Plug the given value into <em>that</em> measure's formula and solve for the unknown.</p>
           <ul class="styled">
             <li>Mean given → use <code>x̄ = Σfm/Σf</code></li>
@@ -190,28 +191,28 @@ negative (left tail):   Mean < Median < Mode</pre>
           <p>Dividing by SD makes it <strong>unitless</strong>, so skew is comparable across datasets.</p>
         </details>
         <details class="study-item">
-          <summary>17. Geometric mean (growth &amp; ratios)</summary>
+          <summary>17. Geometric mean (growth &amp; ratios) <span class="study-extra">GATE extra</span></summary>
           <pre>GM = (x₁·x₂·…·xₙ)^(1/n)        two values: GM = √(ab)</pre>
           <pre>GM of 2,8 = √16 = 4 ;  GM of 2,4,8 = 64^(1/3) = 4</pre>
           <p>Use the GM for things that <strong>multiply</strong>: growth rates, returns, compound interest, population growth, ratios.</p>
         </details>
 
         <details class="study-item">
-          <summary>18. Geometric mean for compound growth</summary>
+          <summary>18. Geometric mean for compound growth <span class="study-extra">GATE extra</span></summary>
           <pre>grows 10% then 20% → factors 1.10, 1.20
 GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
           <p>For compounding, use the GM — the arithmetic mean (15%) is wrong in general.</p>
         </details>
 
         <details class="study-item">
-          <summary>19. Geometric mean via logarithms</summary>
+          <summary>19. Geometric mean via logarithms <span class="study-extra">GATE extra</span></summary>
           <p>For many values the product overflows, so take logs and turn multiply into add:</p>
           <pre>log(GM) = (Σ log x) / n        →   GM = antilog[(Σ log x)/n]
 frequency form:  log(GM) = (Σ f·log x) / Σf</pre>
           <p>Positive values only — <code>log 0</code> and <code>log(negative)</code> are undefined, so the GM needs all <code>xᵢ &gt; 0</code>.</p>
         </details>
         <details class="study-item">
-          <summary>20. Harmonic mean (rates &amp; speeds)</summary>
+          <summary>20. Harmonic mean (rates &amp; speeds) <span class="study-extra">GATE extra</span></summary>
           <pre>HM = n / Σ(1/xᵢ)        two values: HM = 2ab/(a+b)</pre>
           <pre>equal distances at 40 and 60 km/h: avg speed = HM = 2·40·60/100 = 48 km/h
 (NOT 50 — time differs on each half)</pre>
@@ -219,7 +220,7 @@ frequency form:  log(GM) = (Σ f·log x) / Σf</pre>
         </details>
 
         <details class="study-item">
-          <summary>21. AM ≥ GM ≥ HM</summary>
+          <summary>21. AM ≥ GM ≥ HM <span class="study-extra">GATE extra</span></summary>
           <pre>for positive numbers:  AM ≥ GM ≥ HM   (equal only if all values are equal)</pre>
           <pre>2 and 8:  AM = 5 ≥ GM = 4 ≥ HM = 3.2</pre>
         </details>
@@ -314,7 +315,7 @@ Coefficient of QD = (Q3 − Q1)/(Q3 + Q1)</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Mean (average) deviation</summary>
+          <summary>31. Mean (average) deviation <span class="study-extra">GATE extra</span></summary>
           <p>The average distance from a centre A (mean or median), using absolute values so deviations don't cancel:</p>
           <pre>MD = Σ|xᵢ − A| / n      (frequency: Σf|x − A| / Σf)</pre>
           <pre>2,4,6 (mean 4): (|−2|+0+|2|)/3 = 4/3 ≈ 1.33</pre>
@@ -354,14 +355,14 @@ frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
         </details>
 
         <details class="study-item">
-          <summary>36. Coefficient of variation (CV)</summary>
+          <summary>36. Coefficient of variation (CV) <span class="study-extra">GATE extra</span></summary>
           <pre>CV = (SD / Mean) × 100  %</pre>
           <p>A <strong>relative</strong> spread — it lets you compare datasets with different means/units. Lower CV = more consistent.</p>
           <pre>mean 50, SD 5 → CV = 10%</pre>
         </details>
 
         <details class="study-item">
-          <summary>37. Comparing distributions (SD vs CV)</summary>
+          <summary>37. Comparing distributions (SD vs CV) <span class="study-extra">GATE extra</span></summary>
           <pre>same means      → compare SD  (lower = more consistent)
 different means → compare CV  (lower = more consistent)</pre>
           <pre>Student A: mean 80, SD 8 → CV 10%

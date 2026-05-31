@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="probability-statistics" data-topic="05-joint-covariance" data-content>
   <div class="hero">
     <span class="tag">Topic 5 · GATE weight: High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Joint Distributions<br>&amp; Covariance</h1>
     <p class="lede">When two random variables move together, how do we describe the pair? Joint
       distributions, plus covariance and correlation that measure how they relate.</p>
@@ -96,20 +97,20 @@ p(x) = ∫ p(x, y) dy           (continuous)</pre>
           <p>Two dice are independent (each cell 1/36 = 1/6 × 1/6). Independence of variables generalizes event independence.</p>
         </details>
         <details class="study-item">
-          <summary>8. Covariance — do they move together?</summary>
+          <summary>8. Covariance — do they move together? <span class="study-extra">GATE extra</span></summary>
           <p>Covariance measures whether X and Y rise and fall together:</p>
           <pre>Cov(X,Y) = E[(X−E X)(Y−E Y)] = E[XY] − E[X]·E[Y]</pre>
           <pre>Cov > 0 → move together · Cov < 0 → move oppositely · Cov = 0 → no linear link
 Cov(X,X) = Var(X)</pre>
         </details>
         <details class="study-item">
-          <summary>9. Covariance — worked</summary>
+          <summary>9. Covariance — worked <span class="study-extra">GATE extra</span></summary>
           <pre>E[X]=2, E[Y]=3, E[XY]=8  →  Cov = 8 − 2·3 = 2 > 0  (rise together)
 if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           <p>Scaling rule: <code>Cov(aX, bY) = ab·Cov(X,Y)</code>.</p>
         </details>
         <details class="study-item">
-          <summary>10. Correlation ρ — covariance on a fixed scale</summary>
+          <summary>10. Correlation ρ — covariance on a fixed scale <span class="study-extra">GATE extra</span></summary>
           <p>Covariance's size depends on units, so we rescale it to a unitless number in [−1, 1]:</p>
           <pre>ρ = Cov(X,Y) / (σ_X · σ_Y) ,   −1 ≤ ρ ≤ 1</pre>
           <p><code>ρ = ±1</code> → perfect straight-line relationship; <code>ρ = 0</code> → no <em>linear</em> relationship.</p>
@@ -120,13 +121,13 @@ if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           <p>If X and Y are independent (or just uncorrelated), the covariance term vanishes and variances simply add.</p>
         </details>
         <details class="study-item">
-          <summary>12. Zero covariance ≠ independent</summary>
+          <summary>12. Zero covariance ≠ independent <span class="study-extra">GATE extra</span></summary>
           <p>Independence ⇒ <code>Cov = 0</code>. But the reverse can fail — a perfectly curved relationship can have zero covariance yet be fully dependent.</p>
           <pre>X uniform on {−2,−1,0,1,2}, Y = X²:  Cov(X,Y) = 0, but Y is determined by X</pre>
           <p>Covariance only sees the <em>linear</em> part of a relationship.</p>
         </details>
         <details class="study-item">
-          <summary>13. Spearman's rank correlation</summary>
+          <summary>13. Spearman's rank correlation <span class="study-extra">GATE extra</span></summary>
           <p>When data is <strong>ranked/ordinal</strong>, or the relationship is monotonic but not straight-line, correlate the <em>ranks</em> instead of the values:</p>
           <pre>ρ_s = 1 − 6·Σd² / [ n(n² − 1) ]      d = (rank of X) − (rank of Y)</pre>
           <pre>ranks X:1,2,3,4,5  Y:2,1,4,3,5 → d:−1,1,−1,1,0 → Σd²=4
@@ -134,13 +135,13 @@ if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           <p>Range [−1, 1]; <code>ρ_s = 1</code> = perfectly increasing ranks. It catches any monotonic link, even a curved one Pearson's r would understate.</p>
         </details>
         <details class="study-item">
-          <summary>14. Regression line — the line of best fit</summary>
+          <summary>14. Regression line — the line of best fit <span class="study-extra">GATE extra</span></summary>
           <p>Correlation measures <em>strength</em>; <strong>regression</strong> gives the actual line to <em>predict</em> Y from X:</p>
           <pre>ŷ = a + b·x      (least squares: choose a, b to minimise Σ(y − ŷ)²)</pre>
           <p>The fitted line always passes through the means point <code>(x̄, ȳ)</code>.</p>
         </details>
         <details class="study-item">
-          <summary>15. Regression coefficient (slope &amp; intercept)</summary>
+          <summary>15. Regression coefficient (slope &amp; intercept) <span class="study-extra">GATE extra</span></summary>
           <p>The slope is covariance scaled by the spread of X:</p>
           <pre>b = Cov(X,Y) / Var(X) = r · (σ_Y / σ_X)        intercept  a = ȳ − b·x̄</pre>
           <pre>Cov=4, Var(X)=8 → b = 0.5 ; if x̄=10, ȳ=25 → a = 25 − 0.5(10) = 20
@@ -148,7 +149,7 @@ line:  ŷ = 20 + 0.5x</pre>
           <p>Sign of b = sign of the covariance: positive slope ⇒ Y rises with X.</p>
         </details>
         <details class="study-item">
-          <summary>16. Two regression lines &amp; the link to r</summary>
+          <summary>16. Two regression lines &amp; the link to r <span class="study-extra">GATE extra</span></summary>
           <p>Predicting Y from X is <em>not</em> the same line as predicting X from Y — there are two regression coefficients:</p>
           <pre>b_yx = Cov/Var(X)     b_xy = Cov/Var(Y)
 b_yx · b_xy = r²      (so |r| = √(b_yx · b_xy), the geometric mean of the slopes)</pre>
