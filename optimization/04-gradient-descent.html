@@ -94,32 +94,41 @@ good       → steady, fast descent</pre>
           <p>It's the single most important optimization hyperparameter — the step size while walking down the loss hill.</p>
         </details>
         <details class="study-item">
-          <summary>4. Batch vs stochastic vs mini-batch</summary>
+          <summary>4. Watch it converge — and what it trains</summary>
+          <p>Apply the rule repeatedly and the point slides into the valley. Minimize <code>f(x)=x²</code> (so <code>f′=2x</code>) from x₀=10 with η=0.1:</p>
+          <pre>x₁ = 10 − 0.1(20) = 8
+x₂ = 8  − 0.1(16) = 6.4
+x₃ = 6.4 − 0.1(12.8) = 5.12
+…  → 0  (the minimum) — each step the gradient shrinks, so the steps shrink too</pre>
+          <p>This exact loop — <strong>repeatedly walk downhill along −∇J</strong> — trains linear regression, logistic regression, neural networks and deep-learning models. Gradient descent is the <strong>bridge between calculus and AI</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. Batch vs stochastic vs mini-batch</summary>
           <pre>batch GD      : use ALL data per update — stable but slow
 stochastic (SGD): one sample per update — fast, noisy, can escape shallow minima
 mini-batch    : a small batch (e.g. 32, 64) — the practical sweet spot</pre>
           <pre>θ := θ − η ∇L_batch(θ)</pre>
         </details>
         <details class="study-item">
-          <summary>5. Momentum</summary>
+          <summary>6. Momentum</summary>
           <p>Momentum adds a fraction of the previous update, smoothing the path and speeding through flat/ravine regions:</p>
           <pre>v := β v + ∇J ;  θ := θ − η v</pre>
           <p>Like a ball rolling downhill — it builds speed and dampens zig-zags.</p>
         </details>
         <details class="study-item">
-          <summary>6. AdaGrad</summary>
+          <summary>7. AdaGrad</summary>
           <p>Gives each parameter its <strong>own</strong> learning rate by dividing by the accumulated squared gradients:</p>
           <pre>big past gradients → smaller steps ; small past gradients → larger steps</pre>
           <p>Great for sparse features, but the accumulation makes the rate shrink toward 0 over time (training can stall).</p>
         </details>
         <details class="study-item">
-          <summary>7. RMSProp</summary>
+          <summary>8. RMSProp</summary>
           <p>Fixes AdaGrad's shrinking rate by using a <strong>moving average</strong> of squared gradients instead of a sum:</p>
           <pre>divide the gradient by a recent average of its magnitude</pre>
           <p>Keeps a healthy step size — good for non-stationary deep-learning objectives.</p>
         </details>
         <details class="study-item">
-          <summary>8. Adam — the default optimizer</summary>
+          <summary>9. Adam — the default optimizer</summary>
           <p><strong>Adam</strong> (Adaptive Moment Estimation) = momentum + RMSProp. It tracks two moving averages:</p>
           <pre>mₜ = avg of gradients          (1st moment — momentum)
 vₜ = avg of squared gradients  (2nd moment — adaptive rate)
@@ -127,7 +136,7 @@ then uses bias-corrected mₜ, vₜ to update</pre>
           <p>Fast, robust, little tuning — the usual first choice in deep learning.</p>
         </details>
         <details class="study-item">
-          <summary>9. Choosing an optimizer</summary>
+          <summary>10. Choosing an optimizer</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Optimizer</th><th>Key idea</th></tr>
             <tr><td>SGD (+momentum)</td><td>simple, strong baseline</td></tr>
@@ -137,25 +146,25 @@ then uses bias-corrected mₜ, vₜ to update</pre>
           </table></div>
         </details>
         <details class="study-item">
-          <summary>10. Newton's method &amp; the Hessian</summary>
+          <summary>11. Newton's method &amp; the Hessian</summary>
           <p>A <strong>second-order</strong> method using curvature (the Hessian H of second derivatives):</p>
           <pre>θ := θ − H⁻¹ ∇J</pre>
           <p>Can converge in far fewer steps, but computing/inverting H is expensive for large models — so first-order methods (SGD/Adam) dominate deep learning. Works well on small convex problems (e.g. logistic regression).</p>
         </details>
         <details class="study-item">
-          <summary>11. Convex vs non-convex</summary>
+          <summary>12. Convex vs non-convex</summary>
           <pre>convex loss (linear/logistic regression, SVM): one global minimum — GD finds it
 non-convex loss (neural nets): many local minima/saddle points</pre>
           <p>SGD's noise + momentum help escape poor spots; we settle for a "good enough" minimum.</p>
         </details>
         <details class="study-item">
-          <summary>12. Gradient checking</summary>
+          <summary>13. Gradient checking</summary>
           <p>To verify a hand-coded backprop, compare the analytical gradient with a numerical one:</p>
           <pre>∂L/∂θ ≈ [ L(θ+ε) − L(θ−ε) ] / 2ε</pre>
           <p>They should match closely. It's a debugging tool only — too slow for real training.</p>
         </details>
         <details class="study-item">
-          <summary>13. Common GATE traps</summary>
+          <summary>14. Common GATE traps</summary>
           <ul class="styled">
             <li>GD moves along the gradient? <strong>No</strong> — <em>opposite</em> it (to descend).</li>
             <li>Bigger learning rate is always faster? <strong>No</strong> — too big diverges.</li>
@@ -164,7 +173,7 @@ non-convex loss (neural nets): many local minima/saddle points</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>14. Practice &amp; memory box</summary>
+          <summary>15. Practice &amp; memory box</summary>
           <p class="lead">Q1. θ=4, ∇J=2, η=0.1 — one GD step?</p>
           <pre>θ := 4 − 0.1(2) = 3.8</pre>
           <p class="lead">Q2. Which optimizer uses first &amp; second moment estimates?</p>
