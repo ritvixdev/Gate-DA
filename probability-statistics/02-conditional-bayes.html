@@ -102,7 +102,70 @@ P(B|A) = P({6})/P(A) = (1/6)/(3/6) = 1/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>7. Cards without replacement (dependent)</summary>
+          <summary>7. Given = filter the world (worked examples)</summary>
+          <p>"Given A" means: throw away everything outside A, then count inside it.</p>
+          <pre>P(king | face card): only 12 face cards matter, 4 are kings → 4/12 = 1/3
+P(heart | red):      only 26 red cards matter, 13 are hearts → 13/26 = 1/2</pre>
+          <p>Both match the formula <code>P(B|A)=P(A∩B)/P(A)</code>, but the "shrink the sample space" view is faster.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>8. P(B|A) vs P(A|B) — don't swap them</summary>
+          <p>They condition on different events, so they usually differ (different denominators):</p>
+          <pre>P(B|A) = P(A∩B)/P(A)        P(A|B) = P(A∩B)/P(B)</pre>
+          <pre>cards: P(ace | spade) = 1/13   but   P(spade | ace) = 1/4   → different!</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> "probability of A given B" is not the same as "B given A". (Swapping them wrongly is exactly what Bayes' theorem fixes.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Joint probability</summary>
+          <p><strong>Joint probability</strong> is just <code>P(A ∩ B)</code> — the chance both happen together.</p>
+          <pre>joint = AND probability
+from joint to conditional:  P(B|A) = P(A∩B)/P(A)
+e.g. P(A∩B)=0.2, P(A)=0.5 → P(B|A) = 0.4</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Chain rule for several events</summary>
+          <p>Extend the multiplication rule step by step:</p>
+          <pre>P(A∩B∩C) = P(A)·P(B|A)·P(C|A∩B)</pre>
+          <pre>3 aces, no replacement:
+4/52 × 3/51 × 2/50 = 1/13 × 1/17 × 1/25 = 1/5525</pre>
+          <p>Each factor conditions on everything that came before.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Law of total probability (the sum rule)</summary>
+          <p>If <code>A₁, A₂, …, Aₖ</code> partition the sample space (mutually exclusive &amp; exhaustive):</p>
+          <pre>P(B) = Σ P(Aᵢ)·P(B|Aᵢ)
+     = P(A₁)P(B|A₁) + … + P(Aₖ)P(B|Aₖ)</pre>
+          <pre>Pick a bag at random, then a ball:
+Bag1 {2R,1B}, Bag2 {1R,3B}, each P=1/2
+P(red) = 1/2·(2/3) + 1/2·(1/4) = 1/3 + 1/8 = 11/24</pre>
+          <p>This "split over cases" rule is the engine behind Bayes' theorem.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. The birthday problem</summary>
+          <p>"In n people, P(at least two share a birthday)?" — compute it via the <strong>complement</strong> and the chain rule (365 days, independent):</p>
+          <pre>P(all different) = (365/365)(364/365)(363/365)…((365−n+1)/365)
+P(at least two same) = 1 − P(all different)</pre>
+          <pre>n = 3: 1 − (365·364·363)/365³</pre>
+          <p>It grows fast because you compare all <code>nC2 = n(n−1)/2</code> pairs — for just <strong>23 people it's already ≈ 50%</strong>. For GATE, know the method, not the decimal.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Counting both orders ("in any order")</summary>
+          <p>If the order isn't fixed, add up every valid order.</p>
+          <pre>one king AND one queen (2 cards, no replacement):
+K then Q: 4/52 × 4/51
+Q then K: 4/52 × 4/51
+total = 2 × (4/52 × 4/51)</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> computing only "king then queen" forgets the "queen then king" order.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Cards without replacement (dependent)</summary>
           <p>Two cards, no replacement — P(both aces):</p>
           <pre>P(1st ace) = 4/52
 P(2nd ace | 1st ace) = 3/51   (deck now 51 cards, 3 aces)
@@ -111,21 +174,21 @@ P(both) = 4/52 × 3/51 = 1/13 × 1/17 = 1/221</pre>
         </details>
 
         <details class="study-item">
-          <summary>8. With vs without replacement</summary>
+          <summary>15. With vs without replacement</summary>
           <pre>WITHOUT replacement (dependent):  4/52 × 3/51 = 1/221
 WITH replacement (independent):   4/52 × 4/52 = 1/169</pre>
           <p><span style="color:var(--coral-text)">Memory:</span> with replacement → independent (probabilities unchanged); without replacement → dependent (update the counts).</p>
         </details>
 
         <details class="study-item">
-          <summary>9. Balls without replacement</summary>
+          <summary>16. Balls without replacement</summary>
           <p>Bag: 3 red, 2 blue. Draw 2 without replacement — P(both red):</p>
           <pre>P(R₁) = 3/5 ,  P(R₂|R₁) = 2/4
 P(R₁ ∩ R₂) = 3/5 × 2/4 = 3/10</pre>
         </details>
 
         <details class="study-item">
-          <summary>10. Independent examples</summary>
+          <summary>17. Independent examples</summary>
           <pre>two coins:  P(HH) = 1/2 × 1/2 = 1/4
 two dice:   P(6, 6) = 1/6 × 1/6 = 1/36
 die & coin: P(6 and H) = 1/6 × 1/2 = 1/12</pre>
@@ -133,7 +196,7 @@ die & coin: P(6 and H) = 1/6 × 1/2 = 1/12</pre>
         </details>
 
         <details class="study-item">
-          <summary>11. Spot independent vs dependent fast</summary>
+          <summary>18. Spot independent vs dependent fast</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Situation</th><th>Type</th></tr>
             <tr><td>toss a coin twice / roll a die twice</td><td>independent</td></tr>
@@ -145,14 +208,14 @@ die & coin: P(6 and H) = 1/6 × 1/2 = 1/12</pre>
         </details>
 
         <details class="study-item">
-          <summary>12. Testing independence</summary>
+          <summary>19. Testing independence</summary>
           <p>The standard GATE test:</p>
           <pre>P(A ∩ B) = P(A)·P(B)  ?   equal → independent ;  not equal → dependent</pre>
           <p>(Equivalently check <code>P(A|B) = P(A)</code> or <code>P(B|A) = P(B)</code>.)</p>
         </details>
 
         <details class="study-item">
-          <summary>13. Independence within one experiment</summary>
+          <summary>20. Independence within one experiment</summary>
           <p>Two events from the SAME roll can still be independent — test with the formula:</p>
           <pre>die: A = even {2,4,6}, B = multiple of 3 {3,6}
 P(A)=1/2, P(B)=1/3, A∩B={6}→1/6 ;  P(A)P(B)=1/6  → EQUAL → independent</pre>
@@ -161,14 +224,14 @@ A∩B={4,6}→1/3 ;  P(A)P(B)=1/4  → NOT equal → dependent</pre>
         </details>
 
         <details class="study-item">
-          <summary>14. Mutually exclusive vs independent</summary>
+          <summary>21. Mutually exclusive vs independent</summary>
           <pre>mutually exclusive: A ∩ B = ∅ → P(A∩B) = 0   (can't co-occur)
 independent:        P(A∩B) = P(A)·P(B)        (no influence)</pre>
           <p>Different ideas — one is about <em>overlap</em>, the other about <em>influence</em>.</p>
         </details>
 
         <details class="study-item">
-          <summary>15. They can't both hold (for positive probability)</summary>
+          <summary>22. They can't both hold (for positive probability)</summary>
           <p>If A, B are mutually exclusive then <code>P(A∩B)=0</code>. If they were also independent, <code>P(A)P(B)=0</code>, forcing <code>P(A)=0</code> or <code>P(B)=0</code>.</p>
           <pre>⇒ two events with positive probability cannot be BOTH
    mutually exclusive AND independent</pre>
@@ -176,7 +239,7 @@ independent:        P(A∩B) = P(A)·P(B)        (no influence)</pre>
         </details>
 
         <details class="study-item">
-          <summary>16. The two contrasting examples</summary>
+          <summary>23. The two contrasting examples</summary>
           <p class="lead">Mutually exclusive but NOT independent:</p>
           <pre>one die: A = "2", B = "5"  →  P(A∩B)=0 ≠ 1/36 = P(A)P(B)</pre>
           <p class="lead">Independent but NOT mutually exclusive:</p>
@@ -184,21 +247,21 @@ independent:        P(A∩B) = P(A)·P(B)        (no influence)</pre>
         </details>
 
         <details class="study-item">
-          <summary>17. Pairwise independence</summary>
+          <summary>24. Pairwise independence</summary>
           <p>Events A, B, C are <strong>pairwise independent</strong> if every pair is independent:</p>
           <pre>P(A∩B)=P(A)P(B) ,  P(A∩C)=P(A)P(C) ,  P(B∩C)=P(B)P(C)</pre>
           <p>This alone does <strong>not</strong> guarantee all three are independent together.</p>
         </details>
 
         <details class="study-item">
-          <summary>18. Mutual independence</summary>
+          <summary>25. Mutual independence</summary>
           <p>A, B, C are <strong>mutually independent</strong> only if every pair is independent <em>and</em> the triple factorises:</p>
           <pre>P(A ∩ B ∩ C) = P(A)·P(B)·P(C)</pre>
           <p>Mutual independence is strictly stronger than pairwise independence.</p>
         </details>
 
         <details class="study-item">
-          <summary>19. Pairwise ≠ mutual (classic counterexample)</summary>
+          <summary>26. Pairwise ≠ mutual (classic counterexample)</summary>
           <pre>two fair coins, S = {HH, HT, TH, TT}
 A = 1st Head {HH,HT} ,  B = 2nd Head {HH,TH} ,  C = coins same {HH,TT}
 P(A)=P(B)=P(C)=1/2</pre>
@@ -208,7 +271,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>20. Formula summary</summary>
+          <summary>27. Formula summary</summary>
           <ul class="styled">
             <li>Conditional: <code>P(B|A) = P(A∩B)/P(A)</code>.</li>
             <li>General AND: <code>P(A∩B) = P(A)P(B|A) = P(B)P(A|B)</code>.</li>
@@ -219,7 +282,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>21. Common GATE traps</summary>
+          <summary>28. Common GATE traps</summary>
           <ul class="styled">
             <li>Mutually exclusive = independent? <strong>No</strong> (for positive-probability events, they can't both hold).</li>
             <li>Independent = mutually exclusive? <strong>No</strong> — independent events can co-occur.</li>
@@ -231,7 +294,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>22. Practice problems</summary>
+          <summary>29. Practice problems</summary>
           <p class="lead">Q1. Two cards, no replacement — P(both kings)?</p>
           <pre>4/52 × 3/51 = 1/221</pre>
           <p class="lead">Q2. Two cards, with replacement — P(both kings)?</p>
@@ -247,7 +310,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>23. Memory box</summary>
+          <summary>30. Memory box</summary>
           <ul class="styled">
             <li><strong>Independent:</strong> <code>P(B|A)=P(B)</code>, <code>P(A∩B)=P(A)P(B)</code>.</li>
             <li><strong>Dependent:</strong> <code>P(B|A)≠P(B)</code>, <code>P(A∩B)=P(A)P(B|A)</code>.</li>
@@ -258,7 +321,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>24. Mental model</summary>
+          <summary>31. Mental model</summary>
           <pre>Independent      = no effect on each other
 Dependent        = probability changes after the first event
 Mutually exclusive = cannot happen together</pre>
