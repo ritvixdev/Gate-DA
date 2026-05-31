@@ -219,7 +219,36 @@ f(x) = d/dx F(x)           (CDF → differentiate → PDF)</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. CDF example — Uniform(0,1)</summary>
+          <summary>20. Discrete CDF — the staircase</summary>
+          <p>For a discrete variable the CDF adds up PMF values up to x:</p>
+          <pre>F(x) = P(X ≤ x) = Σ p(t)   for all t ≤ x</pre>
+          <p>Fair die — accumulate 1/6 at a time:</p>
+          <pre>F(x) = 0      x < 1
+     = 1/6    1 ≤ x < 2
+     = 2/6    2 ≤ x < 3
+     = 3/6    3 ≤ x < 4
+     = 4/6    4 ≤ x < 5
+     = 5/6    5 ≤ x < 6
+     = 1      x ≥ 6</pre>
+          <p>The graph is a <strong>staircase</strong>: flat between values, jumping up at each value it can take.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Recover the PMF from a discrete CDF</summary>
+          <p>Each jump in the staircase <em>is</em> the probability at that point:</p>
+          <pre>P(X = k) = F(k) − F(k−1)     (the jump size)</pre>
+          <pre>die:  P(X = 3) = F(3) − F(2) = 3/6 − 2/6 = 1/6 ✓</pre>
+          <p>So PMF height = size of the CDF step. (Contrast: for continuous X the CDF has no jumps, so <code>P(X=a)=0</code>.)</p>
+        </details>
+        <details class="study-item">
+          <summary>22. Discrete interval rule — mind the a−1</summary>
+          <p>For <strong>integer-valued</strong> X you must drop to <code>a−1</code>, not <code>a</code>:</p>
+          <pre>P(a ≤ X ≤ b) = F(b) − F(a−1)</pre>
+          <pre>die:  P(3 ≤ X ≤ 5) = F(5) − F(2) = 5/6 − 2/6 = 3/6 = 1/2</pre>
+          <p>Why <code>F(2)</code> and not <code>F(3)</code>? We must <em>keep</em> the value 3, so we subtract everything up to 2.</p>
+          <p><span style="color:var(--coral-text)">Trap:</span> continuous uses <code>F(b)−F(a)</code>; discrete integer uses <code>F(b)−F(a−1)</code>. Mixing them is a classic GATE mistake.</p>
+        </details>
+        <details class="study-item">
+          <summary>23. CDF example — Uniform(0,1)</summary>
           <pre>f(x) = 1 on [0,1]
 
 F(x) = 0       x < 0
@@ -230,7 +259,7 @@ P(0.2 ≤ X ≤ 0.7) = F(0.7) − F(0.2) = 0.5</pre>
         </details>
 
         <details class="study-item">
-          <summary>21. CDF example — from f(x)=x/2</summary>
+          <summary>24. CDF example — from f(x)=x/2</summary>
           <pre>f(x) = x/2 on [0,2]
 
 F(x) = ∫₀ˣ t/2 dt = x²/4   on [0,2]   (F(2)=1 ✓)
@@ -239,13 +268,13 @@ P(1 ≤ X ≤ 2) = F(2) − F(1) = 1 − 1/4 = 3/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>22. Expectation of a continuous RV</summary>
+          <summary>25. Expectation of a continuous RV</summary>
           <pre>E[X] = ∫₋∞^∞ x · f(x) dx</pre>
           <p>Same idea as the discrete weighted average <code>Σ x·p(x)</code> — the sum just becomes an integral.</p>
         </details>
 
         <details class="study-item">
-          <summary>23. Variance of a continuous RV</summary>
+          <summary>26. Variance of a continuous RV</summary>
           <pre>E[X²] = ∫ x² f(x) dx
 Var(X) = E[X²] − (E[X])²
 SD(X)  = √Var(X)</pre>
@@ -253,7 +282,7 @@ SD(X)  = √Var(X)</pre>
         </details>
 
         <details class="study-item">
-          <summary>24. The continuous Uniform(a,b)</summary>
+          <summary>27. The continuous Uniform(a,b)</summary>
           <pre>f(x) = 1/(b−a) on [a,b]
 E[X]  = (a + b)/2
 Var(X) = (b − a)² / 12</pre>
@@ -261,7 +290,7 @@ Var(X) = (b − a)² / 12</pre>
         </details>
 
         <details class="study-item">
-          <summary>25. Uniform(0,10) — worked</summary>
+          <summary>28. Uniform(0,10) — worked</summary>
           <pre>f(x) = 1/10 on [0,10]
 P(3 ≤ X ≤ 7) = (7−3) × 1/10 = 0.4
 E[X] = (0+10)/2 = 5
@@ -269,7 +298,7 @@ Var(X) = 10²/12 = 25/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Probability via the graph's area</summary>
+          <summary>29. Probability via the graph's area</summary>
           <p>Always read continuous probability as area — match the shape:</p>
           <pre>rectangle → base × height
 triangle  → ½ × base × height
@@ -278,14 +307,14 @@ curve     → integral</pre>
         </details>
 
         <details class="study-item">
-          <summary>27. PDF height is not probability</summary>
+          <summary>30. PDF height is not probability</summary>
           <pre>f(2) = 0.4  does NOT mean P(X = 2) = 0.4
 for continuous X,  P(X = 2) = 0</pre>
           <p><code>f(2)=0.4</code> is the <em>density</em> at 2; probability comes from the area around it, e.g. <code>P(1.9 ≤ X ≤ 2.1) = ∫ f(x) dx</code>.</p>
         </details>
 
         <details class="study-item">
-          <summary>28. Common GATE traps</summary>
+          <summary>31. Common GATE traps</summary>
           <ul class="styled">
             <li>PDF value = probability? <strong>No</strong> — area is probability; the value is density.</li>
             <li>P(X=a) &gt; 0 for continuous? <strong>No</strong> — it's 0.</li>
@@ -297,7 +326,7 @@ for continuous X,  P(X = 2) = 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>29. Practice problems</summary>
+          <summary>32. Practice problems</summary>
           <p class="lead">Q1. Valid PDF? f(x)=2 on [0,0.5]</p>
           <pre>area = 0.5×2 = 1, f≥0 → valid</pre>
           <p class="lead">Q2. f(x)=1/5 on [0,5] — P(1≤X≤3)?</p>
@@ -311,7 +340,7 @@ for continuous X,  P(X = 2) = 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>30. Cheatsheet &amp; mental model</summary>
+          <summary>33. Cheatsheet &amp; mental model</summary>
           <ul class="styled">
             <li>PDF <code>f(x)</code>: <code>f≥0</code>, <code>∫f=1</code>; <code>P(a≤X≤b)=∫ₐᵇ f dx</code>; <code>P(X=a)=0</code>.</li>
             <li>CDF <code>F(x)=P(X≤x)=∫₋∞ˣ f</code>; <code>f=F'</code>; <code>P(a≤X≤b)=F(b)−F(a)</code>.</li>
