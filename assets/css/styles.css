@@ -171,7 +171,7 @@ a:hover { text-decoration: underline; }
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
   color: var(--coral-text); background: var(--coral-bg);
   border: 1px solid var(--coral-border); border-radius: var(--r-pill);
-  padding: 4px 14px; margin-bottom: var(--s-md);
+  padding: 4px 14px; margin-bottom: var(--s-md); vertical-align: middle; line-height: 1.5;
 }
 .hero h1 { font-size: clamp(32px, 5vw, 50px); font-weight: 700; letter-spacing: -0.03em; }
 .hero .lede { margin-top: var(--s-md); font-size: 19px; color: var(--muted); max-width: 60ch; line-height: 1.6; }
@@ -356,9 +356,9 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
 /* IITM Web M.Tech (Executive) syllabus priority indicators */
 .iitm {
   display: inline-block; font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
-  border-radius: var(--r-pill); border: 1px solid; padding: 4px 12px;
-  margin: 0 0 var(--s-md) 8px; vertical-align: middle;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+  border-radius: var(--r-pill); border: 1px solid; padding: 4px 14px;
+  margin: 0 0 var(--s-md) 8px; vertical-align: middle; line-height: 1.5;
 }
 .iitm-core    { color: #1f9d57; background: rgba(31,157,87,.12);  border-color: rgba(31,157,87,.45); }
 .iitm-light   { color: #c98a00; background: rgba(201,138,0,.14);  border-color: rgba(201,138,0,.45); }
