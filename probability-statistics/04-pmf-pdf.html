@@ -319,7 +319,100 @@ for continuous X,  P(X = 2) = 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Common GATE traps</summary>
+          <summary>31. Probability distribution &amp; its two types</summary>
+          <p>A <strong>distribution</strong> is the rule that says which values a random variable can take and how likely each is.</p>
+          <pre>Discrete   → countable values   → described by a PMF   (Bernoulli, Binomial, Poisson, Geometric)
+Continuous → interval of values  → described by a PDF   (Uniform, Exponential, Normal)</pre>
+          <p>The PMF/PDF/CDF tools above are the <em>language</em>; the named distributions below are the <em>common sentences</em> you meet in GATE DA and ML.</p>
+        </details>
+        <details class="study-item">
+          <summary>32. Bernoulli distribution — one yes/no trial</summary>
+          <p>A single trial with two outcomes: success (1) or failure (0), <code>P(success)=p</code>, <code>q=1−p</code>.</p>
+          <pre>PMF:  P(X=x) = pˣ q¹⁻ˣ ,  x ∈ {0,1}     (x=1 → p ;  x=0 → q)
+E(X) = p        Var(X) = pq        SD = √(pq)</pre>
+          <pre>p=0.7 → E(X)=0.7 , Var(X)=0.7×0.3=0.21</pre>
+          <p>It is the <strong>building block</strong>: one Bernoulli trial repeated independently becomes the Binomial.</p>
+        </details>
+        <details class="study-item">
+          <summary>33. Binomial distribution — counting successes in n trials</summary>
+          <p>Count successes in <code>n</code> independent trials, each with the same <code>p</code>. Written <code>X ~ Binomial(n, p)</code>.</p>
+          <pre>Needs: fixed n · two outcomes · independent trials · constant p
+PMF:  P(X=r) = ⁿCr · pʳ · qⁿ⁻ʳ</pre>
+          <p>Why: <code>pʳqⁿ⁻ʳ</code> is one arrangement; <code>ⁿCr</code> counts which r of the n trials succeed.</p>
+          <pre>3 fair coins, X = #heads:  P(X=2) = ³C₂(½)²(½)¹ = 3·¼·½ = 3/8</pre>
+        </details>
+        <details class="study-item">
+          <summary>34. Binomial mean &amp; variance</summary>
+          <pre>E(X) = np        Var(X) = npq        SD = √(npq)</pre>
+          <pre>n=10, p=0.2, q=0.8 → mean = 2 , variance = 1.6 , SD = √1.6 ≈ 1.265</pre>
+          <p>Used for defect counts, hits-out-of-attempts, responders to a treatment, customers who buy — any fixed number of independent yes/no trials.</p>
+        </details>
+        <details class="study-item">
+          <summary>35. Poisson distribution — counting rare events</summary>
+          <p>Counts events in a fixed interval of time/space when they are rare, at average rate <code>m</code> (often written λ).</p>
+          <pre>PMF:  P(X=r) = e⁻ᵐ · mʳ / r!
+E(X) = m        Var(X) = m        (mean = variance — the Poisson signature)</pre>
+          <pre>m=2 calls/min:  P(X=3) = e⁻²·2³/3! = (4/3)e⁻² ≈ 1.333×0.1353 ≈ 0.180</pre>
+          <p>Examples: calls per hour, accidents per day, defects per metre, requests per second.</p>
+        </details>
+        <details class="study-item">
+          <summary>36. Binomial → Poisson approximation</summary>
+          <p>When trials are many and successes rare, the Binomial collapses to a Poisson:</p>
+          <pre>n large , p small , m = np moderate   ⇒   Binomial(n,p) ≈ Poisson(m=np)</pre>
+          <p>This turns an awkward <code>ⁿCr pʳ qⁿ⁻ʳ</code> with huge n into a quick <code>e⁻ᵐmʳ/r!</code> — the go-to move for rare-event GATE problems.</p>
+        </details>
+        <details class="study-item">
+          <summary>37. Exponential distribution — waiting time</summary>
+          <p>The waiting time <em>between</em> events of a Poisson process, with rate <code>λ&gt;0</code>.</p>
+          <pre>PDF:  f(x) = λe^(−λx) , x &gt; 0
+CDF:  F(x) = P(X ≤ x) = 1 − e^(−λx)
+Survival:   P(X &gt; x) = e^(−λx)
+E(X) = 1/λ        Var(X) = 1/λ²        SD = 1/λ</pre>
+          <pre>λ=2 per min:  P(next call within 1 min) = 1 − e⁻² ≈ 0.865</pre>
+          <p><span style="color:var(--coral-text)">Pair it up:</span> Poisson counts <em>how many</em> events; Exponential measures <em>how long</em> until the next one.</p>
+        </details>
+        <details class="study-item">
+          <summary>38. Memoryless property (exponential)</summary>
+          <p>The exponential forgets how long you've already waited:</p>
+          <pre>P(X &gt; s + t | X &gt; s) = P(X &gt; t)</pre>
+          <p>Already waited 10 min for a bus? The chance of 5 more minutes is the same as a fresh 5-minute wait. The exponential is the <strong>only</strong> continuous distribution with this property — a favourite GATE one-liner.</p>
+        </details>
+        <details class="study-item">
+          <summary>39. Normal distribution — the bell curve</summary>
+          <p>Symmetric, bell-shaped, centred at μ. Written <code>X ~ N(μ, σ²)</code>.</p>
+          <ul class="styled">
+            <li>symmetric about μ → <code>Mean = Median = Mode</code></li>
+            <li>total area = 1; tails extend forever but thin out</li>
+            <li><code>P(X &lt; μ) = P(X &gt; μ) = 0.5</code></li>
+          </ul>
+          <p>Models measurement errors, heights, noise, ML residuals, and (via the CLT) sample means — which is why it is everywhere in statistics.</p>
+        </details>
+        <details class="study-item">
+          <summary>40. Standard normal &amp; the Z-score</summary>
+          <p>The standard normal <code>Z ~ N(0,1)</code> has mean 0, SD 1. Any normal value converts to it:</p>
+          <pre>Z = (X − μ) / σ      (how many SDs the value sits from the mean)
+Z &gt; 0 above mean · Z &lt; 0 below mean · Z = 0 at the mean</pre>
+          <pre>μ=50, σ=10, X=70 → Z = +2  ;  X=35 → Z = −1.5</pre>
+          <pre>Empirical (68–95–99.7) rule:  within 1σ ≈ 68% · 2σ ≈ 95% · 3σ ≈ 99.7%
+Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> the denominator is σ (standard deviation), <em>not</em> σ².</p>
+        </details>
+        <details class="study-item">
+          <summary>41. Which distribution? — a chooser</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Situation</th><th>Distribution</th></tr>
+            <tr><td>one yes/no trial</td><td>Bernoulli(p)</td></tr>
+            <tr><td>#successes in n yes/no trials</td><td>Binomial(n,p)</td></tr>
+            <tr><td>count of rare events in an interval</td><td>Poisson(m)</td></tr>
+            <tr><td>equally likely over [a,b]</td><td>Uniform(a,b) — see cards above</td></tr>
+            <tr><td>waiting time until next event</td><td>Exponential(λ)</td></tr>
+            <tr><td>bell-shaped measurement / sample mean</td><td>Normal(μ,σ²)</td></tr>
+          </table></div>
+          <pre>Bernoulli: one trial · Binomial: repeated trials · Poisson: rare counts
+Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre>
+        </details>
+        <details class="study-item">
+          <summary>42. Common GATE traps</summary>
           <ul class="styled">
             <li>PDF value = probability? <strong>No</strong> — area is probability; the value is density.</li>
             <li>P(X=a) &gt; 0 for continuous? <strong>No</strong> — it's 0.</li>
@@ -327,11 +420,17 @@ for continuous X,  P(X = 2) = 0</pre>
             <li>P(a≤X≤b) ≠ P(a&lt;X&lt;b)? <strong>Equal</strong> for continuous (endpoints carry 0).</li>
             <li>CDF can decrease? <strong>No</strong> — it's non-decreasing.</li>
             <li>Continuous probability uses summation? <strong>No</strong> — integration.</li>
+            <li>Bernoulli = Binomial? <strong>No</strong> — Bernoulli is one trial; Binomial is n of them.</li>
+            <li>Binomial with changing p? <strong>No</strong> — p must stay constant across trials.</li>
+            <li>Poisson mean ≠ variance? <strong>No</strong> — both equal m.</li>
+            <li>Exponential counts events? <strong>No</strong> — Poisson counts; Exponential is the waiting time.</li>
+            <li>"Normal" always means N(0,1)? <strong>No</strong> — that's the <em>standard</em> normal; general is N(μ,σ²).</li>
+            <li>Z-score divides by variance? <strong>No</strong> — by σ (the SD), not σ².</li>
           </ul>
         </details>
 
         <details class="study-item">
-          <summary>32. Practice problems</summary>
+          <summary>43. Practice problems</summary>
           <p class="lead">Q1. Valid PDF? f(x)=2 on [0,0.5]</p>
           <pre>area = 0.5×2 = 1, f≥0 → valid</pre>
           <p class="lead">Q2. f(x)=1/5 on [0,5] — P(1≤X≤3)?</p>
@@ -342,17 +441,30 @@ for continuous X,  P(X = 2) = 0</pre>
           <pre>(10−7)×1/10 = 0.3</pre>
           <p class="lead">Q5. F(x)=x²/4 on [0,2] — find the PDF.</p>
           <pre>f(x) = F'(x) = x/2</pre>
+          <p class="lead">Q6. Bernoulli p=0.6 — mean and variance?</p>
+          <pre>E=p=0.6 ,  Var=pq=0.6×0.4=0.24</pre>
+          <p class="lead">Q7. Binomial(n=10, p=0.2) — mean and variance?</p>
+          <pre>np=2 ,  npq=10×0.2×0.8=1.6</pre>
+          <p class="lead">Q8. Poisson m=2 — P(X=3)?</p>
+          <pre>e⁻²·2³/3! = (4/3)e⁻² ≈ 0.180</pre>
+          <p class="lead">Q9. Exponential λ=2 — P(X>1)?</p>
+          <pre>e^(−λx) = e⁻² ≈ 0.135</pre>
+          <p class="lead">Q10. N(μ=50, σ=10) — Z-score of X=65?</p>
+          <pre>Z = (65−50)/10 = 1.5</pre>
         </details>
 
         <details class="study-item">
-          <summary>33. Cheatsheet &amp; mental model</summary>
+          <summary>44. Cheatsheet &amp; mental model</summary>
           <ul class="styled">
             <li>PDF <code>f(x)</code>: <code>f≥0</code>, <code>∫f=1</code>; <code>P(a≤X≤b)=∫ₐᵇ f dx</code>; <code>P(X=a)=0</code>.</li>
             <li>CDF <code>F(x)=P(X≤x)=∫₋∞ˣ f</code>; <code>f=F'</code>; <code>P(a≤X≤b)=F(b)−F(a)</code>.</li>
             <li>Continuous: <code>E[X]=∫x f dx</code>, <code>Var=E[X²]−(E[X])²</code>.</li>
             <li>Uniform(a,b): <code>f=1/(b−a)</code>, <code>E=(a+b)/2</code>, <code>Var=(b−a)²/12</code>.</li>
+            <li>Bernoulli: <code>E=p</code>, <code>Var=pq</code>. Binomial: <code>P=ⁿCr pʳqⁿ⁻ʳ</code>, <code>E=np</code>, <code>Var=npq</code>.</li>
+            <li>Poisson: <code>P=e⁻ᵐmʳ/r!</code>, <code>E=Var=m</code>. Exponential: <code>f=λe⁻ᵏˣ</code>, <code>E=1/λ</code>, <code>Var=1/λ²</code>, memoryless.</li>
+            <li>Normal <code>N(μ,σ²)</code>; standardise <code>Z=(X−μ)/σ</code>; 68–95–99.7 within 1/2/3 σ.</li>
           </ul>
-          <p><span style="color:var(--coral-text)">Mental model:</span> discrete = coins on exact points; continuous = probability "paint" spread along a line. PDF = the landscape, probability = area under it, CDF = area collected from the left.</p>
+          <p><span style="color:var(--coral-text)">Mental model:</span> discrete = coins on exact points; continuous = probability "paint" spread along a line. PDF = the landscape, probability = area under it, CDF = area collected from the left. <strong>Distributions:</strong> Bernoulli = one trial · Binomial = repeated trials · Poisson = rare counts · Exponential = waiting time · Normal = bell curve · Z = standardise.</p>
         </details>
       </details>
     </section>
@@ -427,6 +539,10 @@ for continuous X,  P(X = 2) = 0</pre>
         <li>Recover the PMF from a CDF: $P(X=k)=F(k)-F(k-1)$ — the jump size of the staircase.</li>
         <li>Interval probability: continuous $F(b)-F(a)$; <strong>integer discrete</strong> $F(b)-F(a-1)$ (keep the lower endpoint).</li>
         <li>CDF is always non-decreasing and runs $0\to1$; for continuous $X$, $\le$ and $<$ give the same probability.</li>
+        <li>Exponential: $F(x)=1-e^{-\lambda x}$, survival $P(X>x)=e^{-\lambda x}$, mean $1/\lambda$, variance $1/\lambda^2$.</li>
+        <li><strong>Memoryless</strong> (only the exponential): $P(X>s+t\mid X>s)=P(X>t)$ — past waiting doesn't matter.</li>
+        <li>$Z$-table anchors: $P(Z\le1)\approx0.8413$, $P(Z\le2)\approx0.9772$, $P(Z\le-1)\approx0.1587$.</li>
+        <li>Poisson counts events; Exponential is the waiting time <em>between</em> them (same process, rate $\lambda$).</li>
       </ul>
     </div>
   </section>
@@ -441,6 +557,9 @@ for continuous X,  P(X = 2) = 0</pre>
       <p><span class="wrong">Trap:</span> "$P(X=k)=F(k)$ for discrete $X$." <span class="right">Reality:</span> $P(X=k)=F(k)-F(k-1)$.</p>
       <p><span class="wrong">Trap:</span> "The CDF can decrease." <span class="right">Reality:</span> it is non-decreasing — it only rises or stays flat.</p>
       <p><span class="wrong">Trap:</span> "Discrete $P(a\le X\le b)=F(b)-F(a)$." <span class="right">Reality:</span> for integers it is $F(b)-F(a-1)$, else you drop the value $a$.</p>
+      <p><span class="wrong">Trap:</span> "Bernoulli and Binomial are the same." <span class="right">Reality:</span> Bernoulli is one trial; Binomial is $n$ independent Bernoulli trials.</p>
+      <p><span class="wrong">Trap:</span> "Exponential counts events." <span class="right">Reality:</span> Poisson counts events; the Exponential is the waiting time between them.</p>
+      <p><span class="wrong">Trap:</span> "$Z=(X-\mu)/\sigma^2$." <span class="right">Reality:</span> divide by $\sigma$ (the SD), not the variance.</p>
     </div>
   </section>
 
@@ -511,8 +630,10 @@ for continuous X,  P(X = 2) = 0</pre>
         <li>CDF $F(x)=P(X\le x)$, non-decreasing, rises 0→1; PMF $=$ jumps: $P(X{=}k)=F(k)-F(k{-}1)$.</li>
         <li>Interval: continuous $F(b)-F(a)$; integer discrete $F(b)-F(a-1)$.</li>
         <li>Find unknown constant by setting the total to 1 ($\sum p=1$ or $\int f=1$).</li>
-        <li>Binomial: $np$, $np(1-p)$. Poisson: $\lambda,\lambda$. Normal: $\mu,\sigma^2$.</li>
+        <li>Bernoulli: $p,\ pq$. Binomial: $np,\ npq$. Poisson: $\lambda,\lambda$. Normal: $\mu,\sigma^2$.</li>
+        <li>Exponential: mean $1/\lambda$, var $1/\lambda^2$, $P(X>x)=e^{-\lambda x}$, memoryless.</li>
         <li>Normal 68–95–99.7 rule; standardize with $Z=(X-\mu)/\sigma$.</li>
+        <li>One trial → Bernoulli · n trials → Binomial · rare counts → Poisson · waiting → Exponential · bell → Normal.</li>
       </ul>
     </div>
   </section>
