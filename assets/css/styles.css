@@ -352,7 +352,6 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--ink) 3%, transparen
   transition: transform var(--speed) var(--ease);
 }
 .study[open] > summary::after { transform: rotate(180deg); }
-.study-empty { color: var(--muted); font-size: 15px; margin: var(--s-md) 0 0; }
 
 /* IITM Web M.Tech (Executive) syllabus priority indicators */
 .iitm {
