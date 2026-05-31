@@ -161,7 +161,61 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
         </details>
 
         <details class="study-item">
-          <summary>14. Common GATE traps</summary>
+          <summary>14. The Central Limit Theorem</summary>
+          <p>Take samples of size n from <strong>any</strong> population (mean μ, SD σ). As n grows, the distribution of the sample mean becomes approximately normal:</p>
+          <pre>x̄  ≈  N(μ, σ²/n)
+E(x̄) = μ ,  Var(x̄) = σ²/n ,  SE = σ/√n</pre>
+          <p>The population need <em>not</em> be normal — that is the magic. Rule of thumb: <code>n ≥ 30</code> (or any n if the population is already normal).</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Why averages turn normal (dice)</summary>
+          <p>One die roll is <strong>uniform</strong> (flat), not normal. But average many rolls, repeat, and the averages pile into a bell:</p>
+          <pre>one die: μ = 3.5 , σ² = 35/12
+n = 100:  x̄ ≈ N(3.5, (35/12)/100)</pre>
+          <p>The spread of the averages (SE) is tiny compared with single rolls, so they cluster tightly around 3.5.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Bigger n → tighter &amp; more normal</summary>
+          <pre>SE = σ/√n  shrinks as n grows:   n=25 → σ/5 ,  n=100 → σ/10</pre>
+          <p>Quadruple the data to halve the SE. Larger samples make the sample mean both <strong>more normal</strong> and <strong>more stable</strong> (a more accurate estimate of μ).</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Where the CLT shows up</summary>
+          <ul class="styled">
+            <li>exam scores — individuals skewed, but the class <em>average</em> is ~normal</li>
+            <li>manufacturing — individual weights vary; sample-mean weight is ~normal</li>
+            <li>polling — yes/no votes; the sample proportion is ~normal for large n</li>
+            <li>dice — single roll uniform, average of many rolls ~normal</li>
+          </ul>
+          <p>Any time you average or sum many independent pieces, normality appears.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Confidence interval — estimate ± uncertainty</summary>
+          <p>A point estimate is a single number (<code>x̄ = 72</code>), but the true μ may differ. A <strong>confidence interval</strong> reports a plausible range instead:</p>
+          <pre>CI = Estimate ± Margin of Error
+   = Estimate ± (critical value × SE)</pre>
+          <p>Point estimate → one value; interval estimate → a range we are reasonably confident contains the parameter.</p>
+        </details>
+        <details class="study-item">
+          <summary>19. CI for the mean when σ is known</summary>
+          <pre>x̄ ± Z · σ/√n          (Z = critical z-value, σ/√n = standard error)</pre>
+          <pre>confidence:  90% → Z=1.645 ,  95% → Z=1.96 ,  99% → Z=2.576</pre>
+          <p>Higher confidence ⇒ larger Z ⇒ <strong>wider</strong> interval — more certainty costs precision.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Confidence interval — worked</summary>
+          <pre>x̄ = 100 , σ = 15 , n = 25 , 95% confidence
+SE = 15/√25 = 3
+ME = 1.96 × 3 = 5.88
+CI = 100 ± 5.88 = [94.12 , 105.88]</pre>
+        </details>
+        <details class="study-item">
+          <summary>21. What “95% confidence” really means</summary>
+          <p><span style="color:var(--coral-text)">Careful:</span> it does <em>not</em> mean “there is a 95% probability the fixed true mean lies in <em>this</em> interval.”</p>
+          <p>It means: if we repeated the whole sampling process many times, about <strong>95% of the intervals</strong> produced would contain μ. The <em>procedure</em> is 95% reliable.</p>
+        </details>
+        <details class="study-item">
+          <summary>22. Common GATE traps</summary>
           <ul class="styled">
             <li>Sample = population? <strong>No</strong> — sample is a selected part.</li>
             <li>Statistic = parameter? <strong>No</strong> — statistic ↔ sample, parameter ↔ population.</li>
@@ -171,7 +225,7 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
         </details>
 
         <details class="study-item">
-          <summary>15. Practice problems</summary>
+          <summary>23. Practice problems</summary>
           <p class="lead">Q1. σ = 20, n = 100 — find SE.</p>
           <pre>SE = 20/√100 = 20/10 = 2</pre>
           <p class="lead">Q2. n goes 100 → 400 — what happens to SE?</p>
@@ -183,7 +237,7 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
         </details>
 
         <details class="study-item">
-          <summary>16. Memory box &amp; mental model</summary>
+          <summary>24. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Population = the full world; sample = a selected mini-world.</li>
             <li>Parameter = true value of the full world (μ, σ, p); statistic = measured value from the sample (x̄, s, p̂).</li>
@@ -212,6 +266,8 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
     <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
     <div class="formula">$$ \bar{X}\ \approx\ \mathcal{N}\!\left(\mu,\ \frac{\sigma^2}{n}\right)\quad\text{for large }n $$</div>
     <div class="formula">$$ Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\ \approx\ \mathcal{N}(0,1) $$</div>
+    <p><strong>Confidence interval for the mean</strong> (σ known) — a CLT application:</p>
+    <div class="formula">$$ \bar{X}\ \pm\ Z\,\frac{\sigma}{\sqrt{n}} \qquad (Z_{90}=1.645,\ Z_{95}=1.96,\ Z_{99}=2.576) $$</div>
   </section>
 
   <section class="concept-card">
@@ -242,6 +298,9 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
         <li>To halve the SE, you need <strong>4×</strong> the data.</li>
         <li>CLT needs independent samples; "large $n$" (often $n\ge30$) makes $\bar X$ approximately Normal.</li>
         <li>If the population is already Normal, $\bar X$ is Normal for <em>any</em> $n$.</li>
+        <li>Confidence interval $=$ estimate $\pm$ (critical value $\times$ SE); for the mean, $\bar X\pm Z\,\sigma/\sqrt n$.</li>
+        <li>$Z$ for $90/95/99\%$ $=1.645/1.96/2.576$; higher confidence $\Rightarrow$ <strong>wider</strong> interval.</li>
+        <li>"95% CI" = the <em>procedure</em> captures $\mu$ 95% of the time, not a probability about this one interval.</li>
       </ul>
     </div>
   </section>
@@ -253,6 +312,7 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
       <p><span class="wrong">Trap:</span> "The CLT makes the <em>data</em> normal." <span class="right">Reality:</span> it makes the <em>sample mean</em> normal, not the raw data.</p>
       <p><span class="wrong">Trap:</span> "SE $=\sigma$." <span class="right">Reality:</span> SE $=\sigma/\sqrt{n}$ — it shrinks with sample size.</p>
       <p><span class="wrong">Trap:</span> "SE halves when $n$ doubles." <span class="right">Reality:</span> it falls by $\sqrt{2}$; you need $4n$ to halve it.</p>
+      <p><span class="wrong">Trap:</span> "Higher confidence gives a narrower interval." <span class="right">Reality:</span> wider — a bigger $Z$ widens it.</p>
     </div>
   </section>
 
@@ -282,6 +342,16 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">No — that's the whole point; it works for almost any population given large $n$.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q4. $\bar X=100$, $\sigma=15$, $n=25$. Build the 95% confidence interval.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">SE $=15/5=3$; ME $=1.96\times3=5.88$ → $[94.12,\ 105.88]$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. To get a <em>narrower</em> interval at the same confidence, what should you do?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Increase $n$ (shrinks SE). Raising confidence would <em>widen</em> it.</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -308,6 +378,7 @@ Standard error (σ/√n)     = spread of the sample MEAN</pre>
         <li>Standard error $=\sigma/\sqrt{n}$; shrinks like $1/\sqrt{n}$.</li>
         <li>It normalizes the <em>mean</em>, not the raw data.</li>
         <li>Already-Normal population ⇒ $\bar X$ Normal for any $n$.</li>
+        <li>CI for the mean: $\bar X\pm Z\,\sigma/\sqrt n$ ($Z_{95}=1.96$); higher confidence = wider, bigger $n$ = narrower.</li>
       </ul>
     </div>
   </section>
