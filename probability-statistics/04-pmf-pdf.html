@@ -398,7 +398,39 @@ Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
           <p><span style="color:var(--coral-text)">Trap:</span> the denominator is σ (standard deviation), <em>not</em> σ².</p>
         </details>
         <details class="study-item">
-          <summary>41. Which distribution? — a chooser</summary>
+          <summary>41. Linear transforms of a normal stay normal</summary>
+          <p>Scaling and shifting a normal variable keeps it normal — the <strong>linear filtering</strong> property:</p>
+          <pre>X ~ N(μ, σ²)  ⇒  aX + b ~ N(aμ + b, a²σ²)</pre>
+          <pre>X ~ N(10, 4), Y = 3X + 5 → mean 3(10)+5=35, var 3²(4)=36 → Y ~ N(35, 36)</pre>
+          <p>This is also why the CLT's sample mean (a scaled sum of variables) ends up normal.</p>
+        </details>
+        <details class="study-item">
+          <summary>42. Moments — what each one describes</summary>
+          <pre>1st moment           → mean      (centre)
+2nd central moment   → variance  (spread)
+3rd standardized     → skewness  (asymmetry)
+4th standardized     → kurtosis  (tail heaviness / peakedness)</pre>
+          <p>For the normal distribution <code>skewness = 0</code> (perfectly symmetric); kurtosis is the reference baseline that other distributions are compared against.</p>
+        </details>
+        <details class="study-item">
+          <summary>43. The 68–95–99.7 tail split</summary>
+          <p>Turn the empirical rule into one-tail probabilities by splitting the leftover area in two:</p>
+          <pre>within ±1σ = 68%  → outside 32%  → each tail 16%
+within ±2σ = 95%  → outside 5%   → each tail 2.5%
+within ±3σ = 99.7% → outside 0.3% → each tail 0.15%</pre>
+          <pre>μ=100, σ=15: P(X > 130) ≈ 2.5%  (130 = μ+2σ)</pre>
+          <p>Lets you answer many normal questions without the full Z-table.</p>
+        </details>
+        <details class="study-item">
+          <summary>44. Gaussian = Normal; the Gaussian process (intro)</summary>
+          <p><strong>Gaussian distribution = normal = bell curve</strong> — just another name, <code>X ~ N(μ, σ²)</code>.</p>
+          <p>A <strong>Gaussian process</strong> goes one level up: a distribution over <em>functions</em>, not numbers. At any finite set of input points the outputs are jointly multivariate normal, so it predicts a whole curve <em>plus</em> its uncertainty.</p>
+          <pre>Gaussian distribution → random number
+Gaussian process      → random function (prediction + uncertainty)</pre>
+          <p>Used in Bayesian ML, regression, time series and spatial prediction.</p>
+        </details>
+        <details class="study-item">
+          <summary>45. Which distribution? — a chooser</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Situation</th><th>Distribution</th></tr>
             <tr><td>one yes/no trial</td><td>Bernoulli(p)</td></tr>
@@ -412,7 +444,7 @@ Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
 Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre>
         </details>
         <details class="study-item">
-          <summary>42. Common GATE traps</summary>
+          <summary>46. Common GATE traps</summary>
           <ul class="styled">
             <li>PDF value = probability? <strong>No</strong> — area is probability; the value is density.</li>
             <li>P(X=a) &gt; 0 for continuous? <strong>No</strong> — it's 0.</li>
@@ -430,7 +462,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
         </details>
 
         <details class="study-item">
-          <summary>43. Practice problems</summary>
+          <summary>47. Practice problems</summary>
           <p class="lead">Q1. Valid PDF? f(x)=2 on [0,0.5]</p>
           <pre>area = 0.5×2 = 1, f≥0 → valid</pre>
           <p class="lead">Q2. f(x)=1/5 on [0,5] — P(1≤X≤3)?</p>
@@ -454,7 +486,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
         </details>
 
         <details class="study-item">
-          <summary>44. Cheatsheet &amp; mental model</summary>
+          <summary>48. Cheatsheet &amp; mental model</summary>
           <ul class="styled">
             <li>PDF <code>f(x)</code>: <code>f≥0</code>, <code>∫f=1</code>; <code>P(a≤X≤b)=∫ₐᵇ f dx</code>; <code>P(X=a)=0</code>.</li>
             <li>CDF <code>F(x)=P(X≤x)=∫₋∞ˣ f</code>; <code>f=F'</code>; <code>P(a≤X≤b)=F(b)−F(a)</code>.</li>
@@ -543,6 +575,8 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
         <li><strong>Memoryless</strong> (only the exponential): $P(X>s+t\mid X>s)=P(X>t)$ — past waiting doesn't matter.</li>
         <li>$Z$-table anchors: $P(Z\le1)\approx0.8413$, $P(Z\le2)\approx0.9772$, $P(Z\le-1)\approx0.1587$.</li>
         <li>Poisson counts events; Exponential is the waiting time <em>between</em> them (same process, rate $\lambda$).</li>
+        <li>Linear transform of a normal stays normal: $X\sim N(\mu,\sigma^2)\Rightarrow aX+b\sim N(a\mu+b,\,a^2\sigma^2)$.</li>
+        <li>Tail split: outside $\pm1\sigma$ each tail $16\%$; outside $\pm2\sigma$ each tail $2.5\%$; outside $\pm3\sigma$ each tail $0.15\%$.</li>
       </ul>
     </div>
   </section>
@@ -560,6 +594,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
       <p><span class="wrong">Trap:</span> "Bernoulli and Binomial are the same." <span class="right">Reality:</span> Bernoulli is one trial; Binomial is $n$ independent Bernoulli trials.</p>
       <p><span class="wrong">Trap:</span> "Exponential counts events." <span class="right">Reality:</span> Poisson counts events; the Exponential is the waiting time between them.</p>
       <p><span class="wrong">Trap:</span> "$Z=(X-\mu)/\sigma^2$." <span class="right">Reality:</span> divide by $\sigma$ (the SD), not the variance.</p>
+      <p><span class="wrong">Trap:</span> "The 68–95–99.7 rule works for any data." <span class="right">Reality:</span> only for an (approximately) normal distribution.</p>
     </div>
   </section>
 
