@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="machine-learning" data-topic="05-kmeans" data-content>
   <div class="hero">
     <span class="tag">Topic 5 · GATE weight: High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>k-Means Clustering</h1>
     <p class="lede">No labels? Group the data anyway. k-Means finds $k$ centers and repeatedly snaps
       points to their nearest center — the classic <strong>unsupervised</strong> algorithm.</p>
@@ -138,34 +139,34 @@ low effort + decent marks     → "careless" / "conservative"</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>11. Hierarchical clustering — two directions</summary>
+          <summary>11. Hierarchical clustering — two directions <span class="study-extra">GATE extra</span></summary>
           <p>Builds a <strong>tree</strong> of clusters; no need to fix K upfront.</p>
           <pre>Agglomerative (bottom-up): start with each point alone, merge the closest pairs
 Divisive (top-down):       start with one big cluster, split repeatedly</pre>
           <p>Agglomerative is the common one.</p>
         </details>
         <details class="study-item">
-          <summary>12. Dendrogram — the cluster tree</summary>
+          <summary>12. Dendrogram — the cluster tree <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>dendrogram</strong> draws the merge history; the height of a join = distance at which clusters merged.</p>
           <pre>cut the tree at a chosen height → that many clusters</pre>
           <p>So you can pick the number of clusters <em>after</em> seeing the structure.</p>
         </details>
         <details class="study-item">
-          <summary>13. Linkage — how to measure cluster distance</summary>
+          <summary>13. Linkage — how to measure cluster distance <span class="study-extra">GATE extra</span></summary>
           <pre>single linkage   = distance between the two closest points (can chain)
 complete linkage = distance between the two farthest points (compact clusters)
 average linkage  = average pairwise distance</pre>
           <p>Linkage choice changes the shape of the clusters formed.</p>
         </details>
         <details class="study-item">
-          <summary>14. Distance metrics</summary>
+          <summary>14. Distance metrics <span class="study-extra">GATE extra</span></summary>
           <pre>Euclidean   = √Σ(aᵢ−bᵢ)²        straight-line distance
 Manhattan   = Σ|aᵢ−bᵢ|           grid / city-block distance
 Cosine      = 1 − cosθ            angle between vectors (good for text)</pre>
           <p>Cosine ignores magnitude — ideal when only direction matters (documents).</p>
         </details>
         <details class="study-item">
-          <summary>15. Hierarchical vs k-means</summary>
+          <summary>15. Hierarchical vs k-means <span class="study-extra">GATE extra</span></summary>
           <div class="tbl-wrap"><table>
             <tr><th></th><th>k-means</th><th>Hierarchical</th></tr>
             <tr><td>Choose K first?</td><td>yes</td><td>no (cut the tree later)</td></tr>
@@ -187,7 +188,7 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
           <p>Average it over all points to compare clusterings (and even to help pick K).</p>
         </details>
         <details class="study-item">
-          <summary>17. Gaussian Mixture Model (soft clustering)</summary>
+          <summary>17. Gaussian Mixture Model (soft clustering) <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>GMM</strong> models data as a blend of K Gaussians — giving each point a <em>probability</em> of belonging to each cluster (soft assignment), unlike k-means' hard assignment.</p>
           <pre>p(x) = Σₖ πₖ · N(x | μₖ, Σₖ)     πₖ = mixture weight, μₖ mean, Σₖ covariance</pre>
           <p>Fit by the EM algorithm; handles elliptical/overlapping clusters k-means can't. Used for soft clustering, density estimation, anomaly detection.</p>
