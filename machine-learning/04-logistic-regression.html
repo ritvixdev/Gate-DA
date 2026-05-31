@@ -453,7 +453,19 @@ n-gram: approximate with previous n−1 words (bigram, trigram) — limited long
 Q = what I seek · K = what each token offers · V = info to take · √dₖ keeps it stable</pre>
         </details>
         <details class="study-item">
-          <summary>61. Common GATE traps</summary>
+          <summary>61. Where cross-entropy comes from (MLE)</summary>
+          <p>Logistic regression's loss isn't arbitrary — it's <strong>maximum likelihood</strong>. For one point <code>P(y|x)=pʸ(1−p)¹⁻ʸ</code>; over all data the log-likelihood is</p>
+          <pre>ℓ = Σ [ yᵢ log pᵢ + (1−yᵢ) log(1−pᵢ) ]</pre>
+          <p>Maximizing ℓ = minimizing its negative = exactly <strong>binary cross-entropy</strong>. (Likewise, minimizing squared error in linear regression = MLE under Gaussian noise.)</p>
+        </details>
+        <details class="study-item">
+          <summary>62. Transfer learning</summary>
+          <p>Reuse a model trained on a big task as the starting point for a new, smaller one — its early layers already learned general features (edges, textures, word patterns).</p>
+          <pre>ImageNet CNN → fine-tune for medical images (less data, faster, better)</pre>
+          <p>Freeze early layers, retrain the later ones for your task.</p>
+        </details>
+        <details class="study-item">
+          <summary>63. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -463,7 +475,7 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
           </ul>
         </details>
         <details class="study-item">
-          <summary>62. Practice questions</summary>
+          <summary>64. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -476,7 +488,7 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>63. Memory box &amp; mental model</summary>
+          <summary>65. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>

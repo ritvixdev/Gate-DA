@@ -73,8 +73,105 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— gradient descent &amp; the optimizers that train ML models, from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Optimization in ML — minimize the loss</summary>
+          <p>Training a model = finding the parameters that make a loss/cost <code>J(θ)</code> smallest.</p>
+          <pre>find θ that minimizes J(θ)   (θ = weights &amp; biases)</pre>
+          <p>For most models there's no closed form, so we improve θ <strong>iteratively</strong> — that's what gradient descent does.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Gradient descent — walk downhill</summary>
+          <pre>θ := θ − η ∇J(θ)        η = learning rate, ∇J = gradient</pre>
+          <p>The gradient points <em>uphill</em> (steepest increase), so we step the <strong>opposite</strong> way to go down.</p>
+          <pre>slope positive → move left · slope negative → move right</pre>
+        </details>
+        <details class="study-item">
+          <summary>3. The learning rate η</summary>
+          <pre>too small → very slow, may stall
+too large → overshoots, loss bounces or diverges
+good       → steady, fast descent</pre>
+          <p>It's the single most important optimization hyperparameter — the step size while walking down the loss hill.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. Batch vs stochastic vs mini-batch</summary>
+          <pre>batch GD      : use ALL data per update — stable but slow
+stochastic (SGD): one sample per update — fast, noisy, can escape shallow minima
+mini-batch    : a small batch (e.g. 32, 64) — the practical sweet spot</pre>
+          <pre>θ := θ − η ∇L_batch(θ)</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. Momentum</summary>
+          <p>Momentum adds a fraction of the previous update, smoothing the path and speeding through flat/ravine regions:</p>
+          <pre>v := β v + ∇J ;  θ := θ − η v</pre>
+          <p>Like a ball rolling downhill — it builds speed and dampens zig-zags.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. AdaGrad</summary>
+          <p>Gives each parameter its <strong>own</strong> learning rate by dividing by the accumulated squared gradients:</p>
+          <pre>big past gradients → smaller steps ; small past gradients → larger steps</pre>
+          <p>Great for sparse features, but the accumulation makes the rate shrink toward 0 over time (training can stall).</p>
+        </details>
+        <details class="study-item">
+          <summary>7. RMSProp</summary>
+          <p>Fixes AdaGrad's shrinking rate by using a <strong>moving average</strong> of squared gradients instead of a sum:</p>
+          <pre>divide the gradient by a recent average of its magnitude</pre>
+          <p>Keeps a healthy step size — good for non-stationary deep-learning objectives.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Adam — the default optimizer</summary>
+          <p><strong>Adam</strong> (Adaptive Moment Estimation) = momentum + RMSProp. It tracks two moving averages:</p>
+          <pre>mₜ = avg of gradients          (1st moment — momentum)
+vₜ = avg of squared gradients  (2nd moment — adaptive rate)
+then uses bias-corrected mₜ, vₜ to update</pre>
+          <p>Fast, robust, little tuning — the usual first choice in deep learning.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Choosing an optimizer</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Optimizer</th><th>Key idea</th></tr>
+            <tr><td>SGD (+momentum)</td><td>simple, strong baseline</td></tr>
+            <tr><td>AdaGrad</td><td>per-parameter rate; sparse data (rate decays)</td></tr>
+            <tr><td>RMSProp</td><td>moving-average rate; non-stationary</td></tr>
+            <tr><td>Adam</td><td>momentum + adaptive; default workhorse</td></tr>
+          </table></div>
+        </details>
+        <details class="study-item">
+          <summary>10. Newton's method &amp; the Hessian</summary>
+          <p>A <strong>second-order</strong> method using curvature (the Hessian H of second derivatives):</p>
+          <pre>θ := θ − H⁻¹ ∇J</pre>
+          <p>Can converge in far fewer steps, but computing/inverting H is expensive for large models — so first-order methods (SGD/Adam) dominate deep learning. Works well on small convex problems (e.g. logistic regression).</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Convex vs non-convex</summary>
+          <pre>convex loss (linear/logistic regression, SVM): one global minimum — GD finds it
+non-convex loss (neural nets): many local minima/saddle points</pre>
+          <p>SGD's noise + momentum help escape poor spots; we settle for a "good enough" minimum.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Gradient checking</summary>
+          <p>To verify a hand-coded backprop, compare the analytical gradient with a numerical one:</p>
+          <pre>∂L/∂θ ≈ [ L(θ+ε) − L(θ−ε) ] / 2ε</pre>
+          <p>They should match closely. It's a debugging tool only — too slow for real training.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Common GATE traps</summary>
+          <ul class="styled">
+            <li>GD moves along the gradient? <strong>No</strong> — <em>opposite</em> it (to descend).</li>
+            <li>Bigger learning rate is always faster? <strong>No</strong> — too big diverges.</li>
+            <li>Adam is plain gradient descent? <strong>No</strong> — adaptive rate + moment estimates.</li>
+            <li>SGD uses the whole dataset per step? <strong>No</strong> — one sample / mini-batch.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>14. Practice &amp; memory box</summary>
+          <p class="lead">Q1. θ=4, ∇J=2, η=0.1 — one GD step?</p>
+          <pre>θ := 4 − 0.1(2) = 3.8</pre>
+          <p class="lead">Q2. Which optimizer uses first &amp; second moment estimates?</p>
+          <pre>Adam</pre>
+          <pre>Memory: θ := θ − η∇J · η = step size · SGD/mini-batch = noisy/fast ·
+momentum smooths · AdaGrad/RMSProp/Adam adapt the rate · Newton uses the Hessian.</pre>
+        </details>
       </details>
     </section>
 

@@ -187,7 +187,13 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
           <p>Average it over all points to compare clusterings (and even to help pick K).</p>
         </details>
         <details class="study-item">
-          <summary>17. Common GATE traps</summary>
+          <summary>17. Gaussian Mixture Model (soft clustering)</summary>
+          <p>A <strong>GMM</strong> models data as a blend of K Gaussians — giving each point a <em>probability</em> of belonging to each cluster (soft assignment), unlike k-means' hard assignment.</p>
+          <pre>p(x) = Σₖ πₖ · N(x | μₖ, Σₖ)     πₖ = mixture weight, μₖ mean, Σₖ covariance</pre>
+          <p>Fit by the EM algorithm; handles elliptical/overlapping clusters k-means can't. Used for soft clustering, density estimation, anomaly detection.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Common GATE traps</summary>
           <ul class="styled">
             <li>k-means needs labels? <strong>No</strong> — it's unsupervised.</li>
             <li>More clusters = better (lower WCSS)? <strong>Misleading</strong> — WCSS always drops; use the elbow.</li>
@@ -197,7 +203,7 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>18. Practice problems</summary>
+          <summary>19. Practice problems</summary>
           <p class="lead">Q1. Supervised or unsupervised: group customers with no labels?</p>
           <pre>unsupervised (clustering)</pre>
           <p class="lead">Q2. WCSS 900,400,170,150,140 for K=1..5 — best K?</p>
@@ -208,7 +214,7 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
           <pre>hierarchical</pre>
         </details>
         <details class="study-item">
-          <summary>19. Memory box &amp; mental model</summary>
+          <summary>20. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Unsupervised = no labels; clustering groups similar points.</li>
             <li>k-means: assign to nearest centroid ↔ recompute centroid; minimizes WCSS; pick K via elbow; scale features.</li>

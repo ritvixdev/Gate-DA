@@ -256,7 +256,14 @@ post-pruning: grow fully, then cut weak branches</pre>
           <p>The result generalizes better than a fully-grown tree.</p>
         </details>
         <details class="study-item">
-          <summary>29. SVM &amp; decision tree — traps, practice, memory</summary>
+          <summary>29. SVM optimization (margin, soft margin, dual)</summary>
+          <p>Maximizing the margin is equivalent to a clean minimization (the margin is <code>1/‖w‖</code>):</p>
+          <pre>hard: minimize ½‖w‖²   s.t. yᵢ(wᵀxᵢ + b) ≥ 1
+soft: minimize ½‖w‖² + C Σξᵢ   s.t. yᵢ(wᵀxᵢ + b) ≥ 1 − ξᵢ , ξᵢ ≥ 0</pre>
+          <p>Solving via its <strong>dual</strong> (Lagrange multipliers) depends only on dot products <code>xᵢᵀxⱼ</code> — which is what lets the <strong>kernel trick</strong> slot in. Only <strong>support vectors</strong> get non-zero multipliers.</p>
+        </details>
+        <details class="study-item">
+          <summary>30. SVM &amp; decision tree — traps, practice, memory</summary>
           <ul class="styled">
             <li>SVM minimizes the margin? <strong>No</strong> — maximizes it.</li>
             <li>All points are support vectors? <strong>No</strong> — only the closest ones.</li>
@@ -269,7 +276,7 @@ post-pruning: grow fully, then cut weak branches</pre>
           <pre>Memory: SVM = widest-margin boundary set by support vectors; kernels bend it. Tree = if-else path; prune to fight overfit.</pre>
         </details>
         <details class="study-item">
-          <summary>30. Traps, practice &amp; memory box</summary>
+          <summary>31. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>kNN learns a parameter equation? <strong>No</strong> — it stores data and votes (lazy).</li>
             <li>Bigger k is always better? <strong>No</strong> — too large underfits.</li>
