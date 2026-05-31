@@ -246,23 +246,152 @@ GM = √(1.10×1.20) = √1.32 ≈ 1.1489  → average growth ≈ 14.89%</pre>
         </details>
 
         <details class="study-item">
-          <summary>23. Cheatsheet</summary>
+          <summary>23. Why dispersion exists</summary>
+          <p>Two datasets can share a mean yet be totally different.</p>
+          <pre>A: 490, 500, 510   mean 500   (tight)
+B: 100, 500, 900   mean 500   (spread out)</pre>
+          <p><strong>Dispersion</strong> measures how scattered the data is — the mean alone is not enough.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Game imagination — stability vs risk</summary>
+          <pre>Player A: 48, 50, 52   → stable / predictable (low dispersion)
+Player B: 10, 50, 90   → risky / inconsistent (high dispersion)</pre>
+          <p>Mean = average power; dispersion = stability/risk.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Range (and its weakness)</summary>
+          <pre>Range = Max − Min
+Coefficient of Range = (Max − Min)/(Max + Min)</pre>
+          <pre>10,20,30,40,50 → 50−10 = 40</pre>
+          <p><span style="color:var(--coral-text)">Limitation:</span> it uses only two values, so a single outlier wrecks it (10,20,30,40,1000 → range 990).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Quartiles &amp; the interquartile range</summary>
+          <pre>Q1 = 25th percentile, Q2 = median, Q3 = 75th percentile
+IQR = Q3 − Q1   (spread of the middle 50%)</pre>
+          <p>Because it ignores the extreme tails, the IQR is <strong>robust to outliers</strong> — unlike the range.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>27. Quartile deviation</summary>
+          <pre>Quartile Deviation = (Q3 − Q1)/2 = IQR/2
+Coefficient of QD = (Q3 − Q1)/(Q3 + Q1)</pre>
+          <pre>10,20,30,40,50,60,70 → Q1=20, Q3=60 → QD = 40/2 = 20</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>28. Mean (average) deviation</summary>
+          <p>The average distance from a centre A (mean or median), using absolute values so deviations don't cancel:</p>
+          <pre>MD = Σ|xᵢ − A| / n      (frequency: Σf|x − A| / Σf)</pre>
+          <pre>2,4,6 (mean 4): (|−2|+0+|2|)/3 = 4/3 ≈ 1.33</pre>
+          <p><span style="color:var(--coral-text)">Note:</span> the median minimises Σ|x−A|; the mean minimises Σ(x−A)².</p>
+        </details>
+
+        <details class="study-item">
+          <summary>29. Variance — population vs sample</summary>
+          <pre>population:  σ² = Σ(xᵢ − μ)² / N
+sample:      s² = Σ(xᵢ − x̄)² / (n − 1)</pre>
+          <p>We square the deviations so they don't cancel and large gaps count more. <span style="color:var(--coral-text)">Why n−1?</span> the sample mean is estimated from the data, costing one degree of freedom.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>30. Standard deviation (data)</summary>
+          <pre>σ = √σ²    (same units as the data; variance is units²)</pre>
+          <pre>2,4,6 (mean 4): Σ(x−x̄)² = 4+0+4 = 8
+population: σ² = 8/3, σ ≈ 1.633 ;  sample: s² = 8/2 = 4, s = 2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>31. Shortcut &amp; frequency variance</summary>
+          <pre>σ² = Σx²/N − (Σx/N)²        (mean of squares − square of mean)
+frequency:  σ² = Σfx²/Σf − (Σfx/Σf)²</pre>
+          <pre>x:10,20,30  f:2,3,5 → mean 23, Σfx²=5900
+σ² = 590 − 529 = 61 ,  σ ≈ 7.81</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>32. Coefficient of variation (CV)</summary>
+          <pre>CV = (SD / Mean) × 100  %</pre>
+          <p>A <strong>relative</strong> spread — it lets you compare datasets with different means/units. Lower CV = more consistent.</p>
+          <pre>mean 50, SD 5 → CV = 10%</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>33. Comparing distributions (SD vs CV)</summary>
+          <pre>same means      → compare SD  (lower = more consistent)
+different means → compare CV  (lower = more consistent)</pre>
+          <pre>Student A: mean 80, SD 8 → CV 10%
+Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
+          <p>Bigger SD does not always mean less consistent — scale matters, so use CV.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>34. Dispersion measures compared</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Measure</th><th>Uses</th><th>Outlier-sensitive?</th></tr>
+            <tr><td>Range</td><td>max − min only</td><td>very high</td></tr>
+            <tr><td>Quartile deviation / IQR</td><td>middle 50%</td><td>low (robust)</td></tr>
+            <tr><td>Mean deviation</td><td>avg |distance|</td><td>moderate</td></tr>
+            <tr><td>Variance / SD</td><td>avg squared distance</td><td>high</td></tr>
+          </table></div>
+          <p>Most used in GATE: variance &amp; SD; most robust: IQR / quartile deviation.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>35. Common traps (dispersion)</summary>
+          <ul class="styled">
+            <li>Same mean ⇒ same distribution? <strong>No</strong> — spread can differ.</li>
+            <li>Range uses all values? <strong>No</strong> — only max and min.</li>
+            <li>Quartile deviation is outlier-heavy? <strong>No</strong> — it's robust (middle 50%).</li>
+            <li><code>Variance = √SD</code>? <strong>No</strong> — <code>SD = √Variance</code>.</li>
+            <li>Population &amp; sample variance are identical? <strong>No</strong> — ÷N vs ÷(n−1).</li>
+            <li>Higher CV = more consistent? <strong>No</strong> — higher CV = more relative variation.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>36. Practice (dispersion)</summary>
+          <p class="lead">Q1. Range of 5,8,12,20,25?</p>
+          <pre>25 − 5 = 20</pre>
+          <p class="lead">Q2. Population variance of 2,4,6?</p>
+          <pre>Σ(x−4)² = 8 → 8/3</pre>
+          <p class="lead">Q3. Shortcut variance of 1,2,3?</p>
+          <pre>14/3 − 4 = 2/3</pre>
+          <p class="lead">Q4. CV: mean 50, SD 5?</p>
+          <pre>5/50 × 100 = 10%</pre>
+          <p class="lead">Q5. A(mean100,SD20) vs B(mean50,SD15) — more consistent?</p>
+          <pre>CV 20% vs 30% → A more consistent</pre>
+          <p class="lead">Q6. Restaurant A(₹300,SD30) vs B(₹500,SD40)?</p>
+          <pre>CV 10% vs 8% → B more consistent</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>37. Cheatsheet</summary>
           <ul class="styled">
             <li>Mean <code>x̄=Σx/n</code>; frequency <code>Σfx/Σf</code>; grouped <code>Σfm/Σf</code>.</li>
             <li>Grouped median <code>L+[(N/2−cf)/f]h</code>; grouped mode <code>L+[(f₁−f₀)/(2f₁−f₀−f₂)]h</code>.</li>
             <li>GM <code>(∏xᵢ)^(1/n)</code> (√ab); HM <code>n/Σ(1/xᵢ)</code> (2ab/(a+b)); <code>AM ≥ GM ≥ HM</code>.</li>
             <li>Symmetric: Mean=Median=Mode; positive skew Mean&gt;Median&gt;Mode; negative skew Mean&lt;Median&lt;Mode.</li>
             <li>Empirical: <code>Mode ≈ 3·Median − 2·Mean</code>.</li>
+            <li>Spread: <code>Range = Max−Min</code>; <code>IQR = Q3−Q1</code>; <code>QD = (Q3−Q1)/2</code>.</li>
+            <li>Variance: pop <code>Σ(x−μ)²/N</code>, sample <code>Σ(x−x̄)²/(n−1)</code>; <code>SD=√Var</code>; shortcut <code>Σx²/N−(Σx/N)²</code>.</li>
+            <li><code>CV = (SD/Mean)×100</code>; compare via SD (same mean) or CV (different means); lower = more consistent.</li>
+            <li><code>Var(aX+b)=a²Var(X)</code>, <code>SD(aX+b)=|a|SD(X)</code> (see Random Variables).</li>
           </ul>
         </details>
 
         <details class="study-item">
-          <summary>24. Memory box &amp; mental model</summary>
+          <summary>38. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Mean = balance point; median = middle person in the queue; mode = most crowded value.</li>
             <li>GM = growth average; HM = speed/rate average; <strong>AM ≥ GM ≥ HM</strong>.</li>
             <li>Mean is dragged by outliers; median resists them.</li>
             <li>The mean is pulled toward the tail → right tail ⇒ Mean &gt; Median &gt; Mode; left tail ⇒ the reverse.</li>
+            <li>Dispersion = spread: range is simple but outlier-prone; IQR/quartile deviation are robust; variance &amp; SD are the workhorses.</li>
+            <li>Same mean ≠ same spread; lower SD (same mean) or lower CV (different means) = more consistent.</li>
           </ul>
         </details>
       </details>
