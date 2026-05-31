@@ -416,6 +416,9 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <tr><td>$n$</td><td>"n"</td><td>sample size</td></tr>
       <tr><td>$Q_1,Q_2,Q_3$</td><td>"quartiles"</td><td>25/50/75th percentiles</td></tr>
       <tr><td>IQR</td><td>"inter-quartile range"</td><td>$Q_3-Q_1$</td></tr>
+      <tr><td>$R$</td><td>"range"</td><td>$\max-\min$</td></tr>
+      <tr><td>MAD</td><td>"mean absolute deviation"</td><td>$\frac1n\sum|x_i-\bar{x}|$</td></tr>
+      <tr><td>CV</td><td>"coefficient of variation"</td><td>$\sigma/\mu$ (often $\times100\%$) — unitless spread</td></tr>
     </table></div>
   </section>
 
@@ -424,6 +427,10 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
     <div class="formula">$$ \bar{x}=\frac{1}{n}\sum_{i=1}^{n} x_i \qquad s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2 $$</div>
+    <p><strong>Population vs sample variance:</strong> divide by $n$ for the population $\sigma^2$, by $n-1$ for the sample $s^2$.</p>
+    <p><strong>Other measures of spread:</strong></p>
+    <div class="formula">$$ R=\max-\min \qquad \text{MAD}=\frac1n\sum|x_i-\bar{x}| \qquad \text{CV}=\frac{\sigma}{\mu}\times100\% $$</div>
+    <p><strong>Empirical relation (moderately skewed):</strong> $\text{Mean}-\text{Mode}\approx 3(\text{Mean}-\text{Median})$.</p>
     <p>Outlier rule of thumb: a point below $Q_1-1.5\,\text{IQR}$ or above $Q_3+1.5\,\text{IQR}$.</p>
   </section>
 
@@ -455,6 +462,9 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         <li>Median &amp; IQR are robust to outliers; mean &amp; std are not.</li>
         <li>Right-skew: mean $&gt;$ median; left-skew: mean $&lt;$ median.</li>
         <li>Boxplot whiskers + the $1.5\times$IQR rule flag outliers fast.</li>
+        <li>CV $=\sigma/\mu$ is <strong>unitless</strong> — use it to compare spread across different scales/units (e.g. height vs weight).</li>
+        <li>Range uses only two points (very sensitive to outliers); MAD &amp; SD use all points.</li>
+        <li>Empirical skew shortcut: Mode $\approx 3\,$Median $-\,2\,$Mean.</li>
       </ul>
     </div>
   </section>
@@ -466,6 +476,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <p><span class="wrong">Trap:</span> "Sample variance divides by $n$." <span class="right">Reality:</span> divide by $n-1$ for the sample variance.</p>
       <p><span class="wrong">Trap:</span> "Mean is always the best center." <span class="right">Reality:</span> with outliers or skew, the median is more representative.</p>
       <p><span class="wrong">Trap:</span> "Histogram = bar chart." <span class="right">Reality:</span> histograms bin <em>numeric</em> data; bar charts compare <em>categories</em>.</p>
+      <p><span class="wrong">Trap:</span> "A bigger SD always means more relative spread." <span class="right">Reality:</span> compare with CV — a large mean inflates SD; CV normalizes it.</p>
+      <p><span class="wrong">Trap:</span> "CV works for any data." <span class="right">Reality:</span> meaningless when $\mu\approx0$ or for data with negatives (you can divide by ~0).</p>
     </div>
   </section>
 
@@ -495,6 +507,16 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">The median.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q4. Data with $\mu=50,\ \sigma=5$. Find the coefficient of variation.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">CV $=\sigma/\mu\times100\%=5/50\times100\%=10\%$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Stock A: $\mu=100,\sigma=15$. Stock B: $\mu=40,\sigma=8$. Which is more volatile <em>relatively</em>?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">CV$_A=15\%$, CV$_B=20\%$ → B is relatively more volatile despite a smaller SD.</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -521,6 +543,7 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         <li>Median &amp; IQR resist outliers; mean &amp; std don't.</li>
         <li>Histogram = numeric shape; boxplot = five-number summary + outliers.</li>
         <li>Right-skew ⇒ mean above median.</li>
+        <li>Spread menu: range (2 points), MAD (all, absolute), variance/SD (all, squared), CV (unitless = $\sigma/\mu$).</li>
       </ul>
     </div>
   </section>
