@@ -242,14 +242,14 @@ diagonalizable        ⇒  distinct eigenvalues (FALSE — e.g. the identity)</p
         </details>
 
         <details class="study-item">
-          <summary>26. Cayley–Hamilton theorem</summary>
+          <summary>26. Cayley–Hamilton theorem <span class="study-extra">GATE extra</span></summary>
           <p>Every square matrix <strong>satisfies its own characteristic equation</strong>.</p>
           <pre>p(λ) = λ² − 5λ + 4   ⇒   p(A) = A² − 5A + 4I = 0</pre>
           <p><span style="color:var(--coral-text)">Trap:</span> the constant becomes <code>4I</code>, not 4 — replace 1 with I.</p>
         </details>
 
         <details class="study-item">
-          <summary>27. Cayley–Hamilton — worked example</summary>
+          <summary>27. Cayley–Hamilton — worked example <span class="study-extra">GATE extra</span></summary>
           <pre>A = [3 1; 2 2]   tr = 5, det = 4
 p(λ) = λ² − 5λ + 4   ⇒   A² − 5A + 4I = 0
 
@@ -258,27 +258,27 @@ p(λ) = λ² − 5λ + 4   ⇒   A² − 5A + 4I = 0
         </details>
 
         <details class="study-item">
-          <summary>28. Cayley–Hamilton to find A⁻¹</summary>
+          <summary>28. Cayley–Hamilton to find A⁻¹ <span class="study-extra">GATE extra</span></summary>
           <pre>A² − 5A + 4I = 0  ⇒  A(5I − A) = 4I  ⇒  A⁻¹ = (5I − A)/4</pre>
           <p>General 2×2: if <code>λ² + aλ + b = 0</code> with b ≠ 0, then <code>A⁻¹ = −(A + aI)/b</code>.</p>
         </details>
 
         <details class="study-item">
-          <summary>29. Cayley–Hamilton for higher powers</summary>
+          <summary>29. Cayley–Hamilton for higher powers <span class="study-extra">GATE extra</span></summary>
           <pre>A² = 5A − 4I
 A³ = A·A² = A(5A − 4I) = 5A² − 4A = 5(5A − 4I) − 4A = 21A − 20I</pre>
           <p>Any power of a 2×2 reduces to the form <code>αA + βI</code> — no repeated multiplication needed.</p>
         </details>
 
         <details class="study-item">
-          <summary>30. Diagonalization vs Cayley–Hamilton</summary>
+          <summary>30. Diagonalization vs Cayley–Hamilton <span class="study-extra">GATE extra</span></summary>
           <pre>Diagonalization:  best when eigenvectors are easy; gives Aᵏ = PDᵏP⁻¹
 Cayley–Hamilton:  best when you only need the char. polynomial,
                   to reduce powers or find A⁻¹ (eigenvectors not needed)</pre>
         </details>
 
         <details class="study-item">
-          <summary>31. Matrix exponential (preview)</summary>
+          <summary>31. Matrix exponential (preview) <span class="study-extra">GATE extra</span></summary>
           <pre>A = PDP⁻¹  ⇒  e^A = P e^D P⁻¹ ,   e^D = diag(e^{λ₁}, e^{λ₂}, …)</pre>
           <p>Used for dynamical systems and differential equations; appears rarely in GATE DA but the idea reuses diagonalization.</p>
         </details>
