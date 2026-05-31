@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— supervised learning, predictive models &amp; the ML workflow</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— supervised learning, predictive models, linear regression &amp; error metrics</span></summary>
         <details class="study-item">
           <summary>1. What supervised learning is</summary>
           <p>The model learns from <strong>labeled data</strong> — examples where the answer is already given:</p>
@@ -185,7 +185,86 @@ if BMI > 30: premium += 8000</pre>
           <p>ML can even learn <em>interactions</em> — e.g. smoking risk that grows with age — which fixed rules miss.</p>
         </details>
         <details class="study-item">
-          <summary>18. Common GATE traps</summary>
+          <summary>18. Simple linear regression — ŷ = β₀ + β₁x</summary>
+          <p>Assume an approximately straight-line relation between one feature and the target:</p>
+          <pre>ŷ = β₀ + β₁x        (β₀ intercept, β₁ slope)   also written ŷ = b + wx</pre>
+          <pre>marks = 20 + 10·hours → hours=6 → 80</pre>
+        </details>
+        <details class="study-item">
+          <summary>19. What slope &amp; intercept mean</summary>
+          <pre>slope β₁     = change in ŷ per +1 in x   (rate of change)
+intercept β₀ = predicted ŷ when x = 0    (starting value)</pre>
+          <pre>marks = 20 + 10·hours: each extra hour → +10 marks; 0 hours → 20 marks</pre>
+        </details>
+        <details class="study-item">
+          <summary>20. Multiple linear regression</summary>
+          <p>Several features, one weight each:</p>
+          <pre>ŷ = β₀ + β₁x₁ + β₂x₂ + … + βₙxₙ</pre>
+          <pre>premium = 2000 + 300·age + 500·BMI + 10000·smoker
+age=40, BMI=28, smoker=1 → 2000+12000+14000+10000 = ₹38,000</pre>
+          <p>Categorical inputs are encoded first (smoker: yes=1, no=0).</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Parameters, actual vs predicted, residual</summary>
+          <pre>parameters learned in training: β₀, β₁, …, βₙ  (weights + bias)
+actual y · predicted ŷ · residual  e = y − ŷ</pre>
+          <pre>y=80, ŷ=75 → e = 5  (model predicted 5 low); e=0 → perfect for that point</pre>
+        </details>
+        <details class="study-item">
+          <summary>22. Scatter plot — reading the relationship</summary>
+          <p>Plot each example as a point (x vs y). The shape reveals the relationship:</p>
+          <pre>upward cloud   → positive linear
+downward cloud → negative linear
+round blob     → weak / no linear relationship</pre>
+          <p>It also exposes non-linear patterns and outliers before you fit anything.</p>
+        </details>
+        <details class="study-item">
+          <summary>23. Many lines — which is best?</summary>
+          <p>Infinitely many lines fit a scatter; the best one has the smallest overall error.</p>
+          <pre>data (1,30)(2,40)(3,50)
+A: ŷ=20+10x → 30,40,50  errors 0,0,0
+B: ŷ=25+5x  → 30,35,40  errors 0,5,10  →  A is better</pre>
+        </details>
+        <details class="study-item">
+          <summary>24. Why square the errors?</summary>
+          <p>Raw residuals cancel: <code>+5 + (−5) = 0</code> hides two real mistakes. Squaring fixes both problems:</p>
+          <pre>(+5)² = 25 , (−5)² = 25 → both count; large errors are punished more</pre>
+          <p>So regression minimizes the <strong>sum of squared</strong> residuals, not the raw sum.</p>
+        </details>
+        <details class="study-item">
+          <summary>25. RSS — residual sum of squares</summary>
+          <pre>RSS = Σ (yᵢ − ŷᵢ)²     (total squared prediction error; lower = better fit)</pre>
+          <pre>y=10,20,30 ; ŷ=12,18,33 → errors −2,2,−3 → squares 4,4,9 → RSS = 17</pre>
+          <p>Least squares (next topic) chooses the parameters that minimize RSS.</p>
+        </details>
+        <details class="study-item">
+          <summary>26. MSE — mean squared error</summary>
+          <pre>MSE = RSS / n = (1/n) Σ (yᵢ − ŷᵢ)²</pre>
+          <pre>RSS=17, n=3 → MSE ≈ 5.67   (units = target², harder to read)</pre>
+        </details>
+        <details class="study-item">
+          <summary>27. RMSE — root mean squared error</summary>
+          <pre>RMSE = √MSE</pre>
+          <pre>MSE=5.67 → RMSE ≈ 2.38  → "typical error ≈ 2.38 units"</pre>
+          <p>RMSE is in the <strong>same unit as the target</strong> (₹, marks…), so it's the readable one. MSE is in squared units.</p>
+        </details>
+        <details class="study-item">
+          <summary>28. Normalized RMSE</summary>
+          <p>RMSE depends on scale, so normalize it to compare across datasets:</p>
+          <pre>NRMSE = RMSE / (y_max − y_min)      (or RMSE / mean(y))</pre>
+          <pre>RMSE=5, range 0–100 → NRMSE = 0.05 = 5%</pre>
+        </details>
+        <details class="study-item">
+          <summary>29. TSS &amp; R² — variance explained</summary>
+          <pre>TSS = Σ (yᵢ − ȳ)²      (total variation around the mean)
+R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
+          <pre>RSS=20, TSS=100 → R² = 1 − 0.2 = 0.8  → explains 80%</pre>
+          <ul class="styled">
+            <li>R² = 1 perfect · R² = 0 no better than predicting ȳ · <strong>R² &lt; 0</strong> worse than the mean</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>30. Common GATE traps</summary>
           <ul class="styled">
             <li>Supervised learning needs no labels? <strong>No</strong> — labels are required.</li>
             <li>Classification predicts numbers? <strong>No</strong> — it predicts categories; regression predicts numbers.</li>
@@ -195,7 +274,7 @@ if BMI > 30: premium += 8000</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>19. Practice questions</summary>
+          <summary>31. Practice questions</summary>
           <p class="lead">Q1. Email + spam/not-spam label — supervised? task type?</p>
           <pre>Yes (labels given); classification</pre>
           <p class="lead">Q2. Predict house price (₹)?</p>
@@ -208,7 +287,7 @@ if BMI > 30: premium += 8000</pre>
           <pre>Learn a mapping f: X → Y from labelled examples that generalizes to new data</pre>
         </details>
         <details class="study-item">
-          <summary>20. Memory box &amp; mental model</summary>
+          <summary>32. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Supervised learning = learning from labelled examples (X → Y).</li>
             <li>Goal: learn <code>f(X) ≈ Y</code> that generalizes to unseen data.</li>
@@ -241,6 +320,9 @@ if BMI > 30: premium += 8000</pre>
     <div class="formula">$$ \textbf{Simple: } \hat{y}=\beta_0+\beta_1 x \qquad \textbf{Multiple: } \hat{y}=\beta_0+\beta_1 x_1+\dots+\beta_p x_p $$</div>
     <p>The least-squares slope and intercept (simple regression):</p>
     <div class="formula">$$ \beta_1=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}, \qquad \beta_0=\bar{y}-\beta_1\bar{x} $$</div>
+    <p><strong>Error &amp; evaluation metrics:</strong></p>
+    <div class="formula">$$ \text{RSS}=\sum (y_i-\hat{y}_i)^2,\quad \text{MSE}=\tfrac{\text{RSS}}{n},\quad \text{RMSE}=\sqrt{\text{MSE}},\quad \text{TSS}=\sum (y_i-\bar{y})^2,\quad R^2=1-\tfrac{\text{RSS}}{\text{TSS}} $$</div>
+    <p>RMSE is in the target's own units; $R^2\in(-\infty,1]$ ($1$ perfect, $0$ = as good as the mean, $<0$ worse).</p>
   </section>
 
   <section class="concept-card">
@@ -313,6 +395,16 @@ if BMI > 30: premium += 8000</pre>
       <p class="pq">Q3. If $\bar{x}=3,\bar{y}=4,\beta_1=0.6$, find the intercept.</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$\beta_0=\bar{y}-\beta_1\bar{x}=4-1.8=2.2$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q4. $y=10,20,30$; $\hat{y}=12,18,33$. Find RSS, then MSE and RMSE.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">errors $-2,2,-3$ → RSS$=4+4+9=17$; MSE$=17/3\approx5.67$; RMSE$\approx2.38$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. RSS$=20$, TSS$=100$. Find $R^2$ and interpret.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$R^2=1-20/100=0.8$ → the model explains 80% of the target's variance.</div>
     </div>
 
     <h3>Quick MCQ</h3>

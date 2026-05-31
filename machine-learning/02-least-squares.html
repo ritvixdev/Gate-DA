@@ -66,8 +66,74 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— least squares, normal equations &amp; the projection view from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What least squares does</summary>
+          <p>Least squares is the <strong>method that picks the regression line/plane</strong> — it chooses the parameters that make the squared residuals as small as possible.</p>
+          <pre>residual eᵢ = yᵢ − ŷᵢ ;  objective: minimize Σ eᵢ²</pre>
+          <p>We square (not sum raw errors) so positives and negatives can't cancel and big misses cost more.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. The objective: minimize RSS</summary>
+          <pre>min over β   RSS = Σ (yᵢ − ŷᵢ)² = Σ (yᵢ − (β₀ + β₁xᵢ))²</pre>
+          <p>Training a linear model literally means solving this minimization for β₀, β₁, … . The minimum is where the gradient w.r.t. each β is zero.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Closed form for simple regression</summary>
+          <p>Setting the two derivatives to zero gives a direct formula (no iteration):</p>
+          <pre>β₁ = Σ(xᵢ−x̄)(yᵢ−ȳ) / Σ(xᵢ−x̄)² = Cov(x,y)/Var(x)
+β₀ = ȳ − β₁·x̄</pre>
+          <p>So the slope is just covariance over variance, and the line always passes through <code>(x̄, ȳ)</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. Matrix form of regression</summary>
+          <p>Stack all examples into matrices:</p>
+          <pre>y = Xβ + ε        ŷ = Xβ
+X = feature matrix (rows = examples, cols = features, plus a 1-column for the intercept)
+y = target vector ,  β = parameter vector ,  ε = errors</pre>
+          <p>This is the bridge from linear regression to linear algebra.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. The normal equations</summary>
+          <p>Minimizing <code>‖y − Xβ‖²</code> and setting the gradient to zero gives the <strong>normal equations</strong>:</p>
+          <pre>XᵀX β = Xᵀy     ⇒     β̂ = (XᵀX)⁻¹ Xᵀy</pre>
+          <p>One linear solve gives all coefficients at once — the closed-form OLS solution.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. When is the solution unique?</summary>
+          <p><code>β̂ = (XᵀX)⁻¹Xᵀy</code> needs <code>XᵀX</code> to be <strong>invertible</strong> — i.e. the feature columns are linearly independent (full column rank).</p>
+          <pre>perfectly correlated / duplicate features → XᵀX singular → no unique solution (multicollinearity)</pre>
+          <p>Fixes: drop redundant features or add regularization (ridge).</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Projection view — the geometry</summary>
+          <p>Geometrically, least squares <strong>projects y onto the column space of X</strong> (all reachable predictions):</p>
+          <pre>ŷ = projection of y onto span(features)
+residual e = y − ŷ  is orthogonal to that space</pre>
+          <p>The optimality condition is exactly this orthogonality:</p>
+          <pre>Xᵀ(y − Xβ̂) = 0     (residual ⟂ every feature)</pre>
+        </details>
+        <details class="study-item">
+          <summary>8. Why least squares connects everything</summary>
+          <ul class="styled">
+            <li><strong>Linear algebra:</strong> projection, column space, matrix inverse.</li>
+            <li><strong>Optimization:</strong> minimize a convex squared-error objective.</li>
+            <li><strong>Statistics:</strong> slope = Cov/Var; under noise assumptions OLS is the best linear unbiased estimator.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>9. Traps, practice &amp; memory box</summary>
+          <ul class="styled">
+            <li>Least squares minimizes raw errors? <strong>No</strong> — squared errors (raw ones cancel).</li>
+            <li><code>(XᵀX)⁻¹</code> always exists? <strong>No</strong> — only with full-rank (independent) features.</li>
+            <li>Residuals are parallel to features? <strong>No</strong> — orthogonal at the optimum.</li>
+          </ul>
+          <p class="lead">Q1. Cov(x,y)=4, Var(x)=8, x̄=10, ȳ=25 — slope &amp; intercept?</p>
+          <pre>β₁ = 4/8 = 0.5 ;  β₀ = 25 − 0.5·10 = 20</pre>
+          <p class="lead">Q2. Why can't we solve OLS with two identical feature columns?</p>
+          <pre>XᵀX is singular (rank-deficient) → no unique inverse</pre>
+          <pre>Memory: OLS = minimize ‖y−Xβ‖² → β̂=(XᵀX)⁻¹Xᵀy → ŷ = projection of y onto feature space.</pre>
+        </details>
       </details>
     </section>
 
