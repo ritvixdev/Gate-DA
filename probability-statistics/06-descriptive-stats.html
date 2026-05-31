@@ -460,6 +460,9 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
     <div class="formula">$$ \bar{x}=\frac{1}{n}\sum_{i=1}^{n} x_i \qquad s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2 $$</div>
     <p><strong>Population vs sample variance:</strong> divide by $n$ for the population $\sigma^2$, by $n-1$ for the sample $s^2$.</p>
+    <p><strong>Shortcut (computing) variance</strong> — usually faster than the definition:</p>
+    <div class="formula">$$ \sigma^2=\frac{\sum x^2}{n}-\left(\frac{\sum x}{n}\right)^2 \qquad \text{frequency: } \sigma^2=\frac{\sum f x^2}{\sum f}-\left(\frac{\sum f x}{\sum f}\right)^2 $$</div>
+    <p><strong>Quartile deviation:</strong> $\text{QD}=\dfrac{Q_3-Q_1}{2}$; &nbsp; <strong>transformation:</strong> $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$, $\;\text{SD}(aX+b)=|a|\,\text{SD}(X)$.</p>
     <p><strong>Other measures of spread:</strong></p>
     <div class="formula">$$ R=\max-\min \qquad \text{MAD}=\frac1n\sum|x_i-\bar{x}| \qquad \text{CV}=\frac{\sigma}{\mu}\times100\% $$</div>
     <p><strong>Empirical relation (moderately skewed):</strong> $\text{Mean}-\text{Mode}\approx 3(\text{Mean}-\text{Median})$.</p>
@@ -502,6 +505,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         <li>Empirical skew shortcut: Mode $\approx 3\,$Median $-\,2\,$Mean.</li>
         <li>Skewness sign: $\text{Sk}=0$ symmetric, $\text{Sk}&gt;0$ right-skewed, $\text{Sk}&lt;0$ left-skewed (dividing by SD makes it unitless).</li>
         <li>Missing frequency? Plug the given mean/median/mode into its grouped formula and solve for the unknown $f$.</li>
+        <li><strong>Minimization fact:</strong> the <em>median</em> minimizes $\sum|x-A|$ (mean deviation); the <em>mean</em> minimizes $\sum(x-A)^2$ (variance).</li>
+        <li>Shortcut variance $\sigma^2=\overline{x^2}-\bar{x}^2$ (mean of squares − square of mean) — fewer subtractions than the definition.</li>
       </ul>
     </div>
   </section>
@@ -565,6 +570,11 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <p class="pq">Q7. A frequency table's modal class gives $L=20,f_0=8,f_2=6,h=10$ and the mode is $24$. Find $f_1$.</p>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$24=20+\dfrac{f_1-8}{2f_1-14}\cdot10\Rightarrow \dfrac{f_1-8}{2f_1-14}=0.4\Rightarrow f_1=12$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q8. Use the shortcut formula for the population variance of $2,4,6$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$\overline{x^2}=\tfrac{4+16+36}{3}=\tfrac{56}{3}$, $\bar{x}^2=16$ → $\sigma^2=\tfrac{56}{3}-16=\tfrac{8}{3}$.</div>
     </div>
 
     <h3>Quick MCQ</h3>
