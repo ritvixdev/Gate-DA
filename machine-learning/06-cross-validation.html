@@ -136,7 +136,59 @@ too much VARIANCE (overfit): regularize · more data · simpler model · prune t
           </ul>
         </details>
         <details class="study-item">
-          <summary>13. Traps, practice &amp; memory box</summary>
+          <summary>13. Parameters vs hyperparameters</summary>
+          <pre>parameter      = learned FROM data        (weights w, b; tree split values)
+hyperparameter = chosen BEFORE training   (you set it)</pre>
+          <pre>examples: k in kNN · max_depth · C &amp; γ in SVM · λ in ridge/lasso · learning rate, #layers in NN</pre>
+        </details>
+        <details class="study-item">
+          <summary>14. Hyperparameter tuning</summary>
+          <ul class="styled">
+            <li><strong>Grid search</strong> — try every combination on a grid (systematic, expensive).</li>
+            <li><strong>Random search</strong> — sample combinations (often finds good values faster).</li>
+            <li><strong>Bayesian optimization</strong> — use past results to choose the next try (good when training is costly).</li>
+          </ul>
+          <p>Always tune with a validation set / cross-validation — <strong>never on the test set</strong> (which is for final evaluation only).</p>
+        </details>
+        <details class="study-item">
+          <summary>15. The confusion matrix</summary>
+          <pre>                Predicted +   Predicted −
+Actual +           TP            FN
+Actual −           FP            TN</pre>
+          <p>TP/TN = correct; <strong>FP</strong> = false alarm; <strong>FN</strong> = missed positive. Every classification metric is built from these four counts.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Precision — trust of a positive call</summary>
+          <pre>Precision = TP / (TP + FP)   ("when it says positive, how often is it right?")</pre>
+          <p>High precision = few false positives. Matters when a false alarm is costly — e.g. a real email wrongly flagged as <strong>spam</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Recall — coverage of actual positives</summary>
+          <pre>Recall = TP / (TP + FN)   ("of all real positives, how many did we catch?")</pre>
+          <p>Also called <strong>sensitivity</strong> / true-positive rate. High recall = few false negatives. Critical when a miss is dangerous — e.g. a <strong>disease</strong> left undetected.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Precision vs recall (the trade-off)</summary>
+          <pre>Precision ↓ false positives · Recall ↓ false negatives</pre>
+          <p>Lowering the decision threshold catches more positives (↑recall) but adds false alarms (↓precision). You pick the balance the application needs.</p>
+        </details>
+        <details class="study-item">
+          <summary>19. F1-score (and why harmonic mean)</summary>
+          <pre>F1 = 2 · Precision · Recall / (Precision + Recall)</pre>
+          <p>The <strong>harmonic</strong> mean punishes imbalance — it's only high when <em>both</em> are high.</p>
+          <pre>P=1.0, R=0.1 → arithmetic mean 0.55 but F1 = 2(0.1)/1.1 ≈ 0.18</pre>
+        </details>
+        <details class="study-item">
+          <summary>20. Worked example &amp; when to use F1</summary>
+          <pre>TP=40, FP=10, FN=20, TN=30
+Accuracy  = 70/100 = 0.70
+Precision = 40/50  = 0.80
+Recall    = 40/60  ≈ 0.667
+F1        = 2(0.8·0.667)/(0.8+0.667) ≈ 0.727</pre>
+          <p>Use F1 (over accuracy) for <strong>imbalanced</strong> data where both error types matter — fraud, medical, defect, rare-disease, spam.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>High training accuracy ⇒ good model? <strong>No</strong> — could be overfitting; check validation/test.</li>
             <li>Tune hyperparameters on the test set? <strong>No</strong> — use CV / a validation set; keep the test set untouched.</li>

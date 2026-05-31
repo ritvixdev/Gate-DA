@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss, Naive Bayes, FFNN &amp; MLP</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, Naive Bayes, neural nets, deep learning &amp; CNNs</span></summary>
         <details class="study-item">
           <summary>1. Classification — predicting a category</summary>
           <p>Classification is the supervised task where the target is a <strong>discrete class</strong>, not a number:</p>
@@ -307,7 +307,61 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>feed-forward = no loops (static input) · recurrent = loops (sequential data)</pre>
         </details>
         <details class="study-item">
-          <summary>38. Common GATE traps</summary>
+          <summary>38. Deep learning — many-layer networks</summary>
+          <p><strong>Deep learning</strong> = neural networks with many layers that learn patterns hierarchically. It shines on images, audio, text, video and other large, complex data.</p>
+          <pre>more layers → more abstract features learned automatically</pre>
+        </details>
+        <details class="study-item">
+          <summary>39. CNN — built for images</summary>
+          <p>A <strong>Convolutional Neural Network</strong> is designed for image-like data; it learns visual patterns with sliding filters instead of fully connecting every pixel.</p>
+          <pre>pixels → edges → shapes → object parts → full object</pre>
+        </details>
+        <details class="study-item">
+          <summary>40. Filters / kernels &amp; feature maps</summary>
+          <p>A <strong>filter (kernel)</strong> is a small matrix (e.g. 3×3) that slides over the image detecting a pattern (edge, corner, texture). The result is a <strong>feature map</strong> showing <em>where</em> that pattern occurs.</p>
+          <pre>[ 1 0 −1 ; 1 0 −1 ; 1 0 −1 ]  → detects vertical edges</pre>
+          <p>In CNNs, filters are <strong>learned</strong> from data, not hand-designed.</p>
+        </details>
+        <details class="study-item">
+          <summary>41. Convolution layer</summary>
+          <p>The convolution layer applies many filters to the input (or previous feature maps) to extract <strong>local</strong> patterns.</p>
+          <pre>early layers: edges, corners, textures
+deeper layers: parts, objects, complex shapes</pre>
+        </details>
+        <details class="study-item">
+          <summary>42. Pooling layer</summary>
+          <p><strong>Pooling</strong> downsamples a feature map — less computation, more robustness, less overfitting.</p>
+          <pre>region [1 3 ; 2 4]:  max pooling → 4   ·   average pooling → 2.5</pre>
+          <p>Pooling <em>reduces</em> spatial size (it never enlarges it).</p>
+        </details>
+        <details class="study-item">
+          <summary>43. Stride &amp; padding</summary>
+          <pre>stride  = how many pixels the filter jumps each step (stride 2 → smaller output)
+padding = extra border pixels:
+   valid = no padding · same = output size ≈ input size (preserves edges)</pre>
+        </details>
+        <details class="study-item">
+          <summary>44. Receptive field</summary>
+          <p>The <strong>receptive field</strong> is the region of the input image that influences one output neuron.</p>
+          <pre>early layers: small local patch · deeper layers: larger area of the image</pre>
+        </details>
+        <details class="study-item">
+          <summary>45. Fully connected layer &amp; CNN architecture</summary>
+          <p>After convolution + pooling, features are <strong>flattened</strong> and fed to fully connected layers that combine them for the final prediction.</p>
+          <pre>input → [conv → activation → pool] × N → flatten → fully connected → output</pre>
+        </details>
+        <details class="study-item">
+          <summary>46. CNN — activations, hyperparameters, traps</summary>
+          <p>Hidden layers use ReLU; <strong>Leaky ReLU</strong> allows small negatives to avoid "dead" neurons; softmax sits on a multi-class output.</p>
+          <pre>CNN hyperparameters: #filters, filter size, stride, padding, pooling size, #layers, lr, epochs, dropout</pre>
+          <ul class="styled">
+            <li>CNN filters are fixed by hand? <strong>No</strong> — learned from data.</li>
+            <li>Pooling enlarges the image? <strong>No</strong> — it shrinks it.</li>
+          </ul>
+          <p>Uses: image classification, face recognition, medical imaging, object detection, OCR, self-driving vision.</p>
+        </details>
+        <details class="study-item">
+          <summary>47. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -317,7 +371,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           </ul>
         </details>
         <details class="study-item">
-          <summary>39. Practice questions</summary>
+          <summary>48. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -330,7 +384,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>40. Memory box &amp; mental model</summary>
+          <summary>49. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>

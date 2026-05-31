@@ -198,7 +198,65 @@ symptom: train accuracy high, test accuracy low</pre>
           <pre>deep tree → high variance · very shallow tree → high bias</pre>
         </details>
         <details class="study-item">
-          <summary>22. SVM &amp; decision tree — traps, practice, memory</summary>
+          <summary>22. Entropy — measuring a node's uncertainty</summary>
+          <p>A split should make child nodes <strong>purer</strong>. <strong>Entropy</strong> measures impurity/uncertainty:</p>
+          <pre>Entropy(S) = − Σ pᵢ log₂(pᵢ)</pre>
+          <pre>pure node (10 spam, 0 not) → 0     (no uncertainty)
+50/50 node (5,5)               → 1     (max for binary)</pre>
+        </details>
+        <details class="study-item">
+          <summary>23. Information gain</summary>
+          <p>A split's quality = how much entropy it removes. First the children's <strong>weighted</strong> entropy, then the drop:</p>
+          <pre>Weighted Entropy = Σ (child size / total) · Entropy(child)
+Information Gain  = Entropy(parent) − Weighted Entropy(children)   (higher = better)</pre>
+          <pre>parent (5,5)→1; split into pure (5,0) &amp; (0,5)→0 ⇒ IG = 1 − 0 = 1 (perfect split)</pre>
+          <p>ID3/C4.5 trees pick the feature with the largest information gain.</p>
+        </details>
+        <details class="study-item">
+          <summary>24. Gini impurity</summary>
+          <p>An alternative impurity measure (used by CART) — the chance of mislabelling a random point by the node's class mix:</p>
+          <pre>Gini = 1 − Σ pᵢ²</pre>
+          <pre>pure (1,0) → 1 − 1 − 0 = 0
+50/50 (0.5,0.5) → 1 − 0.25 − 0.25 = 0.5   (max for binary)</pre>
+        </details>
+        <details class="study-item">
+          <summary>25. Gini gain — worked</summary>
+          <pre>parent (6 pos, 4 neg): Gini = 1 − 0.6² − 0.4² = 0.48
+left (5,1): 1 − (5/6)² − (1/6)² = 0.278   right (1,3): 1 − (1/4)² − (3/4)² = 0.375
+weighted = 0.6(0.278) + 0.4(0.375) = 0.3168
+Gini gain = 0.48 − 0.3168 = 0.1632</pre>
+          <p>The tree keeps the split with the largest Gini gain (= lowest weighted Gini).</p>
+        </details>
+        <details class="study-item">
+          <summary>26. Gini vs entropy / IG</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Information gain (entropy)</th><th>Gini impurity</th></tr>
+            <tr><td>Formula</td><td>−Σp log₂p</td><td>1 − Σp²</td></tr>
+            <tr><td>Cost</td><td>uses logs</td><td>simpler (squares)</td></tr>
+            <tr><td>Used by</td><td>ID3 / C4.5</td><td>CART</td></tr>
+            <tr><td>Pure node</td><td>0</td><td>0</td></tr>
+          </table></div>
+          <p>Both reward pure children; they usually pick similar splits.</p>
+        </details>
+        <details class="study-item">
+          <summary>27. Tree algorithms &amp; regression trees</summary>
+          <ul class="styled">
+            <li><strong>ID3</strong> — information gain (classification)</li>
+            <li><strong>C4.5</strong> — gain ratio, handles continuous features</li>
+            <li><strong>CART</strong> — Gini (classification) or MSE (regression); binary splits</li>
+          </ul>
+          <pre>classification tree → leaf gives a class
+regression tree     → leaf gives a number (mean of its training targets)</pre>
+        </details>
+        <details class="study-item">
+          <summary>28. Pre- vs post-pruning</summary>
+          <p>Pruning trims the tree to fight overfitting:</p>
+          <pre>pre-pruning: stop early (max_depth, min_samples_leaf, min_samples_split)
+post-pruning: grow fully, then cut weak branches</pre>
+          <p>The result generalizes better than a fully-grown tree.</p>
+        </details>
+        <details class="study-item">
+          <summary>29. SVM &amp; decision tree — traps, practice, memory</summary>
           <ul class="styled">
             <li>SVM minimizes the margin? <strong>No</strong> — maximizes it.</li>
             <li>All points are support vectors? <strong>No</strong> — only the closest ones.</li>
@@ -211,7 +269,7 @@ symptom: train accuracy high, test accuracy low</pre>
           <pre>Memory: SVM = widest-margin boundary set by support vectors; kernels bend it. Tree = if-else path; prune to fight overfit.</pre>
         </details>
         <details class="study-item">
-          <summary>23. Traps, practice &amp; memory box</summary>
+          <summary>30. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>kNN learns a parameter equation? <strong>No</strong> — it stores data and votes (lazy).</li>
             <li>Bigger k is always better? <strong>No</strong> — too large underfits.</li>
