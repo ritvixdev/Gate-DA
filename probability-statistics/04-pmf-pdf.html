@@ -67,8 +67,228 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— continuous random variables, PDF &amp; CDF from zero</span></summary>
+
+        <p class="study-empty">Some quantities vary on a continuous scale — height, time, temperature — so we cannot list their probabilities value by value. Instead a <strong>probability density function (PDF)</strong> gives probability as <em>area under a curve</em>, and the <strong>cumulative distribution function (CDF)</strong> gives running totals. Open each card in order.</p>
+
+        <details class="study-item">
+          <summary>1. Why continuous random variables exist</summary>
+          <p>Some quantities can't be counted one by one — height, weight, time, temperature, speed. Between any two values lie infinitely many more (170, 170.1, 170.12, …).</p>
+          <p>So we can't make a table of <code>P(X = each value)</code>. Instead we ask for probability over an <strong>interval</strong>:</p>
+          <pre>P(160 ≤ X ≤ 170) ,  P(X > 180)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>2. Game imagination</summary>
+          <p>A random speed boost can be 1.1×, 1.111×, 1.2×, 1.35× — any decimal in a range.</p>
+          <pre>asking P(boost = exactly 1.234567×) is useless
+asking P(boost between 1.2× and 1.5×) is meaningful</pre>
+          <p><span style="color:var(--coral-text)">Memory:</span> discrete = probability on points; continuous = probability over intervals (area).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>3. Continuous random variable — definition</summary>
+          <p>A <strong>continuous random variable</strong> takes any value in an interval (infinitely many decimal values).</p>
+          <pre>X = height of a student ∈ [150, 200] cm
+T = run time of a program ∈ (0, ∞) sec</pre>
+          <p>Probability is assigned to ranges, written <code>P(a ≤ X ≤ b)</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>4. Why P(X = a) = 0 for continuous</summary>
+          <p>With infinitely many possible values, the chance of landing on one <em>exact</em> value is zero:</p>
+          <pre>P(X = exactly 170.000…) = 0     (a single point has zero width)</pre>
+          <p>But an interval has positive probability: <code>P(160 ≤ X ≤ 170) &gt; 0</code>. Probability lives in intervals, not points.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>5. The probability density function (PDF)</summary>
+          <p>A continuous RV is described by a <strong>PDF</strong> <code>f(x)</code>. Crucially:</p>
+          <pre>f(x) is NOT a probability — it is a DENSITY.
+Probability = AREA under f(x).</pre>
+          <pre>P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx     (area under the curve from a to b)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>6. Properties of a valid PDF</summary>
+          <pre>1.  f(x) ≥ 0  for all x            (density can't be negative)
+2.  ∫₋∞^∞ f(x) dx = 1               (total area = 1)</pre>
+          <p>These mirror the discrete rules <code>p(x) ≥ 0</code> and <code>Σ p(x) = 1</code> — sum becomes integral.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>7. PMF vs PDF</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Discrete — PMF</th><th>Continuous — PDF</th></tr>
+            <tr><td>symbol</td><td>p(x)</td><td>f(x)</td></tr>
+            <tr><td>meaning</td><td>probability at a point</td><td>density at a point</td></tr>
+            <tr><td>probability</td><td>P(X=x)=p(x)</td><td>P(a≤X≤b)=∫f(x)dx</td></tr>
+            <tr><td>total</td><td>Σ p(x) = 1</td><td>∫ f(x) dx = 1</td></tr>
+            <tr><td>P(X=a)</td><td>can be &gt; 0</td><td>always 0</td></tr>
+          </table></div>
+        </details>
+
+        <details class="study-item">
+          <summary>8. A PDF value can exceed 1 (trap)</summary>
+          <p>Probability can never exceed 1 — but a <strong>density</strong> can, because probability is area, not height.</p>
+          <pre>f(x) = 2 on [0, 0.5]:  area = base × height = 0.5 × 2 = 1  ✓ valid
+here f(x) = 2 > 1, yet it is a perfectly good PDF</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>9. Probability over an interval (rectangle area)</summary>
+          <p>For a flat (uniform) PDF, area is just base × height.</p>
+          <pre>f(x) = 1/10 on [0,10]:  P(2 ≤ X ≤ 5) = (5−2) × 1/10 = 3/10 = 0.3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Uniform(0,1)</summary>
+          <pre>f(x) = 1 on [0,1], else 0   (total area 1×1 = 1 ✓)
+P(0.2 ≤ X ≤ 0.7) = (0.7−0.2) × 1 = 0.5
+P(X = 0.5) = 0   (a point)</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>11. ≤ vs < doesn't matter (continuous)</summary>
+          <p>Because endpoints have probability 0:</p>
+          <pre>P(a ≤ X ≤ b) = P(a < X < b) = P(a < X ≤ b) = P(a ≤ X < b)</pre>
+          <p>(For discrete variables the endpoints <em>do</em> matter — not here.)</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Finding the constant in a PDF</summary>
+          <p>GATE often gives a PDF with an unknown constant; use total area = 1.</p>
+          <pre>f(x) = c·x on [0,2]:  ∫₀² c x dx = c[x²/2]₀² = 2c = 1  →  c = 1/2
+
+then P(0 ≤ X ≤ 1) = ∫₀¹ (x/2) dx = (1/2)[x²/2]₀¹ = 1/4</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>13. The cumulative distribution function (CDF)</summary>
+          <p>The <strong>CDF</strong> is the running total of probability:</p>
+          <pre>F(x) = P(X ≤ x) = ∫₋∞ˣ f(t) dt     (area under the PDF up to x)</pre>
+          <p>It works for discrete and continuous variables alike.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>14. PDF ↔ CDF relationship</summary>
+          <pre>F(x) = ∫₋∞ˣ f(t) dt        (PDF → integrate → CDF)
+f(x) = d/dx F(x)           (CDF → differentiate → PDF)</pre>
+          <p>The CDF accumulates area; the PDF is its slope.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. CDF properties</summary>
+          <ul class="styled">
+            <li><code>0 ≤ F(x) ≤ 1</code></li>
+            <li>F is <strong>non-decreasing</strong> (never goes down)</li>
+            <li><code>F(−∞) = 0</code>, &nbsp; <code>F(+∞) = 1</code></li>
+            <li><code>P(a &lt; X ≤ b) = F(b) − F(a)</code> (and for continuous, <code>P(a ≤ X ≤ b) = F(b) − F(a)</code>)</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>16. CDF example — Uniform(0,1)</summary>
+          <pre>f(x) = 1 on [0,1]
+
+F(x) = 0       x < 0
+     = x       0 ≤ x ≤ 1
+     = 1       x > 1
+
+P(0.2 ≤ X ≤ 0.7) = F(0.7) − F(0.2) = 0.5</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>17. CDF example — from f(x)=x/2</summary>
+          <pre>f(x) = x/2 on [0,2]
+
+F(x) = ∫₀ˣ t/2 dt = x²/4   on [0,2]   (F(2)=1 ✓)
+
+P(1 ≤ X ≤ 2) = F(2) − F(1) = 1 − 1/4 = 3/4</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>18. Expectation of a continuous RV</summary>
+          <pre>E[X] = ∫₋∞^∞ x · f(x) dx</pre>
+          <p>Same idea as the discrete weighted average <code>Σ x·p(x)</code> — the sum just becomes an integral.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>19. Variance of a continuous RV</summary>
+          <pre>E[X²] = ∫ x² f(x) dx
+Var(X) = E[X²] − (E[X])²
+SD(X)  = √Var(X)</pre>
+          <p>Identical structure to the discrete case, computed with integrals.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>20. The continuous Uniform(a,b)</summary>
+          <pre>f(x) = 1/(b−a) on [a,b]
+E[X]  = (a + b)/2
+Var(X) = (b − a)² / 12</pre>
+          <pre>Uniform(0,1): E[X] = 1/2 ,  Var = 1/12</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Uniform(0,10) — worked</summary>
+          <pre>f(x) = 1/10 on [0,10]
+P(3 ≤ X ≤ 7) = (7−3) × 1/10 = 0.4
+E[X] = (0+10)/2 = 5
+Var(X) = 10²/12 = 25/3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Probability via the graph's area</summary>
+          <p>Always read continuous probability as area — match the shape:</p>
+          <pre>rectangle → base × height
+triangle  → ½ × base × height
+curve     → integral</pre>
+          <pre>triangle on [0,2], peak height 1:  area = ½ × 2 × 1 = 1 → valid PDF</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>23. PDF height is not probability</summary>
+          <pre>f(2) = 0.4  does NOT mean P(X = 2) = 0.4
+for continuous X,  P(X = 2) = 0</pre>
+          <p><code>f(2)=0.4</code> is the <em>density</em> at 2; probability comes from the area around it, e.g. <code>P(1.9 ≤ X ≤ 2.1) = ∫ f(x) dx</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>24. Common GATE traps</summary>
+          <ul class="styled">
+            <li>PDF value = probability? <strong>No</strong> — area is probability; the value is density.</li>
+            <li>P(X=a) &gt; 0 for continuous? <strong>No</strong> — it's 0.</li>
+            <li>PDF can't exceed 1? <strong>Wrong</strong> — only the total area must be 1.</li>
+            <li>P(a≤X≤b) ≠ P(a&lt;X&lt;b)? <strong>Equal</strong> for continuous (endpoints carry 0).</li>
+            <li>CDF can decrease? <strong>No</strong> — it's non-decreasing.</li>
+            <li>Continuous probability uses summation? <strong>No</strong> — integration.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>25. Practice problems</summary>
+          <p class="lead">Q1. Valid PDF? f(x)=2 on [0,0.5]</p>
+          <pre>area = 0.5×2 = 1, f≥0 → valid</pre>
+          <p class="lead">Q2. f(x)=1/5 on [0,5] — P(1≤X≤3)?</p>
+          <pre>(3−1)×1/5 = 2/5</pre>
+          <p class="lead">Q3. f(x)=c·x on [0,3] — find c.</p>
+          <pre>c[x²/2]₀³ = 9c/2 = 1 → c = 2/9</pre>
+          <p class="lead">Q4. Uniform(0,10) — P(X>7)?</p>
+          <pre>(10−7)×1/10 = 0.3</pre>
+          <p class="lead">Q5. F(x)=x²/4 on [0,2] — find the PDF.</p>
+          <pre>f(x) = F'(x) = x/2</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>26. Cheatsheet &amp; mental model</summary>
+          <ul class="styled">
+            <li>PDF <code>f(x)</code>: <code>f≥0</code>, <code>∫f=1</code>; <code>P(a≤X≤b)=∫ₐᵇ f dx</code>; <code>P(X=a)=0</code>.</li>
+            <li>CDF <code>F(x)=P(X≤x)=∫₋∞ˣ f</code>; <code>f=F'</code>; <code>P(a≤X≤b)=F(b)−F(a)</code>.</li>
+            <li>Continuous: <code>E[X]=∫x f dx</code>, <code>Var=E[X²]−(E[X])²</code>.</li>
+            <li>Uniform(a,b): <code>f=1/(b−a)</code>, <code>E=(a+b)/2</code>, <code>Var=(b−a)²/12</code>.</li>
+          </ul>
+          <p><span style="color:var(--coral-text)">Mental model:</span> discrete = coins on exact points; continuous = probability "paint" spread along a line. PDF = the landscape, probability = area under it, CDF = area collected from the left.</p>
+        </details>
       </details>
     </section>
 
