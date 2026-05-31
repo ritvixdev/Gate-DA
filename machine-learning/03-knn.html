@@ -61,8 +61,80 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— k-Nearest Neighbours classification from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What kNN is</summary>
+          <p><strong>k-Nearest Neighbours</strong> classifies a new point by looking at the <em>k</em> closest training points and taking their majority class.</p>
+          <pre>"Tell me who your nearest neighbours are, and I'll guess your class."</pre>
+          <p>A new player's skill? Look at the nearby players (kills, accuracy, playtime) — if most are experts, call them an expert.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Distance — how 'near' is measured</summary>
+          <p>kNN ranks neighbours by distance, usually <strong>Euclidean</strong>:</p>
+          <pre>2-D:  d = √[(x₂−x₁)² + (y₂−y₁)²]
+n-D:  d = √[ Σ (featureᵢ difference)² ]</pre>
+          <p>Closest = smallest distance in feature space.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. The kNN algorithm</summary>
+          <pre>1. choose k
+2. compute distance from the new point to every training point
+3. take the k smallest (nearest) points
+4. count their class labels
+5. assign the majority class</pre>
+          <pre>k=3, nearest labels = spam, spam, not-spam → predict spam</pre>
+        </details>
+        <details class="study-item">
+          <summary>4. Worked example</summary>
+          <pre>new point's 5 nearest labels (k=5): cat, cat, dog, cat, dog
+votes: cat 3, dog 2 → predict cat</pre>
+          <p>For regression, kNN <em>averages</em> the neighbours' values instead of voting.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. Choosing k (a hyperparameter)</summary>
+          <p><strong>Hyperparameter</strong> = a value you set before training, not learned from data.</p>
+          <pre>small k → sensitive to noise, can overfit (jagged boundary)
+large k → smoother boundary, can underfit (ignores local detail)</pre>
+          <p>Use an <strong>odd k</strong> for binary problems to avoid tie votes; pick the best k by validation.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. Effect of k on the boundary</summary>
+          <pre>k = 1   → very flexible, fits every point (high variance, overfit)
+k = n   → predicts the global majority for everything (underfit)</pre>
+          <p>The sweet spot lies in between and is found by cross-validation.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Lazy learning — no real 'training'</summary>
+          <p>kNN is a <strong>lazy learner</strong>: it learns no equation. "Training" just means <em>storing</em> the labelled examples; all the work happens at prediction time (computing distances).</p>
+          <pre>train: memorize data · predict: find neighbours &amp; vote</pre>
+          <p>This makes prediction slow on large datasets.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Feature scaling is essential</summary>
+          <p>Because kNN uses distance, features on bigger numeric ranges dominate it:</p>
+          <pre>income 0–100000 vs age 0–100 → income swamps the distance</pre>
+          <p>So <strong>scale features</strong> (standardize / min-max) before kNN, or the result is meaningless.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Pros &amp; cons</summary>
+          <ul class="styled">
+            <li>✓ simple, intuitive, no training, no strong assumptions, does classification <em>and</em> regression</li>
+            <li>✗ slow at prediction (large data), needs feature scaling, hurt by irrelevant features &amp; high dimensions, k must be tuned</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>10. Traps, practice &amp; memory box</summary>
+          <ul class="styled">
+            <li>kNN learns a parameter equation? <strong>No</strong> — it stores data and votes (lazy).</li>
+            <li>Bigger k is always better? <strong>No</strong> — too large underfits.</li>
+            <li>Scaling doesn't matter? <strong>No</strong> — distance is scale-sensitive; always scale.</li>
+          </ul>
+          <p class="lead">Q1. k=3, nearest labels {A, B, A} — prediction?</p>
+          <pre>A (majority)</pre>
+          <p class="lead">Q2. Why odd k for binary classification?</p>
+          <pre>to avoid 50–50 ties</pre>
+          <pre>Memory: kNN = neighbours vote · Euclidean distance · scale features · k small→overfit, large→underfit.</pre>
+        </details>
       </details>
     </section>
 

@@ -66,7 +66,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— least squares, normal equations &amp; the projection view from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— least squares, normal equations, projection &amp; ridge regularization</span></summary>
         <details class="study-item">
           <summary>1. What least squares does</summary>
           <p>Least squares is the <strong>method that picks the regression line/plane</strong> — it chooses the parameters that make the squared residuals as small as possible.</p>
@@ -122,7 +122,55 @@ residual e = y − ŷ  is orthogonal to that space</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>9. Traps, practice &amp; memory box</summary>
+          <summary>9. Why ridge regression exists</summary>
+          <p>Plain OLS (minimize RSS) can misbehave when features are correlated, there are many features, or it overfits — the coefficients blow up and become unstable.</p>
+          <pre>symptom: tiny data changes → huge coefficient swings</pre>
+          <p>Ridge regression tames this by adding a penalty on coefficient size.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. OLS vs ridge objective (L2 penalty)</summary>
+          <pre>OLS:    minimize  RSS = Σ(yᵢ − ŷᵢ)²
+Ridge:  minimize  RSS + λ Σ βⱼ²        (the λΣβ² term = L2 penalty)</pre>
+          <p>Ridge doesn't only want low error — it also wants <strong>small coefficients</strong>. Large βⱼ ⇒ large penalty (β=10 → β²=100), so coefficients are pushed down.</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Regularization = a power limiter</summary>
+          <p><strong>Regularization</strong> adds a penalty so the model can't become too wild — it trades a little training fit for better generalization.</p>
+          <pre>OLS   = unlimited power (can overfit)
+Ridge = power limiter (more stable)</pre>
+        </details>
+        <details class="study-item">
+          <summary>12. The λ (lambda) knob</summary>
+          <pre>λ = 0      → no penalty = ordinary OLS
+small λ    → coefficients shrink a little
+large λ     → strong shrinkage, simpler model
+very large λ → coefficients → 0, model underfits</pre>
+          <p>λ controls how much "discipline" the model has; it's tuned by cross-validation.</p>
+        </details>
+        <details class="study-item">
+          <summary>13. Coefficient shrinkage (ridge vs lasso)</summary>
+          <p>Ridge <strong>shrinks coefficients toward zero but rarely to exactly zero</strong>:</p>
+          <pre>OLS   β = 20, −15, 8
+Ridge β = 12,  −9, 5   (smaller, less sensitive)</pre>
+          <p><span style="color:var(--coral-text)">Contrast:</span> Lasso (L1 penalty) <em>can</em> set coefficients exactly to 0, doing feature selection — ridge does not.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Ridge, multicollinearity &amp; the matrix form</summary>
+          <p>When features are highly correlated, <code>XᵀX</code> is nearly singular and OLS is unstable. Ridge adds <code>λI</code> to the diagonal, making the inverse well-behaved:</p>
+          <pre>OLS:   β̂ = (XᵀX)⁻¹ Xᵀy
+Ridge: β̂ = (XᵀX + λI)⁻¹ Xᵀy</pre>
+          <p>The <code>+λI</code> guarantees an invertible matrix even with multicollinearity.</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Ridge — pros, cons &amp; when to use</summary>
+          <ul class="styled">
+            <li>✓ reduces overfitting, handles multicollinearity, stabilizes coefficients, improves generalization</li>
+            <li>✗ no feature selection (coeffs don't hit 0), needs λ tuning, too-large λ underfits, less interpretable</li>
+          </ul>
+          <p>Use it with many correlated features (house prices, medical measurements, ad-spend channels, pixel features).</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>Least squares minimizes raw errors? <strong>No</strong> — squared errors (raw ones cancel).</li>
             <li><code>(XᵀX)⁻¹</code> always exists? <strong>No</strong> — only with full-rank (independent) features.</li>
@@ -156,6 +204,9 @@ residual e = y − ŷ  is orthogonal to that space</pre>
     <div class="formula">$$ \min_{\beta}\ \text{SSE}=\sum_{i=1}^{n}\big(y_i-\hat{y}_i\big)^2 $$</div>
     <p>Setting the derivative to zero gives the <strong>normal equations</strong>:</p>
     <div class="formula">$$ X^{\mathsf T}X\,\beta = X^{\mathsf T}y \qquad\Rightarrow\qquad \beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y $$</div>
+    <p><strong>Ridge (L2-regularized) least squares</strong> — penalize large coefficients, stabilize a near-singular $X^{\mathsf T}X$:</p>
+    <div class="formula">$$ \min_{\beta}\ \text{RSS}+\lambda\textstyle\sum_j\beta_j^2 \qquad\Rightarrow\qquad \hat{\beta}=(X^{\mathsf T}X+\lambda I)^{-1}X^{\mathsf T}y $$</div>
+    <p>$\lambda=0$ recovers OLS; larger $\lambda$ shrinks coefficients (but not exactly to 0 — that's Lasso/L1).</p>
   </section>
 
   <section class="concept-card">
@@ -183,6 +234,7 @@ residual e = y − ŷ  is orthogonal to that space</pre>
     <div class="imagine">
       <div class="callout-label">⚡ High-value facts</div>
       <ul class="styled">
+        <li><strong>Ridge:</strong> $\hat{\beta}=(X^{\mathsf T}X+\lambda I)^{-1}X^{\mathsf T}y$ — the $\lambda I$ fixes multicollinearity; shrinks but doesn't zero coefficients ($\lambda=0\Rightarrow$ OLS).</li>
         <li>Least-squares minimizes $\sum e_i^2$ (not $\sum|e_i|$).</li>
         <li>Closed form: $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$ (when $X^{\mathsf T}X$ is invertible).</li>
         <li>At the optimum the residuals sum to zero and are uncorrelated with the predictors.</li>

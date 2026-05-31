@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification (binary/multi-class) &amp; logistic regression from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss &amp; Naive Bayes from zero</span></summary>
         <details class="study-item">
           <summary>1. Classification — predicting a category</summary>
           <p>Classification is the supervised task where the target is a <strong>discrete class</strong>, not a number:</p>
@@ -153,7 +153,98 @@ P(churn)=0.72 → churn ; P(churn)=0.35 → not churn</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>15. Common GATE traps</summary>
+          <summary>15. Why logistic regression (not linear)</summary>
+          <p>Linear regression can output any number (−2, 0.4, 5…), but a probability must lie in <strong>[0, 1]</strong>. Logistic regression fixes this by squashing the linear score through a sigmoid.</p>
+          <pre>"regression" in the name, but it is a classification algorithm</pre>
+        </details>
+        <details class="study-item">
+          <summary>16. The sigmoid function</summary>
+          <pre>z = wᵀx + b
+σ(z) = 1 / (1 + e^(−z))            P(Y=1 | X) = σ(wᵀx + b)</pre>
+          <pre>z → +∞ ⇒ σ → 1 · z = 0 ⇒ σ = 0.5 · z → −∞ ⇒ σ → 0</pre>
+          <p>The sigmoid maps any real number into (0, 1) — a valid probability.</p>
+        </details>
+        <details class="study-item">
+          <summary>17. The S-curve &amp; effect of w, b</summary>
+          <p>Sigmoid is an S-shape: flat near 0 and 1, steep in the middle.</p>
+          <pre>w sign → direction (w>0: P rises with x; w<0: P falls)
+|w| large → steeper transition
+b → shifts the curve left/right</pre>
+        </details>
+        <details class="study-item">
+          <summary>18. From features to a label</summary>
+          <pre>X → z = wᵀx + b → p = σ(z) → threshold → class 0/1</pre>
+          <pre>tumor: P(malignant)=0.91 ≥ 0.5 → malignant ;  0.22 < 0.5 → benign</pre>
+          <p>Default threshold 0.5, but lower it when misses are costly (medical screening).</p>
+        </details>
+        <details class="study-item">
+          <summary>19. Why RSS is wrong for classification</summary>
+          <p>Squared error doesn't punish a <em>confident wrong</em> probability the way classification needs:</p>
+          <pre>y=1, p=0.9 → good ;  y=1, p=0.1 → very bad, but (1−p)² barely differs</pre>
+          <p>So classification uses <strong>cross-entropy / log loss</strong> instead of RSS.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Cross-entropy (log loss)</summary>
+          <pre>Loss = −[ y·log(p) + (1−y)·log(1−p) ]
+y = 1 → −log(p)        y = 0 → −log(1−p)</pre>
+          <p>It is exactly the cost logistic regression minimizes during training.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Why confident-wrong is punished hard</summary>
+          <pre>y=1, p=0.9   → −log(0.9)  ≈ 0.105   (small)
+y=1, p=0.1   → −log(0.1)  ≈ 2.303   (large)
+y=1, p=0.001 → −log(0.001)≈ 6.907   (huge)</pre>
+          <p>The more confident and wrong the model is, the steeper the penalty — pushing it toward honest probabilities.</p>
+        </details>
+        <details class="study-item">
+          <summary>22. Naive Bayes — a Bayes-theorem classifier</summary>
+          <p>Naive Bayes classifies using <strong>Bayes' theorem</strong>; it's "naive" because it assumes features are <strong>conditionally independent given the class</strong>.</p>
+          <pre>P(C | X) = P(X | C)·P(C) / P(X)
+posterior = likelihood × prior / evidence  →  pick the class with the largest posterior</pre>
+        </details>
+        <details class="study-item">
+          <summary>23. Prior, likelihood, evidence, posterior</summary>
+          <ul class="styled">
+            <li><strong>Prior</strong> P(C): belief before seeing features (P(spam)=0.3).</li>
+            <li><strong>Likelihood</strong> P(X|C): chance of the features in that class (P("win"|spam) high).</li>
+            <li><strong>Evidence</strong> P(X): same for all classes, so dropped when comparing.</li>
+            <li><strong>Posterior</strong> P(C|X): updated belief after the features.</li>
+          </ul>
+          <pre>P(C | X) ∝ P(X | C) · P(C)</pre>
+        </details>
+        <details class="study-item">
+          <summary>24. The naive independence assumption</summary>
+          <p>Assume each feature contributes independently given the class, so the likelihood factorizes:</p>
+          <pre>P(X | C) = P(x₁|C)·P(x₂|C)·…·P(xₙ|C)
+⇒ P(C | X) ∝ P(C) · Π P(xᵢ | C)   →  choose the argmax class</pre>
+          <p>Often unrealistic, yet it works remarkably well (especially for text).</p>
+        </details>
+        <details class="study-item">
+          <summary>25. Zero-frequency problem &amp; Laplace smoothing</summary>
+          <p>If a feature value never appeared with a class in training, its likelihood is 0 — and one 0 zeroes the whole product.</p>
+          <pre>P(word | class) = 0 ⇒ Π = 0  (kills the prediction)</pre>
+          <p>Fix with <strong>Laplace (add-one) smoothing</strong>: add a small count so no probability is exactly 0.</p>
+        </details>
+        <details class="study-item">
+          <summary>26. Naive Bayes — pros, cons, uses</summary>
+          <ul class="styled">
+            <li>✓ simple, fast, great for text, needs little data, handles many features, strong baseline</li>
+            <li>✗ independence assumption unrealistic, zero-frequency issue, probabilities poorly calibrated</li>
+          </ul>
+          <p>Uses: spam filtering, sentiment analysis, document/news classification, language detection.</p>
+        </details>
+        <details class="study-item">
+          <summary>27. Types of Naive Bayes</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Model</th><th>Feature type</th><th>Example</th></tr>
+            <tr><td>Gaussian NB</td><td>continuous (≈normal)</td><td>age, height, blood pressure</td></tr>
+            <tr><td>Multinomial NB</td><td>counts / frequencies</td><td>word counts in documents</td></tr>
+            <tr><td>Bernoulli NB</td><td>binary 0/1</td><td>word present / absent</td></tr>
+          </table></div>
+          <pre>Gaussian = continuous · Multinomial = counts · Bernoulli = yes/no</pre>
+        </details>
+        <details class="study-item">
+          <summary>28. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -163,7 +254,7 @@ P(churn)=0.72 → churn ; P(churn)=0.35 → not churn</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>16. Practice questions</summary>
+          <summary>29. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -176,7 +267,7 @@ P(churn)=0.72 → churn ; P(churn)=0.35 → not churn</pre>
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>17. Memory box &amp; mental model</summary>
+          <summary>30. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>
