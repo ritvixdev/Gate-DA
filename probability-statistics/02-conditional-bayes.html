@@ -386,7 +386,56 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>38. Memory box</summary>
+          <summary>38. Conditional expectation E(X|A)</summary>
+          <p><strong>Conditional expectation</strong> is the average of X <em>after filtering</em> to the world where A happened.</p>
+          <pre>E(X|A) = Σ x · P(X=x | A)        (normal probabilities → conditional ones)</pre>
+          <pre>die, A = "even": values 2,4,6 each P=1/3
+E(X|A) = (2+4+6)/3 = 4   (vs the unconditional E(X)=3.5)</pre>
+          <p>The condition shifts the average.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>39. Linearity of conditional expectation</summary>
+          <pre>E(aX + b | A) = a·E(X|A) + b
+E(X + Y | A)  = E(X|A) + E(Y|A)</pre>
+          <pre>E(X|A)=10 → E(2X+5|A) = 25</pre>
+          <p>Same linearity as ordinary expectation, applied inside the condition.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>40. Tower property (law of total expectation)</summary>
+          <p>The expectation version of the law of total probability: average the conditional averages, weighted by their probabilities.</p>
+          <pre>E(X) = Σ E(X|Aᵢ) · P(Aᵢ)        (A₁,…,Aₖ a partition)</pre>
+          <pre>claims: P(young)=0.6, E(claim|young)=5000 ; P(old)=0.4, E(claim|old)=12000
+E(claim) = 0.6(5000) + 0.4(12000) = 7800</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>41. Conditional expectation in machine learning</summary>
+          <p>A regression model essentially predicts a <strong>conditional expectation</strong>:</p>
+          <pre>E(Y | X) = expected target given the features
+e.g. E(price | area=1000 sqft, city=BLR, beds=2)</pre>
+          <p>So "the prediction" is the conditional average of the target given the input — a core GATE DA idea.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>42. Conditional variance Var(X|A)</summary>
+          <p>The spread of X <em>within</em> the condition A:</p>
+          <pre>Var(X|A) = E[(X − E(X|A))² | A] = E(X²|A) − [E(X|A)]²</pre>
+          <pre>die, A = "even": E(X|A)=4, E(X²|A)=(4+16+36)/3=56/3
+Var(X|A) = 56/3 − 16 = 8/3</pre>
+          <p><span style="color:var(--coral-text)">Note:</span> use the <strong>conditional</strong> mean E(X|A), not E(X). Transformation: <code>Var(aX+b|A)=a²Var(X|A)</code>.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>43. Law of total variance</summary>
+          <pre>Var(X) = E[ Var(X | Group) ]  +  Var( E[X | Group] )
+       = (average spread WITHIN groups) + (spread BETWEEN group means)</pre>
+          <p>Total uncertainty = how much values vary inside each group, plus how much the group averages differ. It underpins ANOVA, regression and ML uncertainty — where <code>Var(Y|X)</code> measures how reliable a prediction is (low = confident, high = uncertain).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>44. Memory box</summary>
           <ul class="styled">
             <li><strong>Independent:</strong> <code>P(B|A)=P(B)</code>, <code>P(A∩B)=P(A)P(B)</code>.</li>
             <li><strong>Dependent:</strong> <code>P(B|A)≠P(B)</code>, <code>P(A∩B)=P(A)P(B|A)</code>.</li>
@@ -397,7 +446,7 @@ but A∩B∩C = {HH} → 1/4  ≠  (1/2)³ = 1/8  → NOT mutually independent</
         </details>
 
         <details class="study-item">
-          <summary>39. Mental model</summary>
+          <summary>45. Mental model</summary>
           <pre>Independent      = no effect on each other
 Dependent        = probability changes after the first event
 Mutually exclusive = cannot happen together</pre>
