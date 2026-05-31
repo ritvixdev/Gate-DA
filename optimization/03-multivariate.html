@@ -56,71 +56,99 @@
           <p>The single derivative becomes a vector of partial derivatives — the gradient.</p>
         </details>
         <details class="study-item">
-          <summary>2. The gradient ∇f</summary>
+          <summary>2. Partial derivatives — slope in one direction</summary>
+          <p>A <strong>partial derivative</strong> differentiates with respect to <em>one</em> variable while holding the others <strong>constant</strong>:</p>
+          <pre>∂f/∂x = how f changes if only x moves (y fixed)
+∂f/∂y = how f changes if only y moves (x fixed)</pre>
+          <pre>f(x,y)=x²+y² :  ∂f/∂x = 2x (y² is constant → 0) ,  ∂f/∂y = 2y</pre>
+          <p>On a 3-D hill at position (x,y), ∂f/∂x is the slope if you step only east-west.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Computing partial derivatives — mixed terms</summary>
+          <p>Treat the "other" variable as a number, then differentiate normally:</p>
+          <pre>f(x,y) = x²y + 3xy²
+∂f/∂x : y is constant → 2xy + 3y²
+∂f/∂y : x is constant → x² + 6xy</pre>
+          <p><strong>ML meaning:</strong> for a loss J(w₁,…,wₙ), <code>∂J/∂wᵢ</code> says how the loss changes if only weight wᵢ moves — positive ⇒ decrease wᵢ, negative ⇒ increase it. That's each step of gradient descent.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. The gradient ∇f</summary>
           <pre>∇f = ( ∂f/∂x₁ , ∂f/∂x₂ , … , ∂f/∂xₙ )</pre>
           <p>It points in the direction of <strong>steepest ascent</strong>, and its magnitude is the slope there. To go downhill, move along <code>−∇f</code> (that's gradient descent).</p>
         </details>
         <details class="study-item">
-          <summary>3. First-order condition: ∇f = 0</summary>
+          <summary>5. First-order condition: ∇f = 0</summary>
           <p>At a smooth min or max, <em>every</em> partial derivative is zero simultaneously:</p>
           <pre>∇f(x*) = 0   ⇔   ∂f/∂xᵢ = 0 for all i   (x* is a critical point)</pre>
           <p>Necessary, not sufficient — could be a min, max, or saddle.</p>
         </details>
         <details class="study-item">
-          <summary>4. The Hessian matrix</summary>
+          <summary>6. The Hessian matrix</summary>
           <p>The matrix of all second partial derivatives — it describes the local curvature:</p>
           <pre>H = [ ∂²f/∂xᵢ∂xⱼ ]      (symmetric n×n)
 2-D: H = [ f_xx  f_xy ; f_xy  f_yy ]</pre>
         </details>
         <details class="study-item">
-          <summary>5. Second-order test via definiteness</summary>
+          <summary>7. Second-order test via definiteness</summary>
           <pre>H positive definite  → local MINIMUM
 H negative definite  → local MAXIMUM
 H indefinite         → SADDLE point (min in some directions, max in others)
 H semidefinite/singular → inconclusive</pre>
         </details>
         <details class="study-item">
-          <summary>6. Read definiteness from eigenvalues</summary>
+          <summary>8. Read definiteness from eigenvalues</summary>
           <pre>all eigenvalues > 0 → positive definite → min
 all eigenvalues < 0 → negative definite → max
 mixed signs         → indefinite        → saddle</pre>
           <p>(2×2 shortcut: positive definite ⇔ f_xx &gt; 0 and det H &gt; 0.)</p>
         </details>
         <details class="study-item">
-          <summary>7. Worked example — a clean minimum</summary>
+          <summary>9. The 2-variable second-derivative (D) test</summary>
+          <p>For a critical point of f(x,y), the practical GATE test uses the discriminant <code>D</code> (it's just <code>det H</code>):</p>
+          <pre>D = f_xx · f_yy − (f_xy)²
+D > 0 and f_xx > 0 → local MINIMUM
+D > 0 and f_xx < 0 → local MAXIMUM
+D < 0              → SADDLE point
+D = 0              → inconclusive</pre>
+          <pre>f=x²+y² at (0,0): f_xx=2, f_yy=2, f_xy=0 → D=4>0, f_xx>0 → min
+f=x²−y² at (0,0): D = 2(−2) − 0 = −4 < 0 → saddle</pre>
+          <p>(This is the eigenvalue/definiteness test in 2-D: <code>D&gt;0,f_xx&gt;0</code> ⇔ positive definite.)</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Worked example — a clean minimum</summary>
           <pre>f(x,y) = x² + y²
 ∇f = (2x, 2y) = 0 → critical point (0,0)
 H = [2 0 ; 0 2] → eigenvalues 2,2 > 0 → positive definite → MINIMUM
 f(0,0) = 0</pre>
         </details>
         <details class="study-item">
-          <summary>8. Worked example — a saddle point</summary>
+          <summary>11. Worked example — a saddle point</summary>
           <pre>f(x,y) = x² − y²
 ∇f = (2x, −2y) = 0 → critical point (0,0)
 H = [2 0 ; 0 −2] → eigenvalues 2, −2 (mixed) → indefinite → SADDLE</pre>
           <p>Down along y, up along x — a mountain pass, neither a peak nor a valley.</p>
         </details>
         <details class="study-item">
-          <summary>9. Convexity in n dimensions</summary>
+          <summary>12. Convexity in n dimensions</summary>
           <p>If the Hessian is positive semidefinite <strong>everywhere</strong>, f is <strong>convex</strong> — then any critical point is the <strong>global</strong> minimum.</p>
           <pre>convex losses: least squares, logistic regression, ridge → reliable global optimum
 non-convex: neural nets → many local minima &amp; saddles</pre>
         </details>
         <details class="study-item">
-          <summary>10. Constrained optimization — Lagrange multipliers</summary>
+          <summary>13. Constrained optimization — Lagrange multipliers</summary>
           <p>For an equality constraint, the gradient of f must align with the constraint's gradient at the optimum:</p>
           <pre>min f(x)  s.t. g(x) = 0
 form  L = f(x) − λ g(x) ,  set ∇L = 0 and g(x)=0, solve for x and λ</pre>
           <p>λ (the multiplier) measures how much the optimum improves if the constraint is loosened.</p>
         </details>
         <details class="study-item">
-          <summary>11. Inequality constraints — KKT (preview)</summary>
+          <summary>14. Inequality constraints — KKT (preview)</summary>
           <p>With inequality constraints <code>g(x) ≤ 0</code>, the optimum satisfies the <strong>KKT conditions</strong> (the generalization of Lagrange):</p>
           <pre>stationarity, primal/dual feasibility, and complementary slackness (λᵢ·gᵢ=0)</pre>
           <p>This is the backbone of constrained convex optimization — e.g. the SVM dual.</p>
         </details>
         <details class="study-item">
-          <summary>12. Connection to ML</summary>
+          <summary>15. Connection to ML</summary>
           <ul class="styled">
             <li>training minimizes a multivariate loss over the weight vector</li>
             <li>gradient descent uses <code>−∇f</code>; Newton's method uses <code>H⁻¹∇f</code></li>
@@ -128,7 +156,7 @@ form  L = f(x) − λ g(x) ,  set ∇L = 0 and g(x)=0, solve for x and λ</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>13. Traps, practice &amp; memory box</summary>
+          <summary>16. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>∇f=0 means minimum? <strong>No</strong> — could be max or saddle; check the Hessian.</li>
             <li>Indefinite Hessian = max? <strong>No</strong> — it's a saddle.</li>
@@ -163,6 +191,7 @@ PSD everywhere ⇒ convex ⇒ global min · equality→Lagrange, inequality→KK
     <div class="formula">$$ \textbf{Necessary: } \nabla f(x^*)=0 $$</div>
     <div class="formula">$$ H \succ 0 \Rightarrow \text{min}, \qquad H \prec 0 \Rightarrow \text{max}, \qquad H \text{ indefinite} \Rightarrow \text{saddle} $$</div>
     <p>Definiteness is read from the Hessian's <strong>eigenvalues</strong>: all positive → min, all negative → max, mixed signs → saddle.</p>
+    <p><strong>2-variable shortcut (D-test):</strong> $D=f_{xx}f_{yy}-f_{xy}^2$; &nbsp; $D&gt;0,f_{xx}&gt;0\Rightarrow$ min, &nbsp; $D&gt;0,f_{xx}&lt;0\Rightarrow$ max, &nbsp; $D&lt;0\Rightarrow$ saddle.</p>
   </section>
 
   <section class="concept-card">
