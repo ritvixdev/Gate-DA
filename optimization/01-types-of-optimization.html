@@ -50,8 +50,105 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— types of optimization &amp; the vocabulary, from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What optimization means</summary>
+          <p>Optimization = find the input that makes an <strong>objective</strong> as good as possible (smallest cost, or largest reward).</p>
+          <pre>minimize (or maximize) f(x)   by choosing the decision variables x</pre>
+          <p>In data science the objective is usually a <strong>loss</strong> we minimize (training a model = optimization).</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Standard form: everything is a minimization</summary>
+          <pre>min over x   f(x)      subject to (optional) constraints</pre>
+          <p>Maximizing is just minimizing the negative, so one toolkit covers both:</p>
+          <pre>max f(x) = − min ( −f(x) )</pre>
+        </details>
+        <details class="study-item">
+          <summary>3. Game imagination — find the lowest valley</summary>
+          <p>Picture the objective as a landscape of hills and valleys. Optimization is releasing a ball and letting it settle in the <strong>lowest valley</strong>.</p>
+          <pre>height of land = f(x) · ball's resting spot = the minimum</pre>
+          <p>Constraints = fences that keep the ball inside an allowed region.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. The four ingredients</summary>
+          <ul class="styled">
+            <li><strong>Objective function</strong> f(x) — what we score</li>
+            <li><strong>Decision variables</strong> x — what we control</li>
+            <li><strong>Constraints</strong> — rules x must obey (e.g. x ≥ 0, g(x) ≤ 0)</li>
+            <li><strong>Feasible region</strong> — the set of all x that satisfy every constraint</li>
+          </ul>
+          <p>The answer is the best feasible point.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. Global vs local optima</summary>
+          <pre>global minimum = lowest value anywhere
+local minimum  = lowest only within a small neighbourhood</pre>
+          <p>A landscape can have many local valleys but only one true global bottom. Methods can get stuck in a local minimum — a central difficulty in non-convex problems.</p>
+        </details>
+        <details class="study-item">
+          <summary>6. Unconstrained vs constrained</summary>
+          <pre>unconstrained: x can be anything (just set the derivative/gradient to 0)
+constrained:   x must satisfy equalities/inequalities (use Lagrange / KKT)</pre>
+          <pre>min x²            → unconstrained
+min x²  s.t. x ≥ 2 → constrained (answer sits on the boundary x = 2)</pre>
+        </details>
+        <details class="study-item">
+          <summary>7. Single-variable vs multi-variable</summary>
+          <pre>univariate:   f(x), one knob        → solve f′(x) = 0
+multivariate: f(x₁,…,xₙ)            → solve ∇f = 0</pre>
+          <p>These are the next two topics; the idea generalizes from a derivative to a gradient.</p>
+        </details>
+        <details class="study-item">
+          <summary>8. Continuous vs discrete</summary>
+          <pre>continuous: x is a real number (heights, weights, model weights)
+discrete:   x takes whole/finite values → integer / combinatorial optimization</pre>
+          <p>Discrete problems (routes, schedules, knapsack) can't use derivatives and are often much harder.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Linear vs nonlinear programming</summary>
+          <pre>Linear Programming (LP):    objective &amp; constraints all linear → optimum at a corner of the feasible polygon
+Nonlinear Programming (NLP): objective or a constraint is curved</pre>
+          <p>LP is solved by methods like simplex; its optimum always lies at a <strong>vertex</strong> of the feasible region.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Convex vs non-convex — the key divide</summary>
+          <p>A <strong>convex</strong> problem (bowl-shaped objective over a convex region) has the wonderful property:</p>
+          <pre>any local minimum is the GLOBAL minimum</pre>
+          <p>So convex problems (linear/logistic regression, SVM, ridge/lasso) are reliably solvable. Non-convex ones (neural nets) have many local minima/saddles — no such guarantee.</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Analytical vs iterative; deterministic vs stochastic</summary>
+          <pre>analytical: solve f′=0 / ∇f=0 in closed form (small, clean problems)
+iterative:  step toward the optimum (gradient descent) when no closed form exists
+deterministic: same path every run · stochastic (SGD): random samples, noisy path</pre>
+        </details>
+        <details class="study-item">
+          <summary>12. Where optimization shows up in DA/ML</summary>
+          <ul class="styled">
+            <li>training any model = minimize a loss (least squares, cross-entropy)</li>
+            <li>regularization adds a penalty to the objective (ridge/lasso)</li>
+            <li>SVM = constrained convex optimization; PCA = maximize variance</li>
+            <li>resource/portfolio/scheduling problems = LP / NLP</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>13. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Local minimum = global minimum? <strong>Only for convex</strong> problems.</li>
+            <li>Maximization needs different methods? <strong>No</strong> — maximize f = minimize −f.</li>
+            <li>LP optimum is inside the region? <strong>No</strong> — it's at a corner/vertex.</li>
+            <li>All optimization uses derivatives? <strong>No</strong> — discrete/combinatorial doesn't.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>14. Practice &amp; memory box</summary>
+          <p class="lead">Q1. min x² s.t. x ≥ 3 — the minimizer?</p>
+          <pre>x = 3 (constraint binds; unconstrained min at 0 is infeasible)</pre>
+          <p class="lead">Q2. Why are convex problems "nice"?</p>
+          <pre>every local min is global → solvers can't get stuck</pre>
+          <pre>Memory: optimization = min f(x) s.t. constraints · max = −min(−f) · convex ⇒ local=global ·
+unconstrained→derivative=0, constrained→Lagrange/KKT · LP optimum at a vertex.</pre>
+        </details>
       </details>
     </section>
 

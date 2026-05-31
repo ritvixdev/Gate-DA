@@ -48,8 +48,99 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— optimizing f(x₁,…,xₙ): gradient, Hessian, Lagrange &amp; KKT, from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What multivariate optimization is</summary>
+          <p>Optimizing a function of <strong>several</strong> variables — the real-world case (a model has many weights).</p>
+          <pre>min f(x₁, x₂, …, xₙ)        x is a vector</pre>
+          <p>The single derivative becomes a vector of partial derivatives — the gradient.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. The gradient ∇f</summary>
+          <pre>∇f = ( ∂f/∂x₁ , ∂f/∂x₂ , … , ∂f/∂xₙ )</pre>
+          <p>It points in the direction of <strong>steepest ascent</strong>, and its magnitude is the slope there. To go downhill, move along <code>−∇f</code> (that's gradient descent).</p>
+        </details>
+        <details class="study-item">
+          <summary>3. First-order condition: ∇f = 0</summary>
+          <p>At a smooth min or max, <em>every</em> partial derivative is zero simultaneously:</p>
+          <pre>∇f(x*) = 0   ⇔   ∂f/∂xᵢ = 0 for all i   (x* is a critical point)</pre>
+          <p>Necessary, not sufficient — could be a min, max, or saddle.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. The Hessian matrix</summary>
+          <p>The matrix of all second partial derivatives — it describes the local curvature:</p>
+          <pre>H = [ ∂²f/∂xᵢ∂xⱼ ]      (symmetric n×n)
+2-D: H = [ f_xx  f_xy ; f_xy  f_yy ]</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. Second-order test via definiteness</summary>
+          <pre>H positive definite  → local MINIMUM
+H negative definite  → local MAXIMUM
+H indefinite         → SADDLE point (min in some directions, max in others)
+H semidefinite/singular → inconclusive</pre>
+        </details>
+        <details class="study-item">
+          <summary>6. Read definiteness from eigenvalues</summary>
+          <pre>all eigenvalues > 0 → positive definite → min
+all eigenvalues < 0 → negative definite → max
+mixed signs         → indefinite        → saddle</pre>
+          <p>(2×2 shortcut: positive definite ⇔ f_xx &gt; 0 and det H &gt; 0.)</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Worked example — a clean minimum</summary>
+          <pre>f(x,y) = x² + y²
+∇f = (2x, 2y) = 0 → critical point (0,0)
+H = [2 0 ; 0 2] → eigenvalues 2,2 > 0 → positive definite → MINIMUM
+f(0,0) = 0</pre>
+        </details>
+        <details class="study-item">
+          <summary>8. Worked example — a saddle point</summary>
+          <pre>f(x,y) = x² − y²
+∇f = (2x, −2y) = 0 → critical point (0,0)
+H = [2 0 ; 0 −2] → eigenvalues 2, −2 (mixed) → indefinite → SADDLE</pre>
+          <p>Down along y, up along x — a mountain pass, neither a peak nor a valley.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Convexity in n dimensions</summary>
+          <p>If the Hessian is positive semidefinite <strong>everywhere</strong>, f is <strong>convex</strong> — then any critical point is the <strong>global</strong> minimum.</p>
+          <pre>convex losses: least squares, logistic regression, ridge → reliable global optimum
+non-convex: neural nets → many local minima &amp; saddles</pre>
+        </details>
+        <details class="study-item">
+          <summary>10. Constrained optimization — Lagrange multipliers</summary>
+          <p>For an equality constraint, the gradient of f must align with the constraint's gradient at the optimum:</p>
+          <pre>min f(x)  s.t. g(x) = 0
+form  L = f(x) − λ g(x) ,  set ∇L = 0 and g(x)=0, solve for x and λ</pre>
+          <p>λ (the multiplier) measures how much the optimum improves if the constraint is loosened.</p>
+        </details>
+        <details class="study-item">
+          <summary>11. Inequality constraints — KKT (preview)</summary>
+          <p>With inequality constraints <code>g(x) ≤ 0</code>, the optimum satisfies the <strong>KKT conditions</strong> (the generalization of Lagrange):</p>
+          <pre>stationarity, primal/dual feasibility, and complementary slackness (λᵢ·gᵢ=0)</pre>
+          <p>This is the backbone of constrained convex optimization — e.g. the SVM dual.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Connection to ML</summary>
+          <ul class="styled">
+            <li>training minimizes a multivariate loss over the weight vector</li>
+            <li>gradient descent uses <code>−∇f</code>; Newton's method uses <code>H⁻¹∇f</code></li>
+            <li>Lagrange/KKT underpin SVM and other constrained models</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>13. Traps, practice &amp; memory box</summary>
+          <ul class="styled">
+            <li>∇f=0 means minimum? <strong>No</strong> — could be max or saddle; check the Hessian.</li>
+            <li>Indefinite Hessian = max? <strong>No</strong> — it's a saddle.</li>
+            <li>Lagrange is for inequality constraints? <strong>No</strong> — equalities; inequalities use KKT.</li>
+          </ul>
+          <p class="lead">Q1. f=x²+y²−4x. Critical point &amp; type?</p>
+          <pre>∇f=(2x−4,2y)=0→(2,0); H=[2 0;0 2] PD → minimum</pre>
+          <p class="lead">Q2. Eigenvalues of H are 5 and −1 — what kind of point?</p>
+          <pre>mixed signs → saddle</pre>
+          <pre>Memory: ∇f=0 (candidates) · Hessian PD→min, ND→max, indefinite→saddle (read eigenvalues) ·
+PSD everywhere ⇒ convex ⇒ global min · equality→Lagrange, inequality→KKT.</pre>
+        </details>
       </details>
     </section>
 

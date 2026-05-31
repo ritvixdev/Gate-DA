@@ -48,8 +48,94 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— optimizing f(x) of one variable, from zero</span></summary>
+        <details class="study-item">
+          <summary>1. What univariate optimization is</summary>
+          <p>Optimizing a function of <strong>one</strong> variable — find the x that minimizes (or maximizes) f(x).</p>
+          <pre>min f(x),  x ∈ ℝ      (one knob to turn)</pre>
+          <p>It's the simplest case and the foundation for the multivariate version.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. Stationary points: f′(x) = 0</summary>
+          <p>At a smooth peak or valley the tangent is flat, so the <strong>necessary</strong> condition is:</p>
+          <pre>f′(x*) = 0     (x* is a stationary / critical point)</pre>
+          <p>This finds <em>candidates</em> — they could be a min, a max, or an inflection. The next test decides which.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Second-derivative test</summary>
+          <pre>f′(x*) = 0  and  f″(x*) > 0  → local MINIMUM (curves up, ∪)
+f′(x*) = 0  and  f″(x*) < 0  → local MAXIMUM (curves down, ∩)
+f″(x*) = 0                   → test fails (inconclusive)</pre>
+        </details>
+        <details class="study-item">
+          <summary>4. Worked example</summary>
+          <pre>f(x) = x² − 4x + 5
+f′(x) = 2x − 4 = 0  → x* = 2
+f″(x) = 2 > 0       → local (and here global) minimum
+f(2) = 4 − 8 + 5 = 1</pre>
+          <p>So the minimum value is 1 at x = 2.</p>
+        </details>
+        <details class="study-item">
+          <summary>5. When f″ = 0 — the test is inconclusive</summary>
+          <p>Then check the <strong>sign of f′ around</strong> the point (or higher derivatives):</p>
+          <pre>f′ goes − → + across x*  → minimum
+f′ goes + → − across x*  → maximum
+f′ keeps the same sign    → inflection (neither)</pre>
+          <pre>f(x)=x³ at x=0: f′=3x²=0, f″=0; f′ stays ≥0 → inflection, not an extremum</pre>
+        </details>
+        <details class="study-item">
+          <summary>6. Global optima &amp; closed intervals</summary>
+          <p>On a closed interval [a, b], the global optimum is the best among:</p>
+          <pre>interior stationary points (f′=0)  AND  the endpoints a, b</pre>
+          <p>Endpoints can win even when the derivative isn't zero there — always check them.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Convex (unimodal) functions</summary>
+          <p>If <code>f″(x) ≥ 0 everywhere</code>, f is <strong>convex</strong> — a single bowl. Then any stationary point is the <strong>global</strong> minimum (no other valleys to worry about).</p>
+          <pre>x², eˣ, x² − 4x + 5 are convex → one global min</pre>
+        </details>
+        <details class="study-item">
+          <summary>8. Numerical method: Newton's method</summary>
+          <p>When f′(x)=0 can't be solved by hand, iterate using both derivatives:</p>
+          <pre>xₙ₊₁ = xₙ − f′(xₙ) / f″(xₙ)</pre>
+          <p>Fast (quadratic) convergence near the optimum, but needs f″ and a good start.</p>
+        </details>
+        <details class="study-item">
+          <summary>9. Bracketing methods: bisection &amp; golden section</summary>
+          <ul class="styled">
+            <li><strong>Bisection on f′</strong>: f′ changes sign across a min — halve the bracket repeatedly.</li>
+            <li><strong>Golden-section search</strong>: for a <em>unimodal</em> f, shrink an interval [a,b] using golden-ratio probes — no derivatives needed.</li>
+          </ul>
+          <p>These need the function to be unimodal on the bracket.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. Where it's used</summary>
+          <ul class="styled">
+            <li>line search inside larger optimizers (pick the best step size)</li>
+            <li>tuning a single hyperparameter</li>
+            <li>1-D cost/profit/physics problems</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>11. Common GATE traps</summary>
+          <ul class="styled">
+            <li>f′(x*)=0 guarantees a minimum? <strong>No</strong> — could be max or inflection; check f″.</li>
+            <li>f″=0 means inflection? <strong>Not necessarily</strong> — the test is just inconclusive.</li>
+            <li>Forget the endpoints on [a,b]? <strong>Mistake</strong> — the global optimum may be there.</li>
+            <li>Newton's method always converges? <strong>No</strong> — needs a good start &amp; f″≠0.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>12. Practice &amp; memory box</summary>
+          <p class="lead">Q1. Extremum of f(x)=x²−6x+4?</p>
+          <pre>f′=2x−6=0→x=3; f″=2>0→min; f(3)=−5</pre>
+          <p class="lead">Q2. f(x)=−x²+8x. Max?</p>
+          <pre>f′=−2x+8=0→x=4; f″=−2<0→max; f(4)=16</pre>
+          <p class="lead">Q3. One Newton step for f(x)=x²−2 from x=2 (minimizing)... use f′=2x, f″=2.</p>
+          <pre>x = 2 − (4)/(2) = 0  → the minimizer</pre>
+          <pre>Memory: f′=0 finds candidates · f″>0 min, f″<0 max, f″=0 inconclusive ·
+check endpoints on [a,b] · convex (f″≥0) ⇒ global min · Newton: x−f′/f″.</pre>
+        </details>
       </details>
     </section>
 
