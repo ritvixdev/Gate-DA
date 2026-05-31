@@ -7,13 +7,14 @@
 <title>Determinants · GATE DA</title>
 <meta name="description" content="Learn determinants from zero: meaning as area/volume scaling and orientation, computation, all properties, row operations, Cramer's rule — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260601">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260601">
 </head>
 <body data-root=".." data-topic="03-determinants" data-content>
   <!-- 1 -->
   <div class="hero">
     <span class="tag">Topic 3 · GATE weight: High</span>
+    <span class="iitm iitm-light" title="IITM Web M.Tech (Executive) priority">IITM · Light</span>
     <h1>Determinants</h1>
     <p class="lede">Think of it as the matrix's <strong>health meter</strong>: one number that says whether the
       matrix can be reversed, how much it scales area/volume, and whether it flips space.</p>
@@ -82,6 +83,7 @@
   <section class="concept-card study-section">
       <details class="study">
         <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— determinants from zero, one idea per card</span></summary>
+        <p class="study-iitm"><strong>IITM Web M.Tech (Executive): Light / optional.</strong> Determinants aren't a named executive-syllabus topic — study just enough: <em>det ≠ 0 ⇒ invertible</em>, <em>det = 0 ⇒ singular</em>, and <em>det = product of eigenvalues</em>. Cards tagged <em>GATE extra</em> (minors/cofactors depth, Cramer's rule, adjugate) are beyond this syllabus.</p>
 
         <p class="study-empty">A determinant is one number from a square matrix that tells you what the matrix does to space — whether it stretches or shrinks area/volume, whether it flips orientation, and crucially whether it can be reversed. <strong>det = 0</strong> means space collapsed and there is no inverse. Open each card in order.</p>
 
@@ -179,7 +181,7 @@ det = a(ei−fh) − b(di−fg) + c(dh−eg)</pre>
         </details>
 
         <details class="study-item">
-          <summary>11. What is a minor?</summary>
+          <summary>11. What is a minor? <span class="study-extra">GATE extra</span></summary>
           <p>The <strong>minor</strong> of an entry is the smaller determinant left after deleting that entry's row and column.</p>
           <pre>minor of a = |e  f|  = ei − fh
              |h  i|
@@ -189,7 +191,7 @@ minor of b = |d  f|  = di − fg
         </details>
 
         <details class="study-item">
-          <summary>12. Cofactor = sign × minor</summary>
+          <summary>12. Cofactor = sign × minor <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>cofactor</strong> attaches the checkerboard sign to a minor.</p>
           <pre>sign pattern:  + − +
                − + −
@@ -326,7 +328,7 @@ det(A) = 0   ⇔   rank(A) < n</pre>
         </details>
 
         <details class="study-item">
-          <summary>28. Determinant of idempotent / nilpotent</summary>
+          <summary>28. Determinant of idempotent / nilpotent <span class="study-extra">GATE extra</span></summary>
           <pre>idempotent (A² = A):  det = 0 or 1
 nilpotent  (Aᵏ = 0):  det = 0</pre>
           <p>From <code>det(A)² = det(A)</code> ⇒ det ∈ {0,1}; and <code>det(A)ᵏ = 0</code> ⇒ det = 0.</p>
@@ -339,7 +341,7 @@ nilpotent  (Aᵏ = 0):  det = 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>30. Determinant of a block triangular matrix</summary>
+          <summary>30. Determinant of a block triangular matrix <span class="study-extra">GATE extra</span></summary>
           <pre>M = [A  B        M = [A  0
      0  D]            C  D]
 
@@ -379,14 +381,14 @@ determinant(A) = area/volume scale  = product of eigenvalues</pre>
         </details>
 
         <details class="study-item">
-          <summary>35. Determinant and orientation</summary>
+          <summary>35. Determinant and orientation <span class="study-extra">GATE extra</span></summary>
           <pre>I = [1 0; 0 1]      det = 1   → orientation preserved
 R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
           <p>Positive det = no mirror flip; negative det = mirror flip.</p>
         </details>
 
         <details class="study-item">
-          <summary>36. Adjoint (adjugate) &amp; the inverse formula</summary>
+          <summary>36. Adjoint (adjugate) &amp; the inverse formula <span class="study-extra">GATE extra</span></summary>
           <p>The <strong>cofactor matrix</strong> C has entries <code>Cᵢⱼ = (−1)^{i+j}·minorᵢⱼ</code>. Its transpose is the <strong>adjugate</strong>:</p>
           <pre>adj(A) = Cᵀ
 A · adj(A) = adj(A) · A = det(A) · I
@@ -643,9 +645,9 @@ A⁻¹ = adj(A) / det(A)        (det(A) ≠ 0)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260530"></script>
-  <script src="../assets/js/viz/grid.js?v=20260530"></script>
-  <script src="../assets/js/viz/matrix-transform.js?v=20260530"></script>
-  <script src="../assets/js/app.js?v=20260530"></script>
+  <script src="../assets/js/topics.js?v=20260601"></script>
+  <script src="../assets/js/viz/grid.js?v=20260601"></script>
+  <script src="../assets/js/viz/matrix-transform.js?v=20260601"></script>
+  <script src="../assets/js/app.js?v=20260601"></script>
 </body>
 </html>

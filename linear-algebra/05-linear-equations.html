@@ -7,12 +7,13 @@
 <title>System of Linear Equations · GATE DA</title>
 <meta name="description" content="Learn systems of linear equations from zero: when Ax=b has none, one, or infinite solutions, Gaussian elimination, homogeneous systems — simple language, shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260601">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260601">
 </head>
 <body data-root=".." data-topic="05-linear-equations" data-content>
   <div class="hero">
     <span class="tag">Topic 5 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">IITM · Core</span>
     <h1>System of<br>Linear Equations</h1>
     <p class="lede">When does $Ax=b$ have a solution, and how many? This one question is the heart of
       applied linear algebra — and a near-certain GATE appearance.</p>
@@ -51,6 +52,7 @@
   <section class="concept-card study-section">
       <details class="study">
         <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— solving systems from zero, one idea per card</span></summary>
+        <p class="study-iitm"><strong>IITM Web M.Tech (Executive): Core topic.</strong> This is on the executive syllabus — study the cards here. A few clearly beyond-syllabus cards are tagged <em>GATE extra</em>.</p>
 
         <p class="study-empty">A system of linear equations means solving many equations at once — written compactly as <code>Ax = b</code>. The whole topic answers two questions: does a solution exist, and how many? Rank, the determinant, and the column/null spaces give the complete answer. Open each card in order.</p>
 
@@ -301,7 +303,7 @@ inconsistent ⟺ rank(A) ≠ rank([A|b])   (no solution)</pre>
         </details>
 
         <details class="study-item">
-          <summary>30. Cramer's Rule</summary>
+          <summary>30. Cramer's Rule <span class="study-extra">GATE extra</span></summary>
           <p>For a square system with <code>det(A) ≠ 0</code>:</p>
           <pre>xᵢ = det(Aᵢ) / det(A)     (Aᵢ = A with column i replaced by b)</pre>
           <pre>2x+y=5 , x+3y=7 :  det(A)=5
@@ -547,7 +549,7 @@ Ax = b  →  find the input x that produces target b</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260530"></script>
-  <script src="../assets/js/app.js?v=20260530"></script>
+  <script src="../assets/js/topics.js?v=20260601"></script>
+  <script src="../assets/js/app.js?v=20260601"></script>
 </body>
 </html>

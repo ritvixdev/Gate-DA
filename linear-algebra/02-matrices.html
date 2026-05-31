@@ -7,13 +7,14 @@
 <title>Matrices · GATE DA</title>
 <meta name="description" content="Learn matrices from zero: meaning, multiplication, special types, transpose, inverse, trace — simple language, GATE shortcuts, traps, practice, and an interactive Matrix Transformer.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260601">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260601">
 </head>
 <body data-root=".." data-topic="02-matrices" data-content>
   <!-- 1. TOPIC NAME -->
   <div class="hero">
     <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">IITM · Core</span>
     <h1>Matrices</h1>
     <p class="lede">A matrix is a table of numbers — and, more powerfully, a <strong>machine that
       transforms vectors</strong>. This is the workhorse of GATE linear algebra.</p>
@@ -93,6 +94,7 @@
   <section class="concept-card study-section">
       <details class="study">
         <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— matrices from zero, one idea per card</span></summary>
+        <p class="study-iitm"><strong>IITM Web M.Tech (Executive): Core topic.</strong> This is on the executive syllabus — study the cards here. A few clearly beyond-syllabus cards are tagged <em>GATE extra</em>.</p>
 
         <p class="study-empty">Think of matrices as the next level after vectors. A vector is an arrow; a <strong>matrix is a machine that changes arrows</strong> — it can move, stretch, rotate, flip, shear or project them, and it can also hold a data table or a system of equations. Matrices connect to almost every other topic (determinant, rank, inverse, eigenvalues, orthogonality, PCA, least squares) — those live in their own topics; here we master the matrix itself. Open each card in order.</p>
 
@@ -288,7 +290,7 @@ not allowed: 2×3 + 3×2</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. Skew-symmetric matrix</summary>
+          <summary>18. Skew-symmetric matrix <span class="study-extra">GATE extra</span></summary>
           <p>Skew-symmetric if <code>A = −Aᵀ</code>, i.e. <code>aᵢⱼ = −aⱼᵢ</code>.</p>
           <pre>A = [ 0   2  -3
      -2   0   4
@@ -367,7 +369,7 @@ Ae₂ = second column of A</pre>
         </details>
 
         <details class="study-item">
-          <summary>26. Hermitian &amp; skew-Hermitian matrices</summary>
+          <summary>26. Hermitian &amp; skew-Hermitian matrices <span class="study-extra">GATE extra</span></summary>
           <p>For <strong>complex</strong> matrices, the conjugate-transpose is <code>A* = (Ā)ᵀ</code>.</p>
           <pre>Hermitian:       A* = A     (aᵢⱼ = conj(aⱼᵢ); diagonal is real)
 skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
@@ -375,7 +377,7 @@ skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
         </details>
 
         <details class="study-item">
-          <summary>27. Block (partitioned) matrices</summary>
+          <summary>27. Block (partitioned) matrices <span class="study-extra">GATE extra</span></summary>
           <p>A matrix can be split into <strong>sub-matrices (blocks)</strong> and then added/multiplied block-by-block like ordinary entries — as long as the block sizes are conformable.</p>
           <pre>M = [A  B        block-triangular (C = 0 or B = 0):
      0  D]        det(M) = det(A)·det(D)</pre>
@@ -607,9 +609,9 @@ skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260530"></script>
-  <script src="../assets/js/viz/grid.js?v=20260530"></script>
-  <script src="../assets/js/viz/matrix-transform.js?v=20260530"></script>
-  <script src="../assets/js/app.js?v=20260530"></script>
+  <script src="../assets/js/topics.js?v=20260601"></script>
+  <script src="../assets/js/viz/grid.js?v=20260601"></script>
+  <script src="../assets/js/viz/matrix-transform.js?v=20260601"></script>
+  <script src="../assets/js/app.js?v=20260601"></script>
 </body>
 </html>

@@ -7,12 +7,13 @@
 <title>SVD & PCA · GATE DA</title>
 <meta name="description" content="Learn SVD and PCA from zero: A = UΣVᵀ, singular values, low-rank approximation, link to PCA — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260530">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260530">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260601">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260601">
 </head>
 <body data-root=".." data-topic="09-svd-pca" data-content>
   <div class="hero">
     <span class="tag">Topic 9 · GATE weight: High</span>
+    <span class="iitm iitm-support" title="IITM Web M.Tech (Executive) priority">IITM · Support</span>
     <h1>SVD &amp; PCA</h1>
     <p class="lede">Every matrix — square or not — is secretly "rotate, stretch, rotate". That single
       fact powers dimensionality reduction across machine learning.</p>
@@ -50,6 +51,7 @@
   <section class="concept-card study-section">
       <details class="study">
         <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— SVD &amp; PCA from zero, one idea per card</span></summary>
+        <p class="study-iitm"><strong>IITM Web M.Tech (Executive): Support topic.</strong> SVD itself isn't named in the executive syllabus — you need it mainly for the <em>pseudo-inverse</em> (A⁺ = VΣ⁺Uᵀ) and the <em>PCA</em> connection. Focus on those cards; the deeper SVD-theory cards are tagged <em>GATE extra</em>.</p>
 
         <p class="study-empty">SVD is the universal decomposition <code>A = UΣVᵀ</code> that works for <em>any</em> matrix — reading every transformation as rotate → stretch → rotate. It powers rank, compression, the pseudo-inverse, and least squares; and PCA is simply SVD applied to data to find its most important directions. This is where Linear Algebra meets data science. Open each card in order.</p>
 
@@ -151,39 +153,39 @@ nullity(A) = n − rank   (zero singular directions = null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>13. Compact (reduced) SVD</summary>
+          <summary>13. Compact (reduced) SVD <span class="study-extra">GATE extra</span></summary>
           <p>If <code>rank = r</code>, keep only the non-zero part:</p>
           <pre>A = Uᵣ Σᵣ Vᵣᵀ      (Uᵣ: m×r, Σᵣ: r×r, Vᵣ: n×r)</pre>
           <p>This is what compression and PCA actually use.</p>
         </details>
 
         <details class="study-item">
-          <summary>14. Outer-product form</summary>
+          <summary>14. Outer-product form <span class="study-extra">GATE extra</span></summary>
           <pre>A = σ₁u₁v₁ᵀ + σ₂u₂v₂ᵀ + … + σᵣuᵣvᵣᵀ</pre>
           <p>Each <code>σᵢuᵢvᵢᵀ</code> is a <strong>rank-1 pattern</strong>; A is a sum of patterns, the first being most important. This is the basis of low-rank approximation.</p>
         </details>
 
         <details class="study-item">
-          <summary>15. Low-rank approximation</summary>
+          <summary>15. Low-rank approximation <span class="study-extra">GATE extra</span></summary>
           <pre>Aₖ = σ₁u₁v₁ᵀ + … + σₖuₖvₖᵀ      (keep top k, discard the rest)</pre>
           <p>Since <code>σ₁ ≥ σ₂ ≥ …</code>, the first few terms hold most of the information.</p>
         </details>
 
         <details class="study-item">
-          <summary>16. Why low-rank approximation works</summary>
+          <summary>16. Why low-rank approximation works <span class="study-extra">GATE extra</span></summary>
           <p>An image is a matrix of pixel intensities. SVD splits it into layers (strongest structure first). Keeping the top ~20 singular values can still look clear.</p>
           <p>So SVD compresses by keeping important directions — used in <strong>image compression, noise reduction, recommender systems, latent semantic analysis, PCA</strong>.</p>
         </details>
 
         <details class="study-item">
-          <summary>17. Best rank-k approximation (Eckart–Young)</summary>
+          <summary>17. Best rank-k approximation (Eckart–Young) <span class="study-extra">GATE extra</span></summary>
           <p><code>Aₖ</code> is the <strong>best</strong> rank-k approximation of A in Frobenius norm — it minimizes <code>||A − Aₖ||_F</code> over all rank-k matrices.</p>
           <pre>||A||_F = √(sum of squares of entries)
 ||A||_F² = σ₁² + σ₂² + … + σᵣ²    (singular values = the matrix's "energy")</pre>
         </details>
 
         <details class="study-item">
-          <summary>18. Energy / variance captured</summary>
+          <summary>18. Energy / variance captured <span class="study-extra">GATE extra</span></summary>
           <pre>energy kept by top k = (σ₁² + … + σₖ²) / (σ₁² + … + σᵣ²)</pre>
           <pre>σ = 10, 5, 1 → total 126; top 2 = 125 → 125/126 ≈ 99.2%</pre>
           <p>A rank-2 approximation can keep almost all the information.</p>
@@ -197,7 +199,7 @@ nullity(A) = n − rank   (zero singular directions = null space)</pre>
         </details>
 
         <details class="study-item">
-          <summary>20. Condition number</summary>
+          <summary>20. Condition number <span class="study-extra">GATE extra</span></summary>
           <pre>κ(A) = σmax / σmin   (= σ₁ / σᵣ for full rank)</pre>
           <pre>large κ → ill-conditioned (small input error → large output error)
 κ ≈ 1  → well-conditioned;  orthogonal matrix → all σ = 1 → κ = 1 (best)</pre>
@@ -292,7 +294,7 @@ vᵀCv = (1/n)||X̄v||² ≥ 0  →  eigenvalues ≥ 0</pre>
         </details>
 
         <details class="study-item">
-          <summary>32. SVD &amp; determinant</summary>
+          <summary>32. SVD &amp; determinant <span class="study-extra">GATE extra</span></summary>
           <pre>square A:  |det(A)| = product of singular values</pre>
           <p>Any zero singular value ⇒ <code>det = 0</code> (singular). Singular values give the <em>magnitude</em> of the volume scaling, not its sign.</p>
         </details>
@@ -333,13 +335,13 @@ feature extraction = build new combined features (PCA, autoencoders); LDA uses l
           <p>Benefits: faster training, less storage, easier visualization, reduced overfitting. (PCA — the main extraction method — is detailed in the cards above.)</p>
         </details>
         <details class="study-item">
-          <summary>37. LDA — supervised dimensionality reduction</summary>
+          <summary>37. LDA — supervised dimensionality reduction <span class="study-extra">GATE extra</span></summary>
           <p><strong>Linear Discriminant Analysis</strong> finds the direction(s) that best <em>separate classes</em> — used for classification, dimensionality reduction and feature extraction.</p>
           <pre>project many features onto a new axis where the classes barely overlap</pre>
           <p>Unlike PCA it <strong>uses the labels</strong>, so it's <em>supervised</em>.</p>
         </details>
         <details class="study-item">
-          <summary>38. Fisher's criterion — the goal</summary>
+          <summary>38. Fisher's criterion — the goal <span class="study-extra">GATE extra</span></summary>
           <p>LDA picks the projection direction w that simultaneously:</p>
           <pre>maximize  (distance between class means)²
 minimize  (spread within each class)
@@ -347,7 +349,7 @@ J(w) = between-class scatter / within-class scatter   → maximize</pre>
           <p>Classes end up far apart and individually tight.</p>
         </details>
         <details class="study-item">
-          <summary>39. PCA vs LDA</summary>
+          <summary>39. PCA vs LDA <span class="study-extra">GATE extra</span></summary>
           <div class="tbl-wrap"><table>
             <tr><th></th><th>PCA</th><th>LDA</th></tr>
             <tr><td>Goal</td><td>max variance</td><td>max class separation</td></tr>
@@ -356,13 +358,13 @@ J(w) = between-class scatter / within-class scatter   → maximize</pre>
           <pre>PCA = maximum spread · LDA = maximum class separation</pre>
         </details>
         <details class="study-item">
-          <summary>40. How many LDA components? (C − 1)</summary>
+          <summary>40. How many LDA components? (C − 1) <span class="study-extra">GATE extra</span></summary>
           <pre>max LDA dimensions = (number of classes) − 1</pre>
           <pre>2 classes → 1 component · 3 → 2 · 5 → 4</pre>
           <p>A common GATE fact — LDA can't produce more than C−1 useful directions.</p>
         </details>
         <details class="study-item">
-          <summary>41. LDA assumptions</summary>
+          <summary>41. LDA assumptions <span class="study-extra">GATE extra</span></summary>
           <ul class="styled">
             <li>features ≈ normally distributed within each class</li>
             <li><strong>equal covariance</strong> across classes (this makes the boundary <em>linear</em>)</li>
@@ -371,7 +373,7 @@ J(w) = between-class scatter / within-class scatter   → maximize</pre>
           <p>If classes are non-linear, kernel SVM may do better.</p>
         </details>
         <details class="study-item">
-          <summary>42. LDA — pros, cons, uses</summary>
+          <summary>42. LDA — pros, cons, uses <span class="study-extra">GATE extra</span></summary>
           <ul class="styled">
             <li>✓ simple, interpretable, great for dimensionality reduction, good on small/medium data, curbs overfitting</li>
             <li>✗ assumes linear separation, normality &amp; equal covariance; sensitive to outliers</li>
@@ -556,7 +558,7 @@ PCA               → uses SVD/eigenvectors to reduce data</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260530"></script>
-  <script src="../assets/js/app.js?v=20260530"></script>
+  <script src="../assets/js/topics.js?v=20260601"></script>
+  <script src="../assets/js/app.js?v=20260601"></script>
 </body>
 </html>
