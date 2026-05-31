@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss, Naive Bayes &amp; neural nets</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classification, logistic regression, log loss, Naive Bayes, FFNN &amp; MLP</span></summary>
         <details class="study-item">
           <summary>1. Classification — predicting a category</summary>
           <p>Classification is the supervised task where the target is a <strong>discrete class</strong>, not a number:</p>
@@ -267,7 +267,32 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <p>Use FFNNs when relationships are complex and there is plenty of data; they generalize logistic regression.</p>
         </details>
         <details class="study-item">
-          <summary>32. Common GATE traps</summary>
+          <summary>32. MLP — a multi-layer perceptron</summary>
+          <p>An <strong>MLP</strong> is a feed-forward network with an input layer, <strong>one or more hidden layers</strong>, and an output layer — the workhorse that learns complex non-linear patterns.</p>
+          <pre>a neuron: z = w·x + b → output = activation(z)   (a layer = many such neurons)</pre>
+        </details>
+        <details class="study-item">
+          <summary>33. Activation functions (and why)</summary>
+          <p>Activations inject <strong>non-linearity</strong> — without them, stacking layers collapses into a single linear model.</p>
+          <pre>sigmoid, tanh, ReLU(x)=max(0,x), softmax (multi-class probabilities)</pre>
+          <p>ReLU is the common hidden-layer choice; softmax sits on a multi-class output.</p>
+        </details>
+        <details class="study-item">
+          <summary>34. Training: forward pass → loss → update</summary>
+          <pre>1. forward pass: compute the prediction
+2. compute the loss
+3. backpropagation: get gradients
+4. optimizer updates weights &amp; biases
+5. repeat for many epochs</pre>
+        </details>
+        <details class="study-item">
+          <summary>35. Backpropagation</summary>
+          <p><strong>Backpropagation</strong> uses the calculus chain rule to find how much each weight contributed to the loss, so the optimizer knows which way to nudge it.</p>
+          <pre>optimizers: gradient descent, SGD, Adam</pre>
+          <p>Strengths: learns complex non-linear maps, flexible, foundation of deep learning. Weaknesses: needs lots of data, compute-heavy, overfits, hard to interpret, <strong>needs scaled inputs</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>36. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -277,7 +302,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           </ul>
         </details>
         <details class="study-item">
-          <summary>33. Practice questions</summary>
+          <summary>37. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -290,7 +315,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>34. Memory box &amp; mental model</summary>
+          <summary>38. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>

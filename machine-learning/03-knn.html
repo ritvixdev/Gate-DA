@@ -61,7 +61,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— k-Nearest Neighbours classification from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— classic classifiers: kNN, SVM &amp; decision trees from zero</span></summary>
         <details class="study-item">
           <summary>1. What kNN is</summary>
           <p><strong>k-Nearest Neighbours</strong> classifies a new point by looking at the <em>k</em> closest training points and taking their majority class.</p>
@@ -123,7 +123,95 @@ k = n   → predicts the global majority for everything (underfit)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>10. Traps, practice &amp; memory box</summary>
+          <summary>10. SVM — the maximum-margin classifier</summary>
+          <p>A <strong>Support Vector Machine</strong> separates classes with the boundary that has the <strong>widest margin</strong> — a wider gap usually generalizes better.</p>
+          <pre>SVM = maximum-margin classifier</pre>
+        </details>
+        <details class="study-item">
+          <summary>11. Hyperplane &amp; margin</summary>
+          <pre>hyperplane = the decision boundary (2-D: a line, 3-D: a plane, n-D: a hyperplane)
+margin = distance from the boundary to the nearest points of each class</pre>
+          <p>SVM maximizes that margin.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Support vectors</summary>
+          <p><strong>Support vectors</strong> are the points closest to the boundary — they alone fix the hyperplane.</p>
+          <pre>move a non-support-vector → boundary barely changes
+move a support vector → boundary moves</pre>
+        </details>
+        <details class="study-item">
+          <summary>13. Hard vs soft margin (slack)</summary>
+          <pre>hard margin: perfect separation, no mistakes allowed (fails on noisy data)
+soft margin: allow some violations via slack ξᵢ ≥ 0</pre>
+          <p><code>ξᵢ=0</code> correct &amp; outside margin; <code>ξᵢ&gt;0</code> inside margin or misclassified. Soft margin trades a wider margin against a few errors.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. The C parameter</summary>
+          <pre>large C → heavy penalty for mistakes → narrow margin → can overfit (strict teacher)
+small C → tolerate mistakes → wider margin → more regularization → can underfit (lenient)</pre>
+          <p><span style="color:var(--coral-text)">Trap:</span> high C means <em>less</em> regularization, not more.</p>
+        </details>
+        <details class="study-item">
+          <summary>15. The kernel trick</summary>
+          <p>When classes aren't linearly separable (e.g. one class inside a circle), the <strong>kernel trick</strong> implicitly maps data to a higher-dimensional space where a hyperplane <em>can</em> split them — without computing the mapping explicitly.</p>
+          <pre>non-linear boundary in original space = linear boundary in the mapped space</pre>
+        </details>
+        <details class="study-item">
+          <summary>16. Common kernels</summary>
+          <pre>linear:      K(x,z) = xᵀz                      (≈ linearly separable)
+polynomial:  K(x,z) = (xᵀz + c)^d              (curved)
+RBF/Gaussian:K(x,z) = exp(−γ‖x−z‖²)            (very flexible, popular)
+sigmoid:     K(x,z) = tanh(α xᵀz + c)</pre>
+          <p>RBF <strong>γ</strong>: high γ → local, complex boundary (overfit); low γ → smooth (underfit).</p>
+        </details>
+        <details class="study-item">
+          <summary>17. SVM — pros, cons &amp; scaling</summary>
+          <ul class="styled">
+            <li>✓ strong in high dimensions, kernels handle non-linearity, max-margin generalizes well</li>
+            <li>✗ slow on huge data, kernel/parameter choice matters, less interpretable, no natural probabilities</li>
+          </ul>
+          <p>Like kNN, SVM is distance-based ⇒ <strong>scale features first</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Decision tree — questions from root to leaf</summary>
+          <p>A <strong>decision tree</strong> asks yes/no questions, splitting the data until it reaches a class.</p>
+          <pre>root node = first split · internal node = a test · leaf = final prediction
+"Salary>50k?" → "Age>30?" → "Credit>700?" → approve / reject</pre>
+        </details>
+        <details class="study-item">
+          <summary>19. Splits &amp; purity</summary>
+          <p>A split divides data by a condition (<code>salary &gt; 50000</code>, <code>education = graduate</code>). Good splits make child nodes <strong>purer</strong> — mostly one class.</p>
+          <p>Prediction just follows the path from root to a leaf, so trees are very <strong>interpretable</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Decision trees overfit easily</summary>
+          <p>A deep tree can memorize the training data with hyper-specific rules:</p>
+          <pre>if age=37 and salary=51230 and city=X → ...   (won't generalize)
+symptom: train accuracy high, test accuracy low</pre>
+        </details>
+        <details class="study-item">
+          <summary>21. Taming a decision tree</summary>
+          <ul class="styled">
+            <li>limit max depth · require min samples per leaf · <strong>prune</strong></li>
+            <li>use ensembles (Random Forest) · validate with cross-validation</li>
+          </ul>
+          <pre>deep tree → high variance · very shallow tree → high bias</pre>
+        </details>
+        <details class="study-item">
+          <summary>22. SVM &amp; decision tree — traps, practice, memory</summary>
+          <ul class="styled">
+            <li>SVM minimizes the margin? <strong>No</strong> — maximizes it.</li>
+            <li>All points are support vectors? <strong>No</strong> — only the closest ones.</li>
+            <li>Decision trees never overfit? <strong>No</strong> — deep ones overfit badly.</li>
+          </ul>
+          <p class="lead">Q1. One class sits inside a ring around the other — which SVM?</p>
+          <pre>non-linear: RBF (or polynomial) kernel</pre>
+          <p class="lead">Q2. What decides an SVM hyperplane's position?</p>
+          <pre>the support vectors</pre>
+          <pre>Memory: SVM = widest-margin boundary set by support vectors; kernels bend it. Tree = if-else path; prune to fight overfit.</pre>
+        </details>
+        <details class="study-item">
+          <summary>23. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>kNN learns a parameter equation? <strong>No</strong> — it stores data and votes (lazy).</li>
             <li>Bigger k is always better? <strong>No</strong> — too large underfits.</li>

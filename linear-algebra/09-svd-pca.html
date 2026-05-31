@@ -333,7 +333,53 @@ feature extraction = build new combined features (PCA, autoencoders); LDA uses l
           <p>Benefits: faster training, less storage, easier visualization, reduced overfitting. (PCA — the main extraction method — is detailed in the cards above.)</p>
         </details>
         <details class="study-item">
-          <summary>37. Common GATE traps</summary>
+          <summary>37. LDA — supervised dimensionality reduction</summary>
+          <p><strong>Linear Discriminant Analysis</strong> finds the direction(s) that best <em>separate classes</em> — used for classification, dimensionality reduction and feature extraction.</p>
+          <pre>project many features onto a new axis where the classes barely overlap</pre>
+          <p>Unlike PCA it <strong>uses the labels</strong>, so it's <em>supervised</em>.</p>
+        </details>
+        <details class="study-item">
+          <summary>38. Fisher's criterion — the goal</summary>
+          <p>LDA picks the projection direction w that simultaneously:</p>
+          <pre>maximize  (distance between class means)²
+minimize  (spread within each class)
+J(w) = between-class scatter / within-class scatter   → maximize</pre>
+          <p>Classes end up far apart and individually tight.</p>
+        </details>
+        <details class="study-item">
+          <summary>39. PCA vs LDA</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>PCA</th><th>LDA</th></tr>
+            <tr><td>Goal</td><td>max variance</td><td>max class separation</td></tr>
+            <tr><td>Uses labels?</td><td>no (unsupervised)</td><td>yes (supervised)</td></tr>
+          </table></div>
+          <pre>PCA = maximum spread · LDA = maximum class separation</pre>
+        </details>
+        <details class="study-item">
+          <summary>40. How many LDA components? (C − 1)</summary>
+          <pre>max LDA dimensions = (number of classes) − 1</pre>
+          <pre>2 classes → 1 component · 3 → 2 · 5 → 4</pre>
+          <p>A common GATE fact — LDA can't produce more than C−1 useful directions.</p>
+        </details>
+        <details class="study-item">
+          <summary>41. LDA assumptions</summary>
+          <ul class="styled">
+            <li>features ≈ normally distributed within each class</li>
+            <li><strong>equal covariance</strong> across classes (this makes the boundary <em>linear</em>)</li>
+            <li>observations independent</li>
+          </ul>
+          <p>If classes are non-linear, kernel SVM may do better.</p>
+        </details>
+        <details class="study-item">
+          <summary>42. LDA — pros, cons, uses</summary>
+          <ul class="styled">
+            <li>✓ simple, interpretable, great for dimensionality reduction, good on small/medium data, curbs overfitting</li>
+            <li>✗ assumes linear separation, normality &amp; equal covariance; sensitive to outliers</li>
+          </ul>
+          <p>Uses: face recognition, image/text classification, bioinformatics, medical diagnosis.</p>
+        </details>
+        <details class="study-item">
+          <summary>43. Common GATE traps</summary>
           <ul class="styled">
             <li>SVD works only for square matrices? <strong>No</strong> — every m×n.</li>
             <li>Singular values can be negative? <strong>No</strong> — always ≥ 0.</li>
@@ -345,7 +391,7 @@ feature extraction = build new combined features (PCA, autoencoders); LDA uses l
         </details>
 
         <details class="study-item">
-          <summary>38. Practice problems</summary>
+          <summary>44. Practice problems</summary>
           <p class="lead">Q1. Eigenvalues of AᵀA = 25, 9, 0 → singular values &amp; rank?</p>
           <pre>σ = 5, 3, 0 ;  rank 2</pre>
           <p class="lead">Q2. σ = 10, 4, 0, 0 → rank?</p>
@@ -363,7 +409,7 @@ feature extraction = build new combined features (PCA, autoencoders); LDA uses l
         </details>
 
         <details class="study-item">
-          <summary>39. Cheatsheet</summary>
+          <summary>45. Cheatsheet</summary>
           <ul class="styled">
             <li><code>A = UΣVᵀ</code> for ANY matrix; U, V orthogonal; <code>σ ≥ 0</code> sorted descending.</li>
             <li>V = eigenvectors of AᵀA; U = of AAᵀ; <code>σ = √λ(AᵀA)</code>; rank = #non-zero σ.</li>
@@ -374,7 +420,7 @@ feature extraction = build new combined features (PCA, autoencoders); LDA uses l
         </details>
 
         <details class="study-item">
-          <summary>40. Best mental model</summary>
+          <summary>46. Best mental model</summary>
           <p><strong>SVD = a universal matrix X-ray.</strong> It reveals which input directions matter, how strongly they stretch, which output directions they become, and which are destroyed.</p>
           <p><strong>PCA = SVD applied to data</strong> to find the most important directions: which feature-combination has maximum spread, the next, and how few directions still preserve most information.</p>
           <pre>Eigen/eigenvectors → square matrices

@@ -109,7 +109,34 @@ average the k scores</pre>
           <pre>garbage / biased data → garbage / biased model</pre>
         </details>
         <details class="study-item">
-          <summary>9. Traps, practice &amp; memory box</summary>
+          <summary>9. Bias &amp; variance, precisely</summary>
+          <pre>BIAS     = error from too-simple assumptions  → underfitting (train &amp; test both poor)
+VARIANCE = sensitivity to the training sample → overfitting (train good, test poor)</pre>
+          <p>Total error blends both; complexity ↑ lowers bias but raises variance, and vice-versa.</p>
+        </details>
+        <details class="study-item">
+          <summary>10. The dartboard analogy</summary>
+          <pre>low bias,  low variance  → tight cluster on the bullseye   (best)
+high bias, low variance  → tight cluster, but off-centre    (consistently wrong)
+low bias,  high variance → around centre but scattered      (unstable)
+high bias, high variance → scattered AND off-centre         (worst)</pre>
+        </details>
+        <details class="study-item">
+          <summary>11. Controlling bias &amp; variance</summary>
+          <pre>too much BIAS (underfit): richer model · more features · train longer · less regularization
+too much VARIANCE (overfit): regularize · more data · simpler model · prune trees · ensembles · CV</pre>
+          <p>Aim for the complexity where <strong>test/validation error is minimum</strong>.</p>
+        </details>
+        <details class="study-item">
+          <summary>12. Cross-validation — stratified, time-series, leakage</summary>
+          <ul class="styled">
+            <li><strong>Stratified k-fold</strong>: keep each class's proportion in every fold — use for (imbalanced) classification.</li>
+            <li><strong>Time series</strong>: never shuffle — validate <em>chronologically</em> (train on past, test on future).</li>
+            <li><strong>Data leakage</strong>: fit scalers/encoders inside each fold, not before splitting, or scores are optimistic.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>13. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>High training accuracy ⇒ good model? <strong>No</strong> — could be overfitting; check validation/test.</li>
             <li>Tune hyperparameters on the test set? <strong>No</strong> — use CV / a validation set; keep the test set untouched.</li>
