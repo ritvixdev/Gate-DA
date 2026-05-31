@@ -49,8 +49,85 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the full, from-zero walkthrough</span></summary>
-        <p class="study-empty">Detailed walkthrough coming soon.</p>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— the t-distribution &amp; small-sample inference from zero</span></summary>
+        <details class="study-item">
+          <summary>1. Why the t-distribution exists</summary>
+          <p>If the population SD σ is <strong>known</strong>, standardize with z. But usually σ is unknown, so we estimate it with the sample SD <code>s</code> — and that estimate adds uncertainty.</p>
+          <p>Student's <strong>t-distribution</strong> absorbs that extra uncertainty. Use it when <code>σ</code> is unknown, especially for small samples.</p>
+        </details>
+        <details class="study-item">
+          <summary>2. The t-statistic vs the z-statistic</summary>
+          <pre>z = (x̄ − μ) / (σ/√n)      σ known
+t = (x̄ − μ) / (s/√n)      σ unknown (estimated by s)</pre>
+          <p>Same shape of formula — the only change is σ → s, which is exactly why we switch from z to t.</p>
+        </details>
+        <details class="study-item">
+          <summary>3. Degrees of freedom = n − 1</summary>
+          <pre>one-sample t:  df = n − 1</pre>
+          <pre>n = 10 → df = 9</pre>
+          <p>We "spend" one degree of freedom estimating the mean from the data before measuring spread.</p>
+        </details>
+        <details class="study-item">
+          <summary>4. t vs normal — heavier tails</summary>
+          <p>The t-curve is bell-shaped like the normal but with <strong>heavier tails</strong> — more probability in the extremes, reflecting small-sample uncertainty.</p>
+          <pre>small df → fatter tails (more spread)
+df → ∞     → t approaches the standard normal</pre>
+        </details>
+        <details class="study-item">
+          <summary>5. z or t? — a quick table</summary>
+          <div class="tbl-wrap"><table>
+            <tr><th>Situation</th><th>Use</th></tr>
+            <tr><td>σ known</td><td>z (normal)</td></tr>
+            <tr><td>σ unknown (use s)</td><td>t, df = n − 1</td></tr>
+            <tr><td>large n</td><td>t ≈ z either way</td></tr>
+            <tr><td>small n, σ unknown</td><td>t (essential)</td></tr>
+          </table></div>
+        </details>
+        <details class="study-item">
+          <summary>6. Confidence interval when σ is unknown</summary>
+          <p>The mean CI with σ unknown swaps z for a t critical value and σ for s:</p>
+          <pre>x̄ ± t · s/√n            t from the t-table at df = n − 1</pre>
+          <p>(Compare the σ-known interval <code>x̄ ± z·σ/√n</code> from the CLT topic — same skeleton, wider because t &gt; z.)</p>
+        </details>
+        <details class="study-item">
+          <summary>7. Where the t-distribution is used</summary>
+          <ul class="styled">
+            <li>one-sample and two-sample t-tests</li>
+            <li>confidence intervals for a mean when σ is unknown</li>
+            <li>small-sample inference</li>
+            <li>testing regression coefficients</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>8. Common GATE traps</summary>
+          <ul class="styled">
+            <li>Use z when σ is unknown and n small? <strong>No</strong> — use t.</li>
+            <li>t has thinner tails than normal? <strong>No</strong> — heavier (fatter) tails.</li>
+            <li>df = n? <strong>No</strong> — one-sample t uses df = n − 1.</li>
+            <li>t and z always differ a lot? <strong>No</strong> — they converge as n grows.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>9. Practice problems</summary>
+          <p class="lead">Q1. n = 12, σ unknown — which test &amp; df?</p>
+          <pre>t-test, df = 11</pre>
+          <p class="lead">Q2. x̄=50, s=8, n=16, μ₀=46 — t statistic?</p>
+          <pre>t = (50−46)/(8/4) = 4/2 = 2</pre>
+          <p class="lead">Q3. As n → ∞, what does the t-distribution become?</p>
+          <pre>the standard normal N(0,1)</pre>
+          <p class="lead">Q4. σ known, large sample — z or t?</p>
+          <pre>z</pre>
+        </details>
+        <details class="study-item">
+          <summary>10. Memory box &amp; mental model</summary>
+          <ul class="styled">
+            <li>σ known → z; σ unknown → t (df = n − 1).</li>
+            <li>t = (x̄ − μ)/(s/√n); heavier tails than z.</li>
+            <li>t → normal as df grows.</li>
+            <li>CI (σ unknown): x̄ ± t·s/√n.</li>
+          </ul>
+          <pre>t = "z for when you had to guess σ from the data" — extra caution = fatter tails.</pre>
+        </details>
       </details>
     </section>
 
