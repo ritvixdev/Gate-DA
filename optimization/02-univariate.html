@@ -132,25 +132,72 @@ removable (hole): f(x)=(x²−1)/(x−1) = x+1 for x≠1, but f(1) undefined
           <pre>GATE-style: f=x+1 (x<2), k (x=2), 3x−3 (x>2): LHL=3, RHL=3 → continuity needs k=3</pre>
         </details>
         <details class="study-item">
-          <summary>13. What univariate optimization is</summary>
+          <summary>13. Differentiation from first principles</summary>
+          <p><strong>Differentiation</strong> = finding the derivative (the instantaneous slope / rate of change). It's the limit of the average slope as the step shrinks:</p>
+          <pre>f′(x) = lim(h→0) [ f(x+h) − f(x) ] / h</pre>
+          <p>Derive <code>d/dx(x²)</code>:</p>
+          <pre>[(x+h)² − x²]/h = (x² + 2xh + h² − x²)/h = (2xh + h²)/h = 2x + h  →  (h→0)  2x</pre>
+        </details>
+        <details class="study-item">
+          <summary>14. Derivative rules you must know</summary>
+          <pre>constant:        d/dx(c) = 0
+power:           d/dx(xⁿ) = n·xⁿ⁻¹
+constant×:       d/dx(c·f) = c·f′
+sum:             d/dx(f + g) = f′ + g′
+exponential:     d/dx(eˣ) = eˣ
+log (natural):   d/dx(ln x) = 1/x</pre>
+          <pre>e.g. d/dx(5x³ − 2x² + 7x − 9) = 15x² − 4x + 7</pre>
+        </details>
+        <details class="study-item">
+          <summary>15. First derivative = direction (increasing / decreasing)</summary>
+          <pre>f′(x) > 0 → increasing (uphill)
+f′(x) < 0 → decreasing (downhill)
+f′(x) = 0 → flat / stationary</pre>
+          <p>Find where a function increases by solving <code>f′(x) > 0</code>:</p>
+          <pre>f′(x) = 3x² − 12 > 0 ⇒ x² > 4 ⇒ x < −2 or x > 2  → increasing on (−∞,−2)∪(2,∞)</pre>
+        </details>
+        <details class="study-item">
+          <summary>16. First-derivative sign test</summary>
+          <p>Classify a critical point c by how <code>f′</code> changes <em>around</em> it (no second derivative needed):</p>
+          <pre>f′: − → +  across c  →  local MINIMUM (down then up = valley)
+f′: + → −  across c  →  local MAXIMUM (up then down = hilltop)
+no sign change       →  neither (e.g. an inflection)</pre>
+          <pre>f=x²−4x+5, c=2: f′(1)=−2 (<0), f′(3)=+2 (>0) → −→+ → minimum</pre>
+        </details>
+        <details class="study-item">
+          <summary>17. Second derivative = curvature (bending)</summary>
+          <p>The second derivative is the rate of change of the slope — it tells how the curve <em>bends</em>:</p>
+          <pre>f″(x) > 0 → bends upward like a bowl ∪
+f″(x) < 0 → bends downward like a hill ∩</pre>
+          <p>That's <em>why</em> the second-derivative test works: a flat point of a bowl is a minimum, of a hill a maximum. (First derivative finds the candidate; second derivative classifies it.)</p>
+        </details>
+        <details class="study-item">
+          <summary>18. Key ML derivatives</summary>
+          <p>Two that drive model training:</p>
+          <pre>sigmoid:  σ(x) = 1/(1+e⁻ˣ)  →  σ′(x) = σ(x)·(1 − σ(x))     (logistic regression, NNs)
+squared error: L = (y − ŷ)²  →  dL/dŷ = −2(y − ŷ)            (pushes ŷ toward y)</pre>
+          <p>These feed straight into gradient descent's weight updates.</p>
+        </details>
+        <details class="study-item">
+          <summary>19. What univariate optimization is</summary>
           <p>Optimizing a function of <strong>one</strong> variable — find the x that minimizes (or maximizes) f(x).</p>
           <pre>min f(x),  x ∈ ℝ      (one knob to turn)</pre>
           <p>It's the simplest case and the foundation for the multivariate version.</p>
         </details>
         <details class="study-item">
-          <summary>14. Stationary points: f′(x) = 0</summary>
+          <summary>20. Stationary points: f′(x) = 0</summary>
           <p>At a smooth peak or valley the tangent is flat, so the <strong>necessary</strong> condition is:</p>
           <pre>f′(x*) = 0     (x* is a stationary / critical point)</pre>
           <p>This finds <em>candidates</em> — they could be a min, a max, or an inflection. The next test decides which.</p>
         </details>
         <details class="study-item">
-          <summary>15. Second-derivative test</summary>
+          <summary>21. Second-derivative test</summary>
           <pre>f′(x*) = 0  and  f″(x*) > 0  → local MINIMUM (curves up, ∪)
 f′(x*) = 0  and  f″(x*) < 0  → local MAXIMUM (curves down, ∩)
 f″(x*) = 0                   → test fails (inconclusive)</pre>
         </details>
         <details class="study-item">
-          <summary>16. Worked example</summary>
+          <summary>22. Worked example</summary>
           <pre>f(x) = x² − 4x + 5
 f′(x) = 2x − 4 = 0  → x* = 2
 f″(x) = 2 > 0       → local (and here global) minimum
@@ -158,7 +205,7 @@ f(2) = 4 − 8 + 5 = 1</pre>
           <p>So the minimum value is 1 at x = 2.</p>
         </details>
         <details class="study-item">
-          <summary>17. When f″ = 0 — the test is inconclusive</summary>
+          <summary>23. When f″ = 0 — the test is inconclusive</summary>
           <p>Then check the <strong>sign of f′ around</strong> the point (or higher derivatives):</p>
           <pre>f′ goes − → + across x*  → minimum
 f′ goes + → − across x*  → maximum
@@ -166,24 +213,24 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <pre>f(x)=x³ at x=0: f′=3x²=0, f″=0; f′ stays ≥0 → inflection, not an extremum</pre>
         </details>
         <details class="study-item">
-          <summary>18. Global optima &amp; closed intervals</summary>
+          <summary>24. Global optima &amp; closed intervals</summary>
           <p>On a closed interval [a, b], the global optimum is the best among:</p>
           <pre>interior stationary points (f′=0)  AND  the endpoints a, b</pre>
           <p>Endpoints can win even when the derivative isn't zero there — always check them.</p>
         </details>
         <details class="study-item">
-          <summary>19. Convex (unimodal) functions</summary>
+          <summary>25. Convex (unimodal) functions</summary>
           <p>If <code>f″(x) ≥ 0 everywhere</code>, f is <strong>convex</strong> — a single bowl. Then any stationary point is the <strong>global</strong> minimum (no other valleys to worry about).</p>
           <pre>x², eˣ, x² − 4x + 5 are convex → one global min</pre>
         </details>
         <details class="study-item">
-          <summary>20. Numerical method: Newton's method</summary>
+          <summary>26. Numerical method: Newton's method</summary>
           <p>When f′(x)=0 can't be solved by hand, iterate using both derivatives:</p>
           <pre>xₙ₊₁ = xₙ − f′(xₙ) / f″(xₙ)</pre>
           <p>Fast (quadratic) convergence near the optimum, but needs f″ and a good start.</p>
         </details>
         <details class="study-item">
-          <summary>21. Bracketing methods: bisection &amp; golden section</summary>
+          <summary>27. Bracketing methods: bisection &amp; golden section</summary>
           <ul class="styled">
             <li><strong>Bisection on f′</strong>: f′ changes sign across a min — halve the bracket repeatedly.</li>
             <li><strong>Golden-section search</strong>: for a <em>unimodal</em> f, shrink an interval [a,b] using golden-ratio probes — no derivatives needed.</li>
@@ -191,7 +238,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           <p>These need the function to be unimodal on the bracket.</p>
         </details>
         <details class="study-item">
-          <summary>22. Where it's used</summary>
+          <summary>28. Where it's used</summary>
           <ul class="styled">
             <li>line search inside larger optimizers (pick the best step size)</li>
             <li>tuning a single hyperparameter</li>
@@ -199,7 +246,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>23. Common GATE traps</summary>
+          <summary>29. Common GATE traps</summary>
           <ul class="styled">
             <li>f′(x*)=0 guarantees a minimum? <strong>No</strong> — could be max or inflection; check f″.</li>
             <li>f″=0 means inflection? <strong>Not necessarily</strong> — the test is just inconclusive.</li>
@@ -208,7 +255,7 @@ f′ keeps the same sign    → inflection (neither)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>24. Practice &amp; memory box</summary>
+          <summary>30. Practice &amp; memory box</summary>
           <p class="lead">Q1. Extremum of f(x)=x²−6x+4?</p>
           <pre>f′=2x−6=0→x=3; f″=2>0→min; f(3)=−5</pre>
           <p class="lead">Q2. f(x)=−x²+8x. Max?</p>
@@ -236,8 +283,13 @@ check endpoints on [a,b] · convex (f″≥0) ⇒ global min · Newton: x−f′
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p><strong>Derivative (from first principles)</strong> &amp; the rules you compute with:</p>
+    <div class="formula">$$ f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h} $$</div>
+    <div class="formula">$$ \tfrac{d}{dx}(c)=0,\quad \tfrac{d}{dx}(x^n)=n x^{n-1},\quad \tfrac{d}{dx}(e^x)=e^x,\quad \tfrac{d}{dx}(\ln x)=\tfrac1x,\quad (f+g)'=f'+g' $$</div>
+    <p><strong>Optimization conditions:</strong></p>
     <div class="formula">$$ \textbf{Necessary: } f'(x^*)=0 $$</div>
-    <div class="formula">$$ f''(x^*)\gt0 \Rightarrow \text{local min}, \qquad f''(x^*)\lt0 \Rightarrow \text{local max} $$</div>
+    <div class="formula">$$ f''(x^*)\gt0 \Rightarrow \text{local min}, \qquad f''(x^*)\lt0 \Rightarrow \text{local max}, \qquad f''(x^*)=0 \Rightarrow \text{inconclusive} $$</div>
+    <p>Sigmoid derivative (ML): $\sigma'(x)=\sigma(x)\big(1-\sigma(x)\big)$.</p>
   </section>
 
   <section class="concept-card">
