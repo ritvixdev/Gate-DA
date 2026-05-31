@@ -49,7 +49,7 @@
   <!-- STUDY IN DEPTH (optional deep-dive) -->
   <section class="concept-card study-section">
       <details class="study">
-        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— joint &amp; marginal distributions, covariance &amp; correlation from zero</span></summary>
+        <summary><span class="study-badge">📖</span> Study in Depth <span class="study-sub">— joint/marginal, covariance, correlation, rank correlation &amp; regression from zero</span></summary>
         <details class="study-item">
           <summary>1. Joint distribution — two variables together</summary>
           <p>When two random variables are studied as a pair, we use a <strong>joint distribution</strong>:</p>
@@ -126,7 +126,36 @@ if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           <p>Covariance only sees the <em>linear</em> part of a relationship.</p>
         </details>
         <details class="study-item">
-          <summary>13. Common GATE traps</summary>
+          <summary>13. Spearman's rank correlation</summary>
+          <p>When data is <strong>ranked/ordinal</strong>, or the relationship is monotonic but not straight-line, correlate the <em>ranks</em> instead of the values:</p>
+          <pre>ρ_s = 1 − 6·Σd² / [ n(n² − 1) ]      d = (rank of X) − (rank of Y)</pre>
+          <pre>ranks X:1,2,3,4,5  Y:2,1,4,3,5 → d:−1,1,−1,1,0 → Σd²=4
+ρ_s = 1 − 6(4)/(5·24) = 1 − 24/120 = 0.8</pre>
+          <p>Range [−1, 1]; <code>ρ_s = 1</code> = perfectly increasing ranks. It catches any monotonic link, even a curved one Pearson's r would understate.</p>
+        </details>
+        <details class="study-item">
+          <summary>14. Regression line — the line of best fit</summary>
+          <p>Correlation measures <em>strength</em>; <strong>regression</strong> gives the actual line to <em>predict</em> Y from X:</p>
+          <pre>ŷ = a + b·x      (least squares: choose a, b to minimise Σ(y − ŷ)²)</pre>
+          <p>The fitted line always passes through the means point <code>(x̄, ȳ)</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>15. Regression coefficient (slope &amp; intercept)</summary>
+          <p>The slope is covariance scaled by the spread of X:</p>
+          <pre>b = Cov(X,Y) / Var(X) = r · (σ_Y / σ_X)        intercept  a = ȳ − b·x̄</pre>
+          <pre>Cov=4, Var(X)=8 → b = 0.5 ; if x̄=10, ȳ=25 → a = 25 − 0.5(10) = 20
+line:  ŷ = 20 + 0.5x</pre>
+          <p>Sign of b = sign of the covariance: positive slope ⇒ Y rises with X.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. Two regression lines &amp; the link to r</summary>
+          <p>Predicting Y from X is <em>not</em> the same line as predicting X from Y — there are two regression coefficients:</p>
+          <pre>b_yx = Cov/Var(X)     b_xy = Cov/Var(Y)
+b_yx · b_xy = r²      (so |r| = √(b_yx · b_xy), the geometric mean of the slopes)</pre>
+          <p>Both lines cross at <code>(x̄, ȳ)</code>; they coincide only when <code>|r| = 1</code>. Because <code>r² ≤ 1</code>, the slopes can't both be large.</p>
+        </details>
+        <details class="study-item">
+          <summary>17. Common GATE traps</summary>
           <ul class="styled">
             <li>Marginal = conditional? <strong>No</strong> — marginal sums out the other variable; conditional fixes it.</li>
             <li>Zero correlation ⇒ independent? <strong>No</strong> — only the linear link is gone.</li>
@@ -135,7 +164,7 @@ if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>14. Practice problems</summary>
+          <summary>18. Practice problems</summary>
           <p class="lead">Q1. Two fair dice — find P(Y = 5).</p>
           <pre>Σ_x P(X=x, Y=5) = 6 × 1/36 = 1/6</pre>
           <p class="lead">Q2. E[XY]=10, E[X]=2, E[Y]=4 — covariance?</p>
@@ -146,7 +175,7 @@ if instead E[XY]=6 = E[X]E[Y]  →  Cov = 0  (uncorrelated)</pre>
           <pre>3 + 5 + 0 = 8</pre>
         </details>
         <details class="study-item">
-          <summary>15. Memory box &amp; mental model</summary>
+          <summary>19. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Joint = the full grid of (X,Y) probabilities; rows/cols sum to 1.</li>
             <li>Marginal = row/column totals (sum out the other variable).</li>
@@ -179,6 +208,10 @@ Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
     <div class="formula">$$ \operatorname{Cov}(X,Y)=E[XY]-E[X]\,E[Y] $$</div>
     <div class="formula">$$ \rho_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\,\sigma_Y},\qquad -1\le\rho\le 1 $$</div>
     <div class="formula">$$ \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y) $$</div>
+    <p><strong>Regression line</strong> $\hat y=a+bx$ (least squares):</p>
+    <div class="formula">$$ b=\frac{\operatorname{Cov}(X,Y)}{\operatorname{Var}(X)}=r\,\frac{\sigma_Y}{\sigma_X},\qquad a=\bar y-b\,\bar x,\qquad b_{yx}\,b_{xy}=r^2 $$</div>
+    <p><strong>Spearman's rank correlation</strong> (ranked / monotonic data):</p>
+    <div class="formula">$$ \rho_s=1-\frac{6\sum d^2}{n(n^2-1)},\qquad d=\text{rank}(X)-\text{rank}(Y) $$</div>
   </section>
 
   <section class="concept-card">
@@ -212,6 +245,9 @@ Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
         <li>$\operatorname{Cov}(aX,bY)=ab\,\operatorname{Cov}(X,Y)$.</li>
         <li>Marginalize by summing out the other variable: $P(X{=}x)=\sum_y P(x,y)$ (or $\int f(x,y)\,dy$).</li>
         <li>Independent ⇔ the joint factorizes: $p(x,y)=p(x)\,p(y)$.</li>
+        <li>Regression slope $b=\operatorname{Cov}/\operatorname{Var}(X)=r\,\sigma_Y/\sigma_X$; line passes through $(\bar x,\bar y)$.</li>
+        <li>Two regression lines: $b_{yx}\,b_{xy}=r^2$, so $|r|=\sqrt{b_{yx}b_{xy}}$ (they coincide only when $|r|=1$).</li>
+        <li>Spearman $\rho_s=1-6\sum d^2/[n(n^2-1)]$ for ranks — captures any monotonic link.</li>
       </ul>
     </div>
   </section>
@@ -224,6 +260,8 @@ Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
       <p><span class="wrong">Trap:</span> "Correlation can be 2." <span class="right">Reality:</span> $\rho$ is always in $[-1,1]$.</p>
       <p><span class="wrong">Trap:</span> "$\operatorname{Var}(X+Y)=\operatorname{Var}X+\operatorname{Var}Y$ always." <span class="right">Reality:</span> only if uncorrelated.</p>
       <p><span class="wrong">Trap:</span> "Marginal probability = conditional probability." <span class="right">Reality:</span> the marginal <em>sums out</em> the other variable; the conditional <em>fixes</em> it.</p>
+      <p><span class="wrong">Trap:</span> "The regression of Y on X is the same line as X on Y." <span class="right">Reality:</span> two different lines ($b_{yx}\ne1/b_{xy}$ unless $|r|=1$); both pass through $(\bar x,\bar y)$.</p>
+      <p><span class="wrong">Trap:</span> "Use Pearson's $r$ on ranked data." <span class="right">Reality:</span> use Spearman's $\rho_s$ for ranks / monotonic relationships.</p>
     </div>
   </section>
 
@@ -258,6 +296,16 @@ Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">No — $\rho$ must lie in $[-1,1]$.</div>
     </div>
+    <div class="practice">
+      <p class="pq">Q4. $\operatorname{Cov}(X,Y)=4$, $\operatorname{Var}(X)=8$, $\bar x=10$, $\bar y=25$. Regression line of Y on X?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$b=4/8=0.5$, $a=25-0.5(10)=20$ → $\hat y=20+0.5x$.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q5. Ranks give $\sum d^2=4$ for $n=5$. Spearman's $\rho_s$?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">$1-\dfrac{6(4)}{5(24)}=1-0.2=0.8$.</div>
+    </div>
 
     <h3>Quick MCQ</h3>
     <div class="quiz-card">
@@ -284,6 +332,8 @@ Covariance = tilt of the cloud · Correlation = tilt on a −1…1 dial</pre>
         <li>$\operatorname{Cov}=E[XY]-E[X]E[Y]$; $\rho=\operatorname{Cov}/(\sigma_X\sigma_Y)\in[-1,1]$.</li>
         <li>Independent ⇒ Cov $=0$; the reverse isn't guaranteed.</li>
         <li>$\operatorname{Var}(X+Y)=\operatorname{Var}X+\operatorname{Var}Y+2\operatorname{Cov}$.</li>
+        <li>Regression: $\hat y=a+bx$, $b=\operatorname{Cov}/\operatorname{Var}(X)=r\,\sigma_Y/\sigma_X$, $a=\bar y-b\bar x$; $b_{yx}b_{xy}=r^2$.</li>
+        <li>Spearman $\rho_s=1-6\sum d^2/[n(n^2-1)]$ for ranked / monotonic data.</li>
       </ul>
     </div>
   </section>
