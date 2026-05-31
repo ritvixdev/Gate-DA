@@ -441,10 +441,19 @@ Eigenvalue  = the multiplier on that direction</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">$\tfrac12,\tfrac13$ (reciprocals).</div>
     </div>
-    <div class="practice">
-      <p class="pq">Q4. If the eigenvalues of $A$ are $2$ and $3$, the eigenvalues of $A^{-1}$ are: &nbsp; <strong>(A)</strong> $-2,-3$ &nbsp; <strong>(B)</strong> $\tfrac12,\tfrac13$ &nbsp; <strong>(C)</strong> $4,9$ &nbsp; <strong>(D)</strong> $2,3$</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(B)</strong> $\tfrac12,\tfrac13$ — $A^{-1}$ has eigenvalues $1/\lambda$.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">If the eigenvalues of $A$ are $2$ and $3$, the eigenvalues of $A^{-1}$ are:</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $-2,-3$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $\tfrac12,\tfrac13$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $4,9$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2,3$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Inversion gives reciprocals, not negatives.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $A^{-1}$ has eigenvalues $1/\lambda$.</div>
+      <div class="quiz-feedback" data-fb="C">$4,9$ are eigenvalues of $A^2$.</div>
+      <div class="quiz-feedback" data-fb="D">$A^{-1}$ flips each $\lambda$ to its reciprocal.</div>
     </div>
   </section>
 

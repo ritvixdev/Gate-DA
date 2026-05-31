@@ -527,10 +527,19 @@ BMI depends on height &amp; weight → that column is redundant → dependent co
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">Rank $&lt;3$ (singular, dependent columns, $Ax=0$ has non-trivial solutions). You can't pin the exact rank — it could be 0, 1, or 2 without more info.</div>
     </div>
-    <div class="practice">
-      <p class="pq">Q7. A $5\times8$ matrix $A$ has rank 3. What is its nullity? &nbsp; <strong>(A)</strong> 2 &nbsp; <strong>(B)</strong> 3 &nbsp; <strong>(C)</strong> 5 &nbsp; <strong>(D)</strong> 8</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> 5 — $n-\operatorname{rank}=8-3=5$.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">A $5\times8$ matrix $A$ has rank 3. What is its nullity?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> 2</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> 3</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> 5</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> 8</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Nullity $=8-3=5$ (use columns).</div>
+      <div class="quiz-feedback" data-fb="B">That's the rank, not the nullity.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $n-\operatorname{rank}=8-3=5$.</div>
+      <div class="quiz-feedback" data-fb="D">8 is the column count, not the nullity.</div>
     </div>
   </section>
 

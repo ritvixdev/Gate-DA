@@ -588,10 +588,19 @@ P(heart) = 13/52 = 1/4</pre>
       <div class="ans">Ordered: $^5P_2=5\times4=20$ (twice $^5C_2$ because roles differ).</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q8. For events with $P(A)=0.6,\ P(B)=0.5,\ P(A\cap B)=0.3$, what is $P(A\cup B)$? &nbsp; <strong>(A)</strong> $1.1$ &nbsp; <strong>(B)</strong> $0.3$ &nbsp; <strong>(C)</strong> $0.8$ &nbsp; <strong>(D)</strong> $0.9$</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> $0.8$ — $0.6+0.5-0.3=0.8$.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">For events with $P(A)=0.6,\ P(B)=0.5,\ P(A\cap B)=0.3$, what is $P(A\cup B)$?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $1.1$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $0.3$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $0.8$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $0.9$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's $P(A)+P(B)$ — you forgot to subtract the overlap.</div>
+      <div class="quiz-feedback" data-fb="B">That's just the intersection.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $0.6+0.5-0.3=0.8$.</div>
+      <div class="quiz-feedback" data-fb="D">Close, but subtract the full overlap $0.3$, giving $0.8$.</div>
     </div>
   </section>
 

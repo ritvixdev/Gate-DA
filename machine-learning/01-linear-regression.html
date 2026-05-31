@@ -407,10 +407,19 @@ R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
       <div class="ans">$R^2=1-20/100=0.8$ → the model explains 80% of the target's variance.</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q6. In linear regression, "linear" means the model is linear in the… &nbsp; <strong>(A)</strong> features only &nbsp; <strong>(B)</strong> coefficients &nbsp; <strong>(C)</strong> targets &nbsp; <strong>(D)</strong> residuals</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(B)</strong> coefficients — linear in the $\beta$'s; that's what makes least-squares work.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">In linear regression, "linear" means the model is linear in the…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> features only</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> coefficients</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> targets</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> residuals</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">You can transform features (e.g. $x^2$) and it's still linear regression.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — linear in the $\beta$'s; that's what makes least-squares work.</div>
+      <div class="quiz-feedback" data-fb="C">The target is what we predict, not the linearity condition.</div>
+      <div class="quiz-feedback" data-fb="D">Residuals are the errors, not the linearity.</div>
     </div>
   </section>
 

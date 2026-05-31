@@ -590,10 +590,19 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
       <div class="ans">Log-loss (cross-entropy).</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q4. The output of logistic regression is… &nbsp; <strong>(A)</strong> any real number &nbsp; <strong>(B)</strong> exactly 0 or 1 &nbsp; <strong>(C)</strong> a probability in $(0,1)$ &nbsp; <strong>(D)</strong> a cluster id</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> a probability in $(0,1)$ — the sigmoid gives a probability between 0 and 1.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The output of logistic regression is…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> any real number</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> exactly 0 or 1</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> a probability in $(0,1)$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> a cluster id</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the raw score $z$, before the sigmoid.</div>
+      <div class="quiz-feedback" data-fb="B">The decision is 0/1, but the model output is a probability.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — the sigmoid gives a probability between 0 and 1.</div>
+      <div class="quiz-feedback" data-fb="D">Clusters come from k-means, not logistic regression.</div>
     </div>
   </section>
 

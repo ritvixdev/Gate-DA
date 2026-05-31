@@ -521,10 +521,19 @@ PCA               → uses SVD/eigenvectors to reduce data</pre>
       <button class="show-ans" aria-expanded="false">Show answer</button>
       <div class="ans">PCA is the SVD of the centered data matrix; principal components are the right singular vectors (eigenvectors of the covariance).</div>
     </div>
-    <div class="practice">
-      <p class="pq">Q4. The singular values of $A$ are the… &nbsp; <strong>(A)</strong> eigenvalues of $A$ &nbsp; <strong>(B)</strong> square roots of eigenvalues of $A^{\mathsf T}A$ &nbsp; <strong>(C)</strong> diagonal entries of $A$ &nbsp; <strong>(D)</strong> reciprocals of eigenvalues of $A$</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(B)</strong> square roots of eigenvalues of $A^{\mathsf T}A$ — $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$, real and $\ge0$.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The singular values of $A$ are the…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> eigenvalues of $A$</button>
+        <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> square roots of eigenvalues of $A^{\mathsf T}A$</button>
+        <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> diagonal entries of $A$</button>
+        <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> reciprocals of eigenvalues of $A$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Only for symmetric PSD matrices.</div>
+      <div class="quiz-feedback" data-fb="B">✅ Correct — $\sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}$, real and $\ge0$.</div>
+      <div class="quiz-feedback" data-fb="C">Unrelated in general.</div>
+      <div class="quiz-feedback" data-fb="D">That relates to $A^{-1}$.</div>
     </div>
   </section>
 

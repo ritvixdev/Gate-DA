@@ -577,10 +577,19 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
       <div class="ans">$\overline{x^2}=\tfrac{4+16+36}{3}=\tfrac{56}{3}$, $\bar{x}^2=16$ → $\sigma^2=\tfrac{56}{3}-16=\tfrac{8}{3}$.</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q9. The sample variance $s^2$ divides the squared deviations by… &nbsp; <strong>(A)</strong> $n$ &nbsp; <strong>(B)</strong> $n+1$ &nbsp; <strong>(C)</strong> $n-1$ &nbsp; <strong>(D)</strong> $\sqrt{n}$</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> $n-1$ — $n-1$ (Bessel's correction) gives the unbiased sample variance.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The sample variance $s^2$ divides the squared deviations by…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $n$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $n+1$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $n-1$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $\sqrt{n}$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Dividing by $n$ gives a biased (population-style) estimate.</div>
+      <div class="quiz-feedback" data-fb="B">Not a standard estimator.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $n-1$ (Bessel's correction) gives the unbiased sample variance.</div>
+      <div class="quiz-feedback" data-fb="D">That's used in the standard error, not the variance.</div>
     </div>
   </section>
 

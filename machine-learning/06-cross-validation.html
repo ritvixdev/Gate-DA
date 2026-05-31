@@ -292,10 +292,19 @@ F1        = 2(0.8·0.667)/(0.8+0.667) ≈ 0.727</pre>
       <div class="ans">Leave-one-out CV: $k=n$, each point is the validation set once.</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q4. A large gap between training and validation accuracy indicates… &nbsp; <strong>(A)</strong> underfitting &nbsp; <strong>(B)</strong> a perfect model &nbsp; <strong>(C)</strong> overfitting &nbsp; <strong>(D)</strong> too few features</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> overfitting — memorized training but fails to generalize = overfitting.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">A large gap between training and validation accuracy indicates…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> underfitting</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a perfect model</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> overfitting</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> too few features</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Underfitting shows <em>both</em> scores low.</div>
+      <div class="quiz-feedback" data-fb="B">A big gap is the opposite of good generalization.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — memorized training but fails to generalize = overfitting.</div>
+      <div class="quiz-feedback" data-fb="D">More features usually worsens overfitting, not fixes it.</div>
     </div>
   </section>
 

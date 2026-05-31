@@ -323,10 +323,19 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
       <div class="ans">The squared-error cost is convex (a single bowl), so there's one global minimum.</div>
     </div>
 
-    <div class="practice">
-      <p class="pq">Q4. The normal equations are… &nbsp; <strong>(A)</strong> $X\beta=y$ &nbsp; <strong>(B)</strong> $\beta=Xy$ &nbsp; <strong>(C)</strong> $X^{\mathsf T}X\beta=X^{\mathsf T}y$ &nbsp; <strong>(D)</strong> $X^{\mathsf T}\beta=y$</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans"><strong>(C)</strong> $X^{\mathsf T}X\beta=X^{\mathsf T}y$ — $X^{\mathsf T}X\beta=X^{\mathsf T}y$, giving $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</div>
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">The normal equations are…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $X\beta=y$</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $\beta=Xy$</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $X^{\mathsf T}X\beta=X^{\mathsf T}y$</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $X^{\mathsf T}\beta=y$</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">That's the (usually unsolvable) overdetermined system.</div>
+      <div class="quiz-feedback" data-fb="B">Dimensions don't even match.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — $X^{\mathsf T}X\beta=X^{\mathsf T}y$, giving $\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$.</div>
+      <div class="quiz-feedback" data-fb="D">Not the least-squares condition.</div>
     </div>
   </section>
 
