@@ -119,7 +119,84 @@ Continuous = any value in an interval (height, weight, time, temperature)</pre>
         </details>
 
         <details class="study-item">
-          <summary>9. Mental model</summary>
+          <summary>9. Properties of expectation (linearity)</summary>
+          <pre>E[aX + b] = a·E[X] + b
+E[X + Y]  = E[X] + E[Y]</pre>
+          <pre>E[X]=10  →  E[2X+5] = 2·10 + 5 = 25</pre>
+          <p><span style="color:var(--coral-text)">Key GATE fact:</span> <strong>linearity of expectation holds even when X and Y are dependent</strong> — no independence needed.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>10. Variance &amp; standard deviation</summary>
+          <p>Expectation gives the average; <strong>variance</strong> measures the spread around it.</p>
+          <pre>Var(X) = E[(X − μ)²] = E[X²] − (E[X])²      (the second form is easier)
+SD(X)  = σ = √Var(X)</pre>
+          <p>We <strong>square</strong> the deviations so positives and negatives don't cancel; the square root then returns spread to the original units (variance is in units², SD in units).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>11. Variance — worked examples</summary>
+          <p class="lead">Fair die:</p>
+          <pre>E[X] = 3.5 ,  E[X²] = (1+4+9+16+25+36)/6 = 91/6
+Var = 91/6 − (7/2)² = 91/6 − 49/4 = 35/12 ≈ 2.917 ,  SD ≈ 1.708</pre>
+          <p class="lead">Two coins, X = number of heads:</p>
+          <pre>E[X] = 1 ,  E[X²] = 0²(1/4)+1²(1/2)+2²(1/4) = 3/2
+Var = 3/2 − 1² = 1/2 ,  SD ≈ 0.707</pre>
+          <p><span style="color:var(--coral-text)">Remember:</span> fair die → E[X]=3.5, Var=35/12.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>12. Properties of variance</summary>
+          <pre>Var(aX + b) = a²·Var(X)        (adding b shifts, doesn't spread;
+SD(aX + b)  = |a|·SD(X)         multiplying by a scales spread by a²)
+Var(X + Y)  = Var(X) + Var(Y)   ONLY if X, Y are independent</pre>
+          <pre>Var(X)=4  →  Var(3X+10) = 9·4 = 36</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>13. Geometric RV: failures before first success</summary>
+          <p>Repeat a trial until the first success (probability <code>p</code>, failure <code>q = 1−p</code>). Let <code>X = number of failures before that success</code>:</p>
+          <pre>X ∈ {0,1,2,…} ,  P(X=k) = qᵏ·p      (k failures, then a success)
+E[X] = q/p ,  Var(X) = q/p²</pre>
+          <pre>coin until first Head (p=1/2): P(X=0)=1/2, P(X=1)=1/4, …; E[X]=1
+p=0.3: P(X=2)=0.7²·0.3=0.147, E[X]=0.7/0.3=7/3</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>14. Trials until success vs failures before (the trap)</summary>
+          <p>Two versions of the geometric variable — don't mix them up:</p>
+          <pre>X = failures before success: values 0,1,2,…  P=qᵏp   E[X]=q/p
+Y = trials  until  success:  values 1,2,3,…  P=qᵏ⁻¹p E[Y]=1/p
+relation:  Y = X + 1   (trials = failures + the success trial)</pre>
+          <p>Both have <code>Var = q/p²</code>. Failures start at 0; trials start at 1.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>15. Common traps (variance &amp; geometric)</summary>
+          <ul class="styled">
+            <li><code>Var = E[X²] − E[X]</code>? <strong>No</strong> — it's <code>E[X²] − (E[X])²</code> (square the mean).</li>
+            <li><code>SD = Var²</code>? <strong>No</strong> — <code>SD = √Var</code>.</li>
+            <li><code>Var(aX+b) = a·Var(X) + b</code>? <strong>No</strong> — it's <code>a²·Var(X)</code>.</li>
+            <li>Failures-before-success starts at 1? <strong>No</strong> — at 0 (immediate success = 0 failures).</li>
+            <li>Expectation must be an achievable value? <strong>No</strong> — a die's E[X]=3.5.</li>
+            <li>E[X+Y] needs independence? <strong>No</strong> — linearity always holds; only Var(X+Y)=Var(X)+Var(Y) needs it.</li>
+          </ul>
+        </details>
+
+        <details class="study-item">
+          <summary>16. Practice problems</summary>
+          <p class="lead">Q1. Fair die — Var(X)?</p>
+          <pre>91/6 − 49/4 = 35/12</pre>
+          <p class="lead">Q2. X with P(1)=0.2, P(2)=0.5, P(3)=0.3 — E[X], Var, SD?</p>
+          <pre>E[X]=2.1 ; E[X²]=0.2+2+2.7=4.9 ; Var=4.9−4.41=0.49 ; SD=0.7</pre>
+          <p class="lead">Q3. p=0.3, X=failures before success — P(X=2), E[X]?</p>
+          <pre>0.7²·0.3 = 0.147 ;  E[X]=0.7/0.3=7/3 ≈ 2.33</pre>
+          <p class="lead">Q4. Var(X)=5 — Var(2X+3)?</p>
+          <pre>2²·5 = 20</pre>
+        </details>
+
+        <details class="study-item">
+          <summary>17. Mental model</summary>
           <ul class="styled">
             <li>Outcome = the raw result; <strong>random variable = a score assigned to that result</strong>.</li>
             <li>Coin → X = 1/0; die → X = number shown; two coins → X = number of heads.</li>
