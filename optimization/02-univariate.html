@@ -253,7 +253,23 @@ f(x) = −x² : f″ = −2 < 0 → concave (clean hill)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>30. Common GATE traps</summary>
+          <summary>30. Taylor series — a local polynomial approximation</summary>
+          <p>A <strong>Taylor (Maclaurin) series</strong> rebuilds a function near a point from its derivatives there:</p>
+          <pre>f(x) ≈ f(0) + f′(0)x + f″(0)·x²/2! + f‴(0)·x³/3! + …</pre>
+          <p>More terms = better fit. The famous expansions (the small-x forms from the foundation cards are just their first terms):</p>
+          <pre>eˣ = 1 + x + x²/2! + …      sin x = x − x³/3! + …
+cos x = 1 − x²/2! + …       ln(1+x) = x − x²/2 + x³/3 − …</pre>
+          <p><span style="color:var(--coral-text)">Why it matters here:</span> the 1st-order Taylor step <code>f(x+Δx) ≈ f(x) + f′(x)Δx</code> with <code>Δx = −η f′(x)</code> gives <code>f(x+Δx) ≈ f(x) − η[f′(x)]² ≤ f(x)</code> — that's <strong>why a small step along −slope reduces f</strong> (gradient descent), and adding the f″ term gives Newton's method.</p>
+        </details>
+        <details class="study-item">
+          <summary>31. Geometric &amp; infinite series</summary>
+          <p>A <strong>series</strong> is the sum of a sequence. A <strong>geometric series</strong> has a constant ratio r:</p>
+          <pre>a + ar + ar² + ar³ + … = a/(1 − r)   only if |r| < 1  (else it diverges)</pre>
+          <pre>1 + ½ + ¼ + … = 1/(1−½) = 2 · ½ + ¼ + … = (½)/(1−½) = 1 · 1+2+4+… diverges (r=2)</pre>
+          <p>Used across DA: geometric-distribution probabilities, and reinforcement-learning discounted return <code>G = R₀ + γR₁ + γ²R₂ + …</code> which converges when <code>0 &lt; γ &lt; 1</code>.</p>
+        </details>
+        <details class="study-item">
+          <summary>32. Common GATE traps</summary>
           <ul class="styled">
             <li>f′(x*)=0 guarantees a minimum? <strong>No</strong> — could be max or inflection; check f″.</li>
             <li>f″=0 means inflection? <strong>Not necessarily</strong> — the test is just inconclusive.</li>
@@ -262,7 +278,7 @@ f(x) = −x² : f″ = −2 < 0 → concave (clean hill)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>31. Practice &amp; memory box</summary>
+          <summary>33. Practice &amp; memory box</summary>
           <p class="lead">Q1. Extremum of f(x)=x²−6x+4?</p>
           <pre>f′=2x−6=0→x=3; f″=2>0→min; f(3)=−5</pre>
           <p class="lead">Q2. f(x)=−x²+8x. Max?</p>

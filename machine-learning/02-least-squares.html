@@ -100,13 +100,26 @@ y = target vector ,  β = parameter vector ,  ε = errors</pre>
           <p>One linear solve gives all coefficients at once — the closed-form OLS solution.</p>
         </details>
         <details class="study-item">
-          <summary>6. When is the solution unique?</summary>
+          <summary>6. MSE gradient in vector form (GD vs closed-form)</summary>
+          <p>Besides the normal equations, you can reach the same β by gradient descent. Write the loss and its gradient in matrix form:</p>
+          <pre>J(w) = (1/n)‖Xw − y‖²        (Xw − y = residual vector)
+∇J(w) = (2/n) Xᵀ(Xw − y)
+update:  w := w − η·∇J(w) = w − η·(2/n)Xᵀ(Xw − y)</pre>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Closed-form (XᵀX)⁻¹Xᵀy</th><th>Gradient descent</th></tr>
+            <tr><td>Best for</td><td>small/medium, exact</td><td>large data, many features, NNs</td></tr>
+            <tr><td>Cost</td><td>matrix inverse (~n³)</td><td>cheap iterations</td></tr>
+          </table></div>
+          <p>Deep models have no closed form, so they rely on this gradient update.</p>
+        </details>
+        <details class="study-item">
+          <summary>7. When is the solution unique?</summary>
           <p><code>β̂ = (XᵀX)⁻¹Xᵀy</code> needs <code>XᵀX</code> to be <strong>invertible</strong> — i.e. the feature columns are linearly independent (full column rank).</p>
           <pre>perfectly correlated / duplicate features → XᵀX singular → no unique solution (multicollinearity)</pre>
           <p>Fixes: drop redundant features or add regularization (ridge).</p>
         </details>
         <details class="study-item">
-          <summary>7. Projection view — the geometry</summary>
+          <summary>8. Projection view — the geometry</summary>
           <p>Geometrically, least squares <strong>projects y onto the column space of X</strong> (all reachable predictions):</p>
           <pre>ŷ = projection of y onto span(features)
 residual e = y − ŷ  is orthogonal to that space</pre>
@@ -114,7 +127,7 @@ residual e = y − ŷ  is orthogonal to that space</pre>
           <pre>Xᵀ(y − Xβ̂) = 0     (residual ⟂ every feature)</pre>
         </details>
         <details class="study-item">
-          <summary>8. Why least squares connects everything</summary>
+          <summary>9. Why least squares connects everything</summary>
           <ul class="styled">
             <li><strong>Linear algebra:</strong> projection, column space, matrix inverse.</li>
             <li><strong>Optimization:</strong> minimize a convex squared-error objective.</li>
@@ -122,25 +135,25 @@ residual e = y − ŷ  is orthogonal to that space</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>9. Why ridge regression exists</summary>
+          <summary>10. Why ridge regression exists</summary>
           <p>Plain OLS (minimize RSS) can misbehave when features are correlated, there are many features, or it overfits — the coefficients blow up and become unstable.</p>
           <pre>symptom: tiny data changes → huge coefficient swings</pre>
           <p>Ridge regression tames this by adding a penalty on coefficient size.</p>
         </details>
         <details class="study-item">
-          <summary>10. OLS vs ridge objective (L2 penalty)</summary>
+          <summary>11. OLS vs ridge objective (L2 penalty)</summary>
           <pre>OLS:    minimize  RSS = Σ(yᵢ − ŷᵢ)²
 Ridge:  minimize  RSS + λ Σ βⱼ²        (the λΣβ² term = L2 penalty)</pre>
           <p>Ridge doesn't only want low error — it also wants <strong>small coefficients</strong>. Large βⱼ ⇒ large penalty (β=10 → β²=100), so coefficients are pushed down.</p>
         </details>
         <details class="study-item">
-          <summary>11. Regularization = a power limiter</summary>
+          <summary>12. Regularization = a power limiter</summary>
           <p><strong>Regularization</strong> adds a penalty so the model can't become too wild — it trades a little training fit for better generalization.</p>
           <pre>OLS   = unlimited power (can overfit)
 Ridge = power limiter (more stable)</pre>
         </details>
         <details class="study-item">
-          <summary>12. The λ (lambda) knob</summary>
+          <summary>13. The λ (lambda) knob</summary>
           <pre>λ = 0      → no penalty = ordinary OLS
 small λ    → coefficients shrink a little
 large λ     → strong shrinkage, simpler model
@@ -148,21 +161,21 @@ very large λ → coefficients → 0, model underfits</pre>
           <p>λ controls how much "discipline" the model has; it's tuned by cross-validation.</p>
         </details>
         <details class="study-item">
-          <summary>13. Coefficient shrinkage (ridge vs lasso)</summary>
+          <summary>14. Coefficient shrinkage (ridge vs lasso)</summary>
           <p>Ridge <strong>shrinks coefficients toward zero but rarely to exactly zero</strong>:</p>
           <pre>OLS   β = 20, −15, 8
 Ridge β = 12,  −9, 5   (smaller, less sensitive)</pre>
           <p><span style="color:var(--coral-text)">Contrast:</span> Lasso (L1 penalty) <em>can</em> set coefficients exactly to 0, doing feature selection — ridge does not.</p>
         </details>
         <details class="study-item">
-          <summary>14. Ridge, multicollinearity &amp; the matrix form</summary>
+          <summary>15. Ridge, multicollinearity &amp; the matrix form</summary>
           <p>When features are highly correlated, <code>XᵀX</code> is nearly singular and OLS is unstable. Ridge adds <code>λI</code> to the diagonal, making the inverse well-behaved:</p>
           <pre>OLS:   β̂ = (XᵀX)⁻¹ Xᵀy
 Ridge: β̂ = (XᵀX + λI)⁻¹ Xᵀy</pre>
           <p>The <code>+λI</code> guarantees an invertible matrix even with multicollinearity.</p>
         </details>
         <details class="study-item">
-          <summary>15. Ridge — pros, cons &amp; when to use</summary>
+          <summary>16. Ridge — pros, cons &amp; when to use</summary>
           <ul class="styled">
             <li>✓ reduces overfitting, handles multicollinearity, stabilizes coefficients, improves generalization</li>
             <li>✗ no feature selection (coeffs don't hit 0), needs λ tuning, too-large λ underfits, less interpretable</li>
@@ -170,7 +183,7 @@ Ridge: β̂ = (XᵀX + λI)⁻¹ Xᵀy</pre>
           <p>Use it with many correlated features (house prices, medical measurements, ad-spend channels, pixel features).</p>
         </details>
         <details class="study-item">
-          <summary>16. The regularization landscape</summary>
+          <summary>17. The regularization landscape</summary>
           <p><strong>Regularization</strong> = adding a penalty/constraint so the model stays simple and generalizes. The main flavours:</p>
           <ul class="styled">
             <li><strong>L2 / Ridge</strong> — penalize Σβ² (shrinks coefficients)</li>
@@ -180,19 +193,19 @@ Ridge: β̂ = (XᵀX + λI)⁻¹ Xᵀy</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>17. Lasso regression (L1)</summary>
+          <summary>18. Lasso regression (L1)</summary>
           <p>Lasso adds an <strong>L1</strong> penalty — the sum of <em>absolute</em> coefficients:</p>
           <pre>minimize  RSS + λ Σ |βⱼ|</pre>
           <p>The absolute-value penalty is what lets coefficients hit <strong>exactly zero</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>18. Lasso does feature selection</summary>
+          <summary>19. Lasso does feature selection</summary>
           <p>Because L1 can drive weights to <strong>0</strong>, lasso effectively <strong>drops</strong> useless features — an automatic feature selector giving a sparse, interpretable model.</p>
           <pre>ridge: β = 12, −9, 5   (all kept, just smaller)
 lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
         </details>
         <details class="study-item">
-          <summary>19. Ridge vs Lasso</summary>
+          <summary>20. Ridge vs Lasso</summary>
           <div class="tbl-wrap"><table>
             <tr><th></th><th>Ridge (L2)</th><th>Lasso (L1)</th></tr>
             <tr><td>Penalty</td><td>Σβ²</td><td>Σ|β|</td></tr>
@@ -203,7 +216,7 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
           <p><strong>Elastic Net</strong> blends both (<code>λ₁Σ|β| + λ₂Σβ²</code>) — sparsity plus stability with correlated features.</p>
         </details>
         <details class="study-item">
-          <summary>20. Choosing the penalty &amp; tuning λ</summary>
+          <summary>21. Choosing the penalty &amp; tuning λ</summary>
           <ul class="styled">
             <li>Want a simpler, interpretable model / feature selection → <strong>Lasso</strong>.</li>
             <li>Many correlated features, want stability → <strong>Ridge</strong>.</li>
@@ -212,7 +225,7 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
           <p>Pick λ (a.k.a. α) by <strong>grid search with cross-validation</strong> — the value with the best validation score.</p>
         </details>
         <details class="study-item">
-          <summary>21. Traps, practice &amp; memory box</summary>
+          <summary>22. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>Least squares minimizes raw errors? <strong>No</strong> — squared errors (raw ones cancel).</li>
             <li><code>(XᵀX)⁻¹</code> always exists? <strong>No</strong> — only with full-rank (independent) features.</li>
