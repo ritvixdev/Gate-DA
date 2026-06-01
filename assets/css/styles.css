@@ -724,3 +724,17 @@ ol.steps li::before {
 .viz-matrix::before { left: 0; border-right: none; }
 .viz-matrix::after { right: 0; border-left: none; }
 .viz-matrix b { color: var(--primary); font-weight: 700; }
+
+/* Matrix-multiplication animator (matmul-lab) */
+.matmul-stage { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 8px 0; }
+.mm-op { font-size: 22px; color: var(--muted); font-family: var(--font-mono); }
+.mm-block { text-align: center; }
+.mm-cap { font-size: 12px; color: var(--muted); margin-bottom: 5px; font-family: var(--font-mono); }
+.mm-mat { display: inline-grid; grid-template-columns: repeat(var(--cols, 2), minmax(30px, auto)); gap: 4px; padding: 6px 11px; position: relative; }
+.mm-mat::before, .mm-mat::after { content: ""; position: absolute; top: 0; bottom: 0; width: 6px; border: 2px solid var(--muted); }
+.mm-mat::before { left: 0; border-right: none; }
+.mm-mat::after { right: 0; border-left: none; }
+.mm-cell { padding: 5px 9px; text-align: center; border-radius: var(--r-sm); color: var(--ink); font-family: var(--font-mono); font-size: 14px; transition: background .15s, color .15s; }
+.mm-cell.mm-empty { color: var(--muted-soft); }
+.mm-cell.mm-hi { background: var(--coral-bg); color: var(--primary); font-weight: 700; }
+.mm-cell.mm-filled { background: var(--teal-bg); color: var(--teal-text); font-weight: 700; }

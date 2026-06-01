@@ -7,8 +7,8 @@
 <title>Conditional Probability & Bayes · GATE DA</title>
 <meta name="description" content="Conditional and joint probability, independence, total probability, and Bayes' theorem — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260606">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260606">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260607">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260607">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="02-conditional-bayes" data-content>
   <div class="hero">
@@ -50,6 +50,21 @@
     </div>
     <div class="viz-readout" id="bayes-lab-readout"></div>
   </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🌳 Probability tree</span>
+      <span class="viz-hint">multiply along a path · add across paths</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="prob-tree-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>P(A) <span id="pt-a-val">0.30</span></label><input type="range" id="pt-a" min="0.05" max="0.95" step="0.05" value="0.3"></div>
+      <div class="viz-control"><label>P(B|A) <span id="pt-ba-val">0.80</span></label><input type="range" id="pt-ba" min="0.05" max="0.95" step="0.05" value="0.8"></div>
+      <div class="viz-control"><label>P(B|Aᶜ) <span id="pt-bac-val">0.10</span></label><input type="range" id="pt-bac" min="0.05" max="0.95" step="0.05" value="0.1"></div>
+    </div>
+    <div class="viz-readout" id="prob-tree-lab-readout"></div>
+  </div>
+
 
 
   <section class="concept-card">
@@ -633,9 +648,10 @@ Mutually exclusive = cannot happen together</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260606"></script>
-  <script src="../assets/js/viz/chart.js?v=20260606"></script>
-  <script src="../assets/js/viz/bayes-lab.js?v=20260606"></script>
-  <script src="../assets/js/app.js?v=20260606"></script>
+  <script src="../assets/js/topics.js?v=20260607"></script>
+  <script src="../assets/js/viz/chart.js?v=20260607"></script>
+  <script src="../assets/js/viz/bayes-lab.js?v=20260607"></script>
+  <script src="../assets/js/viz/prob-tree-lab.js?v=20260607"></script>
+  <script src="../assets/js/app.js?v=20260607"></script>
 </body>
 </html>

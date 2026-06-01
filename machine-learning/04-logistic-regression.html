@@ -7,8 +7,8 @@
 <title>Logistic Regression · GATE DA</title>
 <meta name="description" content="Logistic regression from zero: the sigmoid, probabilities, decision boundary, log-loss — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260606">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260606">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260607">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260607">
 </head>
 <body data-root=".." data-subject="machine-learning" data-topic="04-logistic-regression" data-content>
   <div class="hero">
@@ -49,6 +49,19 @@
     </div>
     <div class="viz-readout" id="sigmoid-lab-readout"></div>
   </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🎯 Decision boundary</span>
+      <span class="viz-hint">threshold shifts the σ = t line · plane tinted by probability</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="logitboundary-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>threshold <span id="lb-t-val">0.50</span></label><input type="range" id="lb-t" min="0.1" max="0.9" step="0.05" value="0.5"></div>
+    </div>
+    <div class="viz-readout" id="logitboundary-lab-readout"></div>
+  </div>
+
 
 
   <section class="concept-card">
@@ -649,9 +662,10 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260606"></script>
-  <script src="../assets/js/viz/chart.js?v=20260606"></script>
-  <script src="../assets/js/viz/sigmoid-lab.js?v=20260606"></script>
-  <script src="../assets/js/app.js?v=20260606"></script>
+  <script src="../assets/js/topics.js?v=20260607"></script>
+  <script src="../assets/js/viz/chart.js?v=20260607"></script>
+  <script src="../assets/js/viz/sigmoid-lab.js?v=20260607"></script>
+  <script src="../assets/js/viz/logitboundary-lab.js?v=20260607"></script>
+  <script src="../assets/js/app.js?v=20260607"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <title>Hypothesis Testing: z-test & t-test · GATE DA</title>
 <meta name="description" content="Hypothesis testing framework, p-values, significance, z-test and t-test — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260606">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260606">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260607">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260607">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-topic="08-z-t-tests" data-content>
   <div class="hero">
@@ -52,6 +52,24 @@
     </div>
     <div class="viz-readout" id="ztest-lab-readout"></div>
   </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">📊 Type I / II error &amp; power</span>
+      <span class="viz-hint">two hypotheses overlap · shade α, β, power</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="power-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn" id="pw-10">α = 0.10</button>
+        <button class="preset-btn active" id="pw-05">α = 0.05</button>
+        <button class="preset-btn" id="pw-01">α = 0.01</button>
+      </div>
+      <div class="viz-control"><label>effect size d <span id="pw-d-val">2.5</span></label><input type="range" id="pw-d" min="0" max="4" step="0.1" value="2.5"></div>
+    </div>
+    <div class="viz-readout" id="power-lab-readout"></div>
+  </div>
+
 
   <div class="viz-panel">
     <div class="viz-head">
@@ -390,10 +408,11 @@ t = 4.4 / (0.894/√5) = 4.4/0.4 = 11 ,  df = 4</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260606"></script>
-  <script src="../assets/js/viz/chart.js?v=20260606"></script>
-  <script src="../assets/js/viz/ztest-lab.js?v=20260606"></script>
-  <script src="../assets/js/viz/tdist-lab.js?v=20260606"></script>
-  <script src="../assets/js/app.js?v=20260606"></script>
+  <script src="../assets/js/topics.js?v=20260607"></script>
+  <script src="../assets/js/viz/chart.js?v=20260607"></script>
+  <script src="../assets/js/viz/ztest-lab.js?v=20260607"></script>
+  <script src="../assets/js/viz/tdist-lab.js?v=20260607"></script>
+  <script src="../assets/js/viz/power-lab.js?v=20260607"></script>
+  <script src="../assets/js/app.js?v=20260607"></script>
 </body>
 </html>
