@@ -59,6 +59,23 @@ CDF  →  total coin/paint collected from the far left up to x</pre>
     <div class="viz-readout" id="dist-explorer-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 CDF Builder</span>
+      <span class="viz-hint">PMF/PDF on top → its CDF F(x)=P(X≤x) below</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="cdf-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="cdf-disc">Discrete (die)</button>
+        <button class="preset-btn" id="cdf-cont">Continuous (normal)</button>
+      </div>
+      <div class="viz-control"><label>x <span id="cdf-x-val">3</span></label><input type="range" id="cdf-x" min="1" max="6" step="1" value="3"></div>
+    </div>
+    <div class="viz-readout" id="cdf-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -678,6 +695,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/dist-explorer.js?v=20260602"></script>
+  <script src="../assets/js/viz/cdf-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

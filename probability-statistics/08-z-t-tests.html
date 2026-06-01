@@ -53,6 +53,19 @@
     <div class="viz-readout" id="ztest-lab-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 t vs Normal</span>
+      <span class="viz-hint">df slider · heavier tails → normal as df grows</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="tdist-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>degrees of freedom <span id="td-df-val">3</span></label><input type="range" id="td-df" min="1" max="40" step="1" value="3"></div>
+    </div>
+    <div class="viz-readout" id="tdist-lab-readout"></div>
+  </div>
+
+
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
@@ -369,6 +382,7 @@ t = 4.4 / (0.894/√5) = 4.4/0.4 = 11 ,  df = 4</pre>
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/ztest-lab.js?v=20260602"></script>
+  <script src="../assets/js/viz/tdist-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

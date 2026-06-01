@@ -53,6 +53,23 @@
     <div class="viz-readout" id="regression-lab-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Loss Surface (SSE)</span>
+      <span class="viz-hint">gradient descent rolls to the least-squares minimum</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="losssurface-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn" id="ls-step">Step</button>
+        <button class="preset-btn" id="ls-run">Run</button>
+        <button class="preset-btn" id="ls-reset">Reset</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="losssurface-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -371,6 +388,7 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/regression-lab.js?v=20260602"></script>
+  <script src="../assets/js/viz/losssurface-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

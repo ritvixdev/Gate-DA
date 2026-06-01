@@ -54,6 +54,25 @@
     <div class="viz-readout" id="clt-lab-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Confidence Intervals</span>
+      <span class="viz-hint">repeated samples · red ones miss μ</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="ci-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn" id="ci-90">90%</button>
+        <button class="preset-btn active" id="ci-95">95%</button>
+        <button class="preset-btn" id="ci-99">99%</button>
+        <button class="preset-btn" id="ci-resample">New samples</button>
+      </div>
+      <div class="viz-control"><label>sample size n <span id="ci-n-val">25</span></label><input type="range" id="ci-n" min="5" max="100" step="5" value="25"></div>
+    </div>
+    <div class="viz-readout" id="ci-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -388,6 +407,7 @@ CI = 100 ± 5.88 = [94.12 , 105.88]</pre>
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/clt-lab.js?v=20260602"></script>
+  <script src="../assets/js/viz/ci-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

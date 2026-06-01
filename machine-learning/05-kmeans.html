@@ -53,6 +53,19 @@
     <div class="viz-readout" id="kmeans-lab-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Elbow Method</span>
+      <span class="viz-hint">WCSS vs K · the bend marks a good K</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="elbow-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>K <span id="eb-k-val">3</span></label><input type="range" id="eb-k" min="1" max="8" step="1" value="3"></div>
+    </div>
+    <div class="viz-readout" id="elbow-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -350,6 +363,7 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/kmeans-lab.js?v=20260602"></script>
+  <script src="../assets/js/viz/elbow-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

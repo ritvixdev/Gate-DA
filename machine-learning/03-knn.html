@@ -48,6 +48,19 @@
     <div class="viz-readout" id="knn-lab-readout"></div>
   </div>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Decision Boundary vs k</span>
+      <span class="viz-hint">small k = jagged (overfit), large k = smooth (underfit)</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="knnboundary-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>k <span id="kb-k-val">5</span></label><input type="range" id="kb-k" min="1" max="17" step="2" value="5"></div>
+    </div>
+    <div class="viz-readout" id="knnboundary-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -415,6 +428,7 @@ soft: minimize ½‖w‖² + C Σξᵢ   s.t. yᵢ(wᵀxᵢ + b) ≥ 1 − ξᵢ
   <script src="../assets/js/topics.js?v=20260602"></script>
   <script src="../assets/js/viz/chart.js?v=20260602"></script>
   <script src="../assets/js/viz/knn-lab.js?v=20260602"></script>
+  <script src="../assets/js/viz/knnboundary-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>
