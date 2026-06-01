@@ -229,6 +229,13 @@ momentum smooths · AdaGrad/RMSProp/Adam adapt the rate · Newton uses the Hessi
       <p>$f'(x)=2(x-3)$. Step 1: $x_1=0-0.1\cdot(2)(0-3)=0-0.1(-6)=0.6$.</p>
       <p>Step 2: $x_2=0.6-0.1\cdot2(0.6-3)=0.6+0.48=1.08$. Each step moves toward $x^*=3$.</p>
     </div>
+    <div class="callout example">
+      <div class="callout-label">✦ One gradient-descent step</div>
+      <p>Minimize $f(x)=x^2$, so $f'(x)=2x$. Start at $x_0=5$ with $\eta=0.1$.</p>
+      <p>$x_1=5-0.1(2\cdot5)=4$; &nbsp; $x_2=4-0.1(8)=3.2$; &nbsp; $x_3=3.2-0.1(6.4)=2.56$.</p>
+      <p>Each step multiplies $x$ by $(1-2\eta)=0.8$, so the iterates shrink geometrically toward the minimum $x^*=0$.</p>
+    </div>
+  
   </section>
 
   <section class="concept-card">
