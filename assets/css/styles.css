@@ -143,7 +143,7 @@ a:hover { text-decoration: underline; }
 }
 .icon-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-.content { max-width: 1120px; width: 100%; margin: 0 auto; padding: var(--s-xxl) var(--s-xl) var(--s-section); }
+.content { max-width: 1120px; width: 100%; margin: 0 auto; padding: var(--s-xxl) var(--s-xl) var(--s-section); flex: 1 0 auto; }
 
 /* Two-tier widths: running text stays at a comfortable ~78ch measure, left-aligned;
    media and collections break out to use the full desktop width, sharing the left edge. */
