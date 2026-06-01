@@ -69,11 +69,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Cluster:</strong> a group of similar points. <strong>Centroid:</strong> the mean (center) of a cluster.</li>
-      <li><strong>k:</strong> the number of clusters you choose in advance.</li>
+      <li><strong>Cluster:</strong> a group of similar points. <strong>Centroid $\mu_j$:</strong> the mean (centre) of a cluster.</li>
+      <li><strong>$k$:</strong> the number of clusters, chosen in advance.</li>
+      <li><strong>Assignment step:</strong> put each point with its nearest centroid.</li>
+      <li><strong>Update step:</strong> move each centroid to the mean of its points; repeat until stable.</li>
       <li><strong>Inertia (WCSS):</strong> total squared distance of points to their centroid — k-Means minimizes it.</li>
-      <li><strong>Unsupervised:</strong> no labels are used; structure is found from the data alone.</li>
-    </ul>
+      <li><strong>Elbow method:</strong> plot WCSS vs $k$ and pick the "bend" as a good $k$.</li>
+      <li><strong>Unsupervised:</strong> no labels used — structure is found from the data alone.</li>
+      <li><strong>Local minimum:</strong> the result depends on the starting centroids (k-Means++ gives better starts).</li>
+        </ul>
   </section>
 
 
@@ -255,8 +259,13 @@ silhouette = (b − a) / max(a, b) ,  range −1 … +1</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
-    <div class="formula">$$ \min \ \sum_{j=1}^{k}\sum_{x\in C_j}\lVert x-\mu_j\rVert^2 \qquad \mu_j=\frac{1}{|C_j|}\sum_{x\in C_j} x $$</div>
-    <p>Assign each point to the nearest $\mu_j$; recompute each $\mu_j$ as its cluster's mean; repeat.</p>
+    <p><strong>Objective (WCSS)</strong> — minimize within-cluster squared distance:</p>
+    <div class="formula">$$ \min \ \sum_{j=1}^{k}\sum_{x\in C_j}\lVert x-\mu_j\rVert^2 $$</div>
+    <p><strong>Centroid update</strong> — each centre is its cluster's mean:</p>
+    <div class="formula">$$ \mu_j=\frac{1}{|C_j|}\sum_{x\in C_j} x $$</div>
+    <p><strong>Assignment</strong> — each point joins its nearest centroid:</p>
+    <div class="formula">$$ C_j=\{\,x : \lVert x-\mu_j\rVert \le \lVert x-\mu_l\rVert\ \ \forall l\,\} $$</div>
+    <p>Lloyd's algorithm alternates the assignment and update steps until the assignments stop changing.</p>
   </section>
 
   <section class="concept-card">

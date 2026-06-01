@@ -73,11 +73,14 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Residual $e_i=y_i-\hat{y}_i$:</strong> the vertical gap between a point and the line.</li>
-      <li><strong>Sum of squared errors (SSE):</strong> $\sum e_i^2$ — the quantity least-squares minimizes (also called RSS).</li>
+      <li><strong>Residual $e_i=y_i-\hat{y}_i$:</strong> the vertical gap between a point and the fitted line.</li>
+      <li><strong>SSE / RSS:</strong> $\sum e_i^2$ — the total squared error least-squares minimizes.</li>
+      <li><strong>Design matrix $X$:</strong> the table of feature values (one row per point, plus a 1s column for the intercept).</li>
       <li><strong>Normal equations:</strong> the linear system whose solution gives the optimal coefficients.</li>
-      <li><strong>Ordinary Least Squares (OLS):</strong> the standard least-squares method for linear regression.</li>
-    </ul>
+      <li><strong>Ordinary Least Squares (OLS):</strong> the standard least-squares fit with no penalty.</li>
+      <li><strong>Closed form vs gradient descent:</strong> solve the equations directly, or roll downhill to the same minimum.</li>
+      <li><strong>Regularization:</strong> add a penalty on big coefficients — <strong>Ridge (L2)</strong> shrinks them, <strong>Lasso (L1)</strong> can zero them out.</li>
+        </ul>
   </section>
 
 
@@ -274,12 +277,13 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p><strong>Objective</strong> — minimize the sum of squared errors:</p>
     <div class="formula">$$ \min_{\beta}\ \text{SSE}=\sum_{i=1}^{n}\big(y_i-\hat{y}_i\big)^2 $$</div>
-    <p>Setting the derivative to zero gives the <strong>normal equations</strong>:</p>
+    <p><strong>Normal equations</strong> — setting the derivative to zero gives the closed-form solution:</p>
     <div class="formula">$$ X^{\mathsf T}X\,\beta = X^{\mathsf T}y \qquad\Rightarrow\qquad \beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y $$</div>
-    <p><strong>Ridge (L2-regularized) least squares</strong> — penalize large coefficients, stabilize a near-singular $X^{\mathsf T}X$:</p>
+    <p><strong>Ridge (L2) least squares</strong> — penalize large coefficients and stabilize a near-singular $X^{\mathsf T}X$:</p>
     <div class="formula">$$ \min_{\beta}\ \text{RSS}+\lambda\textstyle\sum_j\beta_j^2 \qquad\Rightarrow\qquad \hat{\beta}=(X^{\mathsf T}X+\lambda I)^{-1}X^{\mathsf T}y $$</div>
-    <p>$\lambda=0$ recovers OLS; larger $\lambda$ shrinks coefficients (but not exactly to 0 — that's Lasso/L1).</p>
+    <p>$\lambda=0$ recovers OLS; a larger $\lambda$ shrinks the coefficients (Lasso/L1 can push them exactly to 0).</p>
   </section>
 
   <section class="concept-card">

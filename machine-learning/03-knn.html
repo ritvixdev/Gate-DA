@@ -64,11 +64,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>kNN:</strong> classify a query by the majority label among its $k$ nearest training points (or average their values for regression).</li>
-      <li><strong>Distance:</strong> usually Euclidean, $\sqrt{\sum (a_i-b_i)^2}$.</li>
-      <li><strong>$k$:</strong> how many neighbors vote — a hyperparameter you choose.</li>
-      <li><strong>Lazy learner:</strong> no training; all the work happens at prediction time.</li>
-    </ul>
+      <li><strong>kNN:</strong> classify a query by the majority label of its $k$ nearest training points (or average their values for regression).</li>
+      <li><strong>$k$:</strong> how many neighbours vote — a hyperparameter you choose (an odd $k$ avoids ties).</li>
+      <li><strong>Distance metric:</strong> how "nearness" is measured — usually Euclidean, sometimes Manhattan.</li>
+      <li><strong>Feature scaling:</strong> standardize features first, so one large-range feature doesn't dominate the distance.</li>
+      <li><strong>Lazy learner:</strong> no real training — all the work happens at prediction time.</li>
+      <li><strong>Decision boundary:</strong> the dividing line between predicted classes; small $k$ makes it jagged, large $k$ smooth.</li>
+      <li><strong>Bias–variance with $k$:</strong> small $k$ = low bias / high variance (overfit); large $k$ = high bias / low variance (underfit).</li>
+      <li><strong>Curse of dimensionality:</strong> in many dimensions all points look about equally far, so kNN weakens.</li>
+        </ul>
   </section>
 
 
@@ -320,8 +324,14 @@ soft: minimize ½‖w‖² + C Σξᵢ   s.t. yᵢ(wᵀxᵢ + b) ≥ 1 − ξᵢ
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <p><strong>Euclidean distance</strong> — straight-line distance between two points:</p>
     <div class="formula">$$ d(a,b)=\sqrt{\sum_{i}(a_i-b_i)^2} $$</div>
-    <p>Predict $x_q$ = the majority class among the $k$ points with the smallest $d(x_q,\cdot)$.</p>
+    <p><strong>Manhattan distance</strong> — sum of absolute differences (grid distance):</p>
+    <div class="formula">$$ d(a,b)=\sum_i |a_i-b_i| $$</div>
+    <p><strong>Classification</strong> — predict the majority class among the $k$ nearest points:</p>
+    <div class="formula">$$ \hat{y}_q=\operatorname*{mode}\{\,y_i : x_i \in k\text{ nearest to } x_q\,\} $$</div>
+    <p><strong>Regression</strong> — average the neighbours' values instead:</p>
+    <div class="formula">$$ \hat{y}_q=\frac{1}{k}\sum_{i\in N_k(x_q)} y_i $$</div>
   </section>
 
   <section class="concept-card">

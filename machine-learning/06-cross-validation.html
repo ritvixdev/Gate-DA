@@ -52,11 +52,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Train/test split:</strong> fit on one part, evaluate on a held-out part.</li>
-      <li><strong>k-fold CV:</strong> split data into $k$ folds; train on $k-1$, validate on the remaining one; rotate; average the scores.</li>
+      <li><strong>Train / validation / test:</strong> fit on train, tune on validation, judge once on test.</li>
+      <li><strong>Train/test split:</strong> the simplest version — fit on one part, evaluate on a held-out part.</li>
+      <li><strong>k-fold CV:</strong> split into $k$ folds; train on $k-1$, validate on the rest; rotate; average the scores.</li>
+      <li><strong>LOOCV:</strong> leave-one-out — $k$ equals the number of data points.</li>
+      <li><strong>Stratified CV:</strong> keep each fold's class proportions the same as the full data.</li>
       <li><strong>Overfitting:</strong> great on training, poor on new data. <strong>Underfitting:</strong> poor on both (too simple).</li>
-      <li><strong>LOOCV:</strong> leave-one-out CV — $k$ equals the number of data points.</li>
-    </ul>
+      <li><strong>Bias–variance trade-off:</strong> error splits into bias (too simple) and variance (too sensitive).</li>
+      <li><strong>Hyperparameter:</strong> a setting you choose (like $k$ or $\lambda$); CV helps pick it without touching the test set.</li>
+        </ul>
   </section>
 
 
@@ -232,8 +236,12 @@ F1        = 2(0.8·0.667)/(0.8+0.667) ≈ 0.727</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main idea</div>
-    <div class="formula">$$ \text{CV score}=\frac{1}{k}\sum_{i=1}^{k}\text{(score on fold } i \text{ as validation)} $$</div>
-    <p>Train on the other $k-1$ folds each time; average the $k$ validation scores for an honest estimate.</p>
+    <p><strong>k-fold CV score</strong> — the average validation score across folds:</p>
+    <div class="formula">$$ \text{CV}=\frac{1}{k}\sum_{i=1}^{k}\text{score}_i \quad(\text{fold } i \text{ held out as validation}) $$</div>
+    <p>Train on the other $k-1$ folds each time; averaging gives an honest estimate of new-data performance.</p>
+    <p><strong>Bias–variance decomposition</strong> — expected error splits into three parts:</p>
+    <div class="formula">$$ \mathbb{E}\big[(y-\hat{f})^2\big]=(\text{Bias})^2+\text{Variance}+\sigma^2_{\text{noise}} $$</div>
+    <p>More flexible models cut bias but raise variance; CV finds the sweet spot.</p>
   </section>
 
   <section class="concept-card">

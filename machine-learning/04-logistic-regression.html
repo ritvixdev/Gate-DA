@@ -54,11 +54,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Sigmoid $\sigma(z)$:</strong> the S-curve mapping any real number to $(0,1)$.</li>
-      <li><strong>Linear score $z=\beta_0+\beta_1 x_1+\dots$:</strong> the input to the sigmoid.</li>
-      <li><strong>Decision boundary:</strong> where $\hat{p}=0.5$ (equivalently $z=0$); classify 1 if $\hat{p}\ge0.5$.</li>
+      <li><strong>Sigmoid $\sigma(z)$:</strong> the S-curve squashing any real number into a probability in $(0,1)$.</li>
+      <li><strong>Linear score (logit) $z$:</strong> $\beta_0+\beta_1 x_1+\dots$ — the input fed to the sigmoid.</li>
+      <li><strong>Predicted probability $\hat{p}$:</strong> $\sigma(z)$, the model's estimate of $P(y=1)$.</li>
+      <li><strong>Odds &amp; log-odds:</strong> odds $=p/(1-p)$; the log-odds equal $z$ (linear in the features).</li>
+      <li><strong>Decision boundary:</strong> where $\hat{p}=0.5$ (i.e. $z=0$); predict 1 when $\hat{p}\ge0.5$.</li>
+      <li><strong>Threshold:</strong> the cutoff (default 0.5) you compare $\hat{p}$ against — move it to trade precision vs recall.</li>
       <li><strong>Log-loss (cross-entropy):</strong> the cost function logistic regression minimizes.</li>
-    </ul>
+      <li><strong>Maximum likelihood:</strong> the fitting principle — choose $\beta$ making the observed labels most probable.</li>
+        </ul>
   </section>
 
 
@@ -532,8 +536,16 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p class="lead">From score to probability</p>
+    <p><strong>Sigmoid &amp; linear score:</strong></p>
     <div class="formula">$$ \sigma(z)=\frac{1}{1+e^{-z}}, \qquad z=\beta_0+\beta_1 x_1+\dots+\beta_p x_p $$</div>
-    <div class="formula">$$ \hat{p}=\sigma(z),\qquad \log\!\frac{p}{1-p}=z \ \ (\text{the log-odds / logit}) $$</div>
+    <p><strong>Probability &amp; log-odds (logit):</strong></p>
+    <div class="formula">$$ \hat{p}=\sigma(z),\qquad \log\!\frac{p}{1-p}=z $$</div>
+    <p class="lead">Training &amp; decision</p>
+    <p><strong>Log-loss (binary cross-entropy)</strong> — the cost minimized over the data:</p>
+    <div class="formula">$$ J=-\frac1n\sum_{i=1}^{n}\big[\,y_i\log\hat{p}_i+(1-y_i)\log(1-\hat{p}_i)\,\big] $$</div>
+    <p><strong>Decision rule</strong> — compare the probability to the threshold:</p>
+    <div class="formula">$$ \hat{y}=1 \text{ if } \hat{p}\ge 0.5\ (z\ge 0),\quad \text{else } 0 $$</div>
   </section>
 
   <section class="concept-card">

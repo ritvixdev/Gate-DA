@@ -55,11 +55,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Feature / predictor $x$:</strong> an input. <strong>Target $y$:</strong> the number we predict.</li>
-      <li><strong>Simple regression:</strong> one feature. <strong>Multiple regression:</strong> several features $x_1,\dots,x_p$.</li>
-      <li><strong>Coefficients (weights) $\beta_j$:</strong> how much each feature contributes. <strong>Intercept $\beta_0$:</strong> the baseline value.</li>
-      <li><strong>Prediction $\hat{y}$:</strong> the model's output. <strong>Residual:</strong> the error $y-\hat{y}$ for a data point.</li>
-    </ul>
+      <li><strong>Feature / predictor $x$:</strong> an input variable. <strong>Target $y$:</strong> the number we want to predict.</li>
+      <li><strong>Simple vs multiple:</strong> one feature vs several features $x_1,\dots,x_p$.</li>
+      <li><strong>Coefficients (weights) $\beta_j$:</strong> how much each feature adds. <strong>Intercept $\beta_0$:</strong> the baseline output when every $x=0$.</li>
+      <li><strong>Prediction $\hat{y}$:</strong> the model's output. <strong>Residual:</strong> the error $y-\hat{y}$ at one point.</li>
+      <li><strong>Least squares:</strong> the fitting rule — pick $\beta$ to make the total squared residual smallest.</li>
+      <li><strong>Cost function (MSE):</strong> the average squared error the fit minimizes.</li>
+      <li><strong>$R^2$ (goodness of fit):</strong> the fraction of the target's variance the model explains (1 = perfect).</li>
+      <li><strong>Overfitting:</strong> matching noise in the training data, so error on new data rises.</li>
+        </ul>
   </section>
 
 
@@ -334,12 +338,17 @@ R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
+    <p class="lead">The model</p>
+    <p><strong>Prediction</strong> — a weighted sum of the features:</p>
     <div class="formula">$$ \textbf{Simple: } \hat{y}=\beta_0+\beta_1 x \qquad \textbf{Multiple: } \hat{y}=\beta_0+\beta_1 x_1+\dots+\beta_p x_p $$</div>
-    <p>The least-squares slope and intercept (simple regression):</p>
+    <p><strong>Least-squares slope &amp; intercept</strong> (simple regression):</p>
     <div class="formula">$$ \beta_1=\frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2}, \qquad \beta_0=\bar{y}-\beta_1\bar{x} $$</div>
-    <p><strong>Error &amp; evaluation metrics:</strong></p>
-    <div class="formula">$$ \text{RSS}=\sum (y_i-\hat{y}_i)^2,\quad \text{MSE}=\tfrac{\text{RSS}}{n},\quad \text{RMSE}=\sqrt{\text{MSE}},\quad \text{TSS}=\sum (y_i-\bar{y})^2,\quad R^2=1-\tfrac{\text{RSS}}{\text{TSS}} $$</div>
-    <p>RMSE is in the target's own units; $R^2\in(-\infty,1]$ ($1$ perfect, $0$ = as good as the mean, $<0$ worse).</p>
+    <p class="lead">Error &amp; evaluation</p>
+    <p><strong>Errors</strong> — squared error, averaged and square-rooted:</p>
+    <div class="formula">$$ \text{RSS}=\sum (y_i-\hat{y}_i)^2,\quad \text{MSE}=\tfrac{\text{RSS}}{n},\quad \text{RMSE}=\sqrt{\text{MSE}} $$</div>
+    <p><strong>$R^2$ (coefficient of determination)</strong> — the share of variance explained:</p>
+    <div class="formula">$$ \text{TSS}=\sum (y_i-\bar{y})^2,\qquad R^2=1-\frac{\text{RSS}}{\text{TSS}} $$</div>
+    <p>RMSE is in the target's own units; $R^2\le 1$ ($1$ perfect, $0$ = as good as the mean, negative = worse).</p>
   </section>
 
   <section class="concept-card">
