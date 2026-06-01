@@ -36,6 +36,21 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Sigmoid &amp; Decision Threshold</span>
+      <span class="viz-hint">p = σ(wx + b) · move w, b, threshold</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="sigmoid-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>weight w <span id="sig-w-val">1.0</span></label><input type="range" id="sig-w" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="viz-control"><label>bias b <span id="sig-b-val">0.0</span></label><input type="range" id="sig-b" min="-5" max="5" step="0.1" value="0"></div>
+      <div class="viz-control"><label>threshold <span id="sig-t-val">0.50</span></label><input type="range" id="sig-t" min="0.05" max="0.95" step="0.05" value="0.5"></div>
+    </div>
+    <div class="viz-readout" id="sigmoid-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -623,6 +638,8 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/chart.js?v=20260602"></script>
+  <script src="../assets/js/viz/sigmoid-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

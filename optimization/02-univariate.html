@@ -36,6 +36,23 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Single-variable Optimizer</span>
+      <span class="viz-hint">tangent slope f′(x) · green dots = stationary points</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="univariate-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="uni-parab">x² − 4x + 5</button>
+        <button class="preset-btn" id="uni-cubic">x³ − 3x</button>
+      </div>
+      <div class="viz-control"><label>x <span id="uni-x-val">2.00</span></label><input type="range" id="uni-x" min="-1" max="5" step="0.05" value="2"></div>
+    </div>
+    <div class="viz-readout" id="univariate-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -424,6 +441,8 @@ check endpoints on [a,b] · convex (f″≥0) ⇒ global min · Newton: x−f′
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/chart.js?v=20260602"></script>
+  <script src="../assets/js/viz/univariate-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

@@ -36,6 +36,24 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Hypothesis Test — rejection region</span>
+      <span class="viz-hint">shaded = reject H₀ · move the test statistic</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="ztest-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="zt-two">Two-tailed</button>
+        <button class="preset-btn" id="zt-right">Right</button>
+        <button class="preset-btn" id="zt-left">Left</button>
+      </div>
+      <div class="viz-control"><label>test statistic z <span id="zt-z-val">2.00</span></label><input type="range" id="zt-z" min="-4" max="4" step="0.05" value="2"></div>
+    </div>
+    <div class="viz-readout" id="ztest-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -349,6 +367,8 @@ t = 4.4 / (0.894/√5) = 4.4/0.4 = 11 ,  df = 4</pre>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/chart.js?v=20260602"></script>
+  <script src="../assets/js/viz/ztest-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>
