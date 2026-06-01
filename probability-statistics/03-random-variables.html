@@ -36,6 +36,23 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 PMF &amp; Expectation</span>
+      <span class="viz-hint">E[X] is the balance point of the bars</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="pmf-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="pmf-die">Fair die</button>
+        <button class="preset-btn" id="pmf-skew">Right-skewed</button>
+        <button class="preset-btn" id="pmf-two">Two-point</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="pmf-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -331,6 +348,8 @@ relation:  Y = X + 1   (trials = failures + the success trial)</pre>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/chart.js?v=20260602"></script>
+  <script src="../assets/js/viz/pmf-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>

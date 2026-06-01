@@ -36,6 +36,23 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 Histogram &amp; Box Plot</span>
+      <span class="viz-hint">watch mean vs median move under skew</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="descriptive-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="ds-sym">Symmetric</button>
+        <button class="preset-btn" id="ds-right">Right-skewed</button>
+        <button class="preset-btn" id="ds-out">With outlier</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="descriptive-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -612,6 +629,8 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/chart.js?v=20260602"></script>
+  <script src="../assets/js/viz/descriptive-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>
