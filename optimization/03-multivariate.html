@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="optimization" data-topic="03-multivariate" data-content>
   <div class="hero">
     <span class="tag">Topic 3 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Multivariate Optimization</h1>
     <p class="lede">Many variables, same idea — but now "slope zero" becomes the <strong>gradient</strong> being zero,
       and "curvature" becomes a matrix: the <strong>Hessian</strong>.</p>
@@ -135,14 +136,14 @@ H = [2 0 ; 0 −2] → eigenvalues 2, −2 (mixed) → indefinite → SADDLE</pr
 non-convex: neural nets → many local minima &amp; saddles</pre>
         </details>
         <details class="study-item">
-          <summary>13. Constrained optimization — Lagrange multipliers</summary>
+          <summary>13. Constrained optimization — Lagrange multipliers <span class="study-extra">GATE extra</span></summary>
           <p>For an equality constraint, the gradient of f must align with the constraint's gradient at the optimum:</p>
           <pre>min f(x)  s.t. g(x) = 0
 form  L = f(x) − λ g(x) ,  set ∇L = 0 and g(x)=0, solve for x and λ</pre>
           <p>λ (the multiplier) measures how much the optimum improves if the constraint is loosened.</p>
         </details>
         <details class="study-item">
-          <summary>14. Inequality constraints — KKT (preview)</summary>
+          <summary>14. Inequality constraints — KKT (preview) <span class="study-extra">GATE extra</span></summary>
           <p>With inequality constraints <code>g(x) ≤ 0</code>, the optimum satisfies the <strong>KKT conditions</strong> (the generalization of Lagrange):</p>
           <pre>stationarity, primal/dual feasibility, and complementary slackness (λᵢ·gᵢ=0)</pre>
           <p>This is the backbone of constrained convex optimization — e.g. the SVM dual.</p>

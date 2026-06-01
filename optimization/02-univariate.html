@@ -13,6 +13,7 @@
 <body data-root=".." data-subject="optimization" data-topic="02-univariate" data-content>
   <div class="hero">
     <span class="tag">Topic 2 · GATE weight: Very High</span>
+    <span class="iitm iitm-core" title="IITM Web M.Tech (Executive) priority">Core</span>
     <h1>Univariate Optimization</h1>
     <p class="lede">One variable, one rule: the bottom of a smooth valley is <strong>flat</strong>. Set the slope
       to zero, then check whether it curves up (min) or down (max).</p>
@@ -253,7 +254,7 @@ f(x) = −x² : f″ = −2 < 0 → concave (clean hill)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>30. Taylor series — a local polynomial approximation</summary>
+          <summary>30. Taylor series — a local polynomial approximation <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>Taylor (Maclaurin) series</strong> rebuilds a function near a point from its derivatives there:</p>
           <pre>f(x) ≈ f(0) + f′(0)x + f″(0)·x²/2! + f‴(0)·x³/3! + …</pre>
           <p>More terms = better fit. The famous expansions (the small-x forms from the foundation cards are just their first terms):</p>
@@ -262,7 +263,7 @@ cos x = 1 − x²/2! + …       ln(1+x) = x − x²/2 + x³/3 − …</pre>
           <p><span style="color:var(--coral-text)">Why it matters here:</span> the 1st-order Taylor step <code>f(x+Δx) ≈ f(x) + f′(x)Δx</code> with <code>Δx = −η f′(x)</code> gives <code>f(x+Δx) ≈ f(x) − η[f′(x)]² ≤ f(x)</code> — that's <strong>why a small step along −slope reduces f</strong> (gradient descent), and adding the f″ term gives Newton's method.</p>
         </details>
         <details class="study-item">
-          <summary>31. Geometric &amp; infinite series</summary>
+          <summary>31. Geometric &amp; infinite series <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>series</strong> is the sum of a sequence. A <strong>geometric series</strong> has a constant ratio r:</p>
           <pre>a + ar + ar² + ar³ + … = a/(1 − r)   only if |r| < 1  (else it diverges)</pre>
           <pre>1 + ½ + ¼ + … = 1/(1−½) = 2 · ½ + ¼ + … = (½)/(1−½) = 1 · 1+2+4+… diverges (r=2)</pre>
