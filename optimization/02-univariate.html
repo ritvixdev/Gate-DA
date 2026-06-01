@@ -56,12 +56,14 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$.</li>
+      <li><strong>Derivative $f'(x)$:</strong> the slope / instantaneous rate of change of $f$.</li>
+      <li><strong>Stationary (critical) point:</strong> a point where $f'(x)=0$ — a flat slope.</li>
+      <li><strong>Second derivative $f''(x)$:</strong> the curvature (how the slope itself changes).</li>
       <li><strong>Local minimum:</strong> $f'(x)=0$ and $f''(x)\gt0$ (curves up). <strong>Local maximum:</strong> $f'(x)=0$ and $f''(x)\lt0$.</li>
       <li><strong>Inflection / inconclusive:</strong> $f''(x)=0$ — the simple test fails; check higher derivatives or the sign of $f'$ around the point.</li>
-      <li><strong>Limit</strong> $\lim_{x\to a}f(x)$: the value $f$ approaches near $a$ (exists iff left limit $=$ right limit). <strong>Continuous at $a$:</strong> $\lim_{x\to a}f(x)=f(a)$.</li>
-      <li><strong>Differentiable $\Rightarrow$ continuous</strong> (not the reverse — e.g. $|x|$ at $0$ is continuous but has a corner).</li>
-    </ul>
+      <li><strong>Limit</strong> $\lim_{x\to a}f(x)$: the value $f$ approaches near $a$ (exists iff the left and right limits agree). <strong>Continuous at $a$:</strong> $\lim_{x\to a}f(x)=f(a)$.</li>
+      <li><strong>Differentiable $\Rightarrow$ continuous</strong> (not the reverse — $|x|$ at $0$ is continuous but has a corner).</li>
+        </ul>
   </section>
 
 
@@ -324,13 +326,19 @@ check endpoints on [a,b] · convex (f″≥0) ⇒ global min · Newton: x−f′
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <p><strong>Derivative (from first principles)</strong> &amp; the rules you compute with:</p>
+    <p class="lead">Derivatives</p>
+    <p><strong>From first principles:</strong></p>
     <div class="formula">$$ f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h} $$</div>
-    <div class="formula">$$ \tfrac{d}{dx}(c)=0,\quad \tfrac{d}{dx}(x^n)=n x^{n-1},\quad \tfrac{d}{dx}(e^x)=e^x,\quad \tfrac{d}{dx}(\ln x)=\tfrac1x,\quad (f+g)'=f'+g' $$</div>
-    <p><strong>Optimization conditions:</strong></p>
-    <div class="formula">$$ \textbf{Necessary: } f'(x^*)=0 $$</div>
+    <p><strong>Standard rules</strong> — the ones you compute with:</p>
+    <div class="formula">$$ \tfrac{d}{dx}(x^n)=n x^{n-1},\quad \tfrac{d}{dx}(e^x)=e^x,\quad \tfrac{d}{dx}(\ln x)=\tfrac1x,\quad (f+g)'=f'+g' $$</div>
+    <p><strong>Product, quotient &amp; chain rules:</strong></p>
+    <div class="formula">$$ (fg)'=f'g+fg',\qquad \Big(\tfrac{f}{g}\Big)'=\tfrac{f'g-fg'}{g^2},\qquad \tfrac{d}{dx}f(g(x))=f'(g)\,g'(x) $$</div>
+    <p class="lead">Optimization conditions</p>
+    <p><strong>First-order (necessary):</strong></p>
+    <div class="formula">$$ f'(x^*)=0 $$</div>
+    <p><strong>Second-order test:</strong></p>
     <div class="formula">$$ f''(x^*)\gt0 \Rightarrow \text{local min}, \qquad f''(x^*)\lt0 \Rightarrow \text{local max}, \qquad f''(x^*)=0 \Rightarrow \text{inconclusive} $$</div>
-    <p>Sigmoid derivative (ML): $\sigma'(x)=\sigma(x)\big(1-\sigma(x)\big)$.</p>
+    <p>Sigmoid derivative (used in ML): $\sigma'(x)=\sigma(x)\big(1-\sigma(x)\big)$.</p>
   </section>
 
   <section class="concept-card">

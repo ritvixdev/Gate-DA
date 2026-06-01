@@ -64,10 +64,13 @@
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
       <li><strong>Gradient descent:</strong> repeatedly step against the gradient to reduce $f$.</li>
-      <li><strong>Learning rate $\eta$:</strong> the step-size multiplier (also called step size).</li>
-      <li><strong>Convergence:</strong> the steps settle at a point where $\nabla f\approx0$ (a minimum).</li>
-      <li><strong>Divergence:</strong> if $\eta$ is too big, steps overshoot and $f$ grows instead of shrinking.</li>
-    </ul>
+      <li><strong>Learning rate $\eta$:</strong> the step-size multiplier — too small is slow, too big overshoots.</li>
+      <li><strong>Update step:</strong> one move $x_{k+1}=x_k-\eta\nabla f(x_k)$. <strong>Iteration / epoch:</strong> one such pass.</li>
+      <li><strong>Convergence:</strong> the steps settle where $\nabla f\approx0$ (a minimum).</li>
+      <li><strong>Divergence:</strong> if $\eta$ is too large, steps overshoot and $f$ grows instead of shrinking.</li>
+      <li><strong>Batch vs stochastic (SGD):</strong> use all data per step, vs one point (or a mini-batch) — faster but noisier steps.</li>
+      <li><strong>Momentum:</strong> add a fraction of the previous step to speed up and smooth the path.</li>
+        </ul>
   </section>
 
 
@@ -200,8 +203,13 @@ momentum smooths · AdaGrad/RMSProp/Adam adapt the rate · Newton uses the Hessi
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
+    <p><strong>Update rule</strong> — step downhill, opposite the gradient:</p>
     <div class="formula">$$ x_{k+1} = x_k - \eta\,\nabla f(x_k) $$</div>
-    <p>In one variable this is $x_{k+1}=x_k-\eta\,f'(x_k)$. Repeat until the gradient is tiny (converged).</p>
+    <p>In one variable this is $x_{k+1}=x_k-\eta\,f'(x_k)$; repeat until the gradient is tiny (converged).</p>
+    <p><strong>Stochastic gradient descent (SGD)</strong> — use one sample (or a mini-batch) per step:</p>
+    <div class="formula">$$ x_{k+1}=x_k-\eta\,\nabla f_i(x_k) \quad (i \text{ a random sample}) $$</div>
+    <p><strong>Momentum</strong> — carry a velocity term to accelerate and smooth the descent:</p>
+    <div class="formula">$$ v_{k+1}=\gamma v_k+\eta\nabla f(x_k),\qquad x_{k+1}=x_k-v_{k+1} $$</div>
   </section>
 
   <section class="concept-card">

@@ -55,10 +55,13 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Gradient $\nabla f$:</strong> the vector of partial derivatives $\big(\partial f/\partial x_1,\dots\big)$ — steepest-ascent direction.</li>
+      <li><strong>Partial derivative $\partial f/\partial x_i$:</strong> the slope in one variable's direction, holding the others fixed.</li>
+      <li><strong>Gradient $\nabla f$:</strong> the vector of all partial derivatives — points in the steepest-ascent direction.</li>
       <li><strong>Critical point:</strong> where $\nabla f=0$ (every partial derivative is zero).</li>
-      <li><strong>Hessian $H$:</strong> the matrix of second partial derivatives. <strong>Positive definite</strong> ⇒ minimum; <strong>negative definite</strong> ⇒ maximum; <strong>indefinite</strong> ⇒ saddle.</li>
-    </ul>
+      <li><strong>Hessian $H$:</strong> the matrix of second partial derivatives — it encodes the curvature.</li>
+      <li><strong>Definiteness:</strong> <strong>positive definite</strong> $H$ &rArr; minimum, <strong>negative definite</strong> &rArr; maximum, <strong>indefinite</strong> &rArr; saddle (read from $H$'s eigenvalues).</li>
+      <li><strong>Saddle point:</strong> a flat point that is a minimum in one direction and a maximum in another.</li>
+        </ul>
   </section>
 
 
@@ -205,10 +208,13 @@ PSD everywhere ⇒ convex ⇒ global min · equality→Lagrange, inequality→KK
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ \textbf{Necessary: } \nabla f(x^*)=0 $$</div>
+    <p><strong>First-order (necessary)</strong> — every partial derivative vanishes:</p>
+    <div class="formula">$$ \nabla f(x^*)=0 $$</div>
+    <p><strong>Second-order test</strong> — classify with the Hessian:</p>
     <div class="formula">$$ H \succ 0 \Rightarrow \text{min}, \qquad H \prec 0 \Rightarrow \text{max}, \qquad H \text{ indefinite} \Rightarrow \text{saddle} $$</div>
-    <p>Definiteness is read from the Hessian's <strong>eigenvalues</strong>: all positive → min, all negative → max, mixed signs → saddle.</p>
-    <p><strong>2-variable shortcut (D-test):</strong> $D=f_{xx}f_{yy}-f_{xy}^2$; &nbsp; $D&gt;0,f_{xx}&gt;0\Rightarrow$ min, &nbsp; $D&gt;0,f_{xx}&lt;0\Rightarrow$ max, &nbsp; $D&lt;0\Rightarrow$ saddle.</p>
+    <p>Read definiteness from the Hessian's <strong>eigenvalues</strong>: all positive &rArr; min, all negative &rArr; max, mixed signs &rArr; saddle.</p>
+    <p><strong>2-variable shortcut (D-test)</strong> — with $D=f_{xx}f_{yy}-f_{xy}^2$:</p>
+    <div class="formula">$$ D&gt;0,\ f_{xx}&gt;0 \Rightarrow \text{min}, \qquad D&gt;0,\ f_{xx}&lt;0 \Rightarrow \text{max}, \qquad D&lt;0 \Rightarrow \text{saddle} $$</div>
   </section>
 
   <section class="concept-card">

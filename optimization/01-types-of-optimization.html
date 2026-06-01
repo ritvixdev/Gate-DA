@@ -56,11 +56,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Objective (cost) function $f(x)$:</strong> what we minimize or maximize. <strong>Decision variables $x$:</strong> what we're free to change.</li>
-      <li><strong>Global minimum:</strong> the lowest value anywhere. <strong>Local minimum:</strong> lowest only in a small neighborhood.</li>
-      <li><strong>Unconstrained:</strong> $x$ can be anything. <strong>Constrained:</strong> $x$ must satisfy conditions (e.g. $x\ge0$).</li>
-      <li><strong>Convex function:</strong> its graph is a bowl — the line between any two points stays above the curve. <strong>Convex set:</strong> the line between any two feasible points stays feasible.</li>
-    </ul>
+      <li><strong>Objective (cost) function $f(x)$:</strong> what we minimize or maximize. <strong>Decision variables $x$:</strong> what we are free to change.</li>
+      <li><strong>Constraints:</strong> conditions $x$ must satisfy. <strong>Feasible region:</strong> the set of all $x$ that satisfy them.</li>
+      <li><strong>Unconstrained vs constrained:</strong> $x$ free to be anything, vs $x$ limited by constraints (e.g. $x\ge0$).</li>
+      <li><strong>Global minimum:</strong> the lowest value anywhere. <strong>Local minimum:</strong> lowest only within a small neighbourhood.</li>
+      <li><strong>Convex function:</strong> a bowl shape — the chord between any two points stays above the curve. <strong>Convex set:</strong> the segment between any two feasible points stays feasible.</li>
+      <li><strong>Why convexity matters:</strong> for a convex problem, every local minimum is the global minimum.</li>
+      <li><strong>Linear vs nonlinear:</strong> the objective and constraints are straight-line (LP) or curved (NLP).</li>
+      <li><strong>Discrete vs continuous:</strong> variables take whole-number / categorical values vs any real value.</li>
+        </ul>
   </section>
 
 
@@ -186,10 +190,11 @@ unconstrained→derivative=0, constrained→Lagrange/KKT · LP optimum at a vert
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main idea</div>
+    <p><strong>Standard form</strong> — minimize the objective, optionally subject to constraints:</p>
     <div class="formula">$$ \min_{x} \ f(x) \qquad \text{s.t. (optional) constraints} $$</div>
-    <p>Maximizing is the same as minimizing the negative:</p>
+    <p><strong>Max = flipped min</strong> — maximizing is minimizing the negative:</p>
     <div class="formula">$$ \max_x f(x) = -\min_x\big(-f(x)\big) $$</div>
-    <p>So every method for minima also handles maxima — just flip the sign.</p>
+    <p>So every minimization method also handles maximization — just flip the sign.</p>
   </section>
 
   <section class="concept-card">
