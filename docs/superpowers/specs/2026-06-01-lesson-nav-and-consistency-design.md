@@ -1,7 +1,9 @@
 # Lesson Navigation + §5–§13 Consistency Pass — Design Spec
 
 **Date:** 2026-06-01
-**Status:** Approved — implement.
+**Status:** Part A (navigation) DROPPED per user — the "On this page" rail and "Jump to a
+card" deep-dive index were built but removed (wasted space / hurt aesthetics). Only Part B
+(the §5–§13 consistency & gap audit) proceeds.
 
 ## Goal
 
