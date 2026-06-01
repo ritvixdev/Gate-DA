@@ -36,6 +36,19 @@
     </div>
   </section>
 
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧪 PCA — Principal Axes</span>
+      <span class="viz-hint">rotate the cloud · PC1 = max-variance direction</span>
+    </div>
+    <div class="viz-canvas-wrap"><canvas id="pca-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-control"><label>cloud tilt <span id="pca-ang-val">25°</span></label><input type="range" id="pca-ang" min="-90" max="90" step="1" value="25"></div>
+    </div>
+    <div class="viz-readout" id="pca-lab-readout"></div>
+  </div>
+
+
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
@@ -557,6 +570,8 @@ PCA               → uses SVD/eigenvectors to reduce data</pre>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260602"></script>
+  <script src="../assets/js/viz/grid.js?v=20260602"></script>
+  <script src="../assets/js/viz/pca-lab.js?v=20260602"></script>
   <script src="../assets/js/app.js?v=20260602"></script>
 </body>
 </html>
