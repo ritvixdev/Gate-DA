@@ -404,10 +404,17 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ u \cdot v = 0 \iff u \perp v,\qquad \|v\|=\sqrt{v\cdot v} $$</div>
-    <div class="formula">$$ \operatorname{proj}_u v = \frac{u^{\mathsf T}v}{u^{\mathsf T}u}\,u $$</div>
-    <div class="formula">$$ Q^{\mathsf T}Q=I \;\Rightarrow\; Q^{-1}=Q^{\mathsf T},\quad \det Q=\pm1,\quad \|Qx\|=\|x\| $$</div>
-  </section>
+        <p class="lead">Dot product &amp; length</p>
+        <p><strong>Perpendicular test &amp; norm</strong> — a zero dot product means perpendicular:</p>
+        <div class="formula">$$ u\cdot v=0 \iff u\perp v,\qquad \|v\|=\sqrt{v\cdot v} $$</div>
+        <p><strong>Unit vector</strong> — scale to length 1:</p>
+        <div class="formula">$$ \hat v=\frac{v}{\|v\|} $$</div>
+        <p class="lead">Projection &amp; orthogonal matrices</p>
+        <p><strong>Projection of $v$ onto $u$</strong> — the closest point on $u$'s line:</p>
+        <div class="formula">$$ \operatorname{proj}_u v=\frac{u^{\mathsf T}v}{u^{\mathsf T}u}\,u $$</div>
+        <p><strong>Orthogonal matrix</strong> — orthonormal columns; its inverse is its transpose and it preserves length:</p>
+        <div class="formula">$$ Q^{\mathsf T}Q=I \Rightarrow Q^{-1}=Q^{\mathsf T},\quad \det Q=\pm1,\quad \|Qx\|=\|x\| $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step: Gram–Schmidt</div>

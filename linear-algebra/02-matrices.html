@@ -69,10 +69,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Matrix:</strong> a rectangular table of numbers. An <strong>$m\times n$</strong> matrix has $m$ rows and
-      $n$ columns (rows first — remember "<strong>RC</strong> cola"). Entry $a_{ij}$ sits in row $i$, column $j$.</li>
-      <li><strong>Square:</strong> rows = columns. <strong>Column vector:</strong> $n\times1$. <strong>Row vector:</strong> $1\times n$.</li>
-    </ul>
+      <li><strong>Matrix:</strong> a rectangular table of numbers; an <strong>$m\times n$</strong> matrix has $m$ rows and $n$ columns (rows first — "RC cola"). Entry $a_{ij}$ sits in row $i$, column $j$.</li>
+      <li><strong>Square matrix:</strong> equal rows and columns ($n\times n$). <strong>Column vector:</strong> $n\times1$; <strong>row vector:</strong> $1\times n$.</li>
+      <li><strong>Diagonal matrix:</strong> non-zero entries only on the main diagonal (top-left to bottom-right).</li>
+      <li><strong>Identity $I$:</strong> a diagonal of $1$s; multiplying by it changes nothing ($AI=A$) — the "1" of matrices.</li>
+      <li><strong>Transpose $A^{\mathsf T}$:</strong> flip rows into columns, so $a_{ij}$ becomes $a_{ji}$.</li>
+      <li><strong>Symmetric:</strong> $A=A^{\mathsf T}$ — a mirror image across the main diagonal.</li>
+      <li><strong>Inverse $A^{-1}$:</strong> the matrix that undoes $A$ ($AA^{-1}=I$); exists only for square, non-singular matrices.</li>
+      <li><strong>Trace:</strong> the sum of the diagonal entries, $\operatorname{tr}(A)=\sum_i a_{ii}$.</li>
+        </ul>
     <p>A matrix can also just be a <strong>data table</strong> (rows = samples, columns = features). And it <em>acts</em> on vectors: e.g. $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ sends $(1,0)\mapsto(0,1)$ — a $90°$ rotation. Same object, two views: a table of data and a transformation machine.</p>
     <p>Common special matrices:</p>
     <div class="tbl-wrap"><table>
@@ -458,11 +463,19 @@ skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
   <!-- 6. MAIN FORMULA -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <p><strong>Size rule:</strong> $(m\times n)(n\times p)=(m\times p)$ — inner numbers must match, outer numbers give the answer size.</p>
-    <div class="formula">$$ C = AB,\qquad C_{ij} = \sum_{k=1}^{n} A_{ik}\,B_{kj} \quad (\text{row } i \text{ of } A \cdot \text{column } j \text{ of } B) $$</div>
-    <div class="formula">$$ (AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T},\qquad (AB)^{-1}=B^{-1}A^{-1},\qquad \operatorname{tr}(A)=\sum_i a_{ii} $$</div>
-    <p>For a $2\times2$ matrix the inverse is $\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\dfrac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$ (only if $ad-bc\neq0$).</p>
-  </section>
+        <p class="lead">Multiplication</p>
+        <p><strong>Size rule</strong> — inner numbers must match, outer numbers give the answer size:</p>
+        <div class="formula">$$ (m\times n)(n\times p)=(m\times p) $$</div>
+        <p><strong>Matrix product</strong> — each entry is a row of $A$ dotted with a column of $B$:</p>
+        <div class="formula">$$ C=AB,\qquad C_{ij}=\sum_{k=1}^{n} A_{ik}\,B_{kj} $$</div>
+        <p class="lead">Transpose, inverse &amp; trace</p>
+        <p><strong>Reversal rules</strong> — transpose and inverse of a product flip the order:</p>
+        <div class="formula">$$ (AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T},\qquad (AB)^{-1}=B^{-1}A^{-1} $$</div>
+        <p><strong>Trace</strong> — sum of the diagonal:</p>
+        <div class="formula">$$ \operatorname{tr}(A)=\sum_i a_{ii} $$</div>
+        <p><strong>$2\times2$ inverse</strong> — swap the diagonal, negate the off-diagonal, divide by the determinant (only if $ad-bc\neq0$):</p>
+        <div class="formula">$$ \begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix} $$</div>
+      </section>
 
   <!-- 7. STEP-BY-STEP -->
   <section class="concept-card">

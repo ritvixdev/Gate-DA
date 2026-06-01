@@ -365,9 +365,15 @@ Eigenvalue  = the multiplier on that direction</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ Ax=\lambda x,\qquad x\neq 0 $$</div>
-    <div class="formula">$$ \det(A-\lambda I)=0 \ \ (\text{eigenvalues}),\qquad (A-\lambda I)x=0 \ \ (\text{eigenvectors}) $$</div>
-  </section>
+        <p><strong>Eigen equation</strong> — $A$ stretches its eigenvector without turning it:</p>
+        <div class="formula">$$ Ax=\lambda x,\qquad x\neq 0 $$</div>
+        <p><strong>Finding them</strong> — eigenvalues from the characteristic equation, then eigenvectors from the null space:</p>
+        <div class="formula">$$ \det(A-\lambda I)=0 \ \ (\lambda),\qquad (A-\lambda I)x=0 \ \ (x) $$</div>
+        <p><strong>Sum &amp; product</strong> — eigenvalues add to the trace and multiply to the determinant:</p>
+        <div class="formula">$$ \sum_i \lambda_i=\operatorname{tr}(A),\qquad \prod_i \lambda_i=\det(A) $$</div>
+        <p><strong>Useful facts</strong> — powers and inverses reuse the same eigenvectors:</p>
+        <div class="formula">$$ A^k \text{ has eigenvalues } \lambda^k,\qquad A^{-1} \text{ has } 1/\lambda $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>

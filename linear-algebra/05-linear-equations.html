@@ -453,10 +453,15 @@ Ax = b  →  find the input x that produces target b</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main rule (the decider)</div>
-    <div class="formula">$$ r \neq r' \;\Rightarrow\; \textbf{no solution} $$</div>
-    <div class="formula">$$ r = r' = n \;\Rightarrow\; \textbf{unique solution} $$</div>
-    <div class="formula">$$ r = r' &lt; n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} \ \ (n-r \text{ free variables}) $$</div>
-  </section>
+        <p><strong>Rank test for $Ax=b$</strong> — let $r=\operatorname{rank}(A)$, $r'=\operatorname{rank}([A\,|\,b])$, $n=$ unknowns:</p>
+        <div class="formula">$$ r \neq r' \;\Rightarrow\; \textbf{no solution} $$</div>
+        <div class="formula">$$ r = r' = n \;\Rightarrow\; \textbf{unique solution} $$</div>
+        <div class="formula">$$ r = r' &lt; n \;\Rightarrow\; \boldsymbol{\infty}\textbf{ solutions} \ \ (n-r \text{ free variables}) $$</div>
+        <p><strong>Homogeneous system</strong> $Ax=0$ — always consistent ($x=0$ works); non-trivial solutions exist iff $\operatorname{rank}(A)&lt;n$:</p>
+        <div class="formula">$$ Ax=0 \text{ has nonzero solutions} \iff \det(A)=0 \ (\text{square case}) $$</div>
+        <p><strong>Cramer's rule</strong> — unique solution of a square system ($\det A\neq0$); $A_i$ is $A$ with column $i$ replaced by $b$:</p>
+        <div class="formula">$$ x_i=\frac{\det(A_i)}{\det(A)} $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step: Gaussian elimination</div>

@@ -382,9 +382,14 @@ diagonalization = switch to those directions, where A = D (simple)</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ A = PDP^{-1},\qquad D=\operatorname{diag}(\lambda_1,\dots,\lambda_n) $$</div>
-    <div class="formula">$$ A^{k} = P D^{k} P^{-1},\qquad D^{k}=\operatorname{diag}(\lambda_1^{k},\dots,\lambda_n^{k}) $$</div>
-  </section>
+        <p><strong>Diagonalization</strong> — $P$'s columns are eigenvectors, $D$ holds the matching eigenvalues:</p>
+        <div class="formula">$$ A=PDP^{-1},\qquad D=\operatorname{diag}(\lambda_1,\dots,\lambda_n) $$</div>
+        <p><strong>Matrix powers made easy</strong> — only the diagonal gets raised to the power:</p>
+        <div class="formula">$$ A^{k}=PD^{k}P^{-1},\qquad D^{k}=\operatorname{diag}(\lambda_1^{k},\dots,\lambda_n^{k}) $$</div>
+        <p><strong>When is it diagonalizable?</strong> — when there are enough independent eigenvectors ($n$ distinct eigenvalues is sufficient).</p>
+        <p><strong>Spectral theorem (symmetric $A$)</strong> — real eigenvalues and orthonormal eigenvectors, so $Q$ is orthogonal:</p>
+        <div class="formula">$$ A=Q\Lambda Q^{\mathsf T},\qquad Q^{\mathsf T}Q=I $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step method</div>

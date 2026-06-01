@@ -420,9 +420,13 @@ BMI depends on height &amp; weight → that column is redundant → dependent co
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formula</div>
-    <div class="formula">$$ \operatorname{rank}(A) + \operatorname{nullity}(A) = n \quad (n=\text{number of columns}) $$</div>
-    <div class="formula">$$ \operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T}),\qquad \operatorname{rank}(A)\le\min(m,n) $$</div>
-  </section>
+        <p><strong>Rank–nullity theorem</strong> — independent directions plus collapsed directions = total columns:</p>
+        <div class="formula">$$ \operatorname{rank}(A)+\operatorname{nullity}(A)=n \quad (n=\text{number of columns}) $$</div>
+        <p><strong>Rank bounds</strong> — row rank = column rank, and rank can't exceed the smaller dimension:</p>
+        <div class="formula">$$ \operatorname{rank}(A)=\operatorname{rank}(A^{\mathsf T}),\qquad \operatorname{rank}(A)\le\min(m,n) $$</div>
+        <p><strong>Solving $Ax=b$ (rank test)</strong> — with $r=\operatorname{rank}(A)$ and $r'=\operatorname{rank}([A\,|\,b])$:</p>
+        <div class="formula">$$ r\neq r'\Rightarrow\text{no solution},\quad r=r'=n\Rightarrow\text{unique},\quad r=r'&lt;n\Rightarrow\infty\ (n-r\text{ free}) $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step: find rank &amp; nullity</div>

@@ -459,10 +459,19 @@ PCA               → uses SVD/eigenvectors to reduce data</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ A = U\,\Sigma\,V^{\mathsf T} $$</div>
-    <div class="formula">$$ \sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)},\qquad V:\text{eigenvectors of }A^{\mathsf T}A,\qquad U:\text{eigenvectors of }AA^{\mathsf T} $$</div>
-    <div class="formula">$$ A \approx \sum_{i=1}^{k}\sigma_i\,u_i v_i^{\mathsf T} \quad(\text{best rank-}k\text{ approximation}) $$</div>
-  </section>
+        <p class="lead">Singular Value Decomposition</p>
+        <p><strong>SVD</strong> — factor any $m\times n$ matrix into rotation · stretch · rotation:</p>
+        <div class="formula">$$ A=U\,\Sigma\,V^{\mathsf T} $$</div>
+        <p><strong>Singular values &amp; vectors</strong> — from the eigen-decompositions of $A^{\mathsf T}A$ and $AA^{\mathsf T}$:</p>
+        <div class="formula">$$ \sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)},\quad V:\text{eigvecs of }A^{\mathsf T}A,\quad U:\text{eigvecs of }AA^{\mathsf T} $$</div>
+        <p><strong>Best rank-$k$ approximation</strong> — keep the top $k$ singular triples:</p>
+        <div class="formula">$$ A\approx\sum_{i=1}^{k}\sigma_i\,u_i v_i^{\mathsf T} $$</div>
+        <p class="lead">PCA</p>
+        <p><strong>Covariance matrix</strong> of centered data $X$ (rows = samples):</p>
+        <div class="formula">$$ C=\frac{1}{n-1}X^{\mathsf T}X $$</div>
+        <p><strong>Principal components</strong> — eigenvectors of $C$; variance captured by component $i$:</p>
+        <div class="formula">$$ \text{explained variance}_i=\frac{\lambda_i}{\sum_j \lambda_j} $$</div>
+      </section>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">7</span> Step-by-step: compute an SVD</div>

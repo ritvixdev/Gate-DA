@@ -70,12 +70,13 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Determinant:</strong> a single number $\det(A)$ (also $|A|$), defined only for <strong>square</strong> matrices.</li>
-      <li><strong>Singular:</strong> $\det=0$ — not invertible, dependent columns, space collapses.
-       <strong>Non-singular:</strong> $\det\neq0$ — invertible, independent columns.</li>
-      <li><strong>Minor:</strong> the determinant left after deleting an entry's row and column.
-       <strong>Cofactor:</strong> a minor with a $+/-$ sign from the checkerboard.</li>
-    </ul>
+      <li><strong>Determinant $\det(A)$ (also $|A|$):</strong> a single number showing how much a square matrix scales area/volume; defined only for square matrices.</li>
+      <li><strong>Singular:</strong> $\det=0$ — not invertible, dependent columns, space collapses. <strong>Non-singular:</strong> $\det\neq0$ — invertible, independent columns.</li>
+      <li><strong>Minor $M_{ij}$:</strong> the determinant left after deleting entry $a_{ij}$'s row and column.</li>
+      <li><strong>Cofactor $C_{ij}$:</strong> a minor with a $+/-$ sign from the checkerboard, $C_{ij}=(-1)^{i+j}M_{ij}$.</li>
+      <li><strong>Cofactor expansion:</strong> computing $\det$ by expanding along any row or column using cofactors.</li>
+      <li><strong>Adjugate (adjoint):</strong> the transpose of the cofactor matrix; appears in the inverse formula.</li>
+        </ul>
   </section>
 
 
@@ -481,10 +482,21 @@ A⁻¹ = adj(A) / det(A)        (det(A) ≠ 0)</pre>
   <!-- 6 -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ \det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc \quad(\text{main diagonal} - \text{anti-diagonal}) $$</div>
-    <div class="formula">$$ \det\begin{bmatrix}a&b&c\\d&e&f\\g&h&i\end{bmatrix}=a(ei-fh)-b(di-fg)+c(dh-eg) $$</div>
-    <p>Cofactor signs follow the checkerboard $\begin{smallmatrix}+&-&+\\-&+&-\\+&-&+\end{smallmatrix}$. A minor is the $2\times2$ determinant left after crossing out a row and column.</p>
-  </section>
+        <p class="lead">Computing the determinant</p>
+        <p><strong>$2\times2$</strong> — main diagonal minus anti-diagonal:</p>
+        <div class="formula">$$ \det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc $$</div>
+        <p><strong>$3\times3$</strong> — cofactor expansion along the first row:</p>
+        <div class="formula">$$ \det\begin{bmatrix}a&b&c\\d&e&f\\g&h&i\end{bmatrix}=a(ei-fh)-b(di-fg)+c(dh-eg) $$</div>
+        <p><strong>Cofactor</strong> — a minor times its checkerboard sign:</p>
+        <div class="formula">$$ C_{ij}=(-1)^{i+j}M_{ij} $$</div>
+        <p class="lead">Key properties</p>
+        <p><strong>Product &amp; transpose</strong> — $\det$ of a product multiplies; transpose keeps it:</p>
+        <div class="formula">$$ \det(AB)=\det(A)\det(B),\qquad \det(A^{\mathsf T})=\det(A) $$</div>
+        <p><strong>Inverse &amp; triangular</strong> — invertible iff $\det\neq0$; a triangular det is the product of its diagonal:</p>
+        <div class="formula">$$ \det(A^{-1})=\frac{1}{\det(A)},\qquad \det(\text{triangular})=\prod_i a_{ii} $$</div>
+        <p><strong>Inverse via adjugate:</strong></p>
+        <div class="formula">$$ A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A) $$</div>
+      </section>
 
   <!-- 7 -->
   <section class="concept-card">

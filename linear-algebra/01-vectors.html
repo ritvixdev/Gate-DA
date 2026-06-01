@@ -420,12 +420,24 @@ e₂ = [0, 1]    gives the y direction</pre>
   <!-- 6. MAIN FORMULA -->
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\} = \{\, c_1 v_1 + c_2 v_2 + \dots + c_k v_k \;:\; c_i \in \mathbb{R} \,\} $$</div>
-    <p><strong>Independence test</strong> — the vectors are independent only if the <em>only</em> way to get zero is all-zero scalars:</p>
-    <div class="formula">$$ c_1 v_1 + c_2 v_2 + \dots + c_k v_k = 0 \;\Longrightarrow\; c_1=c_2=\dots=c_k=0 $$</div>
-    <p><strong>Subspace test</strong> — a set $W$ is a subspace exactly when all three hold:</p>
-    <div class="formula">$$ 0 \in W \qquad u,v \in W \Rightarrow u+v \in W \qquad u\in W,\ c\in\mathbb{R} \Rightarrow cu \in W $$</div>
-  </section>
+        <p class="lead">Vector operations</p>
+        <p><strong>Addition &amp; scaling</strong> — add componentwise, scale every component:</p>
+        <div class="formula">$$ u+v=(u_1+v_1,\dots,u_n+v_n),\qquad c\,v=(c\,v_1,\dots,c\,v_n) $$</div>
+        <p><strong>Linear combination</strong> — scale each vector then add:</p>
+        <div class="formula">$$ c_1 v_1 + c_2 v_2 + \dots + c_k v_k $$</div>
+        <p><strong>Length (norm)</strong> — Pythagoras in $n$ dimensions:</p>
+        <div class="formula">$$ \|v\|=\sqrt{v_1^2+\dots+v_n^2} $$</div>
+        <p><strong>Dot product</strong> — multiply matching components and add; zero means perpendicular:</p>
+        <div class="formula">$$ u\cdot v=\sum_i u_i v_i $$</div>
+        <p class="lead">Span, independence &amp; subspace</p>
+        <p><strong>Span</strong> — every vector you can build from the set:</p>
+        <div class="formula">$$ \operatorname{span}\{v_1,\dots,v_k\}=\{\, c_1 v_1+\dots+c_k v_k \;:\; c_i\in\mathbb{R} \,\} $$</div>
+        <p><strong>Independence test</strong> — independent only if the <em>only</em> way to get zero is all-zero scalars:</p>
+        <div class="formula">$$ c_1 v_1+\dots+c_k v_k=0 \;\Longrightarrow\; c_1=\dots=c_k=0 $$</div>
+        <p><strong>Subspace test</strong> — a set $W$ is a subspace exactly when all three hold:</p>
+        <div class="formula">$$ 0\in W \qquad u,v\in W\Rightarrow u+v\in W \qquad u\in W,\ c\in\mathbb{R}\Rightarrow cu\in W $$</div>
+        <p><strong>Dimension</strong> — the number of vectors in any basis; $\dim(\mathbb{R}^n)=n$.</p>
+      </section>
 
   <!-- 7. STEP-BY-STEP METHOD -->
   <section class="concept-card">
