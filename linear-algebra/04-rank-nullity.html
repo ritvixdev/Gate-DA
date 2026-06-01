@@ -7,8 +7,8 @@
 <title>Rank & Nullity · GATE DA</title>
 <meta name="description" content="Learn rank and nullity from zero: meaning, the rank-nullity theorem, four fundamental subspaces — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260604">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260604">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260606">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260606">
 </head>
 <body data-root=".." data-topic="04-rank-nullity" data-content>
   <div class="hero">
@@ -51,6 +51,23 @@
     <div class="viz-canvas-wrap"><canvas id="rank-lab"></canvas></div>
     <div class="viz-readout" id="rank-lab-readout"></div>
   </div>
+
+  <div class="viz-panel">
+    <div class="viz-head">
+      <span class="viz-title">🧊 Rank in 3D</span>
+      <span class="viz-hint">drag to rotate · switch the rank</span>
+    </div>
+    <div class="viz-canvas-wrap chart"><canvas id="rank3d-lab"></canvas></div>
+    <div class="viz-controls">
+      <div class="viz-presets">
+        <button class="preset-btn active" id="r3-3">Rank 3 (volume)</button>
+        <button class="preset-btn" id="r3-2">Rank 2 (plane)</button>
+        <button class="preset-btn" id="r3-1">Rank 1 (line)</button>
+      </div>
+    </div>
+    <div class="viz-readout" id="rank3d-lab-readout"></div>
+  </div>
+
 
 
   <section class="concept-card">
@@ -575,9 +592,11 @@ BMI depends on height &amp; weight → that column is redundant → dependent co
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260604"></script>
-  <script src="../assets/js/viz/grid.js?v=20260604"></script>
-  <script src="../assets/js/viz/rank-lab.js?v=20260604"></script>
-  <script src="../assets/js/app.js?v=20260604"></script>
+  <script src="../assets/js/topics.js?v=20260606"></script>
+  <script src="../assets/js/viz/grid.js?v=20260606"></script>
+  <script src="../assets/js/viz/rank-lab.js?v=20260606"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260606"></script>
+  <script src="../assets/js/viz/rank3d-lab.js?v=20260606"></script>
+  <script src="../assets/js/app.js?v=20260606"></script>
 </body>
 </html>
