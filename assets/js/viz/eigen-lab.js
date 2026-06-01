@@ -4,6 +4,10 @@
    drawn faintly. Mounts on #eigen-lab. */
 (function () {
   "use strict";
+  function mtx(rows) {
+    return '<span class="viz-matrix" style="--cols:' + rows[0].length + '">' +
+      rows.map(function (r) { return r.map(function (v) { return "<span>" + v + "</span>"; }).join(""); }).join("") + "</span>";
+  }
   window.__vizInit.push(function () {
     var canvas = document.getElementById("eigen-lab");
     if (!canvas) return;
@@ -65,7 +69,8 @@
       if (readout) {
         var evtxt = evs.length ? evs.map(function (e) { return round(e); }).join(", ") : "complex (rotation)";
         readout.innerHTML =
-          "A = [[<b>" + round(m.a) + "</b>,<b>" + round(m.b) + "</b>],[<b>" + round(m.c) + "</b>,<b>" + round(m.d) + "</b>]] &nbsp; " +
+          "A = [[<b>" + round(m.a) + "</b>,<b>" + round(m.b) + "</b>],[<b>" + round(m.c) + "</b>,<b>" + round(m.d) + "</b>]] " +
+          mtx([[round(m.a), round(m.b)], [round(m.c), round(m.d)]]) + " &nbsp; " +
           "eigenvalues: <b>" + evtxt + "</b><br>" +
           (colinear
             ? "✅ x is an <b>eigenvector</b> — Ax = <b>" + round(lam) + "</b> · x"

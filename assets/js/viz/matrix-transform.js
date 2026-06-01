@@ -3,6 +3,10 @@
    determinant. Mounts on #matrix-transform. */
 (function () {
   "use strict";
+  function mtx(rows) {
+    return '<span class="viz-matrix" style="--cols:' + rows[0].length + '">' +
+      rows.map(function (r) { return r.map(function (v) { return "<span>" + v + "</span>"; }).join(""); }).join("") + "</span>";
+  }
   window.__vizInit.push(function () {
     var canvas = document.getElementById("matrix-transform");
     if (!canvas) return;
@@ -42,7 +46,8 @@
 
       if (readout) {
         readout.innerHTML =
-          "[[<b>" + round(m.a) + "</b>, <b>" + round(m.b) + "</b>], [<b>" + round(m.c) + "</b>, <b>" + round(m.d) + "</b>]] &nbsp;·&nbsp; " +
+          "[[<b>" + round(m.a) + "</b>, <b>" + round(m.b) + "</b>], [<b>" + round(m.c) + "</b>, <b>" + round(m.d) + "</b>]] " +
+          mtx([[round(m.a), round(m.b)], [round(m.c), round(m.d)]]) + " &nbsp;·&nbsp; " +
           "det = <b>" + round(d) + "</b> " +
           (Math.abs(d) < 0.001 ? "→ <b>singular</b> (collapses to a line)" : d < 0 ? "→ orientation <b>flipped</b>" : "→ area ×" + round(Math.abs(d)));
       }

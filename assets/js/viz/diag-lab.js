@@ -3,6 +3,10 @@
    eigenvector. In the eigenbasis, A is just scaling by λ along each axis (A = P D P⁻¹). */
 (function () {
   "use strict";
+  function mtx(rows) {
+    return '<span class="viz-matrix" style="--cols:' + rows[0].length + '">' +
+      rows.map(function (r) { return r.map(function (v) { return "<span>" + v + "</span>"; }).join(""); }).join("") + "</span>";
+  }
   window.__vizInit.push(function () {
     var canvas = document.getElementById("diag-lab");
     if (!canvas || !window.Grid) return;
@@ -31,7 +35,7 @@
       if (readout) {
         var ang = Math.atan2(v.y, v.x), domAng = Math.PI / 4;
         var aligned = Math.abs(Math.abs(ang) - domAng) < 0.08 || Math.abs(Math.abs(ang) - (domAng + Math.PI)) < 0.08;
-        readout.innerHTML = "A = [[2,1],[1,2]] &nbsp;·&nbsp; eigenpairs: λ=3 along (1,1), λ=1 along (1,−1) &nbsp;·&nbsp; " +
+        readout.innerHTML = "A = [[2,1],[1,2]] " + mtx([[2, 1], [1, 2]]) + " &nbsp;·&nbsp; eigenpairs: λ=3 along (1,1), λ=1 along (1,−1) &nbsp;·&nbsp; " +
           "press <em>Apply A</em>: power iteration → v aligns with the <strong>dominant eigenvector (1,1)</strong>" + (aligned ? " <strong>✓ aligned</strong>" : "");
       }
     }
