@@ -70,11 +70,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Null $H_0$:</strong> the "no effect / no difference" claim. <strong>Alternative $H_1$:</strong> what you suspect.</li>
-      <li><strong>Significance level $\alpha$:</strong> the risk of a false alarm you'll tolerate (often 0.05).</li>
-      <li><strong>p-value:</strong> probability of data this extreme <em>if $H_0$ were true</em>. Reject $H_0$ when p $\lt\alpha$.</li>
-      <li><strong>z-test:</strong> population $\sigma$ known (or large $n$). <strong>t-test:</strong> $\sigma$ unknown, estimated by $s$ (small samples).</li>
-    </ul>
+      <li><strong>Null $H_0$:</strong> the "no effect / no difference" claim. <strong>Alternative $H_1$:</strong> what you suspect instead.</li>
+      <li><strong>Test statistic:</strong> a number ($z$ or $t$) measuring how far the data sit from $H_0$.</li>
+      <li><strong>Significance level $\alpha$:</strong> the false-alarm risk you accept (often 0.05).</li>
+      <li><strong>p-value:</strong> chance of data this extreme <em>if $H_0$ were true</em>; reject $H_0$ when p $\lt\alpha$.</li>
+      <li><strong>Critical value:</strong> the cutoff the statistic must beat to reject $H_0$.</li>
+      <li><strong>One- vs two-tailed:</strong> testing a specific direction vs just "different".</li>
+      <li><strong>Type I / Type II error:</strong> false alarm (reject a true $H_0$) vs a miss (keep a false $H_0$). <strong>Power</strong> $=1-P(\text{Type II})$.</li>
+      <li><strong>z-test:</strong> $\sigma$ known (or large $n$). <strong>t-test:</strong> $\sigma$ unknown, estimated by $s$ (small samples), using $n-1$ df.</li>
+        </ul>
   </section>
 
 

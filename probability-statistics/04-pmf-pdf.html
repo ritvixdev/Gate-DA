@@ -80,10 +80,12 @@ CDF  →  total coin/paint collected from the far left up to x</pre>
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
       <li><strong>PMF $p(x)=P(X=x)$:</strong> for discrete $X$; each $p(x)\ge0$ and $\sum p(x)=1$.</li>
-      <li><strong>PDF $f(x)$:</strong> for continuous $X$; $f(x)\ge0$ and $\int f(x)\,dx=1$. Probability is area: $P(a\le X\le b)=\int_a^b f(x)\,dx$.</li>
-      <li><strong>CDF $F(x)=P(X\le x)$:</strong> works for both; non-decreasing from 0 to 1.</li>
-      <li><strong>Key point:</strong> for continuous $X$, $P(X=x)=0$ exactly — only intervals have positive probability.</li>
-    </ul>
+      <li><strong>PDF $f(x)$:</strong> for continuous $X$; $f(x)\ge0$ and $\int f(x)\,dx=1$. Probability is <em>area</em>: $P(a\le X\le b)=\int_a^b f(x)\,dx$.</li>
+      <li><strong>CDF $F(x)=P(X\le x)$:</strong> works for both; non-decreasing, rising from 0 to 1.</li>
+      <li><strong>Density is not probability:</strong> for continuous $X$, $P(X=x)=0$ — only intervals carry probability.</li>
+      <li><strong>CDF &amp; PDF link:</strong> $f(x)=F'(x)$ (slope of the CDF); $F$ is the running total of $f$.</li>
+      <li><strong>Named distributions:</strong> Bernoulli, Binomial, Poisson, Uniform, Normal, Exponential (see the table below).</li>
+        </ul>
   </section>
 
 

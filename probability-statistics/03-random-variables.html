@@ -56,10 +56,15 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Random variable $X$:</strong> a rule assigning a real number to each outcome.</li>
-      <li><strong>Discrete:</strong> takes countable values (die face, # of heads). <strong>Continuous:</strong> takes any value in a range (height, time).</li>
-      <li><strong>Expectation (mean) $E[X]$:</strong> the probability-weighted average. <strong>Variance $\operatorname{Var}(X)$:</strong> average squared distance from the mean. <strong>Standard deviation:</strong> $\sqrt{\operatorname{Var}(X)}$.</li>
-    </ul>
+      <li><strong>Random variable $X$:</strong> a rule assigning a real number to each outcome of an experiment.</li>
+      <li><strong>Discrete:</strong> takes countable values (die face, number of heads).</li>
+      <li><strong>Continuous:</strong> takes any value in a range (height, waiting time).</li>
+      <li><strong>Support:</strong> the set of values $X$ can actually take.</li>
+      <li><strong>Expectation (mean) $E[X]$:</strong> the long-run, probability-weighted average.</li>
+      <li><strong>Variance $\operatorname{Var}(X)$:</strong> the average squared distance from the mean — the spread.</li>
+      <li><strong>Standard deviation:</strong> $\sqrt{\operatorname{Var}(X)}$ — spread in the original units.</li>
+      <li><strong>Function of $X$:</strong> $g(X)$ is itself a random variable, with its own expectation $E[g(X)]$.</li>
+        </ul>
   </section>
 
 
@@ -240,9 +245,14 @@ relation:  Y = X + 1   (trials = failures + the success trial)</pre>
 
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">6</span> Main formulas</div>
-    <div class="formula">$$ E[X]=\sum_x x\,p(x)\quad\text{(discrete)}\qquad E[X]=\int x\,f(x)\,dx\quad\text{(continuous)} $$</div>
+    <p><strong>Expectation (mean)</strong> — the probability-weighted average:</p>
+    <div class="formula">$$ E[X]=\sum_x x\,p(x)\ \text{(discrete)}\qquad E[X]=\int x\,f(x)\,dx\ \text{(continuous)} $$</div>
+    <p><strong>Expectation of a function</strong> — plug $g(x)$ into the same sum/integral:</p>
+    <div class="formula">$$ E[g(X)]=\sum_x g(x)\,p(x)\qquad E[g(X)]=\int g(x)\,f(x)\,dx $$</div>
+    <p><strong>Variance</strong> — spread about the mean; the right-hand form is the easy one to compute:</p>
     <div class="formula">$$ \operatorname{Var}(X)=E[(X-\mu)^2]=E[X^2]-\big(E[X]\big)^2 $$</div>
-    <p><strong>Linearity:</strong> $E[aX+b]=aE[X]+b$, and $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$.</p>
+    <p><strong>Linear transformation</strong> — shifting and scaling $X$:</p>
+    <div class="formula">$$ E[aX+b]=aE[X]+b,\qquad \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X) $$</div>
   </section>
 
   <section class="concept-card">
