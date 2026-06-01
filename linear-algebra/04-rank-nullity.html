@@ -56,15 +56,14 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">4</span> Basic definitions</div>
         <ul class="styled deflist">
-      <li><strong>Rank:</strong> the number of linearly independent rows (= independent columns). Equivalently,
-      the number of non-zero rows after row-reduction (row-echelon form).</li>
+      <li><strong>Rank:</strong> the number of linearly independent rows (= independent columns); equivalently the number of non-zero rows after row-reduction.</li>
       <li><strong>Null space (kernel):</strong> all vectors $x$ with $Ax=0$. <strong>Nullity:</strong> its dimension.</li>
       <li><strong>Column space:</strong> all outputs $Ax$ (span of the columns). <strong>Row space:</strong> span of the rows.</li>
-      <li><strong>Pivot:</strong> the first non-zero entry of a row after row-reduction. Key fact:
-      <strong>rank = number of pivots = number of non-zero rows</strong> in row-echelon form.</li>
-      <li><strong>Row-echelon form:</strong> zero rows sit at the bottom, and each row's leading entry is further
-      right than the one above it. <strong>Full rank:</strong> rank $=\min(m,n)$ (nothing collapses).</li>
-    </ul>
+      <li><strong>Pivot:</strong> the first non-zero entry of a row after row-reduction — <strong>rank = number of pivots</strong>.</li>
+      <li><strong>Row-echelon form:</strong> zero rows sit at the bottom; each leading entry is further right than the one above.</li>
+      <li><strong>Full rank:</strong> rank $=\min(m,n)$ (nothing collapses). <strong>Rank-deficient:</strong> rank $\lt\min(m,n)$.</li>
+      <li><strong>Free variable:</strong> an unknown not pinned by a pivot — each adds a dimension of solutions (nullity counts them).</li>
+        </ul>
   </section>
 
 
