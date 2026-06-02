@@ -102,6 +102,8 @@
           '<span class="topic-ico">🔣</span><span>Symbols glossary</span></a>' +
         '<a class="topic-link' + (page === "practice" ? " active" : "") + '" href="' + laRoot + '/practice.html">' +
           '<span class="topic-ico">🎯</span><span>Practice questions</span></a>' +
+        '<a class="topic-link' + (page === "gate" ? " active" : "") + '" href="' + laRoot + '/gate-questions.html">' +
+          '<span class="topic-ico">📝</span><span>GATE questions</span></a>' +
         '<div class="sidebar-footer">' +
           '<a href="' + root + '/index.html">← All subjects</a>' +
         "</div>" +

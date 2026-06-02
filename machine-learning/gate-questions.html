@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>GATE Questions · GATE DA Machine Learning</title>
+<meta name="description" content="Past GATE DA MCQs from the Machine Learning portion of our syllabus, tagged by year, with explained answers.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260608">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260608">
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="gate" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>GATE Questions</h1>
+    <p class="lede">Real GATE DA questions from the <strong>Machine Learning</strong> part of <em>our</em> syllabus, tagged by year. Pick an option — the answer and the reasoning for every choice are shown.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">k-means clustering</span></div>
+    <div class="quiz-q">Q1. Euclidean-distance $k$-means with $k=3$ is run on 100 points. If $\begin{bmatrix}1\\1\end{bmatrix}$ and $\begin{bmatrix}-1\\1\end{bmatrix}$ are both in cluster 3, which ONE of the following points is <strong>necessarily</strong> also in cluster 3?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="D"><span class="opt-letter">A</span> $\begin{bmatrix}0\\0\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="B" data-correct="D"><span class="opt-letter">B</span> $\begin{bmatrix}0\\2\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="C" data-correct="D"><span class="opt-letter">C</span> $\begin{bmatrix}2\\0\end{bmatrix}$</button>
+      <button class="quiz-opt" data-val="D" data-correct="D"><span class="opt-letter">D</span> $\begin{bmatrix}0\\1\end{bmatrix}$</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">$(0,0)$ need not be closest to centroid 3 — it isn't forced.</div>
+    <div class="quiz-feedback" data-fb="B">$(0,2)$ lies outside the segment joining the two given points.</div>
+    <div class="quiz-feedback" data-fb="C">$(2,0)$ is not forced into cluster 3.</div>
+    <div class="quiz-feedback" data-fb="D">✓ Correct — a $k$-means cluster region is <em>convex</em>. The midpoint $\begin{bmatrix}0\\1\end{bmatrix}$ of two points in cluster 3 lies in that convex region, so it must also belong to cluster 3.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260608"></script>
+  <script src="../assets/js/app.js?v=20260608"></script>
+</body>
+</html>

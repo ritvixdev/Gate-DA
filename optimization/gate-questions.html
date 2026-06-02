@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>GATE Questions · GATE DA Optimization</title>
+<meta name="description" content="Past GATE DA MCQs from the Optimization portion of our syllabus, tagged by year, with explained answers.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260608">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260608">
+</head>
+<body data-root=".." data-subject="optimization" data-page="gate" data-content>
+  <div class="hero">
+    <span class="tag">Reference</span>
+    <h1>GATE Questions</h1>
+    <p class="lede">Real GATE DA questions from the <strong>Optimization</strong> part of <em>our</em> syllabus, tagged by year. Pick an option — the answer and the reasoning for every choice are shown.</p>
+  </div>
+
+  <div class="quiz-card">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Univariate optimization</span></div>
+    <div class="quiz-q">Q1. For any twice-differentiable function $f:\mathbb{R}\to\mathbb{R}$, if at some $x_0$ we have $f'(x_0)=0$ and $f''(x_0)>0$, then $f$ necessarily has a ______ at $x=x_0$.</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> local minimum</button>
+      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> global minimum</button>
+      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> local maximum</button>
+      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> global maximum</button>
+    </div>
+    <div class="quiz-feedback" data-fb="A">✓ Correct — $f'(x_0)=0$ makes $x_0$ stationary and $f''(x_0)>0$ means it curves upward: a <strong>local minimum</strong> (the second-derivative test).</div>
+    <div class="quiz-feedback" data-fb="B">The test is local; it cannot guarantee the point is the global minimum.</div>
+    <div class="quiz-feedback" data-fb="C">A maximum needs $f''(x_0)<0$.</div>
+    <div class="quiz-feedback" data-fb="D">Only local information is given, and $f''>0$ indicates a minimum, not a maximum.</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260608"></script>
+  <script src="../assets/js/app.js?v=20260608"></script>
+</body>
+</html>
