@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Linear Algebra</title>
 <meta name="description" content="Real GATE DA 2024 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260610">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260610">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260611">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260611">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
@@ -33,13 +33,14 @@
 
   <div class="gate-q" data-type="NAT" data-key="0 to 0">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Determinants</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q35.png" alt="GATE DA 2024 Question 35" loading="lazy">
+    <div class="gate-qtext"><strong>Q35.</strong> Consider the matrix $M=\begin{bmatrix}1&2&3\\3&1&3\\4&3&6\end{bmatrix}$. The determinant of $\big(M^2+12M\big)$ is ______.</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$M^2+12M=M(M+12I)$, so $\det(M^2+12M)=\det(M)\,\det(M+12I)$. Here $\det(M)=0$ (the rows are linearly dependent), hence the value is $0$.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;C">
@@ -98,8 +99,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260610"></script>
-  <script src="../assets/js/app.js?v=20260610"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260610"></script>
+  <script src="../assets/js/topics.js?v=20260611"></script>
+  <script src="../assets/js/app.js?v=20260611"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260611"></script>
 </body>
 </html>
