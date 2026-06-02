@@ -738,3 +738,22 @@ ol.steps li::before {
 .mm-cell.mm-empty { color: var(--muted-soft); }
 .mm-cell.mm-hi { background: var(--coral-bg); color: var(--primary); font-weight: 700; }
 .mm-cell.mm-filled { background: var(--teal-bg); color: var(--teal-text); font-weight: 700; }
+
+/* GATE Questions (real-paper practice) */
+.gate-q { background: var(--surface-card); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--s-lg); margin: var(--s-lg) 0; box-shadow: var(--shadow-sm); }
+.gate-q .chips { margin-bottom: 10px; }
+.pyq-img { display: block; width: 100%; max-width: 780px; height: auto; border: 1px solid var(--hairline); border-radius: var(--r-md); background: #fff; margin: 4px 0 12px; }
+.gate-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.gate-opts { display: flex; gap: 8px; }
+.gate-opt { width: 44px; height: 44px; border-radius: var(--r-md); border: 1px solid var(--hairline); background: var(--surface-soft); color: var(--ink); font-family: var(--font-mono); font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.gate-opt:hover { border-color: var(--primary); color: var(--primary); }
+.gate-opt.sel { background: var(--coral-bg); border-color: var(--primary); color: var(--primary); }
+.gate-opt.correct { background: var(--teal-bg); border-color: var(--teal-border); color: var(--teal-text); }
+.gate-opt.wrong { background: var(--error-bg); border-color: var(--error-border); color: var(--ink); }
+.gate-nat { padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--hairline); background: var(--surface-soft); color: var(--ink); font-family: var(--font-mono); font-size: 15px; width: 170px; }
+.gate-check { padding: 10px 18px; border-radius: var(--r-md); border: 1px solid var(--primary); background: var(--primary); color: var(--on-primary); font-weight: 600; cursor: pointer; }
+.gate-check:hover { background: var(--primary-active); border-color: var(--primary-active); }
+.gate-hint { font-size: 13px; color: var(--muted); width: 100%; }
+.gate-result { margin-top: 12px; font-size: 15px; padding: 9px 13px; border-radius: var(--r-md); }
+.gate-result.ok { background: var(--teal-bg); border: 1px solid var(--teal-border); color: var(--teal-text); }
+.gate-result.bad { background: var(--error-bg); border: 1px solid var(--error-border); color: var(--ink); }

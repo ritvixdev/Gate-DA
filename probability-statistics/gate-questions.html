@@ -5,96 +5,152 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Probability & Statistics</title>
-<meta name="description" content="Past GATE DA MCQs from the Probability & Statistics portion of our syllabus, tagged by year, with explained answers.">
+<meta name="description" content="Real GATE DA 2024 questions from the Probability & Statistics part of our syllabus — actual paper images, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260608">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260608">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260609">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260609">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real GATE DA questions from the <strong>Probability & Statistics</strong> part of <em>our</em> syllabus, tagged by year. Pick an option — the answer and the reasoning for every choice are shown.</p>
+    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Probability & Statistics</strong> part of our syllabus — shown exactly as in the paper. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Distributions</span></div>
-    <div class="quiz-q">Q1. Consider the statements: (i) the mean and variance of a Poisson random variable are equal; (ii) for a standard normal random variable, the mean is zero and the variance is one. Which ONE is correct?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> Both (i) and (ii) are true</button>
-      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> (i) is true and (ii) is false</button>
-      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> (ii) is true and (i) is false</button>
-      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> Both (i) and (ii) are false</button>
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Distributions</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q11.png" alt="GATE DA 2024 Question 11" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">✓ Correct — a Poisson$(\lambda)$ has mean $=$ variance $=\lambda$, and the standard normal is $\mathcal{N}(0,1)$ by definition.</div>
-    <div class="quiz-feedback" data-fb="B">(ii) is also true: the standard normal has mean $0$, variance $1$.</div>
-    <div class="quiz-feedback" data-fb="C">(i) is also true: Poisson mean $=$ variance $=\lambda$.</div>
-    <div class="quiz-feedback" data-fb="D">Both statements are in fact true.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Conditional probability</span></div>
-    <div class="quiz-q">Q2. Three fair coins are tossed independently. $T$ is the event that two or more tosses are heads; $S$ is the event that two or more tosses are tails. What is $P(T\cap S)$?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="A"><span class="opt-letter">A</span> $0$</button>
-      <button class="quiz-opt" data-val="B" data-correct="A"><span class="opt-letter">B</span> $0.5$</button>
-      <button class="quiz-opt" data-val="C" data-correct="A"><span class="opt-letter">C</span> $0.25$</button>
-      <button class="quiz-opt" data-val="D" data-correct="A"><span class="opt-letter">D</span> $1$</button>
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Probability</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q12.png" alt="GATE DA 2024 Question 12" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">✓ Correct — with only $3$ tosses you cannot have $\ge2$ heads and $\ge2$ tails at once (that needs $\ge4$). So $T\cap S=\varnothing$ and $P=0$.</div>
-    <div class="quiz-feedback" data-fb="B">$T$ and $S$ cannot both happen with three coins.</div>
-    <div class="quiz-feedback" data-fb="C">The events are mutually exclusive here, so the intersection has probability $0$.</div>
-    <div class="quiz-feedback" data-fb="D">They can never co-occur with three tosses.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Conditional independence</span></div>
-    <div class="quiz-q">Q3. Five random variables have the joint distribution $P(V,W,X,Y,Z)=P(V)\,P(W)\,P(X\mid V,W)\,P(Y\mid X)\,P(Z\mid X)$. Which ONE of the following statements is <strong>FALSE</strong>?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $Y$ is conditionally independent of $V$ given $X$</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $Z$ is conditionally independent of $W$ given $X$</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $V$ and $W$ are conditionally independent given $X$</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $Y$ and $Z$ are conditionally independent given $X$</button>
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Conditional independence</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q24.png" alt="GATE DA 2024 Question 24" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">True — $X$ separates $Y$ from $V$, so given $X$ they are independent.</div>
-    <div class="quiz-feedback" data-fb="B">True — $X$ separates $Z$ from $W$.</div>
-    <div class="quiz-feedback" data-fb="C">✓ This is the FALSE one — $V$ and $W$ are parents of the common child $X$ (a <em>collider</em>). Conditioning on $X$ makes them <em>dependent</em>, not independent.</div>
-    <div class="quiz-feedback" data-fb="D">True — $Y$ and $Z$ share the single parent $X$, so they are independent given $X$.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Descriptive statistics</span></div>
-    <div class="quiz-q">Q4. For the attribute <em>income</em>, the min, max, mean and standard deviation are $\textsf{₹}46000$, $\textsf{₹}170000$, $\textsf{₹}96000$ and $\textsf{₹}21000$. The z-score normalized value of $\textsf{₹}106000$ is closest to:</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> $0.217$</button>
-      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> $0.476$</button>
-      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> $0.623$</button>
-      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> $2.304$</button>
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Descriptive statistics</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q27.png" alt="GATE DA 2024 Question 27" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">That would use the range; z-score uses the mean and standard deviation.</div>
-    <div class="quiz-feedback" data-fb="B">✓ Correct — $z=\dfrac{x-\mu}{\sigma}=\dfrac{106000-96000}{21000}=\dfrac{10000}{21000}\approx0.476$.</div>
-    <div class="quiz-feedback" data-fb="C">Recompute: $(106000-96000)/21000\approx0.476$.</div>
-    <div class="quiz-feedback" data-fb="D">That divides by a much smaller spread; the SD is $21000$.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Expectation</span></div>
-    <div class="quiz-q">Q5. A fair six-sided die is thrown repeatedly and independently. What is the expected number of throws until <strong>two consecutive even numbers</strong> appear?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> $2$</button>
-      <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> $4$</button>
-      <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> $6$</button>
-      <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> $8$</button>
+  <div class="gate-q" data-type="NAT" data-key="42 to 42">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Sample statistics</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q34.png" alt="GATE DA 2024 Question 34" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">That is the expected wait for a single even ($1/p=2$), not two in a row.</div>
-    <div class="quiz-feedback" data-fb="B">Close, but the run-of-two formula gives more.</div>
-    <div class="quiz-feedback" data-fb="C">✓ Correct — with $p=P(\text{even})=\tfrac12$, the expected wait for two consecutive successes is $\dfrac1p+\dfrac1{p^2}=2+4=6$.</div>
-    <div class="quiz-feedback" data-fb="D">Recompute: $\frac1p+\frac1{p^2}=2+4=6$.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260608"></script>
-  <script src="../assets/js/app.js?v=20260608"></script>
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Expectation</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q36.png" alt="GATE DA 2024 Question 36" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.125 to 0.125">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Random variables</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q56.png" alt="GATE DA 2024 Question 56" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.2 to 0.2">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Distributions</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q57.png" alt="GATE DA 2024 Question 57" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.25 to 0.25">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Conditional probability</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q58.png" alt="GATE DA 2024 Question 58" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.12 to 0.13">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Probability (from data)</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q62.png" alt="GATE DA 2024 Question 62" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.125 to 0.125">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Joint probability</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q64.png" alt="GATE DA 2024 Question 64" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.062 to 0.063">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Covariance</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q65.png" alt="GATE DA 2024 Question 65" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <script src="../assets/js/topics.js?v=20260609"></script>
+  <script src="../assets/js/app.js?v=20260609"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260609"></script>
 </body>
 </html>

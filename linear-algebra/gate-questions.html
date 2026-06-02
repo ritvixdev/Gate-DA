@@ -5,36 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Linear Algebra</title>
-<meta name="description" content="Past GATE DA MCQs from the Linear Algebra portion of our syllabus, tagged by year, with explained answers.">
+<meta name="description" content="Real GATE DA 2024 questions from the Linear Algebra part of our syllabus — actual paper images, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260608">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260608">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260609">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260609">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real GATE DA questions from the <strong>Linear Algebra</strong> part of <em>our</em> syllabus, tagged by year. Pick an option — the answer and the reasoning for every choice are shown.</p>
+    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus — shown exactly as in the paper. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
   </div>
 
-  <div class="quiz-card">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Eigenvalues</span></div>
-    <div class="quiz-q">Q1. Consider the matrix $A=\begin{bmatrix}2&-1\\3&1\end{bmatrix}$. Which ONE of the following statements is TRUE?</div>
-    <div class="quiz-options">
-      <button class="quiz-opt" data-val="A" data-correct="B"><span class="opt-letter">A</span> The eigenvalues of $A$ are non-negative and real.</button>
-      <button class="quiz-opt" data-val="B" data-correct="B"><span class="opt-letter">B</span> The eigenvalues of $A$ are complex conjugate pairs.</button>
-      <button class="quiz-opt" data-val="C" data-correct="B"><span class="opt-letter">C</span> One eigenvalue of $A$ is positive and real, and another is zero.</button>
-      <button class="quiz-opt" data-val="D" data-correct="B"><span class="opt-letter">D</span> One eigenvalue is non-negative and real, and another is negative and real.</button>
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Eigenvalues</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q13.png" alt="GATE DA 2024 Question 13" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Single correct (MCQ).</span>
     </div>
-    <div class="quiz-feedback" data-fb="A">Real non-negative eigenvalues would need a non-negative discriminant — not the case here.</div>
-    <div class="quiz-feedback" data-fb="B">✓ Correct — $\operatorname{tr}(A)=3$, $\det(A)=5$, so $\lambda^2-3\lambda+5=0$ with discriminant $9-20=-11<0$ ⇒ complex conjugate pair.</div>
-    <div class="quiz-feedback" data-fb="C">A zero eigenvalue would require $\det(A)=0$, but $\det(A)=5\neq0$.</div>
-    <div class="quiz-feedback" data-fb="D">Both real (one negative) would need $\det(A)<0$, but $\det(A)=5>0$.</div>
+    <div class="gate-result" hidden></div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260608"></script>
-  <script src="../assets/js/app.js?v=20260608"></script>
+  <div class="gate-q" data-type="NAT" data-key="0 to 0">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Determinants</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q35.png" alt="GATE DA 2024 Question 35" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Subspaces</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q47.png" alt="GATE DA 2024 Question 47" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Solution of equations</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q48.png" alt="GATE DA 2024 Question 48" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Projections</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q49.png" alt="GATE DA 2024 Question 49" loading="lazy">
+    <div class="gate-controls">
+      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="55 to 55">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Singular values (SVD)</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <img class="pyq-img" src="../assets/img/gate2024/q61.png" alt="GATE DA 2024 Question 61" loading="lazy">
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+  </div>
+
+  <script src="../assets/js/topics.js?v=20260609"></script>
+  <script src="../assets/js/app.js?v=20260609"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260609"></script>
 </body>
 </html>
