@@ -35,6 +35,8 @@
     }
     res.className = "gate-result " + (ok ? "ok" : "bad");
     res.hidden = false;
+    var ex = card.querySelector(".gate-expl");
+    if (ex) ex.hidden = false;
     card.setAttribute("data-done", "1");
   }
   function init() {

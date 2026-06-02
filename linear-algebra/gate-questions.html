@@ -5,27 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Linear Algebra</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Linear Algebra part of our syllabus — actual paper images, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260609">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260609">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260610">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260610">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus — shown exactly as in the paper. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="B">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Eigenvalues</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q13.png" alt="GATE DA 2024 Question 13" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q13.</strong> Consider the matrix $A=\begin{bmatrix}2&-1\\3&1\end{bmatrix}$. Which ONE of the following statements is TRUE?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The eigenvalues of $A$ are non-negative and real.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The eigenvalues of $A$ are complex conjugate pairs.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>One eigenvalue of $A$ is positive and real, and another is zero.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>One eigenvalue is non-negative and real, and another is negative and real.</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\operatorname{tr}(A)=3,\ \det(A)=5\Rightarrow \lambda^2-3\lambda+5=0$, discriminant $9-20=-11<0$, so the eigenvalues are a complex conjugate pair.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0 to 0">
@@ -41,50 +44,62 @@
 
   <div class="gate-q" data-type="MSQ" data-key="A;C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Subspaces</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q47.png" alt="GATE DA 2024 Question 47" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q47.</strong> Select all choices that are subspaces of $\mathbb{R}^3$ (with $\alpha,\beta\in\mathbb{R}$).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\{\,x : x=\alpha\begin{bmatrix}1\\1\\0\end{bmatrix}+\beta\begin{bmatrix}1\\0\\0\end{bmatrix}\,\}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\{\,x : x=\alpha^2\begin{bmatrix}1\\2\\0\end{bmatrix}+\beta^2\begin{bmatrix}1\\0\\1\end{bmatrix}\,\}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\{\,x : 5x_1+2x_3=0,\ \ 4x_1-2x_2+3x_3=0\,\}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\{\,x : 5x_1+2x_3+4=0\,\}$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A is a span (subspace); C is a homogeneous linear system (subspace). B uses $\alpha^2,\beta^2\ge0$ so it is not closed under scaling; D is affine (does not contain $0$).</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="B;D">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Solution of equations</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q48.png" alt="GATE DA 2024 Question 48" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q48.</strong> Which of the following statements is/are TRUE? ($b,c$ are vectors of matching size.)</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\exists\,M\in\mathbb{R}^{3\times3}$ such that $Mx=b$ has a unique solution and $M^{\mathsf T}x=c$ has infinitely many solutions.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\exists\,M\in\mathbb{R}^{3\times3}$ such that $Mx=b$ has no solution and $M^{\mathsf T}x=c$ has infinitely many solutions.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\exists\,M\in\mathbb{R}^{2\times3}$ such that $Mx=b$ has a unique solution and $M^{\mathsf T}x=c$ has infinitely many solutions.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\exists\,M\in\mathbb{R}^{3\times2}$ such that $Mx=b$ has a unique solution and $M^{\mathsf T}x=c$ has infinitely many solutions.</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A: an invertible $M$ makes $M^{\mathsf T}$ invertible too (unique, not infinite). C: a $2\times3$ system is underdetermined, so it can never have a unique solution. B and D are both achievable.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="B;C;D">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Projections</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q49.png" alt="GATE DA 2024 Question 49" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q49.</strong> Let $W$ be a subspace of $\mathbb{R}^3$ and $P\in\mathbb{R}^{3\times3}$ the matrix of the orthogonal projection onto $W$. Which is/are TRUE?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>If $W$ is 1-dimensional, then the null space of $P$ is 1-dimensional.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>If $W$ is 2-dimensional, then the null space of $P$ is 1-dimensional.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$P^2=P$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$P^3=P$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\operatorname{null}(P)=W^\perp$, so $\dim=3-\dim W$: for 1-D $W$ it is 2-D (A false), for 2-D $W$ it is 1-D (B true). A projection is idempotent: $P^2=P$, hence $P^3=P$ (C, D true).</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="55 to 55">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Singular values (SVD)</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q61.png" alt="GATE DA 2024 Question 61" loading="lazy">
+    <div class="gate-qtext"><strong>Q61.</strong> Let $A=\begin{bmatrix}1\\2\\3\\4\\5\end{bmatrix}$ and let $\sigma_1,\dots,\sigma_5$ be the singular values of $M=AA^{\mathsf T}$. The value of $\displaystyle\sum_{i=1}^{5}\sigma_i$ is ______.</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$M=AA^{\mathsf T}$ is rank-1 and symmetric PSD; its only non-zero singular value equals $A^{\mathsf T}A=1+4+9+16+25=55$, the rest are $0$. Sum $=55$.</div>
   </div>
 
-  <script src="../assets/js/topics.js?v=20260609"></script>
-  <script src="../assets/js/app.js?v=20260609"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260609"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260610"></script>
+  <script src="../assets/js/app.js?v=20260610"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260610"></script>
 </body>
 </html>

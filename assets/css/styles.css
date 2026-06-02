@@ -757,3 +757,11 @@ ol.steps li::before {
 .gate-result { margin-top: 12px; font-size: 15px; padding: 9px 13px; border-radius: var(--r-md); }
 .gate-result.ok { background: var(--teal-bg); border: 1px solid var(--teal-border); color: var(--teal-text); }
 .gate-result.bad { background: var(--error-bg); border: 1px solid var(--error-border); color: var(--ink); }
+
+/* GATE Questions — text-rendered questions */
+.gate-qtext { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 4px 0 14px; }
+.gate-opts-text { display: flex; flex-direction: column; gap: 8px; align-items: stretch; width: 100%; max-width: 700px; margin-bottom: 12px; }
+.gate-opts-text .gate-opt { width: 100%; height: auto; min-height: 46px; text-align: left; padding: 11px 15px; display: flex; gap: 11px; align-items: center; font-family: var(--font-body); font-size: 15px; font-weight: 500; line-height: 1.5; }
+.gate-opts-text .gate-opt .opt-letter { font-family: var(--font-mono); font-weight: 700; color: var(--primary); flex-shrink: 0; }
+.gate-opts-text .gate-opt.correct .opt-letter, .gate-opts-text .gate-opt.sel .opt-letter { color: inherit; }
+.gate-expl { margin-top: 10px; font-size: 14.5px; line-height: 1.65; color: var(--body); background: var(--surface-soft); border-left: 3px solid var(--primary); border-radius: var(--r-sm); padding: 9px 13px; }

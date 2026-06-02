@@ -5,38 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Machine Learning</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Machine Learning part of our syllabus — actual paper images, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 questions from the Machine Learning part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260609">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260609">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260610">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260610">
 </head>
 <body data-root=".." data-subject="machine-learning" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Machine Learning</strong> part of our syllabus — shown exactly as in the paper. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Machine Learning</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="D">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">k-means clustering</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q19.png" alt="GATE DA 2024 Question 19" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q19.</strong> Euclidean-distance $k$-means with $k=3$ is run on 100 points. If $\begin{bmatrix}1\\1\end{bmatrix}$ and $\begin{bmatrix}-1\\1\end{bmatrix}$ are both in cluster 3, which ONE point is <strong>necessarily</strong> also in cluster 3?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\begin{bmatrix}0\\0\end{bmatrix}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\begin{bmatrix}0\\2\end{bmatrix}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\begin{bmatrix}2\\0\end{bmatrix}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\begin{bmatrix}0\\1\end{bmatrix}$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A $k$-means cluster region is convex, so the midpoint $\begin{bmatrix}0\\1\end{bmatrix}$ of two points in cluster 3 must also lie in cluster 3.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0.24 to 0.24">
     <div class="chips"><span class="chip chip-amber">GATE DA 2024</span> <span class="chip">Logistic regression (sigmoid)</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2024/q33.png" alt="GATE DA 2024 Question 33" loading="lazy">
+    <div class="gate-qtext"><strong>Q33.</strong> Let $f(x)=\dfrac{1}{1+e^{-x}}$. The value of $f'(x)$ at the point where $f(x)=0.4$ is ______ (2 dp).</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>For the sigmoid, $f'(x)=f(x)\big(1-f(x)\big)=0.4\times0.6=0.24$.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;D">
@@ -61,8 +65,10 @@
     <div class="gate-result" hidden></div>
   </div>
 
-  <script src="../assets/js/topics.js?v=20260609"></script>
-  <script src="../assets/js/app.js?v=20260609"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260609"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260610"></script>
+  <script src="../assets/js/app.js?v=20260610"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260610"></script>
 </body>
 </html>
