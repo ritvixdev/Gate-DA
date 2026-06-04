@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Linear Algebra</title>
 <meta name="description" content="Real GATE DA 2024, 2025 & 2026 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260614">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260614">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260615">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260615">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
@@ -19,13 +19,16 @@
 
   <div class="gate-q" data-type="MCQ" data-key="B">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Principal components (PCA)</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q11.png" alt="GATE DA 2026 Question 11" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q11.</strong> For a classification problem, PCA is used to reduce the feature-space dimensionality from 100 to 10. What is true about the angle $\theta$ between the first and the tenth principal components?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\theta=0^\circ$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\theta=90^\circ$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$90^\circ<\theta\le180^\circ$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0<\theta<90^\circ$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Principal components are eigenvectors of the symmetric covariance matrix, so any two distinct PCs are mutually orthogonal: $\theta=90^\circ$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="B">
@@ -40,14 +43,17 @@
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="A">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Subspaces</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q22.png" alt="GATE DA 2026 Question 22" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Subspaces & geometry</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q22.</strong> Let $S_1=\{x=(x_1,x_2,x_3)^{\mathsf T}\in\mathbb{R}^3 : x^{\mathsf T}x\le16\}$ and let $S_2$ be a $2$-dimensional subspace of $\mathbb{R}^3$. What is the area of $S_1\cap S_2$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$16\pi$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$4\pi$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$4\pi^2$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$16\pi^2$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$S_1$ is a ball of radius $4$ ($x^{\mathsf T}x\le16$). A $2$-D subspace is a plane through the origin, which cuts the ball in a disk of radius $4$, so the area is $\pi(4)^2=16\pi$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="C">
@@ -289,8 +295,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260614"></script>
-  <script src="../assets/js/app.js?v=20260614"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260614"></script>
+  <script src="../assets/js/topics.js?v=20260615"></script>
+  <script src="../assets/js/app.js?v=20260615"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260615"></script>
 </body>
 </html>

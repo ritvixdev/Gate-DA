@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Probability & Statistics</title>
 <meta name="description" content="Real GATE DA 2024, 2025 & 2026 questions from the Probability & Statistics part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260614">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260614">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260615">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260615">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="gate" data-content>
   <div class="hero">
@@ -52,24 +52,28 @@
 
   <div class="gate-q" data-type="NAT" data-key="0.34 to 0.36">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Exponential (memoryless)</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q34.png" alt="GATE DA 2026 Question 34" loading="lazy">
+    <div class="gate-qtext"><strong>Q34.</strong> Let $X$ be an exponentially distributed random variable with mean $\lambda>0$. If $P(X>5)=0.35$, then the conditional probability $P(X>10\mid X>5)$ is ______ (2 dp).</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The exponential distribution is <strong>memoryless</strong>: $P(X>10\mid X>5)=P(X>5)=0.35$.</div>
   </div>
 
-  <div class="gate-q" data-type="MCQ" data-key="D">
+  <div class="gate-q" data-type="MCQ" data-key="A">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Variance</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q44.png" alt="GATE DA 2026 Question 44" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q44.</strong> Let $X$ and $Y$ be independent, with $X\sim\text{Bernoulli}(p=0.3)$ and $Y\sim\text{Normal}(\mu=0,\ \sigma^2=100)$. What is the variance of $(2X-1)Y$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$100$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$90$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$49$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$21$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$2X-1\in\{-1,+1\}$, so $(2X-1)^2=1$ always. With $E[Y]=0$ and independence, $\operatorname{Var}\big((2X-1)Y\big)=E[(2X-1)^2]\,E[Y^2]=1\cdot100=100$.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;B;C">
@@ -96,24 +100,26 @@
 
   <div class="gate-q" data-type="NAT" data-key="0.76 to 0.78">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Bayes' theorem</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q57.png" alt="GATE DA 2026 Question 57" loading="lazy">
+    <div class="gate-qtext"><strong>Q57.</strong> A test for disease $D$: if a person has $D$ the test is positive $80\%$ of the time; if not, it is positive $10\%$ of the time. $D$ occurs in $30\%$ of the population. If a person tests positive, the probability they actually have $D$ is ______ (2 dp).</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$P(D\mid +)=\dfrac{0.8\times0.3}{0.8\times0.3+0.1\times0.7}=\dfrac{0.24}{0.24+0.07}=\dfrac{0.24}{0.31}\approx0.77$.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="10 to 10">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Variance</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q62.png" alt="GATE DA 2026 Question 62" loading="lazy">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Variance identity</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q62.</strong> For a dataset $\{x_1,\dots,x_n\}$ with $n=100$, it is given that $\dfrac{1}{2000}\displaystyle\sum_{i=1}^{n}\sum_{j=1}^{n}(x_i-x_j)^2=99$. With $\bar{x}=\tfrac1n\sum_i x_i$, find $\dfrac{1}{99}\displaystyle\sum_{i=1}^{n}(x_i-\bar{x})^2$.</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Using $\sum_i\sum_j (x_i-x_j)^2=2n\sum_i(x_i-\bar{x})^2$: here $\sum_i\sum_j=2000\times99=198000$, so $\sum_i(x_i-\bar{x})^2=\dfrac{198000}{2\times100}=990$. Thus $\dfrac{990}{99}=10$.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0 to 0">
@@ -456,8 +462,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260614"></script>
-  <script src="../assets/js/app.js?v=20260614"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260614"></script>
+  <script src="../assets/js/topics.js?v=20260615"></script>
+  <script src="../assets/js/app.js?v=20260615"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260615"></script>
 </body>
 </html>
