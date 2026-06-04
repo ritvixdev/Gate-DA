@@ -5,16 +5,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Probability & Statistics</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Probability & Statistics part of our syllabus, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 & 2025 questions from the Probability & Statistics part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260611">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260611">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Probability & Statistics</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024 &amp; 2025</strong> questions from the <strong>Probability & Statistics</strong> part of our syllabus, tagged by year. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Conditional expectation</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q11.</strong> Suppose $X$ and $Y$ are random variables, with $E[X\mid Y]$ the conditional expectation of $X$ given $Y$. Then $E\big[E[X\mid Y]\big]$ equals</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$E[X\mid Y]$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$E[X]\,E[Y]$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$E[X]$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$E[Y]$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>By the tower property (law of total expectation), $E\big[E[X\mid Y]\big]=E[X]$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">CDF</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q19.</strong> A continuous random variable $X$ has CDF $F_X(x)=0$ for $x\le t$, $\dfrac{x-t}{4-t}$ for $t\le x\le4$, and $1$ for $x\ge4$. If the median of $X$ is $3$, what is $t$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$2$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$-1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Median: $F_X(3)=\tfrac12\Rightarrow\dfrac{3-t}{4-t}=\tfrac12\Rightarrow t=2$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Normal distribution</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q20.</strong> Let $X=aZ+b$ with $Z$ standard normal and constants $a,b$. Given $E[X]=1$, $E\big[(X-E[X])Z\big]=-2$, and $E\big[(X-E[X])^2\big]=4$, the values of $a,b$ are:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$a=-2,\ b=1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$a=2,\ b=-1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$a=-2,\ b=-1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$a=1,\ b=1$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$E[X]=b=1$. Since $X-E[X]=aZ$, $E[(aZ)Z]=a=-2$ (and $a^2=4$ is consistent). So $a=-2,\ b=1$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Exponential distribution</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q21.</strong> For an exponentially distributed $X$ with $E[X]=\tfrac1\lambda$, it is given that $P(X\ge2)=0.25$. What is $\lambda$? ($\ln$ is natural log.)</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\ln 2$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\ln 4$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\ln 3$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\ln 0.25$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$P(X\ge2)=e^{-2\lambda}=0.25\Rightarrow -2\lambda=\ln\tfrac14\Rightarrow\lambda=\tfrac{\ln4}{2}=\ln2$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.25 to 0.25">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Bayes' theorem</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q31.</strong> Box-1 has 2 black &amp; 1 white, Box-2 has 1 black &amp; 2 white, Box-3 has 3 black &amp; 3 white. A box is chosen with $P(\text{Box-1})=\tfrac12$, $P(\text{Box-2})=\tfrac16$, $P(\text{Box-3})=\tfrac13$, then a ball is drawn. Given it is white, the probability it came from Box-2 is ______ (2 dp).</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$P(\text{white})=\tfrac12\!\cdot\!\tfrac13+\tfrac16\!\cdot\!\tfrac23+\tfrac13\!\cdot\!\tfrac12=\tfrac49$. So $P(\text{Box-2}\mid\text{white})=\dfrac{\tfrac16\cdot\tfrac23}{\tfrac49}=0.25$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Chi-square</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q36.</strong> Let $Y=Z^2$ where $Z=\dfrac{X-\mu}{\sigma}$ and $X$ is normal with mean $\mu$ and variance $\sigma^2$. The variance of $Y$ is</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$2$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$3$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$4$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$Z$ is standard normal, so $Y=Z^2\sim\chi^2_1$, which has variance $2$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">CDF</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q39.</strong> A random variable $X$ has CDF $F_X(x)=0$ for $x\le-1$, $\tfrac14(x+1)^2$ for $-1\le x\le1$, and $1$ for $x\ge1$. Find $P(X^2\le0.25)$.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.625$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.25$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.5$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.5625$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$P(X^2\le0.25)=P(-0.5\le X\le0.5)=F(0.5)-F(-0.5)=\tfrac14(1.5)^2-\tfrac14(0.5)^2=0.5$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Central Limit Theorem</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q40.</strong> Let $Y=\sum_{i=1}^{300}X_i$ with $X_i\sim\text{Bernoulli}(0.25)$ i.i.d. Using the CLT ($\Phi$ = standard normal CDF), $P(60\le Y\le90)\approx$</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\Phi(2)-\Phi(-2)$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\Phi(1)-\Phi(-1)$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\Phi(3)-\Phi(-3)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\Phi(90)-\Phi(60)$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Mean $=300(0.25)=75$, variance $=300(0.25)(0.75)=56.25$, SD $=7.5$. $z=\pm\tfrac{15}{7.5}=\pm2$, giving $\Phi(2)-\Phi(-2)$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Random variables</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q41.</strong> Let $Y=\lfloor X\rfloor$ where $X$ is exponential with mean $\tfrac{1}{\ln 10}$. For a positive integer $\ell$, $P(Y=\ell)=q^{\ell}(1-q)$. Find $q$.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.01$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.5$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.434$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\lambda=\ln 10$, so $P(Y=\ell)=e^{-\lambda\ell}(1-e^{-\lambda})=(0.1)^{\ell}(0.9)$. Hence $q=0.1$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Probability</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q45.</strong> $100$ fair dice (faces $1$–$6$) are thrown. Event $A$: at least one die shows a $1$. Then $P(A)=$</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$1-\left(\tfrac56\right)^{100}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\left(\tfrac56\right)^{100}$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$P(\text{no die shows }1)=\left(\tfrac56\right)^{100}$, so $P(A)=1-\left(\tfrac56\right)^{100}$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Sample statistics</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q54.</strong> A coin shows heads with probability $p$. With $X_i=1$ for head (else $0$) over $n$ independent tosses, let $\hat p=\tfrac1n\sum_{i=1}^n X_i$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$E[\hat p]=p$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$E[\hat p]=\tfrac{p}{n}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>As $n$ increases, the variance of $\hat p$ decreases</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The variance of $\hat p$ does not depend on $n$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$E[\hat p]=p$ (A). $\operatorname{Var}(\hat p)=\tfrac{p(1-p)}{n}$, which decreases with $n$ (C). B and D are false.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="66.6 to 66.7">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Expectation</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q61.</strong> A bag has $5$ white and $10$ black balls. $n$ balls are drawn one at a time <em>with replacement</em>; $S_n$ is the number of black balls drawn. Find $E[S_{100}]$ (1 dp).</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Each draw is black with probability $\tfrac{10}{15}=\tfrac23$, so $E[S_{100}]=100\cdot\tfrac23\approx66.7$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="A">
@@ -171,8 +335,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260611"></script>
-  <script src="../assets/js/app.js?v=20260611"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260611"></script>
+  <script src="../assets/js/topics.js?v=20260612"></script>
+  <script src="../assets/js/app.js?v=20260612"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
 </body>
 </html>

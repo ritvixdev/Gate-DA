@@ -5,16 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Optimization</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Optimization part of our syllabus, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 & 2025 questions from the Optimization part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260611">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260611">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
 </head>
 <body data-root=".." data-subject="optimization" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Optimization</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024 &amp; 2025</strong> questions from the <strong>Optimization</strong> part of our syllabus, tagged by year. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.5 to 0.5">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Limits</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q32.</strong> Evaluate $\displaystyle\lim_{t\to+\infty}\big(\sqrt{t^2+t}-t\big)$ = ______ (1 dp).</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\sqrt{t^2+t}-t=\dfrac{t}{\sqrt{t^2+t}+t}\to\tfrac12$ as $t\to\infty$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="C;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Univariate optimization</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q49.</strong> Consider $f(x)=\dfrac{x^3}{3}+\dfrac72x^2+10x+\dfrac{133}{2}$ on $[-8,0]$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The maximum value of $f$ is attained at $x=-5$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The minimum value of $f$ is attained at $x=-2$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The maximum value of $f$ is $\tfrac{133}{2}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The minimum value of $f'$ is attained at $x=-\tfrac72$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$f'(x)=x^2+7x+10=(x+2)(x+5)$: $x=-5$ is a local max, $x=-2$ a local min. On $[-8,0]$ the maximum is at the endpoint $x=0$ where $f=\tfrac{133}{2}$ (C). $f'$ is an upward parabola minimized at its vertex $x=-\tfrac72$ (D). A and B are false.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Convexity</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q51.</strong> Let $f:\mathbb{R}\to\mathbb{R}$ be twice-differentiable with $f''(x)>0$ for all $x$. Which is/are ALWAYS correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$f$ has a local minimum</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>There do not exist $x\ne y$ with $f'(x)=f'(y)=0$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$f$ has at most one global minimum</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$f$ has at most one local minimum</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$f$ is strictly convex, so $f'$ is strictly increasing (at most one zero $\Rightarrow$ B) and there is at most one minimum (C, D). But a strictly convex function need not have a minimum (e.g. $e^x$), so A is not always true.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="A">
@@ -73,8 +113,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260611"></script>
-  <script src="../assets/js/app.js?v=20260611"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260611"></script>
+  <script src="../assets/js/topics.js?v=20260612"></script>
+  <script src="../assets/js/app.js?v=20260612"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
 </body>
 </html>

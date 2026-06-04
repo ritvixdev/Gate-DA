@@ -5,16 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Linear Algebra</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 & 2025 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260611">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260611">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024 &amp; 2025</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus, tagged by year. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Eigenvalues</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q13.</strong> The sum of the elements in each row of $A\in\mathbb{R}^{n\times n}$ is $1$. If $B=A^3-2A^2+A$, which ONE statement is correct (for $x\in\mathbb{R}^n$)?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$Bx=0$ has no solution</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$Bx=0$ has exactly two solutions</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$Bx=0$ has infinitely many solutions</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$Bx=0$ has a unique solution</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Row sums $1\Rightarrow A$ has eigenvalue $1$ (eigenvector $\mathbf{1}$). $B=A(A-I)^2$ has eigenvalue $1\cdot(1-1)^2=0$, so $B$ is singular and $Bx=0$ has infinitely many solutions.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Orthonormal basis</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q25.</strong> Which of the following statements is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\mathbb{R}^n$ has a unique set of orthonormal basis vectors</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\mathbb{R}^n$ does not have a unique set of orthonormal basis vectors</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Linearly independent vectors in $\mathbb{R}^n$ are orthonormal</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Orthonormal vectors in $\mathbb{R}^n$ are linearly independent</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Orthonormal bases are not unique (B). Orthonormal $\Rightarrow$ linearly independent (D). Independence does not imply orthonormality (C false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Eigenvalues</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q28.</strong> Let $A=I_n+xx^{\mathsf T}$, where $I_n$ is the identity and $x\in\mathbb{R}^n$ with $x^{\mathsf T}x=1$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Rank of $A$ is $n$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$A$ is invertible</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0$ is an eigenvalue of $A$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$A^{-1}$ has a negative eigenvalue</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$xx^{\mathsf T}$ has eigenvalues $1$ (once) and $0$ ($n-1$ times), so $A$ has eigenvalues $2$ and $1$ — all positive. Hence full rank and invertible (A, B); no zero or negative eigenvalues.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Rank</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q37.</strong> Let $A\in\mathbb{R}^{n\times n}$ satisfy $A^3=A$. Which ONE statement is ALWAYS correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$A$ is invertible</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Determinant of $A$ is $0$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The sum of the diagonal elements of $A$ is $1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$A$ and $A^2$ have the same rank</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$A^3=A$ makes $A$ diagonalizable with eigenvalues in $\{-1,0,1\}$, so $\operatorname{rank}(A)=\operatorname{rank}(A^2)$. The others can fail (e.g. $A=I$).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Positive definiteness</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q38.</strong> Let $\{x_1,\dots,x_n\}$ be linearly independent in $\mathbb{R}^n$, and let $A\in\mathbb{R}^{n\times n}$ have $(i,j)$-entry $A_{ij}=x_i^{\mathsf T}x_j$. Which ONE statement is correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$A$ is invertible</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0$ is a singular value of $A$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Determinant of $A$ is $0$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$z^{\mathsf T}Az=0$ for some non-zero $z\in\mathbb{R}^n$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$A$ is the Gram matrix of independent vectors, hence symmetric positive-definite and invertible (A). So no singular value is $0$, $\det\neq0$, and $z^{\mathsf T}Az>0$ for all $z\neq0$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Projections</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q50.</strong> Let $x_1,\dots,x_5$ be orthonormal in $\mathbb{R}^{10}$ and $A=x_1x_1^{\mathsf T}+\dots+x_5x_5^{\mathsf T}$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Singular values of $A$ are also its eigenvalues</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Singular values of $A$ are either $0$ or $1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Determinant of $A$ is $1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$A$ is invertible</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$A$ is the orthogonal projection onto a 5-D subspace: symmetric with eigenvalues $1$ (five times) and $0$ (five times). So singular values $=$ eigenvalues $\in\{0,1\}$ (A, B); having zero eigenvalues, $\det=0$ and $A$ is not invertible.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;D">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Orthogonal matrices</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q52.</strong> An $n\times n$ real matrix $A$ satisfies $\lVert Ax\rVert_2=\lVert x\rVert_2$ for all $x\in\mathbb{R}^n$. Which is/are ALWAYS correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$A$ must be orthogonal</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$A=I$ is the only solution</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The eigenvalues of $A$ are either $+1$ or $-1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$A$ has full rank</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Norm-preserving $\Rightarrow A$ is orthogonal (A) and invertible / full rank (D). But orthogonal matrices include rotations, so $A=I$ is not the only one and eigenvalues may be complex on the unit circle.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="100 to 100">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">PCA / covariance</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q60.</strong> A dataset $D=\{x^{(1)},\dots,x^{(n)}\}$ with each $x^{(i)}\in\mathbb{R}^{100}$ satisfies $\sum_{i=1}^{n}x^{(i)}=0$. Its covariance matrix has eigenvalues $\lambda_i=100^{\,2-i}$, $1\le i\le100$. Let $u$ ($u^{\mathsf T}u=1$) be the direction of maximum variance. Then $\displaystyle\frac1n\sum_{i=1}^{n}\big(u^{\mathsf T}x^{(i)}\big)^2$ = ______.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>For centered data, $\frac1n\sum (u^{\mathsf T}x^{(i)})^2=u^{\mathsf T}Cu$, maximized over unit $u$ by the top eigenvector, giving the largest eigenvalue $\lambda_1=100^{\,2-1}=100$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="B">
@@ -99,8 +209,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260611"></script>
-  <script src="../assets/js/app.js?v=20260611"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260611"></script>
+  <script src="../assets/js/topics.js?v=20260612"></script>
+  <script src="../assets/js/app.js?v=20260612"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
 </body>
 </html>

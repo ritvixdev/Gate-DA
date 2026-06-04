@@ -5,16 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>GATE Questions · GATE DA Machine Learning</title>
-<meta name="description" content="Real GATE DA 2024 questions from the Machine Learning part of our syllabus, with official answers (MCQ / MSQ / NAT).">
+<meta name="description" content="Real GATE DA 2024 & 2025 questions from the Machine Learning part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260611">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260611">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
 </head>
 <body data-root=".." data-subject="machine-learning" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
-    <p class="lede">Real <strong>GATE DA 2024</strong> questions from the <strong>Machine Learning</strong> part of our syllabus. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+    <p class="lede">Real <strong>GATE DA 2024 &amp; 2025</strong> questions from the <strong>Machine Learning</strong> part of our syllabus, tagged by year. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.285 to 0.287">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Least-squares regression</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q34.</strong> Given data $\{(-1,1),(2,-5),(3,5)\}$, fit $y=wx$ by linear least squares. The optimal $w$ is ______ (3 dp).</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$w=\dfrac{\sum x_iy_i}{\sum x_i^2}=\dfrac{(-1)(1)+(2)(-5)+(3)(5)}{1+4+9}=\dfrac{4}{14}\approx0.286$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="D">
@@ -67,8 +79,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260611"></script>
-  <script src="../assets/js/app.js?v=20260611"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260611"></script>
+  <script src="../assets/js/topics.js?v=20260612"></script>
+  <script src="../assets/js/app.js?v=20260612"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
 </body>
 </html>
