@@ -7,14 +7,28 @@
 <title>GATE Questions · GATE DA Linear Algebra</title>
 <meta name="description" content="Real GATE DA 2024 & 2025 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260613">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260613">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
     <span class="tag">Reference</span>
     <h1>GATE Questions</h1>
     <p class="lede">Real <strong>GATE DA 2024 &amp; 2025</strong> questions from the <strong>Linear Algebra</strong> part of our syllabus, tagged by year. Attempt each (MCQ, MSQ or numerical) and check the official answer.</p>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Solution of equations</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>Q12.</strong> The number of additions and multiplications involved in performing Gaussian elimination on an $n\times n$ <strong>upper-triangular</strong> matrix is of the order</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$O(n)$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$O(n^2)$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$O(n^3)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$O(n^4)$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>For an upper-triangular system only back-substitution remains: row $i$ needs about $n-i$ multiply-adds, and $\sum_i (n-i)=O(n^2)$. (Full Gaussian elimination on a general matrix is $O(n^3)$.)</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="C">
@@ -209,8 +223,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260612"></script>
-  <script src="../assets/js/app.js?v=20260612"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
+  <script src="../assets/js/topics.js?v=20260613"></script>
+  <script src="../assets/js/app.js?v=20260613"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260613"></script>
 </body>
 </html>

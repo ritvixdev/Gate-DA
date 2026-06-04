@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Machine Learning</title>
 <meta name="description" content="Real GATE DA 2024 & 2025 questions from the Machine Learning part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260612">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260612">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260613">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260613">
 </head>
 <body data-root=".." data-subject="machine-learning" data-page="gate" data-content>
   <div class="hero">
@@ -27,6 +27,20 @@
     </div>
     <div class="gate-result" hidden></div>
     <div class="gate-expl" hidden>$w=\dfrac{\sum x_iy_i}{\sum x_i^2}=\dfrac{(-1)(1)+(2)(-5)+(3)(5)}{1+4+9}=\dfrac{4}{14}\approx0.286$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2025</span> <span class="chip">Distance-based classification</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q55.</strong> A two-class problem in $\mathbb{R}^d$ has class means $\mu_{red},\mu_{green}$. A test point $x$ is labelled by the nearer mean using squared Euclidean distance: $f(x)=\lVert\mu_{red}-x\rVert^2-\lVert\mu_{green}-x\rVert^2$, assigning <em>red</em> if $f(x)<0$ and <em>green</em> otherwise. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$x=0$ is assigned the label green if $\lVert\mu_{red}\rVert<\lVert\mu_{green}\rVert$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$f$ is a linear function of $x$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$f(x)=w^{\mathsf T}x+b$, where $w$ and $b$ are functions of $\mu_{red},\mu_{green}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$f$ is a quadratic polynomial</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Expanding, the $\lVert x\rVert^2$ terms cancel: $f(x)=\lVert\mu_{red}\rVert^2-\lVert\mu_{green}\rVert^2-2(\mu_{red}-\mu_{green})^{\mathsf T}x$ — linear in $x$ (B, C); not quadratic (D). At $x=0$, $f(0)=\lVert\mu_{red}\rVert^2-\lVert\mu_{green}\rVert^2<0$ when $\lVert\mu_{red}\rVert<\lVert\mu_{green}\rVert$, so $x=0$ is labelled <em>red</em>, not green (A false).</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="D">
@@ -79,8 +93,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260612"></script>
-  <script src="../assets/js/app.js?v=20260612"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260612"></script>
+  <script src="../assets/js/topics.js?v=20260613"></script>
+  <script src="../assets/js/app.js?v=20260613"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260613"></script>
 </body>
 </html>
