@@ -1,6 +1,7 @@
 /* gate-quiz.js — answer handling for the GATE Questions pages.
    Each .gate-q card has data-type (MCQ | MSQ | NAT) and data-key.
-   MCQ: single-select buttons; MSQ: multi-select; NAT: numeric input vs a range. */
+   Uses event delegation on document, so it is immune to the chrome rebuild that
+   app.js performs (no reliance on attaching listeners to specific elements). */
 (function () {
   "use strict";
   function parseRange(key) {                      // "0.062 to 0.063" | "42 to 42" | "55"
@@ -27,8 +28,8 @@
       var sel = [].map.call(card.querySelectorAll(".gate-opt.sel"), function (o) { return o.getAttribute("data-val"); }).sort();
       ok = sel.length === corr.length && sel.join(",") === corr.join(",");
       [].forEach.call(card.querySelectorAll(".gate-opt"), function (o) {
-        var v = o.getAttribute("data-val");
-        if (corr.indexOf(v) !== -1) o.classList.add("correct");
+        var val = o.getAttribute("data-val");
+        if (corr.indexOf(val) !== -1) o.classList.add("correct");
         else if (o.classList.contains("sel")) o.classList.add("wrong");
       });
       res.innerHTML = (ok ? "✓ Correct. " : "✗ Not quite. ") + "Answer: <strong>" + corr.join(", ") + "</strong>";
@@ -39,24 +40,23 @@
     if (ex) ex.hidden = false;
     card.setAttribute("data-done", "1");
   }
-  function init() {
-    var cards = document.querySelectorAll(".gate-q");
-    [].forEach.call(cards, function (card) {
-      var type = card.getAttribute("data-type");
-      var opts = card.querySelectorAll(".gate-opt");
-      [].forEach.call(opts, function (o) {
-        o.addEventListener("click", function () {
-          if (card.getAttribute("data-done")) return;
-          if (type === "MSQ") o.classList.toggle("sel");
-          else { [].forEach.call(opts, function (x) { x.classList.remove("sel"); }); o.classList.add("sel"); }
-        });
-      });
-      var check = card.querySelector(".gate-check");
-      if (check) check.addEventListener("click", function () { grade(card); });
-      var nat = card.querySelector(".gate-nat");
-      if (nat) nat.addEventListener("keydown", function (e) { if (e.key === "Enter") grade(card); });
-    });
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
+  // ---- delegated handlers (work no matter when/if the DOM is rebuilt) ----
+  document.addEventListener("click", function (e) {
+    var opt = e.target.closest && e.target.closest(".gate-opt");
+    if (opt) {
+      var card = opt.closest(".gate-q");
+      if (card && !card.getAttribute("data-done")) {
+        if (card.getAttribute("data-type") === "MSQ") opt.classList.toggle("sel");
+        else { [].forEach.call(card.querySelectorAll(".gate-opt"), function (x) { x.classList.remove("sel"); }); opt.classList.add("sel"); }
+      }
+      return;
+    }
+    var check = e.target.closest && e.target.closest(".gate-check");
+    if (check) { var c = check.closest(".gate-q"); if (c) grade(c); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    var nat = e.target.closest && e.target.closest(".gate-nat");
+    if (nat) { var c = nat.closest(".gate-q"); if (c) grade(c); }
+  });
 })();

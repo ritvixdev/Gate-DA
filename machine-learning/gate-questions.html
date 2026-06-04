@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Machine Learning</title>
 <meta name="description" content="Real GATE DA 2024, 2025 & 2026 questions from the Machine Learning part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260615">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260615">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
 </head>
 <body data-root=".." data-subject="machine-learning" data-page="gate" data-content>
   <div class="hero">
@@ -19,46 +19,56 @@
 
   <div class="gate-q" data-type="MCQ" data-key="C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Cross-validation (LOOCV)</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q12.png" alt="GATE DA 2026 Question 12" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q12.</strong> You train a classifier for a 10-class problem; each input is a 512-dimensional vector. There are 1000 samples, of which the first 100 are held out for testing. LOOCV is used for model selection before testing. How many validation splits are generated?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$10$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$512$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$900$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1000$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>LOOCV uses only the training set ($1000-100=900$ samples) and creates one split per sample, so $900$ splits.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="D">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Ridge regression</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q37.png" alt="GATE DA 2026 Question 37" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q37.</strong> Which of the following statements is true for Ridge Regression?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The regularizer guards against the model working well on test data but poorly on training data</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The regularizer uses the $L_1$ norm</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Ridge Regression aims to reduce the number of parameters that have negative values</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The regularizer may increase the model's bias but helps reduce the variance in predictions</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Ridge adds an $L_2$ penalty (not $L_1$, B false) that shrinks the weights, trading a little more bias for lower variance (D true). It does not target negative parameters (C false), and it guards against overfitting — good on training but poor on test — the opposite of (A).</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;B">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Classification metrics</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q47.png" alt="GATE DA 2026 Question 47" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q47.</strong> 20 stories of Author X and 10 of Author Y are classified. Of X's stories, 6 are labelled Y; of Y's stories, 2 are labelled X. Taking X and Y as the two classes, which is/are true?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Accuracy of the classifier is $11/15$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Precision of Class X is higher than Precision of Class Y</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Recall of Class X is higher than Recall of Class Y</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Accuracy of the classifier is $14/15$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Correct: $14$ of X and $8$ of Y, so accuracy $=22/30=11/15$ (A; D false). $\text{Precision}_X=\tfrac{14}{14+2}=0.875>\text{Precision}_Y=\tfrac{8}{8+6}\approx0.571$ (B). $\text{Recall}_X=\tfrac{14}{20}=0.7<\text{Recall}_Y=\tfrac{8}{10}=0.8$, so C is false.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="6.90 to 7.10">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Ridge regression</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q55.png" alt="GATE DA 2026 Question 55" loading="lazy">
+    <div class="gate-qtext"><strong>Q55.</strong> Linear Ridge Regression learns $\hat y=w^{\mathsf T}x$ with $w,x\in\mathbb{R}^2$, using Mean Absolute Error and a regularizer weight $0.20$. At a step, $w=[-3.00,4.00]^{\mathsf T}$ and the input is $x=[1.00,2.00]^{\mathsf T}$, with true value $y_{\text{true}}=x_1+x_2$. What is the overall regularized loss for this instance? ______ (2 dp).</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Prediction $\hat y=w^{\mathsf T}x=(-3)(1)+(4)(2)=5$ and $y_{\text{true}}=1+2=3$, so MAE $=|5-3|=2$. The Ridge penalty is $0.20\lVert w\rVert^2=0.20(9+16)=5$. Total regularized loss $=2+5=7$.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0.285 to 0.287">
@@ -137,8 +147,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260615"></script>
-  <script src="../assets/js/app.js?v=20260615"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260615"></script>
+  <script src="../assets/js/topics.js?v=20260617"></script>
+  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260617"></script>
 </body>
 </html>

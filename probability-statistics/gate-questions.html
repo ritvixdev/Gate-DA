@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Probability & Statistics</title>
 <meta name="description" content="Real GATE DA 2024, 2025 & 2026 questions from the Probability & Statistics part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260615">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260615">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="gate" data-content>
   <div class="hero">
@@ -19,35 +19,44 @@
 
   <div class="gate-q" data-type="MCQ" data-key="C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Probability</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q19.png" alt="GATE DA 2026 Question 19" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q19.</strong> Let $M$ be a randomly chosen non-empty subset of $S=\{1,2,3,\dots,2026\}$. What is the probability that the product of all elements of $M$ is even?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$2^{1013}(2^{1013}-1)/2^{2026}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$2^{1013}/2^{2026}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$2^{1013}(2^{1013}-1)/(2^{2026}-1)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1/(2^{2026}-1)$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The product is odd only if $M$ contains no even number. With $1013$ odd numbers there are $2^{1013}-1$ non-empty all-odd subsets out of $2^{2026}-1$ total, so $P(\text{even})=1-\dfrac{2^{1013}-1}{2^{2026}-1}=\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}-1}$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="A">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Counting probability</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q20.png" alt="GATE DA 2026 Question 20" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q20.</strong> A program returns a non-negative integer solution of $n_1+n_2+n_3+n_4=20$, chosen uniformly. What is the probability that all of $n_1,n_2,n_3,n_4$ are positive?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\binom{19}{3}/\binom{23}{3}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\binom{20}{4}/\binom{24}{4}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\binom{20}{3}/\binom{23}{3}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\binom{19}{4}/\binom{24}{4}$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Non-negative solutions: $\binom{23}{3}$ (stars and bars). For positive solutions set $m_i=n_i-1$, giving $m_1+\dots+m_4=16$ with $\binom{19}{3}$ solutions. So $P=\binom{19}{3}/\binom{23}{3}$.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Distributions (normal vs t)</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q28.png" alt="GATE DA 2026 Question 28" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q28.</strong> $Z\sim\text{Normal}(0,1)$ has pdf $g(z)$, CDF $G(z)$; $Y\sim t_1$ has pdf $h(y)$, CDF $H(y)$. Let $c>0$ be the point where $g(c)=h(c)$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$G(0)=H(0)$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$G(c)<H(c)$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$G(-c)<H(-c)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$g(0)=h(0)$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Both densities are symmetric about $0$, so $G(0)=H(0)=\tfrac12$ (A). The $t_1$ has heavier tails, so $P(Y>c)>P(Z>c)$, giving $H(c)<G(c)$ (B false) and, by symmetry, $G(-c)<H(-c)$ (C true). The peaks differ: $g(0)=\tfrac1{\sqrt{2\pi}}\ne\tfrac1\pi=h(0)$ (D false).</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0.34 to 0.36">
@@ -78,24 +87,30 @@
 
   <div class="gate-q" data-type="MSQ" data-key="A;B;C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Chi-square distribution</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q53.png" alt="GATE DA 2026 Question 53" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q53.</strong> Let $X_1,\dots,X_n$ be independent $\text{Normal}(0,1)$ and $\bar X=\tfrac1n\sum_{i=1}^n X_i$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\sum_{i=1}^n X_i^2$ follows Chi-square with $n$ degrees of freedom</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\sum_{i=1}^n (X_i-\bar X)^2$ follows Chi-square with $(n-1)$ degrees of freedom</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$X_1^2+X_n^2$ follows exponential distribution with mean $2$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$(\sqrt n\,\bar X)^2$ follows Chi-square with $2$ degrees of freedom</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A and B are standard results. $X_1^2+X_n^2\sim\chi^2_2$, which is exponential with mean $2$ (C). But $\sqrt n\,\bar X\sim\text{Normal}(0,1)$, so $(\sqrt n\,\bar X)^2\sim\chi^2_1$ — one df, not two (D false).</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="B;C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">CDF properties</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q54.png" alt="GATE DA 2026 Question 54" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q54.</strong> Let $X$ be a discrete random variable with CDF $F(x)$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$F(x)$ is always a positive function</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$F(x)$ is a non-decreasing function</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$F(x)$ has jump discontinuity</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$F(x)$ is a left-continuous function</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A CDF is non-decreasing (B) and, for a discrete variable, a step function with jumps (C). It can equal $0$ (so not always positive, A false) and is right-continuous, not left-continuous (D false).</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0.76 to 0.78">
@@ -123,25 +138,27 @@
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0 to 0">
-    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Joint distribution</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q63.png" alt="GATE DA 2026 Question 63" loading="lazy">
+    <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Correlation</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>Q63.</strong> Let $X\sim\text{Uniform}(-1,1)$, and let the conditional distribution of $Y$ given $X=x$ be $\text{Uniform}(x^2-0.1,\ x^2+0.1)$. The value of $\operatorname{correlation}(X,Y)$ is ______.</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$E[Y\mid X]=X^2$, so $\operatorname{Cov}(X,Y)=E[X\cdot X^2]-E[X]E[Y]=E[X^3]-0=0$ (an odd moment of a symmetric variable). Hence the correlation is $0$.</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="0.08 to 0.12">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Probability</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q64.png" alt="GATE DA 2026 Question 64" loading="lazy">
+    <div class="gate-qtext"><strong>Q64.</strong> Let $A_{5\times5}$ have each entry $\sim\text{Bernoulli}(p=0.5)$ independently. The probability that the row-sum of the second row and the column-sum of the third column are both equal to $3$ is ______ (2 dp).</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The entry at position $(2,3)$ is shared. If it is $1$, the other four in the row and the other four in the column must each sum to $2$ ($\binom42/2^4=\tfrac{6}{16}$ each); if it is $0$, each must sum to $3$ ($\binom43/2^4=\tfrac4{16}$). Total $=\tfrac12(\tfrac{6}{16})^2+\tfrac12(\tfrac4{16})^2\approx0.10$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="C">
@@ -462,8 +479,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260615"></script>
-  <script src="../assets/js/app.js?v=20260615"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260615"></script>
+  <script src="../assets/js/topics.js?v=20260617"></script>
+  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260617"></script>
 </body>
 </html>

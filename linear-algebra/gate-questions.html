@@ -7,8 +7,8 @@
 <title>GATE Questions · GATE DA Linear Algebra</title>
 <meta name="description" content="Real GATE DA 2024, 2025 & 2026 questions from the Linear Algebra part of our syllabus, with official answers (MCQ / MSQ / NAT).">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260615">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260615">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
 </head>
 <body data-root=".." data-subject="linear-algebra" data-page="gate" data-content>
   <div class="hero">
@@ -33,13 +33,16 @@
 
   <div class="gate-q" data-type="MCQ" data-key="B">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Matrix powers</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q21.png" alt="GATE DA 2026 Question 21" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q21.</strong> Let $M=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$ with $\theta=\dfrac{2\pi}{5}$, and $I_2=\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Which of the following equals $M^{2026}$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$M^2$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$M$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$M^{-1}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$I_2$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$M$ is a rotation by $\theta=\tfrac{2\pi}{5}$, so $M^5=I_2$ (a full $2\pi$ turn). Since $2026=5(405)+1$, $M^{2026}=M^{1}=M$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="A">
@@ -58,35 +61,42 @@
 
   <div class="gate-q" data-type="MCQ" data-key="C">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Eigenvalues</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q46.png" alt="GATE DA 2026 Question 46" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Single correct (MCQ).</span>
+    <div class="gate-qtext"><strong>Q46.</strong> Let $\gamma_1,\gamma_2,\gamma_3$ be the eigenvalues of $\begin{bmatrix}1&0&0\\0&\cos t&\sin t\\0&-\sin t&\cos t\end{bmatrix}$, where $t\in[-\pi,\pi]$. Which option lists all values of $t$ with $\gamma_1+\gamma_2+\gamma_3=1+\sqrt2$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\{\tfrac\pi3,\,-\tfrac\pi4\}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\{\tfrac\pi4,\,-\tfrac\pi3\}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\{\tfrac\pi4,\,-\tfrac\pi4\}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\{\tfrac\pi3,\,-\tfrac\pi3\}$</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The eigenvalues are $1$ and $\cos t\pm i\sin t$, so the sum is $1+2\cos t$. Setting $1+2\cos t=1+\sqrt2$ gives $\cos t=\tfrac1{\sqrt2}$, i.e. $t=\pm\tfrac\pi4$.</div>
   </div>
 
   <div class="gate-q" data-type="MSQ" data-key="A;D">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Projection matrix</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q52.png" alt="GATE DA 2026 Question 52" loading="lazy">
-    <div class="gate-controls">
-      <div class="gate-opts"><button class="gate-opt" data-val="A">A</button><button class="gate-opt" data-val="B">B</button><button class="gate-opt" data-val="C">C</button><button class="gate-opt" data-val="D">D</button></div>
-      <button class="gate-check">Check answer</button>
-      <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span>
+    <div class="gate-qtext"><strong>Q52.</strong> Let $M=I_n-\dfrac1n\mathbf{1}\mathbf{1}^{\mathsf T}$, where $\mathbf{1}=(1,1,\dots,1)^{\mathsf T}\in\mathbb{R}^n$ and $I_n$ is the identity of order $n$. Which is/are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$M^{\mathsf T}=M$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$M^2=I_n$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\operatorname{Trace}(M)=n$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$M$ is a projection matrix</span></button>
     </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$M$ is the centering matrix: symmetric ($M^{\mathsf T}=M$, A) and idempotent $M^2=M$, hence a projection (D). Its eigenvalues are $1$ ($n-1$ times) and $0$, so $\operatorname{Trace}(M)=n-1$ (C false) and $M^2=M\ne I_n$ (B false).</div>
   </div>
 
   <div class="gate-q" data-type="NAT" data-key="1 to 1">
     <div class="chips"><span class="chip chip-amber">GATE DA 2026</span> <span class="chip">Eigenvalues</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
-    <img class="pyq-img" src="../assets/img/gate2026/q65.png" alt="GATE DA 2026 Question 65" loading="lazy">
+    <div class="gate-qtext"><strong>Q65.</strong> Let $M=I_n-\dfrac1n\mathbf{1}\mathbf{1}^{\mathsf T}$ with $\mathbf{1}=(1,\dots,1)^{\mathsf T}\in\mathbb{R}^n$. The value of $\displaystyle\max_{x\in S}\,x^{\mathsf T}Mx$, where $S=\{x\in\mathbb{R}^n:x^{\mathsf T}x=1\}$, is ______.</div>
     <div class="gate-controls">
       <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
       <button class="gate-check">Check answer</button>
       <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
     </div>
     <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The centering matrix $M$ has eigenvalues $0$ (eigenvector $\mathbf{1}$) and $1$ ($n-1$ times). Over unit vectors, $x^{\mathsf T}Mx$ is maximized by the largest eigenvalue, $1$.</div>
   </div>
 
   <div class="gate-q" data-type="MCQ" data-key="B">
@@ -295,8 +305,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260615"></script>
-  <script src="../assets/js/app.js?v=20260615"></script>
-  <script src="../assets/js/gate-quiz.js?v=20260615"></script>
+  <script src="../assets/js/topics.js?v=20260617"></script>
+  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260617"></script>
 </body>
 </html>
