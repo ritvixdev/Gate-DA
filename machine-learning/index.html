@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
 <title>Basic Machine Learning · GATE DA</title>
 <meta name="description" content="Complete Basic Machine Learning guide for GATE DA — linear & logistic regression, least-squares, kNN, k-means, cross-validation, with interactive labs.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260619">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260619">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
 </head>
 <body data-root=".." data-subject="machine-learning" data-content>
   <div class="hero">
@@ -42,7 +42,7 @@
     <a class="topic-card" href="06-cross-validation.html"><span class="card-eyebrow">Topic 6 · High</span><span class="card-name">🔁 Cross-Validation</span><span class="card-desc">Train/test split, k-fold, fighting overfitting.</span></a>
   </div>
 
-  <script src="../assets/js/topics.js?v=20260619"></script>
-  <script src="../assets/js/app.js?v=20260619"></script>
+  <script src="../assets/js/topics.js?v=20260620"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
 </body>
 </html>

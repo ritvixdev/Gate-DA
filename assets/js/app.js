@@ -266,6 +266,9 @@
     wireReveal();
     renderMath();
     if (window.GATE_VIZ_INIT) window.GATE_VIZ_INIT();
+    // Shell + math are in place — reveal the page (removes the boot cloak) after one paint
+    // so the user never sees the pre-shell full-width flash / layout snap.
+    requestAnimationFrame(function () { document.documentElement.classList.remove("booting"); });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

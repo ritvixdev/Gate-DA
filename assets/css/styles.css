@@ -776,3 +776,10 @@ ol.steps li::before {
 .math-steps .ms-line { white-space: nowrap; padding: 8px 0; }
 .math-steps .ms-line:empty { padding: 0; height: 4px; }
 .math-steps .katex { font-size: 1.05em; vertical-align: middle; }
+
+/* Boot cloak — hide the page until app.js has built the sidebar/content shell, then fade
+   in. Prevents the brief pre-shell full-width flash and layout "stretch" on navigation.
+   Scoped to html.booting (set by the head script, cleared by app.js or a failsafe timer),
+   so with JS disabled the page is never hidden. */
+html.booting body { opacity: 0; }
+body { opacity: 1; transition: opacity .18s ease; }
