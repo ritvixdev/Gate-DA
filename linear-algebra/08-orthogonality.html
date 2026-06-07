@@ -7,8 +7,8 @@
 <title>Orthogonality · GATE DA</title>
 <meta name="description" content="Learn orthogonality from zero: dot product, projections, Gram-Schmidt, orthogonal matrices — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="08-orthogonality" data-content>
   <div class="hero">
@@ -83,7 +83,7 @@
 
         <details class="study-item">
           <summary>1. What is orthogonality?</summary>
-          <p><strong>Orthogonal = perpendicular</strong>. The x-axis <code>[1;0]</code> and y-axis <code>[0;1]</code> meet at 90°, so they are orthogonal.</p>
+          <p><strong>Orthogonal = perpendicular</strong>. The x-axis $\begin{bmatrix}1\\0\end{bmatrix}$ and y-axis $\begin{bmatrix}0\\1\end{bmatrix}$ meet at 90°, so they are orthogonal.</p>
           <p>The power of linear algebra: orthogonality works in <strong>any dimension</strong> (ℝ¹⁰, ℝ¹⁰⁰⁰), not just 2D/3D — which is why it underpins data science.</p>
           <p><span style="color:var(--coral-text)">Plain idea:</span> orthogonal directions do not disturb each other.</p>
         </details>
@@ -96,21 +96,19 @@
 
         <details class="study-item">
           <summary>3. Dot product example</summary>
-          <pre>u = [1; 2] ,  v = [3; 4]
-u·v = 1×3 + 2×4 = 3 + 8 = 11</pre>
+          <div class="math-steps"><div class="ms-line">u = $\begin{bmatrix}1\\2\end{bmatrix}$ ,  v = $\begin{bmatrix}3\\4\end{bmatrix}$</div><div class="ms-line">u·v = 1×3 + 2×4 = 3 + 8 = 11</div></div>
         </details>
 
         <details class="study-item">
           <summary>4. The orthogonality condition</summary>
           <pre>u ⊥ v  ⟺  u·v = 0</pre>
-          <pre>[1;0]·[0;1] = 0  → perpendicular</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1\\0\end{bmatrix}$·$\begin{bmatrix}0\\1\end{bmatrix}$ = 0  → perpendicular</div></div>
         </details>
 
         <details class="study-item">
           <summary>5. Finding a perpendicular vector</summary>
-          <pre>u = [1; 2] ,  v = [2; −1]
-u·v = 1×2 + 2×(−1) = 0  → orthogonal</pre>
-          <p>In 2D, a vector perpendicular to <code>[a; b]</code> is <code>[b; −a]</code> (or <code>[−b; a]</code>) — swap and negate one.</p>
+          <div class="math-steps"><div class="ms-line">u = $\begin{bmatrix}1\\2\end{bmatrix}$ ,  v = $\begin{bmatrix}2\\-1\end{bmatrix}$</div><div class="ms-line">u·v = 1×2 + 2×(−1) = 0  → orthogonal</div></div>
+          <p>In 2D, a vector perpendicular to $\begin{bmatrix}a\\b\end{bmatrix}$ is $\begin{bmatrix}b\\-a\end{bmatrix}$ (or $\begin{bmatrix}-b\\a\end{bmatrix}$) — swap and negate one.</p>
         </details>
 
         <details class="study-item">
@@ -122,34 +120,32 @@ u·v = 1×2 + 2×(−1) = 0  → orthogonal</pre>
         <details class="study-item">
           <summary>7. Norm (length) of a vector</summary>
           <pre>||v|| = √(v₁² + v₂² + … + vₙ²) = √(v·v)</pre>
-          <pre>v = [3; 4] → ||v|| = √(9+16) = √25 = 5</pre>
+          <div class="math-steps"><div class="ms-line">v = $\begin{bmatrix}3\\4\end{bmatrix}$ → ||v|| = √(9+16) = √25 = 5</div></div>
           <p>It is just Pythagoras in n dimensions.</p>
         </details>
 
         <details class="study-item">
           <summary>8. Unit vector</summary>
           <p>A <strong>unit vector</strong> has length 1.</p>
-          <pre>[1;0] and [0;1] both have norm 1 → unit vectors</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1\\0\end{bmatrix}$ and $\begin{bmatrix}0\\1\end{bmatrix}$ both have norm 1 → unit vectors</div></div>
         </details>
 
         <details class="study-item">
           <summary>9. Normalization (make length 1)</summary>
           <p>Divide a vector by its norm:</p>
-          <pre>v = [3; 4] ,  ||v|| = 5
-u = v/||v|| = [3/5; 4/5]   (check: √(9/25+16/25) = 1)</pre>
+          <div class="math-steps"><div class="ms-line">v = $\begin{bmatrix}3\\4\end{bmatrix}$ ,  ||v|| = 5</div><div class="ms-line">u = v/||v|| = $\begin{bmatrix}3/5\\4/5\end{bmatrix}$   (check: √(9/25+16/25) = 1)</div></div>
           <p>This process is called <strong>normalization</strong>.</p>
         </details>
 
         <details class="study-item">
           <summary>10. Orthogonal vs orthonormal</summary>
-          <pre>orthogonal : u·v = 0                 (e.g. [2;0] & [0;5])
-orthonormal: orthogonal AND each length 1  (e.g. [1;0] & [0;1])</pre>
+          <div class="math-steps"><div class="ms-line">orthogonal : u·v = 0                 (e.g. $\begin{bmatrix}2\\0\end{bmatrix}$ & $\begin{bmatrix}0\\5\end{bmatrix}$)</div><div class="ms-line">orthonormal: orthogonal AND each length 1  (e.g. $\begin{bmatrix}1\\0\end{bmatrix}$ & $\begin{bmatrix}0\\1\end{bmatrix}$)</div></div>
           <p><span style="color:var(--coral-text)">Memory:</span> orthonormal = orthogonal + normalized.</p>
         </details>
 
         <details class="study-item">
           <summary>11. Orthogonal basis</summary>
-          <p>A basis whose vectors are mutually orthogonal. The cleanest example is the standard basis of ℝ²: <code>[1;0], [0;1]</code> (orthonormal).</p>
+          <p>A basis whose vectors are mutually orthogonal. The cleanest example is the standard basis of ℝ²: $\begin{bmatrix}1\\0\end{bmatrix}$, $\begin{bmatrix}0\\1\end{bmatrix}$ (orthonormal).</p>
           <p><span style="color:var(--coral-text)">🎮 Game terms:</span> moving right never accidentally moves you up — the directions do not interfere.</p>
         </details>
 
@@ -179,16 +175,13 @@ orthonormal: orthogonal AND each length 1  (e.g. [1;0] & [0;1])</pre>
 
         <details class="study-item">
           <summary>16. Projection example + the error vector</summary>
-          <pre>a = [1; 0] ,  b = [3; 4]
-a·b = 3 ,  a·a = 1  →  proj = 3·[1;0] = [3; 0]
-
-error e = b − proj = [0; 4]   and  e·a = 0  → e ⊥ a</pre>
+          <div class="math-steps"><div class="ms-line">a = $\begin{bmatrix}1\\0\end{bmatrix}$ ,  b = $\begin{bmatrix}3\\4\end{bmatrix}$</div><div class="ms-line">a·b = 3 ,  a·a = 1  →  proj = 3·$\begin{bmatrix}1\\0\end{bmatrix}$ = $\begin{bmatrix}3\\0\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">error e = b − proj = $\begin{bmatrix}0\\4\end{bmatrix}$   and  e·a = 0  → e ⊥ a</div></div>
           <p><span style="color:var(--coral-text)">Key idea:</span> <code>b = projection + orthogonal error</code>.</p>
         </details>
 
         <details class="study-item">
           <summary>17. Projection onto a unit vector</summary>
-          <p>If a is not unit length the denominator handles it; <code>a=[2;0], b=[3;4]</code> still gives <code>[3;0]</code>.</p>
+          <p>If a is not unit length the denominator handles it; a=$\begin{bmatrix}2\\0\end{bmatrix}$, b=$\begin{bmatrix}3\\4\end{bmatrix}$ still gives $\begin{bmatrix}3\\0\end{bmatrix}$.</p>
           <p>If <code>u</code> is a <strong>unit</strong> vector, <code>u·u = 1</code>, so it simplifies:</p>
           <pre>proj_u(b) = (u·b) u</pre>
           <p>For an orthonormal basis, the coefficient along uᵢ is just <code>b·uᵢ</code> — no denominator. That is why orthonormal bases are so clean.</p>
@@ -255,12 +248,7 @@ general:  wₖ = vₖ − Σ_{i<k}(vₖ·uᵢ)uᵢ ,  uₖ = wₖ / ||wₖ||</pr
 
         <details class="study-item">
           <summary>26. Gram–Schmidt — worked example</summary>
-          <pre>v₁ = [1; 0] ,  v₂ = [1; 1]
-
-u₁ = [1; 0]
-v₂·u₁ = 1 → w₂ = [1;1] − 1·[1;0] = [0; 1] → u₂ = [0; 1]
-
-orthonormal basis: [1;0], [0;1]</pre>
+          <div class="math-steps"><div class="ms-line">v₁ = $\begin{bmatrix}1\\0\end{bmatrix}$ ,  v₂ = $\begin{bmatrix}1\\1\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">u₁ = $\begin{bmatrix}1\\0\end{bmatrix}$</div><div class="ms-line">v₂·u₁ = 1 → w₂ = $\begin{bmatrix}1\\1\end{bmatrix}$ − 1·$\begin{bmatrix}1\\0\end{bmatrix}$ = $\begin{bmatrix}0\\1\end{bmatrix}$ → u₂ = $\begin{bmatrix}0\\1\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">orthonormal basis: $\begin{bmatrix}1\\0\end{bmatrix}$, $\begin{bmatrix}0\\1\end{bmatrix}$</div></div>
           <p>Messy vectors became clean x–y axes.</p>
         </details>
 
@@ -268,7 +256,7 @@ orthonormal basis: [1;0], [0;1]</pre>
           <summary>27. Orthogonal matrix</summary>
           <p>A matrix <code>Q</code> is <strong>orthogonal</strong> when its columns are orthonormal:</p>
           <pre>QᵀQ = I ;   if Q is square, Q⁻¹ = Qᵀ</pre>
-          <pre>Q = [0 −1; 1 0]  (90° rotation): columns [0;1], [−1;0] — unit &amp; perpendicular</pre>
+          <div class="math-steps"><div class="ms-line">Q = $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$  (90° rotation): columns $\begin{bmatrix}0\\1\end{bmatrix}$, $\begin{bmatrix}-1\\0\end{bmatrix}$ — unit &amp; perpendicular</div></div>
         </details>
 
         <details class="study-item">
@@ -317,7 +305,7 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
         <details class="study-item">
           <summary>34. Orthogonal complement (W⊥)</summary>
           <p><code>W⊥</code> ("W perp") = all vectors perpendicular to every vector in W.</p>
-          <pre>W = x-axis = span{[1;0]}   →   W⊥ = y-axis = span{[0;1]}</pre>
+          <div class="math-steps"><div class="ms-line">W = x-axis = span{$\begin{bmatrix}1\\0\end{bmatrix}$}   →   W⊥ = y-axis = span{$\begin{bmatrix}0\\1\end{bmatrix}$}</div></div>
           <p>The four-subspace relations (<code>Row ⊥ Null</code>, <code>Col ⊥ Left-null</code>) are the big example — see the Rank &amp; Nullity topic.</p>
         </details>
 
@@ -356,7 +344,7 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
           <summary>40. Common GATE traps</summary>
           <ul class="styled">
             <li>"Orthogonal means length 1"? <strong>No</strong> — orthogonal = dot product 0; length 1 = unit; both = orthonormal.</li>
-            <li><code>u·v = 0</code> ⇒ one vector is zero? <strong>No</strong> ([1;0]·[0;1]=0, both non-zero).</li>
+            <li><code>u·v = 0</code> ⇒ one vector is zero? <strong>No</strong> ($\begin{bmatrix}1\\0\end{bmatrix}$·$\begin{bmatrix}0\\1\end{bmatrix}$=0, both non-zero).</li>
             <li>Normal equation is <code>Ax = b</code>? <strong>No</strong> — it is <code>AᵀA x = Aᵀb</code>.</li>
             <li><code>det(Q) = 1</code> only? <strong>No</strong> — <code>±1</code>.</li>
             <li>Non-zero orthogonal vectors can be dependent? <strong>No</strong> — they are independent.</li>
@@ -366,15 +354,15 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
 
         <details class="study-item">
           <summary>41. Practice problems</summary>
-          <p class="lead">Q1. [1;2] and [2;−1] orthogonal?</p>
+          <p class="lead">Q1. $\begin{bmatrix}1\\2\end{bmatrix}$ and $\begin{bmatrix}2\\-1\end{bmatrix}$ orthogonal?</p>
           <pre>1×2 + 2×(−1) = 0 → yes</pre>
-          <p class="lead">Q2. ||[6;8]||?</p>
+          <p class="lead">Q2. ||$\begin{bmatrix}6\\8\end{bmatrix}$||?</p>
           <pre>√(36+64) = 10</pre>
-          <p class="lead">Q3. Normalize [6;8]?</p>
-          <pre>[6/10; 8/10] = [3/5; 4/5]</pre>
-          <p class="lead">Q4. Projection of [5;7] onto [1;0]?</p>
-          <pre>(5/1)·[1;0] = [5; 0]</pre>
-          <p class="lead">Q5. Is [0 −1; 1 0] orthogonal?</p>
+          <p class="lead">Q3. Normalize $\begin{bmatrix}6\\8\end{bmatrix}$?</p>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}6/10\\8/10\end{bmatrix}$ = $\begin{bmatrix}3/5\\4/5\end{bmatrix}$</div></div>
+          <p class="lead">Q4. Projection of $\begin{bmatrix}5\\7\end{bmatrix}$ onto $\begin{bmatrix}1\\0\end{bmatrix}$?</p>
+          <div class="math-steps"><div class="ms-line">(5/1)·$\begin{bmatrix}1\\0\end{bmatrix}$ = $\begin{bmatrix}5\\0\end{bmatrix}$</div></div>
+          <p class="lead">Q5. Is $\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ orthogonal?</p>
           <pre>columns unit &amp; perpendicular → yes</pre>
           <p class="lead">Q6. Q orthogonal → Q⁻¹? det(Q)? P projection → eigenvalues?</p>
           <pre>Q⁻¹ = Qᵀ ;  det = ±1 ;  P eigenvalues 0 or 1</pre>
@@ -538,11 +526,11 @@ orthogonal matrix:   QᵀQ = I  (columns orthonormal)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/projection-lab.js?v=20260617"></script>
-  <script src="../assets/js/viz/scene3d.js?v=20260617"></script>
-  <script src="../assets/js/viz/projection3d-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/projection-lab.js?v=20260618"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260618"></script>
+  <script src="../assets/js/viz/projection3d-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

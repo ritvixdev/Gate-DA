@@ -7,8 +7,8 @@
 <title>Determinants · GATE DA</title>
 <meta name="description" content="Learn determinants from zero: meaning as area/volume scaling and orientation, computation, all properties, row operations, Cramer's rule — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="03-determinants" data-content>
   <!-- 1 -->
@@ -303,8 +303,7 @@ det(2A) = 2³ × 4 = 8 × 4 = 32</pre>
             <li><strong>Multiply a row by k</strong> → determinant <strong>× k</strong>.</li>
             <li><strong>Add a multiple of one row to another</strong> → determinant <strong>unchanged</strong>.</li>
           </ul>
-          <pre>R₂ → R₂ − 3R₁ on [1 2; 3 4]  gives  [1 2; 0 −2]
-det stays −2.   (used in Gaussian elimination)</pre>
+          <div class="math-steps"><div class="ms-line">R₂ → R₂ − 3R₁ on $\begin{bmatrix}1&2\\3&4\end{bmatrix}$  gives  $\begin{bmatrix}1&2\\0&-2\end{bmatrix}$</div><div class="ms-line">det stays −2.   (used in Gaussian elimination)</div></div>
           <p>The same three rules hold for columns.</p>
         </details>
 
@@ -315,7 +314,7 @@ det stays −2.   (used in Gaussian elimination)</pre>
             <li>A completely <strong>zero</strong> row (or column) → <code>det = 0</code>.</li>
             <li>One row/column is a <strong>multiple</strong> of another (dependent) → <code>det = 0</code>.</li>
           </ul>
-          <pre>[1 2; 2 4]  → row2 = 2·row1 → det = 0</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&2\\2&4\end{bmatrix}$  → row2 = 2·row1 → det = 0</div></div>
         </details>
 
         <details class="study-item">
@@ -363,18 +362,13 @@ det(M) = det(A) · det(D)   (A, D square blocks)</pre>
         <details class="study-item">
           <summary>31. Determinant by row reduction</summary>
           <p>Reduce to triangular form with row ops (the "add a multiple" op keeps det unchanged), then multiply the diagonal.</p>
-          <pre>[1 2 3; 2 5 6; 3 8 10]
- → R₂−2R₁, R₃−3R₁ → [1 2 3; 0 1 0; 0 2 1]
- → R₃−2R₂          → [1 2 3; 0 1 0; 0 0 1]
-
-det = 1 × 1 × 1 = 1</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&2&3\\2&5&6\\3&8&10\end{bmatrix}$</div><div class="ms-line"> → R₂−2R₁, R₃−3R₁ → $\begin{bmatrix}1&2&3\\0&1&0\\0&2&1\end{bmatrix}$</div><div class="ms-line"> → R₃−2R₂          → $\begin{bmatrix}1&2&3\\0&1&0\\0&0&1\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">det = 1 × 1 × 1 = 1</div></div>
         </details>
 
         <details class="study-item">
           <summary>32. Determinant as an independence test</summary>
           <p>Put n vectors of ℝⁿ as columns; <code>det ≠ 0 ⇔</code> they are <strong>independent</strong>.</p>
-          <pre>v₁=[1,2], v₂=[3,4] → A = [1 3; 2 4]
-det = 1×4 − 3×2 = −2 ≠ 0  → independent</pre>
+          <div class="math-steps"><div class="ms-line">v₁=[1,2], v₂=[3,4] → A = $\begin{bmatrix}1&3\\2&4\end{bmatrix}$</div><div class="ms-line">det = 1×4 − 3×2 = −2 ≠ 0  → independent</div></div>
         </details>
 
         <details class="study-item">
@@ -389,13 +383,12 @@ tr(A)  = λ₁ + λ₂ + … + λₙ          (sum — that is the trace)</pre>
           <summary>34. Determinant vs trace — don't confuse them</summary>
           <pre>trace(A)       = sum of diagonal     = sum of eigenvalues
 determinant(A) = area/volume scale  = product of eigenvalues</pre>
-          <pre>A = [2 0; 0 3]   trace = 5,   det = 6</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}2&0\\0&3\end{bmatrix}$   trace = 5,   det = 6</div></div>
         </details>
 
         <details class="study-item">
           <summary>35. Determinant and orientation <span class="study-extra">GATE extra</span></summary>
-          <pre>I = [1 0; 0 1]      det = 1   → orientation preserved
-R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
+          <div class="math-steps"><div class="ms-line">I = $\begin{bmatrix}1&0\\0&1\end{bmatrix}$      det = 1   → orientation preserved</div><div class="ms-line">R = $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$     det = −1  → reflection (flipped)</div></div>
           <p>Positive det = no mirror flip; negative det = mirror flip.</p>
         </details>
 
@@ -406,7 +399,7 @@ R = [1 0; 0 −1]     det = −1  → reflection (flipped)</pre>
 A · adj(A) = adj(A) · A = det(A) · I
 A⁻¹ = adj(A) / det(A)        (det(A) ≠ 0)</pre>
           <p class="lead">2×2 shortcut:</p>
-          <pre>A = [a b; c d]  →  adj(A) = [d −b; −c a]  →  A⁻¹ = (1/(ad−bc))·adj(A)</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}a&b\\c&d\end{bmatrix}$  →  adj(A) = $\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$  →  A⁻¹ = (1/(ad−bc))·adj(A)</div></div>
           <p><span style="color:var(--coral-text)">GATE fact:</span> for an n×n matrix, <code>det(adj A) = det(A)^{n−1}</code>.</p>
         </details>
 
@@ -668,11 +661,11 @@ A⁻¹ = adj(A) / det(A)        (det(A) ≠ 0)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/matrix-transform.js?v=20260617"></script>
-  <script src="../assets/js/viz/scene3d.js?v=20260617"></script>
-  <script src="../assets/js/viz/det3d-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/matrix-transform.js?v=20260618"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260618"></script>
+  <script src="../assets/js/viz/det3d-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

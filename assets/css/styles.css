@@ -765,3 +765,14 @@ ol.steps li::before {
 .gate-opts-text .gate-opt .opt-letter { font-family: var(--font-mono); font-weight: 700; color: var(--primary); flex-shrink: 0; }
 .gate-opts-text .gate-opt.correct .opt-letter, .gate-opts-text .gate-opt.sel .opt-letter { color: inherit; }
 .gate-expl { margin-top: 10px; font-size: 14.5px; line-height: 1.65; color: var(--body); background: var(--surface-soft); border-left: 3px solid var(--primary); border-radius: var(--r-sm); padding: 9px 13px; }
+
+/* Rendered matrix "steps" blocks (converted from ASCII <pre> matrix examples) */
+.study-item .math-steps, .math-steps {
+  font-family: var(--font-mono); font-size: 14px; line-height: 2.15;
+  background: var(--surface-strong); border: 1px solid var(--hairline);
+  border-radius: var(--r-md); padding: 14px 18px; overflow-x: auto;
+  color: var(--body-strong); margin: var(--s-xs) 0 var(--s-lg);
+}
+.math-steps .ms-line { white-space: nowrap; }
+.math-steps .ms-line:empty { height: .55em; }
+.math-steps .katex { font-size: 1.04em; }

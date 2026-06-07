@@ -7,8 +7,8 @@
 <title>Diagonalization · GATE DA</title>
 <meta name="description" content="Learn diagonalization from zero: A = PDP⁻¹, when it works, matrix powers made easy — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="07-diagonalization" data-content>
   <div class="hero">
@@ -85,7 +85,7 @@ P = matrix whose columns are the matching eigenvectors</pre>
         <details class="study-item">
           <summary>2. Why do we need it? (easy powers)</summary>
           <p>Diagonal matrices are trivial to power:</p>
-          <pre>D = [2 0; 0 3]  →  D¹⁰ = [2¹⁰ 0; 0 3¹⁰] = [1024 0; 0 59049]</pre>
+          <div class="math-steps"><div class="ms-line">D = $\begin{bmatrix}2&0\\0&3\end{bmatrix}$  →  D¹⁰ = $\begin{bmatrix}2^{10}&0\\0&3^{10}\end{bmatrix}$ = $\begin{bmatrix}1024&0\\0&59049\end{bmatrix}$</div></div>
           <p>Diagonalization gives the same ease for any matrix: <code>Aᵏ = P Dᵏ P⁻¹</code>.</p>
         </details>
 
@@ -109,10 +109,7 @@ P   → convert back to normal coordinates</pre>
 
         <details class="study-item">
           <summary>5. Why D is diagonal (the derivation)</summary>
-          <pre>P = [v₁ v₂]
-AP = [Av₁ Av₂] = [λ₁v₁ λ₂v₂] = P·[λ₁ 0; 0 λ₂] = PD
-
-so  AP = PD   ⇒   A = P D P⁻¹</pre>
+          <div class="math-steps"><div class="ms-line">P = [v₁ v₂]</div><div class="ms-line">AP = [Av₁ Av₂] = [λ₁v₁ λ₂v₂] = P·$\begin{bmatrix}λ₁&0\\0&λ₂\end{bmatrix}$ = PD</div><div class="ms-line"></div><div class="ms-line">so  AP = PD   ⇒   A = P D P⁻¹</div></div>
           <p>That single line is the whole engine of diagonalization.</p>
         </details>
 
@@ -166,39 +163,31 @@ GM = 1 → only 1 eigenvector        → NOT diagonalizable</pre>
 
         <details class="study-item">
           <summary>13. Example: identity (repeated but fine)</summary>
-          <pre>I = [1 0; 0 1]   char poly (λ−1)²,  λ = 1, AM = 2
-Ix = x for every x → eigenspace is all of ℝ² → GM = 2</pre>
+          <div class="math-steps"><div class="ms-line">I = $\begin{bmatrix}1&0\\0&1\end{bmatrix}$   char poly (λ−1)²,  λ = 1, AM = 2</div><div class="ms-line">Ix = x for every x → eigenspace is all of ℝ² → GM = 2</div></div>
           <p>GM = AM = 2, so the identity <strong>is</strong> diagonalizable (it already is diagonal).</p>
         </details>
 
         <details class="study-item">
           <summary>14. Example: a defective matrix</summary>
-          <pre>A = [1 1; 0 1]   λ = 1, AM = 2
-A − I = [0 1; 0 0]  → x₂ = 0 → eigenvectors x₁·[1;0] only → GM = 1</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&1\\0&1\end{bmatrix}$   λ = 1, AM = 2</div><div class="ms-line">A − I = $\begin{bmatrix}0&1\\0&0\end{bmatrix}$  → x₂ = 0 → eigenvectors x₁·$\begin{bmatrix}1\\0\end{bmatrix}$ only → GM = 1</div></div>
           <p>GM (1) &lt; AM (2) → <strong>not diagonalizable</strong>. Such matrices are called <em>defective</em>.</p>
         </details>
 
         <details class="study-item">
           <summary>15. Full worked diagonalization</summary>
-          <pre>A = [4 1; 2 3]   →  λ = 5 (v = [1;1]),  λ = 2 (v = [1;−2])
-
-P = [1  1     D = [5  0
-     1 −2]         0  2]</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}4&1\\2&3\end{bmatrix}$   →   λ = 5 (v = $\begin{bmatrix}1\\1\end{bmatrix}$),   λ = 2 (v = $\begin{bmatrix}1\\-2\end{bmatrix}$)</div><div class="ms-line"></div><div class="ms-line">P = $\begin{bmatrix}1&1\\1&-2\end{bmatrix}$,   D = $\begin{bmatrix}5&0\\0&2\end{bmatrix}$</div></div>
           <p>Then <code>A = P D P⁻¹</code>.</p>
         </details>
 
         <details class="study-item">
           <summary>16. Order-matching warning</summary>
-          <pre>P = [v₁ v₂]  with v₁↔λ₁, v₂↔λ₂   ⇒   D = [λ₁ 0; 0 λ₂]</pre>
+          <div class="math-steps"><div class="ms-line">P = [v₁ v₂]  with v₁↔λ₁, v₂↔λ₂   ⇒   D = $\begin{bmatrix}λ₁&0\\0&λ₂\end{bmatrix}$</div></div>
           <p>The eigenvector order in P must match the eigenvalue order in D — mismatching gives a wrong result.</p>
         </details>
 
         <details class="study-item">
           <summary>17. Computing P⁻¹ (2×2)</summary>
-          <pre>P = [1  1;  1 −2]   det(P) = 1(−2) − 1(1) = −3
-
-P⁻¹ = (1/−3)·[−2 −1; −1  1] = [ 2/3  1/3
-                                1/3 −1/3]</pre>
+          <div class="math-steps"><div class="ms-line">P = $\begin{bmatrix}1&1\\1&-2\end{bmatrix}$   det(P) = 1(−2) − 1(1) = −3</div><div class="ms-line"></div><div class="ms-line">P⁻¹ = $-\tfrac13\begin{bmatrix}-2&-1\\-1&1\end{bmatrix} = \begin{bmatrix}\tfrac23&\tfrac13\\[2pt]\tfrac13&-\tfrac13\end{bmatrix}$</div></div>
         </details>
 
         <details class="study-item">
@@ -212,15 +201,13 @@ P⁻¹ = (1/−3)·[−2 −1; −1  1] = [ 2/3  1/3
         <details class="study-item">
           <summary>19. Computing Dᵏ</summary>
           <pre>D = diag(λ₁, λ₂, λ₃)  →  Dᵏ = diag(λ₁ᵏ, λ₂ᵏ, λ₃ᵏ)</pre>
-          <pre>D = [5 0; 0 2]  →  D¹⁰ = [5¹⁰ 0; 0 2¹⁰]</pre>
+          <div class="math-steps"><div class="ms-line">D = $\begin{bmatrix}5&0\\0&2\end{bmatrix}$  →  D¹⁰ = $\begin{bmatrix}5^{10}&0\\0&2^{10}\end{bmatrix}$</div></div>
           <p>Just raise each diagonal entry to the power.</p>
         </details>
 
         <details class="study-item">
           <summary>20. Powers — diagonal vs non-diagonal</summary>
-          <pre>already diagonal:  [2 0; 0 3]¹⁰ = [1024 0; 0 59049]
-
-non-diagonal A = PDP⁻¹:  A¹⁰ = P·[5¹⁰ 0; 0 2¹⁰]·P⁻¹</pre>
+          <div class="math-steps"><div class="ms-line">already diagonal:  $\begin{bmatrix}2&0\\0&3\end{bmatrix}$¹⁰ = $\begin{bmatrix}1024&0\\0&59049\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">non-diagonal A = PDP⁻¹:  A¹⁰ = P·$\begin{bmatrix}5^{10}&0\\0&2^{10}\end{bmatrix}$·P⁻¹</div></div>
           <p>GATE loves high powers (A⁵, A¹⁰, A¹⁰⁰) — diagonalization (or Cayley–Hamilton) is how you do them.</p>
         </details>
 
@@ -248,8 +235,7 @@ Q = principal directions ,  D = variances</pre>
 
         <details class="study-item">
           <summary>24. Diagonalizable ≠ invertible</summary>
-          <pre>A = [1 0; 0 0]   diagonal → diagonalizable
-but det(A) = 0 (eigenvalue 0) → NOT invertible</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&0\\0&0\end{bmatrix}$   diagonal → diagonalizable</div><div class="ms-line">but det(A) = 0 (eigenvalue 0) → NOT invertible</div></div>
           <p>Diagonalizable = enough independent eigenvectors. Invertible = all eigenvalues non-zero. Different things!</p>
         </details>
 
@@ -269,10 +255,7 @@ diagonalizable        ⇒  distinct eigenvalues (FALSE — e.g. the identity)</p
 
         <details class="study-item">
           <summary>27. Cayley–Hamilton — worked example <span class="study-extra">GATE extra</span></summary>
-          <pre>A = [3 1; 2 2]   tr = 5, det = 4
-p(λ) = λ² − 5λ + 4   ⇒   A² − 5A + 4I = 0
-
-⇒  A² = 5A − 4I</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}3&1\\2&2\end{bmatrix}$   tr = 5, det = 4</div><div class="ms-line">p(λ) = λ² − 5λ + 4   ⇒   A² − 5A + 4I = 0</div><div class="ms-line"></div><div class="ms-line">⇒  A² = 5A − 4I</div></div>
           <p>This rewrites A² in terms of A and I — the key to reducing powers.</p>
         </details>
 
@@ -340,8 +323,8 @@ Cayley–Hamilton:  best when you only need the char. polynomial,
           <pre>GM 1 < AM 2 → no</pre>
           <p class="lead">Q3. Identity I₂ — diagonalizable?</p>
           <pre>GM = AM = 2 → yes</pre>
-          <p class="lead">Q4. A = PDP⁻¹, D = [2 0; 0 5] — A¹⁰?</p>
-          <pre>A¹⁰ = P·[2¹⁰ 0; 0 5¹⁰]·P⁻¹</pre>
+          <p class="lead">Q4. A = PDP⁻¹, D = $\begin{bmatrix}2&0\\0&5\end{bmatrix}$ — A¹⁰?</p>
+          <div class="math-steps"><div class="ms-line">A¹⁰ = P·$\begin{bmatrix}2^{10}&0\\0&5^{10}\end{bmatrix}$·P⁻¹</div></div>
           <p class="lead">Q5. p(λ)=λ²−7λ+10 — express A²?</p>
           <pre>A² − 7A + 10I = 0 → A² = 7A − 10I</pre>
           <p class="lead">Q6. A²−5A+6I=0 — find A⁻¹?</p>
@@ -493,9 +476,9 @@ diagonalization = switch to those directions, where A = D (simple)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/diag-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/diag-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

@@ -7,8 +7,8 @@
 <title>Logistic Regression · GATE DA</title>
 <meta name="description" content="Logistic regression from zero: the sigmoid, probabilities, decision boundary, log-loss — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-subject="machine-learning" data-topic="04-logistic-regression" data-content>
   <div class="hero">
@@ -352,7 +352,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
         <details class="study-item">
           <summary>40. Filters / kernels &amp; feature maps <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>filter (kernel)</strong> is a small matrix (e.g. 3×3) that slides over the image detecting a pattern (edge, corner, texture). The result is a <strong>feature map</strong> showing <em>where</em> that pattern occurs.</p>
-          <pre>[ 1 0 −1 ; 1 0 −1 ; 1 0 −1 ]  → detects vertical edges</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&0&-1\\1&0&-1\\1&0&-1\end{bmatrix}$  → detects vertical edges</div></div>
           <p>In CNNs, filters are <strong>learned</strong> from data, not hand-designed.</p>
         </details>
         <details class="study-item">
@@ -364,7 +364,7 @@ deeper layers: parts, objects, complex shapes</pre>
         <details class="study-item">
           <summary>42. Pooling layer <span class="study-extra">GATE extra</span></summary>
           <p><strong>Pooling</strong> downsamples a feature map — less computation, more robustness, less overfitting.</p>
-          <pre>region [1 3 ; 2 4]:  max pooling → 4   ·   average pooling → 2.5</pre>
+          <div class="math-steps"><div class="ms-line">region $\begin{bmatrix}1&3\\2&4\end{bmatrix}$:  max pooling → 4   ·   average pooling → 2.5</div></div>
           <p>Pooling <em>reduces</em> spatial size (it never enlarges it).</p>
         </details>
         <details class="study-item">
@@ -662,10 +662,10 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/chart.js?v=20260617"></script>
-  <script src="../assets/js/viz/sigmoid-lab.js?v=20260617"></script>
-  <script src="../assets/js/viz/logitboundary-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/chart.js?v=20260618"></script>
+  <script src="../assets/js/viz/sigmoid-lab.js?v=20260618"></script>
+  <script src="../assets/js/viz/logitboundary-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

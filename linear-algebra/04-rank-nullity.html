@@ -7,8 +7,8 @@
 <title>Rank & Nullity · GATE DA</title>
 <meta name="description" content="Learn rank and nullity from zero: meaning, the rank-nullity theorem, four fundamental subspaces — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="04-rank-nullity" data-content>
   <div class="hero">
@@ -103,9 +103,7 @@ everything → a point   → rank 0</pre>
         <details class="study-item">
           <summary>2. Matrix as an information carrier</summary>
           <p>A matrix maps input <code>x</code> to output <code>Ax</code>. Keeping more independent directions = preserving more information.</p>
-          <pre>[1 0; 0 1] keeps everything       → rank 2
-[1 0; 0 0] destroys the y-direction → rank 1
-[0 0; 0 0] destroys everything      → rank 0</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&0\\0&1\end{bmatrix}$ keeps everything       → rank 2</div><div class="ms-line">$\begin{bmatrix}1&0\\0&0\end{bmatrix}$ destroys the y-direction → rank 1</div><div class="ms-line">$\begin{bmatrix}0&0\\0&0\end{bmatrix}$ destroys everything      → rank 0</div></div>
           <p>High rank = more information preserved; low rank = more lost.</p>
         </details>
 
@@ -136,25 +134,18 @@ everything → a point   → rank 0</pre>
         <details class="study-item">
           <summary>6. What is row echelon form?</summary>
           <p>Echelon form: zero rows at the bottom; each row's first non-zero entry sits to the right of the one above; entries below each pivot are zero.</p>
-          <pre>[1 2 3; 0 1 4; 0 0 5]  → 3 non-zero rows → rank 3
-[1 2 3; 0 1 4; 0 0 0]  → 2 non-zero rows → rank 2</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&2&3\\0&1&4\\0&0&5\end{bmatrix}$  → 3 non-zero rows → rank 3</div><div class="ms-line">$\begin{bmatrix}1&2&3\\0&1&4\\0&0&0\end{bmatrix}$  → 2 non-zero rows → rank 2</div></div>
         </details>
 
         <details class="study-item">
           <summary>7. Pivots — rank = number of pivots</summary>
           <p>A <strong>pivot</strong> is the first non-zero entry of a row after reduction.</p>
-          <pre>[1 2 3; 0 5 6; 0 0 0]  → pivots: 1, 5 → rank = 2</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&2&3\\0&5&6\\0&0&0\end{bmatrix}$  → pivots: 1, 5 → rank = 2</div></div>
         </details>
 
         <details class="study-item">
           <summary>8. Worked rank example</summary>
-          <pre>A = [1 2 3; 2 4 6; 1 1 1]
-R2 → R2 − 2R1  ⇒ [0,0,0]
-R3 → R3 − R1   ⇒ [0,−1,−2]
-
-[1  2  3
- 0 -1 -2     → 2 non-zero rows
- 0  0  0]    → rank(A) = 2</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$</div><div class="ms-line">R₂ → R₂ − 2R₁  →  $\begin{bmatrix}0&0&0\end{bmatrix}$</div><div class="ms-line">R₃ → R₃ − R₁  →  $\begin{bmatrix}0&-1&-2\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">$\begin{bmatrix}1&2&3\\0&-1&-2\\0&0&0\end{bmatrix}$  →  2 non-zero rows, so rank(A) = 2</div></div>
         </details>
 
         <details class="study-item">
@@ -187,10 +178,7 @@ det(A) = 0   →  rank < n: singular, dependent, Ax=0 has non-zero solutions</pr
         <details class="study-item">
           <summary>12. Rank by the largest non-zero minor <span class="study-extra">GATE extra</span></summary>
           <p><code>rank(A)</code> = the order of the <strong>largest square submatrix with non-zero determinant</strong>.</p>
-          <pre>A = [1 2 3; 2 4 6; 1 1 1]
-full 3×3 det = 0  → rank < 3
-2×2 [1 2; 1 1] det = −1 ≠ 0  → rank ≥ 2
-⇒ rank = 2</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}$</div><div class="ms-line">full 3×3 det = 0  → rank < 3</div><div class="ms-line">2×2 $\begin{bmatrix}1&2\\1&1\end{bmatrix}$ det = −1 ≠ 0  → rank ≥ 2</div><div class="ms-line">⇒ rank = 2</div></div>
           <p>Handy for small or parameter matrices.</p>
         </details>
 
@@ -232,12 +220,7 @@ rank 1 → nullity 2   (1 survives, 2 crushed)</pre>
 
         <details class="study-item">
           <summary>18. Example: rank and nullity</summary>
-          <pre>A = [1 0; 0 0]  maps [x,y] → [x,0]
-
-x survives → rank = 1
-n = 2 columns → nullity = 2 − 1 = 1
-destroyed direction: [0,1]  (since A[0,1]ᵀ = 0)
-Null(A) = span{[0,1]}</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&0\\0&0\end{bmatrix}$  maps [x,y] → [x,0]</div><div class="ms-line"></div><div class="ms-line">x survives → rank = 1</div><div class="ms-line">n = 2 columns → nullity = 2 − 1 = 1</div><div class="ms-line">destroyed direction: [0,1]  (since A[0,1]ᵀ = 0)</div><div class="ms-line">Null(A) = span{[0,1]}</div></div>
         </details>
 
         <details class="study-item">
@@ -324,12 +307,7 @@ Column space ⊥  Left null space   (both in ℝᵐ)</pre>
 
         <details class="study-item">
           <summary>29. Worked: rank, nullity &amp; null space (2×3)</summary>
-          <pre>A = [1 2 3; 2 4 6]   (R2 = 2R1)  → rank = 1
-n = 3 columns → nullity = 2
-
-x₁ + 2x₂ + 3x₃ = 0 ⇒ x₁ = −2x₂ − 3x₃
-Null(A) = span{ [−2,1,0], [−3,0,1] }   → 2 basis vectors
-rank + nullity = 1 + 2 = 3  ✓</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}1&2&3\\2&4&6\end{bmatrix}$   (R2 = 2R1)  → rank = 1</div><div class="ms-line">n = 3 columns → nullity = 2</div><div class="ms-line"></div><div class="ms-line">x₁ + 2x₂ + 3x₃ = 0 ⇒ x₁ = −2x₂ − 3x₃</div><div class="ms-line">Null(A) = span{ [−2,1,0], [−3,0,1] }   → 2 basis vectors</div><div class="ms-line">rank + nullity = 1 + 2 = 3  ✓</div></div>
         </details>
 
         <details class="study-item">
@@ -383,7 +361,7 @@ BMI depends on height &amp; weight → that column is redundant → dependent co
 
         <details class="study-item">
           <summary>35. Practice problems</summary>
-          <p class="lead">Q1. A = [1 2 3; 2 4 6] — rank &amp; nullity?</p>
+          <p class="lead">Q1. A = $\begin{bmatrix}1&2&3\\2&4&6\end{bmatrix}$ — rank &amp; nullity?</p>
           <pre>R2 = 2R1 → rank 1; columns 3 → nullity 2</pre>
           <p class="lead">Q2. A is 4×7, rank 3 — nullity?</p>
           <pre>nullity = 7 − 3 = 4</pre>
@@ -592,11 +570,11 @@ BMI depends on height &amp; weight → that column is redundant → dependent co
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/rank-lab.js?v=20260617"></script>
-  <script src="../assets/js/viz/scene3d.js?v=20260617"></script>
-  <script src="../assets/js/viz/rank3d-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/rank-lab.js?v=20260618"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260618"></script>
+  <script src="../assets/js/viz/rank3d-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

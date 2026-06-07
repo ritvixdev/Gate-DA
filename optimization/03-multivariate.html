@@ -7,8 +7,8 @@
 <title>Multivariate Optimization · GATE DA</title>
 <meta name="description" content="Unconstrained multivariate optimization: gradient = 0, the Hessian and its definiteness, critical points — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-subject="optimization" data-topic="03-multivariate" data-content>
   <div class="hero">
@@ -122,8 +122,7 @@
         <details class="study-item">
           <summary>6. The Hessian matrix</summary>
           <p>The matrix of all second partial derivatives — it describes the local curvature:</p>
-          <pre>H = [ ∂²f/∂xᵢ∂xⱼ ]      (symmetric n×n)
-2-D: H = [ f_xx  f_xy ; f_xy  f_yy ]</pre>
+          <div class="math-steps"><div class="ms-line">H = [ ∂²f/∂xᵢ∂xⱼ ]      (symmetric n×n)</div><div class="ms-line">2-D: H = $\begin{bmatrix}f_xx&f_xy\\f_xy&f_yy\end{bmatrix}$</div></div>
         </details>
         <details class="study-item">
           <summary>7. Second-order test via definiteness</summary>
@@ -153,16 +152,11 @@ f=x²−y² at (0,0): D = 2(−2) − 0 = −4 < 0 → saddle</pre>
         </details>
         <details class="study-item">
           <summary>10. Worked example — a clean minimum</summary>
-          <pre>f(x,y) = x² + y²
-∇f = (2x, 2y) = 0 → critical point (0,0)
-H = [2 0 ; 0 2] → eigenvalues 2,2 > 0 → positive definite → MINIMUM
-f(0,0) = 0</pre>
+          <div class="math-steps"><div class="ms-line">f(x,y) = x² + y²</div><div class="ms-line">∇f = (2x, 2y) = 0 → critical point (0,0)</div><div class="ms-line">H = $\begin{bmatrix}2&0\\0&2\end{bmatrix}$ → eigenvalues 2,2 > 0 → positive definite → MINIMUM</div><div class="ms-line">f(0,0) = 0</div></div>
         </details>
         <details class="study-item">
           <summary>11. Worked example — a saddle point</summary>
-          <pre>f(x,y) = x² − y²
-∇f = (2x, −2y) = 0 → critical point (0,0)
-H = [2 0 ; 0 −2] → eigenvalues 2, −2 (mixed) → indefinite → SADDLE</pre>
+          <div class="math-steps"><div class="ms-line">f(x,y) = x² − y²</div><div class="ms-line">∇f = (2x, −2y) = 0 → critical point (0,0)</div><div class="ms-line">H = $\begin{bmatrix}2&0\\0&-2\end{bmatrix}$ → eigenvalues 2, −2 (mixed) → indefinite → SADDLE</div></div>
           <p>Down along y, up along x — a mountain pass, neither a peak nor a valley.</p>
         </details>
         <details class="study-item">
@@ -200,7 +194,7 @@ form  L = f(x) − λ g(x) ,  set ∇L = 0 and g(x)=0, solve for x and λ</pre>
             <li>Lagrange is for inequality constraints? <strong>No</strong> — equalities; inequalities use KKT.</li>
           </ul>
           <p class="lead">Q1. f=x²+y²−4x. Critical point &amp; type?</p>
-          <pre>∇f=(2x−4,2y)=0→(2,0); H=[2 0;0 2] PD → minimum</pre>
+          <div class="math-steps"><div class="ms-line">∇f=(2x−4,2y)=0→(2,0); H=$\begin{bmatrix}2&0\\0&2\end{bmatrix}$ PD → minimum</div></div>
           <p class="lead">Q2. Eigenvalues of H are 5 and −1 — what kind of point?</p>
           <pre>mixed signs → saddle</pre>
           <pre>Memory: ∇f=0 (candidates) · Hessian PD→min, ND→max, indefinite→saddle (read eigenvalues) ·
@@ -339,11 +333,11 @@ PSD everywhere ⇒ convex ⇒ global min · equality→Lagrange, inequality→KK
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/contour-lab.js?v=20260617"></script>
-  <script src="../assets/js/viz/scene3d.js?v=20260617"></script>
-  <script src="../assets/js/viz/surface3d-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/contour-lab.js?v=20260618"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260618"></script>
+  <script src="../assets/js/viz/surface3d-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

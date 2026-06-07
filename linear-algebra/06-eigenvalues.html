@@ -7,8 +7,8 @@
 <title>Eigenvalues & Eigenvectors · GATE DA</title>
 <meta name="description" content="Learn eigenvalues and eigenvectors from zero: meaning, characteristic equation, key properties — simple language, GATE shortcuts, traps, practice, and an interactive Eigen Lab.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="06-eigenvalues" data-content>
   <div class="hero">
@@ -98,11 +98,7 @@ eigenvalue  = power multiplier in that direction</pre>
 
         <details class="study-item">
           <summary>4. Simple visual example</summary>
-          <pre>A = [2  0      maps [x; y] → [2x; 3y]
-     0  3]
-
-A·[1;0] = [2;0] = 2·[1;0]   → eigenvector [1;0], λ = 2
-A·[0;1] = [0;3] = 3·[0;1]   → eigenvector [0;1], λ = 3</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}2&0\\0&3\end{bmatrix}$   maps   $\begin{bmatrix}x\\y\end{bmatrix} \to \begin{bmatrix}2x\\3y\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">A$\begin{bmatrix}1\\0\end{bmatrix} = \begin{bmatrix}2\\0\end{bmatrix} = 2\begin{bmatrix}1\\0\end{bmatrix}$   → eigenvector $\begin{bmatrix}1\\0\end{bmatrix}$, λ = 2</div><div class="ms-line">A$\begin{bmatrix}0\\1\end{bmatrix} = \begin{bmatrix}0\\3\end{bmatrix} = 3\begin{bmatrix}0\\1\end{bmatrix}$   → eigenvector $\begin{bmatrix}0\\1\end{bmatrix}$, λ = 3</div></div>
           <p>The x-axis stretches by 2, the y-axis by 3.</p>
         </details>
 
@@ -152,44 +148,33 @@ det = (4−λ)(3−λ) − 2 = λ² − 7λ + 10 = 0
 
         <details class="study-item">
           <summary>10. Worked example — eigenvector for λ = 5</summary>
-          <pre>A − 5I = [−1   1
-           2  −2]
-
-−x₁ + x₂ = 0  →  x₂ = x₁
-x = t·[1; 1]   →  eigenvector [1; 1]</pre>
-          <p>Every non-zero multiple ([2;2], [−5;−5], …) is the same eigen-direction.</p>
+          <div class="math-steps"><div class="ms-line">A − 5I = $\begin{bmatrix}-1&1\\2&-2\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">−x₁ + x₂ = 0  ⇒  x₂ = x₁</div><div class="ms-line">x = t$\begin{bmatrix}1\\1\end{bmatrix}$   →  eigenvector $\begin{bmatrix}1\\1\end{bmatrix}$</div></div>
+          <p>Every non-zero multiple ($\begin{bmatrix}2\\2\end{bmatrix}$, $\begin{bmatrix}-5\\-5\end{bmatrix}$, …) is the same eigen-direction.</p>
         </details>
 
         <details class="study-item">
           <summary>11. Worked example — eigenvector for λ = 2</summary>
-          <pre>A − 2I = [2  1
-          2  1]
-
-2x₁ + x₂ = 0  →  x₂ = −2x₁
-x = t·[1; −2]   →  eigenvector [1; −2]</pre>
-          <p><strong>Result:</strong> direction [1;1] stretches ×5; direction [1;−2] stretches ×2.</p>
+          <div class="math-steps"><div class="ms-line">A − 2I = $\begin{bmatrix}2&1\\2&1\end{bmatrix}$</div><div class="ms-line"></div><div class="ms-line">2x₁ + x₂ = 0  ⇒  x₂ = −2x₁</div><div class="ms-line">x = t$\begin{bmatrix}1\\-2\end{bmatrix}$   →  eigenvector $\begin{bmatrix}1\\-2\end{bmatrix}$</div></div>
+          <p><strong>Result:</strong> direction $\begin{bmatrix}1\\1\end{bmatrix}$ stretches ×5; direction $\begin{bmatrix}1\\-2\end{bmatrix}$ stretches ×2.</p>
         </details>
 
         <details class="study-item">
           <summary>12. Check with trace &amp; determinant</summary>
-          <pre>A = [4 1; 2 3]:  tr = 4+3 = 7,  det = 12−2 = 10
-eigenvalues 5, 2:  5+2 = 7 ✓ (= trace),  5×2 = 10 ✓ (= det)</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}4&1\\2&3\end{bmatrix}$:  tr = 4+3 = 7,  det = 12−2 = 10</div><div class="ms-line">eigenvalues 5, 2:  5+2 = 7 ✓ (= trace),  5×2 = 10 ✓ (= det)</div></div>
           <p><span style="color:var(--coral-text)">Shortcut:</span> sum of eigenvalues = trace; product = determinant.</p>
         </details>
 
         <details class="study-item">
           <summary>13. The characteristic polynomial (2×2 fast form)</summary>
-          <pre>A = [a b; c d]
-λ² − tr(A)·λ + det(A) = 0</pre>
-          <pre>A = [4 1; 2 3]: λ² − 7λ + 10 = 0  →  λ = 5, 2</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}a&b\\c&d\end{bmatrix}$</div><div class="ms-line">λ² − tr(A)·λ + det(A) = 0</div></div>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}4&1\\2&3\end{bmatrix}$: λ² − 7λ + 10 = 0  →  λ = 5, 2</div></div>
           <p>Much faster than expanding the determinant for 2×2 matrices.</p>
         </details>
 
         <details class="study-item">
           <summary>14. Triangular / diagonal eigenvalues (shortcut)</summary>
           <p>For diagonal, upper- or lower-triangular matrices, the <strong>eigenvalues are simply the diagonal entries</strong> — no work needed.</p>
-          <pre>[2 5 7; 0 3 8; 0 0 4]  → eigenvalues 2, 3, 4
-diag(5, −1, 7)         → eigenvalues 5, −1, 7</pre>
+          <div class="math-steps"><div class="ms-line">$\begin{bmatrix}2&5&7\\0&3&8\\0&0&4\end{bmatrix}$  → eigenvalues 2, 3, 4</div><div class="ms-line">diag(5, −1, 7)         → eigenvalues 5, −1, 7</div></div>
         </details>
 
         <details class="study-item">
@@ -277,14 +262,13 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
         <details class="study-item">
           <summary>25. Projection matrices</summary>
           <p>Projection matrices are idempotent (<code>P² = P</code>), so their eigenvalues are <strong>0 or 1</strong>.</p>
-          <pre>P = [1 0; 0 0]:  P[1;0]=[1;0] (λ=1, kept),  P[0;1]=[0;0] (λ=0, destroyed)</pre>
+          <div class="math-steps"><div class="ms-line">P = $\begin{bmatrix}1&0\\0&0\end{bmatrix}$:  P$\begin{bmatrix}1\\0\end{bmatrix}$=$\begin{bmatrix}1\\0\end{bmatrix}$ (λ=1, kept),  P$\begin{bmatrix}0\\1\end{bmatrix}$=$\begin{bmatrix}0\\0\end{bmatrix}$ (λ=0, destroyed)</div></div>
         </details>
 
         <details class="study-item">
           <summary>26. Quadratic &amp; bilinear forms <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>quadratic form</strong> packs a degree-2 expression into a symmetric matrix:</p>
-          <pre>Q(x) = xᵀA x = Σ aᵢⱼ xᵢ xⱼ     (A symmetric)
-e.g. 2x² + 3y² + 4xy  →  A = [2 2; 2 3]   (diagonal = squares, off-diag = half the cross term)</pre>
+          <div class="math-steps"><div class="ms-line">Q(x) = xᵀA x = Σ aᵢⱼ xᵢ xⱼ     (A symmetric)</div><div class="ms-line">e.g. 2x² + 3y² + 4xy  →  A = $\begin{bmatrix}2&2\\2&3\end{bmatrix}$   (diagonal = squares, off-diag = half the cross term)</div></div>
           <p>A <strong>bilinear form</strong> is <code>xᵀA y</code>. The matrix of a quadratic form is always taken symmetric.</p>
         </details>
 
@@ -313,7 +297,7 @@ indefinite:                  mixed signs       ⟺  eigenvalues of both signs</p
 
         <details class="study-item">
           <summary>29. Practice problems</summary>
-          <p class="lead">Q1. Eigenvalues of [2 5; 0 3]?</p>
+          <p class="lead">Q1. Eigenvalues of $\begin{bmatrix}2&5\\0&3\end{bmatrix}$?</p>
           <pre>triangular → 2, 3</pre>
           <p class="lead">Q2. 2×2 with trace 7, det 10?</p>
           <pre>λ² − 7λ + 10 = 0 → 5, 2</pre>
@@ -493,9 +477,9 @@ Eigenvalue  = the multiplier on that direction</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/eigen-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/eigen-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

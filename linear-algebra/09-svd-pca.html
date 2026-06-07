@@ -7,8 +7,8 @@
 <title>SVD & PCA · GATE DA</title>
 <meta name="description" content="Learn SVD and PCA from zero: A = UΣVᵀ, singular values, low-rank approximation, link to PCA — simple language, GATE shortcuts, traps, practice.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="09-svd-pca" data-content>
   <div class="hero">
@@ -113,8 +113,7 @@ U  → rotate/reflect into the output space</pre>
         <details class="study-item">
           <summary>5. The shape of Σ</summary>
           <p>Σ has the same shape as A, with singular values on the diagonal positions:</p>
-          <pre>A is 3×2:  Σ = [σ₁ 0; 0 σ₂; 0 0]
-A is 2×3:  Σ = [σ₁ 0 0; 0 σ₂ 0]</pre>
+          <div class="math-steps"><div class="ms-line">A is 3×2:  Σ = $\begin{bmatrix}σ₁&0\\0&σ₂\\0&0\end{bmatrix}$</div><div class="ms-line">A is 2×3:  Σ = $\begin{bmatrix}σ₁&0&0\\0&σ₂&0\end{bmatrix}$</div></div>
         </details>
 
         <details class="study-item">
@@ -158,10 +157,9 @@ nullity(A) = n − rank   (zero singular directions = null space)</pre>
         <details class="study-item">
           <summary>11. SVD examples</summary>
           <p class="lead">Diagonal matrix (already aligned):</p>
-          <pre>A = [3 0; 0 2]  →  U = I, Σ = [3 0; 0 2], V = I,  σ = 3, 2</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}3&0\\0&2\end{bmatrix}$  →  U = I, Σ = $\begin{bmatrix}3&0\\0&2\end{bmatrix}$, V = I,  σ = 3, 2</div></div>
           <p class="lead">Negative diagonal — singular values are still positive:</p>
-          <pre>A = [−3 0; 0 2]  →  eigenvalues −3, 2  but  singular values 3, 2
-(the flip goes into U or V; Σ only stretches)</pre>
+          <div class="math-steps"><div class="ms-line">A = $\begin{bmatrix}-3&0\\0&2\end{bmatrix}$  →  eigenvalues −3, 2  but  singular values 3, 2</div><div class="ms-line">(the flip goes into U or V; Σ only stretches)</div></div>
         </details>
 
         <details class="study-item">
@@ -591,11 +589,11 @@ PCA               → uses SVD/eigenvectors to reduce data</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/pca-lab.js?v=20260617"></script>
-  <script src="../assets/js/viz/scene3d.js?v=20260617"></script>
-  <script src="../assets/js/viz/pca3d-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/pca-lab.js?v=20260618"></script>
+  <script src="../assets/js/viz/scene3d.js?v=20260618"></script>
+  <script src="../assets/js/viz/pca3d-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>

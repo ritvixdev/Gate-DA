@@ -7,8 +7,8 @@
 <title>Matrices · GATE DA</title>
 <meta name="description" content="Learn matrices from zero: meaning, multiplication, special types, transpose, inverse, trace — simple language, GATE shortcuts, traps, practice, and an interactive Matrix Transformer.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="../assets/css/tokens.css?v=20260617">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260617">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260618">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260618">
 </head>
 <body data-root=".." data-topic="02-matrices" data-content>
   <!-- 1. TOPIC NAME -->
@@ -203,13 +203,7 @@ A = 2 × 3,  B = 2 × 4   → not possible (3 ≠ 2)</pre>
           <pre>A = [1  2      B = [5  6
      3  4]          7  8]</pre>
           <p>Each entry of <code>C = AB</code> is a <strong>row of A dotted with a column of B</strong>.</p>
-          <pre>C₁₁ = [1 2]·[5;7] = 1×5 + 2×7 = 19
-C₁₂ = [1 2]·[6;8] = 1×6 + 2×8 = 22
-C₂₁ = [3 4]·[5;7] = 3×5 + 4×7 = 43
-C₂₂ = [3 4]·[6;8] = 3×6 + 4×8 = 50
-
-AB = [19  22
-      43  50]</pre>
+          <div class="math-steps"><div class="ms-line">C₁₁ = $\begin{bmatrix}1&2\end{bmatrix}\begin{bmatrix}5\\7\end{bmatrix}$ = 1×5 + 2×7 = 19</div><div class="ms-line">C₁₂ = $\begin{bmatrix}1&2\end{bmatrix}\begin{bmatrix}6\\8\end{bmatrix}$ = 1×6 + 2×8 = 22</div><div class="ms-line">C₂₁ = $\begin{bmatrix}3&4\end{bmatrix}\begin{bmatrix}5\\7\end{bmatrix}$ = 3×5 + 4×7 = 43</div><div class="ms-line">C₂₂ = $\begin{bmatrix}3&4\end{bmatrix}\begin{bmatrix}6\\8\end{bmatrix}$ = 3×6 + 4×8 = 50</div><div class="ms-line"></div><div class="ms-line">AB = $\begin{bmatrix}19&22\\43&50\end{bmatrix}$</div></div>
         </details>
 
         <details class="study-item">
@@ -637,10 +631,10 @@ skew-Hermitian:  A* = −A    (diagonal is 0 or purely imaginary)</pre>
 
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260617"></script>
-  <script src="../assets/js/viz/grid.js?v=20260617"></script>
-  <script src="../assets/js/viz/matrix-transform.js?v=20260617"></script>
-  <script src="../assets/js/viz/matmul-lab.js?v=20260617"></script>
-  <script src="../assets/js/app.js?v=20260617"></script>
+  <script src="../assets/js/topics.js?v=20260618"></script>
+  <script src="../assets/js/viz/grid.js?v=20260618"></script>
+  <script src="../assets/js/viz/matrix-transform.js?v=20260618"></script>
+  <script src="../assets/js/viz/matmul-lab.js?v=20260618"></script>
+  <script src="../assets/js/app.js?v=20260618"></script>
 </body>
 </html>
