@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Probability &amp; Statistics — Formula Sheet</title>
+<meta name="description" content="Condensed Probability & Statistics formula sheet: probability rules, Bayes, random variables, distributions, CLT, hypothesis tests.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+<style>
+  .rev-table{width:100%;border-collapse:collapse;font-size:15px;margin:var(--s-md) 0}
+  .rev-table th,.rev-table td{border:1px solid var(--hairline);padding:8px 10px;text-align:left;color:var(--body)}
+  .rev-table th{background:var(--surface-soft);color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5l1.9 6.7 6.6-2-4 5.8 4 5.8-6.6-2L12 22.5l-1.9-6.7-6.6 2 4-5.8-4-5.8 6.6 2z"/></svg>
+      <span class="brand-text">Revision<span> Zone</span></span>
+    </a>
+    <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <div class="page-center">
+    <div class="hero">
+      <span class="tag">Formula sheet</span>
+      <h1>🎲 Probability &amp; Statistics</h1>
+      <p class="lede">Rules, distributions and all four hypothesis tests — condensed for last-week revision.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">1 · Probability rules</div>
+      <div class="formula">$$P(A\cup B)=P(A)+P(B)-P(A\cap B) \qquad P(A^c)=1-P(A)$$</div>
+      <div class="formula">$$P(A\mid B)=\frac{P(A\cap B)}{P(B)} \qquad \text{Independent: } P(A\cap B)=P(A)P(B)\ \Leftrightarrow\ P(A\mid B)=P(A)$$</div>
+      <p><strong>Mutually exclusive</strong> ($P(A\cap B)=0$) is <em>not</em> independence — exclusive events with non-zero probabilities are always dependent.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">2 · Total probability &amp; Bayes</div>
+      <div class="formula">$$P(B)=\sum_i P(B\mid A_i)P(A_i) \qquad P(A_k\mid B)=\frac{P(B\mid A_k)P(A_k)}{\sum_i P(B\mid A_i)P(A_i)}$$</div>
+      <p><strong>Disease-test template:</strong> $P(D\mid +)=\dfrac{\text{sens}\cdot p}{\text{sens}\cdot p+\text{FPR}\cdot(1-p)}$ — small prevalence $p$ makes this surprisingly small even for good tests.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">3 · Random variables, expectation, variance</div>
+      <div class="formula">$$E[X]=\sum x\,p(x)\ \text{or}\ \int x f(x)dx \qquad \operatorname{Var}(X)=E[X^2]-(E[X])^2$$</div>
+      <div class="formula">$$E[aX+b]=aE[X]+b \qquad \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$$</div>
+      <p>PMF: $\sum p(x)=1$. PDF: $f(x)\ge0$, $\int f=1$, $P(X=x)=0$ for continuous $X$. CDF $F(x)=P(X\le x)$, non-decreasing, $F(-\infty)=0$, $F(\infty)=1$; for continuous $X$, $f=F'$.</p>
+      <p>$E[X+Y]=E[X]+E[Y]$ always; $\operatorname{Var}(X\pm Y)=\operatorname{Var}X+\operatorname{Var}Y\pm2\operatorname{Cov}(X,Y)$ (covariance term drops iff uncorrelated).</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">4 · Standard distributions</div>
+      <table class="rev-table">
+        <tr><th>Distribution</th><th>PMF / PDF</th><th>Mean</th><th>Variance</th></tr>
+        <tr><td>Bernoulli($p$)</td><td>$p^x(1-p)^{1-x}$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+        <tr><td>Binomial($n,p$)</td><td>$\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+        <tr><td>Geometric($p$)</td><td>$(1-p)^{k-1}p$</td><td>$1/p$</td><td>$(1-p)/p^2$</td></tr>
+        <tr><td>Poisson($\lambda$)</td><td>$e^{-\lambda}\lambda^k/k!$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+        <tr><td>Uniform($a,b$)</td><td>$1/(b-a)$</td><td>$(a+b)/2$</td><td>$(b-a)^2/12$</td></tr>
+        <tr><td>Exponential($\lambda$)</td><td>$\lambda e^{-\lambda x}$</td><td>$1/\lambda$</td><td>$1/\lambda^2$</td></tr>
+        <tr><td>Normal($\mu,\sigma^2$)</td><td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/2\sigma^2}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+      </table>
+      <p><strong>Normal quick facts:</strong> $Z=\frac{X-\mu}{\sigma}$; 68–95–99.7 rule; $P(Z>1.645)=0.05$, $P(Z>1.96)=0.025$, $P(Z>2)\approx0.0228$. Exponential &amp; geometric are memoryless.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">5 · Joint distributions, covariance, correlation</div>
+      <div class="formula">$$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y] \qquad \rho=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}\in[-1,1]$$</div>
+      <p>Marginal: $p_X(x)=\sum_y p(x,y)$. Independent $\Rightarrow$ $\operatorname{Cov}=0$, but $\operatorname{Cov}=0\;\not\Rightarrow$ independent (classic trap; holds only for jointly normal). $\operatorname{Cov}(aX,bY)=ab\operatorname{Cov}(X,Y)$, $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">6 · Descriptive statistics</div>
+      <div class="formula">$$\bar x=\frac1n\sum x_i \qquad s^2=\frac{1}{n-1}\sum(x_i-\bar x)^2 \qquad \text{IQR}=Q_3-Q_1$$</div>
+      <p>Median: middle value (robust to outliers); mode: most frequent. Box plot whisker fences: $Q_1-1.5\,\text{IQR}$ and $Q_3+1.5\,\text{IQR}$ — beyond = outliers. Right-skewed: mean &gt; median; left-skewed: mean &lt; median. Histograms show shape; box plots compare spread/outliers.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">7 · Sampling &amp; CLT</div>
+      <div class="formula">$$\bar X\;\xrightarrow{\ n\ \text{large}\ }\;N\!\Big(\mu,\ \frac{\sigma^2}{n}\Big) \qquad \text{SE}=\frac{\sigma}{\sqrt n}$$</div>
+      <p>Holds for (almost) <em>any</em> population distribution with finite variance — that's the point of the CLT. $n\ge30$ is the usual rule of thumb; if the population is already normal, $\bar X$ is exactly normal for any $n$.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">8 · Hypothesis tests at a glance</div>
+      <table class="rev-table">
+        <tr><th>Test</th><th>Use when</th><th>Statistic</th><th>Distribution</th></tr>
+        <tr><td>z-test</td><td>Mean, $\sigma$ <strong>known</strong> (or $n$ large)</td><td>$z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}$</td><td>$N(0,1)$</td></tr>
+        <tr><td>t-test</td><td>Mean, $\sigma$ <strong>unknown</strong>, small $n$</td><td>$t=\frac{\bar x-\mu_0}{s/\sqrt n}$</td><td>$t_{n-1}$</td></tr>
+        <tr><td>Chi-square</td><td>Variance: $\sigma^2=\sigma_0^2$; GOF / independence</td><td>$\chi^2=\frac{(n-1)s^2}{\sigma_0^2}$ or $\sum\frac{(O-E)^2}{E}$</td><td>$\chi^2_{df}$</td></tr>
+        <tr><td>F-test</td><td>Compare <strong>two variances</strong></td><td>$F=s_1^2/s_2^2$</td><td>$F_{n_1-1,\,n_2-1}$</td></tr>
+      </table>
+      <p><strong>Decision:</strong> reject $H_0$ if p-value $&lt;\alpha$ (or |statistic| &gt; critical value). Type I error = reject true $H_0$ (prob $=\alpha$); Type II = fail to reject false $H_0$ (prob $=\beta$); power $=1-\beta$. Independence test df $=(r-1)(c-1)$; GOF df $=k-1$. $t$ has heavier tails than $z$ and $t_{df}\to N(0,1)$ as $df\to\infty$.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">Exam traps</div>
+      <ul>
+        <li>Sample variance divides by $n-1$, not $n$ (unbiasedness).</li>
+        <li>Var$(X-Y)$ = Var$X$ + Var$Y$ for independent $X,Y$ — variances <em>add</em> even under subtraction.</li>
+        <li>Two-tailed test at $\alpha=0.05$ uses $z=1.96$; one-tailed uses $1.645$.</li>
+        <li>Binomial "at least one" questions: $P(\ge1)=1-P(0)$.</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:var(--s-xl)"><a class="btn btn-primary" href="index.html">← Revision Zone</a> &nbsp; <a class="btn" href="optimization.html">Next: Optimization →</a></p>
+  </div>
+
+  <footer class="site-footer">Revision Zone · Probability &amp; Statistics formula sheet</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html>

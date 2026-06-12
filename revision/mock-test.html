@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Qualifier Mock Test — 25 Questions, 60 Minutes</title>
+<meta name="description" content="Mixed mock test simulating the M.Tech AI qualifier: 25 questions across Probability & Statistics, Linear Algebra, Optimization and ML. MCQ, MSQ & NAT, timed and scored.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+<style>
+  .mock-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;background:var(--surface-card);border:1px solid var(--hairline);border-radius:var(--r-lg);padding:12px 18px;margin:var(--s-lg) 0;box-shadow:var(--shadow-sm)}
+  .mock-timer{font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--ink)}
+  .mock-timer.low{color:var(--error-text)}
+  .mock-bar .spacer{flex:1}
+  .mock-score{background:var(--surface-card);border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-lg);margin:var(--s-lg) 0;box-shadow:var(--shadow-md)}
+  .mock-score h2{margin:0 0 8px;font-size:24px;color:var(--ink)}
+  .mock-score .big{font-family:var(--font-mono);font-size:34px;font-weight:700;color:var(--primary)}
+  .mock-score p{color:var(--body);margin:6px 0}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5l1.9 6.7 6.6-2-4 5.8 4 5.8-6.6-2L12 22.5l-1.9-6.7-6.6 2 4-5.8-4-5.8 6.6 2z"/></svg>
+      <span class="brand-text">Revision<span> Zone</span></span>
+    </a>
+    <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <div class="page-center">
+    <div class="hero">
+      <span class="tag">Mock test</span>
+      <h1>⏱️ Qualifier Mock Test</h1>
+      <p class="lede"><strong>25 questions · 40 marks · 60 minutes.</strong> All four subjects mixed, exam style. MCQ: one correct (−⅓ of marks if wrong). MSQ: select <em>all</em> correct, no negative marking. NAT: type a number, no negative marking. Check each answer as you go, then press <strong>Finish &amp; score</strong>.</p>
+    </div>
+
+    <div class="mock-bar">
+      <button class="gate-check" id="startBtn">Start timer</button>
+      <span class="mock-timer" id="timer">60:00</span>
+      <span class="spacer"></span>
+      <span class="gate-hint" id="attemptCount">0 / 25 attempted</span>
+      <button class="gate-check" id="finishBtn">Finish &amp; score</button>
+    </div>
+
+    <div id="scorePanel" class="mock-score" hidden></div>
+
+    <!-- Q1 · P&S · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="C" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q1.</strong> Events $A$ and $B$ are independent with $P(A)=0.5$ and $P(B)=0.4$. Then $P(A\cup B)$ equals</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.9$</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.2$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.7$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.6$</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$P(A\cap B)=0.5\times0.4=0.2$ (independence), so $P(A\cup B)=0.5+0.4-0.2=0.7$.</div>
+    </div>
+
+    <!-- Q2 · LA · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="B" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q2.</strong> The rank of $\begin{pmatrix}1&2&3\\2&4&6\\1&1&1\end{pmatrix}$ is</div>
+      <div class="gate-opts">
+        <button class="gate-opt" data-val="A">1</button>
+        <button class="gate-opt" data-val="B">2</button>
+        <button class="gate-opt" data-val="C">3</button>
+        <button class="gate-opt" data-val="D">0</button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Row 2 $=2\times$ Row 1, so it adds nothing. Rows 1 and 3 are independent → rank $=2$.</div>
+    </div>
+
+    <!-- Q3 · ML · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="B" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q3.</strong> In linear regression, the least-squares method chooses the coefficients that minimize</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>the sum of absolute residuals</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>the sum of squared residuals</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>the perpendicular distances to the line</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>the maximum residual</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Ordinary least squares minimizes $\sum(y_i-\hat y_i)^2$ — squared <em>vertical</em> residuals, not perpendicular distances.</div>
+    </div>
+
+    <!-- Q4 · Opt · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="A" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Optimization</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q4.</strong> The minimum value of $f(x)=x^2-4x+7$ over $\mathbb{R}$ is</div>
+      <div class="gate-opts">
+        <button class="gate-opt" data-val="A">3</button>
+        <button class="gate-opt" data-val="B">7</button>
+        <button class="gate-opt" data-val="C">2</button>
+        <button class="gate-opt" data-val="D">0</button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$f'(x)=2x-4=0\Rightarrow x=2$; $f''=2>0$ so it's a minimum. $f(2)=4-8+7=3$.</div>
+    </div>
+
+    <!-- Q5 · P&S · NAT · 1m -->
+    <div class="gate-q" data-type="NAT" data-key="0.5 to 0.5" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q5.</strong> A fair six-sided die is rolled. Given that the outcome is greater than 2, the probability that it is even is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Condition: $\{3,4,5,6\}$ (4 outcomes). Even among them: $\{4,6\}$ (2 outcomes). $P=2/4=0.5$.</div>
+    </div>
+
+    <!-- Q6 · LA · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="C" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q6.</strong> The projection of $b=(3,4)^{\mathsf T}$ onto $a=(1,0)^{\mathsf T}$ is</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$(0,4)^{\mathsf T}$</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$(3,4)^{\mathsf T}$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$(3,0)^{\mathsf T}$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$(4,0)^{\mathsf T}$</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$\operatorname{proj}_a b=\frac{a^{\mathsf T}b}{a^{\mathsf T}a}a=\frac{3}{1}(1,0)^{\mathsf T}=(3,0)^{\mathsf T}$.</div>
+    </div>
+
+    <!-- Q7 · ML · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="D" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q7.</strong> In kNN classification, increasing $k$ (with everything else fixed) generally</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>makes the decision boundary more complex</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>increases variance and decreases bias</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>guarantees lower test error</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>smooths the decision boundary, increasing bias and decreasing variance</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Larger $k$ averages over more neighbours → smoother boundary → higher bias, lower variance. Small $k$ (e.g. $k=1$) overfits.</div>
+    </div>
+
+    <!-- Q8 · P&S · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="B" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q8.</strong> If $\operatorname{Var}(X)=4$, then $\operatorname{Var}(3X-2)$ equals</div>
+      <div class="gate-opts">
+        <button class="gate-opt" data-val="A">10</button>
+        <button class="gate-opt" data-val="B">36</button>
+        <button class="gate-opt" data-val="C">12</button>
+        <button class="gate-opt" data-val="D">34</button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)=9\times4=36$. The shift $-2$ doesn't change variance.</div>
+    </div>
+
+    <!-- Q9 · ML · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="A" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q9.</strong> The objective minimized by k-means clustering is</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>the within-cluster sum of squared distances to centroids</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>the between-cluster distance</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>the classification error</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>the number of clusters</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>k-means minimizes WCSS (inertia): $\sum_j\sum_{x\in C_j}\|x-\mu_j\|^2$.</div>
+    </div>
+
+    <!-- Q10 · P&S · MCQ · 1m -->
+    <div class="gate-q" data-type="MCQ" data-key="D" data-marks="1">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+      <div class="gate-qtext"><strong>Q10.</strong> To test whether two normal populations have equal <em>variances</em>, the appropriate test is the</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>z-test</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>t-test</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>chi-square goodness-of-fit test</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>F-test</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$F=s_1^2/s_2^2$ follows an $F_{n_1-1,n_2-1}$ distribution under $H_0:\sigma_1^2=\sigma_2^2$. z/t compare means; chi-square tests one variance or counts.</div>
+    </div>
+
+    <!-- Q11 · LA · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="3 to 3" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q11.</strong> The largest eigenvalue of $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$\lambda^2-\operatorname{tr}\lambda+\det=\lambda^2-4\lambda+3=0\Rightarrow\lambda=1,3$. Largest $=3$. (Shortcut for $\begin{pmatrix}a&b\\b&a\end{pmatrix}$: $\lambda=a\pm b$.)</div>
+    </div>
+
+    <!-- Q12 · P&S · MCQ · 2m -->
+    <div class="gate-q" data-type="MCQ" data-key="B" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q12.</strong> A disease affects 1% of a population. A test detects it with sensitivity 99% and has a false-positive rate of 5%. The probability that a person who tests positive actually has the disease is</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.99$</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1/6$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.95$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1/2$</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Bayes: $\dfrac{0.99\times0.01}{0.99\times0.01+0.05\times0.99}=\dfrac{0.0099}{0.0099+0.0495}=\dfrac{0.0099}{0.0594}=\dfrac16\approx0.167$.</div>
+    </div>
+
+    <!-- Q13 · Opt · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="1 to 1" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Optimization</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q13.</strong> Gradient descent is applied to $f(x)=x^2$ with learning rate $\eta=0.25$, starting at $x_0=4$. The value of $x_2$ (after two updates) is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$f'(x)=2x$. $x_1=4-0.25(8)=2$; $x_2=2-0.25(4)=1$. Each step multiplies $x$ by $(1-2\eta)=0.5$.</div>
+    </div>
+
+    <!-- Q14 · ML · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="1.5 to 1.5" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q14.</strong> A simple linear regression is fitted by least squares to the points $(1,2)$, $(2,3)$, $(3,5)$. The slope $\beta_1$ is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$\bar x=2$, $\bar y=10/3$. $S_{xy}=(-1)(-\tfrac43)+0+(1)(\tfrac53)=3$; $S_{xx}=1+0+1=2$. $\beta_1=3/2=1.5$.</div>
+    </div>
+
+    <!-- Q15 · LA · MCQ · 2m -->
+    <div class="gate-q" data-type="MCQ" data-key="C" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q15.</strong> Consider the system $x+y=2$, $2x+2y=5$. Which is correct?</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>unique solution</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>infinitely many solutions</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>no solution</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>exactly two solutions</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$\operatorname{rank}(A)=1$ but $\operatorname{rank}([A|b])=2$ (the second equation demands $2(x+y)=5$, i.e. $x+y=2.5\ne2$) → inconsistent.</div>
+    </div>
+
+    <!-- Q16 · P&S · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="0.37 to 0.38" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q16.</strong> A fair coin is tossed 4 times. The probability of getting exactly 2 heads is ______ (round to 2–3 decimals).</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Binomial$(4,\tfrac12)$: $\binom42(\tfrac12)^4=\dfrac{6}{16}=0.375$.</div>
+    </div>
+
+    <!-- Q17 · Opt · MCQ · 2m -->
+    <div class="gate-q" data-type="MCQ" data-key="C" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Optimization</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q17.</strong> At a stationary point of $f:\mathbb{R}^2\to\mathbb{R}$, the Hessian is $\begin{pmatrix}2&0\\0&-3\end{pmatrix}$. The point is a</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>local minimum</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>local maximum</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>saddle point</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>global minimum</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Eigenvalues $2>0$ and $-3<0$ have mixed signs (equivalently $\det H=-6<0$) → saddle point.</div>
+    </div>
+
+    <!-- Q18 · LA · MSQ · 2m -->
+    <div class="gate-q" data-type="MSQ" data-key="A;B;D" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q18.</strong> Let $A$ be a real <strong>symmetric</strong> matrix. Which of the following is/are always true?</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>all eigenvalues of $A$ are real</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$A$ is diagonalizable</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$A$ is invertible</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>eigenvectors for distinct eigenvalues are orthogonal</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Spectral theorem gives A, B, D. C is false — e.g. the centering matrix (or the zero matrix) is symmetric but singular.</div>
+    </div>
+
+    <!-- Q19 · P&S · MCQ · 2m -->
+    <div class="gate-q" data-type="MCQ" data-key="A" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q19.</strong> A population has mean 50 and standard deviation 10. For random samples of size $n=100$, the probability that the sample mean exceeds 52 is approximately</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.023$</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.42$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.16$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.5$</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>CLT: $\bar X\sim N(50,\,10^2/100)=N(50,1)$, SE $=1$. $P(\bar X>52)=P(Z>2)\approx0.0228$.</div>
+    </div>
+
+    <!-- Q20 · ML · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="0.5 to 0.5" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q20.</strong> A logistic regression model has weights $w=(1,-1)^{\mathsf T}$ and bias $b=-1$. For input $x=(2,1)^{\mathsf T}$, the predicted probability $P(y=1\mid x)$ is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$z=w^{\mathsf T}x+b=(1)(2)+(-1)(1)-1=0$, and $\sigma(0)=0.5$.</div>
+    </div>
+
+    <!-- Q21 · LA · NAT · 2m -->
+    <div class="gate-q" data-type="NAT" data-key="3 to 3" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Linear Algebra</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q21.</strong> A matrix $A\in\mathbb{R}^{3\times5}$ has rank 2. The dimension of its null space $N(A)$ is ______.</div>
+      <div class="gate-controls">
+        <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+        <button class="gate-check">Check answer</button>
+        <span class="gate-hint">Numerical answer (NAT).</span>
+      </div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Rank–nullity: $\dim N(A)=n-\operatorname{rank}=5-2=3$ (use the number of <em>columns</em>, not rows).</div>
+    </div>
+
+    <!-- Q22 · Opt · MSQ · 2m -->
+    <div class="gate-q" data-type="MSQ" data-key="A;B;D" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Optimization</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q22.</strong> Which of the following functions is/are convex on their stated domain?</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$f(x)=x^2$ on $\mathbb{R}$</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$f(x)=e^x$ on $\mathbb{R}$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$f(x)=\ln x$ on $(0,\infty)$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$f(x)=|x|$ on $\mathbb{R}$</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>$x^2$ and $e^x$ have $f''>0$; $|x|$ is convex (not differentiable at 0, but satisfies the chord definition). $\ln x$ has $f''=-1/x^2<0$ — concave.</div>
+    </div>
+
+    <!-- Q23 · P&S · MSQ · 2m -->
+    <div class="gate-q" data-type="MSQ" data-key="A;B;C" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Prob &amp; Stats</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q23.</strong> Which statement(s) about the (Student's) t-test and t-distribution is/are correct?</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>the one-sample t-test is used when the population $\sigma$ is unknown</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>the t-distribution has heavier tails than the standard normal</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>as degrees of freedom $\to\infty$, the t-distribution approaches $N(0,1)$</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>the t-test requires a sample size of at least 100</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>A, B, C are standard facts. D is false — the t-test exists precisely for <em>small</em> samples (with approximate normality of the population).</div>
+    </div>
+
+    <!-- Q24 · ML · MSQ · 2m -->
+    <div class="gate-q" data-type="MSQ" data-key="A;B;C" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q24.</strong> Which statement(s) about cross-validation is/are correct?</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>in k-fold CV every data point is used for validation exactly once</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>leave-one-out CV is k-fold CV with $k=n$</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>CV is used to estimate generalization performance and tune hyperparameters</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>k-fold CV increases the total amount of training data available</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>A, B, C are correct. D is false — CV reuses the same data; it doesn't create more.</div>
+    </div>
+
+    <!-- Q25 · ML · MCQ · 2m -->
+    <div class="gate-q" data-type="MCQ" data-key="A" data-marks="2">
+      <div class="chips"><span class="chip chip-amber">Machine Learning</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+      <div class="gate-qtext"><strong>Q25.</strong> Training data (1-D): $x=1$ (class P), $x=1.5$ (class P), $x=3$ (class Q), $x=5$ (class Q), $x=0$ (class Q). Using kNN with $k=3$ and Euclidean distance, the predicted class of the test point $x=2$ is</div>
+      <div class="gate-opts gate-opts-text">
+        <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>P</span></button>
+        <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Q</span></button>
+        <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>tie — undecidable</span></button>
+        <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>depends on the learning rate</span></button>
+      </div>
+      <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+      <div class="gate-result" hidden></div>
+      <div class="gate-expl" hidden>Distances from 2: $|2-1.5|=0.5$ (P), $|2-1|=1$ (P), $|2-3|=1$ (Q), $|2-0|=2$ (Q), $|2-5|=3$ (Q). Three nearest: P, P, Q → majority P. (kNN has no learning rate.)</div>
+    </div>
+
+    <p style="margin-top:var(--s-xl)"><a class="btn btn-primary" href="index.html">← Revision Zone</a></p>
+  </div>
+
+  <footer class="site-footer">Revision Zone · Qualifier mock test</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+  <script src="../assets/js/gate-quiz.js?v=20260620"></script>
+  <script>
+  (function () {
+    "use strict";
+    var DURATION = 60 * 60; // seconds
+    var remaining = DURATION, ticking = null, finished = false;
+    var timerEl = document.getElementById("timer");
+    var startBtn = document.getElementById("startBtn");
+    var finishBtn = document.getElementById("finishBtn");
+    var attemptEl = document.getElementById("attemptCount");
+    var panel = document.getElementById("scorePanel");
+    var cards = [].slice.call(document.querySelectorAll(".gate-q"));
+
+    function fmt(s) {
+      var m = Math.floor(s / 60), ss = s % 60;
+      return (m < 10 ? "0" : "") + m + ":" + (ss < 10 ? "0" : "") + ss;
+    }
+    function tick() {
+      remaining--;
+      timerEl.textContent = fmt(Math.max(remaining, 0));
+      if (remaining <= 300) timerEl.classList.add("low");
+      if (remaining <= 0) { clearInterval(ticking); finish(true); }
+    }
+    startBtn.addEventListener("click", function () {
+      if (ticking || finished) return;
+      ticking = setInterval(tick, 1000);
+      startBtn.disabled = true;
+      startBtn.textContent = "Running…";
+    });
+
+    // Live attempted counter (gate-quiz.js sets data-done after grading)
+    setInterval(function () {
+      if (finished) return;
+      var n = cards.filter(function (c) { return c.getAttribute("data-done"); }).length;
+      attemptEl.textContent = n + " / " + cards.length + " attempted";
+    }, 1000);
+
+    function finish(auto) {
+      if (finished) return;
+      finished = true;
+      if (ticking) clearInterval(ticking);
+      var score = 0, max = 0, correct = 0, wrong = 0, unattempted = 0;
+      cards.forEach(function (c) {
+        var marks = parseFloat(c.getAttribute("data-marks")) || 1;
+        var type = c.getAttribute("data-type");
+        max += marks;
+        if (!c.getAttribute("data-done")) { unattempted++; return; }
+        var res = c.querySelector(".gate-result");
+        var ok = res && res.classList.contains("ok");
+        if (ok) { correct++; score += marks; }
+        else {
+          wrong++;
+          if (type === "MCQ") score -= marks / 3; // GATE-style negative marking
+        }
+      });
+      score = Math.round(score * 100) / 100;
+      var pct = Math.round((score / max) * 1000) / 10;
+      panel.hidden = false;
+      panel.innerHTML =
+        "<h2>" + (auto ? "⏰ Time's up — " : "") + "Result</h2>" +
+        '<div class="big">' + score + " / " + max + " marks (" + pct + "%)</div>" +
+        "<p><strong>" + correct + "</strong> correct · <strong>" + wrong + "</strong> wrong · <strong>" +
+        unattempted + "</strong> unattempted · time used: " + fmt(DURATION - Math.max(remaining, 0)) + "</p>" +
+        "<p>Negative marking applied to wrong MCQs only (−⅓ of the question's marks), GATE style.</p>" +
+        "<p>" + (pct >= 70 ? "🎉 Strong — you're in good shape for the qualifier."
+              : pct >= 50 ? "👍 Decent — revisit the formula sheets for the topics you missed."
+              : "📚 Keep going — re-read the lessons for missed topics, then retake (refresh the page).") + "</p>";
+      panel.scrollIntoView({ behavior: "smooth", block: "center" });
+      finishBtn.disabled = true;
+    }
+    finishBtn.addEventListener("click", function () { finish(false); });
+  })();
+  </script>
+</body>
+</html>

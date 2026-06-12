@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Linear Algebra — Formula Sheet</title>
+<meta name="description" content="Condensed Linear Algebra formula sheet for last-week revision: vectors, matrices, determinants, rank, systems, pseudo-inverse, eigen, projections, SVD & PCA.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5l1.9 6.7 6.6-2-4 5.8 4 5.8-6.6-2L12 22.5l-1.9-6.7-6.6 2 4-5.8-4-5.8 6.6 2z"/></svg>
+      <span class="brand-text">Revision<span> Zone</span></span>
+    </a>
+    <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <div class="page-center">
+    <div class="hero">
+      <span class="tag">Formula sheet</span>
+      <h1>🔵 Linear Algebra</h1>
+      <p class="lede">Every formula and exam-critical fact, condensed for last-week revision.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">1 · Vectors, norms &amp; distance</div>
+      <div class="formula">$$x^{\mathsf T}y=\sum_i x_i y_i \qquad \|x\|_2=\sqrt{x^{\mathsf T}x} \qquad \|x\|_1=\sum_i|x_i| \qquad \|x\|_\infty=\max_i|x_i|$$</div>
+      <div class="formula">$$d(x,y)=\|x-y\|_2 \qquad \cos\theta=\frac{x^{\mathsf T}y}{\|x\|\,\|y\|} \qquad x\perp y \iff x^{\mathsf T}y=0$$</div>
+      <p><strong>Cauchy–Schwarz:</strong> $|x^{\mathsf T}y|\le\|x\|\|y\|$. <strong>Triangle:</strong> $\|x+y\|\le\|x\|+\|y\|$.</p>
+      <p><strong>Linear independence:</strong> $\sum c_i v_i=0 \Rightarrow$ all $c_i=0$. Any $n+1$ vectors in $\mathbb{R}^n$ are dependent.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">2 · Matrices &amp; matrix–vector product</div>
+      <p>$Ax$ = linear combination of <strong>columns</strong> of $A$ with weights $x$. $(AB)_{ij}=\sum_k a_{ik}b_{kj}$; defined when cols($A$) = rows($B$). $AB\ne BA$ in general.</p>
+      <div class="formula">$$(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T} \qquad (AB)^{-1}=B^{-1}A^{-1} \qquad (A^{\mathsf T})^{-1}=(A^{-1})^{\mathsf T}$$</div>
+      <p><strong>Special matrices:</strong> symmetric $A^{\mathsf T}=A$; orthogonal $Q^{\mathsf T}Q=I$ (so $Q^{-1}=Q^{\mathsf T}$, $\|Qx\|=\|x\|$, $\det Q=\pm1$); idempotent/projection $P^2=P$ (eigenvalues 0 or 1); trace $\operatorname{tr}(A)=\sum a_{ii}=\sum\lambda_i$, $\operatorname{tr}(AB)=\operatorname{tr}(BA)$.</p>
+      <div class="formula">$$\begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$$</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">3 · Determinants</div>
+      <div class="formula">$$\det(AB)=\det A\,\det B \qquad \det(A^{\mathsf T})=\det A \qquad \det(A^{-1})=\tfrac1{\det A} \qquad \det(cA)=c^n\det A$$</div>
+      <p>Triangular/diagonal matrix: $\det=$ product of diagonal entries. Row swap flips sign; row $\times c$ scales $\det$ by $c$; adding a multiple of one row to another leaves $\det$ unchanged. $\det A=\prod_i\lambda_i$.</p>
+      <p><strong>$A$ invertible $\iff \det A\ne0 \iff$ rank $=n \iff$ columns independent $\iff Ax=0$ only at $x=0$ $\iff 0$ is not an eigenvalue.</strong></p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">4 · Rank &amp; null space</div>
+      <div class="formula">$$\operatorname{rank}(A)+\dim N(A)=n \quad (A\in\mathbb{R}^{m\times n},\ n=\text{\#columns})$$</div>
+      <p>rank = # pivots = # independent rows = # independent columns = # non-zero singular values. $\operatorname{rank}(A)\le\min(m,n)$; $\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$; $\operatorname{rank}(A^{\mathsf T}A)=\operatorname{rank}(A)$.</p>
+      <p><strong>Null space</strong> $N(A)=\{x:Ax=0\}$; always contains $0$; non-trivial $\iff$ rank $&lt; n$. Outer product $uv^{\mathsf T}$ has rank 1.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">5 · Solving $Ax=b$ &amp; pseudo-inverse</div>
+      <p><strong>Consistency (Rouché–Capelli):</strong> solution exists $\iff \operatorname{rank}(A)=\operatorname{rank}([A|b])$. If $=n$: unique; if $&lt;n$: infinitely many ($\infty^{\,n-r}$ family). No solution if $\operatorname{rank}([A|b])>\operatorname{rank}(A)$.</p>
+      <div class="formula">$$\textbf{Least squares: } \hat x=\arg\min\|Ax-b\|^2 \;\Rightarrow\; A^{\mathsf T}A\hat x=A^{\mathsf T}b \;\Rightarrow\; \hat x=(A^{\mathsf T}A)^{-1}A^{\mathsf T}b$$</div>
+      <div class="formula">$$\textbf{Pseudo-inverse: } A^{+}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}\ (\text{full col rank}) \qquad A^{+}=V\Sigma^{+}U^{\mathsf T}\ (\text{via SVD, } \Sigma^+ \text{ inverts non-zero } \sigma_i)$$</div>
+      <p>$\hat x=A^{+}b$ gives the least-squares solution; among all minimizers it has minimum norm. If $A$ invertible, $A^{+}=A^{-1}$.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">6 · Eigenvalues &amp; eigenvectors</div>
+      <div class="formula">$$Av=\lambda v\ (v\ne0) \qquad \det(A-\lambda I)=0 \qquad \sum\lambda_i=\operatorname{tr}A \qquad \prod\lambda_i=\det A$$</div>
+      <p>For $2\times2$: $\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0$. Eigenvalues of $A^k$ are $\lambda^k$; of $A^{-1}$ are $1/\lambda$; of $A+cI$ are $\lambda+c$. Triangular matrix: eigenvalues = diagonal. $A$ and $A^{\mathsf T}$ share eigenvalues.</p>
+      <p><strong>Real symmetric $A$:</strong> all eigenvalues real; eigenvectors of distinct eigenvalues orthogonal; always diagonalizable ($A=Q\Lambda Q^{\mathsf T}$, spectral theorem). PSD $\iff$ all $\lambda_i\ge0$; PD $\iff$ all $\lambda_i>0$.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">7 · Diagonalization</div>
+      <div class="formula">$$A=PDP^{-1} \qquad A^k=PD^kP^{-1}$$</div>
+      <p>Possible $\iff$ $A$ has $n$ independent eigenvectors ($n$ distinct eigenvalues is sufficient, not necessary). Geometric multiplicity $\le$ algebraic multiplicity; equality for every $\lambda$ $\iff$ diagonalizable.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">8 · Projections &amp; orthogonality</div>
+      <div class="formula">$$\textbf{Onto vector } a:\ \operatorname{proj}_a b=\frac{a^{\mathsf T}b}{a^{\mathsf T}a}\,a \qquad \textbf{Onto } C(A):\ P=A(A^{\mathsf T}A)^{-1}A^{\mathsf T}$$</div>
+      <p>$P^2=P$, $P^{\mathsf T}=P$; eigenvalues 0/1; $\operatorname{tr}(P)=\operatorname{rank}(P)=\dim$ of subspace. Residual $b-Pb\perp C(A)$. <strong>Gram–Schmidt:</strong> $u_k=v_k-\sum_{j&lt;k}\operatorname{proj}_{u_j}v_k$, then normalize.</p>
+      <p><strong>Centering matrix</strong> $M=I-\tfrac1n\mathbf{1}\mathbf{1}^{\mathsf T}$: symmetric projection, eigenvalues $1$ ($n{-}1$ times) and $0$, trace $n-1$. A recurring exam favorite.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">9 · SVD &amp; PCA</div>
+      <div class="formula">$$A=U\Sigma V^{\mathsf T},\quad \sigma_i=\sqrt{\lambda_i(A^{\mathsf T}A)}\ \ge 0$$</div>
+      <p>$V$: eigenvectors of $A^{\mathsf T}A$; $U$: eigenvectors of $AA^{\mathsf T}$. # non-zero $\sigma_i$ = rank. $\|A\|_2=\sigma_{\max}$. Exists for <em>any</em> matrix (unlike eigendecomposition).</p>
+      <p><strong>PCA:</strong> center data → covariance $C=\tfrac1{n-1}X^{\mathsf T}X$ → PCs = eigenvectors of $C$ sorted by eigenvalue; $\lambda_i$ = variance along PC$_i$; explained variance ratio $=\lambda_i/\sum\lambda_j$. <strong>Distinct PCs are orthogonal ($90^\circ$).</strong></p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">Exam traps</div>
+      <ul>
+        <li>$\det(A+B)\ne\det A+\det B$ and $\operatorname{rank}(A+B)\le\operatorname{rank}A+\operatorname{rank}B$ (not equality).</li>
+        <li>Symmetric $\ne$ invertible: the centering matrix is symmetric, idempotent, but singular.</li>
+        <li>Rotation matrix by $\theta$: $M^k$ = rotation by $k\theta$; $M^n=I$ when $n\theta$ is a multiple of $2\pi$.</li>
+        <li>For NAT rank questions, row-reduce — don't guess from matrix size.</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:var(--s-xl)"><a class="btn btn-primary" href="index.html">← Revision Zone</a> &nbsp; <a class="btn" href="probability-statistics.html">Next: Prob &amp; Stats →</a></p>
+  </div>
+
+  <footer class="site-footer">Revision Zone · Linear Algebra formula sheet</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Machine Learning — Formula Sheet</title>
+<meta name="description" content="Condensed Basic ML formula sheet: linear & multiple regression, least squares, kNN, logistic regression, k-means, cross-validation.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5l1.9 6.7 6.6-2-4 5.8 4 5.8-6.6-2L12 22.5l-1.9-6.7-6.6 2 4-5.8-4-5.8 6.6 2z"/></svg>
+      <span class="brand-text">Revision<span> Zone</span></span>
+    </a>
+    <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <div class="page-center">
+    <div class="hero">
+      <span class="tag">Formula sheet</span>
+      <h1>🤖 Basic Machine Learning</h1>
+      <p class="lede">Closed forms, algorithms and gotchas — condensed for last-week revision.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">1 · Simple linear regression</div>
+      <div class="formula">$$\hat y=\beta_0+\beta_1x \qquad \beta_1=\frac{S_{xy}}{S_{xx}}=\frac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}=r\,\frac{s_y}{s_x} \qquad \beta_0=\bar y-\beta_1\bar x$$</div>
+      <p>The fitted line always passes through $(\bar x,\bar y)$. Residual $e_i=y_i-\hat y_i$; residuals sum to zero (with intercept).</p>
+      <div class="formula">$$R^2=1-\frac{\text{SSE}}{\text{SST}}=\frac{\text{SSR}}{\text{SST}}\in[0,1] \qquad \text{(simple regression: } R^2=r^2\text{)} \qquad \text{MSE}=\tfrac1n\sum e_i^2$$</div>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">2 · Multiple regression &amp; least squares</div>
+      <div class="formula">$$\hat\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y=X^{+}y \qquad \hat y=X\hat\beta=Hy,\ \ H=X(X^{\mathsf T}X)^{-1}X^{\mathsf T}$$</div>
+      <p>Least squares minimizes $\|y-X\beta\|^2$ — the <strong>sum of squared residuals</strong> (vertical distances). Geometrically: $\hat y$ is the orthogonal projection of $y$ onto the column space of $X$; residual $\perp$ every column of $X$. Needs $X^{\mathsf T}X$ invertible (full column rank, no perfect multicollinearity).</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">3 · k-Nearest Neighbours</div>
+      <p><strong>Algorithm:</strong> compute distances to all training points → take $k$ closest → classification: majority vote; regression: average. No training phase ("lazy learner"); prediction cost $O(nd)$ per query.</p>
+      <div class="formula">$$\text{Euclidean: }\sqrt{\textstyle\sum(x_i-y_i)^2}\qquad\text{Manhattan: }\textstyle\sum|x_i-y_i|\qquad\text{Minkowski: }\big(\textstyle\sum|x_i-y_i|^p\big)^{1/p}$$</div>
+      <p><strong>Effect of $k$:</strong> small $k$ → flexible boundary, low bias, high variance, overfits ($k=1$: zero training error); large $k$ → smoother boundary, high bias, low variance, underfits. Use odd $k$ to avoid ties (binary). <strong>Feature scaling matters</strong> — unscaled features dominate the distance.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">4 · Logistic regression</div>
+      <div class="formula">$$P(y=1\mid x)=\sigma(w^{\mathsf T}x+b)=\frac{1}{1+e^{-(w^{\mathsf T}x+b)}} \qquad \sigma(0)=0.5,\ \ \sigma(-z)=1-\sigma(z)$$</div>
+      <div class="formula">$$\text{Log-odds: }\ \ln\frac{p}{1-p}=w^{\mathsf T}x+b \qquad \text{Loss (cross-entropy): } -\tfrac1n\sum\big[y_i\ln p_i+(1-y_i)\ln(1-p_i)\big]$$</div>
+      <p>A <strong>classifier</strong>, not a regressor. Decision boundary $w^{\mathsf T}x+b=0$ is <strong>linear</strong>. No closed form — train by gradient descent (loss is convex). Squared error is not used: it's non-convex with sigmoid.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">5 · k-means clustering</div>
+      <div class="formula">$$\min_{C}\ \sum_{j=1}^{k}\sum_{x\in C_j}\|x-\mu_j\|^2 \qquad\text{(WCSS / inertia)}$$</div>
+      <p><strong>Lloyd's algorithm:</strong> init $k$ centroids → (1) assign each point to nearest centroid; (2) recompute centroids as cluster means; repeat until assignments stop changing. WCSS never increases → always converges, but only to a <strong>local</strong> optimum (run multiple inits). Sensitive to initialization, scale, and outliers; finds roughly spherical clusters; $k$ chosen by elbow method. Unsupervised — no labels.</p>
+    </div>
+
+    <div class="concept-card">
+      <div class="card-title">6 · Cross-validation &amp; bias–variance</div>
+      <p><strong>k-fold CV:</strong> split data into $k$ folds; train on $k-1$, validate on the held-out fold; rotate so every point is validated <em>exactly once</em>; average the $k$ scores. <strong>LOOCV</strong> = $k=n$ (low bias, high variance, expensive). Estimates generalization error and is used to pick hyperparameters (e.g. $k$ in kNN). Never let test data leak into training (fit scalers inside the loop).</p>
+      <div class="formula">$$\text{Expected error}=\text{Bias}^2+\text{Variance}+\text{Irreducible noise}$$</div>
+      <p>Underfit: high bias — high train <em>and</em> validation error. Overfit: high variance — low train, high validation error. Fixes for overfit: more data, simpler model, regularization; for underfit: richer model/features.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">Exam traps</div>
+      <ul>
+        <li>$\sigma(0)=0.5$ — compute $z=w^{\mathsf T}x+b$ first; if $z=0$ the answer is exactly 0.5.</li>
+        <li>kNN with $k=1$ gives 0 training error — that's overfitting, not a good model.</li>
+        <li>k-means converges, but not necessarily to the global optimum.</li>
+        <li>Slope questions: compute $\bar x,\bar y$ first, then $S_{xy}/S_{xx}$ — arithmetic slips cost easy marks.</li>
+        <li>"Least squares minimizes distance to the line" — false; it minimizes <em>vertical squared</em> errors.</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:var(--s-xl)"><a class="btn btn-primary" href="index.html">← Revision Zone</a> &nbsp; <a class="btn" href="mock-test.html">Take the mock test →</a></p>
+  </div>
+
+  <footer class="site-footer">Revision Zone · Machine Learning formula sheet</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html>
