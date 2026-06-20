@@ -104,6 +104,10 @@
           '<span class="topic-ico">🎯</span><span>Practice questions</span></a>' +
         '<a class="topic-link' + (page === "gate" ? " active" : "") + '" href="' + laRoot + '/gate-questions.html">' +
           '<span class="topic-ico">📝</span><span>GATE questions</span></a>' +
+        (subject === "linear-algebra"
+          ? '<a class="topic-link' + (page === "tiktok" ? " active" : "") + '" href="' + laRoot + '/gate-tiktok.html">' +
+              '<span class="topic-ico">▶</span><span>Gate TikTok</span></a>'
+          : "") +
         '<div class="sidebar-footer">' +
           '<a href="' + root + '/index.html">← All subjects</a>' +
         "</div>" +
@@ -217,6 +221,38 @@
     for (var k = 0; k < cards.length; k++) io.observe(cards[k]);
   }
 
+  // ---- Stable lesson anchors for deep links -----------------
+  function wireSectionAnchors() {
+    var study = document.querySelector(".study-section");
+    if (study && !study.id) study.id = "study-in-depth";
+
+    var heads = document.querySelectorAll(".concept-card .sec-head");
+    for (var i = 0; i < heads.length; i++) {
+      var number = heads[i].querySelector(".sec-num");
+      var section = heads[i].closest(".concept-card");
+      if (number && section && !section.id) {
+        section.id = "section-" + number.textContent.trim();
+      }
+    }
+
+    if (window.location.hash) {
+      setTimeout(function () {
+        requestAnimationFrame(function () {
+          var target = document.getElementById(window.location.hash.slice(1));
+          if (target) {
+            var previousBehavior = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = "auto";
+            window.scrollTo({
+              top: target.getBoundingClientRect().top + window.scrollY - 72,
+              behavior: "auto"
+            });
+            document.documentElement.style.scrollBehavior = previousBehavior;
+          }
+        });
+      }, 250);
+    }
+  }
+
   // ---- KaTeX render ----------------------------------------
   function renderMath() {
     if (window.renderMathInElement) {
@@ -265,6 +301,7 @@
     wirePractice(document);
     wireReveal();
     renderMath();
+    wireSectionAnchors();
     if (window.GATE_VIZ_INIT) window.GATE_VIZ_INIT();
     // Shell + math are in place — reveal the page (removes the boot cloak) after one paint
     // so the user never sees the pre-shell full-width flash / layout snap.
