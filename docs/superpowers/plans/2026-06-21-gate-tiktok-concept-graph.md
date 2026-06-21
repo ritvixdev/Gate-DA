@@ -213,3 +213,23 @@ gateSignal
 - [ ] Update responsive styling so the compact sheet uses the full dialog until graph mode is explicitly entered.
 - [ ] Run the full Node test suite and browser-test mobile and desktop opening, returning, connection ranking, scroll restoration, and repeated graph expansion.
 - [ ] Commit with `feat: make concept graph opt-in`.
+
+### Task 10: Graph node learning and restoration
+
+**Files:**
+- Modify: `linear-algebra/gate-tiktok.html`
+- Modify: `assets/js/gate-tiktok/gate-tiktok.js`
+- Modify: `assets/css/gate-tiktok.css`
+- Modify: `tests/gate-tiktok.test.js`
+
+- [ ] Add failing tests for graph node meaning, formula, connection explanation, `Read this concept`, and `Open full lesson section` controls.
+- [ ] Add failing tests proving graph close and Escape return to the graph-entry concept while the next close exits the overall dialog.
+- [ ] Run `node --test tests/gate-tiktok.test.js` and verify the current graph behavior fails because node selection replaces hidden sheet state.
+- [ ] Store `graphEntryConceptId`, `graphEntryScroll`, and the graph selection separately from `currentConceptId`.
+- [ ] Render selected node or edge information inside a dedicated graph information panel without modifying the hidden concept sheet.
+- [ ] Make `Read this concept` leave graph mode, intentionally navigate to the selected concept sheet from the top, and preserve normal concept history.
+- [ ] Make `Open full lesson section` use the selected node's exact lesson URL and anchor.
+- [ ] Route graph `Back to concept`, graph close, and Escape through one restoration function that returns to the graph-entry concept and saved scroll position.
+- [ ] Keep concept-dialog close behavior unchanged when graph mode is not active.
+- [ ] Run automated tests and browser-test covariance/PCA node selection, lesson linking, explicit concept reading, graph close, Escape, and scroll restoration.
+- [ ] Commit with `fix: preserve concept context from graph`.
