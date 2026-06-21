@@ -161,16 +161,39 @@ nonzero singular values
 
 ## Graph interaction
 
-### Starting state
+### Compact default experience
 
-The graph initially shows:
+The concept sheet does not open the graph automatically. Its default layout remains a focused, vertically readable explanation.
 
-- the selected concept at the center;
-- its direct prerequisite and consequence edges;
-- the most important cross-topic connections;
-- edge labels explaining each relationship.
+After the relevant GATE-question section, the sheet shows one compact **Connect the dots** card containing at most five ranked connections:
 
-The first view is intentionally limited to prevent overwhelming beginners.
+1. direct consequences and equivalences;
+2. required prerequisite concepts;
+3. closely related concepts inside the current topic;
+4. useful cross-topic GATE patterns;
+5. advanced or application-level connections.
+
+Each row contains the connected concept, its relationship type, and one sentence explaining why the connection matters. Selecting a row opens that concept in the same sheet without displaying the graph.
+
+The source-action area contains two adjacent actions:
+
+- **Open Study in Depth:** opens the authoritative lesson section;
+- **Explore graph:** opens the dedicated graph experience.
+
+### Dedicated graph experience
+
+The graph is opt-in and opens only after the student selects **Explore graph**.
+
+The dedicated graph view:
+
+- uses the full available dialog area instead of sharing vertical space with the concept explanation;
+- preserves the concept sheet's concept history and scroll position;
+- initially shows the selected concept and its highest-ranked direct connections;
+- orders and prioritizes visible neighbours from strongest relevance to weakest relevance;
+- allows repeated expansion to explore the complete Linear Algebra graph;
+- provides a clear control to return to the unchanged concept sheet.
+
+The initial graph view is intentionally limited to prevent overwhelming beginners.
 
 ### Recursive exploration
 
@@ -186,8 +209,8 @@ Students can expand any visible node repeatedly until they have explored the com
 
 ### Responsive behavior
 
-- **Laptop and tablet landscape:** graph and concept explanation appear side by side.
-- **Mobile:** the graph occupies the main area; selecting a node or edge opens a bottom detail sheet without destroying graph state.
+- **Laptop and tablet landscape:** the dedicated graph uses the complete dialog workspace. Selecting a node or edge opens a side explanation panel.
+- **Mobile:** the dedicated graph uses the complete dialog workspace. Selecting a node or edge opens a bottom explanation sheet without destroying graph state.
 - The graph supports touch pan, drag, keyboard focus, and zoom controls.
 - The user can explore the graph without triggering feed-card swipes.
 
