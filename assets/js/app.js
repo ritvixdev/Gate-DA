@@ -235,6 +235,36 @@
       }
     }
 
+    function sectionByNumber(number) {
+      var sections = document.querySelectorAll("section.concept-card");
+      for (var k = 0; k < sections.length; k++) {
+        var badge = sections[k].querySelector(".sec-head .sec-num");
+        if (badge && badge.textContent.trim() === String(number)) return sections[k];
+      }
+      return null;
+    }
+
+    function numberItems(items, prefix, skipExtra) {
+      var count = 0;
+      for (var j = 0; j < items.length; j++) {
+        if (skipExtra && items[j].querySelector(".study-extra")) continue;
+        count++;
+        if (!items[j].id) items[j].id = prefix + count;
+      }
+    }
+
+    var definitions = sectionByNumber(4);
+    var cheatSheet = sectionByNumber(9);
+    var traps = sectionByNumber(10);
+    var practiceSection = sectionByNumber(12);
+    numberItems(definitions ? definitions.querySelectorAll("li") : [], "definition-", false);
+    numberItems(document.querySelectorAll("details.study-item"), "study-item-", true);
+    numberItems(cheatSheet ? cheatSheet.querySelectorAll("li") : [], "cheat-", false);
+    numberItems(traps ? traps.querySelectorAll(".trap p") : [], "trap-", false);
+    numberItems(practiceSection ? practiceSection.querySelectorAll(".practice") : [], "practice-", false);
+    numberItems(practiceSection ? practiceSection.querySelectorAll(".quiz-card") : [], "practice-quiz-", false);
+    numberItems(document.querySelectorAll(".gate-q"), "gate-question-", false);
+
     if (window.location.hash) {
       setTimeout(function () {
         requestAnimationFrame(function () {

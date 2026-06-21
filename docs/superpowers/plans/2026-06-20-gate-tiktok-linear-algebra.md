@@ -10,6 +10,18 @@
 
 ---
 
+### Exhaustive content expansion
+
+The production pilot now generates its cards from the existing Linear Algebra lesson pages instead of maintaining a small manually curated subset.
+
+- [x] Extract all 66 basic definitions.
+- [x] Extract all 287 Study in Depth items except entries marked GATE extra.
+- [x] Extract all 54 GATE cheat-sheet points and 31 common traps.
+- [x] Extract 37 written practice problems and 9 inline quizzes.
+- [x] Extract all 21 GATE questions with their available answers and explanations.
+- [x] Generate stable source anchors and verify that all 505 cards link to an existing source target.
+- [x] Preserve canonical concept popovers inside generated detail content.
+
 ### Task 1: Data contracts and validation
 
 **Files:**
@@ -18,7 +30,7 @@
 - Create: `assets/js/gate-tiktok/gate-tiktok-core.js`
 - Test: `tests/gate-tiktok.test.js`
 
-- [ ] Write failing tests for unique IDs, valid topic/concept relations, 16 cards per topic, question types, and deterministic topic ordering.
+- [x] Write failing tests for unique IDs, valid topic/concept relations, exact source-content counts, question types, and deterministic topic ordering.
 - [ ] Run `node --test tests/gate-tiktok.test.js` and confirm failures are caused by missing modules.
 - [ ] Implement the data contracts, validator, card filtering, and navigation helpers.
 - [ ] Run the tests and confirm all pass.
@@ -61,4 +73,3 @@
 - [ ] Start `python -m http.server 8000`.
 - [ ] Verify mobile and desktop layouts, scroll snapping, topic navigation, all question types, dialogs, concept history, persistence, reduced motion, and GitHub Pages-relative URLs.
 - [ ] Review `git diff --check` and the final worktree status.
-

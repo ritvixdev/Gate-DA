@@ -5,8 +5,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var CARD_TYPES = ["deep-dive", "cheat-sheet", "trap", "worked-example", "practice", "gate-question"];
-  var QUESTION_TYPES = ["MCQ", "MSQ", "NAT"];
+  var CARD_TYPES = ["basic-definition", "deep-dive", "cheat-sheet", "trap", "worked-example", "practice", "gate-question"];
+  var QUESTION_TYPES = ["MCQ", "MSQ", "NAT", "REVEAL"];
 
   function cardsForTopic(cards, topicId) {
     return cards
@@ -24,6 +24,7 @@
 
   function gradeQuestion(question, response) {
     if (!question) return false;
+    if (question.type === "REVEAL") return true;
     if (question.type === "NAT") {
       var value = parseFloat(response);
       return !Number.isNaN(value) && value >= question.answer[0] && value <= question.answer[1];
@@ -63,9 +64,10 @@
       cardIds.add(card.id);
       if (!topicIds.has(card.topicId)) errors.push("Card " + card.id + " has invalid topic");
       if (CARD_TYPES.indexOf(card.type) === -1) errors.push("Card " + card.id + " has invalid type");
-      ["hook", "body", "difficulty", "source", "detail"].forEach(function (field) {
+      ["hook", "body", "difficulty", "source"].forEach(function (field) {
         if (!card[field]) errors.push("Card " + card.id + " missing " + field);
       });
+      if (!card.detail && !card.detailHtml) errors.push("Card " + card.id + " missing detail");
       (card.concepts || []).forEach(function (id) {
         if (!conceptIds.has(id)) errors.push("Card " + card.id + " links missing concept " + id);
       });
@@ -75,7 +77,8 @@
       if (card.question) {
         if (QUESTION_TYPES.indexOf(card.question.type) === -1) errors.push("Card " + card.id + " invalid question type");
         if (!card.question.prompt || !card.question.explanation) errors.push("Card " + card.id + " incomplete question");
-        if (card.question.type !== "NAT" && (!card.question.options || card.question.options.length < 2)) {
+        if (card.question.type !== "NAT" && card.question.type !== "REVEAL" &&
+            (!card.question.options || card.question.options.length < 2)) {
           errors.push("Card " + card.id + " missing options");
         }
       }

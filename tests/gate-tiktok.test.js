@@ -5,14 +5,22 @@ const path = require("node:path");
 
 const concepts = require("../assets/js/gate-tiktok/gate-concepts.js");
 const data = require("../assets/js/gate-tiktok/gate-tiktok-data.js");
+const sourceData = require("../assets/js/gate-tiktok/gate-tiktok-source-data.js");
 const core = require("../assets/js/gate-tiktok/gate-tiktok-core.js");
 
-test("Linear Algebra pilot has nine ordered topics and sixteen cards per topic", () => {
+test("Linear Algebra feed contains every approved source point", () => {
   assert.equal(data.topics.length, 9);
-  assert.equal(data.cards.length, 144);
-  data.topics.forEach((topic) => {
-    assert.equal(data.cards.filter((card) => card.topicId === topic.id).length, 16);
+  assert.equal(data.cards.length, 505);
+  assert.deepEqual(sourceData.sourceCounts, {
+    definitions: 66,
+    study: 287,
+    cheatSheets: 54,
+    traps: 31,
+    practice: 37,
+    inlineQuizzes: 9,
+    gateQuestions: 21,
   });
+  assert.equal(data.cards.some((card) => /GATE extra/i.test(card.hook)), false);
 });
 
 test("all cards and concepts pass schema and relationship validation", () => {
@@ -33,9 +41,9 @@ test("the feed contains every approved card type and all question formats", () =
 test("topic filtering preserves guided order", () => {
   const firstTopic = data.topics[0];
   const cards = core.cardsForTopic(data.cards, firstTopic.id);
-  assert.equal(cards.length, 16);
+  assert.ok(cards.length > 40);
   assert.ok(cards.every((card) => card.topicId === firstTopic.id));
-  assert.deepEqual(cards.map((card) => card.order), [...Array(16).keys()].map((n) => n + 1));
+  assert.deepEqual(cards.map((card) => card.order), [...Array(cards.length).keys()].map((n) => n + 1));
 });
 
 test("next card index clamps and wraps only when requested", () => {
@@ -50,6 +58,22 @@ test("question grading supports MCQ, MSQ and NAT ranges", () => {
   assert.equal(core.gradeQuestion({ type: "MSQ", answer: ["A", "C"] }, ["C", "A"]), true);
   assert.equal(core.gradeQuestion({ type: "NAT", answer: [0.49, 0.51] }, "0.5"), true);
   assert.equal(core.gradeQuestion({ type: "NAT", answer: [0.49, 0.51] }, "0.7"), false);
+  assert.equal(core.gradeQuestion({ type: "REVEAL", answer: true }, null), true);
+});
+
+test("every exhaustive card has full source detail and an exact anchor", () => {
+  data.cards.forEach((card) => {
+    assert.ok(card.detailHtml || card.detail, `${card.id} missing detail`);
+    assert.ok(card.sourceAnchor, `${card.id} missing sourceAnchor`);
+    assert.ok(card.sourceLabel, `${card.id} missing sourceLabel`);
+  });
+});
+
+test("exhaustive cards keep swipe-screen hooks and previews concise", () => {
+  data.cards.forEach((card) => {
+    assert.ok(card.hook.length <= 140, `${card.id} hook too long`);
+    assert.ok(card.body.length <= 260, `${card.id} body too long`);
+  });
 });
 
 test("core graph includes required cross-topic concept paths", () => {

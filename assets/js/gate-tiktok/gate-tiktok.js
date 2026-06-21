@@ -25,7 +25,7 @@
   var completed = new Set();
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var typeLabels = {
-    "deep-dive": "Study in depth", "cheat-sheet": "GATE cheat sheet", trap: "Common GATE trap",
+    "basic-definition": "Basic definition", "deep-dive": "Study in depth", "cheat-sheet": "GATE cheat sheet", trap: "Common GATE trap",
     "worked-example": "Worked example", practice: "Practice", "gate-question": "Real GATE pattern"
   };
 
@@ -38,6 +38,53 @@
   function linkedText(text) {
     return escapeHtml(text).replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, function (_, id, label) {
       return '<button class="gt-concept-link" data-concept="' + id + '">' + label + "</button>";
+    });
+  }
+
+  function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function decorateConceptLinks(scope, conceptIds) {
+    var used = new Set();
+    var terms = [];
+    (conceptIds || []).forEach(function (id) {
+      var concept = concepts[id];
+      if (!concept) return;
+      [concept.label].concat(concept.aliases || []).forEach(function (term) {
+        if (term && term.length > 2) terms.push({ id: id, term: term });
+      });
+    });
+    terms.sort(function (a, b) { return b.term.length - a.term.length; });
+    if (!terms.length) return;
+    var pattern = new RegExp("\\b(" + terms.map(function (item) {
+      return escapeRegExp(item.term);
+    }).join("|") + ")\\b", "i");
+    var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    var nodes = [];
+    while (walker.nextNode()) {
+      var parent = walker.currentNode.parentElement;
+      if (!parent || parent.closest("button,a,input,textarea,code,pre,script,style,.katex,.gt-formula")) continue;
+      if (pattern.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+    }
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var match = pattern.exec(text);
+      if (!match) return;
+      var matched = terms.find(function (item) {
+        return item.term.toLowerCase() === match[1].toLowerCase() && !used.has(item.id);
+      });
+      if (!matched) return;
+      used.add(matched.id);
+      var fragment = document.createDocumentFragment();
+      fragment.appendChild(document.createTextNode(text.slice(0, match.index)));
+      var button = document.createElement("button");
+      button.className = "gt-concept-link";
+      button.dataset.concept = matched.id;
+      button.textContent = match[1];
+      fragment.appendChild(button);
+      fragment.appendChild(document.createTextNode(text.slice(match.index + match[1].length)));
+      node.replaceWith(fragment);
     });
   }
 
@@ -68,15 +115,19 @@
     var question = card.question;
     if (!question) return "";
     var controls = "";
-    if (question.type === "NAT") {
+    if (question.type === "REVEAL") {
+      controls = '<button class="gt-check">Reveal answer</button>';
+    } else if (question.type === "NAT") {
       controls = '<div class="gt-nat"><input class="gt-nat-input" inputmode="decimal" aria-label="Numerical answer" placeholder="Type your answer"><button class="gt-check">Check</button></div>';
     } else {
       controls = '<div class="gt-options">' + question.options.map(function (option, i) {
         return '<button class="gt-option" data-value="' + optionValue(option, i) + '">' + linkedText(option) + "</button>";
       }).join("") + '</div><button class="gt-check">Check answer</button>';
     }
-    return '<div class="gt-question" data-question-type="' + question.type + '"><div class="gt-question-prompt">' +
-      linkedText(question.prompt) + "</div>" + controls + '<div class="gt-feedback" hidden aria-live="polite"></div></div>';
+    var prompt = card.type === "practice" ? "" :
+      '<div class="gt-question-prompt">' + linkedText(question.prompt) + "</div>";
+    return '<div class="gt-question" data-question-type="' + question.type + '">' + prompt +
+      controls + '<div class="gt-feedback" hidden aria-live="polite"></div></div>';
   }
 
   function cardMarkup(card, index) {
@@ -85,7 +136,7 @@
       '" data-topic="' + card.topicId + '" tabindex="-1"><div class="gt-card-inner">' +
       '<div class="gt-type">' + typeLabels[card.type] + "</div>" +
       '<h1 class="gt-hook">' + linkedText(card.hook) + "</h1>" +
-      '<div class="gt-body">' + linkedText(card.body) + "</div>" +
+      (card.question ? "" : '<div class="gt-body">' + linkedText(card.body) + "</div>") +
       (card.formula ? '<div class="gt-formula">' + math(card.formula, true) + "</div>" : "") +
       questionMarkup(card) +
       '<div class="gt-meta"><span class="gt-chip">' + topic.icon + " " + topic.name + '</span><span class="gt-chip">' +
@@ -96,6 +147,10 @@
 
   function renderFeed() {
     feed.innerHTML = data.cards.map(cardMarkup).join("");
+    feed.querySelectorAll(".gt-card").forEach(function (cardEl) {
+      var card = data.cards[Number(cardEl.dataset.index)];
+      decorateConceptLinks(cardEl, card.concepts);
+    });
     renderMathInElement(feed);
   }
 
@@ -201,26 +256,19 @@
   }
 
   function openDetail(card, trigger) {
-    var detailAnchors = {
-      "deep-dive": ["study-in-depth", "Study in Depth"],
-      "cheat-sheet": ["section-9", "GATE cheat sheet"],
-      trap: ["section-10", "Common traps"],
-      "worked-example": ["section-8", "Worked example"],
-      practice: ["section-12", "Practice problems"],
-      "gate-question": ["section-9", "GATE cheat sheet"]
-    };
-    var detailTarget = detailAnchors[card.type] || ["study-in-depth", "Study in Depth"];
     var topic = data.topics.find(function (item) { return item.id === card.topicId; });
     document.getElementById("detailEyebrow").textContent = typeLabels[card.type] + " · " + topic.name;
     document.getElementById("detailTitle").textContent = card.hook;
     document.getElementById("detailContent").innerHTML =
-      '<p class="gt-detail-lede">' + linkedText(card.detail) + "</p>" +
+      '<div class="gt-rich-detail">' + (card.detailHtml || '<p class="gt-detail-lede">' + linkedText(card.detail) + "</p>") + "</div>" +
       (card.formula ? '<div class="gt-detail-block"><h3>Core formula</h3><div class="gt-concept-formula">' + math(card.formula, true) + "</div></div>" : "") +
       '<div class="gt-detail-block"><h3>Connect the dots</h3><div class="gt-related">' +
       card.concepts.map(function (id) { return '<button data-concept="' + id + '">' + concepts[id].label + "</button>"; }).join("") +
-      '</div></div><a class="gt-detail-link" href="' + card.source + "#" + detailTarget[0] +
-      '">Open ' + detailTarget[1] + " in the lesson →</a>";
-    renderMathInElement(document.getElementById("detailContent"));
+      '</div></div><a class="gt-detail-link" href="' + card.source + "#" + card.sourceAnchor +
+      '">Open ' + card.sourceLabel + " in the lesson →</a>";
+    var detailContent = document.getElementById("detailContent");
+    decorateConceptLinks(detailContent, card.concepts);
+    renderMathInElement(detailContent);
     openDialog(detailDialog, trigger);
   }
 
@@ -263,12 +311,14 @@
   function gradeCard(cardEl, button) {
     var card = data.cards[Number(cardEl.dataset.index)];
     var questionEl = button.closest(".gt-question");
-    var response = selectedAnswers(questionEl);
+    var response = card.question.type === "REVEAL" ? null : selectedAnswers(questionEl);
     var ok = core.gradeQuestion(card.question, response);
     var feedback = questionEl.querySelector(".gt-feedback");
     feedback.hidden = false;
     feedback.className = "gt-feedback " + (ok ? "ok" : "bad");
-    feedback.innerHTML = "<b>" + (ok ? "Correct." : "Not quite.") + "</b> " + linkedText(card.question.explanation);
+    var lead = card.question.type === "REVEAL" ? "Answer." : (ok ? "Correct." : "Not quite.");
+    feedback.innerHTML = "<b>" + lead + "</b> " +
+      (card.question.explanationHtml || linkedText(card.question.explanation));
     if (card.question.type !== "NAT") {
       questionEl.querySelectorAll(".gt-option").forEach(function (option) {
         var answer = Array.isArray(card.question.answer) ? card.question.answer : [card.question.answer];
