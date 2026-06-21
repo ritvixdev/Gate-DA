@@ -193,3 +193,23 @@ gateSignal
   - SVD to low-rank approximation and variance retention.
 - [ ] Confirm the worktree is clean except for intended changes.
 - [ ] Commit with `feat: add connected beginner learning graph`.
+
+### Task 9: Opt-in graph and compact connections
+
+**Files:**
+- Modify: `linear-algebra/gate-tiktok.html`
+- Modify: `assets/js/gate-tiktok/gate-concept-graph-core.js`
+- Modify: `assets/js/gate-tiktok/gate-tiktok.js`
+- Modify: `assets/css/gate-tiktok.css`
+- Modify: `tests/gate-tiktok.test.js`
+
+- [ ] Add failing tests proving the concept sheet is the default view, the graph panel is hidden until requested, and every concept renders no more than five ranked connection rows.
+- [ ] Add failing tests for an `Explore graph` action beside the lesson action and a `Back to concept` action inside the graph workspace.
+- [ ] Run `node --test tests/gate-tiktok.test.js` and confirm the current always-visible graph fails these expectations.
+- [ ] Add `rankedConnections(concepts, conceptId, limit)` to the graph core. Sort equivalence and implication edges first, then prerequisites, same-lesson connections, GATE patterns, and remaining useful/advanced edges. Deduplicate target concepts and cap the result at five.
+- [ ] Render one compact **Connect the dots** card after relevant GATE questions. Each row shows relationship label, target concept, and explanation; selecting it navigates within the concept sheet.
+- [ ] Move graph markup into a dedicated hidden workspace within the concept dialog. `Explore graph` initializes and reveals it; `Back to concept` hides it and restores the concept sheet scroll position.
+- [ ] Keep node expansion, edge details, reset, path, zoom, keyboard behavior, and graph state functional inside the dedicated workspace.
+- [ ] Update responsive styling so the compact sheet uses the full dialog until graph mode is explicitly entered.
+- [ ] Run the full Node test suite and browser-test mobile and desktop opening, returning, connection ranking, scroll restoration, and repeated graph expansion.
+- [ ] Commit with `feat: make concept graph opt-in`.
