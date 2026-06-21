@@ -259,6 +259,8 @@
     }
   };
   Object.keys(rich).forEach(function (id) { Object.assign(C[id], rich[id]); });
+  C.covariance.lessonAnchor = "study-item-22";
+  C.covariance.lessonSection = "Covariance matrix properties";
 
   function addExplicitEdge(sourceId, targetId, type, label, explanation, importance, formula, assumptions) {
     C[sourceId].edges = C[sourceId].edges.filter(function (item) { return item.targetId !== targetId; });

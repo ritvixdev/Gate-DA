@@ -212,6 +212,7 @@ test("definition cards and concept dialog expose connected learning controls", (
   [
     "conceptGraph", "conceptGraphStatus", "graphReset", "graphPath", "graphZoomIn", "graphZoomOut",
     "conceptSheetView", "conceptGraphView", "backToConcept",
+    "graphNodePanel", "graphNodeMeaning", "graphNodeFormula", "readGraphConcept", "openGraphLesson",
     "conceptRelationshipList", "gate-concept-graph-core.js",
   ].forEach((marker) => assert.match(html, new RegExp(marker)));
   ["Meaning", "Example", "Therefore", "GATE connection", "expandGraph", "shortestPath"]
@@ -222,6 +223,8 @@ test("definition cards and concept dialog expose connected learning controls", (
   assert.match(runtime, /rankedConnections/);
   assert.match(runtime, /exploreGraph/);
   assert.match(runtime, /scrollTop/);
+  ["graphEntryConceptId", "graphEntryScroll", "restoreGraphEntry", "showGraphNode"]
+    .forEach((marker) => assert.match(runtime, new RegExp(marker)));
   ["Recognition clues", "Reasoning chain", "Common trap", "Relevant GATE questions"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });
@@ -257,6 +260,7 @@ test("concepts expose direct lesson-section anchors and richer learning context"
     assert.ok(concept.lessonSection, `${concept.id} missing lessonSection`);
     assert.ok(concept.gateFocus, `${concept.id} missing gateFocus`);
   });
+  assert.equal(concepts.covariance.lessonAnchor, "study-item-22");
 });
 
 test("lesson shell creates stable section anchors and restores hash navigation", () => {

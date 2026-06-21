@@ -60,6 +60,8 @@
     var primaryConceptId = definitionConcepts[card.id];
     var concept = concepts && concepts[primaryConceptId];
     if (!concept) return card;
+    concept.lessonAnchor = card.sourceAnchor;
+    concept.lessonSection = card.hook;
     return Object.assign({}, card, {
       primaryConceptId: primaryConceptId,
       concepts: Array.from(new Set([primaryConceptId].concat(card.concepts || []))),

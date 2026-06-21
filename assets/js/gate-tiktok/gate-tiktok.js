@@ -28,6 +28,10 @@
   var graphMode = false;
   var currentConceptId = null;
   var conceptSheetScroll = 0;
+  var graphEntryConceptId = null;
+  var graphEntryScroll = 0;
+  var graphSelectedConceptId = null;
+  var graphPreviousConceptId = null;
   var lastFocus = null;
   var completed = new Set();
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -449,30 +453,44 @@
     else if (!reduceMotion && window.gsap) window.gsap.fromTo("#conceptContent", { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: .22 });
   }
 
+  function showGraphNode(id, edge) {
+    var concept = concepts[id];
+    if (!concept || !graphState) return;
+    graphPreviousConceptId = graphSelectedConceptId;
+    graphSelectedConceptId = id;
+    var connection = edge || (graphPreviousConceptId ?
+      graphCore.edgeBetween(concepts, graphPreviousConceptId, id) : null);
+    graphState = graphCore.expandGraph(concepts, graphState, id);
+    graphState.focusedId = id;
+    document.getElementById("conceptTitle").textContent = concept.label;
+    document.getElementById("graphNodeRelation").textContent =
+      connection ? connection.label : (id === graphEntryConceptId ? "Graph starting concept" : "Selected concept");
+    document.getElementById("graphNodeTitle").textContent = concept.label;
+    document.getElementById("graphNodeMeaning").textContent = concept.beginnerMeaning;
+    document.getElementById("graphNodeFormula").innerHTML = math(concept.formula, true);
+    document.getElementById("graphNodeConnection").textContent = connection ? connection.explanation :
+      (graphPreviousConceptId && graphPreviousConceptId !== id ?
+        "Explore how this concept connects to " + concepts[graphPreviousConceptId].label + "." :
+        "This is the concept from which you opened the graph.");
+    document.getElementById("openGraphLesson").href = concept.lessonUrl + "#" + concept.lessonAnchor;
+    document.getElementById("graphNodePanel").hidden = false;
+    renderMathInElement(document.getElementById("graphNodePanel"));
+    renderConceptGraph();
+  }
+
   function showEdgeDetails(edgeId) {
     var edge = allGraphEdges()[edgeId];
     if (!edge) return;
-    graphState.focusedId = edge.targetId;
-    document.getElementById("conceptTitle").textContent =
-      concepts[edge.sourceId].label + " → " + concepts[edge.targetId].label;
-    document.getElementById("conceptContent").innerHTML =
-      '<div class="gt-concept-section"><h3>' + escapeHtml(edge.type.replace("-", " ")) +
-      '</h3><p class="gt-concept-definition">' + escapeHtml(edge.explanation) + "</p></div>" +
-      (edge.formula ? '<div class="gt-concept-formula">' + math(edge.formula, true) + "</div>" : "") +
-      (edge.assumptions ? '<div class="gt-detail-block gt-trap-block"><h3>Assumption</h3><p>' +
-        escapeHtml(edge.assumptions) + "</p></div>" : "") +
-      '<div class="gt-detail-block gt-gate-focus"><h3>GATE importance</h3><p>' +
-      escapeHtml(edge.importance === "core" ? "This is a core reasoning link worth memorizing and proving." :
-        "Use this connection to combine topics and remove answer choices.") + "</p></div>" +
-      '<button class="gt-expand-target" data-concept="' + edge.targetId + '">Explain and expand ' +
-      escapeHtml(concepts[edge.targetId].label) + " →</button>";
-    renderMathInElement(document.getElementById("conceptContent"));
-    renderConceptGraph();
+    showGraphNode(edge.targetId, edge);
   }
 
   function openGraphView() {
     if (!currentConceptId) return;
     conceptSheetScroll = document.getElementById("conceptContent").scrollTop;
+    graphEntryConceptId = currentConceptId;
+    graphEntryScroll = conceptSheetScroll;
+    graphSelectedConceptId = currentConceptId;
+    graphPreviousConceptId = null;
     document.getElementById("conceptSheetView").dataset.savedScroll = String(conceptSheetScroll);
     graphMode = true;
     graphState = graphCore.directGraph(concepts, currentConceptId);
@@ -481,22 +499,35 @@
     document.getElementById("conceptSheetView").hidden = true;
     document.getElementById("conceptGraphView").hidden = false;
     document.getElementById("conceptBack").hidden = true;
+    document.getElementById("graphNodePanel").hidden = true;
     renderConceptGraph();
     document.getElementById("backToConcept").focus();
   }
 
-  function closeGraphView() {
+  function restoreGraphEntry() {
     graphMode = false;
     document.getElementById("conceptGraphView").hidden = true;
     document.getElementById("conceptSheetView").hidden = false;
-    renderConceptDetails(currentConceptId);
-    document.getElementById("conceptContent").scrollTop = conceptSheetScroll;
+    renderConceptDetails(graphEntryConceptId);
+    document.getElementById("conceptContent").scrollTop = graphEntryScroll;
     document.getElementById("conceptBack").hidden = conceptHistory.length < 2;
     requestAnimationFrame(function () {
-      document.getElementById("conceptContent").scrollTop = conceptSheetScroll;
+      document.getElementById("conceptContent").scrollTop = graphEntryScroll;
       var button = document.getElementById("exploreGraph");
       if (button) button.focus({ preventScroll: true });
     });
+  }
+
+  function readSelectedGraphConcept() {
+    if (!graphSelectedConceptId) return;
+    var selectedId = graphSelectedConceptId;
+    graphMode = false;
+    document.getElementById("conceptGraphView").hidden = true;
+    document.getElementById("conceptSheetView").hidden = false;
+    if (conceptHistory[conceptHistory.length - 1] !== selectedId) conceptHistory.push(selectedId);
+    renderConceptDetails(selectedId);
+    document.getElementById("conceptContent").scrollTop = 0;
+    requestAnimationFrame(function () { document.getElementById("conceptContent").scrollTop = 0; });
   }
 
   function selectedAnswers(questionEl) {
@@ -547,7 +578,12 @@
 
   document.addEventListener("click", function (event) {
     var close = event.target.closest("[data-close]");
-    if (close) { closeDialog(document.getElementById(close.dataset.close)); return; }
+    if (close) {
+      var closingDialog = document.getElementById(close.dataset.close);
+      if (closingDialog === conceptDialog && graphMode) restoreGraphEntry();
+      else closeDialog(closingDialog);
+      return;
+    }
     var exploreGraph = event.target.closest("#exploreGraph");
     if (exploreGraph) {
       event.preventDefault(); event.stopPropagation();
@@ -566,7 +602,7 @@
     var graphNode = event.target.closest("[data-graph-concept]");
     if (graphNode) {
       event.preventDefault(); event.stopPropagation();
-      showConcept(graphNode.dataset.graphConcept, graphNode, true); return;
+      showGraphNode(graphNode.dataset.graphConcept, null); return;
     }
     var graphEdge = event.target.closest("[data-edge]");
     if (graphEdge) {
@@ -602,14 +638,17 @@
     }
   });
 
-  document.getElementById("backToConcept").addEventListener("click", closeGraphView);
+  document.getElementById("backToConcept").addEventListener("click", restoreGraphEntry);
+  document.getElementById("readGraphConcept").addEventListener("click", readSelectedGraphConcept);
 
   document.getElementById("graphReset").addEventListener("click", function () {
     if (!graphState) return;
     graphState = graphCore.directGraph(concepts, graphState.rootId);
     graphPathIds = [];
     graphZoom = 1;
-    renderConceptDetails(graphState.rootId);
+    graphSelectedConceptId = graphState.rootId;
+    graphPreviousConceptId = null;
+    document.getElementById("graphNodePanel").hidden = true;
     renderConceptGraph();
   });
 
@@ -633,6 +672,11 @@
   });
 
   [topicMenu, detailDialog, conceptDialog, helpDialog].forEach(function (dialog) {
+    dialog.addEventListener("cancel", function (event) {
+      event.preventDefault();
+      if (dialog === conceptDialog && graphMode) restoreGraphEntry();
+      else closeDialog(dialog);
+    });
     dialog.addEventListener("keydown", function (event) {
       trapFocus(event, dialog);
       if ((event.key === "Enter" || event.key === " ") &&
@@ -640,10 +684,17 @@
         event.preventDefault();
         event.target.dispatchEvent(new MouseEvent("click", { bubbles: true }));
       }
-      if (event.key === "Escape") closeDialog(dialog);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        if (dialog === conceptDialog && graphMode) restoreGraphEntry();
+        else closeDialog(dialog);
+      }
     });
     dialog.addEventListener("click", function (event) {
-      if (event.target === dialog) closeDialog(dialog);
+      if (event.target === dialog) {
+        if (dialog === conceptDialog && graphMode) restoreGraphEntry();
+        else closeDialog(dialog);
+      }
     });
   });
 
