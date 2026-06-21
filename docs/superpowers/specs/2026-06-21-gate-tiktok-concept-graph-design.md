@@ -187,13 +187,29 @@ The graph is opt-in and opens only after the student selects **Explore graph**.
 The dedicated graph view:
 
 - uses the full available dialog area instead of sharing vertical space with the concept explanation;
-- preserves the concept sheet's concept history and scroll position;
+- preserves the graph-entry concept, concept history, and exact concept-sheet scroll position;
 - initially shows the selected concept and its highest-ranked direct connections;
 - orders and prioritizes visible neighbours from strongest relevance to weakest relevance;
 - allows repeated expansion to explore the complete Linear Algebra graph;
 - provides a clear control to return to the unchanged concept sheet.
 
 The initial graph view is intentionally limited to prevent overwhelming beginners.
+
+### Graph-node learning and return behavior
+
+Selecting a graph node does not silently replace the concept sheet behind the graph. It selects the node only inside graph mode and opens a compact graph information panel containing:
+
+- the selected concept's beginner meaning;
+- its defining formula;
+- why it connects to the previously selected graph node;
+- a **Read this concept** action;
+- an **Open full lesson section** link.
+
+Selecting **Read this concept** intentionally leaves graph mode and opens the selected node's complete concept sheet from the top.
+
+Selecting **Back to concept**, the graph view's close action, or Escape while graph mode is open returns to the graph-entry concept at the exact scroll position where **Explore graph** was selected. The first close action does not close the overall concept dialog.
+
+After returning to the concept sheet, selecting close or Escape closes the concept dialog normally and returns focus to its original trigger.
 
 ### Recursive exploration
 
