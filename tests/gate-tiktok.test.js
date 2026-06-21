@@ -222,9 +222,10 @@ test("definition cards and concept dialog expose connected learning controls", (
   assert.match(runtime, /Connect the dots/);
   assert.match(runtime, /rankedConnections/);
   assert.match(runtime, /exploreGraph/);
-  assert.match(runtime, /scrollTop/);
-  ["graphEntryConceptId", "graphEntryScroll", "restoreGraphEntry", "showGraphNode"]
+  ["graphEntryConceptId", "graphEntryPage", "restoreGraphEntry", "showGraphNode"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
+  ["graphEntryScroll", "conceptSheetScroll", "savedScroll"]
+    .forEach((marker) => assert.doesNotMatch(runtime, new RegExp(marker)));
   ["Recognition clues", "Reasoning chain", "Common trap", "Relevant GATE questions"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });
@@ -276,4 +277,26 @@ test("feed styling keeps background fixed and gives mobile cards near-full width
   assert.match(css, /\.gt-card\{[^}]*padding:[^;]*8px/s);
   assert.doesNotMatch(css, /\.gt-card::before/);
   assert.doesNotMatch(css, /\.gt-card::after/);
+});
+
+test("Gate TikTok uses pagination instead of nested scrolling", () => {
+  const css = fs.readFileSync(path.join(__dirname, "../assets/css/gate-tiktok.css"), "utf8");
+  const runtime = fs.readFileSync(
+    path.join(__dirname, "../assets/js/gate-tiktok/gate-tiktok.js"),
+    "utf8"
+  );
+  assert.doesNotMatch(css, /scrollbar-width:thin/);
+  assert.doesNotMatch(css, /overflow:auto/);
+  assert.doesNotMatch(css, /overflow-x:auto/);
+  [
+    /\.gt-card[^}]*overflow-y:auto/s,
+    /\.gt-card-inner[^}]*overflow-y:auto/s,
+    /\.gt-concept-content[^}]*overflow-y:auto/s,
+    /\.gt-graph-panel[^}]*overflow-y:auto/s,
+    /\.gt-graph-node-panel[^}]*overflow-y:auto/s,
+  ].forEach((pattern) => assert.doesNotMatch(css, pattern));
+  [
+    "gt-page-controls", "data-card-page", "data-concept-page",
+    "cardPageState", "conceptPageState", "Previous", "Next",
+  ].forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });

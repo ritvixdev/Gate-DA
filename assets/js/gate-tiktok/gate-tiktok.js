@@ -27,13 +27,14 @@
   var graphZoom = 1;
   var graphMode = false;
   var currentConceptId = null;
-  var conceptSheetScroll = 0;
   var graphEntryConceptId = null;
-  var graphEntryScroll = 0;
+  var graphEntryPage = 0;
   var graphSelectedConceptId = null;
   var graphPreviousConceptId = null;
   var lastFocus = null;
   var completed = new Set();
+  var cardPageState = {};
+  var conceptPageState = {};
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var typeLabels = {
     "basic-definition": "Basic definition", "deep-dive": "Study in depth", "cheat-sheet": "GATE cheat sheet", trap: "Common GATE trap",
@@ -122,7 +123,7 @@
     return match ? match[1] : String.fromCharCode(65 + index);
   }
 
-  function questionMarkup(card) {
+  function questionControlsMarkup(card) {
     var question = card.question;
     if (!question) return "";
     var controls = "";
@@ -135,29 +136,53 @@
         return '<button class="gt-option" data-value="' + optionValue(option, i) + '">' + linkedText(option) + "</button>";
       }).join("") + '</div><button class="gt-check">Check answer</button>';
     }
-    var prompt = card.type === "practice" ? "" :
-      '<div class="gt-question-prompt">' + linkedText(question.prompt) + "</div>";
-    return '<div class="gt-question" data-question-type="' + question.type + '">' + prompt +
-      controls + '<div class="gt-feedback" hidden aria-live="polite"></div></div>';
+    return '<div class="gt-question" data-question-type="' + question.type + '">' + controls + "</div>";
+  }
+
+  function pageControls(kind, count, active) {
+    if (count < 2) return "";
+    active = active || 0;
+    return '<div class="gt-page-controls" data-page-kind="' + kind + '">' +
+      '<button data-page-delta="-1"' + (active === 0 ? " disabled" : "") + '>Previous</button><span>' +
+      (active + 1) + " / " + count + '</span><button data-page-delta="1"' +
+      (active === count - 1 ? " disabled" : "") + ">Next</button></div>";
+  }
+
+  function cardPages(card) {
+    if (card.type === "basic-definition") {
+      return [
+        '<div class="gt-definition-learning"><div class="gt-learning-row"><small>Meaning</small><p>' +
+          linkedText(card.beginnerMeaning) + '</p></div><div class="gt-learning-row"><small>Example</small><p>' +
+          linkedText(card.example) + "</p></div></div>",
+        '<div class="gt-definition-learning"><div class="gt-learning-row gt-learning-consequence"><small>Therefore</small><p>' +
+          linkedText(card.consequence) + '</p></div><div class="gt-learning-row gt-learning-gate"><small>GATE connection</small><p>' +
+          linkedText(card.gateSignal) + "</p></div></div>"
+      ];
+    }
+    if (card.question) {
+      var prompt = card.type === "practice" ? card.hook : card.question.prompt;
+      return [
+        '<div class="gt-question-page-prompt">' + linkedText(prompt) + "</div>" +
+          (card.formula ? '<div class="gt-formula">' + math(card.formula, true) + "</div>" : ""),
+        questionControlsMarkup(card),
+        '<div class="gt-feedback gt-feedback-page" hidden aria-live="polite"></div>'
+      ];
+    }
+    return ['<div class="gt-body">' + linkedText(card.body) + "</div>" +
+      (card.formula ? '<div class="gt-formula">' + math(card.formula, true) + "</div>" : "")];
   }
 
   function cardMarkup(card, index) {
     var topic = data.topics.find(function (item) { return item.id === card.topicId; });
-    var definitionLearning = card.type === "basic-definition" ?
-      '<div class="gt-definition-learning">' +
-      '<div class="gt-learning-row"><small>Meaning</small><p>' + linkedText(card.beginnerMeaning) + "</p></div>" +
-      '<div class="gt-learning-row"><small>Example</small><p>' + linkedText(card.example) + "</p></div>" +
-      '<div class="gt-learning-row gt-learning-consequence"><small>Therefore</small><p>' + linkedText(card.consequence) + "</p></div>" +
-      '<div class="gt-learning-row gt-learning-gate"><small>GATE connection</small><p>' + linkedText(card.gateSignal) + "</p></div>" +
-      "</div>" : "";
+    var pages = cardPages(card);
     return '<article class="gt-card" id="card-' + card.id + '" data-index="' + index + '" data-card="' + card.id +
       '" data-topic="' + card.topicId + '" tabindex="-1"><div class="gt-card-inner">' +
       '<div class="gt-type">' + typeLabels[card.type] + "</div>" +
       '<h1 class="gt-hook">' + linkedText(card.hook) + "</h1>" +
-      definitionLearning +
-      (card.question || card.type === "basic-definition" ? "" : '<div class="gt-body">' + linkedText(card.body) + "</div>") +
-      (card.formula ? '<div class="gt-formula">' + math(card.formula, true) + "</div>" : "") +
-      questionMarkup(card) +
+      '<div class="gt-card-pages">' + pages.map(function (page, pageIndex) {
+        return '<section class="gt-card-page" data-card-page="' + pageIndex + '"' +
+          (pageIndex ? " hidden" : "") + ">" + page + "</section>";
+      }).join("") + "</div>" + pageControls("card", pages.length, 0) +
       '<div class="gt-meta"><span class="gt-chip">' + topic.icon + " " + topic.name + '</span><span class="gt-chip">' +
       card.difficulty + "</span></div>" +
       '<div class="gt-open-cue"><span>＋</span> Tap the card to understand fully</div>' +
@@ -286,6 +311,27 @@
       '</div></div><a class="gt-detail-link" href="' + card.source + "#" + card.sourceAnchor +
       '">Open ' + card.sourceLabel + " in the lesson →</a>";
     var detailContent = document.getElementById("detailContent");
+    var rich = detailContent.querySelector(".gt-rich-detail");
+    var detailItems = rich ? Array.from(rich.children) : [];
+    Array.from(detailContent.children).forEach(function (child) {
+      if (child !== rich) detailItems.push(child);
+    });
+    if (detailItems.length > 3) {
+      var detailPages = [];
+      for (var i = 0; i < detailItems.length; i += 3) {
+        detailPages.push(detailItems.slice(i, i + 3));
+      }
+      detailContent.innerHTML = '<div class="gt-detail-pages"></div>' + pageControls("detail", detailPages.length, 0);
+      var detailPagesEl = detailContent.querySelector(".gt-detail-pages");
+      detailPages.forEach(function (items, pageIndex) {
+        var section = document.createElement("section");
+        section.className = "gt-detail-page";
+        section.dataset.detailPage = pageIndex;
+        section.hidden = pageIndex !== 0;
+        items.forEach(function (item) { section.appendChild(item); });
+        detailPagesEl.appendChild(section);
+      });
+    }
     decorateConceptLinks(detailContent, card.concepts);
     renderMathInElement(detailContent);
     openDialog(detailDialog, trigger);
@@ -335,25 +381,30 @@
   }
 
   function conceptMarkup(concept) {
-    return '<div class="gt-concept-section"><h3>What it means</h3><p class="gt-concept-definition">' +
-      linkedText(concept.beginnerMeaning) + '</p></div>' +
-      '<div class="gt-concept-formula">' + math(concept.formula, true) + '</div>' +
+    var pages = [
+      '<div class="gt-concept-section"><h3>What it means</h3><p class="gt-concept-definition">' +
+        linkedText(concept.beginnerMeaning) + '</p></div><div class="gt-concept-formula">' +
+        math(concept.formula, true) + "</div>",
       '<div class="gt-example-grid"><div class="gt-detail-block"><h3>Example</h3><p>' + linkedText(concept.example) +
-      "</p><small>" + linkedText(concept.exampleExplanation) + '</small></div>' +
-      '<div class="gt-detail-block gt-counterexample"><h3>Not an example</h3><p>' + linkedText(concept.counterexample) +
-      "</p><small>" + linkedText(concept.counterexampleExplanation) + "</small></div></div>" +
+        "</p><small>" + linkedText(concept.exampleExplanation) + '</small></div><div class="gt-detail-block gt-counterexample"><h3>Not an example</h3><p>' +
+        linkedText(concept.counterexample) + "</p><small>" + linkedText(concept.counterexampleExplanation) + "</small></div></div>",
       '<div class="gt-detail-block"><h3>What follows from this?</h3><ul class="gt-reason-list">' +
-      learningItems(concept.consequences) + "</ul></div>" +
-      '<div class="gt-detail-block"><h3>Important properties</h3><ul class="gt-reason-list">' +
-      learningItems(concept.properties) + "</ul></div>" +
+        learningItems(concept.consequences) + '</ul></div><div class="gt-detail-block"><h3>Important properties</h3><ul class="gt-reason-list">' +
+        learningItems(concept.properties) + "</ul></div>",
       '<div class="gt-detail-block gt-gate-focus"><h3>Why it matters for GATE</h3><p>' +
-      linkedText(concept.gateFocus) + '</p><ul class="gt-reason-list">' + learningItems(concept.gateSignals) + "</ul></div>" +
-      '<div class="gt-detail-block gt-trap-block"><h3>Common trap</h3><ul class="gt-reason-list">' +
-      learningItems(concept.gateTraps) + "</ul></div>" +
-      gateQuestionLinks(concept) +
-      compactConnections(concept) +
+        linkedText(concept.gateFocus) + '</p><ul class="gt-reason-list">' + learningItems(concept.gateSignals) +
+        '</ul></div><div class="gt-detail-block gt-trap-block"><h3>Common trap</h3><ul class="gt-reason-list">' +
+        learningItems(concept.gateTraps) + "</ul></div>",
+      gateQuestionLinks(concept) + compactConnections(concept),
       '<div class="gt-concept-actions"><a class="gt-concept-source" href="' + concept.lessonUrl + "#" + concept.lessonAnchor +
-      '">Open ' + concept.lessonSection + '</a><button id="exploreGraph" type="button">Explore graph →</button></div>';
+        '">Open ' + concept.lessonSection + '</a><button id="exploreGraph" type="button">Explore graph →</button></div>'
+    ].filter(Boolean);
+    var active = conceptPageState[concept.id] || 0;
+    active = Math.min(active, pages.length - 1);
+    return '<div class="gt-concept-pages">' + pages.map(function (page, index) {
+      return '<section class="gt-concept-page" data-concept-page="' + index + '"' +
+        (index === active ? "" : " hidden") + ">" + page + "</section>";
+    }).join("") + "</div>" + pageControls("concept", pages.length, active);
   }
 
   function allGraphEdges() {
@@ -435,6 +486,24 @@
     renderMathInElement(document.getElementById("conceptContent"));
   }
 
+  function changePage(container, kind, delta) {
+    var selector = kind === "card" ? "[data-card-page]" :
+      (kind === "concept" ? "[data-concept-page]" : "[data-detail-page]");
+    var pages = Array.from(container.querySelectorAll(selector));
+    var current = pages.findIndex(function (page) { return !page.hidden; });
+    var next = Math.max(0, Math.min(pages.length - 1, current + delta));
+    if (kind === "card" && delta > 0 && pages[next].querySelector(".gt-feedback-page[hidden]")) return;
+    if (next === current) return;
+    pages.forEach(function (page, index) { page.hidden = index !== next; });
+    var controls = container.querySelector('.gt-page-controls[data-page-kind="' + kind + '"]');
+    controls.querySelector("span").textContent = (next + 1) + " / " + pages.length;
+    controls.querySelector('[data-page-delta="-1"]').disabled = next === 0;
+    controls.querySelector('[data-page-delta="1"]').disabled = next === pages.length - 1 ||
+      Boolean(pages[next + 1] && pages[next + 1].querySelector(".gt-feedback-page[hidden]"));
+    if (kind === "card") cardPageState[container.closest(".gt-card").dataset.card] = next;
+    else if (kind === "concept") conceptPageState[currentConceptId] = next;
+  }
+
   function showConcept(id, trigger, pushHistory) {
     if (!concepts[id]) return;
     if (!conceptDialog.open) {
@@ -486,12 +555,10 @@
 
   function openGraphView() {
     if (!currentConceptId) return;
-    conceptSheetScroll = document.getElementById("conceptContent").scrollTop;
     graphEntryConceptId = currentConceptId;
-    graphEntryScroll = conceptSheetScroll;
+    graphEntryPage = conceptPageState[currentConceptId] || 0;
     graphSelectedConceptId = currentConceptId;
     graphPreviousConceptId = null;
-    document.getElementById("conceptSheetView").dataset.savedScroll = String(conceptSheetScroll);
     graphMode = true;
     graphState = graphCore.directGraph(concepts, currentConceptId);
     graphPathIds = [];
@@ -508,11 +575,10 @@
     graphMode = false;
     document.getElementById("conceptGraphView").hidden = true;
     document.getElementById("conceptSheetView").hidden = false;
+    conceptPageState[graphEntryConceptId] = graphEntryPage;
     renderConceptDetails(graphEntryConceptId);
-    document.getElementById("conceptContent").scrollTop = graphEntryScroll;
     document.getElementById("conceptBack").hidden = conceptHistory.length < 2;
     requestAnimationFrame(function () {
-      document.getElementById("conceptContent").scrollTop = graphEntryScroll;
       var button = document.getElementById("exploreGraph");
       if (button) button.focus({ preventScroll: true });
     });
@@ -525,9 +591,8 @@
     document.getElementById("conceptGraphView").hidden = true;
     document.getElementById("conceptSheetView").hidden = false;
     if (conceptHistory[conceptHistory.length - 1] !== selectedId) conceptHistory.push(selectedId);
+    conceptPageState[selectedId] = 0;
     renderConceptDetails(selectedId);
-    document.getElementById("conceptContent").scrollTop = 0;
-    requestAnimationFrame(function () { document.getElementById("conceptContent").scrollTop = 0; });
   }
 
   function selectedAnswers(questionEl) {
@@ -540,7 +605,7 @@
     var questionEl = button.closest(".gt-question");
     var response = card.question.type === "REVEAL" ? null : selectedAnswers(questionEl);
     var ok = core.gradeQuestion(card.question, response);
-    var feedback = questionEl.querySelector(".gt-feedback");
+    var feedback = cardEl.querySelector(".gt-feedback");
     feedback.hidden = false;
     feedback.className = "gt-feedback " + (ok ? "ok" : "bad");
     var lead = card.question.type === "REVEAL" ? "Answer." : (ok ? "Correct." : "Not quite.");
@@ -557,6 +622,7 @@
     }
     button.disabled = true;
     renderMathInElement(feedback);
+    changePage(cardEl.querySelector(".gt-card-inner"), "card", 1);
     if (!reduceMotion && window.gsap) window.gsap.fromTo(feedback, { scale: .97, opacity: 0 }, { scale: 1, opacity: 1, duration: .25 });
   }
 
@@ -588,6 +654,16 @@
     if (exploreGraph) {
       event.preventDefault(); event.stopPropagation();
       openGraphView(); return;
+    }
+    var pageButton = event.target.closest("[data-page-delta]");
+    if (pageButton) {
+      event.preventDefault(); event.stopPropagation();
+      var controls = pageButton.closest(".gt-page-controls");
+      var kind = controls.dataset.pageKind;
+      var pageContainer = kind === "card" ? pageButton.closest(".gt-card-inner") :
+        (kind === "concept" ? document.getElementById("conceptContent") : document.getElementById("detailContent"));
+      changePage(pageContainer, kind, Number(pageButton.dataset.pageDelta));
+      return;
     }
     var gateCardLink = event.target.closest("[data-gate-card]");
     if (gateCardLink) {
