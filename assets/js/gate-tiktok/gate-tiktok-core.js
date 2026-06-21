@@ -7,6 +7,7 @@
 
   var CARD_TYPES = ["basic-definition", "deep-dive", "cheat-sheet", "trap", "worked-example", "practice", "gate-question"];
   var QUESTION_TYPES = ["MCQ", "MSQ", "NAT", "REVEAL"];
+  var EDGE_TYPES = ["prerequisite", "implies", "equivalent", "contrasts", "used-by", "decomposes-into", "geometric", "gate-pattern"];
 
   function cardsForTopic(cards, topicId) {
     return cards
@@ -54,6 +55,16 @@
       ["label", "definition", "formula", "example", "lessonUrl"].forEach(function (field) {
         if (!concept[field]) errors.push("Concept " + id + " missing " + field);
       });
+      ["beginnerMeaning", "exampleExplanation", "counterexample", "counterexampleExplanation"].forEach(function (field) {
+        if (!concept[field]) errors.push("Concept " + id + " missing " + field);
+      });
+      ["properties", "consequences", "gateSignals", "gateTraps", "edges", "questionIds"].forEach(function (field) {
+        if (!Array.isArray(concept[field])) errors.push("Concept " + id + " missing " + field);
+      });
+      (concept.edges || []).forEach(function (edge) {
+        if (!edge.id || !conceptIds.has(edge.targetId)) errors.push("Concept " + id + " has invalid edge");
+        if (EDGE_TYPES.indexOf(edge.type) === -1 || !edge.explanation) errors.push("Concept " + id + " has incomplete edge " + edge.id);
+      });
       (concept.prerequisites || []).concat(concept.relatedConcepts || []).forEach(function (target) {
         if (!conceptIds.has(target)) errors.push("Concept " + id + " links missing concept " + target);
       });
@@ -68,6 +79,11 @@
         if (!card[field]) errors.push("Card " + card.id + " missing " + field);
       });
       if (!card.detail && !card.detailHtml) errors.push("Card " + card.id + " missing detail");
+      if (card.type === "basic-definition") {
+        ["primaryConceptId", "beginnerMeaning", "formula", "example", "consequence", "gateSignal"].forEach(function (field) {
+          if (!card[field]) errors.push("Definition card " + card.id + " missing " + field);
+        });
+      }
       (card.concepts || []).forEach(function (id) {
         if (!conceptIds.has(id)) errors.push("Card " + card.id + " links missing concept " + id);
       });
@@ -82,6 +98,9 @@
           errors.push("Card " + card.id + " missing options");
         }
       }
+      if (card.type === "gate-question" && !card.gateAnalysis) {
+        errors.push("GATE question " + card.id + " missing analysis");
+      }
     });
     return errors;
   }
@@ -89,6 +108,7 @@
   return {
     CARD_TYPES: CARD_TYPES,
     QUESTION_TYPES: QUESTION_TYPES,
+    EDGE_TYPES: EDGE_TYPES,
     cardsForTopic: cardsForTopic,
     nextIndex: nextIndex,
     gradeQuestion: gradeQuestion,

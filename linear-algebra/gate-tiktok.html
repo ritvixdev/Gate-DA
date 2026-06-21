@@ -56,7 +56,26 @@
         <div><small>Instant concept</small><h2 id="conceptTitle">Concept</h2></div>
         <button class="gt-close" data-close="conceptDialog" aria-label="Close concept">×</button>
       </div>
-      <div class="gt-concept-content" id="conceptContent"></div>
+      <div class="gt-concept-workspace">
+        <section class="gt-concept-content" id="conceptContent"></section>
+        <section class="gt-graph-panel" aria-label="Explorable concept graph">
+          <div class="gt-graph-toolbar">
+            <button id="graphReset" type="button">Reset graph</button>
+            <button id="graphPath" type="button">Show path</button>
+            <button id="graphZoomOut" type="button" aria-label="Zoom graph out">−</button>
+            <button id="graphZoomIn" type="button" aria-label="Zoom graph in">+</button>
+          </div>
+          <p class="gt-graph-status" id="conceptGraphStatus" aria-live="polite"></p>
+          <svg id="conceptGraph" class="gt-concept-graph" viewBox="0 0 720 480" role="img" aria-labelledby="conceptGraphTitle conceptGraphDesc">
+            <title id="conceptGraphTitle">Linear Algebra concept connections</title>
+            <desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>
+          </svg>
+          <div class="gt-relationship-accessible">
+            <h3>Connections in this graph</h3>
+            <ul id="conceptRelationshipList"></ul>
+          </div>
+        </section>
+      </div>
     </div>
   </dialog>
 
@@ -80,6 +99,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="../assets/js/gate-tiktok/gate-tiktok-core.js?v=20260620"></script>
   <script src="../assets/js/gate-tiktok/gate-concepts.js?v=20260620"></script>
+  <script src="../assets/js/gate-tiktok/gate-concept-graph-core.js?v=20260621"></script>
   <script src="../assets/js/gate-tiktok/gate-tiktok-source-data.js?v=20260621"></script>
   <script src="../assets/js/gate-tiktok/gate-tiktok-data.js?v=20260620"></script>
   <script src="../assets/js/gate-tiktok/gate-tiktok.js?v=20260620"></script>

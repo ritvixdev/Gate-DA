@@ -4,7 +4,8 @@
   var data = window.GateTikTokData;
   var concepts = window.GateTikTokConcepts;
   var core = window.GateTikTokCore;
-  if (!data || !concepts || !core) return;
+  var graphCore = window.GateConceptGraphCore;
+  if (!data || !concepts || !core || !graphCore) return;
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
   var errors = core.validateLearningGraph(data, concepts);
@@ -21,6 +22,9 @@
   var currentIndex = 0;
   var currentTopicId = data.topics[0].id;
   var conceptHistory = [];
+  var graphState = null;
+  var graphPathIds = [];
+  var graphZoom = 1;
   var lastFocus = null;
   var completed = new Set();
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -132,11 +136,19 @@
 
   function cardMarkup(card, index) {
     var topic = data.topics.find(function (item) { return item.id === card.topicId; });
+    var definitionLearning = card.type === "basic-definition" ?
+      '<div class="gt-definition-learning">' +
+      '<div class="gt-learning-row"><small>Meaning</small><p>' + linkedText(card.beginnerMeaning) + "</p></div>" +
+      '<div class="gt-learning-row"><small>Example</small><p>' + linkedText(card.example) + "</p></div>" +
+      '<div class="gt-learning-row gt-learning-consequence"><small>Therefore</small><p>' + linkedText(card.consequence) + "</p></div>" +
+      '<div class="gt-learning-row gt-learning-gate"><small>GATE connection</small><p>' + linkedText(card.gateSignal) + "</p></div>" +
+      "</div>" : "";
     return '<article class="gt-card" id="card-' + card.id + '" data-index="' + index + '" data-card="' + card.id +
       '" data-topic="' + card.topicId + '" tabindex="-1"><div class="gt-card-inner">' +
       '<div class="gt-type">' + typeLabels[card.type] + "</div>" +
       '<h1 class="gt-hook">' + linkedText(card.hook) + "</h1>" +
-      (card.question ? "" : '<div class="gt-body">' + linkedText(card.body) + "</div>") +
+      definitionLearning +
+      (card.question || card.type === "basic-definition" ? "" : '<div class="gt-body">' + linkedText(card.body) + "</div>") +
       (card.formula ? '<div class="gt-formula">' + math(card.formula, true) + "</div>" : "") +
       questionMarkup(card) +
       '<div class="gt-meta"><span class="gt-chip">' + topic.icon + " " + topic.name + '</span><span class="gt-chip">' +
@@ -272,35 +284,172 @@
     openDialog(detailDialog, trigger);
   }
 
+  function learningItems(items) {
+    return (items || []).map(function (item) {
+      return '<li><b>' + linkedText(item.statement) + "</b><span>" + linkedText(item.explanation) + "</span>" +
+        (item.formula ? '<div class="gt-mini-formula">' + math(item.formula, false) + "</div>" : "") + "</li>";
+    }).join("");
+  }
+
+  function gateQuestionLinks(concept) {
+    var cards = (concept.questionIds || []).map(function (id) {
+      return data.cards.find(function (card) { return card.id === id; });
+    }).filter(Boolean).slice(0, 6);
+    if (!cards.length) return "";
+    return '<div class="gt-detail-block gt-question-links"><h3>Relevant GATE questions</h3>' +
+      cards.map(function (card) {
+        return '<button data-gate-card="' + card.id + '"><b>' + escapeHtml(card.hook) +
+          "</b><span>" + escapeHtml(card.question.type) + " · " +
+          escapeHtml(card.gateAnalysis.reasoningSteps.length + " reasoning steps") + "</span></button>";
+      }).join("") + "</div>";
+  }
+
+  function gateAnalysisMarkup(analysis) {
+    if (!analysis) return "";
+    return '<div class="gt-gate-analysis"><h4>Recognition clues</h4><ul>' +
+      analysis.recognitionClues.map(function (clue) { return "<li>" + linkedText(clue) + "</li>"; }).join("") +
+      '</ul><h4>Reasoning chain</h4><ol>' +
+      analysis.reasoningSteps.map(function (step) { return "<li>" + linkedText(step) + "</li>"; }).join("") +
+      '</ol><h4>Formulas used</h4><div class="gt-formula-chips">' +
+      analysis.formulasUsed.map(function (formula) { return "<span>" + math(formula, false) + "</span>"; }).join("") +
+      '</div><h4>Common trap</h4><p>' + linkedText(analysis.trap) + "</p></div>";
+  }
+
   function conceptMarkup(concept) {
-    var related = concept.relatedConcepts.map(function (id) {
-      return '<button data-concept="' + id + '">' + concepts[id].label + "</button>";
-    }).join("");
-    var prerequisites = concept.prerequisites.map(function (id) {
-      return '<button data-concept="' + id + '">' + concepts[id].label + "</button>";
-    }).join("");
     return '<div class="gt-concept-section"><h3>What it means</h3><p class="gt-concept-definition">' +
-      linkedText(concept.definition) + '</p></div>' +
+      linkedText(concept.beginnerMeaning) + '</p></div>' +
       '<div class="gt-concept-formula">' + math(concept.formula, true) + '</div>' +
-      '<div class="gt-detail-block"><h3>Mini example</h3><p>' + linkedText(concept.example) + "</p></div>" +
+      '<div class="gt-example-grid"><div class="gt-detail-block"><h3>Example</h3><p>' + linkedText(concept.example) +
+      "</p><small>" + linkedText(concept.exampleExplanation) + '</small></div>' +
+      '<div class="gt-detail-block gt-counterexample"><h3>Not an example</h3><p>' + linkedText(concept.counterexample) +
+      "</p><small>" + linkedText(concept.counterexampleExplanation) + "</small></div></div>" +
+      '<div class="gt-detail-block"><h3>What follows from this?</h3><ul class="gt-reason-list">' +
+      learningItems(concept.consequences) + "</ul></div>" +
+      '<div class="gt-detail-block"><h3>Important properties</h3><ul class="gt-reason-list">' +
+      learningItems(concept.properties) + "</ul></div>" +
       '<div class="gt-detail-block gt-gate-focus"><h3>Why it matters for GATE</h3><p>' +
-      linkedText(concept.gateFocus) + "</p></div>" +
-      (prerequisites ? '<div class="gt-concept-section"><h3>Builds on</h3><div class="gt-related">' + prerequisites + "</div></div>" : "") +
-      (related ? '<div class="gt-concept-section"><h3>Connect next</h3><div class="gt-related">' + related + "</div></div>" : "") +
+      linkedText(concept.gateFocus) + '</p><ul class="gt-reason-list">' + learningItems(concept.gateSignals) + "</ul></div>" +
+      '<div class="gt-detail-block gt-trap-block"><h3>Common trap</h3><ul class="gt-reason-list">' +
+      learningItems(concept.gateTraps) + "</ul></div>" +
+      gateQuestionLinks(concept) +
       '<a class="gt-concept-source" href="' + concept.lessonUrl + "#" + concept.lessonAnchor +
       '">Open ' + concept.lessonSection + " in the full lesson →</a>";
   }
 
-  function showConcept(id, trigger, pushHistory) {
+  function allGraphEdges() {
+    var byId = {};
+    Object.keys(concepts).forEach(function (id) {
+      graphCore.edgesFor(concepts, id).forEach(function (edge) { byId[edge.id] = edge; });
+    });
+    return byId;
+  }
+
+  function graphNodeLabel(label, x, y) {
+    var words = label.split(/\s+/);
+    if (label.length <= 12 || words.length === 1) {
+      return '<tspan x="' + x + '" y="' + y + '">' + escapeHtml(label) + "</tspan>";
+    }
+    var splitAt = Math.ceil(words.length / 2);
+    var first = words.slice(0, splitAt).join(" ");
+    var second = words.slice(splitAt).join(" ");
+    return '<tspan x="' + x + '" y="' + (y - 7) + '">' + escapeHtml(first) +
+      '</tspan><tspan x="' + x + '" y="' + (y + 8) + '">' + escapeHtml(second) + "</tspan>";
+  }
+
+  function renderConceptGraph() {
+    if (!graphState) return;
+    var svg = document.getElementById("conceptGraph");
+    var viewWidth = 720 / graphZoom, viewHeight = 480 / graphZoom;
+    svg.setAttribute("viewBox", ((720 - viewWidth) / 2) + " " + ((480 - viewHeight) / 2) + " " + viewWidth + " " + viewHeight);
+    var nodes = graphState.nodeIds;
+    var positions = {};
+    positions[graphState.rootId] = { x: 360, y: 240 };
+    nodes.filter(function (id) { return id !== graphState.rootId; }).forEach(function (id, index, list) {
+      var angle = (-Math.PI / 2) + (Math.PI * 2 * index / Math.max(1, list.length));
+      var radius = list.length > 10 ? 190 : 160;
+      positions[id] = { x: 360 + Math.cos(angle) * radius, y: 240 + Math.sin(angle) * radius };
+    });
+    var edgeLookup = allGraphEdges();
+    var edges = graphState.edgeIds.map(function (id) { return edgeLookup[id]; }).filter(Boolean);
+    var pathPairs = new Set();
+    for (var i = 0; i < graphPathIds.length - 1; i += 1) {
+      pathPairs.add(graphPathIds[i] + "|" + graphPathIds[i + 1]);
+      pathPairs.add(graphPathIds[i + 1] + "|" + graphPathIds[i]);
+    }
+    var edgeMarkup = edges.map(function (edge) {
+      var from = positions[edge.sourceId], to = positions[edge.targetId];
+      if (!from || !to) return "";
+      var active = pathPairs.has(edge.sourceId + "|" + edge.targetId);
+      return '<g class="gt-graph-edge' + (active ? " path-active" : "") + '" data-edge="' + edge.id +
+        '" tabindex="0" role="button" aria-label="' + escapeHtml(edge.label + ": " + edge.explanation) + '">' +
+        '<line x1="' + from.x + '" y1="' + from.y + '" x2="' + to.x + '" y2="' + to.y + '"></line>' +
+        '<text x="' + ((from.x + to.x) / 2) + '" y="' + ((from.y + to.y) / 2) + '">' +
+        escapeHtml(edge.label) + "</text></g>";
+    }).join("");
+    var nodeMarkup = nodes.map(function (id) {
+      var point = positions[id], concept = concepts[id];
+      return '<g class="gt-graph-node' + (id === graphState.rootId ? " root" : "") +
+        (id === graphState.focusedId ? " focused" : "") +
+        (graphState.expandedIds.indexOf(id) !== -1 ? " expanded" : "") +
+        '" data-graph-concept="' + id + '" tabindex="0" role="button" aria-label="Explore ' +
+        escapeHtml(concept.label) + '"><circle cx="' + point.x + '" cy="' + point.y +
+        '" r="42"></circle><text>' + graphNodeLabel(concept.label, point.x, point.y) + "</text></g>";
+    }).join("");
+    svg.innerHTML = '<title id="conceptGraphTitle">Linear Algebra concept connections</title>' +
+      '<desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>' +
+      '<g class="gt-graph-edges">' + edgeMarkup + '</g><g class="gt-graph-nodes">' + nodeMarkup + "</g>";
+    document.getElementById("conceptGraphStatus").textContent =
+      nodes.length + " concepts visible. Select any node to explain and expand it.";
+    document.getElementById("conceptRelationshipList").innerHTML = edges.map(function (edge) {
+      return '<li><button data-edge="' + edge.id + '"><b>' + escapeHtml(concepts[edge.sourceId].label) +
+        " → " + escapeHtml(concepts[edge.targetId].label) + "</b>: " + escapeHtml(edge.explanation) + "</button></li>";
+    }).join("");
+  }
+
+  function renderConceptDetails(id) {
     var concept = concepts[id];
-    if (!concept) return;
-    if (pushHistory !== false && conceptHistory[conceptHistory.length - 1] !== id) conceptHistory.push(id);
     document.getElementById("conceptTitle").textContent = concept.label;
     document.getElementById("conceptContent").innerHTML = conceptMarkup(concept);
     document.getElementById("conceptBack").hidden = conceptHistory.length < 2;
     renderMathInElement(document.getElementById("conceptContent"));
+  }
+
+  function showConcept(id, trigger, pushHistory) {
+    if (!concepts[id]) return;
+    if (pushHistory !== false && conceptHistory[conceptHistory.length - 1] !== id) conceptHistory.push(id);
+    if (!conceptDialog.open || !graphState) {
+      graphState = graphCore.directGraph(concepts, id);
+      graphPathIds = [];
+      graphZoom = 1;
+    } else {
+      graphState = graphCore.expandGraph(concepts, graphState, id);
+      graphState.focusedId = id;
+    }
+    renderConceptDetails(id);
+    renderConceptGraph();
     if (!conceptDialog.open) openDialog(conceptDialog, trigger);
     else if (!reduceMotion && window.gsap) window.gsap.fromTo("#conceptContent", { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: .22 });
+  }
+
+  function showEdgeDetails(edgeId) {
+    var edge = allGraphEdges()[edgeId];
+    if (!edge) return;
+    graphState.focusedId = edge.targetId;
+    document.getElementById("conceptTitle").textContent =
+      concepts[edge.sourceId].label + " → " + concepts[edge.targetId].label;
+    document.getElementById("conceptContent").innerHTML =
+      '<div class="gt-concept-section"><h3>' + escapeHtml(edge.type.replace("-", " ")) +
+      '</h3><p class="gt-concept-definition">' + escapeHtml(edge.explanation) + "</p></div>" +
+      (edge.formula ? '<div class="gt-concept-formula">' + math(edge.formula, true) + "</div>" : "") +
+      (edge.assumptions ? '<div class="gt-detail-block gt-trap-block"><h3>Assumption</h3><p>' +
+        escapeHtml(edge.assumptions) + "</p></div>" : "") +
+      '<div class="gt-detail-block gt-gate-focus"><h3>GATE importance</h3><p>' +
+      escapeHtml(edge.importance === "core" ? "This is a core reasoning link worth memorizing and proving." :
+        "Use this connection to combine topics and remove answer choices.") + "</p></div>" +
+      '<button class="gt-expand-target" data-concept="' + edge.targetId + '">Explain and expand ' +
+      escapeHtml(concepts[edge.targetId].label) + " →</button>";
+    renderMathInElement(document.getElementById("conceptContent"));
+    renderConceptGraph();
   }
 
   function selectedAnswers(questionEl) {
@@ -318,7 +467,8 @@
     feedback.className = "gt-feedback " + (ok ? "ok" : "bad");
     var lead = card.question.type === "REVEAL" ? "Answer." : (ok ? "Correct." : "Not quite.");
     feedback.innerHTML = "<b>" + lead + "</b> " +
-      (card.question.explanationHtml || linkedText(card.question.explanation));
+      (card.question.explanationHtml || linkedText(card.question.explanation)) +
+      gateAnalysisMarkup(card.gateAnalysis);
     if (card.question.type !== "NAT") {
       questionEl.querySelectorAll(".gt-option").forEach(function (option) {
         var answer = Array.isArray(card.question.answer) ? card.question.answer : [card.question.answer];
@@ -351,6 +501,26 @@
   document.addEventListener("click", function (event) {
     var close = event.target.closest("[data-close]");
     if (close) { closeDialog(document.getElementById(close.dataset.close)); return; }
+    var gateCardLink = event.target.closest("[data-gate-card]");
+    if (gateCardLink) {
+      event.preventDefault(); event.stopPropagation();
+      var gateIndex = data.cards.findIndex(function (card) { return card.id === gateCardLink.dataset.gateCard; });
+      if (gateIndex >= 0) {
+        closeDialog(conceptDialog);
+        requestAnimationFrame(function () { scrollToIndex(gateIndex); });
+      }
+      return;
+    }
+    var graphNode = event.target.closest("[data-graph-concept]");
+    if (graphNode) {
+      event.preventDefault(); event.stopPropagation();
+      showConcept(graphNode.dataset.graphConcept, graphNode, true); return;
+    }
+    var graphEdge = event.target.closest("[data-edge]");
+    if (graphEdge) {
+      event.preventDefault(); event.stopPropagation();
+      showEdgeDetails(graphEdge.dataset.edge); return;
+    }
     var conceptLink = event.target.closest("[data-concept]");
     if (conceptLink) {
       event.preventDefault(); event.stopPropagation();
@@ -380,9 +550,42 @@
     }
   });
 
+  document.getElementById("graphReset").addEventListener("click", function () {
+    if (!graphState) return;
+    graphState = graphCore.directGraph(concepts, graphState.rootId);
+    graphPathIds = [];
+    graphZoom = 1;
+    renderConceptDetails(graphState.rootId);
+    renderConceptGraph();
+  });
+
+  document.getElementById("graphPath").addEventListener("click", function () {
+    if (!graphState) return;
+    graphPathIds = graphCore.shortestPath(concepts, graphState.rootId, graphState.focusedId);
+    renderConceptGraph();
+    document.getElementById("conceptGraphStatus").textContent = graphPathIds.length > 1 ?
+      "Highlighted path: " + graphPathIds.map(function (id) { return concepts[id].label; }).join(" → ") :
+      "Select another concept, then show the path from the starting concept.";
+  });
+
+  document.getElementById("graphZoomIn").addEventListener("click", function () {
+    graphZoom = Math.min(1.8, graphZoom + .2);
+    renderConceptGraph();
+  });
+
+  document.getElementById("graphZoomOut").addEventListener("click", function () {
+    graphZoom = Math.max(.75, graphZoom - .2);
+    renderConceptGraph();
+  });
+
   [topicMenu, detailDialog, conceptDialog, helpDialog].forEach(function (dialog) {
     dialog.addEventListener("keydown", function (event) {
       trapFocus(event, dialog);
+      if ((event.key === "Enter" || event.key === " ") &&
+          event.target.matches("[data-graph-concept],[data-edge]")) {
+        event.preventDefault();
+        event.target.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      }
       if (event.key === "Escape") closeDialog(dialog);
     });
     dialog.addEventListener("click", function (event) {

@@ -7,6 +7,94 @@ const concepts = require("../assets/js/gate-tiktok/gate-concepts.js");
 const data = require("../assets/js/gate-tiktok/gate-tiktok-data.js");
 const sourceData = require("../assets/js/gate-tiktok/gate-tiktok-source-data.js");
 const core = require("../assets/js/gate-tiktok/gate-tiktok-core.js");
+const graphCore = require("../assets/js/gate-tiktok/gate-concept-graph-core.js");
+
+test("concept graph expands recursively without duplicate nodes or edges", () => {
+  const first = graphCore.directGraph(concepts, "determinant");
+  assert.equal(first.rootId, "determinant");
+  assert.equal(new Set(first.nodeIds).size, first.nodeIds.length);
+  assert.equal(new Set(first.edgeIds).size, first.edgeIds.length);
+
+  const expanded = graphCore.expandGraph(concepts, first, "inverse");
+  assert.ok(expanded.nodeIds.length >= first.nodeIds.length);
+  assert.equal(new Set(expanded.nodeIds).size, expanded.nodeIds.length);
+  assert.equal(new Set(expanded.edgeIds).size, expanded.edgeIds.length);
+  assert.ok(expanded.expandedIds.includes("inverse"));
+});
+
+test("concept graph finds cross-topic reasoning paths", () => {
+  const path = graphCore.shortestPath(concepts, "determinant", "kernel");
+  assert.equal(path[0], "determinant");
+  assert.equal(path[path.length - 1], "kernel");
+  assert.ok(path.length >= 3);
+});
+
+test("every canonical concept supports beginner learning and typed connections", () => {
+  const supportedTypes = new Set([
+    "prerequisite", "implies", "equivalent", "contrasts",
+    "used-by", "decomposes-into", "geometric", "gate-pattern",
+  ]);
+  Object.values(concepts).forEach((concept) => {
+    [
+      "beginnerMeaning", "formula", "example", "exampleExplanation",
+      "counterexample", "counterexampleExplanation",
+    ].forEach((field) => assert.ok(concept[field], `${concept.id} missing ${field}`));
+    ["properties", "consequences", "gateSignals", "gateTraps", "edges", "questionIds"]
+      .forEach((field) => assert.ok(Array.isArray(concept[field]), `${concept.id} missing ${field}`));
+    concept.edges.forEach((edge) => {
+      assert.ok(edge.id, `${concept.id} edge missing id`);
+      assert.ok(concepts[edge.targetId], `${concept.id} invalid edge target ${edge.targetId}`);
+      assert.ok(supportedTypes.has(edge.type), `${concept.id} invalid edge type ${edge.type}`);
+      assert.ok(edge.explanation, `${edge.id} missing explanation`);
+      assert.ok(["core", "useful", "advanced"].includes(edge.importance), `${edge.id} invalid importance`);
+    });
+  });
+});
+
+test("all basic definitions are enriched through one canonical concept", () => {
+  const definitions = data.cards.filter((card) => card.type === "basic-definition");
+  assert.equal(definitions.length, 66);
+  definitions.forEach((card) => {
+    assert.ok(concepts[card.primaryConceptId], `${card.id} missing primary concept`);
+    ["beginnerMeaning", "formula", "example", "consequence", "gateSignal"]
+      .forEach((field) => assert.ok(card[field], `${card.id} missing ${field}`));
+  });
+});
+
+test("every real GATE question is indexed by concepts and reasoning", () => {
+  const gateCards = data.cards.filter((card) => card.type === "gate-question");
+  assert.equal(gateCards.length, 21);
+  gateCards.forEach((card) => {
+    const analysis = card.gateAnalysis;
+    assert.ok(analysis, `${card.id} missing gateAnalysis`);
+    ["conceptIds", "recognitionClues", "reasoningSteps", "formulasUsed", "relatedQuestionIds"]
+      .forEach((field) => assert.ok(Array.isArray(analysis[field]), `${card.id} missing ${field}`));
+    assert.ok(analysis.conceptIds.length, `${card.id} has no concepts`);
+    assert.ok(analysis.recognitionClues.length, `${card.id} has no clues`);
+    assert.ok(analysis.reasoningSteps.length, `${card.id} has no reasoning`);
+    assert.ok(analysis.formulasUsed.length, `${card.id} has no formulas`);
+    assert.ok(analysis.trap, `${card.id} missing trap`);
+  });
+  Object.values(concepts).forEach((concept) => {
+    concept.questionIds.forEach((id) => {
+      assert.ok(gateCards.some((card) => card.id === id), `${concept.id} invalid question ${id}`);
+    });
+  });
+});
+
+test("required implication chains remain traversable", () => {
+  [
+    ["determinant", "singular-matrix"],
+    ["singular-matrix", "inverse"],
+    ["orthogonal-matrix", "singular-value"],
+    ["symmetric-matrix", "pca"],
+    ["svd", "rank-k-approximation"],
+  ].forEach(([start, end]) => {
+    const route = graphCore.shortestPath(concepts, start, end);
+    assert.equal(route[0], start, `${start} route missing`);
+    assert.equal(route[route.length - 1], end, `${start} cannot reach ${end}`);
+  });
+});
 
 test("Linear Algebra feed contains every approved source point", () => {
   assert.equal(data.topics.length, 9);
@@ -102,6 +190,27 @@ test("Gate TikTok page exposes feed, topic menu, detail sheet and concept dialog
   );
   ["gateFeed", "topicMenu", "detailDialog", "conceptDialog", "gate-tiktok.js"]
     .forEach((marker) => assert.match(html, new RegExp(marker)));
+});
+
+test("definition cards and concept dialog expose connected learning controls", () => {
+  const html = fs.readFileSync(
+    path.join(__dirname, "../linear-algebra/gate-tiktok.html"),
+    "utf8"
+  );
+  const runtime = fs.readFileSync(
+    path.join(__dirname, "../assets/js/gate-tiktok/gate-tiktok.js"),
+    "utf8"
+  );
+  [
+    "conceptGraph", "conceptGraphStatus", "graphReset", "graphPath", "graphZoomIn", "graphZoomOut",
+    "conceptRelationshipList", "gate-concept-graph-core.js",
+  ].forEach((marker) => assert.match(html, new RegExp(marker)));
+  ["Meaning", "Example", "Therefore", "GATE connection", "expandGraph", "shortestPath"]
+    .forEach((marker) => assert.match(runtime, new RegExp(marker)));
+  assert.match(runtime, /<tspan/);
+  assert.match(runtime, /conceptGraphTitle/);
+  ["Recognition clues", "Reasoning chain", "Common trap", "Relevant GATE questions"]
+    .forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });
 
 test("runtime includes persistence, focus handling, math rendering and GSAP fallback", () => {
