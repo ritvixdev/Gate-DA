@@ -222,10 +222,9 @@ test("definition cards and concept dialog expose connected learning controls", (
   assert.match(runtime, /Connect the dots/);
   assert.match(runtime, /rankedConnections/);
   assert.match(runtime, /exploreGraph/);
-  ["graphEntryConceptId", "graphEntryPage", "restoreGraphEntry", "showGraphNode"]
+  assert.match(runtime, /scrollTop/);
+  ["graphEntryConceptId", "graphEntryScroll", "restoreGraphEntry", "showGraphNode"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
-  ["graphEntryScroll", "conceptSheetScroll", "savedScroll"]
-    .forEach((marker) => assert.doesNotMatch(runtime, new RegExp(marker)));
   ["Recognition clues", "Reasoning chain", "Common trap", "Relevant GATE questions"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });
@@ -279,24 +278,26 @@ test("feed styling keeps background fixed and gives mobile cards near-full width
   assert.doesNotMatch(css, /\.gt-card::after/);
 });
 
-test("Gate TikTok uses pagination instead of nested scrolling", () => {
+test("Gate TikTok keeps content scrollable without visible scrollbars or pagination", () => {
   const css = fs.readFileSync(path.join(__dirname, "../assets/css/gate-tiktok.css"), "utf8");
   const runtime = fs.readFileSync(
     path.join(__dirname, "../assets/js/gate-tiktok/gate-tiktok.js"),
     "utf8"
   );
+  assert.match(css, /\.gt-card-inner[^}]*max-height:[^;}]+[^}]*overflow-y:auto/s);
+  assert.match(css, /\.gt-concept-content[^}]*overflow-y:auto/s);
+  assert.match(css, /\.gt-detail-content[^}]*overflow-y:auto/s);
   assert.doesNotMatch(css, /scrollbar-width:thin/);
-  assert.doesNotMatch(css, /overflow:auto/);
-  assert.doesNotMatch(css, /overflow-x:auto/);
+  assert.match(css, /\.gt-card-inner[^}]*scrollbar-width:none/s);
+  assert.match(css, /\.gt-concept-content[^}]*scrollbar-width:none/s);
+  assert.match(css, /\.gt-detail-content[^}]*scrollbar-width:none/s);
   [
-    /\.gt-card[^}]*overflow-y:auto/s,
-    /\.gt-card-inner[^}]*overflow-y:auto/s,
-    /\.gt-concept-content[^}]*overflow-y:auto/s,
-    /\.gt-graph-panel[^}]*overflow-y:auto/s,
-    /\.gt-graph-node-panel[^}]*overflow-y:auto/s,
-  ].forEach((pattern) => assert.doesNotMatch(css, pattern));
+    ".gt-card-inner::-webkit-scrollbar",
+    ".gt-concept-content::-webkit-scrollbar",
+    ".gt-detail-content::-webkit-scrollbar",
+  ].forEach((selector) => assert.ok(css.includes(selector)));
   [
     "gt-page-controls", "data-card-page", "data-concept-page",
-    "cardPageState", "conceptPageState", "Previous", "Next",
-  ].forEach((marker) => assert.match(runtime, new RegExp(marker)));
+    "cardPageState", "conceptPageState", "function pageControls",
+  ].forEach((marker) => assert.doesNotMatch(runtime, new RegExp(marker)));
 });
