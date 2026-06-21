@@ -25,6 +25,9 @@
   var graphState = null;
   var graphPathIds = [];
   var graphZoom = 1;
+  var graphMode = false;
+  var currentConceptId = null;
+  var conceptSheetScroll = 0;
   var lastFocus = null;
   var completed = new Set();
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -304,6 +307,18 @@
       }).join("") + "</div>";
   }
 
+  function compactConnections(concept) {
+    var ranked = graphCore.rankedConnections(concepts, concept.id, 5);
+    if (!ranked.length) return "";
+    return '<div class="gt-detail-block gt-connect-card"><h3>Connect the dots</h3>' +
+      '<p class="gt-connect-intro">The five strongest links from this concept, ranked by usefulness.</p>' +
+      ranked.map(function (edge, index) {
+        return '<button data-concept="' + edge.targetId + '"><em>' + (index + 1) + '</em><span><small>' +
+          escapeHtml(edge.label) + '</small><b>' + escapeHtml(concepts[edge.targetId].label) +
+          '</b><i>' + escapeHtml(edge.explanation) + "</i></span><strong>→</strong></button>";
+      }).join("") + "</div>";
+  }
+
   function gateAnalysisMarkup(analysis) {
     if (!analysis) return "";
     return '<div class="gt-gate-analysis"><h4>Recognition clues</h4><ul>' +
@@ -332,8 +347,9 @@
       '<div class="gt-detail-block gt-trap-block"><h3>Common trap</h3><ul class="gt-reason-list">' +
       learningItems(concept.gateTraps) + "</ul></div>" +
       gateQuestionLinks(concept) +
-      '<a class="gt-concept-source" href="' + concept.lessonUrl + "#" + concept.lessonAnchor +
-      '">Open ' + concept.lessonSection + " in the full lesson →</a>";
+      compactConnections(concept) +
+      '<div class="gt-concept-actions"><a class="gt-concept-source" href="' + concept.lessonUrl + "#" + concept.lessonAnchor +
+      '">Open ' + concept.lessonSection + '</a><button id="exploreGraph" type="button">Explore graph →</button></div>';
   }
 
   function allGraphEdges() {
@@ -408,6 +424,7 @@
 
   function renderConceptDetails(id) {
     var concept = concepts[id];
+    currentConceptId = id;
     document.getElementById("conceptTitle").textContent = concept.label;
     document.getElementById("conceptContent").innerHTML = conceptMarkup(concept);
     document.getElementById("conceptBack").hidden = conceptHistory.length < 2;
@@ -416,17 +433,18 @@
 
   function showConcept(id, trigger, pushHistory) {
     if (!concepts[id]) return;
+    if (!conceptDialog.open) {
+      graphMode = false;
+      document.getElementById("conceptGraphView").hidden = true;
+      document.getElementById("conceptSheetView").hidden = false;
+    }
     if (pushHistory !== false && conceptHistory[conceptHistory.length - 1] !== id) conceptHistory.push(id);
-    if (!conceptDialog.open || !graphState) {
-      graphState = graphCore.directGraph(concepts, id);
-      graphPathIds = [];
-      graphZoom = 1;
-    } else {
+    if (graphMode && graphState) {
       graphState = graphCore.expandGraph(concepts, graphState, id);
       graphState.focusedId = id;
     }
     renderConceptDetails(id);
-    renderConceptGraph();
+    if (graphMode) renderConceptGraph();
     if (!conceptDialog.open) openDialog(conceptDialog, trigger);
     else if (!reduceMotion && window.gsap) window.gsap.fromTo("#conceptContent", { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: .22 });
   }
@@ -450,6 +468,35 @@
       escapeHtml(concepts[edge.targetId].label) + " →</button>";
     renderMathInElement(document.getElementById("conceptContent"));
     renderConceptGraph();
+  }
+
+  function openGraphView() {
+    if (!currentConceptId) return;
+    conceptSheetScroll = document.getElementById("conceptContent").scrollTop;
+    document.getElementById("conceptSheetView").dataset.savedScroll = String(conceptSheetScroll);
+    graphMode = true;
+    graphState = graphCore.directGraph(concepts, currentConceptId);
+    graphPathIds = [];
+    graphZoom = 1;
+    document.getElementById("conceptSheetView").hidden = true;
+    document.getElementById("conceptGraphView").hidden = false;
+    document.getElementById("conceptBack").hidden = true;
+    renderConceptGraph();
+    document.getElementById("backToConcept").focus();
+  }
+
+  function closeGraphView() {
+    graphMode = false;
+    document.getElementById("conceptGraphView").hidden = true;
+    document.getElementById("conceptSheetView").hidden = false;
+    renderConceptDetails(currentConceptId);
+    document.getElementById("conceptContent").scrollTop = conceptSheetScroll;
+    document.getElementById("conceptBack").hidden = conceptHistory.length < 2;
+    requestAnimationFrame(function () {
+      document.getElementById("conceptContent").scrollTop = conceptSheetScroll;
+      var button = document.getElementById("exploreGraph");
+      if (button) button.focus({ preventScroll: true });
+    });
   }
 
   function selectedAnswers(questionEl) {
@@ -501,6 +548,11 @@
   document.addEventListener("click", function (event) {
     var close = event.target.closest("[data-close]");
     if (close) { closeDialog(document.getElementById(close.dataset.close)); return; }
+    var exploreGraph = event.target.closest("#exploreGraph");
+    if (exploreGraph) {
+      event.preventDefault(); event.stopPropagation();
+      openGraphView(); return;
+    }
     var gateCardLink = event.target.closest("[data-gate-card]");
     if (gateCardLink) {
       event.preventDefault(); event.stopPropagation();
@@ -549,6 +601,8 @@
       showConcept(conceptHistory[conceptHistory.length - 1], this, false);
     }
   });
+
+  document.getElementById("backToConcept").addEventListener("click", closeGraphView);
 
   document.getElementById("graphReset").addEventListener("click", function () {
     if (!graphState) return;

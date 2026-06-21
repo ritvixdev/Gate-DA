@@ -29,6 +29,14 @@ test("concept graph finds cross-topic reasoning paths", () => {
   assert.ok(path.length >= 3);
 });
 
+test("ranked concept connections are relevant, unique and capped at five", () => {
+  const ranked = graphCore.rankedConnections(concepts, "determinant", 5);
+  assert.ok(ranked.length > 0);
+  assert.ok(ranked.length <= 5);
+  assert.equal(new Set(ranked.map((edge) => edge.targetId)).size, ranked.length);
+  assert.equal(ranked[0].importance, "core");
+});
+
 test("every canonical concept supports beginner learning and typed connections", () => {
   const supportedTypes = new Set([
     "prerequisite", "implies", "equivalent", "contrasts",
@@ -203,12 +211,17 @@ test("definition cards and concept dialog expose connected learning controls", (
   );
   [
     "conceptGraph", "conceptGraphStatus", "graphReset", "graphPath", "graphZoomIn", "graphZoomOut",
+    "conceptSheetView", "conceptGraphView", "backToConcept",
     "conceptRelationshipList", "gate-concept-graph-core.js",
   ].forEach((marker) => assert.match(html, new RegExp(marker)));
   ["Meaning", "Example", "Therefore", "GATE connection", "expandGraph", "shortestPath"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
   assert.match(runtime, /<tspan/);
   assert.match(runtime, /conceptGraphTitle/);
+  assert.match(runtime, /Connect the dots/);
+  assert.match(runtime, /rankedConnections/);
+  assert.match(runtime, /exploreGraph/);
+  assert.match(runtime, /scrollTop/);
   ["Recognition clues", "Reasoning chain", "Common trap", "Relevant GATE questions"]
     .forEach((marker) => assert.match(runtime, new RegExp(marker)));
 });

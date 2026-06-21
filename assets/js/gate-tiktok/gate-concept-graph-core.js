@@ -35,6 +35,45 @@
     return outgoing.concat(incoming);
   }
 
+  function rankedConnections(concepts, conceptId, limit) {
+    var concept = concepts[conceptId];
+    if (!concept) return [];
+    var typePriority = {
+      equivalent: 0, implies: 1, prerequisite: 2, "gate-pattern": 3,
+      "used-by": 4, "decomposes-into": 5, geometric: 6, contrasts: 7
+    };
+    var importancePriority = { core: 0, useful: 1, advanced: 2 };
+    var seen = new Set();
+    return connectedEdges(concepts, conceptId).map(function (edge) {
+      var outgoing = edge.sourceId === conceptId;
+      var targetId = outgoing ? edge.targetId : edge.sourceId;
+      var reverseLabels = {
+        prerequisite: "Used by",
+        implies: "Can lead to this",
+        "used-by": "Uses this",
+        "decomposes-into": "Part of",
+        geometric: "Geometric source",
+        "gate-pattern": "GATE partner"
+      };
+      return Object.assign({}, edge, {
+        targetId: targetId,
+        label: outgoing ? edge.label : (reverseLabels[edge.type] || edge.label),
+        sameLesson: Boolean(concepts[targetId] && concepts[targetId].lessonUrl === concept.lessonUrl)
+      });
+    }).filter(function (edge) {
+      if (!concepts[edge.targetId] || seen.has(edge.targetId)) return false;
+      seen.add(edge.targetId);
+      return true;
+    }).sort(function (a, b) {
+      var importance = (importancePriority[a.importance] || 1) - (importancePriority[b.importance] || 1);
+      if (importance) return importance;
+      var type = (typePriority[a.type] || 9) - (typePriority[b.type] || 9);
+      if (type) return type;
+      if (a.sameLesson !== b.sameLesson) return a.sameLesson ? -1 : 1;
+      return concepts[a.targetId].label.localeCompare(concepts[b.targetId].label);
+    }).slice(0, limit || 5);
+  }
+
   function unique(values) {
     return Array.from(new Set(values));
   }
@@ -109,6 +148,7 @@
     directGraph: directGraph,
     expandGraph: expandGraph,
     shortestPath: shortestPath,
-    edgeBetween: edgeBetween
+    edgeBetween: edgeBetween,
+    rankedConnections: rankedConnections
   };
 });
