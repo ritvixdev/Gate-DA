@@ -276,48 +276,6 @@ This avoids inaccurate relationships while making every beginner card useful.
 - Reduced-motion mode disables animated node movement and sheet transitions.
 - Graph colors are supplemented with edge labels and icons; meaning never depends on color alone.
 
-## No-scroll viewport layout
-
-Gate TikTok uses one hidden-scroll navigation surface only: the vertically snap-scrolling feed. No card, concept sheet, graph panel, node panel, question, formula, table, or dialog displays its own scrollbar.
-
-### Feed cards
-
-- Every feed card fits within the available viewport below the fixed top controls.
-- Typography, padding, formula size, and gaps respond to viewport height as well as width.
-- Card bodies never use `overflow-y: auto`.
-- A question or definition that cannot remain readable in one viewport is split into screen-sized internal pages.
-- Internal pages use visible **Previous** and **Next** controls and a page indicator.
-- Internal page controls stop propagation so they do not open the card detail sheet or move the feed.
-- Formulas wrap or scale within the card instead of creating a horizontal scrollbar.
-
-### Concept sheets
-
-Concept explanations are divided into semantic pages:
-
-1. meaning and formula;
-2. example and non-example;
-3. consequences and properties;
-4. GATE importance and traps;
-5. relevant questions and Connect the dots;
-6. lesson and graph actions.
-
-Only pages containing content are rendered. The concept header remains stable while Previous/Next controls switch pages. Opening a connected concept starts at its first page. Returning from graph mode restores the graph-entry concept and exact concept-page index.
-
-### Graph view
-
-- The graph canvas fits the available dialog workspace without horizontal or vertical browser scrolling.
-- Zoom modifies the SVG view box rather than element dimensions.
-- Selecting a node opens a fixed compact information panel that does not introduce scrolling.
-- If node information exceeds the compact panel, it is split into a summary page and an actions page.
-- The accessible relationship list is paginated or limited to the currently visible strongest relationships.
-
-### Dialog behavior
-
-- Dialog shells use fixed viewport-relative dimensions and `overflow: hidden`.
-- Content pages use grid/flex sizing with `min-height: 0`.
-- No nested element may use `overflow-y: auto` or `scrollbar-width: thin`.
-- Long-form lesson pages remain the destination for unlimited continuous reading.
-
 ## Validation and testing
 
 Automated validation will verify:
