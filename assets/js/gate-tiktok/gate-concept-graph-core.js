@@ -147,6 +147,7 @@
     edgesFor: edgesFor,
     directGraph: directGraph,
     expandGraph: expandGraph,
+    neighbourIds: neighbourIds,
     shortestPath: shortestPath,
     edgeBetween: edgeBetween,
     rankedConnections: rankedConnections

@@ -217,6 +217,28 @@ test("core graph includes required cross-topic concept paths", () => {
   });
 });
 
+test("all canonical Linear Algebra concepts belong to one connected graph", () => {
+  const ids = Object.keys(concepts);
+  const seen = new Set([ids[0]]);
+  const queue = [ids[0]];
+
+  while (queue.length) {
+    const current = queue.shift();
+    graphCore.neighbourIds(concepts, current).forEach((neighbor) => {
+      if (!seen.has(neighbor)) {
+        seen.add(neighbor);
+        queue.push(neighbor);
+      }
+    });
+  }
+
+  assert.deepEqual(
+    ids.filter((id) => !seen.has(id)),
+    [],
+    "disconnected canonical concepts"
+  );
+});
+
 test("Gate TikTok page exposes feed, topic menu, detail sheet and concept dialog", () => {
   const html = fs.readFileSync(
     path.join(__dirname, "../linear-algebra/gate-tiktok.html"),
