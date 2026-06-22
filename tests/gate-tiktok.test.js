@@ -360,6 +360,10 @@ test("graph selection uses one responsive scroll surface", () => {
 
   ["graphScrollSurface", "graphStage", "graphNodePanel"]
     .forEach((id) => assert.match(html, new RegExp(`id="${id}"`)));
+  assert.ok(
+    html.indexOf('id="graphNodePanel"') < html.indexOf('id="conceptRelationshipList"'),
+    "selected concept details must precede the relationship list on mobile"
+  );
   assert.match(css, /\.gt-graph-scroll-surface[^}]*overflow-y:auto/s);
   assert.match(css, /\.gt-graph-layout[^}]*grid-template-columns/s);
   assert.doesNotMatch(css, /\.gt-graph-node-panel[^}]*position:absolute/s);
