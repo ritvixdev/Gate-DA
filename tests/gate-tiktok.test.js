@@ -119,6 +119,32 @@ test("Linear Algebra feed contains every approved source point", () => {
   assert.equal(data.cards.some((card) => /GATE extra/i.test(card.hook)), false);
 });
 
+test("every approved source point maps to exactly one ordered card", () => {
+  const identities = data.cards.map((card) =>
+    [card.source, card.sourceAnchor, card.type].join("#")
+  );
+  assert.equal(new Set(identities).size, identities.length);
+
+  data.topics.forEach((topic) => {
+    const cards = core.cardsForTopic(data.cards, topic.id);
+    [
+      "basic-definition",
+      "deep-dive",
+      "cheat-sheet",
+      "trap",
+      "practice",
+      "gate-question",
+    ].forEach((type) => {
+      assert.ok(cards.some((card) => card.type === type), `${topic.id} missing ${type}`);
+    });
+    assert.deepEqual(
+      cards.map((card) => card.order),
+      [...Array(cards.length).keys()].map((n) => n + 1),
+      `${topic.id} order is not contiguous`
+    );
+  });
+});
+
 test("all cards and concepts pass schema and relationship validation", () => {
   assert.deepEqual(core.validateLearningGraph(data, concepts), []);
 });
