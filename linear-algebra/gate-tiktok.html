@@ -60,7 +60,7 @@
         <section class="gt-concept-content" id="conceptContent"></section>
       </div>
       <div class="gt-concept-graph-view" id="conceptGraphView" hidden>
-        <section class="gt-graph-panel" aria-label="Explorable concept graph">
+        <section class="gt-graph-scroll-surface" id="graphScrollSurface" aria-label="Explorable concept graph">
           <div class="gt-graph-toolbar">
             <button id="backToConcept" type="button">← Back to concept</button>
             <button id="graphReset" type="button">Reset graph</button>
@@ -69,24 +69,28 @@
             <button id="graphZoomIn" type="button" aria-label="Zoom graph in">+</button>
           </div>
           <p class="gt-graph-status" id="conceptGraphStatus" aria-live="polite"></p>
-          <svg id="conceptGraph" class="gt-concept-graph" viewBox="0 0 720 480" role="img" aria-labelledby="conceptGraphTitle conceptGraphDesc">
-            <title id="conceptGraphTitle">Linear Algebra concept connections</title>
-            <desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>
-          </svg>
-          <aside class="gt-graph-node-panel" id="graphNodePanel" hidden aria-live="polite">
-            <small id="graphNodeRelation">Selected concept</small>
-            <h3 id="graphNodeTitle">Concept</h3>
-            <p id="graphNodeMeaning"></p>
-            <div class="gt-graph-node-formula" id="graphNodeFormula"></div>
-            <p class="gt-graph-node-connection" id="graphNodeConnection"></p>
-            <div class="gt-graph-node-actions">
-              <button id="readGraphConcept" type="button">Read this concept</button>
-              <a id="openGraphLesson" href="#">Open full lesson section</a>
+          <div class="gt-graph-layout">
+            <div class="gt-graph-stage" id="graphStage">
+              <svg id="conceptGraph" class="gt-concept-graph" viewBox="0 0 720 480" role="img" aria-labelledby="conceptGraphTitle conceptGraphDesc">
+                <title id="conceptGraphTitle">Linear Algebra concept connections</title>
+                <desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>
+              </svg>
+              <div class="gt-relationship-accessible">
+                <h3>Connections in this graph</h3>
+                <ul id="conceptRelationshipList"></ul>
+              </div>
             </div>
-          </aside>
-          <div class="gt-relationship-accessible">
-            <h3>Connections in this graph</h3>
-            <ul id="conceptRelationshipList"></ul>
+            <aside class="gt-graph-node-panel" id="graphNodePanel" hidden aria-live="polite">
+              <small id="graphNodeRelation">Selected concept</small>
+              <h3 id="graphNodeTitle">Concept</h3>
+              <p id="graphNodeMeaning"></p>
+              <div class="gt-graph-node-formula" id="graphNodeFormula"></div>
+              <p class="gt-graph-node-connection" id="graphNodeConnection"></p>
+              <div class="gt-graph-node-actions">
+                <button id="readGraphConcept" type="button">Read this concept</button>
+                <a id="openGraphLesson" href="#">Open full lesson section</a>
+              </div>
+            </aside>
           </div>
         </section>
       </div>

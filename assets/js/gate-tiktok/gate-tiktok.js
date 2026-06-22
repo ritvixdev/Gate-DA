@@ -453,6 +453,17 @@
     else if (!reduceMotion && window.gsap) window.gsap.fromTo("#conceptContent", { x: 16, opacity: 0 }, { x: 0, opacity: 1, duration: .22 });
   }
 
+  function revealSelectedGraphNode() {
+    if (!window.matchMedia("(max-width: 849px)").matches) return;
+    var panel = document.getElementById("graphNodePanel");
+    requestAnimationFrame(function () {
+      panel.scrollIntoView({
+        block: "nearest",
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
+    });
+  }
+
   function showGraphNode(id, edge) {
     var concept = concepts[id];
     if (!concept || !graphState) return;
@@ -476,6 +487,7 @@
     document.getElementById("graphNodePanel").hidden = false;
     renderMathInElement(document.getElementById("graphNodePanel"));
     renderConceptGraph();
+    revealSelectedGraphNode();
   }
 
   function showEdgeDetails(edgeId) {
