@@ -143,6 +143,7 @@
 
   function cardMarkup(card, index) {
     var topic = data.topics.find(function (item) { return item.id === card.topicId; });
+    var sourceUrl = card.sourceUrl || (card.source + "#" + card.sourceAnchor);
     var definitionLearning = card.type === "basic-definition" ?
       '<div class="gt-definition-learning">' +
       '<div class="gt-learning-row"><small>Meaning</small><p>' + linkedText(card.beginnerMeaning) + "</p></div>" +
@@ -151,7 +152,8 @@
       '<div class="gt-learning-row gt-learning-gate"><small>GATE connection</small><p>' + linkedText(card.gateSignal) + "</p></div>" +
       "</div>" : "";
     return '<article class="gt-card" id="card-' + card.id + '" data-index="' + index + '" data-card="' + card.id +
-      '" data-topic="' + card.topicId + '" tabindex="-1"><div class="gt-card-inner">' +
+      '" data-topic="' + card.topicId + '" data-source-url="' + escapeHtml(sourceUrl) +
+      '" tabindex="-1"><div class="gt-card-inner">' +
       '<div class="gt-type">' + typeLabels[card.type] + "</div>" +
       '<h1 class="gt-hook">' + linkedText(card.hook) + "</h1>" +
       definitionLearning +
@@ -283,7 +285,7 @@
       (card.formula ? '<div class="gt-detail-block"><h3>Core formula</h3><div class="gt-concept-formula">' + math(card.formula, true) + "</div></div>" : "") +
       '<div class="gt-detail-block"><h3>Connect the dots</h3><div class="gt-related">' +
       card.concepts.map(function (id) { return '<button data-concept="' + id + '">' + concepts[id].label + "</button>"; }).join("") +
-      '</div></div><a class="gt-detail-link" href="' + card.source + "#" + card.sourceAnchor +
+      '</div></div><a class="gt-detail-link" href="' + (card.sourceUrl || (card.source + "#" + card.sourceAnchor)) +
       '">Open ' + card.sourceLabel + " in the lesson →</a>";
     var detailContent = document.getElementById("detailContent");
     decorateConceptLinks(detailContent, card.concepts);

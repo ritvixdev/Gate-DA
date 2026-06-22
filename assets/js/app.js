@@ -104,7 +104,7 @@
           '<span class="topic-ico">🎯</span><span>Practice questions</span></a>' +
         '<a class="topic-link' + (page === "gate" ? " active" : "") + '" href="' + laRoot + '/gate-questions.html">' +
           '<span class="topic-ico">📝</span><span>GATE questions</span></a>' +
-        (subject === "linear-algebra"
+        (subject === "linear-algebra" || subject === "probability-statistics" || subject === "machine-learning"
           ? '<a class="topic-link' + (page === "tiktok" ? " active" : "") + '" href="' + laRoot + '/gate-tiktok.html">' +
               '<span class="topic-ico">▶</span><span>Gate TikTok</span></a>'
           : "") +
