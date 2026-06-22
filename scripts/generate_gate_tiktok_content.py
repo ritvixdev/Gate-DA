@@ -159,6 +159,30 @@ SUBJECT_CONFIGS = {
             (("linear regression", "gradient descent", "mse"), "linear-regression"),
         ],
         "default_gate_topic": "linear-regression",
+    },
+    "optimization": {
+        "prefix": "opt",
+        "output_var": "GateTikTokSourceData",
+        "output_file": "optimization-tiktok-source-data.js",
+        "topics": [
+            ("types-of-optimization", "01-types-of-optimization"),
+            ("univariate", "02-univariate"),
+            ("multivariate", "03-multivariate"),
+            ("gradient-descent", "04-gradient-descent"),
+        ],
+        "topic_concepts": {
+            "types-of-optimization": ["optimization", "objective-function", "convexity", "strictly-convex", "global-minimum", "local-minimum"],
+            "univariate": ["univariate", "critical-point", "local-maximum", "limits", "continuity", "differentiability"],
+            "multivariate": ["multivariate", "gradient", "hessian", "saddle-point", "directional-derivative"],
+            "gradient-descent": ["gradient-descent", "learning-rate", "stochastic-gradient-descent", "convergence", "step-size"],
+        },
+        "gate_rules": [
+            (("gradient descent", "learning rate", "sgd"), "gradient-descent"),
+            (("univariate", "limits", "continuity", "differentiability", "single variable"), "univariate"),
+            (("multivariate", "hessian", "saddle point", "directional derivative"), "multivariate"),
+            (("convexity", "global minimum", "types of optimization", "strictly convex"), "types-of-optimization"),
+        ],
+        "default_gate_topic": "univariate",
     }
 }
 
