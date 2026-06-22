@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gate TikTok · Linear Algebra</title>
+<meta name="description" content="Swipe through immersive Linear Algebra concepts, GATE shortcuts, traps, worked examples and questions.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/gate-tiktok.css?v=20260620">
+</head>
+<body class="gate-tiktok-page" data-root=".." data-subject="linear-algebra" data-page="tiktok">
+  <a class="gt-back" href="index.html" aria-label="Back to Linear Algebra">←</a>
+
+  <button class="gt-topic-bubble" id="topicButton" aria-haspopup="dialog" aria-controls="topicMenu">
+    <span id="topicIcon">↗</span>
+    <span>
+      <small>Linear Algebra</small>
+      <strong id="topicName">Vectors &amp; Spaces</strong>
+    </span>
+    <span aria-hidden="true">⌄</span>
+  </button>
+
+  <div class="gt-counter" aria-live="polite">
+    <span id="cardCounter">1 / 144</span>
+    <span class="gt-counter-track"><i id="feedProgress"></i></span>
+  </div>
+
+  <main class="gt-feed" id="gateFeed" aria-label="Gate TikTok Linear Algebra feed"></main>
+
+  <button class="gt-help" id="helpButton" aria-label="How to use Gate TikTok">?</button>
+  <div class="gt-swipe-cue" id="swipeCue" aria-hidden="true">Swipe up <span>↑</span></div>
+
+  <dialog class="gt-dialog gt-topic-menu" id="topicMenu" aria-labelledby="topicMenuTitle">
+    <div class="gt-dialog-head">
+      <div><small>Guided sequence</small><h2 id="topicMenuTitle">Choose a topic</h2></div>
+      <button class="gt-close" data-close="topicMenu" aria-label="Close topic menu">×</button>
+    </div>
+    <div class="gt-topic-list" id="topicList"></div>
+  </dialog>
+
+  <dialog class="gt-dialog gt-detail-dialog" id="detailDialog" aria-labelledby="detailTitle">
+    <div class="gt-detail-shell">
+      <div class="gt-dialog-head">
+        <button class="gt-close gt-close-left" data-close="detailDialog" aria-label="Close details">↓</button>
+        <div><small id="detailEyebrow">Deep dive</small><h2 id="detailTitle">Card details</h2></div>
+      </div>
+      <div class="gt-detail-content" id="detailContent"></div>
+    </div>
+  </dialog>
+
+  <dialog class="gt-dialog gt-concept-dialog" id="conceptDialog" aria-labelledby="conceptTitle">
+    <div class="gt-concept-shell">
+      <div class="gt-dialog-head">
+        <button class="gt-concept-back" id="conceptBack" aria-label="Previous concept" hidden>←</button>
+        <div><small>Instant concept</small><h2 id="conceptTitle">Concept</h2></div>
+        <button class="gt-close" data-close="conceptDialog" aria-label="Close concept">×</button>
+      </div>
+      <div class="gt-concept-sheet-view" id="conceptSheetView">
+        <section class="gt-concept-content" id="conceptContent"></section>
+      </div>
+      <div class="gt-concept-graph-view" id="conceptGraphView" hidden>
+        <section class="gt-graph-scroll-surface" id="graphScrollSurface" aria-label="Explorable concept graph">
+          <div class="gt-graph-toolbar">
+            <button id="backToConcept" type="button">← Back to concept</button>
+            <button id="graphReset" type="button">Reset graph</button>
+            <button id="graphPath" type="button">Show path</button>
+            <button id="graphZoomOut" type="button" aria-label="Zoom graph out">−</button>
+            <button id="graphZoomIn" type="button" aria-label="Zoom graph in">+</button>
+          </div>
+          <p class="gt-graph-status" id="conceptGraphStatus" aria-live="polite"></p>
+          <div class="gt-graph-layout">
+            <div class="gt-graph-stage" id="graphStage">
+              <svg id="conceptGraph" class="gt-concept-graph" viewBox="0 0 720 480" role="img" aria-labelledby="conceptGraphTitle conceptGraphDesc">
+                <title id="conceptGraphTitle">Linear Algebra concept connections</title>
+                <desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>
+              </svg>
+            </div>
+            <aside class="gt-graph-node-panel" id="graphNodePanel" hidden aria-live="polite">
+              <small id="graphNodeRelation">Selected concept</small>
+              <h3 id="graphNodeTitle">Concept</h3>
+              <p id="graphNodeMeaning"></p>
+              <div class="gt-graph-node-formula" id="graphNodeFormula"></div>
+              <p class="gt-graph-node-connection" id="graphNodeConnection"></p>
+              <div class="gt-graph-node-actions">
+                <button id="readGraphConcept" type="button">Read this concept</button>
+                <a id="openGraphLesson" href="#">Open full lesson section</a>
+              </div>
+            </aside>
+            <div class="gt-relationship-accessible">
+              <h3>Connections in this graph</h3>
+              <ul id="conceptRelationshipList"></ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="gt-dialog gt-help-dialog" id="helpDialog" aria-labelledby="helpTitle">
+    <div class="gt-dialog-head">
+      <div><small>Gate TikTok</small><h2 id="helpTitle">Learn in short, connected steps</h2></div>
+      <button class="gt-close" data-close="helpDialog" aria-label="Close help">×</button>
+    </div>
+    <ul class="gt-help-list">
+      <li><b>Swipe or scroll</b> to move one card at a time.</li>
+      <li><b>Tap a card</b> for the full explanation and source lesson.</li>
+      <li><b>Tap coral-underlined words</b> for instant definitions and formulas.</li>
+      <li><b>Answer question cards</b> directly before moving on.</li>
+    </ul>
+  </dialog>
+
+  <noscript><p class="gt-noscript">Gate TikTok requires JavaScript. The complete lessons remain available from the Linear Algebra overview.</p></noscript>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="../assets/js/gate-tiktok/gate-tiktok-core.js?v=20260620"></script>
+  <script src="../assets/js/gate-tiktok/gate-concepts.js?v=20260620"></script>
+  <script src="../assets/js/gate-tiktok/gate-concept-graph-core.js?v=20260621"></script>
+  <script src="../assets/js/gate-tiktok/gate-tiktok-source-data.js?v=20260621"></script>
+  <script src="../assets/js/gate-tiktok/gate-tiktok-data.js?v=20260620"></script>
+  <script src="../assets/js/gate-tiktok/gate-tiktok.js?v=20260620"></script>
+</body>
+</html>
