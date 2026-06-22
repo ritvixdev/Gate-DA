@@ -301,3 +301,19 @@ test("Gate TikTok keeps content scrollable without visible scrollbars or paginat
     "cardPageState", "conceptPageState", "function pageControls",
   ].forEach((marker) => assert.doesNotMatch(runtime, new RegExp(marker)));
 });
+
+test("graph selection uses one responsive scroll surface", () => {
+  const html = fs.readFileSync(path.join(__dirname, "../linear-algebra/gate-tiktok.html"), "utf8");
+  const css = fs.readFileSync(path.join(__dirname, "../assets/css/gate-tiktok.css"), "utf8");
+  const runtime = fs.readFileSync(
+    path.join(__dirname, "../assets/js/gate-tiktok/gate-tiktok.js"),
+    "utf8"
+  );
+
+  ["graphScrollSurface", "graphStage", "graphNodePanel"]
+    .forEach((id) => assert.match(html, new RegExp(`id="${id}"`)));
+  assert.match(css, /\.gt-graph-scroll-surface[^}]*overflow-y:auto/s);
+  assert.match(css, /\.gt-graph-layout[^}]*grid-template-columns/s);
+  assert.doesNotMatch(css, /\.gt-graph-node-panel[^}]*position:absolute/s);
+  assert.match(runtime, /revealSelectedGraphNode/);
+});
