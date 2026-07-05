@@ -477,6 +477,197 @@
     <div class="gate-expl" hidden>$E[XY]=P(\text{both heads})=\tfrac14$, $E[X]=\tfrac14$, $E[Y]=\tfrac34$. $\operatorname{Cov}=\tfrac14-\tfrac14\cdot\tfrac34=\tfrac1{16}=0.0625$.</div>
   </div>
 
+  <h2 style="margin-top:2.5rem">Practice Set</h2>
+  <p class="lede">Extra practice questions (quiz-style, not official GATE papers) covering the same Probability & Statistics topics.</p>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Set theory of events</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P1.</strong> Consider three events $A,B,C$ such that $A\cap B\cap C=A$. Which conclusion follows necessarily (no extra assumptions)?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$A\subset B\subset C$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$A\subseteq B\subseteq C$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$A\subset B$ and $A\subset C$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$A\subseteq B$ and $A\subseteq C$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$A\cap B\cap C\subseteq A$ always; equality forces every element of $A$ to be in both $B$ and $C$, i.e. $A\subseteq B$ and $A\subseteq C$. Strict subset isn't guaranteed since $A$ could equal $B$ or $C$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Random variables & CDFs</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P2.</strong> A random variable $X$ has CDF $P[X\le x]=0$ for $x<0$; $=x$ for $0\le x\le1$; $=1$ for $x>1$. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>This is the CDF of a uniform random variable.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The function is not a valid CDF.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>More information is required to determine validity.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>It is a valid CDF, but not of a uniform random variable.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$F$ is non-decreasing, goes from $0$ to $1$, and is continuous — a valid CDF. $F(x)=x$ on $[0,1]$ is exactly the CDF of Uniform$(0,1)$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Continuous RVs & PDFs</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P3.</strong> A continuous random variable $X$ has pdf $f(x)=\tfrac12x$. A valid support for $X$ is:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0\le x\le3$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0\le x\le1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0\le x\le2$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0\le x\le4$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Need $\int_0^a \tfrac{x}{2}\,dx=1\Rightarrow \tfrac{a^2}{4}=1\Rightarrow a=2$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Binomial distribution</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P4.</strong> A person buys one ticket in each of 10 independent lotteries, each with win probability $0.001$. Let $X$ = number of wins, $Y$ = number of non-wins. Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$Y\sim\text{Binomial}(10,0.001)$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$Y\sim\text{Binomial}(10,0.999)$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$X\sim\text{Binomial}(10,0.999)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$X\sim\text{Binomial}(10,0.001)$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$X$ (wins) $\sim$ Binomial$(10,0.001)$ directly. $Y=10-X$ (non-wins) counts the "non-win" event with probability $0.999$, so $Y\sim$ Binomial$(10,0.999)$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Hypothesis testing</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P5.</strong> A two-sided t-test at $\alpha=0.05$ for $H_0:\mu=50$ vs $H_1:\mu\ne50$ gives a p-value of $0.03$. Which statement(s) are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The test should be converted to a one-sided test.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The null hypothesis is rejected at the 5% significance level.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The null hypothesis is accepted because $0.03<0.05$.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>A Type II error has definitely occurred.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Reject $H_0$ if p-value $<\alpha$; here $0.03<0.05$, so $H_0$ is rejected. Converting to one-sided after seeing results is invalid, "accepted" is backwards logic, and Type II errors only apply when $H_0$ is *not* rejected.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.50 to 0.50">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Bayes' theorem</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P6.</strong> In a city, 40% are male, 60% female. 50% of males smoke; 40% of the whole population smokes. Given a person is a smoker, what is the probability they are male? (2 decimals.)</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Total probability: $0.4=(0.5)(0.4)+P(\text{Smoke}|F)(0.6)\Rightarrow P(\text{Smoke}|F)=1/3$. Bayes: $P(M|\text{Smoke})=\dfrac{0.5\times0.4}{0.4}=0.5$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.70 to 0.70">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Inclusion-exclusion</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P7.</strong> Events $A,B,C$ with $C\subset B$: $P(A)=0.6$, $P(B)=0.3$, $P(C)=0.05$, $P(A\cap B)=0.2$, $P(A\cap C)=0$, $P(B\cap C)=0.05$. Find $P(A\cup B\cup C)$ (2 decimals).</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Since $C\subset B$, $P(A\cap B\cap C)=P(A\cap C)=0$. Inclusion-exclusion: $0.6+0.3+0.05-0.2-0-0.05+0=0.70$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Hypothesis test selection</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P8.</strong> Which situation most appropriately requires an F-test?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Testing a population mean equals a value, variance known.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Testing whether two population variances are equal.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Testing independence between categorical variables.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Testing the sample mean vs. a hypothesized value, small samples.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The F-test compares two variances via the ratio of sample variances (F-distribution). Known-variance mean tests use Z, small-sample mean tests use t, categorical independence uses chi-square.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Conditioning & law of total probability</span> <span class="chip">MSQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P9.</strong> Two urns $U_1,U_2$ each contain red (R) and blue (B) balls. You pick one urn at random, then one ball. Which is/are always True?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$P(U_1|R)+P(U_2|R)=1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$P(R|U_1)+P(R|U_2)=1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$P(U_1|B)+P(U_2|B)=1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$P(B|U_1)+P(B|U_2)=1$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$U_1,U_2$ are mutually exclusive and exhaustive, so for any event $E$, $P(U_1|E)+P(U_2|E)=1$ — true for $E=R$ and $E=B$. The reversed-conditioning sums (B, D) are proportions of two unrelated urns and need not add to 1.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="C;D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Skewness</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P10.</strong> Select the correct option(s). Usually, which of the following hold?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>For left-skewed distributions, Mean &gt; Median &gt; Mode.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>For right-skewed distributions, Mean &lt; Median &lt; Mode.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>For left-skewed distributions, Mean &lt; Median &lt; Mode.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>For right-skewed distributions, Mean &gt; Median &gt; Mode.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Right-skew (long right tail) pulls the mean rightmost: Mean &gt; Median &gt; Mode. Left-skew pulls the mean leftmost: Mean &lt; Median &lt; Mode. Options A and B state the reversed (wrong) pattern.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Independence vs. mutual exclusivity</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P11.</strong> $A,B$ are mutually exclusive with $P(A)>0$, $P(B)>0$. Then,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>It is possible, in some cases, that $A$ and $B$ are also independent.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>It is never possible for $A$ and $B$ to be independent.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Mutually exclusive means $P(A\cap B)=0$. Independence requires $P(A\cap B)=P(A)P(B)>0$ (since both probabilities are positive). $0$ can never equal a positive number, so independence is impossible.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Correlation: Pearson vs. Spearman</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P12.</strong> Let $r_{xy}$ be Pearson's correlation and $r_S$ Spearman's rank correlation. Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>If $|r_{xy}|$ is close to 1, then $x,y$ have a linear relationship.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>If $x,y$ have a linear relationship, then $|r_{xy}|$ is close to 1.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$|r_S|$ close to 1 implies a monotonic relationship between $x,y$.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$|r_S|$ close to 0 implies no monotonic association between $x,y$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A high $|r_{xy}|$ does indicate linearity (A), and a high $|r_S|$ does indicate monotonicity (C). But the converses are false: a true linear relationship can still show low $r_{xy}$ under noise (B false), and low $r_S$ doesn't rule out a weak/noisy monotonic trend (D false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Covariance matrix</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P13.</strong> True or False: If a dataset has $n$ features, the variance-covariance matrix is $n\times n$.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The statement is False.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The statement is True.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A covariance matrix $\Sigma$ has one row/column per feature: diagonal entries are variances, off-diagonal entries are covariances. With $n$ features, $\Sigma$ is necessarily $n\times n$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Binomial & combinatorics</span> <span class="chip">MCQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P14.</strong> A fair coin is tossed $2n$ times independently. The probability of an equal number of heads and tails is:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\binom{2n}{n}\big/2^{2n}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1/(2n)!$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$1\big/\binom{2n}{n}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\binom{2n}{n}\big/2^{n}$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Heads count $\sim$ Binomial$(2n,\tfrac12)$. "Equal heads & tails" means exactly $n$ heads: $P(X=n)=\binom{2n}{n}(\tfrac12)^n(\tfrac12)^n=\binom{2n}{n}/2^{2n}$.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>

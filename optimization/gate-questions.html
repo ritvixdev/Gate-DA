@@ -137,6 +137,63 @@
     <div class="gate-expl" hidden>$\ln(x^2+1)\approx x^2$ and $\ln(\cos x)\approx-\tfrac{x^2}{2}$, so the numerator $\approx\tfrac{x^2}{2}$ and the limit is $\tfrac12$.</div>
   </div>
 
+  <h2 style="margin-top:2.5rem">Practice Set</h2>
+  <p class="lede">Extra practice questions (quiz-style, not official GATE papers) covering the same Optimization topics.</p>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Contour plots</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P1.</strong> In a contour plot of $f(x,y)$, closed curves with decreasing function values toward the centre generally indicate:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>A saddle point</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>A local maximum</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>A local minimum</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Closed contour loops shrinking toward a centre where values decrease mean the centre is lower than every surrounding point in every direction — the definition of a local minimum.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Differentiability of polynomials</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P2.</strong> Consider $f(x)=x^3-x^2+1$. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Derivatives of all orders exist for $f(x)$.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The first, second, and third derivatives exist; higher-order derivatives (order &gt; 3) do not exist.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$f'''(x)=6$ and all higher derivatives equal $0$ — but a constant $0$ is still a well-defined, existing derivative. Polynomials are infinitely differentiable everywhere.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Gradient-based methods</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P3.</strong> In the steepest descent method for minimizing a differentiable $f(x)$, the search direction at iteration $k$ is:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The Hessian matrix direction</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The positive gradient direction</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The negative gradient direction</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>A random direction</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\nabla f(x)$ points toward steepest increase; to minimize $f$, you move in the opposite direction, $-\nabla f(x_k)$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Gradient descent</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P4.</strong> Why does gradient descent move in the direction of the negative gradient?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Because the negative gradient gives the direction of maximum increase.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Because the negative gradient gives the direction of steepest decrease.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Because the gradient points toward the minimum.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Because it guarantees convergence in one iteration.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\nabla f(x)$ is the direction of maximum rate of increase, so $-\nabla f(x)$ is the direction of maximum rate of decrease — the fastest local way to reduce $f$. It does not point at the global minimum, nor guarantee one-step convergence.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>

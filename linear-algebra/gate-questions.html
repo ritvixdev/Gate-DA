@@ -303,6 +303,161 @@
     <div class="gate-expl" hidden>$M=AA^{\mathsf T}$ is rank-1 and symmetric PSD; its only non-zero singular value equals $A^{\mathsf T}A=1+4+9+16+25=55$, the rest are $0$. Sum $=55$.</div>
   </div>
 
+  <h2 style="margin-top:2.5rem">Practice Set</h2>
+  <p class="lede">Extra practice questions (quiz-style, not official GATE papers) covering the same Linear Algebra topics.</p>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Systems of linear equations</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P1.</strong> Consider the system: $x+y+z=3$, $2x+2y+2z=6$, $x-y+z=1$. What is the nature of the solution?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Unique solution</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Infinite solutions</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Inconsistent system</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>No solution</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Equation 2 is just Equation 1 doubled, so it adds no new information — only 2 independent equations remain for 3 unknowns. Solving Eq. 1 and Eq. 3 gives $y=1$ and $x+z=2$, leaving $x$ free, so there are infinitely many solutions.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Eigenvalues & eigenvectors</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P2.</strong> A $2\times2$ rotation matrix $A$ rotates every real vector by $45^\circ$ (all entries of $A$ are real). Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$A$ can have real eigenvectors, since the characteristic polynomial has real coefficients.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$A$ cannot have any real eigenvectors.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>It is not possible to ascertain whether $A$ can have real eigenvectors.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>For a rotation by $\theta$, the eigenvalues solve $\lambda^2-2\cos\theta\,\lambda+1=0$, giving $\lambda=\cos\theta\pm i\sin\theta$. Since $\theta=45^\circ$ has $\sin\theta\ne0$, the eigenvalues are complex, so no real eigenvectors exist. Real coefficients in the characteristic polynomial do not guarantee real roots.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Eigenvalues & eigenvectors</span> <span class="chip">MCQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P3.</strong> Suppose $\lambda$ is an eigenvalue of a square matrix $A$ for some eigenvector $x$. Then, for the matrix $A-\lambda I$,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>an inverse cannot be defined.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>an inverse may or may not exist.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>an inverse certainly exists.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>an inverse certainly does not exist.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>By definition $(A-\lambda I)x=0$ for a non-zero $x$. If $A-\lambda I$ were invertible, multiplying both sides by its inverse would force $x=0$, a contradiction. So $A-\lambda I$ is always singular.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Eigenvalues — general properties</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P4.</strong> Select the correct option(s). For an $n\times n$ square matrix $A$,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>the product of the eigenvalues equals the determinant of $A$.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>the sum of the eigenvalues equals the trace of $A$.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>the eigenvalues are the diagonal entries when $A$ is a diagonal matrix.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>the characteristic polynomial is of degree $n$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>All four are standard identities: $\det(A)=\prod\lambda_i$, $\operatorname{trace}(A)=\sum\lambda_i$, a diagonal matrix's eigenvalues are its diagonal entries, and $\det(A-\lambda I)$ always expands to a degree-$n$ polynomial in $\lambda$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Eigenvalues — worked example</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P5.</strong> Consider the matrix $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$. Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The eigenvalues of $A$ are $1$ and $3$.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The matrix $A$ is symmetric.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$[1,1]$ is an eigenvector of $A$.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$[1,-1]$ is an eigenvector of $A$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$A=A^{\mathsf T}$, so it's symmetric. $\operatorname{trace}(A)=4$, $\det(A)=3\Rightarrow\lambda^2-4\lambda+3=0\Rightarrow\lambda=1,3$. Solving $(A-3I)v=0$ gives $v=[1,1]$; solving $(A-I)v=0$ gives $v=[1,-1]$ — both check out, and being eigenvectors of a symmetric matrix for distinct eigenvalues, they are orthogonal.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Vectors — convex combinations</span> <span class="chip">MCQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P6.</strong> Given non-zero vectors $u,v$, let $w=u+\tfrac13(v-u)$. Let $O$ be the origin, $A,B$ the tips of $u,v$, and $X$ the tip of $w$. Which is True of $\triangle OAB$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$X$ lies inside the triangle.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$X$ lies on one of the sides of the triangle.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$X$ lies outside the triangle.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$w=\tfrac23u+\tfrac13v$, a convex combination ($\alpha+\beta=1$, both $\ge0$) of $u$ and $v$, so $X$ lies exactly on segment $AB$ — one side of the triangle, $1/3$ of the way from $A$ to $B$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Vector norms</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P7.</strong> A vector of ones in $n$ dimensions is $[1,1,\dots,1]$. The length of such a vector is:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\sqrt{n}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$n$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$1-1/\sqrt{n}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\lVert\mathbf{1}\rVert=\sqrt{1^2+1^2+\dots+1^2}$ ($n$ terms) $=\sqrt{n}$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Vectors — dot product & triangles</span> <span class="chip">MCQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P8.</strong> Three vectors $a,b,c$ have magnitudes $\lVert a\rVert=3$, $\lVert b\rVert=4$, $\lVert c\rVert=5$. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>They always form a right-angled triangle, from the lengths alone.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>They form the sides of a right-angled triangle when $a+b+c=0$.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>They may or may not form a right-angled triangle when $a+b+c=0$.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>If $a+b+c=0$ then $c=-(a+b)$, so $\lVert c\rVert^2=\lVert a\rVert^2+\lVert b\rVert^2+2(a\cdot b)$. Plugging in $25=9+16+2(a\cdot b)$ gives $a\cdot b=0$ — a forced right angle between $a$ and $b$. Without the constraint, the magnitudes alone say nothing about angles.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Matrices — determinants</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P9.</strong> Given $A=\begin{bmatrix}1&3\\2&4\end{bmatrix}$. Which statement is correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$\det(A)=0$, so inverse exists.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Matrix is not full rank.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\det(A)\ne0$, so inverse exists.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Columns are linearly dependent.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\det(A)=(1)(4)-(3)(2)=-2\ne0$, so $A$ is invertible, full rank, and its columns are linearly independent.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Generalized inverses</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P10.</strong> For an underdetermined system ($m<n$), which method is commonly used to obtain the minimum-norm solution?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Gaussian elimination only</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Moore-Penrose pseudo inverse</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Cramer's rule</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Gauss-Jordan elimination</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>When $m<n$, $Ax=b$ typically has infinitely many solutions. The minimum-norm one is $x=A^{+}b=A^{\mathsf T}(AA^{\mathsf T})^{-1}b$, computed via the Moore-Penrose pseudoinverse.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Vectors — proportionality</span> <span class="chip">MCQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P11.</strong> True or False: If $[a,b]$ is a multiple of $[c,d]$ with $abcd\ne0$, then $[a,c]$ is a multiple of $[b,d]$.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is True.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is False.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$[a,b]=k[c,d]$ means $a=kc,\,b=kd$, so $ad=bc$. Dividing both sides by $bd$ (all non-zero) gives $a/b=c/d$, exactly the condition for $[a,c]$ to be a multiple of $[b,d]$.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>

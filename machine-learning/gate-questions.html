@@ -145,6 +145,21 @@
     <div class="gate-result" hidden></div>
   </div>
 
+  <h2 style="margin-top:2.5rem">Practice Set</h2>
+  <p class="lede">Extra practice question (quiz-style, not an official GATE paper) covering the same Machine Learning topics.</p>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-teal">Practice Set</span> <span class="chip">Classification evaluation (ROC)</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P1.</strong> True or False: The slope of the Receiver Operating Characteristic (ROC) curve represents the rate of change of the True Positive Rate (TPR) with respect to the False Positive Rate (FPR).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The statement is False.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The statement is True.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The ROC curve plots FPR on the x-axis and TPR on the y-axis as the decision threshold varies. For any curve $y=f(x)$, the slope is $dy/dx$ by definition, so the ROC slope is literally $d(\text{TPR})/d(\text{FPR})$.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>
