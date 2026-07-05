@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gate TikTok — Feed Shell Directions</title>
+<style>
+  :root{--canvas:#faf9f5;--soft:#f5f0e8;--card:#efe9de;--ink:#141413;--body:#3d3d3a;--muted:#6c6a64;--line:#e1d8cc;--coral:#cc785c;--coral-dark:#8f4a33;--teal:#277264;--shadow:0 14px 40px rgba(20,20,19,.14)}
+  *{box-sizing:border-box} body{margin:0;background:var(--canvas);color:var(--body);font-family:Inter,system-ui,sans-serif}
+  header{padding:28px 24px 18px;text-align:center} h1{margin:0;color:var(--ink);font-size:30px} header p{margin:8px auto 0;color:var(--muted);max-width:720px;line-height:1.55}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:26px;max-width:1120px;margin:0 auto;padding:12px 24px 42px}
+  .choice{border:2px solid transparent;border-radius:20px;padding:14px;cursor:pointer;transition:.2s;background:#fff;box-shadow:0 4px 18px rgba(20,20,19,.07)}
+  .choice:hover{transform:translateY(-3px);border-color:#d8b09f}.choice.selected{border-color:var(--coral);box-shadow:0 0 0 4px rgba(204,120,92,.13),var(--shadow)}
+  .phone{height:570px;max-width:310px;margin:auto;border:8px solid #282623;border-radius:34px;overflow:hidden;position:relative;background:var(--soft);box-shadow:var(--shadow)}
+  .phone:before{content:"";position:absolute;z-index:8;top:7px;left:50%;transform:translateX(-50%);width:82px;height:20px;border-radius:20px;background:#282623}
+  .top{position:absolute;z-index:5;top:0;left:0;right:0;padding:38px 14px 10px;display:flex;justify-content:center;gap:18px;font-size:13px;font-weight:700;color:var(--ink)}
+  .top .active{border-bottom:2px solid var(--coral);padding-bottom:5px}.subject{position:absolute;left:14px;top:42px;font-size:10px;color:var(--coral-dark);font-weight:800}
+  .bottom{position:absolute;z-index:6;bottom:0;left:0;right:0;height:54px;background:rgba(250,249,245,.94);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;font-size:10px;color:var(--muted)}
+  .bottom b{color:var(--coral)} .feed{height:100%;padding:84px 58px 64px 16px;display:flex;align-items:center}
+  .lesson{width:100%;position:relative}.tag{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--coral-dark);font-weight:800}
+  .hook{font-size:28px;line-height:1.06;color:var(--ink);font-weight:800;margin:10px 0 12px}.copy{font-size:14px;line-height:1.5}.formula{background:#fffaf3;border:1px solid var(--line);padding:12px;border-radius:12px;color:var(--ink);font-family:Georgia,serif;text-align:center;margin:14px 0;font-size:20px}
+  .rail{position:absolute;z-index:5;right:10px;bottom:82px;display:flex;flex-direction:column;gap:15px;align-items:center}.action{width:39px;height:39px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:17px}.rail small{font-size:9px;margin-top:-11px;color:var(--muted)}
+  .progress{position:absolute;left:0;right:0;bottom:54px;height:3px;background:#ddd3c6}.progress i{display:block;width:36%;height:100%;background:var(--coral)}
+  .glass .phone{background:#171614}.glass .top,.glass .hook,.glass .copy{color:#fff}.glass .subject,.glass .tag{color:#f0a58e}.glass .feed{background:radial-gradient(circle at 25% 28%,#774936 0,#32241f 32%,#171614 72%)}.glass .lesson{background:rgba(20,19,17,.52);padding:18px;border-radius:16px;backdrop-filter:blur(7px)}.glass .formula{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#fff}.glass .action{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.18)}.glass .rail small{color:#ddd}.glass .bottom{background:#171614;border-color:#34312d;color:#aaa}
+  .cardstack .feed{padding:78px 13px 68px}.cardstack .lesson{background:#fff;border:1px solid var(--line);border-radius:22px;padding:25px 18px 22px;box-shadow:0 12px 35px rgba(20,20,19,.11)}.cardstack .rail{right:18px;bottom:74px;flex-direction:row}.cardstack .rail small{display:none}.cardstack .action{width:35px;height:35px}.cardstack .copy{padding-bottom:48px}.cardstack .hook{font-size:26px}
+  .label{padding:15px 5px 5px}.label h2{margin:0 0 5px;color:var(--ink);font-size:18px}.label p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}.rec{display:inline-block;margin-top:9px;background:rgba(204,120,92,.13);color:var(--coral-dark);font-size:10px;font-weight:800;padding:5px 8px;border-radius:99px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}.choice{max-width:390px;margin:auto;width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Choose the Gate TikTok feed shell</h1>
+  <p>All options use vertical snap-scrolling, subject-specific content, the existing cream/coral theme, and short GSAP text reveals. Click the direction that feels right.</p>
+</header>
+<main class="grid">
+  <article class="choice" data-choice="A" onclick="pick(this)">
+    <div class="phone">
+      <div class="subject">LINEAR ALGEBRA</div><div class="top"><span>Following</span><span class="active">For You</span></div>
+      <div class="feed"><div class="lesson"><div class="tag">⚡ 15-sec shortcut</div><div class="hook">Rank tells you how many directions survive.</div><div class="formula">rank(A) ≤ min(m,n)</div><div class="copy">Rows and columns may look many, but only independent directions count.</div></div></div>
+      <div class="rail"><div class="action">♡</div><small>Save</small><div class="action">✓</div><small>Got it</small><div class="action">↗</div><small>Share</small></div>
+      <div class="progress"><i></i></div><div class="bottom"><span>⌂<br>Home</span><b>▶<br>Gate TikTok</b><span>☰<br>Topics</span></div>
+    </div>
+    <div class="label"><h2>A. TikTok-faithful light feed</h2><p>Full-screen lesson with right-side action rail and bottom navigation. Closest spatial match while keeping the study theme.</p></div>
+  </article>
+  <article class="choice glass" data-choice="B" onclick="pick(this)">
+    <div class="phone">
+      <div class="subject">LINEAR ALGEBRA</div><div class="top"><span>Following</span><span class="active">For You</span></div>
+      <div class="feed"><div class="lesson"><div class="tag">⚡ 15-sec shortcut</div><div class="hook">Rank tells you how many directions survive.</div><div class="formula">rank(A) ≤ min(m,n)</div><div class="copy">Rows and columns may look many, but only independent directions count.</div></div></div>
+      <div class="rail"><div class="action">♡</div><small>Save</small><div class="action">✓</div><small>Got it</small><div class="action">↗</div><small>Share</small></div>
+      <div class="progress"><i></i></div><div class="bottom"><span>⌂<br>Home</span><b>▶<br>Gate TikTok</b><span>☰<br>Topics</span></div>
+    </div>
+    <div class="label"><h2>B. Immersive dark stage</h2><p>More cinematic and TikTok-like, with content over a themed animated background. Strongest entertainment feel.</p></div>
+  </article>
+  <article class="choice cardstack" data-choice="C" onclick="pick(this)">
+    <div class="phone">
+      <div class="subject">LINEAR ALGEBRA</div><div class="top"><span>Following</span><span class="active">For You</span></div>
+      <div class="feed"><div class="lesson"><div class="tag">⚡ 15-sec shortcut</div><div class="hook">Rank tells you how many directions survive.</div><div class="formula">rank(A) ≤ min(m,n)</div><div class="copy">Rows and columns may look many, but only independent directions count.</div></div></div>
+      <div class="rail"><div class="action">♡</div><div class="action">✓</div><div class="action">↗</div></div>
+      <div class="progress"><i></i></div><div class="bottom"><span>⌂<br>Home</span><b>▶<br>Gate TikTok</b><span>☰<br>Topics</span></div>
+    </div>
+    <div class="label"><h2>C. Readability-first card stack</h2><p>Still vertical and swipeable, but less faithful to TikTok. Best for dense equations and longer explanations.</p><span class="rec">RECOMMENDED FOR GATE CONTENT</span></div>
+  </article>
+</main>
+<script>
+function pick(el){document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');fetch('/event',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({type:'choice',choice:el.dataset.choice,text:el.querySelector('h2').textContent,timestamp:Date.now()})}).catch(()=>{});}
+</script>
+</body>
+</html>
