@@ -294,7 +294,32 @@ soft: minimize ½‖w‖² + C Σξᵢ   s.t. yᵢ(wᵀxᵢ + b) ≥ 1 − ξᵢ
           <pre>Memory: SVM = widest-margin boundary set by support vectors; kernels bend it. Tree = if-else path; prune to fight overfit.</pre>
         </details>
         <details class="study-item">
-          <summary>31. Traps, practice &amp; memory box</summary>
+          <summary>31. Weighted kNN — exact calculation <span class="study-extra">GATE extra</span></summary>
+          <p>Plain kNN gives every one of the $k$ neighbours an equal vote. <strong>Weighted kNN</strong> instead gives closer neighbours more say, using a weight that falls off with distance:</p>
+          <div class="formula">$$ w_i=\frac{1}{d(x,x_i)^{p}} \qquad (\text{commonly } p=1 \text{ or } p=2) $$</div>
+          <p class="lead">Classification — weighted vote (sum the weights per class, pick the largest):</p>
+          <pre>3 neighbours of a new point, k=3, weight = 1/d²:
+
+neighbour   class   distance d   weight w=1/d²
+   A          cat        1           1.00
+   B          dog        2           0.25
+   C          dog        4           0.0625
+
+cat total  = 1.00
+dog total  = 0.25 + 0.0625 = 0.3125
+
+→ predict CAT (1.00 &gt; 0.3125)</pre>
+          <p>Notice plain (unweighted) majority vote would say <strong>dog</strong> (2 votes vs 1) — weighting flips the answer because the single cat neighbour is much closer. This is exactly the kind of "compute it by hand" question GATE asks.</p>
+          <p class="lead">Regression — weighted average instead of a plain mean:</p>
+          <div class="formula">$$ \hat y=\frac{\sum_i w_i y_i}{\sum_i w_i} $$</div>
+          <pre>neighbours' y: 10, 20, 40 with weights 1.00, 0.25, 0.0625
+
+ŷ = (1.00·10 + 0.25·20 + 0.0625·40) / (1.00+0.25+0.0625)
+  = (10 + 5 + 2.5) / 1.3125 ≈ 13.33</pre>
+          <p>Weighted kNN reduces sensitivity to the exact choice of $k$ — a slightly-too-large $k$ still lets the nearest points dominate the vote/average.</p>
+        </details>
+        <details class="study-item">
+          <summary>32. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>kNN learns a parameter equation? <strong>No</strong> — it stores data and votes (lazy).</li>
             <li>Bigger k is always better? <strong>No</strong> — too large underfits.</li>

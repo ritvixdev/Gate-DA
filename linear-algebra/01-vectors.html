@@ -406,6 +406,58 @@ e₂ = [0, 1]    gives the y direction</pre>
           <pre>dim(ℝⁿ) = n</pre>
         </details>
 
+        <details class="study-item">
+          <summary>20. Hyperplanes &amp; half-spaces <span class="study-extra">GATE extra</span></summary>
+          <p>A <strong>hyperplane</strong> in $\mathbb{R}^n$ is the natural generalization of a line (in $\mathbb{R}^2$) or a plane (in $\mathbb{R}^3$) — a flat "sheet" of one dimension less than the space it sits in, defined by a single linear equation:</p>
+          <div class="formula">$$ H=\{x\in\mathbb{R}^n : w^{\mathsf T}x=b\} \qquad \dim(H)=n-1 $$</div>
+          <pre>n=2: w₁x+w₂y=b   → a line
+n=3: w₁x+w₂y+w₃z=b → a plane
+n&gt;3: no picture, but the same idea → a hyperplane</pre>
+          <p>Here $w$ is the <strong>normal vector</strong> — it points perpendicular to the hyperplane and controls its orientation; $b$ shifts it away from the origin.</p>
+          <p class="lead">The hyperplane splits all of $\mathbb{R}^n$ into two <strong>half-spaces</strong>:</p>
+          <pre>positive half-space:  { x : wᵀx − b &gt; 0 }
+negative half-space:  { x : wᵀx − b &lt; 0 }
+on the hyperplane:    { x : wᵀx − b = 0 }</pre>
+          <p class="lead">Side test — plug a point into $w^{\mathsf T}x-b$ and read the sign:</p>
+          <pre>w = (1, 1), b = 2   →  hyperplane: x + y = 2
+
+point (3, 3): 3+3−2 = 4  &gt; 0  → positive side
+point (0, 0): 0+0−2 = −2 &lt; 0  → negative side</pre>
+          <p>This "which side is it on" test is exactly how a linear classifier (perceptron, logistic regression, linear SVM) decides a predicted class: the sign of $w^{\mathsf T}x-b$ <em>is</em> the decision boundary.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>21. Vertices of an n-dimensional cube <span class="study-extra">GATE extra</span></summary>
+          <p>A cube's corners are exactly the points where every coordinate is chosen independently from two possible values (e.g. $0$ or $1$ on each axis):</p>
+          <pre>1-D "cube" (a segment): endpoints {0, 1}                       → 2¹ = 2 corners
+2-D cube (a square): (0,0),(1,0),(0,1),(1,1)                     → 2² = 4 corners
+3-D cube: each of x,y,z is 0 or 1                                → 2³ = 8 corners</pre>
+          <div class="formula">$$ \text{vertices of an } n\text{-dimensional cube} = 2^n $$</div>
+          <p>Reasoning: each of the $n$ coordinates independently has 2 choices, and choices across coordinates combine by the multiplication rule — $\underbrace{2\times2\times\cdots\times2}_{n\text{ times}}=2^n$. This is the same "each independent slot doubles the count" logic as the "more than $n$ vectors in $\mathbb{R}^n$ are dependent" rule (§9 of the cheat sheet) — both come from counting independent directions/choices in $n$-dimensional space.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>22. Affine &amp; convex combinations <span class="study-extra">GATE extra</span></summary>
+          <p>A <strong>linear combination</strong> $c_1v_1+c_2v_2$ lets the coefficients be anything. Two useful restricted versions show up constantly in GATE geometry questions:</p>
+          <pre>affine combination:  c₁u + c₂v  with  c₁ + c₂ = 1        (coefficients sum to 1, either sign allowed)
+convex combination:  c₁u + c₂v  with  c₁ + c₂ = 1  AND  c₁, c₂ ≥ 0   (also both non-negative)</pre>
+          <p>A convex combination of two points always lands <strong>on the line segment</strong> between them (never outside it); an affine combination can also land on the line <em>extended</em> beyond the segment, since negative coefficients are allowed.</p>
+          <p class="lead">Worked example — where does $w=u+\tfrac13(v-u)$ sit?</p>
+          <pre>w = u + (1/3)(v − u) = u − (1/3)u + (1/3)v = (2/3)u + (1/3)v</pre>
+          <p>Rewritten as $w=\tfrac23u+\tfrac13v$, the coefficients are $\tfrac23$ and $\tfrac13$ — both $\ge 0$ and they sum to $\tfrac23+\tfrac13=1$. So this <em>is</em> a convex combination, meaning $w$ lies exactly on the segment from $u$ to $v$, specifically $\tfrac13$ of the way from $u$ toward $v$ (closer to $u$, since $u$ carries the bigger weight).</p>
+          <p><span style="color:var(--coral-text)">Quick check for GATE:</span> coefficients sum to 1 → point is on the (possibly extended) line through $u,v$; also both $\ge 0$ → point is on the segment itself, not the extension.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>23. Vector norms in n dimensions — a quick example <span class="study-extra">GATE extra</span></summary>
+          <p>The norm formula from §6 (Main formulas), $\|v\|=\sqrt{v_1^2+\cdots+v_n^2}$, is easy to under-use — plug in the simplest possible vector, the <strong>all-ones vector</strong>, and a clean pattern falls out:</p>
+          <div class="formula">$$ \mathbf{1}=(1,1,\dots,1)\in\mathbb{R}^n \;\Longrightarrow\; \|\mathbf{1}\|=\sqrt{\underbrace{1^2+1^2+\cdots+1^2}_{n\text{ terms}}}=\sqrt{n} $$</div>
+          <pre>n=2: ‖(1,1)‖  = √2 ≈ 1.414
+n=3: ‖(1,1,1)‖ = √3 ≈ 1.732
+n=10: ‖(1,…,1)‖ = √10 ≈ 3.162</pre>
+          <p>Recognizing "norm of the all-ones vector is $\sqrt n$" on sight saves time whenever a GATE question buries an all-ones or all-equal vector inside a longer computation (e.g. normalizing $\mathbf{1}$ to a unit vector needs dividing by exactly $\sqrt n$).</p>
+        </details>
+
       </details>
     </section>
 

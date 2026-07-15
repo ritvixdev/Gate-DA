@@ -169,35 +169,43 @@ hyperparameter = chosen BEFORE training   (you set it)</pre>
           <p>Always tune with a validation set / cross-validation — <strong>never on the test set</strong> (which is for final evaluation only).</p>
         </details>
         <details class="study-item">
-          <summary>15. The confusion matrix</summary>
+          <summary>15. Grid search × k-fold — counting the model fits <span class="study-extra">GATE extra</span></summary>
+          <p>A very literal GATE question: <em>"if grid search tries $g$ hyperparameter combinations, evaluated with $k$-fold CV, how many models get trained in total?"</em></p>
+          <div class="formula">$$ \text{total fits}=g\times k $$</div>
+          <pre>example: grid of 3 values for λ × 4 values for another hyperparameter = g = 3×4 = 12 combinations
+with 5-fold CV → total model fits = 12 × 5 = 60</pre>
+          <p>Each of the $g$ combinations must be trained and validated across <em>all</em> $k$ folds before its average CV score is known — so the training cost of a grid search grows multiplicatively with both the grid size and the fold count, which is exactly why random or Bayesian search (§14) becomes attractive as $g$ grows.</p>
+        </details>
+        <details class="study-item">
+          <summary>16. The confusion matrix</summary>
           <pre>                Predicted +   Predicted −
 Actual +           TP            FN
 Actual −           FP            TN</pre>
           <p>TP/TN = correct; <strong>FP</strong> = false alarm; <strong>FN</strong> = missed positive. Every classification metric is built from these four counts.</p>
         </details>
         <details class="study-item">
-          <summary>16. Precision — trust of a positive call</summary>
+          <summary>17. Precision — trust of a positive call</summary>
           <pre>Precision = TP / (TP + FP)   ("when it says positive, how often is it right?")</pre>
           <p>High precision = few false positives. Matters when a false alarm is costly — e.g. a real email wrongly flagged as <strong>spam</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>17. Recall — coverage of actual positives</summary>
+          <summary>18. Recall — coverage of actual positives</summary>
           <pre>Recall = TP / (TP + FN)   ("of all real positives, how many did we catch?")</pre>
           <p>Also called <strong>sensitivity</strong> / true-positive rate. High recall = few false negatives. Critical when a miss is dangerous — e.g. a <strong>disease</strong> left undetected.</p>
         </details>
         <details class="study-item">
-          <summary>18. Precision vs recall (the trade-off)</summary>
+          <summary>19. Precision vs recall (the trade-off)</summary>
           <pre>Precision ↓ false positives · Recall ↓ false negatives</pre>
           <p>Lowering the decision threshold catches more positives (↑recall) but adds false alarms (↓precision). You pick the balance the application needs.</p>
         </details>
         <details class="study-item">
-          <summary>19. F1-score (and why harmonic mean)</summary>
+          <summary>20. F1-score (and why harmonic mean)</summary>
           <pre>F1 = 2 · Precision · Recall / (Precision + Recall)</pre>
           <p>The <strong>harmonic</strong> mean punishes imbalance — it's only high when <em>both</em> are high.</p>
           <pre>P=1.0, R=0.1 → arithmetic mean 0.55 but F1 = 2(0.1)/1.1 ≈ 0.18</pre>
         </details>
         <details class="study-item">
-          <summary>20. Worked example &amp; when to use F1</summary>
+          <summary>21. Worked example &amp; when to use F1</summary>
           <pre>TP=40, FP=10, FN=20, TN=30
 Accuracy  = 70/100 = 0.70
 Precision = 40/50  = 0.80
@@ -206,7 +214,67 @@ F1        = 2(0.8·0.667)/(0.8+0.667) ≈ 0.727</pre>
           <p>Use F1 (over accuracy) for <strong>imbalanced</strong> data where both error types matter — fraud, medical, defect, rare-disease, spam.</p>
         </details>
         <details class="study-item">
-          <summary>21. Traps, practice &amp; memory box</summary>
+          <summary>22. Specificity &amp; the false-positive rate <span class="study-extra">GATE extra</span></summary>
+          <p>Precision/recall aren't the only confusion-matrix ratios GATE asks about — <strong>specificity</strong> looks at the negative class the way recall looks at the positive class:</p>
+          <div class="formula">$$ \text{Sensitivity (Recall, TPR)}=\frac{TP}{TP+FN} \qquad \text{Specificity (TNR)}=\frac{TN}{TN+FP} $$</div>
+          <div class="formula">$$ \text{FPR}=\frac{FP}{FP+TN}=1-\text{Specificity} $$</div>
+          <pre>TP=40, FP=10, FN=20, TN=30
+Sensitivity = 40/(40+20) ≈ 0.667   (same number as "recall")
+Specificity = 30/(30+10) = 0.75
+FPR         = 10/(10+30) = 0.25  =  1 − 0.75 ✓</pre>
+          <p><strong>Sensitivity</strong> and <strong>recall</strong> are literally the same ratio — just different names used in medical vs ML contexts. <strong>Specificity</strong> has no direct analogue among precision/recall/F1 — it's purely about how well you avoid false alarms on the negative class.</p>
+        </details>
+        <details class="study-item">
+          <summary>23. The ROC curve — axes &amp; construction <span class="study-extra">GATE extra</span></summary>
+          <p>A classifier outputs a <em>probability</em>, and the 0.5 threshold is just one choice. The <strong>ROC curve</strong> (Receiver Operating Characteristic) shows how TPR and FPR trade off as the threshold sweeps from 1 down to 0:</p>
+          <pre>y-axis: TPR / Sensitivity = TP/(TP+FN)
+x-axis: FPR = 1 − Specificity = FP/(FP+TN)</pre>
+          <pre>threshold = 1   → predict nothing positive → (FPR, TPR) = (0, 0)
+threshold = 0   → predict everything positive → (FPR, TPR) = (1, 1)
+in between      → trace out the curve as the threshold is lowered</pre>
+          <p>A perfect classifier hugs the top-left corner $(0,1)$ (all true positives, no false alarms); a random guesser traces the diagonal $y=x$. Since it's a curve $y=f(x)$, its slope at a point is literally $d(\text{TPR})/d(\text{FPR})$ — a favourite GATE true/false trap.</p>
+        </details>
+        <details class="study-item">
+          <summary>24. AUC &amp; Cohen's kappa <span class="study-extra">GATE extra</span></summary>
+          <p><strong>AUC</strong> (Area Under the ROC Curve) condenses the whole curve into one ranking-quality number:</p>
+          <pre>AUC = 1    → perfect ranking (every positive scored above every negative)
+AUC = 0.5  → no better than random guessing
+AUC &lt; 0.5  → worse than random (predictions are backwards)</pre>
+          <p>AUC is threshold-independent — it summarizes performance across <em>every</em> possible cutoff, unlike accuracy/precision/recall which are tied to one threshold.</p>
+          <p class="lead"><strong>Cohen's kappa ($\kappa$)</strong> — agreement corrected for chance:</p>
+          <div class="formula">$$ \kappa=\frac{p_o-p_e}{1-p_e} $$</div>
+          <p>where $p_o$ = observed accuracy (agreement actually seen) and $p_e$ = expected agreement <em>by chance alone</em>, computed from the row/column totals of the confusion matrix.</p>
+          <pre>p_o = 0.80, p_e = 0.50  →  κ = (0.80−0.50)/(1−0.50) = 0.60</pre>
+          <pre>κ &lt; 0     worse than chance
+0.01–0.20  slight
+0.21–0.40  fair
+0.41–0.60  moderate
+0.61–0.80  substantial
+0.81–1.00  almost perfect</pre>
+          <p>Kappa matters most on <strong>imbalanced</strong> data: plain accuracy can look high purely from chance agreement on the majority class, while $\kappa$ strips that out.</p>
+        </details>
+        <details class="study-item">
+          <summary>25. Balanced accuracy <span class="study-extra">GATE extra</span></summary>
+          <p>Plain accuracy is misleading on imbalanced data (§12 of the Logistic Regression topic). <strong>Balanced accuracy</strong> fixes this by averaging the per-class accuracy instead of the overall one — it's the mean of sensitivity and specificity:</p>
+          <div class="formula">$$ \text{Balanced accuracy}=\frac{\text{Sensitivity}+\text{Specificity}}{2}=\frac{1}{2}\left(\frac{TP}{TP+FN}+\frac{TN}{TN+FP}\right) $$</div>
+          <pre>TP=40, FP=10, FN=20, TN=30
+Sensitivity = 40/60 ≈ 0.667 ;  Specificity = 30/40 = 0.75
+Balanced accuracy = (0.667+0.75)/2 ≈ 0.708
+
+Plain accuracy = (40+30)/100 = 0.70   — close here, but diverges sharply as classes get more imbalanced</pre>
+          <p>On a 99%/1% imbalanced set, a "predict majority always" model scores ~99% plain accuracy but only ~50% balanced accuracy — exposing that it never actually catches the minority class.</p>
+        </details>
+        <details class="study-item">
+          <summary>26. Prevalence &amp; detection prevalence <span class="study-extra">GATE extra</span></summary>
+          <p>Two more confusion-matrix ratios that show up in GATE's classification tables — both look similar but ask different questions:</p>
+          <div class="formula">$$ \text{Prevalence}=\frac{TP+FN}{\text{total}} \qquad \text{Detection Prevalence}=\frac{TP+FP}{\text{total}} $$</div>
+          <pre>TP=40, FP=10, FN=20, TN=30, total=100
+Prevalence          = (40+20)/100 = 0.60   → 60% of actual cases are truly positive
+Detection Prevalence = (40+10)/100 = 0.50   → the model PREDICTED positive 50% of the time</pre>
+          <p><strong>Prevalence</strong> is a property of the <em>data</em> (how common the positive class actually is — the same idea as the "prior" $P(D)$ in the Bayes disease-test example). <strong>Detection prevalence</strong> is a property of the <em>model's predictions</em>. If detection prevalence is far from prevalence, the model is systematically over- or under-predicting the positive class.</p>
+        </details>
+        <details class="study-item">
+          <summary>27. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>High training accuracy ⇒ good model? <strong>No</strong> — could be overfitting; check validation/test.</li>
             <li>Tune hyperparameters on the test set? <strong>No</strong> — use CV / a validation set; keep the test set untouched.</li>
@@ -283,71 +351,4 @@ F1        = 2(0.8·0.667)/(0.8+0.667) ≈ 0.727</pre>
       <div class="callout-label">✕ Watch out</div>
       <p><span class="wrong">Trap:</span> "Tune hyperparameters on the test set." <span class="right">Reality:</span> that leaks information — use CV / a validation set.</p>
       <p><span class="wrong">Trap:</span> "High training accuracy = good model." <span class="right">Reality:</span> it may be overfitting; check validation.</p>
-      <p><span class="wrong">Trap:</span> "More folds is always better." <span class="right">Reality:</span> more folds cost more compute and can raise variance (LOOCV).</p>
-    </div>
-  </section>
-
-  <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
-    <ul class="styled">
-      <li><strong>kNN:</strong> CV is the standard way to choose the best $k$.</li>
-      <li><strong>Linear/logistic regression:</strong> CV compares models and guards against overfitting.</li>
-      <li><strong>All ML:</strong> the honest performance check behind every method here.</li>
-    </ul>
-  </section>
-
-  <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
-    <div class="practice">
-      <p class="pq">Q1. In 10-fold CV, how many times is the model trained?</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">10 times (once per fold).</div>
-    </div>
-    <div class="practice">
-      <p class="pq">Q2. Train accuracy 99%, validation 70%. What's happening?</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">Overfitting — great on training, poor on unseen data.</div>
-    </div>
-    <div class="practice">
-      <p class="pq">Q3. What is LOOCV?</p>
-      <button class="show-ans" aria-expanded="false">Show answer</button>
-      <div class="ans">Leave-one-out CV: $k=n$, each point is the validation set once.</div>
-    </div>
-
-    <h3>Quick MCQ</h3>
-    <div class="quiz-card">
-      <div class="quiz-q">A large gap between training and validation accuracy indicates…</div>
-      <div class="quiz-options">
-        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> underfitting</button>
-        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a perfect model</button>
-        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> overfitting</button>
-        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> too few features</button>
-      </div>
-      <div class="quiz-feedback" data-fb="A">Underfitting shows <em>both</em> scores low.</div>
-      <div class="quiz-feedback" data-fb="B">A big gap is the opposite of good generalization.</div>
-      <div class="quiz-feedback" data-fb="C">✅ Correct — memorized training but fails to generalize = overfitting.</div>
-      <div class="quiz-feedback" data-fb="D">More features usually worsens overfitting, not fixes it.</div>
-    </div>
-  </section>
-
-  <section class="concept-card">
-    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
-    <div class="memory-box">
-      <div class="callout-label">🧠 Remember</div>
-      <ul>
-        <li>k-fold: rotate the held-out fold; average the $k$ validation scores.</li>
-        <li>LOOCV = $k=n$.</li>
-        <li>Train ≫ validation ⇒ overfitting; both low ⇒ underfitting.</li>
-        <li>Never tune on the test set; keep it for the final report.</li>
-      </ul>
-    </div>
-  </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="../assets/js/topics.js?v=20260620"></script>
-  <script src="../assets/js/viz/chart.js?v=20260620"></script>
-  <script src="../assets/js/viz/biasvariance-lab.js?v=20260620"></script>
-  <script src="../assets/js/app.js?v=20260620"></script>
-</body>
-</html>
+      <p><span class="wrong">Trap:</span> "More folds is 

@@ -192,7 +192,44 @@ b_yx · b_xy = r²      (so |r| = √(b_yx · b_xy), the geometric mean of the s
           <pre>3 + 5 + 0 = 8</pre>
         </details>
         <details class="study-item">
-          <summary>19. Memory box &amp; mental model</summary>
+          <summary>19. The covariance matrix — dimensions &amp; structure <span class="study-extra">GATE extra</span></summary>
+          <p>With more than two variables, covariances are collected into a <strong>covariance matrix</strong> $\Sigma$. For $n$ features, $\Sigma$ is always:</p>
+          <div class="formula">$$ n \text{ features} \;\Longrightarrow\; \Sigma \text{ is } n\times n $$</div>
+          <pre>Σ_ij = Cov(X_i, X_j)
+Σ_ii = Cov(X_i, X_i) = Var(X_i)      (the diagonal holds variances)
+Σ_ij = Σ_ji                          (symmetric, since Cov(X,Y)=Cov(Y,X))</pre>
+          <pre>Example, 3 features (n=3) → Σ is 3×3:
+
+     [ Var(X₁)    Cov(X₁,X₂)  Cov(X₁,X₃) ]
+Σ =  [ Cov(X₂,X₁) Var(X₂)     Cov(X₂,X₃) ]
+     [ Cov(X₃,X₁) Cov(X₃,X₂)  Var(X₃)    ]</pre>
+          <p>This is exactly the matrix PCA decomposes: its <strong>eigenvectors</strong> are the principal component directions, and its <strong>eigenvalues</strong> are the variance each direction captures.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Correlation does not imply causation <span class="study-extra">GATE extra</span></summary>
+          <p>A high $|\rho|$ only says two variables <strong>move together</strong> — it says nothing about <em>why</em>. GATE's conceptual traps usually hide one of these explanations behind an apparent correlation:</p>
+          <ul class="styled">
+            <li><strong>Reverse causation:</strong> maybe $Y$ causes $X$, not $X$ causes $Y$.</li>
+            <li><strong>Confounding variable:</strong> a third factor drives both. (Ice-cream sales correlate with drowning deaths — both rise because of hot weather, not because ice cream causes drowning.)</li>
+            <li><strong>Coincidence / small sample:</strong> spurious correlation with no real link at all.</li>
+            <li><strong>Bidirectional / feedback:</strong> $X$ and $Y$ influence each other.</li>
+          </ul>
+          <p>Establishing causation needs more than correlation: controlled experiments (randomized trials), or careful causal-inference methods that rule out confounders.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. Concordant &amp; discordant pairs <span class="study-extra">GATE extra</span></summary>
+          <p>Take any two data points $(x_i,y_i)$ and $(x_j,y_j)$. The pair is:</p>
+          <pre>concordant  — both coordinates agree in direction: (x_i−x_j) and (y_i−y_j) have the SAME sign
+discordant  — they disagree in direction: opposite signs
+tied        — x_i=x_j or y_i=y_j (neither)</pre>
+          <pre>Example: (1,2) and (3,5)  → x increases, y increases → concordant
+         (1,5) and (3,2)  → x increases, y decreases → discordant</pre>
+          <p>Counting concordant ($n_c$) vs discordant ($n_d$) pairs across <em>every</em> pair of points is exactly how <strong>Kendall's rank correlation ($\tau$)</strong> is built — a rank-based measure alongside Spearman's $\rho_s$:</p>
+          <div class="formula">$$ \tau=\frac{n_c-n_d}{\binom{n}{2}} $$</div>
+          <p>Like Spearman's $\rho_s$, Kendall's $\tau$ only cares about the <em>order</em> of values, not their exact spacing — so both are the go-to tools for monotonic (not necessarily straight-line) relationships, and both are robust to outliers in a way Pearson's $r$ is not.</p>
+        </details>
+        <details class="study-item">
+          <summary>22. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Joint = the full grid of (X,Y) probabilities; rows/cols sum to 1.</li>
             <li>Marginal = row/column totals (sum out the other variable).</li>

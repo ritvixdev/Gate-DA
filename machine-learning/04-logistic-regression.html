@@ -205,38 +205,67 @@ P(churn)=0.72 → churn ; P(churn)=0.35 → not churn</pre>
 b → shifts the curve left/right</pre>
         </details>
         <details class="study-item">
-          <summary>18. From features to a label</summary>
+          <summary>18. The sigmoid's derivative <span class="study-extra">GATE extra</span></summary>
+          <p>For a single feature $z=\beta_0+\beta_1x$, differentiating $p=\sigma(z)$ with respect to $x$ (chain rule) gives a remarkably clean result:</p>
+          <div class="formula">$$ \frac{dp}{dx}=\beta_1\,p(1-p) $$</div>
+          <p>The sigmoid is one of the few functions whose derivative is written purely in terms of its <em>own output</em> $p$ — no need to re-evaluate $z$. This is also exactly why $\sigma'(z)=\sigma(z)(1-\sigma(z))$ makes backpropagation through a sigmoid neuron cheap (Neural Network topic): once you've computed $p$ in the forward pass, the derivative is free.</p>
+          <pre>p=0.2 → slope contribution p(1−p) = 0.2×0.8 = 0.16
+p=0.5 → slope contribution p(1−p) = 0.5×0.5 = 0.25
+p=0.9 → slope contribution p(1−p) = 0.9×0.1 = 0.09</pre>
+        </details>
+        <details class="study-item">
+          <summary>19. Maximum slope occurs at p = 0.5 <span class="study-extra">GATE extra</span></summary>
+          <p>Since the derivative is $\beta_1\,p(1-p)$, its size is controlled by $p(1-p)$ — and that product is <strong>maximised exactly at $p=0.5$</strong>:</p>
+          <pre>p(1−p) is a downward parabola in p, peak at p=0.5:
+d/dp[p(1−p)] = 1−2p = 0  ⟹  p = 0.5
+p(1−p) at p=0.5  →  0.25   (its largest possible value)</pre>
+          <p>This confirms visually what the S-curve already shows: the sigmoid is <strong>steepest at its midpoint</strong> ($p=0.5$, i.e. $z=0$ — exactly the decision boundary) and flattens out symmetrically as $p\to0$ or $p\to1$.</p>
+        </details>
+        <details class="study-item">
+          <summary>20. Solving for the decision boundary <span class="study-extra">GATE extra</span></summary>
+          <p>The boundary is where $\hat p=0.5$, i.e. $z=0$ — so given the fitted weights, solve $w^{\mathsf T}x+b=0$ for $x$ like any linear equation.</p>
+          <pre>Model: z = 2x₁ − 3x₂ + 1  (so p = σ(2x₁ − 3x₂ + 1))
+
+Decision boundary: 2x₁ − 3x₂ + 1 = 0
+                    ⟹ x₂ = (2x₁ + 1) / 3      (a straight line in the x₁–x₂ plane)
+
+Check a point, x₁=1, x₂=1: z = 2−3+1 = 0 → exactly on the boundary (p=0.5)
+Check x₁=4, x₂=1: z = 8−3+1 = 6 &gt; 0 → p &gt; 0.5 → predict class 1</pre>
+          <p>With 2 features the boundary is a line; with 3 it's a plane; with $n$ features it's a hyperplane (Linear Algebra topic) — always one dimension lower than the feature space, exactly like §20 of Vectors &amp; Vector Spaces.</p>
+        </details>
+        <details class="study-item">
+          <summary>21. From features to a label</summary>
           <pre>X → z = wᵀx + b → p = σ(z) → threshold → class 0/1</pre>
           <pre>tumor: P(malignant)=0.91 ≥ 0.5 → malignant ;  0.22 < 0.5 → benign</pre>
           <p>Default threshold 0.5, but lower it when misses are costly (medical screening).</p>
         </details>
         <details class="study-item">
-          <summary>19. Why RSS is wrong for classification</summary>
+          <summary>22. Why RSS is wrong for classification</summary>
           <p>Squared error doesn't punish a <em>confident wrong</em> probability the way classification needs:</p>
           <pre>y=1, p=0.9 → good ;  y=1, p=0.1 → very bad, but (1−p)² barely differs</pre>
           <p>So classification uses <strong>cross-entropy / log loss</strong> instead of RSS.</p>
         </details>
         <details class="study-item">
-          <summary>20. Cross-entropy (log loss)</summary>
+          <summary>23. Cross-entropy (log loss)</summary>
           <pre>Loss = −[ y·log(p) + (1−y)·log(1−p) ]
 y = 1 → −log(p)        y = 0 → −log(1−p)</pre>
           <p>It is exactly the cost logistic regression minimizes during training.</p>
         </details>
         <details class="study-item">
-          <summary>21. Why confident-wrong is punished hard</summary>
+          <summary>24. Why confident-wrong is punished hard</summary>
           <pre>y=1, p=0.9   → −log(0.9)  ≈ 0.105   (small)
 y=1, p=0.1   → −log(0.1)  ≈ 2.303   (large)
 y=1, p=0.001 → −log(0.001)≈ 6.907   (huge)</pre>
           <p>The more confident and wrong the model is, the steeper the penalty — pushing it toward honest probabilities.</p>
         </details>
         <details class="study-item">
-          <summary>22. Naive Bayes — a Bayes-theorem classifier <span class="study-extra">GATE extra</span></summary>
+          <summary>25. Naive Bayes — a Bayes-theorem classifier <span class="study-extra">GATE extra</span></summary>
           <p>Naive Bayes classifies using <strong>Bayes' theorem</strong>; it's "naive" because it assumes features are <strong>conditionally independent given the class</strong>.</p>
           <pre>P(C | X) = P(X | C)·P(C) / P(X)
 posterior = likelihood × prior / evidence  →  pick the class with the largest posterior</pre>
         </details>
         <details class="study-item">
-          <summary>23. Prior, likelihood, evidence, posterior <span class="study-extra">GATE extra</span></summary>
+          <summary>26. Prior, likelihood, evidence, posterior <span class="study-extra">GATE extra</span></summary>
           <ul class="styled">
             <li><strong>Prior</strong> P(C): belief before seeing features (P(spam)=0.3).</li>
             <li><strong>Likelihood</strong> P(X|C): chance of the features in that class (P("win"|spam) high).</li>
@@ -246,20 +275,20 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>P(C | X) ∝ P(X | C) · P(C)</pre>
         </details>
         <details class="study-item">
-          <summary>24. The naive independence assumption <span class="study-extra">GATE extra</span></summary>
+          <summary>27. The naive independence assumption <span class="study-extra">GATE extra</span></summary>
           <p>Assume each feature contributes independently given the class, so the likelihood factorizes:</p>
           <pre>P(X | C) = P(x₁|C)·P(x₂|C)·…·P(xₙ|C)
 ⇒ P(C | X) ∝ P(C) · Π P(xᵢ | C)   →  choose the argmax class</pre>
           <p>Often unrealistic, yet it works remarkably well (especially for text).</p>
         </details>
         <details class="study-item">
-          <summary>25. Zero-frequency problem &amp; Laplace smoothing <span class="study-extra">GATE extra</span></summary>
+          <summary>28. Zero-frequency problem &amp; Laplace smoothing <span class="study-extra">GATE extra</span></summary>
           <p>If a feature value never appeared with a class in training, its likelihood is 0 — and one 0 zeroes the whole product.</p>
           <pre>P(word | class) = 0 ⇒ Π = 0  (kills the prediction)</pre>
           <p>Fix with <strong>Laplace (add-one) smoothing</strong>: add a small count so no probability is exactly 0.</p>
         </details>
         <details class="study-item">
-          <summary>26. Naive Bayes — pros, cons, uses <span class="study-extra">GATE extra</span></summary>
+          <summary>29. Naive Bayes — pros, cons, uses <span class="study-extra">GATE extra</span></summary>
           <ul class="styled">
             <li>✓ simple, fast, great for text, needs little data, handles many features, strong baseline</li>
             <li>✗ independence assumption unrealistic, zero-frequency issue, probabilities poorly calibrated</li>
@@ -267,7 +296,7 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <p>Uses: spam filtering, sentiment analysis, document/news classification, language detection.</p>
         </details>
         <details class="study-item">
-          <summary>27. Types of Naive Bayes <span class="study-extra">GATE extra</span></summary>
+          <summary>30. Types of Naive Bayes <span class="study-extra">GATE extra</span></summary>
           <div class="tbl-wrap"><table>
             <tr><th>Model</th><th>Feature type</th><th>Example</th></tr>
             <tr><td>Gaussian NB</td><td>continuous (≈normal)</td><td>age, height, blood pressure</td></tr>
@@ -277,41 +306,41 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           <pre>Gaussian = continuous · Multinomial = counts · Bernoulli = yes/no</pre>
         </details>
         <details class="study-item">
-          <summary>28. Feed-forward neural network — the idea <span class="study-extra">GATE extra</span></summary>
+          <summary>31. Feed-forward neural network — the idea <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>feed-forward neural network (FFNN)</strong> sends information one way — input → hidden layers → output — with <strong>no cycles or loops</strong>. Loosely inspired by neurons in the brain.</p>
           <pre>input layer → hidden layer(s) → output layer   (information never flows back)</pre>
         </details>
         <details class="study-item">
-          <summary>29. A neuron = a tiny logistic-style unit <span class="study-extra">GATE extra</span></summary>
+          <summary>32. A neuron = a tiny logistic-style unit <span class="study-extra">GATE extra</span></summary>
           <p>Each neuron does the same two steps as logistic regression: a weighted sum, then an activation.</p>
           <pre>z = w·x + b ;  a = activation(z)   (e.g. sigmoid / ReLU)</pre>
           <p>So a network is just <strong>many logistic-like units stacked in layers</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>30. Hidden layers learn patterns <span class="study-extra">GATE extra</span></summary>
+          <summary>33. Hidden layers learn patterns <span class="study-extra">GATE extra</span></summary>
           <p>Hidden layers build features of increasing abstraction. Classifying a pizza image:</p>
           <pre>layer 1: edges → layer 2: shapes (circle, toppings) → output: pizza? yes/no</pre>
           <p>Stacking layers lets the network learn complex, non-linear patterns a single logistic unit can't.</p>
         </details>
         <details class="study-item">
-          <summary>31. FFNN — when &amp; why <span class="study-extra">GATE extra</span></summary>
+          <summary>34. FFNN — when &amp; why <span class="study-extra">GATE extra</span></summary>
           <p>Output neurons give the final prediction: one sigmoid for binary, a softmax over several for multi-class, or a linear unit for regression.</p>
           <pre>binary → 1 sigmoid · multi-class → softmax · regression → linear output</pre>
           <p>Use FFNNs when relationships are complex and there is plenty of data; they generalize logistic regression.</p>
         </details>
         <details class="study-item">
-          <summary>32. MLP — a multi-layer perceptron <span class="study-extra">GATE extra</span></summary>
+          <summary>35. MLP — a multi-layer perceptron <span class="study-extra">GATE extra</span></summary>
           <p>An <strong>MLP</strong> is a feed-forward network with an input layer, <strong>one or more hidden layers</strong>, and an output layer — the workhorse that learns complex non-linear patterns.</p>
           <pre>a neuron: z = w·x + b → output = activation(z)   (a layer = many such neurons)</pre>
         </details>
         <details class="study-item">
-          <summary>33. Activation functions (and why) <span class="study-extra">GATE extra</span></summary>
+          <summary>36. Activation functions (and why) <span class="study-extra">GATE extra</span></summary>
           <p>Activations inject <strong>non-linearity</strong> — without them, stacking layers collapses into a single linear model.</p>
           <pre>sigmoid, tanh, ReLU(x)=max(0,x), softmax (multi-class probabilities)</pre>
           <p>ReLU is the common hidden-layer choice; softmax sits on a multi-class output.</p>
         </details>
         <details class="study-item">
-          <summary>34. Training: forward pass → loss → update <span class="study-extra">GATE extra</span></summary>
+          <summary>37. Training: forward pass → loss → update <span class="study-extra">GATE extra</span></summary>
           <pre>1. forward pass: compute the prediction
 2. compute the loss
 3. backpropagation: get gradients
@@ -319,13 +348,13 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
 5. repeat for many epochs</pre>
         </details>
         <details class="study-item">
-          <summary>35. Backpropagation <span class="study-extra">GATE extra</span></summary>
+          <summary>38. Backpropagation <span class="study-extra">GATE extra</span></summary>
           <p><strong>Backpropagation</strong> uses the calculus chain rule to find how much each weight contributed to the loss, so the optimizer knows which way to nudge it.</p>
           <pre>optimizers: gradient descent, SGD, Adam</pre>
           <p>Strengths: learns complex non-linear maps, flexible, foundation of deep learning. Weaknesses: needs lots of data, compute-heavy, overfits, hard to interpret, <strong>needs scaled inputs</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>36. Regularizing a neural network <span class="study-extra">GATE extra</span></summary>
+          <summary>39. Regularizing a neural network <span class="study-extra">GATE extra</span></summary>
           <p>Networks overfit easily, so they use their own regularizers (beyond L1/L2 on weights):</p>
           <ul class="styled">
             <li><strong>Dropout</strong> — randomly switch off some neurons each training step, so the net can't lean on any one neuron ("random neuron sleeping").</li>
@@ -335,56 +364,56 @@ posterior = likelihood × prior / evidence  →  pick the class with the largest
           </ul>
         </details>
         <details class="study-item">
-          <summary>37. Feed-forward vs recurrent <span class="study-extra">GATE extra</span></summary>
+          <summary>40. Feed-forward vs recurrent <span class="study-extra">GATE extra</span></summary>
           <p>An FFNN/MLP flows <strong>one way</strong> (input → hidden → output) with no cycles. A <strong>recurrent</strong> network (RNN) has loops that feed a layer's output back in — giving it memory for <em>sequences</em> (text, time series).</p>
           <pre>feed-forward = no loops (static input) · recurrent = loops (sequential data)</pre>
         </details>
         <details class="study-item">
-          <summary>38. Deep learning — many-layer networks <span class="study-extra">GATE extra</span></summary>
+          <summary>41. Deep learning — many-layer networks <span class="study-extra">GATE extra</span></summary>
           <p><strong>Deep learning</strong> = neural networks with many layers that learn patterns hierarchically. It shines on images, audio, text, video and other large, complex data.</p>
           <pre>more layers → more abstract features learned automatically</pre>
         </details>
         <details class="study-item">
-          <summary>39. CNN — built for images <span class="study-extra">GATE extra</span></summary>
+          <summary>42. CNN — built for images <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>Convolutional Neural Network</strong> is designed for image-like data; it learns visual patterns with sliding filters instead of fully connecting every pixel.</p>
           <pre>pixels → edges → shapes → object parts → full object</pre>
         </details>
         <details class="study-item">
-          <summary>40. Filters / kernels &amp; feature maps <span class="study-extra">GATE extra</span></summary>
+          <summary>43. Filters / kernels &amp; feature maps <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>filter (kernel)</strong> is a small matrix (e.g. 3×3) that slides over the image detecting a pattern (edge, corner, texture). The result is a <strong>feature map</strong> showing <em>where</em> that pattern occurs.</p>
           <div class="math-steps"><div class="ms-line">$\begin{bmatrix}1&0&-1\\1&0&-1\\1&0&-1\end{bmatrix}$  → detects vertical edges</div></div>
           <p>In CNNs, filters are <strong>learned</strong> from data, not hand-designed.</p>
         </details>
         <details class="study-item">
-          <summary>41. Convolution layer <span class="study-extra">GATE extra</span></summary>
+          <summary>44. Convolution layer <span class="study-extra">GATE extra</span></summary>
           <p>The convolution layer applies many filters to the input (or previous feature maps) to extract <strong>local</strong> patterns.</p>
           <pre>early layers: edges, corners, textures
 deeper layers: parts, objects, complex shapes</pre>
         </details>
         <details class="study-item">
-          <summary>42. Pooling layer <span class="study-extra">GATE extra</span></summary>
+          <summary>45. Pooling layer <span class="study-extra">GATE extra</span></summary>
           <p><strong>Pooling</strong> downsamples a feature map — less computation, more robustness, less overfitting.</p>
           <div class="math-steps"><div class="ms-line">region $\begin{bmatrix}1&3\\2&4\end{bmatrix}$:  max pooling → 4   ·   average pooling → 2.5</div></div>
           <p>Pooling <em>reduces</em> spatial size (it never enlarges it).</p>
         </details>
         <details class="study-item">
-          <summary>43. Stride &amp; padding <span class="study-extra">GATE extra</span></summary>
+          <summary>46. Stride &amp; padding <span class="study-extra">GATE extra</span></summary>
           <pre>stride  = how many pixels the filter jumps each step (stride 2 → smaller output)
 padding = extra border pixels:
    valid = no padding · same = output size ≈ input size (preserves edges)</pre>
         </details>
         <details class="study-item">
-          <summary>44. Receptive field <span class="study-extra">GATE extra</span></summary>
+          <summary>47. Receptive field <span class="study-extra">GATE extra</span></summary>
           <p>The <strong>receptive field</strong> is the region of the input image that influences one output neuron.</p>
           <pre>early layers: small local patch · deeper layers: larger area of the image</pre>
         </details>
         <details class="study-item">
-          <summary>45. Fully connected layer &amp; CNN architecture <span class="study-extra">GATE extra</span></summary>
+          <summary>48. Fully connected layer &amp; CNN architecture <span class="study-extra">GATE extra</span></summary>
           <p>After convolution + pooling, features are <strong>flattened</strong> and fed to fully connected layers that combine them for the final prediction.</p>
           <pre>input → [conv → activation → pool] × N → flatten → fully connected → output</pre>
         </details>
         <details class="study-item">
-          <summary>46. CNN — activations, hyperparameters, traps <span class="study-extra">GATE extra</span></summary>
+          <summary>49. CNN — activations, hyperparameters, traps <span class="study-extra">GATE extra</span></summary>
           <p>Hidden layers use ReLU; <strong>Leaky ReLU</strong> allows small negatives to avoid "dead" neurons; softmax sits on a multi-class output.</p>
           <pre>CNN hyperparameters: #filters, filter size, stride, padding, pooling size, #layers, lr, epochs, dropout</pre>
           <ul class="styled">
@@ -394,14 +423,14 @@ padding = extra border pixels:
           <p>Uses: image classification, face recognition, medical imaging, object detection, OCR, self-driving vision.</p>
         </details>
         <details class="study-item">
-          <summary>47. Object detection — what + where <span class="study-extra">GATE extra</span></summary>
+          <summary>50. Object detection — what + where <span class="study-extra">GATE extra</span></summary>
           <p>Detection goes beyond classification — it finds <em>multiple</em> objects and their locations.</p>
           <pre>classification → "a dog"     localization → "dog in this box"
 detection      → "dog here, cat here, car here" (label + box for each)</pre>
           <p>A <strong>bounding box</strong> is <code>(xmin, ymin, xmax, ymax)</code>; output = class + confidence + box.</p>
         </details>
         <details class="study-item">
-          <summary>48. Detectors: two-stage vs one-stage <span class="study-extra">GATE extra</span></summary>
+          <summary>51. Detectors: two-stage vs one-stage <span class="study-extra">GATE extra</span></summary>
           <pre>two-stage (propose regions, then classify): R-CNN → Fast R-CNN → Faster R-CNN (RPN)
    accurate but slower
 one-stage (predict boxes + classes in one pass): YOLO, SSD
@@ -409,26 +438,26 @@ one-stage (predict boxes + classes in one pass): YOLO, SSD
           <p>YOLO splits the image into a grid; each cell predicts boxes + class probabilities in a single look.</p>
         </details>
         <details class="study-item">
-          <summary>49. IoU, anchor boxes &amp; NMS <span class="study-extra">GATE extra</span></summary>
+          <summary>52. IoU, anchor boxes &amp; NMS <span class="study-extra">GATE extra</span></summary>
           <pre>IoU = area(intersection) / area(union)   → overlap of predicted vs true box; ≥0.5 = correct</pre>
           <p><strong>Anchor boxes</strong>: predefined shapes (tall for person, wide for car) the model adjusts to fit objects.</p>
           <p><strong>Non-Max Suppression</strong>: keep the highest-confidence box, drop others that overlap it heavily — removes duplicate detections.</p>
         </details>
         <details class="study-item">
-          <summary>50. Face recognition &amp; one-shot learning <span class="study-extra">GATE extra</span></summary>
+          <summary>53. Face recognition &amp; one-shot learning <span class="study-extra">GATE extra</span></summary>
           <pre>verification = "same person?" (yes/no)   recognition = "who is this?" (identity)</pre>
           <p>Modern systems map a face to an <strong>embedding</strong> vector (CNN); same person → close vectors, different → far.</p>
           <p><strong>One-shot learning</strong> recognizes from one photo. A <strong>Siamese network</strong> (twin shared-weight nets) compares two faces; <strong>triplet loss</strong> pulls anchor–positive close and pushes anchor–negative far (FaceNet).</p>
         </details>
         <details class="study-item">
-          <summary>51. Neural style transfer <span class="study-extra">GATE extra</span></summary>
+          <summary>54. Neural style transfer <span class="study-extra">GATE extra</span></summary>
           <p>Combine the <strong>content</strong> of one image with the <strong>style</strong> of another (your photo painted like Van Gogh).</p>
           <pre>content loss → keep objects/structure
 style loss   → match texture/colors, measured with a Gram matrix</pre>
           <p>The <strong>Gram matrix</strong> captures correlations between CNN feature maps — i.e. which visual patterns co-occur (the "style").</p>
         </details>
         <details class="study-item">
-          <summary>52. Advanced CNN tricks (ResNet, Inception, 1×1) <span class="study-extra">GATE extra</span></summary>
+          <summary>55. Advanced CNN tricks (ResNet, Inception, 1×1) <span class="study-extra">GATE extra</span></summary>
           <ul class="styled">
             <li><strong>ResNet / skip connections</strong>: output = F(x) + x; the shortcut lets gradients flow, so very deep nets train (fights vanishing gradients).</li>
             <li><strong>Inception</strong>: apply 1×1, 3×3, 5×5 &amp; pooling in parallel, then concatenate — features at multiple scales.</li>
@@ -436,69 +465,69 @@ style loss   → match texture/colors, measured with a Gram matrix</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>53. RNN — networks for sequences <span class="study-extra">GATE extra</span></summary>
+          <summary>56. RNN — networks for sequences <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>Recurrent Neural Network</strong> handles ordered data (text, speech, time series) by keeping a <strong>hidden state</strong> (memory):</p>
           <pre>hₜ = f(hₜ₋₁, xₜ)   — current memory depends on previous memory + current input</pre>
           <p>The same weights are reused at every time step (so any length works); trained by <strong>backpropagation through time (BPTT)</strong>.</p>
         </details>
         <details class="study-item">
-          <summary>54. Vanishing &amp; exploding gradients <span class="study-extra">GATE extra</span></summary>
+          <summary>57. Vanishing &amp; exploding gradients <span class="study-extra">GATE extra</span></summary>
           <pre>vanishing: gradients → 0 over long sequences → can't learn long-range dependencies (plain RNN's weakness)
 exploding: gradients → ∞ → unstable training, loss → NaN</pre>
           <p>Fixes: <strong>gradient clipping</strong> (cap the gradient norm) for exploding; gated units (LSTM/GRU) and good initialization (Xavier/He) for vanishing.</p>
         </details>
         <details class="study-item">
-          <summary>55. LSTM &amp; GRU (gated RNNs) <span class="study-extra">GATE extra</span></summary>
+          <summary>58. LSTM &amp; GRU (gated RNNs) <span class="study-extra">GATE extra</span></summary>
           <p><strong>LSTM</strong> adds a cell state + 3 gates so information survives many steps (eases vanishing gradients):</p>
           <pre>forget gate (drop old) · input gate (add new) · output gate (expose useful)</pre>
           <p><strong>GRU</strong> is a lighter version with 2 gates (update, reset) — often faster, similar performance.</p>
         </details>
         <details class="study-item">
-          <summary>56. Word representation: one-hot vs embeddings <span class="study-extra">GATE extra</span></summary>
+          <summary>59. Word representation: one-hot vs embeddings <span class="study-extra">GATE extra</span></summary>
           <pre>one-hot: cat=[1,0,0,0], dog=[0,1,0,0] — huge, sparse, NO similarity (cat as unrelated to dog as to king)
 embedding: dense vector capturing meaning — similar words are close</pre>
           <pre>famous analogy:  king − man + woman ≈ queen</pre>
           <p>An <strong>embedding matrix</strong> is V × d (vocabulary × dimension); a word index looks up its row.</p>
         </details>
         <details class="study-item">
-          <summary>57. Word2Vec (CBOW &amp; skip-gram) <span class="study-extra">GATE extra</span></summary>
+          <summary>60. Word2Vec (CBOW &amp; skip-gram) <span class="study-extra">GATE extra</span></summary>
           <pre>CBOW:      context → target word   ("I love ___ very much" → pizza)
 skip-gram: target word → context   (pizza → I, love, very, much) — better for rare words</pre>
           <p><strong>Negative sampling</strong> speeds training by contrasting real (pizza, eat) vs fake (pizza, galaxy) pairs instead of scoring the whole vocabulary. <strong>t-SNE</strong> visualizes embeddings in 2-D.</p>
         </details>
         <details class="study-item">
-          <summary>58. Language models &amp; perplexity <span class="study-extra">GATE extra</span></summary>
+          <summary>61. Language models &amp; perplexity <span class="study-extra">GATE extra</span></summary>
           <p>A <strong>language model</strong> gives the probability of a word sequence and predicts the next word:</p>
           <pre>P(w₁…wₙ) = ∏ P(wₜ | w₁…wₜ₋₁)   (chain rule)
 n-gram: approximate with previous n−1 words (bigram, trigram) — limited long context</pre>
           <p><strong>Perplexity</strong> = how "surprised" the model is; <code>Perplexity = P(w₁…wₙ)^(−1/n) = 2^entropy</code>. <strong>Lower is better.</strong></p>
         </details>
         <details class="study-item">
-          <summary>59. Decoding: beam search &amp; BLEU <span class="study-extra">GATE extra</span></summary>
+          <summary>62. Decoding: beam search &amp; BLEU <span class="study-extra">GATE extra</span></summary>
           <p><strong>Beam search</strong> keeps the top-<em>k</em> partial sequences at each step (k = beam width) instead of only the single best — wider beam = better but slower; <strong>length normalization</strong> stops it favouring short sentences.</p>
           <p><strong>BLEU</strong> scores machine translation by n-gram overlap with a reference — but it misses valid paraphrases (different words, same meaning → low BLEU).</p>
         </details>
         <details class="study-item">
-          <summary>60. Attention &amp; self-attention <span class="study-extra">GATE extra</span></summary>
+          <summary>63. Attention &amp; self-attention <span class="study-extra">GATE extra</span></summary>
           <p><strong>Attention</strong> lets the model focus on the most relevant input parts (softmax weights summing to 1) instead of cramming everything into one vector — fixing the encoder-decoder bottleneck on long sequences.</p>
           <p><strong>Self-attention</strong>: tokens attend to other tokens in the <em>same</em> sequence (resolving "it" → "animal"). The Transformer core:</p>
           <pre>Attention(Q,K,V) = softmax(QKᵀ / √dₖ) · V
 Q = what I seek · K = what each token offers · V = info to take · √dₖ keeps it stable</pre>
         </details>
         <details class="study-item">
-          <summary>61. Where cross-entropy comes from (MLE)</summary>
+          <summary>64. Where cross-entropy comes from (MLE)</summary>
           <p>Logistic regression's loss isn't arbitrary — it's <strong>maximum likelihood</strong>. For one point <code>P(y|x)=pʸ(1−p)¹⁻ʸ</code>; over all data the log-likelihood is</p>
           <pre>ℓ = Σ [ yᵢ log pᵢ + (1−yᵢ) log(1−pᵢ) ]</pre>
           <p>Maximizing ℓ = minimizing its negative = exactly <strong>binary cross-entropy</strong>. (Likewise, minimizing squared error in linear regression = MLE under Gaussian noise.)</p>
         </details>
         <details class="study-item">
-          <summary>62. Transfer learning <span class="study-extra">GATE extra</span></summary>
+          <summary>65. Transfer learning <span class="study-extra">GATE extra</span></summary>
           <p>Reuse a model trained on a big task as the starting point for a new, smaller one — its early layers already learned general features (edges, textures, word patterns).</p>
           <pre>ImageNet CNN → fine-tune for medical images (less data, faster, better)</pre>
           <p>Freeze early layers, retrain the later ones for your task.</p>
         </details>
         <details class="study-item">
-          <summary>63. Common GATE traps</summary>
+          <summary>66. Common GATE traps</summary>
           <ul class="styled">
             <li>Classification predicts numbers? <strong>No</strong> — categories (regression predicts numbers).</li>
             <li>Binary = many classes? <strong>No</strong> — two; multi-class = more than two.</li>
@@ -508,7 +537,7 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
           </ul>
         </details>
         <details class="study-item">
-          <summary>64. Practice questions</summary>
+          <summary>67. Practice questions</summary>
           <p class="lead">Q1. Spam / not-spam — task type?</p>
           <pre>binary classification</pre>
           <p class="lead">Q2. Recognise digits 0–9 — binary or multi-class?</p>
@@ -521,7 +550,7 @@ Q = what I seek · K = what each token offers · V = info to take · √dₖ kee
           <pre>a trivial constant predictor scores 99% yet catches none of the rare class</pre>
         </details>
         <details class="study-item">
-          <summary>65. Memory box &amp; mental model</summary>
+          <summary>68. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Classification → discrete label; binary = 2 classes, multi-class &gt; 2.</li>
             <li>Classifiers output P(class | x); binary → threshold, multi-class → argmax.</li>

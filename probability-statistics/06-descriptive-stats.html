@@ -446,7 +446,22 @@ Student B: mean 60, SD 7 → CV ≈ 11.67%   → A is more consistent</pre>
         </details>
 
         <details class="study-item">
-          <summary>42. Memory box &amp; mental model</summary>
+          <summary>42. Q–Q plots — checking a distribution visually <span class="study-extra">GATE extra</span></summary>
+          <p>A <strong>Q–Q (quantile–quantile) plot</strong> checks whether a sample follows a proposed distribution (almost always the <strong>normal</strong> distribution, e.g. before a z-/t-test) — <em>without</em> computing anything as formal as skewness or a hypothesis test.</p>
+          <p class="lead">How it's built:</p>
+          <pre>1. sort the sample data, smallest to largest
+2. compute the quantiles the theoretical distribution (e.g. Normal) would predict at those same percentile positions
+3. plot (theoretical quantile, sample quantile) as points</pre>
+          <p class="lead">How to read it:</p>
+          <ul class="styled">
+            <li>Points fall on the <strong>45° reference line</strong> → the sample matches the theoretical distribution well.</li>
+            <li>An <strong>S-shaped bow</strong> away from the line → the data is <strong>skewed</strong> (which side it bows toward tells you positive vs negative skew).</li>
+            <li>Points curving away at <strong>both ends</strong> (like a banana) → <strong>heavier or lighter tails</strong> than normal (kurtosis mismatch), even if the middle looks fine.</li>
+          </ul>
+          <p>Q–Q plots are the standard <em>graphical</em> check of the normality assumption behind z-tests, t-tests, and OLS regression residuals — a quick visual alternative to formal normality tests.</p>
+        </details>
+        <details class="study-item">
+          <summary>43. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Mean = balance point; median = middle person in the queue; mode = most crowded value.</li>
             <li>GM = growth average; HM = speed/rate average; <strong>AM ≥ GM ≥ HM</strong>.</li>

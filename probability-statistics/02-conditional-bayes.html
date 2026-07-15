@@ -468,7 +468,47 @@ Var(X|A) = 56/3 − 16 = 8/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>44. Memory box</summary>
+          <summary>44. Mixture probability — the three-coin problem <span class="study-extra">GATE extra</span></summary>
+          <p>A favourite GATE dress-up of the law of total probability: a box has <strong>three different coins</strong>, you pick one uniformly at random and toss it once.</p>
+          <pre>Coin 1: two-headed        P(H|Coin1) = 1
+Coin 2: fair               P(H|Coin2) = 1/2
+Coin 3: biased             P(H|Coin3) = 3/4
+each coin picked with probability 1/3</pre>
+          <p class="lead">Mixture probability of heads — total probability over the 3 coins:</p>
+          <pre>P(H) = 1/3·1 + 1/3·(1/2) + 1/3·(3/4)
+     = 1/3 + 1/6 + 1/4
+     = 4/12 + 2/12 + 3/12 = 9/12 = 3/4</pre>
+          <p class="lead">Now reverse it with Bayes — given the toss came up heads, which coin was it likely?</p>
+          <pre>P(Coin1 | H) = P(Coin1)·P(H|Coin1) / P(H) = (1/3·1) / (3/4) = 4/9
+P(Coin2 | H) = (1/3·1/2) / (3/4) = 2/9
+P(Coin3 | H) = (1/3·3/4) / (3/4) = 3/9 = 1/3</pre>
+          <pre>check: 4/9 + 2/9 + 3/9 = 9/9 = 1 ✓</pre>
+          <p>Same two-step pattern every time: <strong>mix</strong> (total probability) to get the overall chance of the observation, then <strong>unmix</strong> (Bayes) to get the chance of each hidden cause given that observation.</p>
+        </details>
+        <details class="study-item">
+          <summary>45. Bayes from a percentage table — the smoker/gender question <span class="study-extra">GATE extra</span></summary>
+          <p>Many GATE questions describe two categorical variables purely with percentages (no box, no urn) — the fastest way through them is to <strong>build the 2×2 joint table first</strong>, then read the answer straight off it.</p>
+          <pre>City: 40% male, 60% female. 50% of males smoke. 40% of the WHOLE population smokes.
+Question: given a person is a smoker, P(male)?</pre>
+          <p class="lead">Step 1 — fill in what you're given directly (multiply for the joint cells you can):</p>
+          <pre>P(M) = 0.4, P(F) = 0.6
+P(M, smoke) = P(smoke|M)·P(M) = 0.5 × 0.4 = 0.20
+P(M, not)   = 0.4 − 0.20 = 0.20        (male row must add to 0.4)</pre>
+          <p class="lead">Step 2 — use the overall smoker rate to fill the rest (columns must add to the given totals):</p>
+          <pre>P(smoke) = 0.4 (given)  ⇒  P(F, smoke) = P(smoke) − P(M, smoke) = 0.4 − 0.20 = 0.20
+P(F, not) = P(F) − P(F, smoke) = 0.6 − 0.20 = 0.40</pre>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Smoker</th><th>Non-smoker</th><th>Row total</th></tr>
+            <tr><td>Male</td><td>0.20</td><td>0.20</td><td>0.40</td></tr>
+            <tr><td>Female</td><td>0.20</td><td>0.40</td><td>0.60</td></tr>
+            <tr><td>Col total</td><td>0.40</td><td>0.60</td><td>1.00</td></tr>
+          </table></div>
+          <p class="lead">Step 3 — Bayes is now just one cell over one column total:</p>
+          <pre>P(male | smoker) = P(M, smoke) / P(smoke) = 0.20 / 0.40 = 0.5</pre>
+          <p>Same technique for any "given red ball", "given tested positive", or "given passed" question with percentages instead of counts: build the joint table (rows × columns must each sum to their given totals), then Bayes/conditional questions become simple division — no formula memorization needed.</p>
+        </details>
+        <details class="study-item">
+          <summary>46. Memory box</summary>
           <ul class="styled">
             <li><strong>Independent:</strong> <code>P(B|A)=P(B)</code>, <code>P(A∩B)=P(A)P(B)</code>.</li>
             <li><strong>Dependent:</strong> <code>P(B|A)≠P(B)</code>, <code>P(A∩B)=P(A)P(B|A)</code>.</li>
@@ -479,7 +519,7 @@ Var(X|A) = 56/3 − 16 = 8/3</pre>
         </details>
 
         <details class="study-item">
-          <summary>45. Mental model</summary>
+          <summary>47. Mental model</summary>
           <pre>Independent      = no effect on each other
 Dependent        = probability changes after the first event
 Mutually exclusive = cannot happen together</pre>

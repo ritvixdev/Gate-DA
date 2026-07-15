@@ -285,7 +285,25 @@ R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>30. Common GATE traps</summary>
+          <summary>30. SST = SSR + SSE — the variance-decomposition identity <span class="study-extra">GATE extra</span></summary>
+          <p>GATE questions sometimes use the names <strong>SST</strong>, <strong>SSR</strong>, <strong>SSE</strong> instead of TSS/RSS — same quantities, different labels. Line them up once and you're safe either way:</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>This site's name</th><th>Also called</th><th>Formula</th><th>Meaning</th></tr>
+            <tr><td>TSS</td><td><strong>SST</strong> (total)</td><td>$\sum(y_i-\bar y)^2$</td><td>total variation in $y$ around its mean</td></tr>
+            <tr><td>RSS</td><td><strong>SSE</strong> (error)</td><td>$\sum(y_i-\hat y_i)^2$</td><td>variation the model <em>fails</em> to explain</td></tr>
+            <tr><td>(TSS−RSS)</td><td><strong>SSR</strong> (regression)</td><td>$\sum(\hat y_i-\bar y)^2$</td><td>variation the model <em>does</em> explain</td></tr>
+          </table></div>
+          <p class="lead">These three always satisfy one identity:</p>
+          <div class="formula">$$ SST=SSR+SSE \qquad(\text{total} = \text{explained} + \text{unexplained}) $$</div>
+          <p>which is exactly the same statement as $R^2=1-\dfrac{SSE}{SST}=\dfrac{SSR}{SST}$ — $R^2$ is just the <em>explained share</em> of the total variance.</p>
+          <pre>SST=100, SSE=20  →  SSR = 100−20 = 80
+R² = SSR/SST = 80/100 = 0.8   (matches R² = 1 − SSE/SST = 1 − 20/100)</pre>
+          <p class="lead">Quick recap of the error-size metrics built from SSE (already covered as RSS above):</p>
+          <pre>MSE  = SSE / n                (average squared error)
+RMSE = √MSE                   (back in the target's own units)</pre>
+        </details>
+        <details class="study-item">
+          <summary>31. Common GATE traps</summary>
           <ul class="styled">
             <li>Supervised learning needs no labels? <strong>No</strong> — labels are required.</li>
             <li>Classification predicts numbers? <strong>No</strong> — it predicts categories; regression predicts numbers.</li>
@@ -295,7 +313,7 @@ R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
           </ul>
         </details>
         <details class="study-item">
-          <summary>31. Practice questions</summary>
+          <summary>32. Practice questions</summary>
           <p class="lead">Q1. Email + spam/not-spam label — supervised? task type?</p>
           <pre>Yes (labels given); classification</pre>
           <p class="lead">Q2. Predict house price (₹)?</p>
@@ -308,7 +326,7 @@ R²  = 1 − RSS/TSS      (fraction of variance the model explains)</pre>
           <pre>Learn a mapping f: X → Y from labelled examples that generalizes to new data</pre>
         </details>
         <details class="study-item">
-          <summary>32. Memory box &amp; mental model</summary>
+          <summary>33. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Supervised learning = learning from labelled examples (X → Y).</li>
             <li>Goal: learn <code>f(X) ≈ Y</code> that generalizes to unseen data.</li>

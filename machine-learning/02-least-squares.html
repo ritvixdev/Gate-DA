@@ -246,7 +246,80 @@ lasso: β = 14,  0, 0   (only the useful feature survives)</pre>
           <p>Pick λ (a.k.a. α) by <strong>grid search with cross-validation</strong> — the value with the best validation score.</p>
         </details>
         <details class="study-item">
-          <summary>22. Traps, practice &amp; memory box</summary>
+          <summary>22. OLS assumptions &amp; regression diagnostics <span class="study-extra">GATE extra</span></summary>
+          <p>OLS is only the <em>best</em> estimator (BLUE — Best Linear Unbiased Estimator) when a handful of assumptions hold. GATE loves testing whether you can recognise them:</p>
+          <ul class="styled">
+            <li><strong>Linearity:</strong> $y$ is linear in the parameters $\beta$ (not necessarily in $x$ — $x^2$ is fine).</li>
+            <li><strong>Zero-mean errors:</strong> $E[e_i]=0$ — the model isn't systematically over- or under-predicting.</li>
+            <li><strong>Homoscedasticity:</strong> $\operatorname{Var}(e_i)=\sigma^2$ is <em>constant</em> across all values of $x$ (errors don't fan out).</li>
+            <li><strong>No autocorrelation:</strong> errors are uncorrelated with each other (a big deal for time-series data).</li>
+            <li><strong>Error-free inputs:</strong> the $x$'s are measured without noise — only $y$ carries random error.</li>
+            <li><strong>No perfect multicollinearity:</strong> no predictor is an exact linear combination of the others (else $X^\top X$ is singular).</li>
+          </ul>
+          <p class="lead">Diagnosing violations — the residual plot:</p>
+          <pre>plot residuals eᵢ = yᵢ − ŷᵢ  against ŷᵢ (or xᵢ)
+
+random scatter around 0, constant spread → assumptions look fine
+funnel / cone shape                     → heteroscedasticity (variance grows with x)
+a curve or pattern                      → missed non-linearity (wrong model form)</pre>
+          <p><span style="color:var(--coral-text)">Careful:</span> $\sum e_i=0$ is an <strong>algebraic fact</strong> whenever the model has an intercept (it drops straight out of the normal equations) — it is <em>not</em> evidence that the zero-mean-error assumption holds for the true population errors.</p>
+        </details>
+        <details class="study-item">
+          <summary>23. OLS &amp; outlier sensitivity <span class="study-extra">GATE extra</span></summary>
+          <p>Because OLS minimizes <strong>squared</strong> error, one far-away point contributes $e_i^2$ — squaring massively amplifies large residuals, so a single outlier can drag the whole fitted line toward it.</p>
+          <pre>9 points fit ŷ = 2x closely; one outlier added far above the trend
+→ the slope and intercept both shift noticeably to chase that one point</pre>
+          <p>Outliers matter most when they also have <strong>high leverage</strong> — an extreme $x$ value combined with a large residual has outsized influence on $\hat\beta$ (an outlier at a "typical" $x$ pulls the line far less).</p>
+          <p class="lead">GATE-relevant fixes:</p>
+          <ul class="styled">
+            <li>Inspect residual / scatter plots first — outliers are usually visible.</li>
+            <li><strong>Robust regression</strong> (e.g. Huber loss, LAD/L1 regression) — penalizes large errors linearly instead of quadratically, so it isn't dominated by a few points.</li>
+            <li><strong>RANSAC</strong> — repeatedly fits on random subsets and keeps the fit with the most inliers.</li>
+            <li>Winsorize/cap or remove points only with domain justification — don't drop outliers just because they're inconvenient.</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>24. Data imputation — handling missing values <span class="study-extra">GATE extra</span></summary>
+          <p>OLS (and most models) cannot fit rows with missing $x$ or $y$ values, so missing data must be handled first.</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>Technique</th><th>Idea</th><th>Watch out for</th></tr>
+            <tr><td>Listwise deletion</td><td>drop any row with a missing value</td><td>wastes data; biased unless missingness is completely random</td></tr>
+            <tr><td>Mean / median imputation</td><td>fill with the column's mean (or median, if skewed)</td><td>shrinks variance, weakens correlations with other features</td></tr>
+            <tr><td>Mode imputation</td><td>fill categorical values with the most frequent category</td><td>same variance-shrinking issue</td></tr>
+            <tr><td>Regression imputation</td><td>predict the missing feature from the other features</td><td>can overfit / understate uncertainty</td></tr>
+            <tr><td>kNN imputation</td><td>average the value from the $k$ nearest complete rows</td><td>needs scaled features and a distance metric (see the kNN topic)</td></tr>
+          </table></div>
+          <p class="lead">GATE terminology for <em>why</em> data is missing:</p>
+          <pre>MCAR — Missing Completely At Random: missingness unrelated to any value
+MAR  — Missing At Random: missingness depends on other observed features
+MNAR — Missing Not At Random: missingness depends on the missing value itself (hardest case)</pre>
+          <p>Simple imputations (mean/median) are safest under MCAR; under MAR/MNAR they can quietly bias the fitted $\hat\beta$.</p>
+        </details>
+        <details class="study-item">
+          <summary>25. Multicollinearity — predictions can stay unique <span class="study-extra">GATE extra</span></summary>
+          <p>When features are perfectly collinear, $X^\top X$ is singular, so <strong>the coefficients $\hat\beta$ are not unique</strong> — infinitely many $\beta$ vectors fit equally well. A subtle but exam-favourite fact: <strong>the predictions $\hat y=X\hat\beta$ can still be unique</strong> even though $\hat\beta$ itself isn't.</p>
+          <pre>x₂ = 2·x₁ exactly (perfectly collinear)
+model: ŷ = β₀ + β₁x₁ + β₂x₂ = β₀ + β₁x₁ + β₂(2x₁) = β₀ + (β₁+2β₂)x₁
+
+→ infinitely many (β₁, β₂) pairs give the same combined slope (β₁+2β₂)
+→ same ŷ for every one of them, even though the individual β₁, β₂ differ</pre>
+          <p>Why: the fitted value $\hat y$ only depends on $X\hat\beta$, which is the (unique) projection of $y$ onto the column space of $X$ — collinearity just means many different $\beta$ vectors land on the same point in that column space. So a singular $X^\top X$ breaks <em>coefficient interpretability</em>, not necessarily prediction quality.</p>
+        </details>
+        <details class="study-item">
+          <summary>26. L1 vs L2 — the non-differentiability difference <span class="study-extra">GATE extra</span></summary>
+          <p>Ridge (L2, $\lambda\sum w_j^2$) and Lasso (L1, $\lambda\sum|w_j|$) look similar but behave very differently right at $w=0$:</p>
+          <pre>L2 penalty  w² :  smooth everywhere, derivative 2w → 0 smoothly as w→0
+L1 penalty |w| :  has a SHARP CORNER (kink) at w=0 — not differentiable there</pre>
+          <p>The derivative of $|w|$ is $+1$ for $w>0$ and $-1$ for $w<0$, but at exactly $w=0$ there's no single tangent slope — only a range of valid "subgradients" between $-1$ and $+1$. This corner is precisely <em>why</em> Lasso can push coefficients to exactly $0$ (feature selection): the flat-bottomed L1 penalty "catches" a coefficient at zero, whereas L2's smooth bowl only ever shrinks a coefficient toward zero without fully reaching it.</p>
+        </details>
+        <details class="study-item">
+          <summary>27. Gradient-descent update with an L2 penalty <span class="study-extra">GATE extra</span></summary>
+          <p>Ridge's loss adds $\lambda\|w\|^2$ to the usual squared-error loss $J(w)$. Differentiating the penalty term contributes an extra $2\lambda w$ to the gradient, giving the update rule:</p>
+          <div class="formula">$$ w := w-\eta\Big(\nabla J(w)+2\lambda w\Big) = w(1-2\eta\lambda)-\eta\nabla J(w) $$</div>
+          <p>Reading the rewritten form: every step first <strong>shrinks</strong> $w$ by the factor $(1-2\eta\lambda)$ (this is the "weight decay" you may have heard of in neural-network training), <em>then</em> applies the usual gradient step. Larger $\lambda$ ⇒ more shrinkage per step ⇒ smaller final weights.</p>
+        </details>
+        <details class="study-item">
+          <summary>28. Traps, practice &amp; memory box</summary>
           <ul class="styled">
             <li>Least squares minimizes raw errors? <strong>No</strong> — squared errors (raw ones cancel).</li>
             <li><code>(XᵀX)⁻¹</code> always exists? <strong>No</strong> — only with full-rank (independent) features.</li>

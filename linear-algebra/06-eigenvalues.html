@@ -241,6 +241,12 @@ nilpotent  (Aᵏ = 0):  λᵏ = 0  →  λ = 0 (all of them)</pre>
           <pre>R = [0  −1
      1   0]   →  eigenvalues  i  and  −i</pre>
           <p>Complex eigenvalues of real matrices come in conjugate pairs <code>a ± bi</code>.</p>
+          <p class="lead">This isn't special to 90° — <strong>any</strong> non-trivial rotation angle in 2D gives complex eigenvalues, since a genuine rotation turns <em>every</em> direction, leaving no real vector pointing along its own original line:</p>
+          <pre>R(θ) = [cos θ  −sin θ
+        sin θ   cos θ]   →  eigenvalues  cos θ ± i sin θ  =  e^(±iθ)</pre>
+          <pre>θ = 45°:  eigenvalues = cos45° ± i·sin45° = (√2/2) ± i(√2/2)   — genuinely complex, no real eigenvector
+θ = 0°  or  θ = 180°:  sin θ = 0 → eigenvalues become real (±1) — the only rotation angles with a real eigen-direction</pre>
+          <p>Rule of thumb: a 2D rotation matrix has <strong>real</strong> eigenvalues only at $\theta=0°$ (identity, eigenvalue $1$) or $\theta=180°$ (a flip through the origin, eigenvalue $-1$) — every other angle, including 45°, gives a genuinely complex conjugate pair.</p>
         </details>
 
         <details class="study-item">

@@ -361,13 +361,22 @@ PMF:  P(X=r) = ⁿCr · pʳ · qⁿ⁻ʳ</pre>
           <pre>3 fair coins, X = #heads:  P(X=2) = ³C₂(½)²(½)¹ = 3·¼·½ = 3/8</pre>
         </details>
         <details class="study-item">
-          <summary>34. Binomial mean &amp; variance</summary>
+          <summary>34. The complement: successes + failures = n <span class="study-extra">GATE extra</span></summary>
+          <p>If $X\sim\text{Binomial}(n,p)$ counts <strong>successes</strong>, then $Y=n-X$ counts <strong>failures</strong>, and the two always add up to the fixed number of trials:</p>
+          <div class="formula">$$ X+Y=n \qquad Y\sim\text{Binomial}(n,\,1-p) $$</div>
+          <p>$Y$ is itself binomial — just with the success/failure roles swapped ($q=1-p$ becomes its "success" probability). This is why $P(X=r)=P(Y=n-r)$ and why the distribution is symmetric when $p=0.5$.</p>
+          <pre>n=10 trials, p=0.3 (success):  X ~ Binomial(10, 0.3),  Y = 10−X ~ Binomial(10, 0.7)
+E(X)=np=3, E(Y)=n(1−p)=7,  E(X)+E(Y) = 3+7 = 10 = n ✓</pre>
+          <p>The <strong>"equal heads &amp; tails" formula</strong> from the Intro to Probability topic — $P(\text{exactly }n\text{ heads in }2n\text{ tosses})=\binom{2n}{n}/2^{2n}$ — is just this Binomial PMF evaluated at $p=q=0.5$ and $r=n$ out of $2n$ trials: $P(X=n)=\binom{2n}{n}(0.5)^n(0.5)^{2n-n}=\binom{2n}{n}/2^{2n}$. Same formula, two names.</p>
+        </details>
+        <details class="study-item">
+          <summary>35. Binomial mean &amp; variance</summary>
           <pre>E(X) = np        Var(X) = npq        SD = √(npq)</pre>
           <pre>n=10, p=0.2, q=0.8 → mean = 2 , variance = 1.6 , SD = √1.6 ≈ 1.265</pre>
           <p>Used for defect counts, hits-out-of-attempts, responders to a treatment, customers who buy — any fixed number of independent yes/no trials.</p>
         </details>
         <details class="study-item">
-          <summary>35. Poisson distribution — counting rare events</summary>
+          <summary>36. Poisson distribution — counting rare events</summary>
           <p>Counts events in a fixed interval of time/space when they are rare, at average rate <code>m</code> (often written λ).</p>
           <pre>PMF:  P(X=r) = e⁻ᵐ · mʳ / r!
 E(X) = m        Var(X) = m        (mean = variance — the Poisson signature)</pre>
@@ -375,13 +384,13 @@ E(X) = m        Var(X) = m        (mean = variance — the Poisson signature)</p
           <p>Examples: calls per hour, accidents per day, defects per metre, requests per second.</p>
         </details>
         <details class="study-item">
-          <summary>36. Binomial → Poisson approximation</summary>
+          <summary>37. Binomial → Poisson approximation</summary>
           <p>When trials are many and successes rare, the Binomial collapses to a Poisson:</p>
           <pre>n large , p small , m = np moderate   ⇒   Binomial(n,p) ≈ Poisson(m=np)</pre>
           <p>This turns an awkward <code>ⁿCr pʳ qⁿ⁻ʳ</code> with huge n into a quick <code>e⁻ᵐmʳ/r!</code> — the go-to move for rare-event GATE problems.</p>
         </details>
         <details class="study-item">
-          <summary>37. Exponential distribution — waiting time <span class="study-extra">GATE extra</span></summary>
+          <summary>38. Exponential distribution — waiting time <span class="study-extra">GATE extra</span></summary>
           <p>The waiting time <em>between</em> events of a Poisson process, with rate <code>λ&gt;0</code>.</p>
           <pre>PDF:  f(x) = λe^(−λx) , x &gt; 0
 CDF:  F(x) = P(X ≤ x) = 1 − e^(−λx)
@@ -391,13 +400,13 @@ E(X) = 1/λ        Var(X) = 1/λ²        SD = 1/λ</pre>
           <p><span style="color:var(--coral-text)">Pair it up:</span> Poisson counts <em>how many</em> events; Exponential measures <em>how long</em> until the next one.</p>
         </details>
         <details class="study-item">
-          <summary>38. Memoryless property (exponential) <span class="study-extra">GATE extra</span></summary>
+          <summary>39. Memoryless property (exponential) <span class="study-extra">GATE extra</span></summary>
           <p>The exponential forgets how long you've already waited:</p>
           <pre>P(X &gt; s + t | X &gt; s) = P(X &gt; t)</pre>
           <p>Already waited 10 min for a bus? The chance of 5 more minutes is the same as a fresh 5-minute wait. The exponential is the <strong>only</strong> continuous distribution with this property — a favourite GATE one-liner.</p>
         </details>
         <details class="study-item">
-          <summary>39. Normal distribution — the bell curve</summary>
+          <summary>40. Normal distribution — the bell curve</summary>
           <p>Symmetric, bell-shaped, centred at μ. Written <code>X ~ N(μ, σ²)</code>.</p>
           <ul class="styled">
             <li>symmetric about μ → <code>Mean = Median = Mode</code></li>
@@ -407,7 +416,7 @@ E(X) = 1/λ        Var(X) = 1/λ²        SD = 1/λ</pre>
           <p>Models measurement errors, heights, noise, ML residuals, and (via the CLT) sample means — which is why it is everywhere in statistics.</p>
         </details>
         <details class="study-item">
-          <summary>40. Standard normal &amp; the Z-score</summary>
+          <summary>41. Standard normal &amp; the Z-score</summary>
           <p>The standard normal <code>Z ~ N(0,1)</code> has mean 0, SD 1. Any normal value converts to it:</p>
           <pre>Z = (X − μ) / σ      (how many SDs the value sits from the mean)
 Z &gt; 0 above mean · Z &lt; 0 below mean · Z = 0 at the mean</pre>
@@ -417,14 +426,14 @@ Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
           <p><span style="color:var(--coral-text)">Trap:</span> the denominator is σ (standard deviation), <em>not</em> σ².</p>
         </details>
         <details class="study-item">
-          <summary>41. Linear transforms of a normal stay normal</summary>
+          <summary>42. Linear transforms of a normal stay normal</summary>
           <p>Scaling and shifting a normal variable keeps it normal — the <strong>linear filtering</strong> property:</p>
           <pre>X ~ N(μ, σ²)  ⇒  aX + b ~ N(aμ + b, a²σ²)</pre>
           <pre>X ~ N(10, 4), Y = 3X + 5 → mean 3(10)+5=35, var 3²(4)=36 → Y ~ N(35, 36)</pre>
           <p>This is also why the CLT's sample mean (a scaled sum of variables) ends up normal.</p>
         </details>
         <details class="study-item">
-          <summary>42. Moments — what each one describes</summary>
+          <summary>43. Moments — what each one describes</summary>
           <pre>1st moment           → mean      (centre)
 2nd central moment   → variance  (spread)
 3rd standardized     → skewness  (asymmetry)
@@ -432,7 +441,7 @@ Z-table:  P(Z≤1)≈0.8413 , P(Z≤2)≈0.9772 , P(Z≤−1)≈0.1587</pre>
           <p>For the normal distribution <code>skewness = 0</code> (perfectly symmetric); kurtosis is the reference baseline that other distributions are compared against.</p>
         </details>
         <details class="study-item">
-          <summary>43. The 68–95–99.7 tail split <span class="study-extra">GATE extra</span></summary>
+          <summary>44. The 68–95–99.7 tail split <span class="study-extra">GATE extra</span></summary>
           <p>Turn the empirical rule into one-tail probabilities by splitting the leftover area in two:</p>
           <pre>within ±1σ = 68%  → outside 32%  → each tail 16%
 within ±2σ = 95%  → outside 5%   → each tail 2.5%
@@ -441,7 +450,7 @@ within ±3σ = 99.7% → outside 0.3% → each tail 0.15%</pre>
           <p>Lets you answer many normal questions without the full Z-table.</p>
         </details>
         <details class="study-item">
-          <summary>44. Gaussian = Normal; the Gaussian process (intro) <span class="study-extra">GATE extra</span></summary>
+          <summary>45. Gaussian = Normal; the Gaussian process (intro) <span class="study-extra">GATE extra</span></summary>
           <p><strong>Gaussian distribution = normal = bell curve</strong> — just another name, <code>X ~ N(μ, σ²)</code>.</p>
           <p>A <strong>Gaussian process</strong> goes one level up: a distribution over <em>functions</em>, not numbers. At any finite set of input points the outputs are jointly multivariate normal, so it predicts a whole curve <em>plus</em> its uncertainty.</p>
           <pre>Gaussian distribution → random number
@@ -449,7 +458,7 @@ Gaussian process      → random function (prediction + uncertainty)</pre>
           <p>Used in Bayesian ML, regression, time series and spatial prediction.</p>
         </details>
         <details class="study-item">
-          <summary>45. Which distribution? — a chooser</summary>
+          <summary>46. Which distribution? — a chooser</summary>
           <div class="tbl-wrap"><table>
             <tr><th>Situation</th><th>Distribution</th></tr>
             <tr><td>one yes/no trial</td><td>Bernoulli(p)</td></tr>
@@ -463,7 +472,7 @@ Gaussian process      → random function (prediction + uncertainty)</pre>
 Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre>
         </details>
         <details class="study-item">
-          <summary>46. Common GATE traps</summary>
+          <summary>47. Common GATE traps</summary>
           <ul class="styled">
             <li>PDF value = probability? <strong>No</strong> — area is probability; the value is density.</li>
             <li>P(X=a) &gt; 0 for continuous? <strong>No</strong> — it's 0.</li>
@@ -481,7 +490,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
         </details>
 
         <details class="study-item">
-          <summary>47. Practice problems</summary>
+          <summary>48. Practice problems</summary>
           <p class="lead">Q1. Valid PDF? f(x)=2 on [0,0.5]</p>
           <pre>area = 0.5×2 = 1, f≥0 → valid</pre>
           <p class="lead">Q2. f(x)=1/5 on [0,5] — P(1≤X≤3)?</p>
@@ -505,7 +514,7 @@ Exponential: waiting time · Normal: bell curve · Z: standardise to N(0,1)</pre
         </details>
 
         <details class="study-item">
-          <summary>48. Cheatsheet &amp; mental model</summary>
+          <summary>49. Cheatsheet &amp; mental model</summary>
           <ul class="styled">
             <li>PDF <code>f(x)</code>: <code>f≥0</code>, <code>∫f=1</code>; <code>P(a≤X≤b)=∫ₐᵇ f dx</code>; <code>P(X=a)=0</code>.</li>
             <li>CDF <code>F(x)=P(X≤x)=∫₋∞ˣ f</code>; <code>f=F'</code>; <code>P(a≤X≤b)=F(b)−F(a)</code>.</li>

@@ -444,7 +444,38 @@ J(w) = between-class scatter / within-class scatter   → maximize</pre>
         </details>
 
         <details class="study-item">
-          <summary>46. Best mental model</summary>
+          <summary>46. Moore–Penrose pseudoinverse — full definition &amp; formulas <span class="study-extra">GATE extra</span></summary>
+          <p>The <strong>Moore–Penrose pseudoinverse</strong> $A^{+}$ generalizes matrix inversion to <em>any</em> matrix — square or rectangular, full rank or rank-deficient. §19 already gave the universal SVD formula; here are the closed forms you can use directly when $A$ has full rank:</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>Shape of $A$ ($m\times n$)</th><th>Formula</th><th>Property</th></tr>
+            <tr><td>Tall, full <strong>column</strong> rank ($m\ge n$)</td><td>$A^{+}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}$</td><td>left inverse: $A^{+}A=I_n$</td></tr>
+            <tr><td>Wide, full <strong>row</strong> rank ($m\le n$)</td><td>$A^{+}=A^{\mathsf T}(AA^{\mathsf T})^{-1}$</td><td>right inverse: $AA^{+}=I_m$</td></tr>
+            <tr><td>Square &amp; invertible</td><td>$A^{+}=A^{-1}$</td><td>pseudoinverse collapses to the normal inverse</td></tr>
+            <tr><td>General (any rank)</td><td>$A^{+}=V\Sigma^{+}U^{\mathsf T}$ (SVD, §19)</td><td>always exists and is unique</td></tr>
+          </table></div>
+          <p class="lead">The <strong>tall, full column-rank</strong> case is exactly the normal-equations solution from ordinary least squares — $A^{+}=(A^{\mathsf T}A)^{-1}A^{\mathsf T}$ is the same expression you've already seen for $\hat\beta=(X^{\mathsf T}X)^{-1}X^{\mathsf T}y$ (Least Squares topic). The wide, full row-rank case is the one that produces the <strong>minimum-norm solution</strong> for underdetermined systems (next card).</p>
+          <p style="font-size:15px;color:var(--muted)">Trivia (rarely tested directly): $A^{+}$ is the unique matrix satisfying the four <strong>Penrose conditions</strong> — $AA^{+}A=A$, $A^{+}AA^{+}=A^{+}$, and both $AA^{+}$ and $A^{+}A$ are symmetric.</p>
+        </details>
+
+        <details class="study-item">
+          <summary>47. Minimum-norm solution for underdetermined systems <span class="study-extra">GATE extra</span></summary>
+          <p>An <strong>underdetermined</strong> system $Ax=b$ ($m<n$ — more unknowns than equations, seen in the Linear Equations topic) typically has <strong>infinitely many</strong> solutions. Among all of them, the one with the smallest length $\|x\|$ is called the <strong>minimum-norm solution</strong>, and — when $A$ has full row rank — it's given directly by the pseudoinverse:</p>
+          <div class="formula">$$ x^{*}=A^{+}b=A^{\mathsf T}(AA^{\mathsf T})^{-1}b $$</div>
+          <p class="lead">Worked example — $A=\begin{bmatrix}1&1\end{bmatrix}$, $b=4$ (one equation, two unknowns: $x_1+x_2=4$):</p>
+          <pre>AAᵀ = [1 1]·[1;1] = 1+1 = 2
+A⁺  = Aᵀ(AAᵀ)⁻¹ = [1;1]·(1/2) = [0.5; 0.5]
+
+x* = A⁺b = [0.5; 0.5]·4 = [2; 2]
+
+check: 1(2) + 1(2) = 4 ✓</pre>
+          <p>Compare with another valid solution to the same equation, $x=(4,0)$: both satisfy $x_1+x_2=4$, but</p>
+          <pre>‖(2,2)‖ = √8 ≈ 2.83   ← the minimum-norm solution (smallest length)
+‖(4,0)‖ = √16 = 4       ← also solves it, but longer</pre>
+          <p>Geometrically, $x^{*}$ is the point on the solution line/hyperplane <strong>closest to the origin</strong> — it's the projection of $0$ onto the affine solution set, which is exactly why it's orthogonal to the system's null space (the "free" directions along which you could move and still satisfy $Ax=b$).</p>
+        </details>
+
+        <details class="study-item">
+          <summary>48. Best mental model</summary>
           <p><strong>SVD = a universal matrix X-ray.</strong> It reveals which input directions matter, how strongly they stretch, which output directions they become, and which are destroyed.</p>
           <p><strong>PCA = SVD applied to data</strong> to find the most important directions: which feature-combination has maximum spread, the next, and how few directions still preserve most information.</p>
           <pre>Eigen/eigenvectors → square matrices

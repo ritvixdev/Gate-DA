@@ -437,7 +437,54 @@ P(heart) = 13/52 = 1/4</pre>
         </details>
 
         <details class="study-item">
-          <summary>40. Memory box &amp; mental model</summary>
+          <summary>40. Deterministic vs stochastic phenomena <span class="study-extra">GATE extra</span></summary>
+          <p>Before probability even enters the picture, GATE sometimes just asks you to classify a process:</p>
+          <ul class="styled">
+            <li><strong>Deterministic:</strong> the same input <em>always</em> gives the same output — no randomness. E.g. $s=ut+\tfrac12at^2$; a fixed algorithm on a fixed input; Ohm's law $V=IR$.</li>
+            <li><strong>Stochastic (random):</strong> the outcome varies even under identical conditions — governed by a probability distribution. E.g. a coin toss; tomorrow's rainfall; a die roll; stock returns; queueing arrival times.</li>
+          </ul>
+          <p>Many real systems are a mix: a <strong>deterministic model + a random error/noise term</strong> (this is exactly the regression setup: $y=f(x)+\varepsilon$, where $f(x)$ is deterministic and $\varepsilon$ is stochastic).</p>
+        </details>
+        <details class="study-item">
+          <summary>41. Set / subset logic <span class="study-extra">GATE extra</span></summary>
+          <p>Events are sets, so plain set-theory facts become fast GATE marks. The one that trips people up:</p>
+          <div class="formula">$$ A\cap B\cap C=A \;\Longrightarrow\; A\subseteq B \ \text{ and } \ A\subseteq C $$</div>
+          <p>Why: $A\cap B\cap C$ can only equal $A$ if every element of $A$ also survives being intersected with $B$ <em>and</em> with $C$ — i.e. every element of $A$ is already inside $B$, and already inside $C$. If even one element of $A$ were missing from $B$, the intersection would be smaller than $A$.</p>
+          <pre>Check with a picture: A = {1,2}, B = {1,2,3,4}, C = {1,2,5}
+A∩B∩C = {1,2} = A  ✓   and indeed A ⊆ B, A ⊆ C</pre>
+          <p class="lead">Other quick subset facts worth recognizing:</p>
+          <ul class="styled">
+            <li>$A\subseteq B \iff A\cap B=A \iff A\cup B=B$.</li>
+            <li>$A\cap B\subseteq A\subseteq A\cup B$ — always true, for any $A,B$.</li>
+            <li>If $A\subseteq B$ then $P(A)\le P(B)$ (monotonicity of probability).</li>
+          </ul>
+        </details>
+        <details class="study-item">
+          <summary>42. Combination formula for equal heads &amp; tails <span class="study-extra">GATE extra</span></summary>
+          <p>A classic counting + probability combo: toss a fair coin $2n$ times — what's $P(\text{exactly } n \text{ heads and } n \text{ tails})$?</p>
+          <p class="lead">Reasoning:</p>
+          <pre>total equally-likely outcomes           = 2^(2n)     (each toss: H or T)
+outcomes with exactly n heads (choose
+which n of the 2n tosses are heads)     = C(2n, n)</pre>
+          <div class="formula">$$ P(\text{exactly } n\text{ heads in } 2n \text{ tosses})=\frac{\binom{2n}{n}}{2^{2n}} $$</div>
+          <pre>n=1 (2 tosses, want 1H 1T): C(2,1)/2² = 2/4   = 0.5
+n=2 (4 tosses, want 2H 2T): C(4,2)/2⁴ = 6/16  = 0.375
+n=3 (6 tosses, want 3H 3T): C(6,3)/2⁶ = 20/64 ≈ 0.3125</pre>
+          <p>Notice the probability of an exact 50/50 split <em>shrinks</em> as $n$ grows — with more tosses there are more ways to be "close" to half but fewer ways to be <em>exactly</em> half.</p>
+        </details>
+        <details class="study-item">
+          <summary>43. The three-set union formula <span class="study-extra">GATE extra</span></summary>
+          <p>The addition rule with overlap (§14) extends from two events to three — just add every single set, subtract every pairwise overlap (each double-counted once), then add back the triple overlap (subtracted one too many times):</p>
+          <div class="formula">$$ P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(B\cap C)-P(A\cap C)+P(A\cap B\cap C) $$</div>
+          <pre>P(A)=0.6, P(B)=0.3, P(C)=0.05
+P(A∩B)=0.2, P(B∩C)=0, P(A∩C)=0.05, P(A∩B∩C)=0
+
+P(A∪B∪C) = 0.6+0.3+0.05 − 0.2−0−0.05 + 0 = 0.70</pre>
+          <p>This alternating add/subtract/add pattern is called <strong>inclusion–exclusion</strong> — it keeps generalizing the same way to four, five, or $n$ sets (add all singles, subtract all pairs, add all triples, subtract all quadruples, …).</p>
+          <p><span style="color:var(--coral-text)">Shortcut check:</span> if one set is a <strong>subset</strong> of another (e.g. $C\subset B$), then $A\cap B\cap C=A\cap C$ automatically — a common simplification GATE hides inside these problems (see §41, set/subset logic).</p>
+        </details>
+        <details class="study-item">
+          <summary>44. Memory box &amp; mental model</summary>
           <ul class="styled">
             <li>Probability = a <strong>chance meter</strong> from 0 to 1.</li>
             <li>Sample space = every outcome; event = the outcomes you care about.</li>
