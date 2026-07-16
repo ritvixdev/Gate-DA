@@ -668,6 +668,240 @@
     <div class="gate-expl" hidden>Heads count $\sim$ Binomial$(2n,\tfrac12)$. "Equal heads & tails" means exactly $n$ heads: $P(X=n)=\binom{2n}{n}(\tfrac12)^n(\tfrac12)^n=\binom{2n}{n}/2^{2n}$.</div>
   </div>
 
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Bayes' theorem — Covid testing</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P15.</strong> In a containment zone, a standard test gives a positive result with probability 50% given the individual is infected. The probability of being infected is 50%. The probability of testing positive (overall) is 80%. What is the probability that an individual is infected, given they tested positive?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$100\%$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$\sim50\%$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$\sim80\%$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\sim31\%$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Bayes' theorem: $P(\text{infected}\mid+)=\dfrac{P(+\mid\text{infected})P(\text{infected})}{P(+)}=\dfrac{0.5\times0.5}{0.8}=\dfrac{0.25}{0.8}=0.3125\approx31\%$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Two dice — prime sum</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P16.</strong> Two dice are rolled simultaneously. What is the probability of getting a sum which is a prime number?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$17/36$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1/24$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$5/12$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1/6$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Prime sums possible with two dice: $2,3,5,7,11$, with outcome counts (out of 36) $1,2,4,6,2$ respectively — total $15$. $P=15/36=5/12$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Deterministic vs. stochastic</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P17.</strong> State whether True or False: (I) A deterministic phenomenon is one whose outcome can be predicted with a high degree of confidence. (II) A stochastic phenomenon is one whose outcome can be predicted with limited confidence.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>I - True, II - False</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>I - True, II - True</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>I - False, II - True</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>I - False, II - False</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Deterministic processes are (near-)certain and predictable (I true); stochastic (random) processes carry inherent uncertainty, so predictions about them are only ever made with limited confidence (II true).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Mixture probability — three coins</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P18.</strong> A bowl has three coins: two normal (fair) coins and one double-headed biased coin. A coin is picked at random and tossed. What is the probability of getting heads?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$1/2$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$3/4$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$2/3$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Law of total probability: $P(H)=\tfrac13(\tfrac12)+\tfrac13(\tfrac12)+\tfrac13(1)=\tfrac16+\tfrac16+\tfrac13=\tfrac46=\tfrac23$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Spearman, Pearson & concordant pairs</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P19.</strong> Which statement(s) are NOT TRUE? (I) Spearman rank correlation can be used for ordinal variables. (II) Pearson's correlation takes a value between 0 and $+1$. (III) A pair of observations $(x_1,y_1),(x_2,y_2)$ with $x_1&gt;x_2,y_1&lt;y_2$ or $x_1&lt;x_2,y_1&gt;y_2$ are called concordant pairs.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>II and III</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>I and III</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>I and II</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>III</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>(I) is true — Spearman works on ranks/ordinal data. (II) is false — Pearson's $r$ ranges over $[-1,1]$, not just $[0,1]$. (III) is false — pairs that move in <em>opposite</em> directions ($x$ up, $y$ down or vice versa) are <strong>discordant</strong>, not concordant (concordant pairs move in the <em>same</em> direction). So II and III are the not-true statements.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">R² — strong relationship</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P20.</strong> Which $R^2$ value indicates a strong linear relationship?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.90$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.00$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.30$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$-0.86$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$R^2$ close to $1$ (here, $0.90$) means the model explains most of the variance — a strong linear fit. $0$ means no explanatory power; $0.30$ is weak; $R^2$ can never be negative under standard OLS with an intercept.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Linearity vs. correlation strength</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P21.</strong> Statement A: $X$ and $Y$ have a linear relationship. Statement B: Pearson's $r$ is close to $+1$ or $-1$ for $X,Y$. Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>B implies A</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>A implies B</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>B does not necessarily imply A</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>A does not necessarily imply B</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A true (exact) linear relationship always forces $|r|=1$, so A implies B. But observing $|r|$ merely <em>close to</em> 1 doesn't guarantee the underlying relationship is truly linear (outliers, restricted range, or near-linear-but-not-exact patterns can also produce a high $|r|$) — so B does not necessarily imply A.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS model structure</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P22.</strong> Consider $y_i=\beta_0+\beta_1x_i+\epsilon_i$. Which statements are True?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The regression analysis is MISO (multi-input single-output).</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The regression analysis is SISO (single-input single-output).</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>It is assumed that the independent variable is completely error free.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$\partial SSE/\partial\beta_0=0$ gives $\sum_{i=1}^n\epsilon_i=0$, where $SSE=\sum_{i=1}^n\epsilon_i^2$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>With one predictor $x_i$ this is SISO, not MISO (B true, A false). Classical OLS assumes $x$ is measured without error (C true). Differentiating $SSE=\sum(y_i-\beta_0-\beta_1x_i)^2$ w.r.t. $\beta_0$ gives $-2\sum\epsilon_i=0\Rightarrow\sum\epsilon_i=0$ (D true).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">R² and the best-fit line</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P23.</strong> The higher the value of $R^2$ for a model, the observations are more closely grouped around:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Average values of the predicted variable</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The intercept</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The origin</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The best fit line</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$R^2$ measures how much of the variance is explained by the regression line — the higher it is, the more tightly the actual points cluster around the fitted (best-fit) line.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Feature transform → linear boundary</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P24.</strong> In $(x,y)\in\mathbb{R}^2$, class 0 is the disk $x^2+y^2\le c^2$ and class 1 is outside it. Transform $z=x^2+y^2$. In the transformed 1-D feature space $z$, can the data be separated by a linear decision boundary?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is True.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is False.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>In $z$-space, class 0 is $z\le c^2$ and class 1 is $z&gt;c^2$ — a single threshold at $z=c^2$, which is exactly a linear (affine) boundary in 1-D. This is the core idea behind the kernel trick: a non-linear boundary in the original space becomes linear after the right feature transform.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">What counts as a linear decision boundary</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P25.</strong> Which of the following is a linear decision boundary for binary classification in a 2-D feature space $(x,y)$, with $a_0,a_1$ constants?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$y=a_0+a_1x$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$y=a_0$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$y=x$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$y=a_1x$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Every option is a straight line ($y=a_0+a_1x$ with some choice of $a_0,a_1$ — including the special cases $a_1=0$, $a_0=0$, or $a_0=0,a_1=1$) — all are linear (affine) boundaries.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS assumptions</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P26.</strong> Which of the following are assumptions in Ordinary Least Squares (OLS)?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The measurements of the independent variables are accurate.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The errors have an expected value of zero.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>The relationship between the dependent variable and the independent variables is linear.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The errors have a constant variance.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>All four are classical OLS assumptions: error-free predictors, zero-mean errors, linearity, and homoscedasticity (constant error variance).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS unbiasedness — why it matters</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P27.</strong> If OLS assumptions hold, $E(\hat\beta_0)=\beta_0$ and $E(\hat\beta_1)=\beta_1$. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The true parameter values are usually unknown because the distribution of the data that generated the sample is unknown.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The true parameter values can be accurately calculated from a finite number of samples irrespective of whether the distribution of data is known or unknown.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The entire reason we estimate $\beta_0,\beta_1$ from a sample is that the true parameters and the data-generating distribution are unknown; unbiasedness is a property of the estimator's expectation over repeated sampling, not a claim that any single finite sample recovers the true value exactly.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Correlation vs. established causation</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P28.</strong> Let $A=$ average cigarettes smoked per day, $B=$ whether an individual has lung cancer. A study finds $A$ and $B$ are correlated. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>There exists a causal relationship between $A$ and $B$ owing to the detrimental effect of cigarettes on human health, and not merely because $A$ and $B$ are correlated.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>There exists a causal relationship between $A$ and $B$ since the two variables are correlated.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>None of the above.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>There is no causal relationship between $A$ and $B$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Smoking and lung cancer <em>are</em> causally linked — but that conclusion comes from decades of separate biological and experimental evidence, not from the correlation alone. Option B commits the correlation-implies-causation fallacy even though its conclusion happens to be true for the wrong reason; option A states the causal link while correctly attributing it to the health mechanism, not to the correlation itself.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Data analytics — general statements</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P29.</strong> State which of the following statements is/are True.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Data analytics is particularly useful for high-dimensional data that cannot be visualized using plots and graphs.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>In classification, data points have a class label.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Data imputation is a function approximation problem.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>It is possible that the same data is separable using a linear decision boundary and also a non-linear decision boundary.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>All four are true: analytics shines exactly where raw visualization fails (high dimensions); labelled points are the definition of classification; imputing a missing value by predicting it from other features is function approximation; and any linearly-separable dataset can trivially also be separated by a (more flexible) non-linear boundary.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Pearson correlation — worked from data</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P30.</strong> Compute Pearson's correlation coefficient for: $X=\{5.1,4.9,4.7,4.6,5.0\}$, $Y=\{3.5,3.0,3.2,3.1,3.6\}$.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$1.00$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.00$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$-0.68$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.68$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\bar x=4.86,\ \bar y=3.28$. $\sum(x_i-\bar x)(y_i-\bar y)=0.146$, $\sum(x_i-\bar x)^2=0.172$, $\sum(y_i-\bar y)^2=0.268$. $r=0.146/\sqrt{0.172\times0.268}\approx0.68$ — a fairly strong positive correlation.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Q-Q plots</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P31.</strong> An exponential Q-Q plot is generated for a sample that indeed conforms to the exponential distribution. Which inferences are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Data points lie only in the first and third quadrants.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Points in the Q-Q plot fall along the straight line through the origin with slope 1.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Data points lie only in the first quadrant.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Points in the Q-Q plot fall along any arbitrary straight line through the origin.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Both the sample and theoretical exponential quantiles are always $\ge0$, so every point lies in the first quadrant (C true, A false, since there's no negative/third-quadrant region for an exponential support). When the sample genuinely matches the proposed distribution, the plotted points hug the $45°$ reference line through the origin — specifically <em>slope 1</em>, not just any line (B true, D false).</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>

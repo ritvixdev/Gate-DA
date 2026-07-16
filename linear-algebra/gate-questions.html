@@ -458,6 +458,158 @@
     <div class="gate-expl" hidden>$[a,b]=k[c,d]$ means $a=kc,\,b=kd$, so $ad=bc$. Dividing both sides by $bd$ (all non-zero) gives $a/b=c/d$, exactly the condition for $[a,c]$ to be a multiple of $[b,d]$.</div>
   </div>
 
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Eigenvalues & eigenvectors — permitted values</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P12.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Zero is not a permitted eigenvalue.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The null vector is not a permitted eigenvector.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Zero is a permitted eigenvalue.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The null vector is a permitted eigenvector.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Zero is a perfectly valid eigenvalue (it just means the matrix is singular) — C true, A false. But by definition an eigenvector must be non-zero (otherwise $Av=\lambda v$ is trivially true for any $\lambda$ and carries no information) — so the null vector is never a permitted eigenvector: B true, D false.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Eigenvector iteration</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P13.</strong> $x_0$ is an eigenvector of square matrix $A$ with eigenvalue $\lambda$. Additionally $x_k=\lambda^kx_0,\ k\in\{1,2,3,\dots\}$. Which is true?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$x_{k+1}=A^{k-1}x_k,\ k\in\{0,1,2,\dots\}$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$x_{k+1}=A^{k+1}x_k,\ k\in\{0,1,2,\dots\}$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$x_{k+1}=A^{k}x_k,\ k\in\{0,1,2,\dots\}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$x_{k+1}=Ax_k,\ k\in\{0,1,2,\dots\}$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$Ax_k=A(\lambda^kx_0)=\lambda^k(Ax_0)=\lambda^k(\lambda x_0)=\lambda^{k+1}x_0=x_{k+1}$. So $x_{k+1}=Ax_k$ — each step is just one more multiplication by $A$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">n-dimensional cube — corners</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P14.</strong> How many corners does a cube have in $n$ dimensions?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$n^n$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$n^2$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$2^n$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$n!$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Each of the $n$ coordinates independently takes one of 2 values (e.g. 0 or 1), so the corner count is $2\times2\times\cdots\times2=2^n$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Vector sum/difference — solve the system</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P15.</strong> $x,y$ are vectors with $x+y=[6,4,6]$ and $x-y=[4,4,10]$. Then,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$x=[4,5,8],\ y=[-1,0,2]$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$x=[5,4,6],\ y=[2,0,-2]$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$x=[5,4,8],\ y=[1,0,-2]$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$x=[4,6,8],\ y=[1,1,-2]$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$x=\big[(x+y)+(x-y)\big]/2=\big([6,4,6]+[4,4,10]\big)/2=[5,4,8]$. $y=\big[(x+y)-(x-y)\big]/2=\big([6,4,6]-[4,4,10]\big)/2=[1,0,-2]$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Null space vs. row space</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P16.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Any vector in the null space of $A$ is orthogonal to any vector in the column space of $A$.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Any vector in the null space of $A$ is orthogonal to any vector in the row space of $A$.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Any vector in the null space of $A$ is not orthogonal to any vector in the row space of $A$.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Any vector in the null space of $A$ may or may not be orthogonal to any vector in the row space of $A$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$Ax=0$ means $x$ is orthogonal to every row of $A$ (each row dotted with $x$ gives $0$) — hence orthogonal to the entire row space, not the column space (those live in a different space when $A$ is non-square).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Homogeneous systems Ax=0</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P17.</strong> Consider the homogeneous system $Ax=0$. Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Infinite solutions exist when $A$ is full column rank.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>When $A$ is square, if a non-zero $x$ exists with $Ax=0$, then $A^{-1}$ also exists.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>When $A$ is square, if a non-zero $x$ exists with $Ax=0$, then $A^{-1}$ does not exist.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Only the trivial solution exists when $A$ is full column rank.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Full column rank means the columns are independent, so $Ax=0$ forces $x=0$ — only the trivial solution (D true, A false). A non-zero solution to $Ax=0$ means the columns of (square) $A$ are dependent, i.e. $A$ is singular, so $A^{-1}$ cannot exist (C true, B false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Eigenvalues of the inverse</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P18.</strong> The eigenvalues of $A=\begin{bmatrix}0&1\\2&1\end{bmatrix}$ are $2$ and $-1$. The eigenvalues of $A^{-1}$ are:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.5,\ -1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$-0.5,\ 1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.25,\ 1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$4,\ 1$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Eigenvalues of $A^{-1}$ are reciprocals of $A$'s eigenvalues: $1/2=0.5$ and $1/(-1)=-1$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">System solvability check</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P19.</strong> Does the system $u+v+w=2,\ u+2v+3w=1,\ v+2w=0$ have a solution?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>No solutions exist to the system of equations.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>There exists at least one solution to the system of equations.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>From the 3rd equation $v=-2w$; substituting into the 1st gives $u=2+w$. Substituting both into the 2nd: $(2+w)+2(-2w)+3w=2+0w=2$, but the equation requires this to equal $1$ — a contradiction ($2\ne1$). The system is inconsistent — no solution exists.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Hyperplane — half-space test</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P20.</strong> The point $(x_1,x_2,x_3,x_4)=(1,4,6,3)$ is in which half-space of the hyperplane $x_1-9x_2+3x_3+2x_4=8$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>On the hyperplane</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Cannot be determined</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Negative</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Positive</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Plug into $w^{\mathsf T}x-b$: $1-9(4)+3(6)+2(3)-8=1-36+18+6-8=-19&lt;0$ — the negative half-space.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Trace of a matrix</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P21.</strong> The trace of a matrix $A$ can be found by which of the following?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>None of the above</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Sum of its eigenvalues</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Sum of its diagonals</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Determinant of the matrix</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The trace is, by definition, the sum of the diagonal entries (C) — and it also always equals the sum of the eigenvalues (B), since $\operatorname{trace}(A)=\sum\lambda_i$. It is unrelated to the determinant, which is the <em>product</em> of the eigenvalues (D false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Characteristic equation — product of roots</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P22.</strong> The product of the roots of the characteristic equation of a square matrix $A$ is equal to:</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>None of the above</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Rank of $A$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$A^{-1}$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$|A|$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The roots of $\det(A-\lambda I)=0$ are the eigenvalues, and their product always equals $\det(A)=|A|$.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>

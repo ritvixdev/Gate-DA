@@ -160,6 +160,695 @@
     <div class="gate-expl" hidden>The ROC curve plots FPR on the x-axis and TPR on the y-axis as the decision threshold varies. For any curve $y=f(x)$, the slope is $dy/dx$ by definition, so the ROC slope is literally $d(\text{TPR})/d(\text{FPR})$.</div>
   </div>
 
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Data basics</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P2.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Filling in missing values in a dataset is referred to as data imputation.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Consider a dataset with $m$ instances and $n$ features. The size of the data matrix in which each column represents a feature will be $m\times n$.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>In a function approximation problem, such as regression, the data labels are real numbers.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>It is possible that two features are correlated.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>All four are standard facts: imputation fills missing values; $m$ instances (rows) × $n$ features (columns) gives an $m\times n$ matrix; regression labels are real-valued; and features are frequently correlated with each other.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS & outliers</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P3.</strong> Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The OLS slope and intercept estimates are not sensitive to outliers.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The OLS slope and intercept estimates are sensitive to outliers.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>OLS minimizes squared error, so one far-away point contributes a hugely amplified squared residual, pulling the fitted line noticeably toward it.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS closed form</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P4.</strong> Which statements about the closed-form OLS solution $\hat\beta=(X^\top X)^{-1}X^\top y$ are TRUE?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The estimator can be interpreted as a weighted combination of the observed data.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The solution exists only when $X^\top X$ is invertible, which requires that the predictors are not perfectly collinear.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Computing $(X^\top X)^{-1}$ is always more efficient than using gradient descent, regardless of dataset size.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The closed-form expression provides the unique parameter vector $\hat\beta$ that minimizes the Residual Sum of Squares (RSS).</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\hat\beta$ is a linear (weighted) function of $y$ (A). $X^\top X$ is invertible exactly when the predictors are independent, i.e. not perfectly collinear (B). Matrix inversion is $O(p^3)$ and becomes slower than gradient descent for very large $p$ or $n$, so "always" in (C) is false. When it exists, the closed form is the unique RSS-minimizer (D).</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.75 to 0.77">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">R² from SST/SSR</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P5.</strong> Suppose $SST=500$ and $SSR=380$. Find the coefficient of determination $R^2$.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$R^2=SSR/SST=380/500=0.76$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.15 to 0.17">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">ROC: FPR from sensitivity/specificity</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P6.</strong> A classifier has Sensitivity $=0.92$, Specificity $=0.84$. Find the False Positive Rate used on the ROC curve.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$FPR=1-\text{Specificity}=1-0.84=0.16$. (Sensitivity is not needed — FPR depends only on specificity.)</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.49 to 0.51">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Accuracy on a balanced, random confusion matrix</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P7.</strong> A perfectly balanced binary dataset (50% class 0, 50% class 1) is scored by a classifier that produces equal probability for all 4 confusion-matrix outcomes (TP, FP, TN, FN each $\tfrac14$). What is the accuracy? Report as a fraction/decimal.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Accuracy $=\dfrac{TP+TN}{TP+FP+TN+FN}=\dfrac{0.25+0.25}{1}=0.5=\tfrac12$. (Equivalent to a classifier no better than a coin flip.)</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.074 to 0.076">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Logistic regression calculus</span> <span class="chip">NAT</span> <span class="chip">4 marks</span></div>
+    <div class="gate-qtext"><strong>P8.</strong> A logistic regression model is $\log\!\big(\tfrac{p}{1-p}\big)=-1.5+0.3x$. At $x=5$, compute $\dfrac{dp}{dx}$. Round to 3 decimal places.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$z=-1.5+0.3(5)=0\Rightarrow p=\sigma(0)=0.5$. Then $\dfrac{dp}{dx}=\beta_1\,p(1-p)=0.3(0.5)(0.5)=0.075$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.74 to 0.76">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Precision from a confusion matrix</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P9.</strong> A model's confusion matrix has TP $=45$, FP $=15$, TN $=130$, FN $=10$. Calculate the Precision.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Precision $=\dfrac{TP}{TP+FP}=\dfrac{45}{45+15}=\dfrac{45}{60}=0.75$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="19 to 21">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">R² and SSE comparison</span> <span class="chip">NAT</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P10.</strong> Model A has $R^2=0.86$ and $SST=500$. Model B has $R^2=0.90$ on the same dataset (same $SST$). By how much has the SSE decreased from Model A to Model B?</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$SSE=SST(1-R^2)$. Model A: $500(0.14)=70$. Model B: $500(0.10)=50$. Decrease $=70-50=20$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="1.40 to 1.43">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">RMSE from R² and SST</span> <span class="chip">NAT</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P11.</strong> A regression model is evaluated on 200 observations, with $R^2=0.84$ and $SST=2500$. Compute the RMSE. Round to 3 decimal places.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$SSE=SST(1-R^2)=2500(0.16)=400$. $MSE=SSE/n=400/200=2$. $RMSE=\sqrt{2}\approx1.414$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="2 to 2">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">k-Means inertia</span> <span class="chip">NAT</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P12.</strong> Four 2-D points: $(1,2),(2,1),(8,9),(9,8)$. Cluster 1 $=\{(1,2),(2,1)\}$, Cluster 2 $=\{(8,9),(9,8)\}$. Compute the inertia (sum of squared distances of each point from its cluster centroid). Enter as an integer.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Centroid 1 $=(1.5,1.5)$, centroid 2 $=(8.5,8.5)$. Each of the 4 points is $(0.5,0.5)$ away from its centroid: squared distance $=0.5^2+0.5^2=0.5$ each. Total inertia $=4\times0.5=2$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="7.99 to 8.01">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Logistic regression — max-slope point</span> <span class="chip">NAT</span> <span class="chip">4 marks</span></div>
+    <div class="gate-qtext"><strong>P13.</strong> A logistic model is $f(x)=\dfrac{1}{1+e^{-(\beta_0+\beta_1x)}}$ with $\beta_0=-4,\ \beta_1=0.5$. Find $x$ where the derivative of the logistic function is maximized. Round to 2 decimal places.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The derivative $\beta_1p(1-p)$ is maximized at $p=0.5$, i.e. where $z=\beta_0+\beta_1x=0$: $-4+0.5x=0\Rightarrow x=8$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.83 to 0.85">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Accuracy from sensitivity/specificity-style rates</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P14.</strong> A binary classifier is evaluated on 1000 instances (400 positive, 600 negative). It correctly classifies 90% of positives and 80% of negatives. Compute the accuracy. Round to 2 decimal places.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Correct positives $=0.90(400)=360$. Correct negatives $=0.80(600)=480$. Accuracy $=(360+480)/1000=0.84$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="2.67 to 2.69">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Gradient descent with L2 penalty</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P15.</strong> Logistic regression with L2 regularization uses gradient descent, $\eta=0.1$. Current coefficient $\beta=3$, gradient of the logistic loss $=2$, $\lambda=0.4$. Compute the updated coefficient after one step, using the update rule $\beta:=\beta-\eta(\nabla L+\lambda\beta)$. Round to 2 decimal places.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\beta_{\text{new}}=\beta-\eta(\nabla L+\lambda\beta)=3-0.1(2+0.4\times3)=3-0.1(3.2)=3-0.32=2.68$.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="60 to 60">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Grid search × k-fold</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P16.</strong> A dataset has 1200 observations. 5-fold cross-validation is used while tuning 12 hyperparameter combinations via grid search, training a separate model for every combination in every fold. How many models are trained in total?</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Total fits $=g\times k=12\times5=60$ (the 1200 observations don't change this count — it only depends on the grid size and fold count).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Correlation vs causation</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P17.</strong> Two features are correlated. Does this mean one causes the other (a causal relationship)?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is True.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is False.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Correlation never by itself establishes causation — a confounder, reverse causation, or coincidence could equally explain it.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Confusion matrix — perfect classifier</span> <span class="chip">MSQ</span> <span class="chip">3 marks</span></div>
+    <div class="gate-qtext"><strong>P18.</strong> A binary classifier classifies all instances without any error (more instances than classes, every class has at least one instance). Which is/are True for the confusion matrix?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Diagonal entries are non-zero.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Diagonal entries can be zero or non-zero.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Off-diagonal entries are all zeros.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Off-diagonal entries can be zero or non-zero.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Zero classification error means every prediction matches the true class, so all off-diagonal entries are exactly $0$ (C). Since every class has at least one instance and none is misclassified, every diagonal entry is at least $1$, i.e. non-zero (A).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">ROC curve axes</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P19.</strong> The Receiver Operating Characteristic (ROC) curve plots which two variables against each other?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Recall on the X-axis.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>True Positive Rate (Sensitivity) on the Y-axis.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>False Positive Rate (1 − Specificity) on the X-axis.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Precision on the Y-axis.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The ROC curve is TPR (Sensitivity/Recall) on the Y-axis against FPR ($1-$Specificity) on the X-axis — Recall belongs on the Y-axis (not X), and the Y-axis metric is TPR, not Precision.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Regression — intercept & physical meaning</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P20.</strong> Simple linear regression estimates a car's speed from distance vs. time data (car moves in a straight line at constant speed; time is measured exactly, distance is noisy). Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Intercept needs to be included if it is known that the initial distance (at time zero) is not zero.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Intercept needs to be included if it is known that the initial distance (at time zero) is zero.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Intercept should never be included in the model.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Intercept should always be included in the model.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The intercept represents the physical starting distance. If that's known to be non-zero, the model needs a free intercept to capture it (A). If it's known to be exactly zero, the line should be forced through the origin instead — no free intercept needed (B is false), so "never"/"always" absolutes (C, D) are also both wrong.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="119.5 to 120.5">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">LOOCV with kNN</span> <span class="chip">NAT</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P21.</strong> A dataset has 120 observations. kNN uses Leave-One-Out Cross-Validation. How many times is the kNN classifier trained?</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>LOOCV sets $k=n$: with $120$ points, there are $120$ leave-one-out splits, so the model is evaluated $120$ times (one held-out prediction per point).</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0.99 to 1.01">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Mean Squared Error — worked</span> <span class="chip">NAT</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P22.</strong> Suppose $y=[4,6,7,10]$ and $\hat y=[5,5,8,9]$. Compute the Mean Squared Error.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Errors: $-1,1,-1,1$; squared: $1,1,1,1$; sum $=4$; MSE $=4/4=1$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">OLS estimator variance vs. sample size</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P23.</strong> The sample size doubles while the data distribution remains unchanged. What is the most likely effect on the variance of the OLS coefficient estimates?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Increases</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Remains exactly unchanged</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Decreases</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Becomes zero</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\operatorname{Var}(\hat\beta)$ scales roughly as $\sigma^2/(n\operatorname{Var}(x))$ — more data (larger $n$) makes the estimate more precise, so the variance decreases (but never reaches exactly zero).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Perfect multicollinearity</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P24.</strong> One predictor is an exact linear combination of the remaining predictors. Which statement is correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Residuals become zero.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$R^2$ becomes negative.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>OLS predictions remain unique, but coefficient estimates are not unique.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Predictions become impossible.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Perfect collinearity makes $X^\top X$ singular, so $\hat\beta$ is not unique — but the fitted values $\hat y=X\hat\beta$ are still the unique projection of $y$ onto the column space of $X$, so predictions stay unique.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;E">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Classification metrics — mixed facts</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P25.</strong> Which of the following statements are correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Cohen's Kappa adjusts for agreement expected by chance.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Precision increases when false positives decrease while TP remains fixed.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Detection prevalence equals prevalence for every classifier.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Balanced Accuracy equals Accuracy for every classifier.</span></button>
+      <button class="gate-opt" data-val="E"><span class="opt-letter">E</span><span>Specificity increases when false positives decrease.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Kappa $=\kappa=(p_o-p_e)/(1-p_e)$ strips out chance agreement (A true). Precision $=TP/(TP+FP)$ rises as $FP\downarrow$ with $TP$ fixed (B true). Specificity $=TN/(TN+FP)$ rises as $FP\downarrow$ (E true). Detection prevalence ($=(TP+FP)/\text{total}$, a model property) need not equal prevalence ($=(TP+FN)/\text{total}$, a data property) — false in general (C false). Balanced accuracy $=$ accuracy only on perfectly balanced data with no class-dependent error rates — not for "every" classifier (D false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">L1 regularization non-differentiability</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P26.</strong> Logistic regression with L1 regularization is trained using gradient descent. Which statement is correct?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The L1 penalty has continuous second derivatives everywhere.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The optimization becomes non-convex.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Every update is differentiable.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Standard gradient descent cannot directly use the derivative exactly at $w=0$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$|w|$ has a sharp corner at $w=0$ — no single tangent slope exists there (only subgradients between $-1$ and $+1$), so plain gradient descent needs a special rule (e.g. subgradient or proximal step) right at that point. The penalty is still convex overall (B false), it's not smooth everywhere (A, C false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Data basics (repeat)</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P27.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Filling in missing values in a dataset is referred to as data imputation.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>It is possible that two features are correlated.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>In a function approximation problem, such as regression, the data labels are real numbers.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Consider a dataset with $m$ instances and $n$ features. The size of the data matrix in which each column represents a feature will be $m\times n$.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>All four are true, same facts as P2 in different order.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Pearson correlation symmetry</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P28.</strong> Pearson's correlation coefficient is $R_{xy}=\dfrac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$. If $R_{xy}=0.8$, what is $R_{yx}$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.8$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$-0.8$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Cannot be determined from the information provided</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\operatorname{Cov}(X,Y)=\operatorname{Cov}(Y,X)$ and $\sigma_X\sigma_Y=\sigma_Y\sigma_X$, so Pearson's correlation is symmetric: $R_{yx}=R_{xy}=0.8$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Perfect linear relationship → r</span> <span class="chip">MCQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P29.</strong> $y=ax+b$ with $a>0$. What is the value of Pearson's correlation coefficient between $x$ and $y$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$-1$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$1$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Cannot be determined from the information provided</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>A perfect, noise-free linear relationship always gives $|r|=1$; since the slope $a>0$ (positive relationship), $r=+1$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Impermissible correlation values</span> <span class="chip">MSQ</span> <span class="chip">2 marks</span></div>
+    <div class="gate-qtext"><strong>P30.</strong> Which among the following is NOT permissible for Pearson's correlation coefficient?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$2$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$-1$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$-2$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$1$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Pearson's $r$ is only ever defined on $[-1,1]$, so $2$ and $-2$ are impossible values; $-1$ and $1$ are the (valid) boundary cases.</div>
+  </div>
+
+  <div class="gate-q" data-type="NAT" data-key="0 to 0">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Weighted kNN — worked</span> <span class="chip">NAT</span> <span class="chip">4 marks</span></div>
+    <div class="gate-qtext"><strong>P31.</strong> Weighted kNN uses $w=1/d$. Five neighbours of a query point: distance 1 (class A), distance 2 (class B), distance 3 (class A), distance 4 (class B), distance 5 (class B). Predict the class label. Enter 0 for Class A and 1 for Class B.</div>
+    <div class="gate-controls">
+      <input class="gate-nat" type="text" inputmode="decimal" placeholder="your answer" aria-label="Numerical answer">
+      <button class="gate-check">Check answer</button>
+      <span class="gate-hint">Numerical answer (NAT) — type a value and press Check.</span>
+    </div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Weights: $1/1=1$(A), $1/2=0.5$(B), $1/3\approx0.333$(A), $1/4=0.25$(B), $1/5=0.2$(B). Class A total $\approx1.333$; Class B total $=0.95$. A wins, so the answer is $0$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Under/overfitting basics</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P32.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Employing an overtly simplistic model is referred to as under-fitting.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>How efficient a particular model is can be gauged from training data.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>How efficient a particular model is can be gauged from test data.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>In over-fitting, a model fits the training data very well but fails to generalize properly to unseen data.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Under-fitting = too-simple model (A true). Efficiency/generalization must be judged on unseen test data, not training data — a model can look perfect on training data yet generalize poorly (B false, C true). That mismatch is exactly the definition of over-fitting (D true).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">k-fold CV reliability</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P33.</strong> True or False: $k$-fold cross-validation is especially useful when there is a paucity of data, and generally provides a more reliable estimate of model performance than a single train-test split, since the model is evaluated multiple times on different subsets of data.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is True.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is False.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Averaging scores over $k$ rotating folds reduces the luck-of-the-split noise inherent in one single train/test split, and it makes efficient use of scarce data since every point gets both a training and a validation turn.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Cross-validation nuances</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P34.</strong> Select the correct option(s).</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>For time-series forecasting data, $k$-fold cross-validation is not recommended, since the temporal order of data need not be preserved while splitting the data.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>For a sufficiently large dataset, a single train-test split usually provides a reliable estimate of model performance.</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>In $k$-fold cross-validation, results are averaged across folds.</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>The computational cost for $k$-fold cross-validation increases with the size of the data.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Plain $k$-fold CV is unsuitable for time series precisely because the temporal order <em>must</em> be preserved (train on past, validate on future) — the reasoning given in (A) is backwards, so A is false. With enough data, a single split is often reliable (B true). Averaging across folds (C) and rising compute cost with data size (D) are both standard, true facts.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Residual plots & homoscedasticity</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P35.</strong> In a residual plot, standardized residuals are plotted against predicted values, and the data points are randomly scattered. Then,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The assumption of heteroscedasticity is met.</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The assumption of homoscedasticity is met.</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Random scatter with no funnel/cone shape means the residual variance stays roughly constant across predicted values — that's homoscedasticity, not its opposite.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Logistic regression — linear predictor</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P36.</strong> In Logistic Regression, a linear relationship is assumed between the independent variables and the</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Sigmoid of the dependent variable</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Log of the dependent variable (i.e. the log-odds)</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Sine of the dependent variable</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$\ln\!\big(\tfrac{p}{1-p}\big)=\beta_0+\beta_1x_1+\dots+\beta_nx_n$ — the log-odds (logit) of the outcome is linear in the features; it's the sigmoid that's applied to recover $p$ from that linear score, not the other way round.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B;C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Sigmoid function properties</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P37.</strong> The sigmoid function $e^x/(1+e^x)$, $x\in\mathbb{R}$, is</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>a Probability Density Function (PDF)</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>a Cumulative Distribution Function (CDF)</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>strictly monotonically increasing for any finite value of $x$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>This function is exactly the CDF of the standard logistic distribution (B) — it rises from $0$ to $1$. Its derivative $\sigma(x)(1-\sigma(x))>0$ everywhere, so it's strictly increasing (C). It is not a PDF (A false) since it doesn't describe a density itself.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A;B;D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Logistic regression — MLE objective</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P38.</strong> Optimal model parameters in logistic regression can be obtained by</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Maximizing the likelihood function</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Maximizing the logarithm of the likelihood function</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Minimizing the likelihood function</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Minimizing the negative of the logarithm of the likelihood function</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Maximizing $L$, maximizing $\log L$ (monotonic transform, same maximizer), and minimizing $-\log L$ are all exactly equivalent objectives (A, B, D true). Minimizing $L$ itself would push probabilities toward the worst possible fit (C false).</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Design matrix — intercept column</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P39.</strong> In multiple linear regression $y=X\beta_v+\epsilon_v$ with $n$ data points and $p$ independent variables ($X$ is $n\times(p+1)$), the first column of $X$ is a vector of</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>zeros</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>cannot be ascertained</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>minus ones</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>ones</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>The intercept term $\beta_0$ needs a constant $1$ multiplying it in every row, so the first column of $X$ (paired with $\beta_0$) is a column of ones.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Likelihood function — construction</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P40.</strong> $n$ data points; $p_i,q_i$ are the probabilities of class 0 / class 1 for point $i$ ($p_i+q_i=1$). The first $k$ points are truly class 0, the rest are truly class 1. Which is the correct likelihood $L$?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$L=(1-p_1)\cdots(1-p_k)\,q_{k+1}\cdots q_n$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$L=p_1\cdots p_k\,q_{k+1}\cdots q_n$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$L=(1-p_1)\cdots(1-p_k)\,(1-q_{k+1})\cdots(1-q_n)$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$L=p_1\cdots p_k\,(1-q_{k+1})\cdots(1-q_n)$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Each point's likelihood contribution is the model's probability for its <em>true</em> class: the first $k$ points are truly class 0, contributing $p_i$ directly (not $1-p_i$); the rest are truly class 1, contributing $q_i$ directly. So $L=p_1\cdots p_k\,q_{k+1}\cdots q_n$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Diagnosing overfitting</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P41.</strong> Adding one more parameter decreases the training MSE and increases the validation MSE. The model is currently</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Overfitting</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Underfitting</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Training error falling while validation error rises is the textbook signature of overfitting — the extra parameter is chasing training-set noise rather than the true signal.</div>
+  </div>
+
+  <div class="gate-q" data-type="MCQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">LOOCV = k-fold when...</span> <span class="chip">MCQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P42.</strong> With $n$ data points, Leave-One-Out CV (LOOCV) and $k$-fold CV are equivalent when</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$k&lt;n$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$k=n$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$k&gt;n$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Single correct (MCQ).</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>LOOCV is $k$-fold CV with $k$ set equal to $n$ — one fold per data point.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Perfect classifier — confusion matrix</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P43.</strong> A perfect classifier never misclassifies any data point. The confusion matrix must be a diagonal matrix.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is False</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is True</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Zero misclassification means every off-diagonal cell (true class $\ne$ predicted class) is $0$ — for any number of classes, that's exactly the definition of a diagonal matrix.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Log-odds is linear</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P44.</strong> For logistic regression, $\ln[o(x)]$ where $o(x)=p(x)/[1-p(x)]$ — the log-odds is linear in the decision variables. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The conclusion is True</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The conclusion is False</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>By construction, $\ln[o(x)]=\beta_0+\beta_1x_1+\dots+\beta_nx_n$ — exactly linear in $x_1,\dots,x_n$ (and in the $\beta$'s).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Softmax as a valid PMF</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P45.</strong> Multi-class classification with $N$ classes: $P(y=k)=e^{x_k}/\sum_{i=1}^N e^{x_i}$. Select the correct option.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>The posited function is a valid probability mass function</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>The posited function is not a valid probability mass function</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Each $e^{x_k}>0$, and summing over $k=1,\dots,N$ gives $\sum_k P(y=k)=\sum_k e^{x_k}/\sum_i e^{x_i}=1$ by construction — softmax is always a valid PMF.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Balanced dataset — confusion matrix identity</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P46.</strong> For a perfectly balanced binary dataset (equal positive and negative counts), which holds true?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$TP+FP=TN+FN$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>None of the above</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$TP+FN=TN+FP$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$TP+TN=FP+FN$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>$TP+FN$ is the count of actual positives; $TN+FP$ is the count of actual negatives. A perfectly balanced dataset means these two are equal — that's the only identity guaranteed just from balance (the others depend on the classifier's specific error pattern).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Always-positive classifier</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P47.</strong> A classifier always predicts the positive class, regardless of input. Then,</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Sensitivity = 0, Specificity = 1</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Sensitivity = 1, Specificity = 0</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Nothing is ever predicted negative, so $FN=0\Rightarrow$ Sensitivity $=TP/(TP+0)=1$; and $TN=0$ (no actual negative is ever correctly called negative) $\Rightarrow$ Specificity $=0/(0+FP)=0$.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">k-means distance metric</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P48.</strong> The most commonly used distance metric between centroids and data points in the $k$-means algorithm is</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Chebyshev</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>None of the above</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Manhattan</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>Euclidean</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Standard $k$-means minimizes within-cluster sum of squared <strong>Euclidean</strong> distances, and the centroid update (the mean) is the exact minimizer only under squared Euclidean distance.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="C">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">kNN — choice of k</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P49.</strong> (1) A very large $k$ may include points from other classes in the neighborhood. (2) A too-small $k$ makes the algorithm very sensitive to noise. Which is/are true?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Both are False</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>1 is False and 2 is True</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>Both are True</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>1 is True and 2 is False</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Large $k$ over-smooths the boundary, pulling in far-away points from other classes (true, underfitting risk). Small $k$ (e.g. $k=1$) reacts to every single noisy neighbour (true, overfitting risk). Both statements are true.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Logistic regression & overfitting</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P50.</strong> Logistic regression tends to overfit when we have a large number of independent variables present.</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is True</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is False</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>With many features relative to the number of samples (and no regularization), logistic regression can fit noise in the training data — the standard fix is L1/L2 regularization.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="D">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">Most desirable AUC</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P51.</strong> In an ROC curve, Sensitivity is plotted vs. (1 − Specificity); AUC is the area under it. Which AUC value is most desirable?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>$0.8$</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>$0.5$</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>$0.75$</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>$0.9$</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Higher AUC (closer to $1$) means better ranking quality; $0.5$ is no better than random. Among the choices, $0.9$ is the largest and therefore most desirable.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">k-means quality (SS terms)</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P52.</strong> A $k$-means clustering model becomes better as (SS = sum of squares)</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>we decrease the within-cluster SS and increase the between-cluster SS</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>we increase the within-cluster SS and increase the between-cluster SS</span></button>
+      <button class="gate-opt" data-val="C"><span class="opt-letter">C</span><span>we increase the within-cluster SS and decrease the between-cluster SS</span></button>
+      <button class="gate-opt" data-val="D"><span class="opt-letter">D</span><span>None of the above</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Good clusters are tight internally (low within-cluster SS / inertia) and well-separated from each other (high between-cluster SS).</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="A">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">1-NN asymptotic error</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P53.</strong> Binary classification, $k$-NN with $k=1$, and a very large amount of labelled data. Will the algorithm always classify a new point correctly?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>Statement is False</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Statement is True</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Even with unlimited training data, 1-NN's asymptotic error rate is bounded above by (at most) twice the Bayes error rate — it does not vanish unless the classes are perfectly separable, so "always correct" is false.</div>
+  </div>
+
+  <div class="gate-q" data-type="MSQ" data-key="B">
+    <div class="chips"><span class="chip chip-coral">samsai</span> <span class="chip">1-NN ties with rounded distances</span> <span class="chip">MSQ</span> <span class="chip">1 mark</span></div>
+    <div class="gate-qtext"><strong>P54.</strong> Binary classification, $k$-NN with $k=1$, Euclidean distance rounded to 2 decimal places. Can the algorithm give an ambiguous result (a tie between classes)?</div>
+    <div class="gate-opts gate-opts-text">
+      <button class="gate-opt" data-val="A"><span class="opt-letter">A</span><span>No</span></button>
+      <button class="gate-opt" data-val="B"><span class="opt-letter">B</span><span>Yes</span></button>
+    </div>
+    <div class="gate-controls"><button class="gate-check">Check answer</button> <span class="gate-hint">Multiple correct (MSQ) — select all that apply.</span></div>
+    <div class="gate-result" hidden></div>
+    <div class="gate-expl" hidden>Rounding to 2 decimal places can easily make two training points from different classes land at the exact same rounded distance from the query — tying for "nearest" and making the single-vote outcome ambiguous.</div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="../assets/js/topics.js?v=20260620"></script>
