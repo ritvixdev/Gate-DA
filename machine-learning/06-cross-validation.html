@@ -351,4 +351,71 @@ Detection Prevalence = (40+10)/100 = 0.50   → the model PREDICTED positive 50%
       <div class="callout-label">✕ Watch out</div>
       <p><span class="wrong">Trap:</span> "Tune hyperparameters on the test set." <span class="right">Reality:</span> that leaks information — use CV / a validation set.</p>
       <p><span class="wrong">Trap:</span> "High training accuracy = good model." <span class="right">Reality:</span> it may be overfitting; check validation.</p>
-      <p><span class="wrong">Trap:</span> "More folds is 
+      <p><span class="wrong">Trap:</span> "More folds is always better." <span class="right">Reality:</span> more folds cost more compute and can raise variance (LOOCV).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Connections with other topics</div>
+    <ul class="styled">
+      <li><strong>kNN:</strong> CV is the standard way to choose the best $k$.</li>
+      <li><strong>Linear/logistic regression:</strong> CV compares models and guards against overfitting.</li>
+      <li><strong>All ML:</strong> the honest performance check behind every method here.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Practice problems</div>
+    <div class="practice">
+      <p class="pq">Q1. In 10-fold CV, how many times is the model trained?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">10 times (once per fold).</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q2. Train accuracy 99%, validation 70%. What's happening?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Overfitting — great on training, poor on unseen data.</div>
+    </div>
+    <div class="practice">
+      <p class="pq">Q3. What is LOOCV?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans">Leave-one-out CV: $k=n$, each point is the validation set once.</div>
+    </div>
+
+    <h3>Quick MCQ</h3>
+    <div class="quiz-card">
+      <div class="quiz-q">A large gap between training and validation accuracy indicates…</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" data-val="A" data-correct="C"><span class="opt-letter">A</span> underfitting</button>
+        <button class="quiz-opt" data-val="B" data-correct="C"><span class="opt-letter">B</span> a perfect model</button>
+        <button class="quiz-opt" data-val="C" data-correct="C"><span class="opt-letter">C</span> overfitting</button>
+        <button class="quiz-opt" data-val="D" data-correct="C"><span class="opt-letter">D</span> too few features</button>
+      </div>
+      <div class="quiz-feedback" data-fb="A">Underfitting shows <em>both</em> scores low.</div>
+      <div class="quiz-feedback" data-fb="B">A big gap is the opposite of good generalization.</div>
+      <div class="quiz-feedback" data-fb="C">✅ Correct — memorized training but fails to generalize = overfitting.</div>
+      <div class="quiz-feedback" data-fb="D">More features usually worsens overfitting, not fixes it.</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Final memory box</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Remember</div>
+      <ul>
+        <li>k-fold: rotate the held-out fold; average the $k$ validation scores.</li>
+        <li>LOOCV = $k=n$.</li>
+        <li>Train ≫ validation ⇒ overfitting; both low ⇒ underfitting.</li>
+        <li>Never tune on the test set; keep it for the final report.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260620"></script>
+  <script src="../assets/js/viz/chart.js?v=20260620"></script>
+  <script src="../assets/js/viz/biasvariance-lab.js?v=20260620"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html> 
