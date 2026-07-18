@@ -117,9 +117,16 @@
         "</div>" +
       "</aside>";
 
+    // Always-visible back button: topic/reference pages go to the subject home,
+    // the subject home goes to All subjects. No sidebar digging needed.
+    var onSubjectHome = !current && !page;
+    var backHref = onSubjectHome ? root + "/index.html" : laRoot + "/index.html";
+    var backLabel = onSubjectHome ? "Back to all subjects" : "Back to " + (cfg.name || "subject") + " overview";
+
     var topbar =
       '<header class="topbar">' +
         '<button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>' +
+        '<a class="icon-btn topbar-back" href="' + backHref + '" aria-label="' + backLabel + '" title="' + backLabel + '">←</a>' +
         '<span class="topbar-title">' + (current ? current.name : (cfg.name || "Linear Algebra")) + "</span>" +
         '<div class="topbar-actions">' +
           '<button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>' +

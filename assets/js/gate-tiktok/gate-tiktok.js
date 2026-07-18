@@ -11,7 +11,7 @@
   var errors = core.validateLearningGraph(data, concepts);
   if (errors.length) console.warn("Gate TikTok data warnings:", errors);
 
-  var STORAGE_KEY = "gateda:linear-algebra:gate-tiktok";
+  var STORAGE_KEY = "gateda:" + (document.body.dataset.subject || "linear-algebra") + ":gate-tiktok";
   var feed = document.getElementById("gateFeed");
   var topicButton = document.getElementById("topicButton");
   var topicMenu = document.getElementById("topicMenu");
@@ -381,15 +381,20 @@
   function renderConceptGraph() {
     if (!graphState) return;
     var svg = document.getElementById("conceptGraph");
-    var viewWidth = 720 / graphZoom, viewHeight = 480 / graphZoom;
-    svg.setAttribute("viewBox", ((720 - viewWidth) / 2) + " " + ((480 - viewHeight) / 2) + " " + viewWidth + " " + viewHeight);
+    // Portrait-friendly canvas on phones: a smaller viewBox makes nodes and labels readable.
+    var mobileGraph = window.matchMedia("(max-width: 849px)").matches;
+    var baseW = mobileGraph ? 460 : 720, baseH = mobileGraph ? 540 : 480;
+    var centerX = baseW / 2, centerY = baseH / 2;
+    var nodeRadius = mobileGraph ? 46 : 42;
+    var viewWidth = baseW / graphZoom, viewHeight = baseH / graphZoom;
+    svg.setAttribute("viewBox", ((baseW - viewWidth) / 2) + " " + ((baseH - viewHeight) / 2) + " " + viewWidth + " " + viewHeight);
     var nodes = graphState.nodeIds;
     var positions = {};
-    positions[graphState.rootId] = { x: 360, y: 240 };
+    positions[graphState.rootId] = { x: centerX, y: centerY };
     nodes.filter(function (id) { return id !== graphState.rootId; }).forEach(function (id, index, list) {
       var angle = (-Math.PI / 2) + (Math.PI * 2 * index / Math.max(1, list.length));
-      var radius = list.length > 10 ? 190 : 160;
-      positions[id] = { x: 360 + Math.cos(angle) * radius, y: 240 + Math.sin(angle) * radius };
+      var radius = list.length > 10 ? (mobileGraph ? 180 : 190) : (mobileGraph ? 152 : 160);
+      positions[id] = { x: centerX + Math.cos(angle) * radius, y: centerY + Math.sin(angle) * radius };
     });
     var edgeLookup = allGraphEdges();
     var edges = graphState.edgeIds.map(function (id) { return edgeLookup[id]; }).filter(Boolean);
@@ -415,9 +420,9 @@
         (graphState.expandedIds.indexOf(id) !== -1 ? " expanded" : "") +
         '" data-graph-concept="' + id + '" tabindex="0" role="button" aria-label="Explore ' +
         escapeHtml(concept.label) + '"><circle cx="' + point.x + '" cy="' + point.y +
-        '" r="42"></circle><text>' + graphNodeLabel(concept.label, point.x, point.y) + "</text></g>";
+        '" r="' + nodeRadius + '"></circle><text>' + graphNodeLabel(concept.label, point.x, point.y) + "</text></g>";
     }).join("");
-    svg.innerHTML = '<title id="conceptGraphTitle">Linear Algebra concept connections</title>' +
+    svg.innerHTML = '<title id="conceptGraphTitle">Concept connections</title>' +
       '<desc id="conceptGraphDesc">Select a concept node to explain it and expand more connections.</desc>' +
       '<g class="gt-graph-edges">' + edgeMarkup + '</g><g class="gt-graph-nodes">' + nodeMarkup + "</g>";
     document.getElementById("conceptGraphStatus").textContent =
@@ -651,6 +656,14 @@
       showConcept(conceptHistory[conceptHistory.length - 1], this, false);
     }
   });
+
+  // Re-layout the graph when the viewport class changes (rotation / resize)
+  var graphMedia = window.matchMedia("(max-width: 849px)");
+  var onGraphMediaChange = function () {
+    if (graphMode && graphState && conceptDialog.open) renderConceptGraph();
+  };
+  if (graphMedia.addEventListener) graphMedia.addEventListener("change", onGraphMediaChange);
+  else if (graphMedia.addListener) graphMedia.addListener(onGraphMediaChange);
 
   document.getElementById("backToConcept").addEventListener("click", restoreGraphEntry);
   document.getElementById("readGraphConcept").addEventListener("click", readSelectedGraphConcept);
