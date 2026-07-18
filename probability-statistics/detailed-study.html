@@ -52,18 +52,26 @@
   }
   .pq{font-size:16px;line-height:2.1;margin:0 0 18px;color:var(--body-strong)}
 
-  /* Solutions: always visible, calm teal panel with a soft accent bar */
+  /* Show-answer toggle: soft, inviting pill */
+  .show-ans{
+    margin-top:6px;padding:9px 20px;font-size:12.5px;
+    border:1px solid var(--hairline);background:var(--surface-soft);
+    color:var(--coral-text);border-radius:var(--r-pill);
+  }
+  .show-ans:hover{border-color:var(--primary);background:var(--coral-bg)}
+
+  /* Solutions: hidden until asked for; warm cream-coral card that matches the theme */
   .ans{
-    display:block;margin-top:18px;padding:22px 26px;
-    background:var(--teal-bg);border:1px solid var(--teal-border);
-    border-left:4px solid var(--teal);
+    margin-top:18px;padding:22px 26px;
+    background:var(--coral-bg);border:1px solid var(--hairline);
+    border-left:3px solid var(--primary);
     border-radius:12px;font-size:15.5px;line-height:2.05;color:var(--body);
   }
   .ans p{margin:15px 0}
   .sol-label{
     font-family:var(--font-mono);font-size:11.5px;font-weight:700;
     letter-spacing:.09em;text-transform:uppercase;
-    color:var(--teal-text);margin-bottom:14px;
+    color:var(--coral-text);margin-bottom:14px;
   }
   ol.steps li{margin:17px 0;line-height:2}
 
@@ -83,7 +91,7 @@
     <p class="lede">Maths is not a monster — it's a language, and this page teaches you to <em>speak</em> it.
       Every topic here is told like a small story: <strong>what the idea really means</strong>,
       <strong>why the formula works</strong> (not just what it is), how to <strong>spot it in the exam</strong>,
-      and the <strong>real GATE questions</strong> solved step by step, right below each question. Take your time. There is no rush here.</p>
+      and the <strong>real GATE questions</strong> solved step by step. Try each question first, then reveal the solution. Take your time. There is no rush here.</p>
   </div>
 
   <section class="concept-card">
@@ -100,7 +108,7 @@
       <li>🤔 <strong>Why does this work?</strong> — the reason behind the formula, so it stops feeling like magic.</li>
       <li>📐 <strong>The formula, decoded</strong> — every symbol explained in one line.</li>
       <li>🔍 <strong>Spot it in the exam</strong> — the exact words GATE uses when it wants this formula.</li>
-      <li>✍️ <strong>Real questions with full solutions</strong> — the step-by-step solution sits right below each question. Cover it, try first, then read.</li>
+      <li>✍️ <strong>Real questions</strong> — try each one yourself first, then press <em>Show answer</em> to reveal the step-by-step solution.</li>
       <li>🧠 <strong>Tricks to remember</strong> — small hooks so the idea sticks.</li>
       <li>🔗 <strong>Connect the dots</strong> — how this topic links to its neighbours, because connected ideas are remembered ideas.</li>
     </ul>
@@ -215,7 +223,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Subset logic.</strong> Three events $A,B,C$ satisfy $A\cap B\cap C=A$. Which conclusion follows necessarily, with no extra assumptions?<br><br>
         A. $A\subset B\subset C$ &nbsp;&nbsp; B. $A\subseteq B\subseteq C$ &nbsp;&nbsp; C. $A\subset B$ and $A\subset C$ &nbsp;&nbsp; D. $A\subseteq B$ and $A\subseteq C$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Let's reason it out slowly, element by element:</p>
         <ol class="steps">
           <li>$A\cap B\cap C$ keeps only the elements that live in <em>all three</em> sets at once.</li>
@@ -279,7 +288,8 @@
       <p class="pq"><strong>Q · Three-event union.</strong> Events $A,B,C$ satisfy $C\subset B$, with
         $P(A)=0.6$, $P(B)=0.3$, $P(C)=0.05$, $P(A\cap B)=0.2$, $P(A\cap C)=0$, $P(B\cap C)=0.05$.
         Find $P(A\cup B\cup C)$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>First, the clever observation: the triple overlap $A\cap B\cap C$ sits <em>inside</em> $A\cap C$. We're told $P(A\cap C)=0$ — so the triple overlap has nowhere to live: $P(A\cap B\cap C)=0$.</li>
           <li>Now apply the rule calmly, term by term:
@@ -345,7 +355,8 @@
       <p class="pq"><strong>Q · Exclusive and independent?</strong> Events $A$ and $B$ are mutually exclusive with $P(A)\gt 0$, $P(B)\gt 0$. Which is correct?<br><br>
         A. It is possible, in some cases, that $A$ and $B$ are also independent.<br>
         B. It is never possible for $A$ and $B$ to be independent.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>This is exactly the argument above: exclusivity forces $P(A\cap B)=0$, but independence would need
           $P(A)P(B)\gt 0$. Zero can't equal a positive number.</p>
         <p><strong>Answer: B.</strong></p>
@@ -355,7 +366,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Two-or-more heads and tails.</strong> Three fair coins are tossed independently. Let $T=\{\text{two or more heads}\}$ and $S=\{\text{two or more tails}\}$. What is $P(T\cap S)$?<br><br>
         A. $0$ &nbsp;&nbsp; B. $0.5$ &nbsp;&nbsp; C. $0.25$ &nbsp;&nbsp; D. $1$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Pause before computing anything — is this even <em>possible</em>?</p>
         <ol class="steps">
           <li>"Two or more heads" needs at least 2 of the 3 coins to be heads.</li>
@@ -411,7 +423,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · At least one die shows 1.</strong> 100 fair dice are thrown. Let $A$ = at least one die shows 1. Then $P(A)$ is:<br><br>
         A. $0$ &nbsp;&nbsp; B. $1$ &nbsp;&nbsp; C. $1-\left(\tfrac{5}{6}\right)^{100}$ &nbsp;&nbsp; D. $\left(\tfrac{5}{6}\right)^{100}$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Flip to the opposite: "none of the 100 dice shows a 1".</li>
           <li>For one die, $P(\text{not }1)=\tfrac56$.</li>
@@ -461,7 +474,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Equal heads and tails.</strong> A fair coin is tossed $2n$ times independently. The probability of an equal number of heads and tails is:<br><br>
         A. $\dfrac{\binom{2n}{n}}{2^{2n}}$ &nbsp;&nbsp; B. $\dfrac{1}{(2n)!}$ &nbsp;&nbsp; C. $\dfrac{1}{\binom{2n}{n}}$ &nbsp;&nbsp; D. $\dfrac{\binom{2n}{n}}{2^{n}}$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>The universal two-step recipe for coin-sequence questions:</p>
         <ol class="steps">
           <li><em>Count the favourable sequences.</em> Equal counts means exactly $n$ heads among $2n$ tosses.
@@ -478,7 +492,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Prime sum of two dice.</strong> Two dice are rolled simultaneously. What is the probability that their sum is a prime number?<br><br>
         A. $\tfrac{17}{36}$ &nbsp;&nbsp; B. $\tfrac{1}{24}$ &nbsp;&nbsp; C. $\tfrac{5}{12}$ &nbsp;&nbsp; D. $\tfrac{1}{6}$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Two dice give $6\times6=36$ <em>ordered</em>, equally likely outcomes. (Ordered is important — see the note below.)</li>
           <li>Possible prime sums: $2,3,5,7,11$.</li>
@@ -524,7 +539,8 @@
       <p class="pq"><strong>Q · Even product of a subset (GATE DA 2026).</strong> Let $M$ be a randomly selected <em>non-empty</em> subset of $S=\{1,2,\dots,2026\}$. What is the probability that the product of all elements of $M$ is even?<br><br>
         A. $\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}}$ &nbsp;&nbsp; B. $\dfrac{2^{1013}}{2^{2026}}$ &nbsp;&nbsp;
         C. $\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}-1}$ &nbsp;&nbsp; D. $\dfrac{1}{2^{2026}-1}$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Split $S$: it has 1013 odd numbers and 1013 even numbers.</li>
           <li>Flip to the opposite (complement trick!): the product is <em>odd</em> only if the subset contains <em>only odd numbers</em>.</li>
@@ -584,7 +600,8 @@
       <p class="pq"><strong>Q · Positive integer solutions (GATE DA 2026).</strong> A program selects uniformly at random a non-negative integer solution of $n_1+n_2+n_3+n_4=20$. What is the probability that all four variables are positive?<br><br>
         A. $\dfrac{\binom{19}{3}}{\binom{23}{3}}$ &nbsp;&nbsp; B. $\dfrac{\binom{20}{4}}{\binom{24}{4}}$ &nbsp;&nbsp;
         C. $\dfrac{\binom{20}{3}}{\binom{23}{3}}$ &nbsp;&nbsp; D. $\dfrac{\binom{19}{4}}{\binom{24}{4}}$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Probability = favourable count ÷ total count, and both counts are stars-and-bars:</p>
         <ol class="steps">
           <li><em>Total</em> (non-negative, $n=20$, $k=4$): $\binom{20+4-1}{4-1}=\binom{23}{3}$.</li>
@@ -622,7 +639,8 @@
         I. A deterministic phenomenon is one whose outcome can be predicted with a high degree of confidence.<br>
         II. A stochastic phenomenon is one whose outcome can be predicted with limited confidence.<br><br>
         A. I true, II false &nbsp;&nbsp; B. Both true &nbsp;&nbsp; C. I false, II true &nbsp;&nbsp; D. Both false</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Under the intended exam wording, both statements are accepted as true. <strong>Answer: B.</strong></p>
         <p>💬 <em>A finer point worth knowing:</em> strictly speaking, a deterministic outcome isn't just "highly probable" —
           it is <em>completely fixed</em> once inputs are fixed. Exams sometimes use the softer wording; answer what the paper intends,
@@ -670,7 +688,8 @@
       <p class="pq"><strong>Q · Exhaustive urn choices.</strong> Two urns $U_1,U_2$ contain red and blue balls. One urn is selected, then one ball is drawn. Which statements are <em>always</em> true?<br><br>
         A. $P(U_1\mid R)+P(U_2\mid R)=1$ &nbsp;&nbsp;&nbsp; B. $P(R\mid U_1)+P(R\mid U_2)=1$<br>
         C. $P(U_1\mid B)+P(U_2\mid B)=1$ &nbsp;&nbsp;&nbsp; D. $P(B\mid U_1)+P(B\mid U_2)=1$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>The key question for each option: <em>what varies, and what stays fixed?</em></p>
         <ol class="steps">
           <li>In A and C, the conditioning event (the observed colour) is <strong>fixed</strong>, and the urns vary over all possibilities.
@@ -728,7 +747,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Fair and double-headed coins.</strong> A bowl has three coins: two fair and one double-headed. A coin is selected uniformly at random and tossed. What is $P(\text{heads})$?<br><br>
         A. $\tfrac12$ &nbsp;&nbsp; B. $1$ &nbsp;&nbsp; C. $\tfrac34$ &nbsp;&nbsp; D. $\tfrac23$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Three routes to heads — one per coin, each picked with probability $\tfrac13$:</p>
         <ol class="steps">
           <li>Fair coin #1: contributes $\tfrac12\cdot\tfrac13=\tfrac16$.</li>
@@ -792,7 +812,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Smoker is male.</strong> 40% of a population is male, 60% female. Half of the males smoke, and 40% of the entire population smokes. Given a randomly selected person is a smoker, what is the probability the person is male?</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Translate: $P(M)=0.4$ (prior), $P(S\mid M)=0.5$ (likelihood), $P(S)=0.4$ (evidence — given directly this time, no total-probability step needed).</li>
           <li>Bayes: $P(M\mid S)=\dfrac{P(S\mid M)\,P(M)}{P(S)}=\dfrac{0.5\times0.4}{0.4}=0.5$.</li>
@@ -804,7 +825,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Infection given positive result.</strong> A test is positive with probability 50% when a person is infected. Infection probability is 50%, and the overall probability of a positive test is 80%. Find $P(\text{infected}\mid +)$.<br><br>
         A. 100% &nbsp;&nbsp; B. ≈50% &nbsp;&nbsp; C. ≈80% &nbsp;&nbsp; D. ≈31%</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Prior $P(I)=0.5$, likelihood $P(+\mid I)=0.5$, evidence $P(+)=0.8$.</li>
           <li>$P(I\mid +)=\dfrac{0.5\times0.5}{0.8}=\dfrac{0.25}{0.8}=0.3125$.</li>
@@ -818,7 +840,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Disease-test posterior (GATE DA 2026, NAT).</strong> Disease $D$ occurs in 30% of a population. A test is positive 80% of the time when the person has $D$, and 10% of the time when they don't. Given a positive test, find $P(D\mid +)$ to two decimal places.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>This time the evidence isn't given — build it with total probability (Step 2 of the recipe):</p>
         <ol class="steps">
           <li>Two routes to a positive test: sick-and-positive, healthy-and-positive.
@@ -831,7 +854,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Selecting a box.</strong> Box 1: 2 black, 1 white. Box 2: 1 black, 2 white. Box 3: 3 black, 3 white. A box is selected with $P(B_1)=\tfrac12$, $P(B_2)=\tfrac16$, $P(B_3)=\tfrac13$; a ball is drawn and found white. Find $P(B_2\mid W)$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Weigh each route to a white ball (prior × likelihood):
             $P(W\cap B_1)=\tfrac12\cdot\tfrac13=\tfrac16$; &nbsp;
@@ -846,7 +870,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Conditional events.</strong> Given $P(T^c)=0.6$, $P(S\mid T)=0.3$, $P(S\mid T^c)=0.6$. Find $P(T\mid S)$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Prior: $P(T)=1-0.6=0.4$ (complement rule from Section 2 — see how topics interlock?).</li>
           <li>Evidence: $P(S)=0.3(0.4)+0.6(0.6)=0.12+0.36=0.48$.</li>
@@ -901,7 +926,8 @@
       <p class="pq"><strong>Q · Joint probability in a network (image-based).</strong> Four Bernoulli variables with graph $U\to V$, $U\to W$, $V\to Z$, $W\to Z$.
         Given: $P(U{=}1)=0.5$; &nbsp; $P(V{=}1\mid U{=}1)=0.5$; &nbsp; $P(W{=}1\mid U{=}1)=1$; &nbsp; $P(Z{=}1\mid V{=}1,W{=}1)=0.5$.
         Find $P(U{=}1,V{=}1,W{=}1,Z{=}1)$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>One factor per node, each conditioned only on its parents:
             $P(U,V,W,Z)=P(U)\cdot P(V\mid U)\cdot P(W\mid U)\cdot P(Z\mid V,W)$.</li>
@@ -951,7 +977,8 @@
         B. $Z$ is conditionally independent of $W$ given $X$.<br>
         C. $V$ and $W$ are conditionally independent given $X$.<br>
         D. $Y$ and $Z$ are conditionally independent given $X$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>First draw the graph from the factorization: $V\to X\leftarrow W$, then $X\to Y$ and $X\to Z$.</p>
         <ol class="steps">
           <li>Given $X$: everything $Y$ knows about the world came through $X$, so $Y$ learns nothing more from $V$ — A is true.</li>
@@ -1021,7 +1048,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Tower property.</strong> $E\big[E[X\mid Y]\big]$ equals:<br><br>
         A. $E[X\mid Y]$ &nbsp;&nbsp; B. $E[X]E[Y]$ &nbsp;&nbsp; C. $E[X]$ &nbsp;&nbsp; D. $E[Y]$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Picture a school: compute the average marks <em>inside each class</em> (that's $E[X\mid Y]$ — one number per class),
           then average those class-averages weighted by class size. You get… the overall school average, $E[X]$.
           Group-wise averaging then averaging the groups = averaging everyone.</p>
@@ -1031,7 +1059,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Expected number of black balls.</strong> A bag has 5 white and 10 black balls. 100 balls are drawn one at a time <em>with replacement</em>. Let $S_{100}$ be the number of black balls drawn. Find $E[S_{100}]$ (1 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Each draw is black with probability $p=\tfrac{10}{15}=\tfrac23$ — and "with replacement" means every draw is a fresh, independent trial.</li>
           <li>Fixed number of independent yes/no trials, constant $p$ → binomial (Section 18): $S_{100}\sim\text{Bin}(100,\tfrac23)$.</li>
@@ -1044,7 +1073,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Transformed Bernoulli and normal (GATE DA 2026).</strong> $X\sim\text{Bernoulli}(0.3)$ and $Y\sim N(0,100)$, independent. What is the variance of $(2X-1)Y$?<br><br>
         A. 100 &nbsp;&nbsp; B. 90 &nbsp;&nbsp; C. 49 &nbsp;&nbsp; D. 21</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Don't reach for heavy machinery — first understand what $(2X-1)$ <em>is</em>:</p>
         <ol class="steps">
           <li>$X$ is 0 or 1, so $2X-1$ is $-1$ or $+1$: a random <em>sign flip</em>. And $(2X-1)^2=1$, always.</li>
@@ -1060,7 +1090,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Pairwise variance identity.</strong> For $\{x_1,\dots,x_{100}\}$ it is given that
         $\frac{1}{2000}\sum_i\sum_j(x_i-x_j)^2=99$. Find $\frac{1}{99}\sum_i(x_i-\bar x)^2$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>There's a lovely identity connecting "everyone compared with everyone" to "everyone compared with the mean":</p>
         <div class="formula">$$\sum_i\sum_j (x_i-x_j)^2 = 2n\sum_i(x_i-\bar x)^2$$</div>
         <ol class="steps">
@@ -1104,7 +1135,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Two consecutive even numbers.</strong> A fair die is thrown repeatedly. What is the expected number of throws until two consecutive even numbers appear?<br><br>
         A. 2 &nbsp;&nbsp; B. 4 &nbsp;&nbsp; C. 6 &nbsp;&nbsp; D. 8</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Let $a$ = expected throws still needed when the previous throw was <em>not</em> even (or we just started),
           and $b$ = expected throws still needed when the previous throw <em>was</em> even. Note $P(\text{even})=\tfrac12$.</p>
         <ol class="steps">
@@ -1169,7 +1201,8 @@
       <p class="pq"><strong>Q · Uniform CDF.</strong> $F(x)=0$ for $x\lt 0$; $F(x)=x$ for $0\le x\le1$; $F(x)=1$ for $x\gt 1$. Select the correct option.<br><br>
         A. This is the CDF of a uniform random variable. &nbsp;&nbsp; B. Not a valid CDF.<br>
         C. More information required. &nbsp;&nbsp; D. Valid, but not uniform.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Check the CDF checklist: non-decreasing ✓, runs from 0 to 1 ✓, right-continuous ✓ — valid.
           And $F(x)=x$ on $[0,1]$ means probability accumulates at a perfectly steady rate — the signature of $U(0,1)$
           (indeed its density is $F'(x)=1$, flat).</p>
@@ -1180,7 +1213,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Find the PDF support.</strong> $f(x)=\tfrac{x}{2}$. Which is a valid support?<br><br>
         A. $0\le x\le3$ &nbsp;&nbsp; B. $0\le x\le1$ &nbsp;&nbsp; C. $0\le x\le2$ &nbsp;&nbsp; D. $0\le x\le4$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>A PDF's whole area must be exactly 1 — that's our equation:</p>
         <ol class="steps">
           <li>$\displaystyle\int_0^a \frac{x}{2}\,dx=\left[\frac{x^2}{4}\right]_0^a=\frac{a^2}{4}$.</li>
@@ -1193,7 +1227,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Properties of a discrete CDF (GATE DA 2026, MSQ).</strong> Which are correct for a discrete random variable's CDF $F(x)$?<br><br>
         A. Always positive &nbsp;&nbsp; B. Non-decreasing &nbsp;&nbsp; C. Has jump discontinuities &nbsp;&nbsp; D. Left-continuous</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Walk the checklist from the "why" box above:</p>
         <ol class="steps">
           <li>A — false: below the smallest possible value, nothing has accumulated yet, so $F(x)=0$ there (zero, not positive).</li>
@@ -1208,7 +1243,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Median from a CDF.</strong> $F_X(x)=\dfrac{x-t}{4-t}$ for $t\le x\le 4$ (0 below, 1 above). If the median is 3, what is $t$?<br><br>
         A. 2 &nbsp;&nbsp; B. 1 &nbsp;&nbsp; C. $-1$ &nbsp;&nbsp; D. 0</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>The median is the point where half the probability has accumulated: $F(3)=0.5$.</p>
         <ol class="steps">
           <li>$\dfrac{3-t}{4-t}=\dfrac12$.</li>
@@ -1222,7 +1258,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · CDF of $X^2$.</strong> $F_X(x)=\tfrac14(x+1)^2$ for $-1\le x\le1$ (0 below, 1 above). Find $P(X^2\le 0.25)$.<br><br>
         A. 0.625 &nbsp;&nbsp; B. 0.25 &nbsp;&nbsp; C. 0.5 &nbsp;&nbsp; D. 0.5625</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>First unroll the square. $X^2\le0.25$ means $X$ is within $0.5$ of zero <em>on both sides</em>: $-0.5\le X\le0.5$.</li>
           <li>Now it's a plain interval question: $P=F(0.5)-F(-0.5)$.</li>
@@ -1280,7 +1317,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Lottery wins and non-wins (MSQ).</strong> A person buys one ticket in each of 10 independent lotteries, each with win probability 0.001. $X$ = number of wins, $Y$ = number of non-wins. Which are correct?<br><br>
         A. $Y\sim\text{Bin}(10,0.001)$ &nbsp;&nbsp; B. $Y\sim\text{Bin}(10,0.999)$ &nbsp;&nbsp; C. $X\sim\text{Bin}(10,0.999)$ &nbsp;&nbsp; D. $X\sim\text{Bin}(10,0.001)$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Both $X$ and $Y$ count something over 10 independent trials — both are binomial. The only question is
           <em>which probability belongs to which count</em>: wins happen with $0.001$, so $X\sim\text{Bin}(10,0.001)$;
           non-wins happen with $0.999$, so $Y\sim\text{Bin}(10,0.999)$.</p>
@@ -1291,7 +1329,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Overlapping row and column sums (NAT).</strong> A $5\times5$ matrix has independent Bernoulli(0.5) entries. Find the probability that the sum of the second row <em>and</em> the sum of the third column both equal 3 (2 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Tempting shortcut: "row sum is binomial, column sum is binomial, multiply them." <strong>Stop</strong> — the row and column
           share one cell, $A_{2,3}$, so they are not independent. The fix: <em>condition on the shared cell</em>, then everything
           else genuinely is independent.</p>
@@ -1353,7 +1392,8 @@
         I. The mean and variance of a Poisson random variable are equal.<br>
         II. A standard normal random variable has mean 0 and variance 1.<br><br>
         A. Both true &nbsp;&nbsp; B. Only I &nbsp;&nbsp; C. Only II &nbsp;&nbsp; D. Both false</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Both are definitional: Poisson's mean and variance are both $\lambda$, and "standard" normal literally means
           mean 0, variance 1. <strong>Answer: A.</strong></p>
       </div>
@@ -1394,7 +1434,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Two independent uniforms (NAT).</strong> $X\sim U[1,3]$ and $Y\sim U[2,4]$ independent. Find $P(X\ge Y)$ (3 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li><em>Draw the world:</em> the rectangle $1\le x\le3$, $2\le y\le4$, total area $2\times2=4$.</li>
           <li><em>Shade the wish:</em> $x\ge y$. Since $y$ is at least 2, we need $x$ at least 2 as well — the region only exists for
@@ -1438,7 +1479,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Normal linear transformation.</strong> $X=aZ+b$ with $Z\sim N(0,1)$. Given $E[X]=1$, $E[(X-E[X])Z]=-2$, $E[(X-E[X])^2]=4$, find $a,b$.<br><br>
         A. $a=-2,\ b=1$ &nbsp;&nbsp; B. $a=2,\ b=-1$ &nbsp;&nbsp; C. $a=-2,\ b=-1$ &nbsp;&nbsp; D. $a=1,\ b=1$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Use the expectation rules from Section 15 — no distribution theory needed:</p>
         <ol class="steps">
           <li>$E[X]=a\underbrace{E[Z]}_{0}+b=b$, so $b=1$.</li>
@@ -1496,7 +1538,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Find the rate.</strong> $P(X\ge2)=0.25$. What is $\lambda$?<br><br>
         A. $\ln 2$ &nbsp;&nbsp; B. $\ln 4$ &nbsp;&nbsp; C. $\ln 3$ &nbsp;&nbsp; D. $\ln 0.25$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Survival formula: $e^{-2\lambda}=\tfrac14$.</li>
           <li>Take logs: $-2\lambda=\ln\tfrac14=-\ln4$.</li>
@@ -1508,7 +1551,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Mean–variance relation (NAT).</strong> $X\sim\text{Exp}(\lambda)$ with $5E[X]=\operatorname{Var}(X)$. Find $\lambda$ (1 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Substitute the formulas: $\dfrac{5}{\lambda}=\dfrac{1}{\lambda^2}$.</li>
           <li>Multiply both sides by $\lambda^2$: $5\lambda=1$, so $\lambda=0.2$.</li>
@@ -1519,7 +1563,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Memorylessness (GATE DA 2026, NAT).</strong> $P(X\gt5)=0.35$. Find $P(X\gt10\mid X\gt5)$ (2 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Reset the clock: having survived 5, the chance of surviving 5 <em>more</em> equals the original chance of surviving 5.</p>
         <div class="formula">$$P(X\gt10\mid X\gt5)=P(X\gt5)=0.35$$</div>
         <p><strong>Answer: 0.35.</strong> Zero computation — the whole question is "do you know the property?"</p>
@@ -1529,7 +1574,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Floor of an exponential.</strong> $Y=\lfloor X\rfloor$ where $X$ is exponential with mean $\tfrac{1}{\ln 10}$. For positive integer $\ell$, $P(Y{=}\ell)=q^{\ell}(1-q)$. Find $q$.<br><br>
         A. 0.1 &nbsp;&nbsp; B. 0.01 &nbsp;&nbsp; C. 0.5 &nbsp;&nbsp; D. 0.434</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Mean $=\tfrac1\lambda=\tfrac{1}{\ln10}$, so $\lambda=\ln 10$.</li>
           <li>$Y=\ell$ means $X$ landed in the window $[\ell,\ \ell+1)$:
@@ -1574,7 +1620,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Compare normal and $t_1$ (GATE DA 2026, MSQ).</strong> $Z\sim N(0,1)$ with pdf $g$, CDF $G$; $Y\sim t_1$ with pdf $h$, CDF $H$. Let $c\gt0$ satisfy $g(c)=h(c)$. Which are correct?<br><br>
         A. $G(0)=H(0)$ &nbsp;&nbsp; B. $G(c)\lt H(c)$ &nbsp;&nbsp; C. $G(-c)\lt H(-c)$ &nbsp;&nbsp; D. $g(0)=h(0)$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>No formulas needed — just the picture: two bells centred at 0, the normal taller in the middle, the $t_1$ fatter in the tails, crossing at $\pm c$.</p>
         <ol class="steps">
           <li>A — both symmetric about 0, so each has half its probability below 0: $G(0)=H(0)=\tfrac12$. True.</li>
@@ -1627,7 +1674,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Square of a standard normal.</strong> $Y=Z^2$ where $Z=\frac{X-\mu}{\sigma}$, $X\sim N(\mu,\sigma^2)$. What is the variance of $Y$?<br><br>
         A. 1 &nbsp;&nbsp; B. 2 &nbsp;&nbsp; C. 3 &nbsp;&nbsp; D. 4</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Standardizing makes $Z\sim N(0,1)$ (Section 21).</li>
           <li>One squared standard normal: $Y=Z^2\sim\chi^2_1$.</li>
@@ -1643,7 +1691,8 @@
         B. $\sum_{i=1}^n (X_i-\bar X)^2\sim\chi^2_{n-1}$<br>
         C. $X_1^2+X_n^2$ is exponential with mean 2<br>
         D. $(\sqrt n\,\bar X)^2\sim\chi^2_2$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>A — the definition itself: $n$ squared standard normals. True.</li>
           <li>B — replacing the true mean 0 by the estimated $\bar X$ costs <em>one degree of freedom</em>
@@ -1704,7 +1753,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Covariance of coin indicators (NAT).</strong> Two fair coins tossed independently. $X=1$ if both are heads, else 0. $Y=1$ if at least one head, else 0. Find $\operatorname{Cov}(X,Y)$ (3 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>For 0/1 indicator variables there's a gift: $E[X]$ is just $P(X{=}1)$, and $E[XY]=P(\text{both}=1)$.</p>
         <ol class="steps">
           <li>$E[X]=P(HH)=\tfrac14$.</li>
@@ -1759,7 +1809,8 @@
         B. If $x,y$ have a linear relationship, then $|r_{xy}|$ is close to 1.<br>
         C. If $|r_S|$ is close to 1, then $x,y$ have a monotonic relationship.<br>
         D. If $|r_S|$ is close to 0, there is no monotonic association between $x,y$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p><strong>Intended answer: A and C</strong> — high $|r|$ signals a linear pattern; high $|r_S|$ signals a monotonic one.</p>
         <p>💬 <em>Why B and D fail:</em> B — if "linear relationship" means a <em>noisy</em> linear trend, the noise can drag $r$
           well below 1 (only an <em>exact</em> line guarantees $|r|=1$). D — "close to 0" rules out a <em>strong</em> monotonic pattern,
@@ -1773,7 +1824,8 @@
         II. Pearson correlation takes a value between 0 and +1.<br>
         III. Two observations are concordant when one variable rises while the other falls.<br><br>
         A. II and III &nbsp;&nbsp; B. I and III &nbsp;&nbsp; C. I and II &nbsp;&nbsp; D. III</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>I — true: Spearman works on ranks, and ordinal data is exactly "rankable" data.</li>
           <li>II — <em>not</em> true: Pearson's range is $[-1,1]$; it can absolutely be negative.</li>
@@ -1786,7 +1838,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Calculate Pearson correlation.</strong> $X=\{5.1,4.9,4.7,4.6,5.0\}$, $Y=\{3.5,3.0,3.2,3.1,3.6\}$.<br><br>
         A. 1.00 &nbsp;&nbsp; B. 0.00 &nbsp;&nbsp; C. $-0.68$ &nbsp;&nbsp; D. 0.68</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Means: $\bar x=4.86$, $\bar y=3.28$.</li>
           <li>Cross-products of deviations: $\sum(x_i-\bar x)(y_i-\bar y)=0.146$.</li>
@@ -1799,7 +1852,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Non-linear dependence with zero correlation.</strong> $X\sim U(-1,1)$ and $Y\mid X{=}x\sim U(x^2-0.1,\ x^2+0.1)$. Find $\operatorname{Corr}(X,Y)$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Here $Y$ hugs the parabola $x^2$ — clearly <em>dependent</em> on $X$. Watch what correlation says anyway:</p>
         <ol class="steps">
           <li>Conditional mean = midpoint of the little interval: $E[Y\mid X{=}x]=x^2$.</li>
@@ -1841,7 +1895,8 @@
     <div class="practice">
       <p class="pq"><strong>Q.</strong> If a dataset contains $n$ features, is the variance-covariance matrix $n\times n$?<br><br>
         A. False &nbsp;&nbsp; B. True</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>One row and one column per feature → $n\times n$. <strong>Answer: B.</strong></p>
       </div>
     </div>
@@ -1868,7 +1923,8 @@
 
     <div class="practice">
       <p class="pq"><strong>Q · Updated mean.</strong> The average of 50 data points is 40. What is the average after adding a new observation of value 142?</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Means hide totals inside them. Work with the total, never with the averages directly:</p>
         <ol class="steps">
           <li>Old total $=50\times40=2000$.</li>
@@ -1883,7 +1939,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · z-score normalization.</strong> Income attribute: min 46000, max 170000, mean 96000, SD 21000. The z-score-normalized value of ₹106000 is closest to:<br><br>
         A. 0.217 &nbsp;&nbsp; B. 0.476 &nbsp;&nbsp; C. 0.623 &nbsp;&nbsp; D. 2.304</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>z-score recipe (Section 21): $z=\dfrac{x-\mu}{\sigma}=\dfrac{106000-96000}{21000}$.</li>
           <li>$=\dfrac{10000}{21000}\approx0.476$.</li>
@@ -1924,7 +1981,8 @@
       <p class="pq"><strong>Q · Mean, median and mode (MSQ).</strong> Which usually hold?<br><br>
         A. Left-skewed: Mean &gt; Median &gt; Mode &nbsp;&nbsp; B. Right-skewed: Mean &lt; Median &lt; Mode<br>
         C. Left-skewed: Mean &lt; Median &lt; Mode &nbsp;&nbsp; D. Right-skewed: Mean &gt; Median &gt; Mode</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>One sentence solves it: <strong>the mean follows the tail</strong>. Right tail → mean dragged right (largest);
           left tail → mean dragged left (smallest). The mode stays at the peak, and the median sits in between.</p>
         <p><strong>Answer: C and D.</strong></p>
@@ -1958,7 +2016,8 @@
         B. Points fall along the straight line through the origin with slope 1.<br>
         C. Points lie only in the first quadrant.<br>
         D. Points fall along any arbitrary straight line through the origin.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>Exponential values are never negative, so both coordinates of every point are $\ge0$: everything lives in the
             first quadrant — C true, A false (nothing can reach the third quadrant).</li>
@@ -2013,7 +2072,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Binomial sum via CLT.</strong> $Y=\sum_{i=1}^{300}X_i$, $X_i\sim\text{Bernoulli}(0.25)$ iid. Approximate $P(60\le Y\le90)$.<br><br>
         A. $\Phi(2)-\Phi(-2)$ &nbsp;&nbsp; B. $\Phi(1)-\Phi(-1)$ &nbsp;&nbsp; C. $\Phi(3)-\Phi(-3)$ &nbsp;&nbsp; D. $\Phi(90)-\Phi(60)$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Large sum of independent trials → CLT. The routine: find the mean, find the SD, convert the endpoints to z-scores.</p>
         <ol class="steps">
           <li>Mean: $E[Y]=np=300\times0.25=75$.</li>
@@ -2060,7 +2120,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Sample proportion (MSQ).</strong> A coin shows heads with probability $p$; over $n$ independent tosses define $\hat p$ as above. Which are correct?<br><br>
         A. $E[\hat p]=p$ &nbsp;&nbsp; B. $E[\hat p]=p/n$ &nbsp;&nbsp; C. As $n$ increases, $\operatorname{Var}(\hat p)$ decreases &nbsp;&nbsp; D. $\operatorname{Var}(\hat p)$ doesn't depend on $n$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Straight from the formulas: the estimate is unbiased ($E[\hat p]=p$ — A true, B false), and the $n$ in the
           denominator of the variance means more tosses → steadier estimate (C true, D false).</p>
         <p><strong>Answer: A and C.</strong></p>
@@ -2114,7 +2175,8 @@
         B. The null hypothesis is rejected at the 5% significance level.<br>
         C. The null hypothesis is accepted because $0.03\lt0.05$.<br>
         D. A Type II error has definitely occurred.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>$0.03\lt0.05$: the evidence is more surprising than our threshold → reject $H_0$. That's option B.</li>
           <li>A — changing the test's direction <em>after</em> seeing the result is cheating (like moving the goalposts mid-game). Invalid.</li>
@@ -2173,7 +2235,8 @@
         B. Testing whether two population variances are equal.<br>
         C. Testing independence between categorical variables.<br>
         D. Testing a sample mean against a hypothesized value for a small sample.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Run the flowchart: A tests a mean with known σ → z-test. C is category counts → chi-square.
           D is a mean with a small sample (σ unknown) → t-test. B compares variances → F-test.</p>
         <p><strong>Answer: B.</strong></p>
@@ -2229,7 +2292,8 @@
         B. The regression is SISO: single-input, single-output.<br>
         C. It is assumed that the independent variable is measured without error.<br>
         D. $\partial SSE/\partial\beta_0=0$ gives $\sum_{i=1}^n\epsilon_i=0$, where $SSE=\sum_{i=1}^n\epsilon_i^2$.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>One $x$, one $y$ → SISO. B true, A false.</li>
           <li>The classical model treats $x$ as exact — C true.</li>
@@ -2246,7 +2310,8 @@
         B. Errors have expected value zero.<br>
         C. The relationship between dependent and independent variables is linear.<br>
         D. Errors have constant variance.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>All four appear on the classical list above. <strong>Answer: A, B, C and D.</strong></p>
       </div>
     </div>
@@ -2255,7 +2320,8 @@
       <p class="pq"><strong>Q · Interpreting unbiasedness.</strong> If the OLS assumptions hold, $E[\hat\beta_0]=\beta_0$ and $E[\hat\beta_1]=\beta_1$. Select the correct option.<br><br>
         A. The true parameter values are usually unknown because the population or data-generating process is unknown.<br>
         B. The true parameter values can always be calculated exactly from a finite sample.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>"Unbiased" is a statement about <em>repeated sampling</em>: if you could redo the study many times, the estimates
           would centre on the truth. It does <strong>not</strong> mean any single sample hands you the exact truth — the truth stays
           unknown; we just know our aim isn't systematically off.</p>
@@ -2296,7 +2362,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Linearity vs correlation (MSQ).</strong> Statement A: $X$ and $Y$ have a linear relationship. Statement B: Pearson correlation for $X,Y$ is close to $+1$ or $-1$. Which options are correct?<br><br>
         A. B implies A. &nbsp;&nbsp; B. A implies B. &nbsp;&nbsp; C. B does not necessarily imply A. &nbsp;&nbsp; D. A does not necessarily imply B.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p><strong>Supplied answer: B and C.</strong> Reading "linear relationship" as an <em>exact</em> line: A ⇒ B
           (exact non-horizontal line forces $|r|=1$). Meanwhile $r$ close to $\pm1$ suggests but doesn't <em>prove</em> exact
           linearity — a strong-but-curved trend can also score high. Hence C.</p>
@@ -2308,7 +2375,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Strong $R^2$.</strong> Which $R^2$ value indicates a strong linear relationship?<br><br>
         A. 0.90 &nbsp;&nbsp; B. 0.00 &nbsp;&nbsp; C. 0.30 &nbsp;&nbsp; D. $-0.86$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>0.90 = the line explains 90% of the variation — strong. 0.00 explains nothing; 0.30 is weak.
           And in ordinary in-sample OLS with an intercept, $R^2$ can't be negative at all, so D is out
           (negative $R^2$ only appears on test data or intercept-free fits — when the model does <em>worse</em> than guessing the average).</p>
@@ -2319,7 +2387,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Observations and $R^2$.</strong> The higher the value of $R^2$, the more closely the observations group around:<br><br>
         A. Average values of the predicted variable &nbsp;&nbsp; B. The intercept &nbsp;&nbsp; C. The origin &nbsp;&nbsp; D. The best-fit line</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>High $R^2$ = small residuals = points hugging the fitted line. <strong>Answer: D.</strong></p>
       </div>
     </div>
@@ -2349,7 +2418,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Identify linear boundaries (MSQ).</strong> Which are linear decision boundaries for binary classification in 2-D feature space $(x,y)$?<br><br>
         A. $y=a_0+a_1x$ &nbsp;&nbsp; B. $y=a_0$ &nbsp;&nbsp; C. $y=x$ &nbsp;&nbsp; D. $y=a_1x$</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>A general line, a horizontal line, the diagonal, a line through the origin — every option is a straight line.
           Don't overthink: special cases of lines are still lines.</p>
         <p><strong>Answer: A, B, C and D.</strong></p>
@@ -2359,7 +2429,8 @@
     <div class="practice">
       <p class="pq"><strong>Q · Circular boundary transformation.</strong> In $(x,y)\in\mathbb{R}^2$, class 0 satisfies $x^2+y^2\le c^2$ (inside a circle) and class 1 is outside. Define $z=x^2+y^2$. Can the classes be separated by a linear decision boundary in the transformed 1-D $z$-space?<br><br>
         A. True &nbsp;&nbsp; B. False</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>The new coordinate $z$ is "squared distance from the centre". In $z$-space, class 0 is $z\le c^2$ and class 1 is
           $z\gt c^2$ — separated by the single threshold $z=c^2$, which is a linear boundary in one dimension.</p>
         <p><strong>Answer: A.</strong></p>
@@ -2396,7 +2467,8 @@
         B. A causal relationship exists because the variables are correlated.<br>
         C. None of the above.<br>
         D. No causal relationship exists.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <p>Read the options as <em>reasons</em>: B claims the correlation itself proves causation — that's exactly the fallacy.
           A says causation exists, but on independent biological evidence, with the correlation merely consistent with it.
           That's the correct scientific posture.</p>
@@ -2410,7 +2482,8 @@
         B. In supervised classification, data points have class labels.<br>
         C. Data imputation can be regarded as a function-approximation problem.<br>
         D. The same data may be separable by a linear boundary and also by a non-linear boundary.</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li>A — true: you can't draw 100-dimensional data; analytics summarizes what eyes can't see.</li>
           <li>B — true: "supervised" literally means learning from labelled examples.</li>
@@ -2464,7 +2537,8 @@
       <p class="pq"><strong>Q · Cricket matches and pitch (image-based, NAT).</strong> Ten matches between Green and Blue.
         Spin-friendly (S) pitches: matches 1, 2, 4, 7, 10 with winners G, B, B, G, G. Pace-friendly (F) pitches: matches 3, 5, 6, 8, 9 with winners B, G, B, B, B.
         Overall: Green won 4, Blue won 6. Find the information gain from splitting Winner by Pitch (2 dp).</p>
-      <div class="ans"><div class="sol-label">✅ Solution — step by step</div>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
         <ol class="steps">
           <li><em>Parent impurity</em> (4 Green, 6 Blue): $H(C)=-0.4\log_2 0.4-0.6\log_2 0.6\approx0.97095$ bits. Quite mixed — nearly a coin flip.</li>
           <li><em>Spin child</em> (3 G, 2 B out of 5): $H(S)=-\tfrac35\log_2\tfrac35-\tfrac25\log_2\tfrac25\approx0.97095$. Still very mixed — spin tells us little.</li>
