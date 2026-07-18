@@ -56,22 +56,18 @@
   .show-ans{
     margin-top:6px;padding:9px 20px;font-size:12.5px;
     border:1px solid var(--hairline);background:var(--surface-soft);
-    color:var(--coral-text);border-radius:var(--r-pill);
+    border-radius:var(--r-pill);
   }
-  .show-ans:hover{border-color:var(--primary);background:var(--coral-bg)}
 
-  /* Solutions: hidden until asked for; warm cream-coral card that matches the theme */
+  /* Solutions: hidden until asked for */
   .ans{
     margin-top:18px;padding:22px 26px;
-    background:var(--coral-bg);border:1px solid var(--hairline);
-    border-left:3px solid var(--primary);
     border-radius:12px;font-size:15.5px;line-height:2.05;color:var(--body);
   }
   .ans p{margin:15px 0}
   .sol-label{
     font-family:var(--font-mono);font-size:11.5px;font-weight:700;
-    letter-spacing:.09em;text-transform:uppercase;
-    color:var(--coral-text);margin-bottom:14px;
+    letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px;
   }
   ol.steps li{margin:17px 0;line-height:2}
 
@@ -82,6 +78,36 @@
   /* Symbol-decoder lists */
   .decode{margin:20px 0 24px;padding-left:4px}
   .decode li{line-height:2;margin:12px 0}
+
+  /* ---- Calm, flow-preserving boxes: no loud color blocks ----
+     All boxes share the same quiet surface; only the small label
+     and a hairline accent hint at the box type. */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{
+    color:var(--muted);
+  }
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* Solution card: same quiet treatment */
+  .ans{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+  }
+  .sol-label{color:var(--muted)}
+
+  /* Show-answer pill: quiet by default, gentle hint on hover */
+  .show-ans{color:var(--body)}
+  .show-ans:hover{border-color:var(--muted-soft);background:var(--surface-soft)}
 </style>
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="detailed-study" data-content>
