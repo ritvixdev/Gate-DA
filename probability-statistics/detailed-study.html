@@ -33,7 +33,7 @@
   .formula .katex-display:first-child{margin-top:2px}
   .formula .katex-display:last-child{margin-bottom:2px}
   .formula .katex{font-size:1.1em;color:var(--body-strong)}
-  @media (max-width:600px){ .formula .katex{font-size:.98em} .formula{padding:16px 12px} }
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
 
   /* Callouts and story boxes: airy */
   .callout{margin:28px 0;padding:22px 26px}
@@ -108,6 +108,25 @@
   /* Show-answer pill: quiet by default, gentle hint on hover */
   .show-ans{color:var(--body)}
   .show-ans:hover{border-color:var(--muted-soft);background:var(--surface-soft)}
+
+  /* ---- Mobile: maximise text per screen, keep it calm ---- */
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .practice{margin:26px 0;padding:18px 12px;border-radius:12px}
+    .pq{font-size:15.5px;line-height:1.9;margin-bottom:14px}
+    .ans{padding:16px 12px;font-size:15px;line-height:1.9;margin-top:14px}
+    .ans p{margin:12px 0}
+    ol.steps li{margin:12px 0;line-height:1.85}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+  }
 </style>
 </head>
 <body data-root=".." data-subject="probability-statistics" data-page="detailed-study" data-content>

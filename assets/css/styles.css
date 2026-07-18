@@ -783,3 +783,37 @@ ol.steps li::before {
    so with JS disabled the page is never hidden. */
 html.booting body { opacity: 0; }
 body { opacity: 1; transition: opacity .18s ease; }
+
+/* ============================================================
+ * Mobile reading mode (≤600px): edge-to-edge text.
+ * Cards go full-bleed, nested boxes keep only a slim gutter,
+ * so lines stay long and reading flows.
+ * ============================================================ */
+@media (max-width: 600px) {
+  .content { padding-left: 0; padding-right: 0; }
+
+  /* Bare text blocks keep a small gutter */
+  .content > p, .content > h2, .content > h3, .content > .hero,
+  .content > ul, .content > ol, .content > .nav-row { padding-left: 14px; padding-right: 14px; }
+
+  /* Cards stretch to the screen edges */
+  .concept-card, .content > .callout, .quiz-card, .gate-q, .viz-panel, .practice-cta {
+    border-left: 0; border-right: 0; border-radius: 0;
+    margin-left: 0; margin-right: 0;
+  }
+  .concept-card { padding: 22px 14px; }
+  .gate-q { padding: 18px 14px; }
+  .quiz-card { padding: 18px 14px; }
+
+  /* Nested boxes: slim side padding so lines stay long */
+  .callout, .imagine, .memory-box, .keybox { padding: 14px 12px; }
+  .formula { padding: 14px 8px; }
+  .ans { padding: 14px 12px; }
+
+  /* Numbered steps: tighter gutter for the step badge */
+  ol.steps li { padding-left: 34px; font-size: 15px; }
+  ol.steps li::before { width: 24px; height: 24px; font-size: 11px; }
+
+  /* Tables: compact cells */
+  .tbl-wrap td, .tbl-wrap th { padding: 9px 8px; font-size: 14px; }
+}
