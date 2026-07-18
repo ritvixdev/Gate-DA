@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Detailed Study with Questions · GATE DA Probability & Statistics</title>
+<meta name="description" content="Complete concept-by-concept study guide for GATE DA Probability & Statistics — every formula explained, full GATE-style questions with step-by-step solutions, traps, and memory rules.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="detailed-study" data-content>
+  <div class="hero">
+    <span class="tag">Reference · Detailed Study</span>
+    <h1>Detailed Study<br>with Questions</h1>
+    <p class="lede">The <strong>complete teaching guide</strong> — every concept explained in plain language,
+      the formula with every symbol decoded, how to <strong>recognize</strong> it in the exam, and the
+      <strong>full GATE questions with step-by-step solutions</strong>. Try each question first, then reveal the solution.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> How to use this page</div>
+    <p>Each numbered section follows the same rhythm: <strong>idea → formula → recognition clue → full question → solution → trap</strong>.
+      Read the idea, attempt the question yourself, then press <em>Show solution</em>. The 🧠 boxes hold the memory tricks —
+      revise only those boxes in the last week. The final two sections are a one-page formula sheet and twenty memory rules.</p>
+    <div class="callout tip">
+      <div class="callout-label">💡 The exam-solving flow</div>
+      <p>Identify the event → recognize the pattern → write the formula → substitute → check the range.
+        A probability must <strong>always lie between 0 and 1</strong> — if your answer doesn't, you slipped somewhere.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> How to recognize the required formula</div>
+    <p>Before calculating anything, translate the English sentence into a mathematical pattern.
+      This table is the single highest-value thing on this page — most GATE probability marks are lost
+      by picking the wrong tool, not by wrong arithmetic.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Words in the question</th><th>First method to consider</th></tr></thead>
+        <tbody>
+          <tr><td>"At least one"</td><td>$1-P(\text{none})$</td></tr>
+          <tr><td>"Exactly $k$"</td><td>Binomial or direct counting</td></tr>
+          <tr><td>"At most $k$"</td><td>Add probabilities from $0$ to $k$</td></tr>
+          <tr><td>"A or B"</td><td>Union (add, subtract overlap)</td></tr>
+          <tr><td>"Both A and B"</td><td>Intersection</td></tr>
+          <tr><td>"Given that"</td><td>Conditional probability</td></tr>
+          <tr><td>"Cause given the observed result"</td><td>Bayes' theorem</td></tr>
+          <tr><td>"Several possible sources"</td><td>Total probability, then Bayes</td></tr>
+          <tr><td>"Independent repeated success/failure trials"</td><td>Binomial</td></tr>
+          <tr><td>"Waiting time"</td><td>Exponential</td></tr>
+          <tr><td>"Number of events in an interval"</td><td>Poisson</td></tr>
+          <tr><td>"Equally likely values in an interval"</td><td>Uniform</td></tr>
+          <tr><td>"Unknown PDF constant or endpoint"</td><td>Total area $=1$</td></tr>
+          <tr><td>"Probability using a CDF"</td><td>Upper CDF minus lower CDF</td></tr>
+          <tr><td>"Large sum or sample mean"</td><td>Central Limit Theorem</td></tr>
+          <tr><td>"Relationship between numerical variables"</td><td>Covariance or Pearson correlation</td></tr>
+          <tr><td>"Ranked or ordinal values"</td><td>Spearman correlation</td></tr>
+          <tr><td>"Compare a mean; $\sigma$ known"</td><td>z-test</td></tr>
+          <tr><td>"Compare a mean; $\sigma$ unknown"</td><td>t-test</td></tr>
+          <tr><td>"Category counts"</td><td>Chi-square</td></tr>
+          <tr><td>"Compare variances"</td><td>F-test</td></tr>
+          <tr><td>"Decision-tree split"</td><td>Entropy and information gain</td></tr>
+          <tr><td>"Bayesian network joint probability"</td><td>Multiply each node conditioned on its parents</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Probability language &amp; set theory</div>
+    <p><strong>Sample space</strong> $S$ = the collection of every possible outcome.
+      An <strong>event</strong> is any subset of $S$. For one fair die:</p>
+    <div class="formula">$$S=\{1,2,3,4,5,6\},\qquad A=\{\text{even result}\}=\{2,4,6\},\qquad P(A)=\tfrac{3}{6}=\tfrac12$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>The "favourable outcomes ÷ total outcomes" formula is valid <strong>only when the elementary outcomes are equally likely</strong>.</p>
+    </div>
+    <p><strong>Set operations</strong> — $A\cup B$ means A <em>or</em> B (including both);
+      $A\cap B$ means <em>both</em>; $A^c$ means A does <em>not</em> happen, with the complement rule:</p>
+    <div class="formula">$$P(A^c)=1-P(A)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Subset logic.</strong> Three events $A,B,C$ satisfy $A\cap B\cap C=A$. Which conclusion follows necessarily, with no extra assumptions?<br>
+        A. $A\subset B\subset C$ &nbsp;&nbsp; B. $A\subseteq B\subseteq C$ &nbsp;&nbsp; C. $A\subset B$ and $A\subset C$ &nbsp;&nbsp; D. $A\subseteq B$ and $A\subseteq C$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$A\cap B\cap C$ keeps only the elements simultaneously present in all three sets.</li>
+          <li>For this intersection to equal the whole of $A$, every element of $A$ must also be inside $B$ and inside $C$: so $A\subseteq B$ and $A\subseteq C$.</li>
+          <li>We <em>cannot</em> use the strict subset symbol $\subset$, because $A$ might be exactly equal to $B$ or $C$.</li>
+        </ol>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul>
+        <li>$A\cap B=A \iff A\subseteq B$ — "intersecting with something bigger changes nothing".</li>
+        <li>Strict subset $\subset$ needs proof that the sets are <em>not</em> equal; the safe symbol is $\subseteq$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Addition rule &amp; inclusion–exclusion</div>
+    <p>For two events, the intersection is subtracted because it was counted once inside $P(A)$ and again inside $P(B)$:</p>
+    <div class="formula">$$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
+    <p>For three events:</p>
+    <div class="formula">$$P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C)$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory pattern</div>
+      <ul><li><strong>Add singles, subtract pairs, add the triple overlap.</strong> Signs alternate: $+,-,+$.</li></ul>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Three-event union.</strong> Events $A,B,C$ satisfy $C\subset B$, with
+        $P(A)=0.6$, $P(B)=0.3$, $P(C)=0.05$, $P(A\cap B)=0.2$, $P(A\cap C)=0$, $P(B\cap C)=0.05$.
+        Find $P(A\cup B\cup C)$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Since $A\cap C=\varnothing$, the triple intersection $A\cap B\cap C\subseteq A\cap C$ must also be empty: $P(A\cap B\cap C)=0$.</li>
+          <li>Inclusion–exclusion: $0.6+0.3+0.05-0.2-0-0.05+0 = 0.95-0.25=0.70$.</li>
+        </ol>
+        <p><strong>Answer: 0.70.</strong> The key spot: an empty pairwise intersection forces the triple intersection empty too.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Mutually exclusive vs independent</div>
+    <p>These are <strong>completely different ideas</strong> and GATE loves testing the confusion.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Mutually exclusive</th><th>Independent</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Meaning</strong></td><td>Cannot happen together</td><td>One gives no information about the other</td></tr>
+          <tr><td><strong>Formula</strong></td><td>$P(A\cap B)=0$</td><td>$P(A\cap B)=P(A)\,P(B)$, i.e. $P(A\mid B)=P(A)$</td></tr>
+          <tr><td><strong>Picture</strong></td><td>Non-overlapping regions</td><td>Overlap exactly proportional to sizes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ The classic trap</div>
+      <p>If two mutually exclusive events both have <strong>positive</strong> probability, they can <strong>never</strong> be independent:
+        exclusivity forces $P(A\cap B)=0$, but independence would need $P(A)P(B)\gt 0$. A positive number cannot equal zero.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Exclusive and independent?</strong> Events $A$ and $B$ are mutually exclusive with $P(A)\gt 0$, $P(B)\gt 0$. Which is correct?<br>
+        A. It is possible, in some cases, that $A$ and $B$ are also independent. &nbsp;&nbsp; B. It is never possible for $A$ and $B$ to be independent.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Exclusivity: $P(A\cap B)=0$. Independence would require $P(A\cap B)=P(A)P(B)\gt 0$ — impossible. <strong>Answer: B.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Two-or-more heads and tails.</strong> Three fair coins are tossed independently. Let $T=\{\text{two or more heads}\}$ and $S=\{\text{two or more tails}\}$. What is $P(T\cap S)$?<br>
+        A. $0$ &nbsp;&nbsp; B. $0.5$ &nbsp;&nbsp; C. $0.25$ &nbsp;&nbsp; D. $1$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Both events together would need at least $2+2=4$ coin outcomes — but only three coins were tossed.</li>
+          <li>So $T\cap S=\varnothing$ and $P(T\cap S)=0$.</li>
+        </ol>
+        <p><strong>Answer: A (0).</strong> No computation needed — a pure counting-capacity argument.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Complement rule &amp; "at least one"</div>
+    <p>"At least one" means one <em>or more</em>. Listing all those cases is slow; the complement ("none") is a single case:</p>
+    <div class="formula">$$P(\text{at least one})=1-P(\text{none})$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · At least one die shows 1.</strong> 100 fair dice are thrown. Let $A$ = at least one die shows 1. Then $P(A)$ is:<br>
+        A. $0$ &nbsp;&nbsp; B. $1$ &nbsp;&nbsp; C. $1-\left(\tfrac{5}{6}\right)^{100}$ &nbsp;&nbsp; D. $\left(\tfrac{5}{6}\right)^{100}$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>One die: $P(\text{not }1)=\tfrac56$.</li>
+          <li>Independence across 100 dice: $P(\text{no die shows }1)=\left(\tfrac56\right)^{100}$.</li>
+          <li>Complement: $P(A)=1-\left(\tfrac56\right)^{100}$.</li>
+        </ol>
+        <p><strong>Answer: C.</strong> Trap: option D is the probability of the <em>complement</em> — read which event is being asked.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Permutations, combinations &amp; counting</div>
+    <p>The first question to ask: <strong>does order matter?</strong></p>
+    <div class="formula">$$\text{Permutation (order matters): } {}^nP_r=\frac{n!}{(n-r)!}\qquad
+      \text{Combination (order doesn't): } \binom{n}{r}=\frac{n!}{r!\,(n-r)!}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul><li><strong>P</strong>ermutation = <strong>P</strong>osition. &nbsp; <strong>C</strong>ombination = <strong>C</strong>hoose.</li></ul>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Equal heads and tails.</strong> A fair coin is tossed $2n$ times independently. The probability of an equal number of heads and tails is:<br>
+        A. $\dfrac{\binom{2n}{n}}{2^{2n}}$ &nbsp;&nbsp; B. $\dfrac{1}{(2n)!}$ &nbsp;&nbsp; C. $\dfrac{1}{\binom{2n}{n}}$ &nbsp;&nbsp; D. $\dfrac{\binom{2n}{n}}{2^{n}}$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Equal counts means exactly $n$ heads and $n$ tails.</li>
+          <li>Choose which $n$ of the $2n$ positions are heads: $\binom{2n}{n}$ ways.</li>
+          <li>Every particular sequence has probability $\left(\tfrac12\right)^{2n}$.</li>
+          <li>So $P=\binom{2n}{n}\left(\tfrac12\right)^{2n}=\dfrac{\binom{2n}{n}}{2^{2n}}$.</li>
+        </ol>
+        <p><strong>Answer: A.</strong> Pattern: <em>count the favourable sequences, multiply by the probability of one sequence.</em></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Prime sum of two dice.</strong> Two dice are rolled simultaneously. What is the probability that their sum is a prime number?<br>
+        A. $\tfrac{17}{36}$ &nbsp;&nbsp; B. $\tfrac{1}{24}$ &nbsp;&nbsp; C. $\tfrac{5}{12}$ &nbsp;&nbsp; D. $\tfrac{1}{6}$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>There are $6\times6=36$ equally likely ordered outcomes. Prime sums: $2,3,5,7,11$ with ordered-pair counts $1,2,4,6,2$.</p>
+        <p>Total favourable $=1+2+4+6+2=15$, so $P=\tfrac{15}{36}=\tfrac{5}{12}$. <strong>Answer: C.</strong></p>
+        <p>Trap: always count <em>ordered</em> pairs (36 total), not the 21 unordered sums.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Subset counting</div>
+    <p>A set of $n$ elements has $2^n$ subsets — every element independently chooses "in" or "out".
+      Non-empty subsets: $2^n-1$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Even product of a subset (GATE DA 2026).</strong> Let $M$ be a randomly selected <em>non-empty</em> subset of $S=\{1,2,\dots,2026\}$. What is the probability that the product of all elements of $M$ is even?<br>
+        A. $\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}}$ &nbsp;&nbsp; B. $\dfrac{2^{1013}}{2^{2026}}$ &nbsp;&nbsp;
+        C. $\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}-1}$ &nbsp;&nbsp; D. $\dfrac{1}{2^{2026}-1}$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$S$ has 1013 odd and 1013 even numbers. A product is <em>odd</em> only if every chosen element is odd.</li>
+          <li>Total non-empty subsets: $2^{2026}-1$. Non-empty all-odd subsets: $2^{1013}-1$.</li>
+          <li>Even-product subsets: $(2^{2026}-1)-(2^{1013}-1)=2^{2026}-2^{1013}=2^{1013}(2^{1013}-1)$.</li>
+          <li>$P=\dfrac{2^{1013}(2^{1013}-1)}{2^{2026}-1}$.</li>
+        </ol>
+        <p><strong>Answer: C.</strong> Trap: the denominator is $2^{2026}-1$ (non-empty only), not $2^{2026}$.</p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul>
+        <li>"Product is odd" ⇒ <em>all</em> factors odd. "Product is even" ⇒ <em>at least one</em> even factor ⇒ complement trick.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Stars and bars</div>
+    <p>Use stars and bars for counting integer solutions of $x_1+x_2+\cdots+x_k=n$.</p>
+    <div class="formula">$$\text{Non-negative }(x_i\ge 0):\ \binom{n+k-1}{k-1}\qquad
+      \text{Positive }(x_i\ge 1):\ \binom{n-1}{k-1}$$</div>
+    <p>For positive solutions, give each variable 1 first ($m_i=x_i-1$), reducing to a non-negative problem with total $n-k$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Positive integer solutions (GATE DA 2026).</strong> A program selects uniformly at random a non-negative integer solution of $n_1+n_2+n_3+n_4=20$. What is the probability that all four variables are positive?<br>
+        A. $\dfrac{\binom{19}{3}}{\binom{23}{3}}$ &nbsp;&nbsp; B. $\dfrac{\binom{20}{4}}{\binom{24}{4}}$ &nbsp;&nbsp;
+        C. $\dfrac{\binom{20}{3}}{\binom{23}{3}}$ &nbsp;&nbsp; D. $\dfrac{\binom{19}{4}}{\binom{24}{4}}$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Total non-negative solutions: $\binom{20+4-1}{4-1}=\binom{23}{3}$.</li>
+          <li>Positive: set $m_i=n_i-1$, so $m_1+m_2+m_3+m_4=16$ with $m_i\ge 0$: $\binom{16+4-1}{3}=\binom{19}{3}$.</li>
+          <li>$P=\binom{19}{3}\big/\binom{23}{3}$.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul>
+        <li>Non-negative: top $=n+k-1$, bottom $=k-1$ ("add the bars to the stars").</li>
+        <li>Positive: first pay ₹1 to each variable, then use the non-negative formula.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Deterministic vs stochastic phenomena</div>
+    <ul class="styled deflist">
+      <li><strong>Deterministic:</strong> same inputs and initial conditions ⇒ same output, every time. Example: a fixed arithmetic algorithm.</li>
+      <li><strong>Stochastic:</strong> has random variation; described using probabilities. Example: a coin toss.</li>
+      <li><strong>Mixed:</strong> regression $Y=f(X)+\epsilon$ — a deterministic pattern plus random error.</li>
+    </ul>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · True or false.</strong>
+        I. A deterministic phenomenon is one whose outcome can be predicted with a high degree of confidence.
+        II. A stochastic phenomenon is one whose outcome can be predicted with limited confidence.<br>
+        A. I true, II false &nbsp;&nbsp; B. Both true &nbsp;&nbsp; C. I false, II true &nbsp;&nbsp; D. Both false</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Under the intended exam wording, both statements are accepted as true. <strong>Answer: B.</strong></p>
+        <p><em>Technical refinement:</em> a deterministic outcome is not merely "highly probable" — it is <strong>fixed</strong> once the inputs and starting conditions are fixed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Conditional probability</div>
+    <p>Conditional probability = probability <em>after receiving additional information</em>.
+      "Given $B$" means $B$ has become the new, reduced sample space.</p>
+    <div class="formula">$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>$P(A\mid B)$ is generally <strong>not</strong> equal to $P(B\mid A)$. Reversing the conditioning is exactly what Bayes' theorem is for.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Exhaustive urn choices.</strong> Two urns $U_1,U_2$ contain red and blue balls. One urn is selected, then one ball is drawn. Which statements are <em>always</em> true?<br>
+        A. $P(U_1\mid R)+P(U_2\mid R)=1$ &nbsp;&nbsp; B. $P(R\mid U_1)+P(R\mid U_2)=1$<br>
+        C. $P(U_1\mid B)+P(U_2\mid B)=1$ &nbsp;&nbsp; D. $P(B\mid U_1)+P(B\mid U_2)=1$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>The selected urn must be $U_1$ or $U_2$ — so <em>given any observed colour</em>, the urn posteriors sum to 1 (A and C true).
+          But $P(R\mid U_1)$ and $P(R\mid U_2)$ condition on <em>different</em> events; nothing forces them to add to 1 (B, D false).</p>
+        <p><strong>Answer: A and C.</strong></p>
+        <p>🧠 Rule: probabilities sum to 1 only when the <em>left side varies over a partition</em> and the <em>conditioning event stays fixed</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Law of total probability</div>
+    <p>If $B_1,\dots,B_k$ are non-overlapping groups that together cover everything, then add all the routes through which $A$ can occur:</p>
+    <div class="formula">$$P(A)=\sum_{i=1}^{k}P(A\mid B_i)\,P(B_i)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Fair and double-headed coins.</strong> A bowl has three coins: two fair and one double-headed. A coin is selected uniformly at random and tossed. What is $P(\text{heads})$?<br>
+        A. $\tfrac12$ &nbsp;&nbsp; B. $1$ &nbsp;&nbsp; C. $\tfrac34$ &nbsp;&nbsp; D. $\tfrac23$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Three routes: $P(H)=\tfrac12\cdot\tfrac13+\tfrac12\cdot\tfrac13+1\cdot\tfrac13$.</li>
+          <li>$=\tfrac16+\tfrac16+\tfrac13=\tfrac23$.</li>
+        </ol>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Bayes' theorem</div>
+    <p>Bayes reverses conditioning. Use it when the question <em>gives</em> "probability of result given cause" but <em>asks</em> "probability of cause given result".</p>
+    <div class="formula">$$P(B\mid A)=\frac{P(A\mid B)\,P(B)}{P(A)}
+      \qquad\text{i.e.}\qquad \text{Posterior}=\frac{\text{Likelihood}\times\text{Prior}}{\text{Evidence}}$$</div>
+    <p>If $P(A)$ is not given directly, build it with total probability first.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Smoker is male.</strong> 40% of a population is male, 60% female. Half of the males smoke, and 40% of the entire population smokes. Given a randomly selected person is a smoker, what is the probability the person is male?</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Given $P(M)=0.4$, $P(S\mid M)=0.5$, $P(S)=0.4$:</p>
+        <div class="formula">$$P(M\mid S)=\frac{P(S\mid M)P(M)}{P(S)}=\frac{0.5\times0.4}{0.4}=0.5$$</div>
+        <p><strong>Answer: 0.50.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Infection given positive result.</strong> A test is positive with probability 50% when a person is infected. Infection probability is 50%, and the overall probability of a positive test is 80%. Find $P(\text{infected}\mid +)$.<br>
+        A. 100% &nbsp;&nbsp; B. ≈50% &nbsp;&nbsp; C. ≈80% &nbsp;&nbsp; D. ≈31%</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <div class="formula">$$P(I\mid +)=\frac{P(+\mid I)P(I)}{P(+)}=\frac{0.5\times0.5}{0.8}=\frac{0.25}{0.8}=0.3125$$</div>
+        <p><strong>Answer: D (31.25%).</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Disease-test posterior (GATE DA 2026, NAT).</strong> Disease $D$ occurs in 30% of a population. A test is positive 80% of the time when the person has $D$, and 10% of the time when they don't. Given a positive test, find $P(D\mid +)$ to two decimal places.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Total probability: $P(+)=0.8(0.3)+0.1(0.7)=0.24+0.07=0.31$.</li>
+          <li>Bayes: $P(D\mid +)=\dfrac{0.8\times0.3}{0.31}=\dfrac{0.24}{0.31}\approx0.7742$.</li>
+        </ol>
+        <p><strong>Answer: 0.77.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Selecting a box.</strong> Box 1: 2 black, 1 white. Box 2: 1 black, 2 white. Box 3: 3 black, 3 white. A box is selected with $P(B_1)=\tfrac12$, $P(B_2)=\tfrac16$, $P(B_3)=\tfrac13$; a ball is drawn and found white. Find $P(B_2\mid W)$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$P(W\cap B_1)=\tfrac12\cdot\tfrac13=\tfrac16$; &nbsp; $P(W\cap B_2)=\tfrac16\cdot\tfrac23=\tfrac19$; &nbsp; $P(W\cap B_3)=\tfrac13\cdot\tfrac12=\tfrac16$.</li>
+          <li>$P(W)=\tfrac16+\tfrac19+\tfrac16=\tfrac49$.</li>
+          <li>$P(B_2\mid W)=\dfrac{1/9}{4/9}=\tfrac14$.</li>
+        </ol>
+        <p><strong>Answer: 0.25.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Conditional events.</strong> Given $P(T^c)=0.6$, $P(S\mid T)=0.3$, $P(S\mid T^c)=0.6$. Find $P(T\mid S)$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$P(T)=1-0.6=0.4$.</li>
+          <li>$P(S)=0.3(0.4)+0.6(0.6)=0.12+0.36=0.48$.</li>
+          <li>$P(T\mid S)=\dfrac{0.3\times0.4}{0.48}=0.25$.</li>
+        </ol>
+        <p><strong>Answer: 0.25.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Bayes workflow (same 3 steps every time)</div>
+      <ul>
+        <li>Step 1 — write the prior(s) of each cause.</li>
+        <li>Step 2 — total probability for the evidence: $P(\text{evidence})=\sum(\text{likelihood}\times\text{prior})$.</li>
+        <li>Step 3 — posterior $=$ (your cause's likelihood $\times$ prior) $\div$ evidence.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Bayesian networks</div>
+    <p>A Bayesian network encodes a joint distribution on a directed graph. The single rule:</p>
+    <div class="formula">$$P(X_1,\dots,X_n)=\prod_i P\big(X_i\mid \text{Parents}(X_i)\big)$$</div>
+    <p>A root node has no parents, so use its marginal probability.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Joint probability in a network (image-based).</strong> Four Bernoulli variables with graph $U\to V$, $U\to W$, $V\to Z$, $W\to Z$.
+        $P(U{=}1)=0.5$; &nbsp; $P(V{=}1\mid U{=}1)=0.5$; &nbsp; $P(W{=}1\mid U{=}1)=1$; &nbsp; $P(Z{=}1\mid V{=}1,W{=}1)=0.5$.
+        Find $P(U{=}1,V{=}1,W{=}1,Z{=}1)$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Factorize along the graph: $P(U,V,W,Z)=P(U)\,P(V\mid U)\,P(W\mid U)\,P(Z\mid V,W)$.</li>
+          <li>Pick the required table values: $0.5,\ 0.5,\ 1,\ 0.5$.</li>
+          <li>Multiply: $0.5\times0.5\times1\times0.5=0.125$.</li>
+        </ol>
+        <p><strong>Answer: 0.125.</strong></p>
+        <p>🧠 Rule: <em>start at every node, condition it only on its parents, and multiply.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Conditional independence &amp; colliders</div>
+    <p>$A$ and $B$ are conditionally independent given $X$ when $P(A,B\mid X)=P(A\mid X)P(B\mid X)$.
+      The tricky structure is the <strong>collider</strong> $V\to X\leftarrow W$: before conditioning on $X$, $V$ and $W$ can be independent;
+      <em>after</em> conditioning on their common effect $X$, they may become <strong>dependent</strong>.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Identify the false statement.</strong> Five variables have joint distribution
+        $P(V,W,X,Y,Z)=P(V)\,P(W)\,P(X\mid V,W)\,P(Y\mid X)\,P(Z\mid X)$. Which is <em>false</em>?<br>
+        A. $Y\perp V$ given $X$ &nbsp;&nbsp; B. $Z\perp W$ given $X$ &nbsp;&nbsp; C. $V\perp W$ given $X$ &nbsp;&nbsp; D. $Y\perp Z$ given $X$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>The graph is $V\to X\leftarrow W$ with $X\to Y$ and $X\to Z$. Given $X$: $Y$ is cut off from $V$ (A true), $Z$ from $W$ (B true), and $Y,Z$ only share $X$ (D true).
+          But $X$ is a <strong>collider</strong> for $V,W$ — conditioning on it can <em>create</em> dependence between them.</p>
+        <p><strong>Answer: C is false.</strong></p>
+        <p>🧠 Rule: conditioning on a <em>common effect</em> connects its causes ("explaining away").</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Random variables, expectation &amp; variance</div>
+    <p>A <strong>random variable</strong> assigns a number to each random outcome (discrete = countable values; continuous = any value in an interval).</p>
+    <div class="formula">$$E[X]=\sum_x x\,P(X{=}x)\ \ \text{(discrete)}\qquad E[X]=\int_{-\infty}^{\infty}x f(x)\,dx\ \ \text{(continuous)}$$</div>
+    <p><strong>Linearity</strong> (works even without independence!):</p>
+    <div class="formula">$$E[aX+b]=aE[X]+b\qquad E[X+Y]=E[X]+E[Y]$$</div>
+    <p><strong>Variance</strong> measures spread around the mean; the shortcut form is what you'll use in exams:</p>
+    <div class="formula">$$\operatorname{Var}(X)=E[X^2]-(E[X])^2\qquad \operatorname{SD}(X)=\sqrt{\operatorname{Var}(X)}\qquad \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>The constant $b$ shifts location but <strong>never changes spread</strong> — it vanishes from the variance. And $a$ comes out <em>squared</em>.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Tower property.</strong> $E\big[E[X\mid Y]\big]$ equals:<br>
+        A. $E[X\mid Y]$ &nbsp;&nbsp; B. $E[X]E[Y]$ &nbsp;&nbsp; C. $E[X]$ &nbsp;&nbsp; D. $E[Y]$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Average $X$ separately inside each $Y$-group, then average those group averages — you get the overall average of $X$.</p>
+        <p><strong>Answer: C.</strong> $E[E[X\mid Y]]=E[X]$ (the tower property).</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Expected number of black balls.</strong> A bag has 5 white and 10 black balls. 100 balls are drawn one at a time <em>with replacement</em>. Let $S_{100}$ be the number of black balls drawn. Find $E[S_{100}]$ (1 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$p=\tfrac{10}{15}=\tfrac23$, so $S_{100}\sim\text{Binomial}(100,\tfrac23)$ and $E=np=100\cdot\tfrac23=66.67$.</p>
+        <p><strong>Answer: 66.7.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Transformed Bernoulli and normal (GATE DA 2026).</strong> $X\sim\text{Bernoulli}(0.3)$ and $Y\sim N(0,100)$, independent. Variance of $(2X-1)Y$?<br>
+        A. 100 &nbsp;&nbsp; B. 90 &nbsp;&nbsp; C. 49 &nbsp;&nbsp; D. 21</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$2X-1\in\{-1,+1\}$, so $(2X-1)^2=1$ always.</li>
+          <li>$E[Y]=0$ gives $E[Z]=0$ for $Z=(2X-1)Y$, so $\operatorname{Var}(Z)=E[Z^2]$.</li>
+          <li>$E[Z^2]=E[(2X-1)^2Y^2]=E[Y^2]=\operatorname{Var}(Y)=100$.</li>
+        </ol>
+        <p><strong>Answer: A (100).</strong> Insight: a random $\pm1$ sign never changes the spread of a zero-mean variable.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Pairwise variance identity.</strong> For $\{x_1,\dots,x_{100}\}$ it is given that
+        $\frac{1}{2000}\sum_i\sum_j(x_i-x_j)^2=99$. Find $\frac{1}{99}\sum_i(x_i-\bar x)^2$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Identity: $\displaystyle\sum_i\sum_j (x_i-x_j)^2 = 2n\sum_i(x_i-\bar x)^2$.</p>
+        <ol class="steps">
+          <li>$\sum\sum (x_i-x_j)^2 = 99\times2000=198000$.</li>
+          <li>$198000 = 2(100)\sum(x_i-\bar x)^2 \Rightarrow \sum(x_i-\bar x)^2=990$.</li>
+          <li>$\dfrac{990}{99}=10$.</li>
+        </ol>
+        <p><strong>Answer: 10.</strong> 🧠 Remember: <em>pairwise squared differences $=2n\times$ sum of squared deviations.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> Expected waiting time via states</div>
+    <p>When a question asks "expected number of trials until a <em>pattern</em> occurs", define states by <strong>progress toward the pattern</strong> and write one equation per state.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Two consecutive even numbers.</strong> A fair die is thrown repeatedly. Expected number of throws until two consecutive even numbers appear?<br>
+        A. 2 &nbsp;&nbsp; B. 4 &nbsp;&nbsp; C. 6 &nbsp;&nbsp; D. 8</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Let $a$ = expected remaining throws when the previous throw was <em>not</em> even, $b$ = when it <em>was</em> even. $P(\text{even})=\tfrac12$.</p>
+        <ol class="steps">
+          <li>From $a$: one throw used; half the time move to $b$, half stay at $a$: &nbsp; $a=1+\tfrac12 b+\tfrac12 a$.</li>
+          <li>From $b$: one throw used; half the time finish, half fall back to $a$: &nbsp; $b=1+\tfrac12 a$.</li>
+          <li>Substitute: $a=1+\tfrac12(1+\tfrac12 a)+\tfrac12 a=1.5+\tfrac34 a \Rightarrow \tfrac14 a=1.5 \Rightarrow a=6$.</li>
+        </ol>
+        <p><strong>Answer: C (6).</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> PMF, PDF &amp; CDF</div>
+    <ul class="styled deflist">
+      <li><strong>PMF (discrete):</strong> $p(x)=P(X{=}x)$; valid if $p(x)\ge0$ and $\sum_x p(x)=1$.</li>
+      <li><strong>PDF (continuous):</strong> probability is <em>area</em>: $P(a\le X\le b)=\int_a^b f(x)\,dx$; valid if $f(x)\ge0$ and total area $=1$. For continuous $X$: $P(X{=}a)=0$.</li>
+      <li><strong>CDF:</strong> $F(x)=P(X\le x)$ — non-decreasing, <strong>right</strong>-continuous, $0$ on the far left, $1$ on the far right. Where differentiable, $f(x)=F'(x)$.</li>
+    </ul>
+    <div class="formula">$$P(a\le X\le b)=F(b)-F(a)\qquad \text{Median }m:\ F(m)=0.5$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Uniform CDF.</strong> $F(x)=0$ for $x\lt 0$; $F(x)=x$ for $0\le x\le1$; $F(x)=1$ for $x\gt 1$. Select the correct option.<br>
+        A. This is the CDF of a uniform random variable. &nbsp; B. Not a valid CDF. &nbsp; C. More information required. &nbsp; D. Valid, but not uniform.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>For $X\sim U(0,1)$, $F(x)=x$ on $[0,1]$ exactly. The function is non-decreasing, right-continuous, runs from 0 to 1. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Find the PDF support.</strong> $f(x)=\tfrac{x}{2}$. Which is a valid support?<br>
+        A. $0\le x\le3$ &nbsp;&nbsp; B. $0\le x\le1$ &nbsp;&nbsp; C. $0\le x\le2$ &nbsp;&nbsp; D. $0\le x\le4$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Total area must equal 1: $\int_0^a \tfrac{x}{2}dx=\tfrac{a^2}{4}=1\Rightarrow a=2$. <strong>Answer: C.</strong></p>
+        <p>🧠 Rule: unknown constant or endpoint in a PDF ⇒ set the total integral to 1.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Properties of a discrete CDF (GATE DA 2026, MSQ).</strong> Which are correct for a discrete random variable's CDF $F(x)$?<br>
+        A. Always positive &nbsp;&nbsp; B. Non-decreasing &nbsp;&nbsp; C. Has jump discontinuities &nbsp;&nbsp; D. Left-continuous</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Below the smallest possible value $F(x)=0$, so not always positive (A false). Cumulative probability can't decrease (B true).
+          Discrete masses produce jumps (C true). Every CDF is <em>right</em>-continuous (D false).</p>
+        <p><strong>Answer: B and C.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Median from a CDF.</strong> $F_X(x)=\dfrac{x-t}{4-t}$ for $t\le x\le 4$ (0 below, 1 above). If the median is 3, what is $t$?<br>
+        A. 2 &nbsp;&nbsp; B. 1 &nbsp;&nbsp; C. $-1$ &nbsp;&nbsp; D. 0</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Set $F(3)=0.5$: $\dfrac{3-t}{4-t}=\tfrac12 \Rightarrow 2(3-t)=4-t \Rightarrow 6-2t=4-t \Rightarrow t=2$. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · CDF of $X^2$.</strong> $F_X(x)=\tfrac14(x+1)^2$ for $-1\le x\le1$ (0 below, 1 above). Find $P(X^2\le 0.25)$.<br>
+        A. 0.625 &nbsp;&nbsp; B. 0.25 &nbsp;&nbsp; C. 0.5 &nbsp;&nbsp; D. 0.5625</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Convert the squared inequality: $X^2\le0.25 \iff -0.5\le X\le 0.5$.</li>
+          <li>$F(0.5)=\tfrac14(1.5)^2=0.5625$; &nbsp; $F(-0.5)=\tfrac14(0.5)^2=0.0625$.</li>
+          <li>$P=0.5625-0.0625=0.5$.</li>
+        </ol>
+        <p><strong>Answer: C.</strong> Trap: don't forget the negative half of the interval.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> Bernoulli &amp; Binomial</div>
+    <p><strong>Bernoulli</strong> = one success/failure trial: $P(X{=}1)=p$, $E[X]=p$, $\operatorname{Var}(X)=p(1-p)$.</p>
+    <p><strong>Binomial</strong> — use when there is a <em>fixed</em> number of <em>independent</em> two-outcome trials with the <em>same</em> success probability:</p>
+    <div class="formula">$$P(X{=}k)=\binom{n}{k}p^k(1-p)^{n-k}\qquad E[X]=np\qquad \operatorname{Var}(X)=np(1-p)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Lottery wins and non-wins (MSQ).</strong> A person buys one ticket in each of 10 independent lotteries, each with win probability 0.001. $X$ = number of wins, $Y$ = number of non-wins. Which are correct?<br>
+        A. $Y\sim\text{Bin}(10,0.001)$ &nbsp; B. $Y\sim\text{Bin}(10,0.999)$ &nbsp; C. $X\sim\text{Bin}(10,0.999)$ &nbsp; D. $X\sim\text{Bin}(10,0.001)$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Win probability $0.001$ ⇒ $X\sim\text{Bin}(10,0.001)$; non-win probability $0.999$ ⇒ $Y\sim\text{Bin}(10,0.999)$.</p>
+        <p><strong>Answer: B and D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Overlapping row and column sums (NAT).</strong> A $5\times5$ matrix has independent Bernoulli(0.5) entries. Find the probability that the sum of the second row <em>and</em> the sum of the third column both equal 3 (2 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p><strong>Key difficulty:</strong> the row and column share the entry $A_{2,3}$ — they are not independent. Split on the shared entry.</p>
+        <ol class="steps">
+          <li><em>Shared entry $=1$</em> (prob $\tfrac12$): each remaining group of 4 needs exactly two 1s: $\binom42(\tfrac12)^4=\tfrac{6}{16}$ each. Contribution $\tfrac12\left(\tfrac{6}{16}\right)^2=\tfrac{18}{256}$.</li>
+          <li><em>Shared entry $=0$</em> (prob $\tfrac12$): each group needs exactly three 1s: $\binom43(\tfrac12)^4=\tfrac{4}{16}$ each. Contribution $\tfrac12\left(\tfrac{4}{16}\right)^2=\tfrac{8}{256}$.</li>
+          <li>Total: $\tfrac{18+8}{256}=\tfrac{26}{256}=0.1015625$.</li>
+        </ol>
+        <p><strong>Answer: 0.10.</strong> 🧠 Rule: when two counts overlap, <em>condition on the shared cell</em>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Poisson</div>
+    <p>Counts of events in an interval. The one fact GATE tests again and again:</p>
+    <div class="formula">$$P(X{=}k)=\frac{e^{-\lambda}\lambda^k}{k!}\qquad E[X]=\operatorname{Var}(X)=\lambda$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Poisson &amp; standard normal facts.</strong>
+        I. The mean and variance of a Poisson random variable are equal.
+        II. A standard normal random variable has mean 0 and variance 1.<br>
+        A. Both true &nbsp;&nbsp; B. Only I &nbsp;&nbsp; C. Only II &nbsp;&nbsp; D. Both false</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p>Both are definitional facts. <strong>Answer: A.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Uniform</div>
+    <div class="formula">$$X\sim U(a,b):\quad f(x)=\frac{1}{b-a}\qquad E[X]=\frac{a+b}{2}\qquad \operatorname{Var}(X)=\frac{(b-a)^2}{12}$$</div>
+    <p>For independent continuous variables, probability often becomes <strong>favourable area ÷ total area</strong>.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Two independent uniforms (NAT).</strong> $X\sim U[1,3]$ and $Y\sim U[2,4]$ independent. Find $P(X\ge Y)$ (3 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Total region: rectangle $1\le x\le3,\ 2\le y\le4$, area $=2\times2=4$.</li>
+          <li>Favourable ($x\ge y$): only possible for $2\le y\le3$; for fixed $y$, $x$ runs from $y$ to 3. Area $=\int_2^3(3-y)\,dy=\tfrac12$.</li>
+          <li>$P=\dfrac{0.5}{4}=0.125$.</li>
+        </ol>
+        <p><strong>Answer: 0.125.</strong> 🧠 Draw the square first — geometry beats integration for uniforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Normal distribution &amp; z-score</div>
+    <p>$X\sim N(\mu,\sigma^2)$: $\mu$ = mean, $\sigma^2$ = <em>variance</em> (watch the notation!), $\sigma$ = standard deviation. Standardize with</p>
+    <div class="formula">$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$</div>
+    <p>The z-score = how many standard deviations a value lies above/below the mean.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Normal linear transformation.</strong> $X=aZ+b$ with $Z\sim N(0,1)$. Given $E[X]=1$, $E[(X-E[X])Z]=-2$, $E[(X-E[X])^2]=4$, find $a,b$.<br>
+        A. $a=-2,b=1$ &nbsp; B. $a=2,b=-1$ &nbsp; C. $a=-2,b=-1$ &nbsp; D. $a=1,b=1$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$E[Z]=0 \Rightarrow E[X]=b=1$.</li>
+          <li>$X-E[X]=aZ$, so $E[(X-E[X])Z]=aE[Z^2]=a=-2$.</li>
+          <li>Check: $\operatorname{Var}(X)=a^2=4$ ✓.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> Exponential distribution</div>
+    <p>Waiting times. For rate $\lambda$:</p>
+    <div class="formula">$$f(x)=\lambda e^{-\lambda x}\quad(x\ge0)\qquad P(X\gt x)=e^{-\lambda x}\qquad E[X]=\frac{1}{\lambda}\qquad \operatorname{Var}(X)=\frac{1}{\lambda^2}$$</div>
+    <p>And the star property — <strong>memorylessness</strong>:</p>
+    <div class="formula">$$P(X\gt s+t\mid X\gt s)=P(X\gt t)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Find the rate.</strong> $P(X\ge2)=0.25$. What is $\lambda$?<br>
+        A. $\ln 2$ &nbsp;&nbsp; B. $\ln 4$ &nbsp;&nbsp; C. $\ln 3$ &nbsp;&nbsp; D. $\ln 0.25$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$e^{-2\lambda}=\tfrac14 \Rightarrow -2\lambda=-\ln4 \Rightarrow \lambda=\tfrac{\ln4}{2}=\ln2$. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Mean–variance relation (NAT).</strong> $X\sim\text{Exp}(\lambda)$ with $5E[X]=\operatorname{Var}(X)$. Find $\lambda$ (1 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$\dfrac{5}{\lambda}=\dfrac{1}{\lambda^2}\Rightarrow 5\lambda=1\Rightarrow\lambda=0.2$. <strong>Answer: 0.2.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Memorylessness (GATE DA 2026, NAT).</strong> $P(X\gt5)=0.35$. Find $P(X\gt10\mid X\gt5)$ (2 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Memoryless with $s=t=5$: $P(X\gt10\mid X\gt5)=P(X\gt5)=0.35$. <strong>Answer: 0.35.</strong> No computation — recognize the property.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Floor of an exponential.</strong> $Y=\lfloor X\rfloor$ where $X$ is exponential with mean $\tfrac{1}{\ln 10}$. For positive integer $\ell$, $P(Y{=}\ell)=q^{\ell}(1-q)$. Find $q$.<br>
+        A. 0.1 &nbsp;&nbsp; B. 0.01 &nbsp;&nbsp; C. 0.5 &nbsp;&nbsp; D. 0.434</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Rate $\lambda=\ln10$. Event $Y=\ell$ means $\ell\le X\lt \ell+1$.</li>
+          <li>$P(Y{=}\ell)=e^{-\lambda\ell}-e^{-\lambda(\ell+1)}=e^{-\lambda\ell}(1-e^{-\lambda})$.</li>
+          <li>Compare with $q^{\ell}(1-q)$: $q=e^{-\lambda}=e^{-\ln10}=\tfrac{1}{10}$.</li>
+        </ol>
+        <p><strong>Answer: A (0.1).</strong> 🧠 The floor of an exponential is <em>geometric</em> with $q=e^{-\lambda}$.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Student's t vs normal</div>
+    <ul class="styled">
+      <li>$t$ is symmetric around 0 like the normal but has <strong>heavier tails</strong>.</li>
+      <li>As degrees of freedom grow, $t\to N(0,1)$.</li>
+      <li>$t_1$ is the <strong>Cauchy</strong> distribution.</li>
+    </ul>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Compare normal and $t_1$ (GATE DA 2026, MSQ).</strong> $Z\sim N(0,1)$ with pdf $g$, CDF $G$; $Y\sim t_1$ with pdf $h$, CDF $H$. Let $c\gt0$ satisfy $g(c)=h(c)$. Which are correct?<br>
+        A. $G(0)=H(0)$ &nbsp; B. $G(c)\lt H(c)$ &nbsp; C. $G(-c)\lt H(-c)$ &nbsp; D. $g(0)=h(0)$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Both symmetric about 0: $G(0)=H(0)=0.5$ — A true.</li>
+          <li>Between 0 and $c$ the normal density is taller, so it accumulates more: $G(c)\gt H(c)$ — B false.</li>
+          <li>Symmetry: $G(-c)=1-G(c)$, $H(-c)=1-H(c)$; since $G(c)\gt H(c)$, we get $G(-c)\lt H(-c)$ — C true.</li>
+          <li>Peaks: $g(0)=\tfrac{1}{\sqrt{2\pi}}\ne\tfrac{1}{\pi}=h(0)$ — D false.</li>
+        </ol>
+        <p><strong>Answer: A and C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> Chi-square distribution</div>
+    <p>Sum of squared independent standard normals:</p>
+    <div class="formula">$$Z_1^2+\cdots+Z_k^2\sim\chi^2_k\qquad E[\chi^2_k]=k\qquad \operatorname{Var}(\chi^2_k)=2k$$</div>
+    <p>Bonus fact: $\chi^2_2$ is exponential with mean 2.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Square of a standard normal.</strong> $Y=Z^2$ where $Z=\frac{X-\mu}{\sigma}$, $X\sim N(\mu,\sigma^2)$. Variance of $Y$?<br>
+        A. 1 &nbsp;&nbsp; B. 2 &nbsp;&nbsp; C. 3 &nbsp;&nbsp; D. 4</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$Z\sim N(0,1)$, so $Y\sim\chi^2_1$ and $\operatorname{Var}(Y)=2k=2$. <strong>Answer: B.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Sums of squared normals (GATE DA 2026, MSQ).</strong> $X_1,\dots,X_n$ iid $N(0,1)$, $\bar X=\tfrac1n\sum X_i$. Which are correct?<br>
+        A. $\sum X_i^2\sim\chi^2_n$ &nbsp; B. $\sum(X_i-\bar X)^2\sim\chi^2_{n-1}$ &nbsp; C. $X_1^2+X_n^2$ is exponential with mean 2 &nbsp; D. $(\sqrt n\,\bar X)^2\sim\chi^2_2$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>A: standard result — true. B: estimating $\bar X$ consumes one degree of freedom — true.
+          C: $X_1^2+X_n^2\sim\chi^2_2$ = exponential with mean 2 — true.
+          D: $\sqrt n\,\bar X\sim N(0,1)$, so its square is $\chi^2_{1}$, not $\chi^2_2$ — false.</p>
+        <p><strong>Answer: A, B and C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Joint distributions, marginals &amp; covariance</div>
+    <p>A joint distribution describes two variables together. To get one variable alone, <strong>sum (or integrate) out</strong> the other — the result is the <em>marginal</em>:</p>
+    <div class="formula">$$P(X{=}x)=\sum_y P(X{=}x,Y{=}y)\qquad f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy$$</div>
+    <p><strong>Covariance</strong> measures linear co-movement:</p>
+    <div class="formula">$$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$$</div>
+    <ul class="styled">
+      <li>Positive → move together; negative → move oppositely; zero → no <em>linear</em> co-movement.</li>
+      <li>Independence ⇒ zero covariance. <strong>Zero covariance does NOT imply independence.</strong></li>
+    </ul>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Covariance of coin indicators (NAT).</strong> Two fair coins tossed independently. $X=1$ if both are heads, else 0. $Y=1$ if at least one head, else 0. Find $\operatorname{Cov}(X,Y)$ (3 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$E[X]=P(HH)=\tfrac14$; &nbsp; $E[Y]=1-P(TT)=\tfrac34$.</li>
+          <li>Whenever $X=1$, also $Y=1$, so $XY=X$ and $E[XY]=\tfrac14$.</li>
+          <li>$\operatorname{Cov}=\tfrac14-\tfrac14\cdot\tfrac34=\tfrac{1}{16}=0.0625$.</li>
+        </ol>
+        <p><strong>Answer: 0.063.</strong> 🧠 For 0/1 indicators, $E[XY]=P(\text{both events happen})$.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Pearson &amp; Spearman correlation</div>
+    <p>Pearson standardizes covariance to $[-1,1]$ and measures <strong>linear</strong> association;
+      Spearman applies Pearson to <strong>ranks</strong> and measures <strong>monotonic</strong> association (works for ordinal data).</p>
+    <div class="formula">$$\rho_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}\qquad
+      r=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_i(x_i-\bar x)^2}\sqrt{\sum_i(y_i-\bar y)^2}}$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Pearson and Spearman (MSQ).</strong> Which are correct?<br>
+        A. If $|r_{xy}|$ is close to 1, then $x,y$ have a linear relationship.<br>
+        B. If $x,y$ have a linear relationship, then $|r_{xy}|$ is close to 1.<br>
+        C. If $|r_S|$ is close to 1, then $x,y$ have a monotonic relationship.<br>
+        D. If $|r_S|$ is close to 0, there is no monotonic association between $x,y$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p><strong>Intended answer: A and C.</strong></p>
+        <p><em>Wording nuance:</em> exact points on a non-horizontal line give $|r|=1$; but a <em>noisy</em> linear trend need not have $r$ near 1 (so B fails under the noisy reading). And $|r_S|\approx0$ means no <em>strong</em> monotonic rank association — weak/noisy patterns may still exist (D too absolute).</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Spearman and concordant pairs.</strong> Which statements are <em>not</em> true?<br>
+        I. Spearman rank correlation can be used for ordinal variables.<br>
+        II. Pearson correlation takes a value between 0 and +1.<br>
+        III. Two observations are concordant when one variable rises while the other falls.<br>
+        A. II and III &nbsp;&nbsp; B. I and III &nbsp;&nbsp; C. I and II &nbsp;&nbsp; D. III</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>I is true (ranks handle ordinal data). II is false — Pearson's range is $[-1,1]$. III is false — opposite-direction pairs are <em>discordant</em>; concordant pairs move the <em>same</em> direction.</p>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Calculate Pearson correlation.</strong> $X=\{5.1,4.9,4.7,4.6,5.0\}$, $Y=\{3.5,3.0,3.2,3.1,3.6\}$.<br>
+        A. 1.00 &nbsp;&nbsp; B. 0.00 &nbsp;&nbsp; C. $-0.68$ &nbsp;&nbsp; D. 0.68</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$\bar x=4.86$, $\bar y=3.28$; $\sum(x_i-\bar x)(y_i-\bar y)=0.146$; $\sum(x_i-\bar x)^2=0.172$; $\sum(y_i-\bar y)^2=0.268$.</p>
+        <div class="formula">$$r=\frac{0.146}{\sqrt{0.172\times0.268}}\approx0.68$$</div>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Non-linear dependence with zero correlation.</strong> $X\sim U(-1,1)$ and $Y\mid X{=}x\sim U(x^2-0.1,\ x^2+0.1)$. Find $\operatorname{Corr}(X,Y)$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>Conditional mean = interval midpoint: $E[Y\mid X{=}x]=x^2$.</li>
+          <li>$E[XY]=E[X\,E(Y\mid X)]=E[X^3]=0$ by symmetry of $U(-1,1)$; also $E[X]=0$.</li>
+          <li>$\operatorname{Cov}(X,Y)=0 \Rightarrow \operatorname{Corr}(X,Y)=0$.</li>
+        </ol>
+        <p><strong>Answer: 0.</strong></p>
+        <div class="callout trap">
+          <div class="callout-label">⚠️ Crucial lesson</div>
+          <p>$Y$ clearly depends on $X$ (through $X^2$), yet Pearson correlation is zero — the relationship is symmetric and non-linear. <strong>Zero correlation ≠ independence.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> Covariance matrix</div>
+    <p>With $n$ numerical features, $\Sigma\in\mathbb{R}^{n\times n}$: diagonal entries are variances $\Sigma_{ii}=\operatorname{Var}(X_i)$; off-diagonals are covariances $\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)$. It is symmetric.</p>
+    <div class="practice">
+      <p class="pq"><strong>Q.</strong> If a dataset contains $n$ features, is the variance-covariance matrix $n\times n$? &nbsp; A. False &nbsp; B. True</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: B.</strong> One row and one column per feature.</p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Descriptive statistics</div>
+    <ul class="styled deflist">
+      <li><strong>Mean:</strong> $\bar x=\tfrac1n\sum x_i$ &nbsp; <strong>Median:</strong> middle value after sorting &nbsp; <strong>Mode:</strong> most frequent value.</li>
+      <li><strong>Standard deviation:</strong> square root of variance.</li>
+    </ul>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Updated mean.</strong> The average of 50 data points is 40. What is the average after adding a new observation of value 142?</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Old total $=50\times40=2000$; new total $=2142$; new count $=51$; new mean $=2142/51=42$. <strong>Answer: 42.</strong></p>
+        <p>🧠 Rule: update means through <em>totals</em>, never by averaging averages.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · z-score normalization.</strong> Income attribute: min 46000, max 170000, mean 96000, SD 21000. The z-score-normalized value of ₹106000 is closest to:<br>
+        A. 0.217 &nbsp;&nbsp; B. 0.476 &nbsp;&nbsp; C. 0.623 &nbsp;&nbsp; D. 2.304</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$z=\dfrac{x-\mu}{\sigma}=\dfrac{106000-96000}{21000}\approx0.476$. <strong>Answer: B.</strong> The min and max are pure distractors (they belong to <em>min-max</em> normalization).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> Skewness</div>
+    <p>The mean is pulled toward the long tail:</p>
+    <div class="formula">$$\text{Right-skewed: Mean}\gt\text{Median}\gt\text{Mode}\qquad
+      \text{Left-skewed: Mean}\lt\text{Median}\lt\text{Mode}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul><li><strong>The mean follows the tail.</strong> Alphabetical order (Mean, Median, Mode) matches the right-skewed inequality.</li></ul>
+    </div>
+    <div class="practice">
+      <p class="pq"><strong>Q · Mean, median, mode (MSQ).</strong> Which usually hold?<br>
+        A. Left-skewed: Mean &gt; Median &gt; Mode &nbsp; B. Right-skewed: Mean &lt; Median &lt; Mode<br>
+        C. Left-skewed: Mean &lt; Median &lt; Mode &nbsp; D. Right-skewed: Mean &gt; Median &gt; Mode</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: C and D.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Q–Q plots</div>
+    <p>A Q–Q plot compares <strong>sample quantiles</strong> with <strong>theoretical quantiles</strong>. Match ⇒ points on a straight reference line. Curvature ⇒ shape mismatch; tail deviations ⇒ different tail behaviour; isolated points ⇒ outliers.</p>
+    <div class="practice">
+      <p class="pq"><strong>Q · Exponential Q–Q plot (MSQ).</strong> An exponential Q–Q plot is made for a sample that follows the exponential distribution. Which are correct?<br>
+        A. Points lie only in the first and third quadrants. &nbsp; B. Points fall along the line through the origin with slope 1.<br>
+        C. Points lie only in the first quadrant. &nbsp; D. Points fall along any arbitrary straight line through the origin.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Exponential values are non-negative ⇒ both axes non-negative ⇒ first quadrant (C). Comparing against the same fully specified exponential, the reference line is $y=x$, slope 1 (B).</p>
+        <p><strong>Answer: B and C.</strong> <em>Nuance:</em> two exponentials with different scales give a straight line with slope $\ne1$.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Central Limit Theorem</div>
+    <p>For iid observations with mean $\mu$ and finite variance $\sigma^2$, the <em>sample mean</em> becomes approximately normal for large $n$:</p>
+    <div class="formula">$$\bar X\approx N\!\left(\mu,\ \frac{\sigma^2}{n}\right)\qquad SE(\bar X)=\frac{\sigma}{\sqrt n}$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>The CLT applies to <strong>sums and sample means</strong> — it does <em>not</em> say the original observations become normal.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Binomial sum via CLT.</strong> $Y=\sum_{i=1}^{300}X_i$, $X_i\sim\text{Bernoulli}(0.25)$ iid. Approximate $P(60\le Y\le90)$.<br>
+        A. $\Phi(2)-\Phi(-2)$ &nbsp; B. $\Phi(1)-\Phi(-1)$ &nbsp; C. $\Phi(3)-\Phi(-3)$ &nbsp; D. $\Phi(90)-\Phi(60)$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li>$E[Y]=np=75$; $\operatorname{Var}(Y)=np(1-p)=56.25$; $SD=7.5$.</li>
+          <li>$z_L=\dfrac{60-75}{7.5}=-2$; $z_U=\dfrac{90-75}{7.5}=2$.</li>
+          <li>$P\approx\Phi(2)-\Phi(-2)$.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> Sample proportion</div>
+    <div class="formula">$$\hat p=\frac1n\sum_{i=1}^{n}X_i\qquad E[\hat p]=p\qquad \operatorname{Var}(\hat p)=\frac{p(1-p)}{n}$$</div>
+    <p>More data ⇒ smaller variance ⇒ a more reliable estimate.</p>
+    <div class="practice">
+      <p class="pq"><strong>Q · Sample proportion (MSQ).</strong> Which are correct?<br>
+        A. $E[\hat p]=p$ &nbsp; B. $E[\hat p]=p/n$ &nbsp; C. As $n$ increases, $\operatorname{Var}(\hat p)$ decreases &nbsp; D. $\operatorname{Var}(\hat p)$ doesn't depend on $n$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: A and C</strong> — directly from the formulas above.</p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> Hypothesis testing, p-values &amp; errors</div>
+    <p>Set up $H_0$ (null) vs $H_1$ (alternative), pick significance level $\alpha$, then:</p>
+    <div class="formula">$$p\text{-value}\lt\alpha\ \Rightarrow\ \text{reject }H_0\qquad p\text{-value}\ge\alpha\ \Rightarrow\ \text{fail to reject }H_0$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>"Fail to reject" is <strong>not</strong> "accept" or "prove" the null. And you may never switch a two-sided test to one-sided after seeing the result.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Error</th><th>Meaning</th><th>Probability</th><th>Think</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Type I</strong></td><td>Rejecting a true $H_0$</td><td>$\alpha$</td><td>False alarm 🚨</td></tr>
+          <tr><td><strong>Type II</strong></td><td>Failing to reject a false $H_0$</td><td>$\beta$</td><td>Missed detection 😴</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">$$\text{Power}=1-\beta$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Interpret a p-value.</strong> Two-sided t-test at $\alpha=0.05$ of $H_0:\mu=50$ vs $H_1:\mu\ne50$; p-value $=0.03$. Which is correct?<br>
+        A. Convert to a one-sided test. &nbsp; B. Reject $H_0$ at 5%. &nbsp; C. Accept $H_0$ because $0.03\lt0.05$. &nbsp; D. A Type II error has definitely occurred.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>$0.03\lt0.05$ ⇒ reject $H_0$. Changing the test direction after the result is invalid; a Type II error concerns <em>not</em> rejecting a false null.</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> z-test, t-test, chi-square &amp; F-test</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Test</th><th>Use when…</th><th>Statistic</th></tr></thead>
+        <tbody>
+          <tr><td><strong>z-test</strong></td><td>Compare a mean; population $\sigma$ <em>known</em></td><td>$z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$</td></tr>
+          <tr><td><strong>t-test</strong></td><td>Compare a mean; $\sigma$ <em>unknown</em> (use sample $s$); $df=n-1$</td><td>$t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$</td></tr>
+          <tr><td><strong>Chi-square</strong></td><td>Categorical counts (goodness-of-fit, independence)</td><td>$\chi^2=\sum\dfrac{(O_i-E_i)^2}{E_i}$</td></tr>
+          <tr><td><strong>F-test</strong></td><td>Compare two variances</td><td>$F=\dfrac{s_1^2}{s_2^2}$</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="practice">
+      <p class="pq"><strong>Q · Choose the F-test.</strong> Which situation most appropriately requires an F-test?<br>
+        A. Testing a mean when the variance is known. &nbsp; B. Testing whether two population variances are equal.<br>
+        C. Testing independence between categorical variables. &nbsp; D. Testing a sample mean, small sample.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: B.</strong> The others: A → z-test, C → chi-square, D → t-test.</p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> Simple linear regression &amp; OLS</div>
+    <p>The model, with every symbol decoded:</p>
+    <div class="formula">$$y_i=\beta_0+\beta_1 x_i+\epsilon_i$$</div>
+    <ul class="styled deflist">
+      <li>$x_i$: input · $y_i$: observed output · $\beta_0$: intercept · $\beta_1$: slope · $\epsilon_i$: error.</li>
+      <li>One input, one output = <strong>SISO</strong>. Fitted value $\hat y_i=\hat\beta_0+\hat\beta_1 x_i$; residual $e_i=y_i-\hat y_i$.</li>
+    </ul>
+    <p><strong>Classical OLS assumptions:</strong> linearity in parameters; errors with zero mean; constant error variance; independent observations/errors; no perfect multicollinearity; predictors measured accurately.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Regression model properties (MSQ).</strong> For $y_i=\beta_0+\beta_1x_i+\epsilon_i$, which are true?<br>
+        A. It is MISO. &nbsp; B. It is SISO. &nbsp; C. The independent variable is assumed measured without error. &nbsp;
+        D. $\partial SSE/\partial\beta_0=0$ gives $\sum\epsilon_i=0$, where $SSE=\sum\epsilon_i^2$.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>One predictor, one output ⇒ SISO (B). Classical model treats $x$ as exact (C). Differentiating $SSE=\sum(y_i-\beta_0-\beta_1x_i)^2$ w.r.t. $\beta_0$ gives $-2\sum e_i=0\Rightarrow\sum e_i=0$ (D).</p>
+        <p><strong>Answer: B, C and D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · OLS assumptions (MSQ).</strong> Which are assumptions of ordinary least squares?<br>
+        A. Independent-variable measurements are accurate. &nbsp; B. Errors have expected value zero.<br>
+        C. The relationship is linear. &nbsp; D. Errors have constant variance.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: A, B, C and D</strong> — all four are classical assumptions.</p></div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Interpreting unbiasedness.</strong> If OLS assumptions hold, $E[\hat\beta_0]=\beta_0$, $E[\hat\beta_1]=\beta_1$. Select the correct option.<br>
+        A. The true parameter values are usually unknown because the population / data-generating process is unknown.<br>
+        B. The true parameter values can always be calculated exactly from a finite sample.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>Unbiased means <em>centred on the truth over repeated sampling</em> — not that one finite sample reveals the exact truth. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> Correlation, linearity &amp; $R^2$</div>
+    <p>If $Y=a+bX$ exactly ($b\ne0$) then $|r|=1$; a noisy line $Y=a+bX+\epsilon$ has smaller $|r|$.</p>
+    <div class="formula">$$R^2=1-\frac{SSE}{SST},\qquad SSE=\sum(y_i-\hat y_i)^2,\quad SST=\sum(y_i-\bar y)^2$$</div>
+    <p>$R^2$ = proportion of response variation explained by the model. In simple linear regression with intercept, $R^2=r^2$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Linearity vs correlation (MSQ).</strong> Statement A: $X,Y$ have a linear relationship. Statement B: Pearson correlation is close to $\pm1$. Which are correct?<br>
+        A. B implies A. &nbsp; B. A implies B. &nbsp; C. B does not necessarily imply A. &nbsp; D. A does not necessarily imply B.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p><strong>Supplied answer: B and C</strong> — reading "linear relationship" as an exact deterministic line, A ⇒ B; while $r$ near 1 doesn't prove exact linearity.</p>
+        <p><em>Exam caution:</em> check whether "linear relationship" means an exact line or a noisy tendency — the answer can flip with the wording.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Strong $R^2$.</strong> Which value indicates a strong linear relationship? &nbsp; A. 0.90 &nbsp; B. 0.00 &nbsp; C. 0.30 &nbsp; D. $-0.86$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p><strong>Answer: A</strong> — the model explains 90% of response variation. <em>Nuance:</em> in-sample OLS with intercept has $0\le R^2\le1$; negative $R^2$ can appear on test data or intercept-free models.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Observations and $R^2$.</strong> The higher the $R^2$, the more closely observations group around:<br>
+        A. Averages of the predicted variable &nbsp; B. The intercept &nbsp; C. The origin &nbsp; D. The best-fit line</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p><strong>Answer: D.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> Linear boundaries &amp; feature transformation</div>
+    <p>A linear/affine decision boundary in 2-D: $w_1x+w_2y+b=0$ — any straight line qualifies.
+      A boundary that is non-linear in the original space may become linear after a feature transformation.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Identify linear boundaries (MSQ).</strong> Which are linear decision boundaries in $(x,y)$?<br>
+        A. $y=a_0+a_1x$ &nbsp; B. $y=a_0$ &nbsp; C. $y=x$ &nbsp; D. $y=a_1x$</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p>Every option is a straight line. <strong>Answer: A, B, C and D.</strong></p></div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Circular boundary transformation.</strong> Class 0: $x^2+y^2\le c^2$; class 1: outside. Define $z=x^2+y^2$. Can the classes be separated by a linear boundary in $z$-space? &nbsp; A. True &nbsp; B. False</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>In $z$-space: class 0 is $z\le c^2$, class 1 is $z\gt c^2$ — the boundary $z=c^2$ is a linear threshold in one dimension. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">38</span> Correlation vs causation &amp; analytics basics</div>
+    <p>Correlation = varying together. Causation = changing one <em>creates</em> change in the other.
+      A correlation may come from direct causation, reverse causation, a confounder, selection effects, or coincidence — so
+      <strong>correlation alone does not prove causation</strong>.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Smoking and lung cancer.</strong> $A$ = cigarettes/day, $B$ = lung cancer status; a study finds $A,B$ correlated. Select the correct option.<br>
+        A. A causal relationship exists owing to the harmful effects of cigarettes, not merely because the two are correlated.<br>
+        B. A causal relationship exists because the variables are correlated. &nbsp; C. None of the above. &nbsp; D. No causal relationship exists.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <p>B claims correlation itself establishes causation — wrong. A separates the independent causal evidence from the correlation. <strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Analytics, classification, imputation (MSQ).</strong> Which are true?<br>
+        A. Data analytics is particularly useful for high-dimensional data that cannot be fully visualized.<br>
+        B. In supervised classification, data points have class labels.<br>
+        C. Data imputation can be regarded as function approximation.<br>
+        D. The same data may be separable by a linear boundary and also by a non-linear one.</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans"><p>All four are standard facts. <strong>Answer: A, B, C and D.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">39</span> Entropy &amp; information gain</div>
+    <p><strong>Entropy</strong> measures impurity/uncertainty of class labels ($0$ = pure, higher = more mixed):</p>
+    <div class="formula">$$H(C)=-\sum_{i=1}^{k}p_i\log_2 p_i$$</div>
+    <p><strong>Information gain</strong> = impurity before split − weighted impurity after split:</p>
+    <div class="formula">$$IG(C,A)=H(C)-\sum_v \frac{|C_v|}{|C|}\,H(C_v)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Cricket matches and pitch (image-based, NAT).</strong> Ten matches between Green and Blue:
+        spin-friendly (S) pitches — matches 1,2,4,7,10 with winners G,B,B,G,G; pace-friendly (F) — matches 3,5,6,8,9 with winners B,G,B,B,B.
+        Overall: Green 4, Blue 6. Find the information gain of splitting Winner by Pitch (2 dp).</p>
+      <button class="show-ans" aria-expanded="false">Show solution</button>
+      <div class="ans">
+        <ol class="steps">
+          <li><em>Parent entropy:</em> $H(C)=-0.4\log_2 0.4-0.6\log_2 0.6\approx0.97095$.</li>
+          <li><em>Spin group</em> (3 G, 2 B): $H(S)=-\tfrac35\log_2\tfrac35-\tfrac25\log_2\tfrac25\approx0.97095$.</li>
+          <li><em>Pace group</em> (1 G, 4 B): $H(F)=-\tfrac15\log_2\tfrac15-\tfrac45\log_2\tfrac45\approx0.72193$.</li>
+          <li><em>Weighted child entropy:</em> $0.5(0.97095)+0.5(0.72193)\approx0.84644$.</li>
+          <li>$IG=0.97095-0.84644=0.12451$.</li>
+        </ol>
+        <p><strong>Answer: 0.12.</strong> Meaning: knowing the pitch reduces winner-uncertainty by ≈0.12 bits.</p>
+        <p>🧠 Recognition clue: "decision tree + split by attribute + information gain" ⇒ parent entropy − weighted child entropy. Always.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">40</span> Final formula revision sheet</div>
+    <p>Everything on this page compressed into one sweep. Read top to bottom the night before.</p>
+    <div class="callout example">
+      <div class="callout-label">Basic probability &amp; counting</div>
+      <p>$P(A^c)=1-P(A)$ · $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ · $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$ · independent: $P(A\cap B)=P(A)P(B)$ ·
+        Bayes: $P(B\mid A)=\dfrac{P(A\mid B)P(B)}{P(A)}$</p>
+      <p>${}^nP_r=\dfrac{n!}{(n-r)!}$ · $\binom nr=\dfrac{n!}{r!(n-r)!}$ · stars &amp; bars: non-negative $\binom{n+k-1}{k-1}$, positive $\binom{n-1}{k-1}$</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">Expectation, variance &amp; covariance</div>
+      <p>$E[X]=\sum xP(X{=}x)$ or $\int xf(x)dx$ · $\operatorname{Var}(X)=E[X^2]-(E[X])^2$ ·
+        $E[aX+b]=aE[X]+b$ · $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ · $\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">Distributions</div>
+      <p><strong>Bernoulli:</strong> $E=p$, $\operatorname{Var}=p(1-p)$ &nbsp;·&nbsp;
+        <strong>Binomial:</strong> $P(X{=}k)=\binom nk p^k(1-p)^{n-k}$, $E=np$, $\operatorname{Var}=np(1-p)$ &nbsp;·&nbsp;
+        <strong>Poisson:</strong> $P(X{=}k)=\dfrac{e^{-\lambda}\lambda^k}{k!}$, $E=\operatorname{Var}=\lambda$</p>
+      <p><strong>Uniform:</strong> $E=\dfrac{a+b}{2}$, $\operatorname{Var}=\dfrac{(b-a)^2}{12}$ &nbsp;·&nbsp;
+        <strong>Exponential:</strong> $P(X\gt x)=e^{-\lambda x}$, $E=\dfrac1\lambda$, $\operatorname{Var}=\dfrac{1}{\lambda^2}$, memoryless &nbsp;·&nbsp;
+        <strong>Normal:</strong> $Z=\dfrac{X-\mu}{\sigma}$ &nbsp;·&nbsp;
+        <strong>Chi-square:</strong> $\sum Z_i^2\sim\chi^2_k$, $E=k$, $\operatorname{Var}=2k$</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">CDF, CLT &amp; sample statistics</div>
+      <p>$F(x)=P(X\le x)$ · $P(a\le X\le b)=F(b)-F(a)$ · $f=F'$ ·
+        $E[\bar X]=\mu$, $\operatorname{Var}(\bar X)=\dfrac{\sigma^2}{n}$, $SE=\dfrac{\sigma}{\sqrt n}$ ·
+        $E[\hat p]=p$, $\operatorname{Var}(\hat p)=\dfrac{p(1-p)}{n}$</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">Tests, correlation, regression, trees &amp; networks</div>
+      <p>$z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$ · $t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$ · $\chi^2=\sum\dfrac{(O-E)^2}{E}$ · $F=\dfrac{s_1^2}{s_2^2}$ · $p\lt\alpha\Rightarrow$ reject $H_0$</p>
+      <p>$r=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum(x_i-\bar x)^2}\sqrt{\sum(y_i-\bar y)^2}}$ · $R^2=1-\dfrac{SSE}{SST}$ ·
+        $\hat\beta_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$, $\hat\beta_0=\bar y-\hat\beta_1\bar x$</p>
+      <p>$H(C)=-\sum p_i\log_2 p_i$ · $IG(C,A)=H(C)-\sum_v\dfrac{|C_v|}{|C|}H(C_v)$ ·
+        Bayesian network: $P(X_1,\dots,X_n)=\prod_i P(X_i\mid\text{Parents}(X_i))$</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">41</span> Final twenty memory rules</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 The twenty rules — one line each</div>
+      <ul>
+        <li>"At least one" → calculate none and subtract from 1.</li>
+        <li>"Given that" → conditional probability.</li>
+        <li>Reverse conditioning → Bayes' theorem.</li>
+        <li>Several sources → total probability before Bayes.</li>
+        <li>Fixed independent success/failure trials → binomial.</li>
+        <li>Waiting time → exponential.</li>
+        <li>Exponential → remember memorylessness.</li>
+        <li>Unknown PDF endpoint → total integral equals 1.</li>
+        <li>CDF interval probability → upper CDF minus lower CDF.</li>
+        <li>Sample mean or large sum → CLT.</li>
+        <li>Pearson measures linear association.</li>
+        <li>Spearman measures monotonic rank association.</li>
+        <li>Zero correlation does not prove independence.</li>
+        <li>The mean follows the long tail in a skewed distribution.</li>
+        <li>Known population σ → z-test.</li>
+        <li>Unknown population σ → t-test.</li>
+        <li>Categorical counts → chi-square.</li>
+        <li>Compare variances → F-test.</li>
+        <li>Decision-tree split → parent entropy minus weighted child entropy.</li>
+        <li>Bayesian-network joint → multiply every node conditioned on its parents.</li>
+      </ul>
+    </div>
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📝</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Done studying? Test yourself.</div>
+        <div class="practice-cta-sub">Attempt the real GATE questions with the timer running.</div>
+      </div>
+      <a class="btn btn-primary" href="gate-questions.html">GATE questions →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260620"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html>

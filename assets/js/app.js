@@ -98,6 +98,10 @@
         '<div class="nav-section-label">Topics</div>' +
         links +
         '<div class="nav-section-label">Reference</div>' +
+        (subject === "probability-statistics"
+          ? '<a class="topic-link' + (page === "detailed-study" ? " active" : "") + '" href="' + laRoot + '/detailed-study.html">' +
+              '<span class="topic-ico">📚</span><span>Detailed study</span></a>'
+          : "") +
         '<a class="topic-link' + (page === "symbols" ? " active" : "") + '" href="' + laRoot + '/symbols.html">' +
           '<span class="topic-ico">🔣</span><span>Symbols glossary</span></a>' +
         '<a class="topic-link' + (page === "practice" ? " active" : "") + '" href="' + laRoot + '/practice.html">' +
