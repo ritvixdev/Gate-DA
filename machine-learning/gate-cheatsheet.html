@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>GATE Cheat Sheet · GATE DA Machine Learning</title>
+<meta name="description" content="The ultimate GATE DA Machine Learning cheat sheet — concept map, formula decoders, every algorithm, metrics, traps and a five-minute final revision. With a quick-glance collapsible formula tree.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260719">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260719">
+<style>
+  /* ---- GATE Cheat Sheet: same calm, airy design as Detailed Study ---- */
+  .concept-card{padding:38px 38px 34px;margin-bottom:42px}
+  .concept-card p{font-size:15.5px;line-height:2.05;margin:18px 0;color:var(--body)}
+  .concept-card strong{color:var(--body-strong);font-weight:650}
+  .concept-card ul.styled li, .concept-card ul.deflist li{line-height:2;margin:13px 0;color:var(--body)}
+  .sec-head{margin-bottom:24px}
+
+  .formula{
+    margin:30px 0;padding:22px 24px;
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-radius:14px;
+    text-align:center;
+    overflow-x:auto;scrollbar-width:thin;
+  }
+  .formula .katex-display{margin:14px 0}
+  .formula .katex-display:first-child{margin-top:2px}
+  .formula .katex-display:last-child{margin-bottom:2px}
+  .formula .katex{font-size:1.1em;color:var(--body-strong)}
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
+
+  .callout{margin:28px 0;padding:22px 26px}
+  .callout p{margin:13px 0;line-height:2}
+  .imagine{margin:28px 0;padding:22px 26px}
+  .memory-box{margin:30px 0;padding:24px 28px}
+  .memory-box li{margin:14px 0;line-height:1.95}
+  .tbl-wrap{margin:28px 0}
+  .tbl-wrap td,.tbl-wrap th{padding:14px 16px;line-height:1.8}
+  .decode{margin:20px 0 24px;padding-left:4px}
+  .decode li{line-height:2;margin:12px 0}
+
+  /* Quiet boxes: differentiation by label only */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{color:var(--muted)}
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* ---- Quick-glance collapsible formula tree ---- */
+  details.qg{
+    background:var(--surface-card);
+    border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
+    margin:0 0 42px;
+    max-width:820px;
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  details.qg summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;gap:14px;
+    padding:24px 28px;
+    user-select:none;
+  }
+  details.qg summary::-webkit-details-marker{display:none}
+  .qg-arrow{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--surface-soft);border:1px solid var(--hairline);
+    color:var(--muted);font-size:13px;
+    transition:transform .25s var(--ease);
+  }
+  details.qg[open] .qg-arrow{transform:rotate(90deg)}
+  .qg-titles{flex:1;min-width:0}
+  .qg-title{display:block;font-size:17px;font-weight:650;color:var(--ink)}
+  .qg-sub{display:block;font-size:13px;color:var(--muted);margin-top:3px;line-height:1.6}
+  .qg-body{padding:6px 28px 30px;border-top:1px solid var(--hairline-soft)}
+
+  .qg-folder{
+    font-family:var(--font-mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    margin:26px 0 6px;padding-bottom:8px;
+    border-bottom:1px solid var(--hairline-soft);
+  }
+  .qg-list{list-style:none;padding:0;margin:0 0 0 4px}
+  .qg-item{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:9px 0 9px 18px;margin:0;
+    border-left:2px solid var(--hairline-soft);
+    line-height:1.9;position:relative;
+  }
+  .qg-item::before{
+    content:"";position:absolute;left:0;top:1.15em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  /* Sub-folder inside a topic */
+  .qg-group{
+    list-style:none;margin:0;padding:8px 0 4px 18px;
+    border-left:2px solid var(--hairline-soft);position:relative;
+  }
+  .qg-group::before{
+    content:"";position:absolute;left:0;top:1.35em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  .qg-group-name{
+    display:block;font-family:var(--font-mono);
+    font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--body-strong);margin:2px 0 2px;
+  }
+  .qg-sub{list-style:none;padding:0;margin:4px 0 6px 8px}
+  .qg-sub .qg-item{border-left:2px dashed var(--hairline-soft)}
+  .qg-name{min-width:210px;flex:0 0 auto;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .qg-math{flex:1;min-width:0;font-size:14.5px;color:var(--body-strong);overflow-x:auto;scrollbar-width:none}
+  .qg-math::-webkit-scrollbar{display:none}
+
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+    details.qg summary{padding:18px 14px}
+    .qg-body{padding:4px 14px 22px}
+    .qg-item{gap:6px;padding-left:12px}
+    .qg-group{padding-left:12px}
+    .qg-sub{margin-left:4px}
+    .qg-name{min-width:100%;flex-basis:100%}
+  }
+</style>
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="cheatsheet" data-content>
+  <div class="hero">
+    <span class="tag">Reference · GATE Cheat Sheet</span>
+    <h1>The Ultimate<br>GATE Cheat Sheet</h1>
+    <p class="lede">Every algorithm, formula, trap and decision rule for GATE DA Machine Learning — combined into
+      one sheet. Read it top to bottom for the full revision, or expand the <strong>Quick glance</strong> card below
+      to scan every formula, organized topic by topic.</p>
+  </div>
+
+  <details class="qg">
+    <summary>
+      <span class="qg-arrow" aria-hidden="true">▶</span>
+      <span class="qg-titles">
+        <span class="qg-title">⚡ Quick glance — every formula, in order</span>
+        <span class="qg-sub">The complete formula tree, grouped by topic in syllabus order. Expand for a rapid scan; collapse to read the full sheet.</span>
+      </span>
+    </summary>
+    <div class="qg-body">
+
+      <div class="qg-folder">📁 1 · Data &amp; setup</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Data matrix</span><span class="qg-math">$X\in\mathbb R^{m\times n}$, target $y\in\mathbb R^m$</span></li>
+        <li class="qg-item"><span class="qg-name">Prediction</span><span class="qg-math">$\hat y_i$ ("y-hat")</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Train / validation / test</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Roles</span><span class="qg-math">Train teaches · Validation chooses · Test judges</span></li>
+            <li class="qg-item"><span class="qg-name">Using test data early</span><span class="qg-math">Data leakage</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="qg-folder">📁 2 · Linear regression &amp; least squares</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Simple regression</span><span class="qg-math">$\hat y=\beta_0+\beta_1x$</span></li>
+        <li class="qg-item"><span class="qg-name">Multiple regression</span><span class="qg-math">$\hat y=X\beta$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Slope, with vs without intercept</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">With intercept</span><span class="qg-math">$w=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$, $b=\bar y-w\bar x$</span></li>
+            <li class="qg-item"><span class="qg-name">Without intercept ($y=wx$)</span><span class="qg-math">$w=\dfrac{\sum x_iy_i}{\sum x_i^2}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Normal equation</span><span class="qg-math">$X^TX\hat\beta=X^Ty\ \Rightarrow\ \hat\beta=(X^TX)^{-1}X^Ty$</span></li>
+        <li class="qg-item"><span class="qg-name">Pseudoinverse (singular $X^TX$)</span><span class="qg-math">$\hat\beta=X^+y$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 3 · Error metrics &amp; $R^2$</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Residual</span><span class="qg-math">$e_i=y_i-\hat y_i$</span></li>
+        <li class="qg-item"><span class="qg-name">MAE</span><span class="qg-math">$\dfrac1n\sum|e_i|$</span></li>
+        <li class="qg-item"><span class="qg-name">SSE / RSS</span><span class="qg-math">$\sum e_i^2$</span></li>
+        <li class="qg-item"><span class="qg-name">MSE, RMSE</span><span class="qg-math">$\dfrac{SSE}n$, $\sqrt{MSE}$</span></li>
+        <li class="qg-item"><span class="qg-name">Variation split</span><span class="qg-math">$SST=SSR+SSE$</span></li>
+        <li class="qg-item"><span class="qg-name">$R^2$</span><span class="qg-math">$\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 4 · Regularization</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">General objective</span><span class="qg-math">Total loss $=$ Prediction loss $+\lambda\cdot$Penalty</span></li>
+        <li class="qg-item"><span class="qg-name">Ridge (L2)</span><span class="qg-math">$J(w)=L(w)+\lambda\|w\|_2^2$</span></li>
+        <li class="qg-item"><span class="qg-name">Lasso (L1)</span><span class="qg-math">$J(w)=L(w)+\lambda\sum_j|w_j|$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 5 · Bias, variance &amp; gradient descent</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Gradient descent</span><span class="qg-math">$w_{\text{new}}=w_{\text{old}}-\eta\nabla J(w)$</span></li>
+        <li class="qg-item"><span class="qg-name">Underfitting</span><span class="qg-math">High bias, low variance</span></li>
+        <li class="qg-item"><span class="qg-name">Overfitting</span><span class="qg-math">Low bias, high variance</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 6 · Logistic regression</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Score &amp; probability</span><span class="qg-math">$z=\beta_0+\beta^Tx$, $p=\sigma(z)=\dfrac1{1+e^{-z}}$</span></li>
+        <li class="qg-item"><span class="qg-name">Log-odds</span><span class="qg-math">$\log\dfrac{p}{1-p}=z$</span></li>
+        <li class="qg-item"><span class="qg-name">Decision boundary</span><span class="qg-math">$\beta_0+\beta^Tx=0$</span></li>
+        <li class="qg-item"><span class="qg-name">Sigmoid derivative</span><span class="qg-math">$p(1-p)$, max $0.25$ at $p=0.5$</span></li>
+        <li class="qg-item"><span class="qg-name">Likelihood</span><span class="qg-math">$L=\prod_ip_i^{y_i}(1-p_i)^{1-y_i}$</span></li>
+        <li class="qg-item"><span class="qg-name">Softmax ($K$ classes)</span><span class="qg-math">$P(y{=}k)=\dfrac{e^{z_k}}{\sum_je^{z_j}}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 7 · Classification metrics</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Accuracy</span><span class="qg-math">$\dfrac{TP+TN}{N}$</span></li>
+        <li class="qg-item"><span class="qg-name">Precision</span><span class="qg-math">$\dfrac{TP}{TP+FP}$</span></li>
+        <li class="qg-item"><span class="qg-name">Recall / Sensitivity</span><span class="qg-math">$\dfrac{TP}{TP+FN}$</span></li>
+        <li class="qg-item"><span class="qg-name">Specificity</span><span class="qg-math">$\dfrac{TN}{TN+FP}$</span></li>
+        <li class="qg-item"><span class="qg-name">FPR</span><span class="qg-math">$1-\text{Specificity}$</span></li>
+        <li class="qg-item"><span class="qg-name">Balanced accuracy</span><span class="qg-math">$\dfrac{\text{Sens}+\text{Spec}}2$</span></li>
+        <li class="qg-item"><span class="qg-name">Cohen's Kappa</span><span class="qg-math">$\dfrac{p_o-p_e}{1-p_e}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 8 · ROC &amp; AUC</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Axes</span><span class="qg-math">$Y=$ TPR, $X=$ FPR</span></li>
+        <li class="qg-item"><span class="qg-name">Best/worst AUC</span><span class="qg-math">$1=$ perfect, $0.5=$ random</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 9 · Separability &amp; nearest-centroid</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Linear boundary</span><span class="qg-math">$w^Tx+b=0$</span></li>
+        <li class="qg-item"><span class="qg-name">Not separable</span><span class="qg-math">Convex hulls overlap</span></li>
+        <li class="qg-item"><span class="qg-name">Nearest-centroid</span><span class="qg-math">$\|\mu_r-x\|^2-\|\mu_g-x\|^2=2(\mu_g-\mu_r)^Tx+\|\mu_r\|^2-\|\mu_g\|^2$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 10 · k-Nearest Neighbours</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Euclidean distance</span><span class="qg-math">$\sqrt{\sum_j(a_j-b_j)^2}$</span></li>
+        <li class="qg-item"><span class="qg-name">Manhattan distance</span><span class="qg-math">$\sum_j|a_j-b_j|$</span></li>
+        <li class="qg-item"><span class="qg-name">Procedure</span><span class="qg-math">Calculate → sort → select → vote</span></li>
+        <li class="qg-item"><span class="qg-name">Weighted vote</span><span class="qg-math">$w_i=1/d_i^p$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 11 · k-Means clustering</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Centroid</span><span class="qg-math">$\mu_j=\dfrac1{|C_j|}\sum_{x\in C_j}x$</span></li>
+        <li class="qg-item"><span class="qg-name">Inertia / WCSS</span><span class="qg-math">$\sum_j\sum_{x\in C_j}\|x-\mu_j\|^2$</span></li>
+        <li class="qg-item"><span class="qg-name">Midpoint (convexity check)</span><span class="qg-math">$\dfrac{a+b}2$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 12 · Cross-validation</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">$k$-fold CV score</span><span class="qg-math">$\dfrac1k\sum_js_j$</span></li>
+        <li class="qg-item"><span class="qg-name">Grid-search fits</span><span class="qg-math">combinations $\times$ folds</span></li>
+        <li class="qg-item"><span class="qg-name">LOOCV splits</span><span class="qg-math">$n$ (or $N-T$ after holdout)</span></li>
+      </ul>
+
+    </div>
+  </details>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> The complete machine-learning map</div>
+    <p>Before applying any formula, identify the problem type.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>What must be predicted?</th><th>Labels available?</th><th>Main methods</th></tr></thead>
+        <tbody>
+          <tr><td>Regression</td><td>A number</td><td>Yes</td><td>Linear regression, Ridge</td></tr>
+          <tr><td>Classification</td><td>A class</td><td>Yes</td><td>Logistic regression, kNN</td></tr>
+          <tr><td>Clustering</td><td>Natural groups</td><td>No</td><td>k-means</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Examples: house price → regression; spam/not spam → classification; customer groups without labels → clustering.</p>
+    <div class="formula">$$\text{Data}\to\text{Model}\to\text{Prediction}\to\text{Loss}\to\text{Optimization}\to\text{Evaluation}\to\text{Model Selection}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Regression measures. Classification names. Clustering groups.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Data notation</div>
+    <p>Suppose a dataset contains $m$ observations and $n$ features. Then:</p>
+    <div class="formula">$$X\in\mathbb{R}^{m\times n}\qquad y\in\mathbb{R}^m$$</div>
+    <p>Rows $=$ observations, columns $=$ features. For observation $i$: $x_i=$ input, $y_i=$ actual target, and the
+      model's prediction is $\hat y_i$ (read "y-hat").</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Feature</td><td>An input used for prediction</td></tr>
+          <tr><td>Label / target</td><td>The correct answer associated with an input</td></tr>
+          <tr><td>Imputation</td><td>Filling missing values via mean, median, mode, or a model-based prediction</td></tr>
+          <tr><td>Correlation</td><td>Two variables move together</td></tr>
+          <tr><td>Causation</td><td>A change in one variable actually causes a change in another</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Correlation does not imply causation.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Training, validation and testing</div>
+    <p>Split the data conceptually: full data $\to$ {training/model-selection data, final test data}.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Set</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>Training set</td><td>Learning parameters — regression weights, logistic weights, k-means centroids</td></tr>
+          <tr><td>Validation set</td><td>Choosing hyperparameters — $k$ in kNN, $\lambda$ in Ridge, number of clusters, model complexity</td></tr>
+          <tr><td>Test set</td><td>Measuring final performance, only once, at the end</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Train teaches. Validation chooses. Test judges.</strong></li></ul>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Using test data during model selection causes data leakage.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Parameters versus hyperparameters</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Parameter</th><th>Hyperparameter</th></tr></thead>
+        <tbody>
+          <tr><td>Learned from data</td><td>Selected outside model fitting</td></tr>
+          <tr><td>Regression coefficient</td><td>$k$ in kNN</td></tr>
+          <tr><td>Logistic weight</td><td>Ridge $\lambda$</td></tr>
+          <tr><td>Intercept</td><td>Number of clusters</td></tr>
+          <tr><td>k-means centroid</td><td>Number of CV folds / learning rate</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Linear regression</div>
+    <p><strong>4.1 Simple linear regression</strong> — predicts a numerical value from one feature:</p>
+    <div class="formula">$$\hat y=\beta_0+\beta_1x$$</div>
+    <p>$\beta_0=$ intercept (predicted value when $x=0$); $\beta_1=$ slope (change in predicted $y$ when $x$
+      increases by 1); $x=$ input; $\hat y=$ prediction. Example: $\text{marks}=20+8(\text{study hours})$ — one
+      extra study hour increases predicted marks by 8.</p>
+    <p><strong>4.2 Multiple linear regression</strong>:</p>
+    <div class="formula">$$\hat y=\beta_0+\beta_1x_1+\beta_2x_2+\cdots+\beta_px_p\qquad\text{matrix form: }\hat y=X\beta$$</div>
+    <p>If the model contains an intercept, the first column of $X$ is all ones. For $n$ observations and $p$
+      predictors, $X:n\times(p+1)$ — the "$+1$" is the intercept column.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Regression with intercept versus without intercept</div>
+    <p>A frequent GATE trap.</p>
+    <p><strong>5.1 With an intercept</strong> — model $y=b+wx$:</p>
+    <div class="formula">$$w=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}\qquad b=\bar y-w\bar x$$</div>
+    <p>The least-squares line passes through $(\bar x,\bar y)$.</p>
+    <p><strong>5.2 Without an intercept</strong> — model $y=wx$, the line is forced through the origin:</p>
+    <div class="formula">$$w=\frac{\sum_ix_iy_i}{\sum_ix_i^2}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Model written in question</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>$y=wx$</td><td>$\sum xy/\sum x^2$</td></tr>
+          <tr><td>$y=b+wx$</td><td>Centred slope plus intercept</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Never use the two formulas interchangeably.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Residuals</div>
+    <div class="formula">$$e_i=y_i-\hat y_i$$</div>
+    <p>If $e_i\gt0$, the model predicted too low. If $e_i\lt0$, the model predicted too high.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Error measures</div>
+    <p><strong>7.1 Mean Absolute Error</strong> — use when the question says "absolute error," "MAE," or "less sensitivity to large errors":</p>
+    <div class="formula">$$MAE=\frac1n\sum_{i=1}^n|y_i-\hat y_i|$$</div>
+    <p><strong>7.2 Sum of Squared Errors</strong> (also called RSS):</p>
+    <div class="formula">$$SSE=RSS=\sum_{i=1}^n(y_i-\hat y_i)^2$$</div>
+    <p><strong>7.3 Mean &amp; Root Mean Squared Error</strong> — RMSE has the same unit as the target:</p>
+    <div class="formula">$$MSE=\frac{SSE}n\qquad RMSE=\sqrt{MSE}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Error-calculation pipeline</div>
+      <ul><li>$y-\hat y\to$ square $\to$ sum $\to$ divide by $n$ $\to$ square root if RMSE.</li></ul>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Why square errors?</div>
+      <p>Errors $+5,-5$ add directly to zero — hiding both mistakes. Squaring gives $5^2+(-5)^2=50$: it prevents
+        cancellation and penalizes large errors heavily. A residual of 20 contributes $20^2=400$, while a residual
+        of 2 contributes only $2^2=4$ — therefore <strong>OLS is sensitive to outliers</strong>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> SST, SSR, SSE and $R^2$</div>
+    <p>Total target variation splits as:</p>
+    <div class="formula">$$SST=SSR+SSE$$</div>
+    <p>$SST=\sum_i(y_i-\bar y)^2$ (total variation); $SSR=\sum_i(\hat y_i-\bar y)^2$ (variation explained by the
+      model); $SSE=\sum_i(y_i-\hat y_i)^2$ (variation not explained).</p>
+    <div class="formula">$$R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}\qquad\Longrightarrow\qquad SSE=SST(1-R^2)$$</div>
+    <p>$R^2=0.80$ means the model explains 80% of the variation in the target.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Given</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>SST and SSR given</td><td>$R^2=SSR/SST$</td></tr>
+          <tr><td>SST and $R^2$ given</td><td>$SSE=SST(1-R^2)$</td></tr>
+          <tr><td>RMSE requested from $R^2$</td><td>$R^2\to SSE\to MSE\to RMSE$</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Ordinary Least Squares</div>
+    <p>OLS chooses coefficients that minimize squared residuals:</p>
+    <div class="formula">$$\min_\beta\sum_i(y_i-\hat y_i)^2\qquad\text{matrix form: }\min_\beta\|y-X\beta\|_2^2$$</div>
+    <p>The normal equation:</p>
+    <div class="formula">$$X^TX\hat\beta=X^Ty\qquad\Longrightarrow\qquad\hat\beta=(X^TX)^{-1}X^Ty\ \ \text{(if invertible)}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Closed form $(X^TX)^{-1}X^Ty$</th><th>Gradient descent $w_{\text{new}}=w_{\text{old}}-\eta\nabla J(w)$</th></tr></thead>
+        <tbody>
+          <tr><td>Small/medium feature spaces</td><td>Large datasets</td></tr>
+          <tr><td>Direct exact computation</td><td>Large feature spaces</td></tr>
+          <tr><td>—</td><td>Iterative optimization</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>A statement saying matrix inversion is <em>always</em> faster is false.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Multicollinearity</div>
+    <p>Perfect multicollinearity occurs when one feature is an exact linear combination of others, e.g.
+      $x_3=2x_1-x_2$. Then $X^TX$ is singular.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Consequence</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Ordinary inverse</td><td>Does not exist</td></tr>
+          <tr><td>Coefficients</td><td>Not unique</td></tr>
+          <tr><td>Predictions</td><td>Can still be unique</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">$$\hat\beta=X^+y\quad\text{(pseudoinverse, when }X^TX\text{ is singular)}$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Non-unique coefficients $\ne$ impossible predictions.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> OLS assumptions and residual plots</div>
+    <p>Important assumptions: linear relationship; independent observations/errors; errors have mean approximately
+      zero; constant error variance; no perfect multicollinearity.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Homoscedasticity</th><th>Heteroscedasticity</th></tr></thead>
+        <tbody>
+          <tr><td>Residual variance approximately constant</td><td>Residual variance changes with fitted values</td></tr>
+          <tr><td>Random scatter, similar vertical spread, no pattern</td><td>Funnel, cone, increasing spread</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Random, evenly spread residuals $\Rightarrow$ homoscedasticity.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Correlation</div>
+    <div class="formula">$$r_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$$</div>
+    <p>Properties: $-1\le r\le1$; $r_{XY}=r_{YX}$. If $y=ax+b$ with no noise and $x$ not constant: $a\gt0\Rightarrow r=1$,
+      $a\lt0\Rightarrow r=-1$.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>A correlation of zero means no <em>linear</em> relationship — a nonlinear relationship may still exist.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Gradient descent</div>
+    <div class="formula">$$w_{\text{new}}=w_{\text{old}}-\eta\nabla J(w)$$</div>
+    <p>$\eta=$ learning rate; $\nabla J=$ gradient. For squared-error regression: $\nabla J(w)=\dfrac2nX^T(Xw-y)$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Gradient points uphill; subtract it to move downhill.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Regularization</div>
+    <p>Regularization discourages unnecessarily complex models.</p>
+    <div class="formula">$$\text{Total loss}=\text{Prediction loss}+\lambda(\text{Regularization penalty})$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Solve in this order</div>
+      <ul><li>Calculate prediction → calculate prediction loss → calculate penalty → add them.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Ridge regression</div>
+    <div class="formula">$$J(w)=L(w)+\lambda\|w\|_2^2\qquad\|w\|_2^2=w_1^2+w_2^2+\cdots+w_p^2$$</div>
+    <p>Ridge: shrinks coefficients; reduces variance; may increase bias; helps control overfitting; helps with
+      multicollinearity; usually does not zero coefficients out; does not care about the sign of coefficients.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Ridge restrains weights.</li></ul>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Convention warning</div>
+      <p>$L+\lambda\|w\|^2$ has penalty gradient $2\lambda w$; $L+\tfrac\lambda2\|w\|^2$ has penalty gradient
+        $\lambda w$. Follow the exact formula in the question — if it gives you $w\leftarrow w-\eta(\nabla L+\lambda w)$,
+        use that exact update; do not insert another factor of 2.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> Lasso regression</div>
+    <div class="formula">$$J(w)=L(w)+\lambda\sum_j|w_j|$$</div>
+    <p>Lasso: can make coefficients exactly zero; performs feature selection; is convex; is not differentiable at zero.</p>
+    <div class="formula">$$\frac{d|w|}{dw}=\begin{cases}1,&w\gt0\\-1,&w\lt0\end{cases}\qquad\text{no unique ordinary derivative at }w=0$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Ridge</th><th>Lasso</th></tr></thead>
+        <tbody>
+          <tr><td>L2</td><td>L1</td></tr>
+          <tr><td>Squares weights</td><td>Absolute values</td></tr>
+          <tr><td>Shrinks coefficients</td><td>Can set coefficients to zero</td></tr>
+          <tr><td>Usually retains features</td><td>Performs feature selection</td></tr>
+          <tr><td>Smooth</td><td>Non-differentiable at zero</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Ridge $=$ L2, Lasso $=$ L1.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> Bias and variance</div>
+    <p><strong>Bias</strong> — error from a model being too restricted or simple; high bias usually means underfitting.
+      <strong>Variance</strong> — sensitivity to changes in the training sample; high variance usually means overfitting.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Underfitting</th><th>Overfitting</th></tr></thead>
+        <tbody>
+          <tr><td>High training error + high validation error</td><td>Very low training error + higher validation error</td></tr>
+          <tr><td>Model too simple</td><td>Too many parameters/features</td></tr>
+          <tr><td>Excessive regularization</td><td>Too little data, weak regularization</td></tr>
+          <tr><td>Very large $k$ in kNN</td><td>Very small $k$ in kNN</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Strong GATE signal</div>
+      <ul>
+        <li>Training error decreases while validation error increases $\Rightarrow$ overfitting.</li>
+        <li>Regularization usually creates: bias $\uparrow$, variance $\downarrow$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> Logistic regression</div>
+    <p>Mainly used for classification. First calculate a linear score, then convert it to a probability:</p>
+    <div class="formula">$$z=\beta_0+\beta^Tx\qquad p=\sigma(z)=\frac1{1+e^{-z}}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Sigmoid facts</div>
+    <div class="formula">$$\sigma(0)=0.5\qquad z\to+\infty\Rightarrow p\to1\qquad z\to-\infty\Rightarrow p\to0$$</div>
+    <p>The sigmoid is strictly increasing, bounded between 0 and 1, and is the CDF of the standard logistic
+      distribution — it is <em>not</em> itself the corresponding PDF.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Odds and log-odds</div>
+    <div class="formula">$$\text{Odds}=\frac{p}{1-p}\qquad\log\!\left(\frac{p}{1-p}\right)=\beta_0+\beta^Tx$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Probability is curved; log-odds are linear.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Logistic decision boundary</div>
+    <p>Usually $p\ge0.5\Rightarrow$ class 1. Since $p=0.5\iff z=0$, the decision boundary is:</p>
+    <div class="formula">$$\beta_0+\beta^Tx=0\qquad\text{one feature: }x=-\frac{\beta_0}{\beta_1}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> Sigmoid derivative</div>
+    <div class="formula">$$f(x)=\frac1{1+e^{-x}}\qquad f'(x)=f(x)[1-f(x)]$$</div>
+    <p>If the question directly gives $f(x)=p$, immediately use $f'(x)=p(1-p)$ — no need to calculate $x$. Example:
+      $p=0.4\Rightarrow f'(x)=0.4(0.6)=0.24$.</p>
+    <p><strong>22.1 With an input coefficient</strong> — if $p=\sigma(\beta_0+\beta_1x)$, then $\dfrac{dp}{dx}=\beta_1p(1-p)$.</p>
+    <p><strong>22.2 Maximum sigmoid slope</strong> — $p(1-p)$ is maximum at $p=0.5$, i.e. $z=0$
+      (one feature: $x=-\beta_0/\beta_1$). The largest value of $p(1-p)$ is $0.25$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Logistic likelihood</div>
+    <p>For binary labels $y_i\in\{0,1\}$ and $p_i=P(y_i=1)$:</p>
+    <div class="formula">$$L=\prod_ip_i^{y_i}(1-p_i)^{1-y_i}$$</div>
+    <p>True class 1 → contribute $p_i$. True class 0 → contribute $1-p_i$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Golden rule</div>
+      <ul><li>Multiply the probability assigned to each observation's true class.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> Likelihood equivalences</div>
+    <div class="formula">$$\max L\iff\max\log L\iff\min(-\log L)$$</div>
+    <p>Binary negative log-likelihood is binary cross-entropy:</p>
+    <div class="formula">$$-\sum_i\big[y_i\log p_i+(1-y_i)\log(1-p_i)\big]$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Softmax</div>
+    <p>For $K$ classes:</p>
+    <div class="formula">$$P(y=k)=\frac{e^{z_k}}{\sum_{j=1}^Ke^{z_j}}$$</div>
+    <p>Valid PMF because $P(y=k)\gt0$ and $\sum_{k=1}^KP(y=k)=1$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Binary classification → sigmoid. Multiclass classification → softmax.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Confusion matrix</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Predicted positive</th><th>Predicted negative</th></tr></thead>
+        <tbody>
+          <tr><td>Actual positive</td><td>TP</td><td>FN</td></tr>
+          <tr><td>Actual negative</td><td>FP</td><td>TN</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>TP: correctly detected positive. FN: missed positive. FP: false alarm. TN: correctly rejected negative.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>The second letter tells you what the model predicted.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> Classification metrics</div>
+    <p><strong>27.1 Accuracy</strong> — of all observations, how many were classified correctly?</p>
+    <div class="formula">$$\text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN}$$</div>
+    <p><strong>27.2 Precision</strong> — of everything predicted positive, how much was actually positive?</p>
+    <div class="formula">$$\text{Precision}=\frac{TP}{TP+FP}$$</div>
+    <p><strong>27.3 Recall, sensitivity, TPR</strong> — of all actual positives, how many were found?</p>
+    <div class="formula">$$\text{Recall}=\text{Sensitivity}=\text{TPR}=\frac{TP}{TP+FN}$$</div>
+    <p><strong>27.4 Specificity</strong> — of all actual negatives, how many were correctly rejected?</p>
+    <div class="formula">$$\text{Specificity}=\frac{TN}{TN+FP}$$</div>
+    <p><strong>27.5 False Positive Rate</strong>:</p>
+    <div class="formula">$$FPR=\frac{FP}{FP+TN}=1-\text{Specificity}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul>
+        <li>Precision starts from predictions.</li>
+        <li>Recall starts from reality.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Class-wise precision and recall</div>
+    <p>When the question asks about "Class $C$," treat $C$ as positive:</p>
+    <div class="formula">$$\text{Precision}_C=\frac{\text{Correctly predicted as }C}{\text{Everything predicted as }C}\qquad\text{Recall}_C=\frac{\text{Correctly predicted as }C}{\text{Everything actually belonging to }C}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Precision → predicted-class column. Recall → actual-class row.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> Balanced dataset and balanced accuracy</div>
+    <p>A balanced binary dataset has equal actual positives and negatives:</p>
+    <div class="formula">$$TP+FN=TN+FP$$</div>
+    <div class="formula">$$\text{Balanced Accuracy}=\frac{\text{Sensitivity}+\text{Specificity}}2$$</div>
+    <p>For a binary dataset with equal actual class counts: $\text{Accuracy}=\text{Balanced Accuracy}$ — but this
+      equality is not guaranteed for an imbalanced dataset.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Prevalence and detection prevalence</div>
+    <div class="formula">$$\text{Prevalence}=\frac{TP+FN}N\qquad\text{Detection Prevalence}=\frac{TP+FP}N$$</div>
+    <p>They are not necessarily equal.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Cohen's Kappa</div>
+    <p>Kappa adjusts agreement for agreement expected by chance:</p>
+    <div class="formula">$$\kappa=\frac{p_o-p_e}{1-p_e}$$</div>
+    <p>$p_o=$ observed agreement; $p_e=$ expected chance agreement.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> Perfect and always-positive classifiers</div>
+    <p><strong>32.1 Perfect classifier</strong> — no mistakes: $FP=FN=0$. The confusion matrix is diagonal; all
+      off-diagonal entries are zero; if each class appears at least once, all diagonal entries are non-zero.</p>
+    <p><strong>32.2 Always predicts positive</strong> — then $FN=0$, $TN=0$, therefore:</p>
+    <div class="formula">$$\text{Sensitivity}=1\qquad\text{Specificity}=0$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> ROC curve</div>
+    <div class="formula">$$Y\text{-axis}=\text{TPR}=\text{Sensitivity}\qquad X\text{-axis}=\text{FPR}=1-\text{Specificity}$$</div>
+    <p>The decision threshold changes along the curve. Slope: $\dfrac{d(\text{TPR})}{d(\text{FPR})}$.</p>
+    <p><strong>AUC</strong> — area under the ROC curve. $AUC=1$: perfect ranking. $AUC=0.5$: random ranking. Higher
+      AUC is better.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> Linear separability</div>
+    <p>Two classes are linearly separable if one straight line can put them on opposite sides:</p>
+    <div class="formula">$$w^Tx+b=0\qquad\text{classify by the sign of }w^Tx+b$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Visual pattern</th><th>Separable?</th></tr></thead>
+        <tbody>
+          <tr><td>One class clearly above another</td><td>Usually yes</td></tr>
+          <tr><td>One class surrounded by another</td><td>No</td></tr>
+          <tr><td>XOR pattern (diagonal alternation)</td><td>No</td></tr>
+          <tr><td>Upper-left vs lower-right groups</td><td>Usually yes (diagonal line)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Convex-hull test</div>
+      <p>Imagine wrapping a rubber band around every point of one class — that enclosed shape is the class's convex
+        hull. For strict linear separability, the class convex hulls must not intersect.</p>
+    </div>
+    <div class="formula">$$\text{Overlapping convex hulls}\Rightarrow\text{not linearly separable}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> Nearest-centroid classification</div>
+    <p>A point is assigned to the closest class mean. With means $\mu_r,\mu_g$, define
+      $f(x)=\|\mu_r-x\|^2-\|\mu_g-x\|^2$; if $f(x)\lt0$, the point is closer to $\mu_r$.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 Difference-of-squared-distances trick</div>
+      <p>Expanding both squared distances, the $x^Tx$ terms cancel on subtraction:</p>
+      <div class="formula">$$f(x)=2(\mu_g-\mu_r)^Tx+\|\mu_r\|^2-\|\mu_g\|^2=w^Tx+b$$</div>
+      <p>where $w=2(\mu_g-\mu_r)$ and $b=\|\mu_r\|^2-\|\mu_g\|^2$. The decision boundary is the perpendicular
+        bisector of the two means.</p>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Two quadratic-looking squared distances can produce a <em>linear</em> decision function because the
+        $x^Tx$ terms cancel.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> k-Nearest Neighbours</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Classification</th><th>Regression</th></tr></thead>
+        <tbody>
+          <tr><td>Majority class among the $k$ nearest neighbours</td><td>Average target among the $k$ nearest neighbours</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>kNN is a <strong>lazy learner</strong> — it stores training data and performs most work during prediction.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> Distance formulas</div>
+    <p><strong>37.1 Euclidean distance</strong>:</p>
+    <div class="formula">$$d(a,b)=\sqrt{\sum_j(a_j-b_j)^2}$$</div>
+    <p>When only comparing distances, square roots can be skipped: $d_1\lt d_2\iff d_1^2\lt d_2^2$.</p>
+    <p><strong>37.2 Manhattan distance</strong>:</p>
+    <div class="formula">$$d(a,b)=\sum_j|a_j-b_j|$$</div>
+    <p>Use whichever distance the question specifies.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">38</span> kNN solving algorithm</div>
+    <div class="formula">$$\text{Calculate}\to\text{Sort}\to\text{Select}\to\text{Vote}$$</div>
+    <p>Identify the query point → calculate distance to every training point → sort nearest to farthest → choose
+      the first $k$ → count class votes → select the majority class. For minimum odd $k$, test $k=1,3,5,7,\dots$</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">39</span> Small versus large $k$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Small $k$</th><th>Large $k$</th></tr></thead>
+        <tbody>
+          <tr><td>Sensitive to noise</td><td>Includes distant observations</td></tr>
+          <tr><td>Low bias, high variance</td><td>Higher bias, lower variance</td></tr>
+          <tr><td>Irregular decision boundary</td><td>Smooth decision boundary</td></tr>
+          <tr><td>Overfitting risk</td><td>Underfitting risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Small $k$ is nervous. Large $k$ forgets local detail.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">40</span> Weighted kNN</div>
+    <div class="formula">$$w_i=\frac1{d_i^p}\qquad p=1\text{ or }2\text{ (common choices)}$$</div>
+    <p>Procedure: calculate neighbour weights → sum weights class-wise → choose the class with the greatest total
+      weight. A class with fewer but closer neighbours may win.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">41</span> kNN ties</div>
+    <p>Ties can occur from equal vote counts, equal distances, or rounded distances becoming equal. Odd $k$ reduces
+      vote ties in binary classification, but cannot prevent all distance ties.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">42</span> Why 1-NN is not always perfect</div>
+    <p>Even with a very large dataset, errors may remain: classes overlap; labels contain noise; the Bayes error is
+      non-zero; similar inputs may belong to different classes.</p>
+    <div class="formula">$$\text{Large data does not guarantee perfect 1-NN accuracy}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">43</span> Feature scaling</div>
+    <p>Distance-based methods are sensitive to feature scale. If one feature ranges 0–1 and another 0–100000, the
+      second feature dominates distance. Scaling matters for kNN, k-means, and nearest-centroid classification.
+      Common methods: standardization, min-max normalization.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">44</span> k-Means clustering</div>
+    <p>k-means is unsupervised. Here $k=$ number of clusters — do not confuse it with kNN, where $k$ is the number
+      of neighbours.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>kNN</th><th>k-means</th></tr></thead>
+        <tbody>
+          <tr><td>Supervised</td><td>Unsupervised</td></tr>
+          <tr><td>Uses labels</td><td>No labels</td></tr>
+          <tr><td>$k=$ neighbours</td><td>$k=$ clusters</td></tr>
+          <tr><td>Predicts class/value</td><td>Discovers groups</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>kNN asks neighbours. k-means moves means.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">45</span> k-Means algorithm</div>
+    <div class="formula">$$\text{Assign}\to\text{Update}\to\text{Repeat}$$</div>
+    <p><strong>Assignment step</strong> — assign each point to its nearest centroid. <strong>Update step</strong> —
+      move each centroid to the mean of its assigned points.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">46</span> Centroid</div>
+    <div class="formula">$$\mu_j=\frac1{|C_j|}\sum_{x\in C_j}x$$</div>
+    <p>For two-dimensional data: average all $x$-coordinates, average all $y$-coordinates.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">47</span> Inertia or WCSS</div>
+    <p>k-means minimizes:</p>
+    <div class="formula">$$WCSS=\sum_{j=1}^k\sum_{x\in C_j}\|x-\mu_j\|^2$$</div>
+    <p>Also called inertia, within-cluster SS, within-cluster sum of squares.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Use squared distance — do not take square roots. Good clustering has low within-cluster SS and high
+        between-cluster SS.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">48</span> Convexity of k-means regions</div>
+    <p>With fixed centroids, each cluster region is a Voronoi region — and Euclidean Voronoi regions are convex: if
+      two points $a,b$ are inside, every point on their line segment $(1-t)a+tb,\ 0\le t\le1$ is also inside,
+      including the midpoint $\dfrac{a+b}2$.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 GATE signal</div>
+      <p>If two points are known to be in the same k-means cluster and an option contains their midpoint — check
+        the midpoint first.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">49</span> Other k-means properties</div>
+    <p>Uses squared Euclidean distance; sensitive to scaling; sensitive to initialization; may converge to a local
+      optimum; different initializations may produce different results; works best with compact, roughly convex
+      clusters; performs poorly on rings and moon-shaped clusters; increasing $k$ cannot increase the best possible
+      WCSS; the elbow method can help choose $k$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">50</span> Cross-validation</div>
+    <p>Cross-validation estimates generalization and selects hyperparameters. <strong>$k$-fold CV</strong> splits
+      data into $k$ folds; each fold becomes validation data once; scores are averaged:</p>
+    <div class="formula">$$\text{CV score}=\frac{s_1+s_2+\cdots+s_k}{k}$$</div>
+    <p>Advantages: uses data efficiently, less dependent on one lucky split, every observation is validated once.
+      Disadvantage: more computation.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">51</span> Leave-One-Out Cross-Validation</div>
+    <p>With $n$ model-selection observations, $k=n$; each split trains on $n-1$ and validates on 1; number of
+      validation splits $=n$.</p>
+    <p><strong>51.1 After holding out a test set</strong> — with $N=$ total observations, $T=$ held-out test
+      observations, LOOCV uses $N-T$ observations:</p>
+    <div class="formula">$$\text{LOOCV splits}=N-T$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Numbers of classes and features given in the question are distractors.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">52</span> Grid-search model count</div>
+    <p>With $g$ hyperparameter combinations and $k$ folds:</p>
+    <div class="formula">$$\text{Number of model fits}=g\times k$$</div>
+    <p>Example: $12$ combinations $\times5$ folds $=60$ fits. A final full-data refit is included only when
+      explicitly asked.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">53</span> Time-series cross-validation</div>
+    <p>Do not randomly shuffle time-series data.</p>
+    <div class="formula">$$\text{Train on past}\to\text{validate on future}$$</div>
+    <p>Example: Jan–Mar → Apr; then Jan–Apr → May. Ordinary shuffled $k$-fold can cause future information to leak
+      into past predictions.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">54</span> Ultimate formula-selection table</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Words in the question</th><th>Formula or concept</th></tr></thead>
+        <tbody>
+          <tr><td>$m$ observations, $n$ features</td><td>$X:m\times n$</td></tr>
+          <tr><td>Missing values</td><td>Imputation</td></tr>
+          <tr><td>Numerical target</td><td>Regression</td></tr>
+          <tr><td>Class target</td><td>Classification</td></tr>
+          <tr><td>Unlabelled groups</td><td>Clustering</td></tr>
+          <tr><td>$y=wx$</td><td>$\sum xy/\sum x^2$</td></tr>
+          <tr><td>$y=b+wx$</td><td>Centred slope and intercept</td></tr>
+          <tr><td>Actual and predicted values</td><td>Residual / error measure</td></tr>
+          <tr><td>Absolute errors</td><td>MAE</td></tr>
+          <tr><td>Squared errors</td><td>SSE / MSE / RMSE</td></tr>
+          <tr><td>SST and SSR</td><td>$R^2=SSR/SST$</td></tr>
+          <tr><td>SST and $R^2$</td><td>$SSE=SST(1-R^2)$</td></tr>
+          <tr><td>RMSE requested</td><td>SSE → MSE → RMSE</td></tr>
+          <tr><td>Exact feature dependence</td><td>Perfect multicollinearity</td></tr>
+          <tr><td>$X^TX$ singular</td><td>Coefficients non-unique</td></tr>
+          <tr><td>Random residual scatter</td><td>Homoscedasticity</td></tr>
+          <tr><td>Funnel residual plot</td><td>Heteroscedasticity</td></tr>
+          <tr><td>Ridge</td><td>L2</td></tr>
+          <tr><td>Lasso</td><td>L1</td></tr>
+          <tr><td>Ridge effect</td><td>Bias up, variance down</td></tr>
+          <tr><td>Overall regularized loss</td><td>Data loss + penalty</td></tr>
+          <tr><td>Logistic score</td><td>$z=\beta_0+\beta^Tx$</td></tr>
+          <tr><td>Logistic probability</td><td>$p=\sigma(z)$</td></tr>
+          <tr><td>Sigmoid value $p$ given</td><td>$p(1-p)$</td></tr>
+          <tr><td>Derivative with respect to $x$</td><td>$\beta_1p(1-p)$</td></tr>
+          <tr><td>Maximum sigmoid derivative</td><td>$p=0.5$, $z=0$</td></tr>
+          <tr><td>Logistic training objective</td><td>Max likelihood / min NLL</td></tr>
+          <tr><td>Multiclass probability</td><td>Softmax</td></tr>
+          <tr><td>Correctness among predicted positives</td><td>Precision</td></tr>
+          <tr><td>Detected actual positives</td><td>Recall</td></tr>
+          <tr><td>Correctly rejected negatives</td><td>Specificity</td></tr>
+          <tr><td>Specificity given, FPR asked</td><td>$1-\text{specificity}$</td></tr>
+          <tr><td>ROC axes</td><td>$X=$ FPR, $Y=$ TPR</td></tr>
+          <tr><td>Class-specific metric</td><td>Treat that class as positive</td></tr>
+          <tr><td>One class surrounded by another</td><td>Not linearly separable</td></tr>
+          <tr><td>XOR pattern</td><td>Not linearly separable</td></tr>
+          <tr><td>Difficult separability diagram</td><td>Convex hulls</td></tr>
+          <tr><td>Difference of squared distances</td><td>Expand and cancel $x^Tx$</td></tr>
+          <tr><td>kNN numerical question</td><td>Calculate, sort, select, vote</td></tr>
+          <tr><td>Small $k$</td><td>High variance / overfitting</td></tr>
+          <tr><td>Large $k$</td><td>High bias / underfitting</td></tr>
+          <tr><td>Weighted kNN</td><td>Sum $1/d^p$ class-wise</td></tr>
+          <tr><td>k-means centroid</td><td>Coordinate-wise mean</td></tr>
+          <tr><td>k-means inertia</td><td>Sum squared distances</td></tr>
+          <tr><td>Same k-means region</td><td>Midpoint / convexity</td></tr>
+          <tr><td>Grid combinations and folds</td><td>Multiply</td></tr>
+          <tr><td>LOOCV after test holdout</td><td>Total minus test</td></tr>
+          <tr><td>Train error down, validation up</td><td>Overfitting</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">55</span> GATE's favourite traps</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Trap</th><th>Correct response</th></tr></thead>
+        <tbody>
+          <tr><td>Precision vs recall confused</td><td>Precision denominator $=TP+FP$; recall denominator $=TP+FN$</td></tr>
+          <tr><td>Using all data in LOOCV</td><td>First remove the final test set</td></tr>
+          <tr><td>Missing whether the intercept exists</td><td>$y=wx$ and $y=b+wx$ need different formulas</td></tr>
+          <tr><td>Calling Ridge L1</td><td>Ridge $=$ L2, Lasso $=$ L1</td></tr>
+          <tr><td>Forgetting the regularization penalty</td><td>Total loss $=$ data loss $+$ penalty</td></tr>
+          <tr><td>Forgetting the penalty convention</td><td>Check $\lambda\|w\|^2$ vs $\tfrac\lambda2\|w\|^2$</td></tr>
+          <tr><td>Treating squared-distance difference as quadratic</td><td>The $x^Tx$ terms cancel</td></tr>
+          <tr><td>Taking square roots for k-means inertia</td><td>Inertia uses $\|x-\mu\|^2$, not ordinary distance</td></tr>
+          <tr><td>Voting before sorting in kNN</td><td>Distance → sort → neighbours → vote</td></tr>
+          <tr><td>Believing odd $k$ prevents every tie</td><td>Equal distances can still create ambiguity</td></tr>
+          <tr><td>Believing unlimited data makes 1-NN perfect</td><td>Noise and overlapping classes can still cause errors</td></tr>
+          <tr><td>Assuming correlation means causation</td><td>It does not</td></tr>
+          <tr><td>Confusing balance with predicted counts</td><td>Balanced $=$ actual positives $=$ actual negatives, nothing about predictions</td></tr>
+          <tr><td>Believing "always"/"never"/"every"/"must" statements</td><td>Test for counterexamples</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">56</span> Five-minute final revision</div>
+    <p>Remember this chain: $\text{Regression}\to\hat y=\beta_0+\beta^Tx\to SSE=\sum(y-\hat y)^2\to
+      MSE=SSE/n,\ RMSE=\sqrt{MSE}\to R^2=1-SSE/SST$</p>
+    <div class="formula">
+      $$\hat\beta=(X^TX)^{-1}X^Ty\qquad y=wx\Rightarrow w=\sum xy/\sum x^2$$
+      $$\text{Ridge}=L2\qquad\text{Lasso}=L1\qquad\text{Total loss}=\text{Data loss}+\lambda\text{ penalty}$$
+      $$p=\frac1{1+e^{-z}}\qquad\log\frac{p}{1-p}=z\qquad p'=p(1-p)\qquad\frac{dp}{dx}=\beta_1p(1-p)$$
+      $$\text{Precision}=\frac{TP}{TP+FP}\quad\text{Recall}=\frac{TP}{TP+FN}\quad\text{Specificity}=\frac{TN}{TN+FP}\quad FPR=1-\text{Specificity}$$
+      $$\text{Overlapping convex hulls}\Rightarrow\text{not linearly separable}\qquad\|a-x\|^2-\|b-x\|^2\Rightarrow x^Tx\text{ cancels}$$
+      $$\text{kNN: Calculate}\to\text{Sort}\to\text{Select}\to\text{Vote}\qquad\text{k-means: Assign}\to\text{Update centroid}\to\text{Repeat}$$
+      $$WCSS=\sum\|x-\mu\|^2\qquad\text{Grid fits}=\text{combinations}\times\text{folds}\qquad\text{LOOCV splits}=\text{non-test observations}$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">✦</span> The final mental story</div>
+    <p>Remember the complete subject as one story: start with data arranged as rows and features. For numerical
+      answers, fit a regression line. Measure its mistakes using residuals, MAE or squared errors. Use $R^2$ to see
+      how much variation was explained. Least squares chooses coefficients by minimizing squared errors;
+      regularization prevents those coefficients from becoming unnecessarily complex.</p>
+    <p>For classes, logistic regression turns a linear score into a probability through the sigmoid. Evaluate
+      classifiers using the confusion matrix, precision, recall, specificity and ROC. Some classes can be separated
+      by one line; convex hulls reveal when this is impossible.</p>
+    <p>kNN classifies by asking nearby labelled points. k-means discovers unlabelled groups by repeatedly assigning
+      points and moving centroids. Finally, cross-validation chooses hyperparameters without touching the final
+      test set.</p>
+    <p>That story links the entire GATE DA machine-learning syllabus into one continuous structure.</p>
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📚</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Want the full explanations?</div>
+        <div class="practice-cta-sub">Every formula here is taught story-first in the Detailed Study, with real GATE questions.</div>
+      </div>
+      <a class="btn btn-primary" href="detailed-study.html">Detailed Study →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260719"></script>
+  <script src="../assets/js/app.js?v=20260719"></script>
+</body>
+</html>
