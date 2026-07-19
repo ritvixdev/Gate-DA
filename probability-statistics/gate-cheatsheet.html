@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>GATE Cheat Sheet · GATE DA Probability & Statistics</title>
+<meta name="description" content="The ultimate GATE DA Probability & Statistics cheat sheet — concept map, formula decoders, every distribution, tests, traps and a 60-second decision tree. With a quick-glance collapsible formula tree.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260620">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260620">
+<style>
+  /* ---- GATE Cheat Sheet: same calm, airy design as Detailed Study ---- */
+  .concept-card{padding:38px 38px 34px;margin-bottom:42px}
+  .concept-card p{font-size:15.5px;line-height:2.05;margin:18px 0;color:var(--body)}
+  .concept-card strong{color:var(--body-strong);font-weight:650}
+  .concept-card ul.styled li, .concept-card ul.deflist li{line-height:2;margin:13px 0;color:var(--body)}
+  .sec-head{margin-bottom:24px}
+
+  .formula{
+    margin:30px 0;padding:22px 24px;
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-radius:14px;
+    text-align:center;
+    overflow-x:auto;scrollbar-width:thin;
+  }
+  .formula .katex-display{margin:14px 0}
+  .formula .katex-display:first-child{margin-top:2px}
+  .formula .katex-display:last-child{margin-bottom:2px}
+  .formula .katex{font-size:1.1em;color:var(--body-strong)}
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
+
+  .callout{margin:28px 0;padding:22px 26px}
+  .callout p{margin:13px 0;line-height:2}
+  .imagine{margin:28px 0;padding:22px 26px}
+  .memory-box{margin:30px 0;padding:24px 28px}
+  .memory-box li{margin:14px 0;line-height:1.95}
+  .tbl-wrap{margin:28px 0}
+  .tbl-wrap td,.tbl-wrap th{padding:14px 16px;line-height:1.8}
+  .decode{margin:20px 0 24px;padding-left:4px}
+  .decode li{line-height:2;margin:12px 0}
+
+  /* Quiet boxes: differentiation by label only */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{color:var(--muted)}
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* ---- Quick-glance collapsible formula tree ---- */
+  details.qg{
+    background:var(--surface-card);
+    border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
+    margin:0 0 42px;
+    max-width:820px;
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  details.qg summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;gap:14px;
+    padding:24px 28px;
+    user-select:none;
+  }
+  details.qg summary::-webkit-details-marker{display:none}
+  .qg-arrow{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--surface-soft);border:1px solid var(--hairline);
+    color:var(--muted);font-size:13px;
+    transition:transform .25s var(--ease);
+  }
+  details.qg[open] .qg-arrow{transform:rotate(90deg)}
+  .qg-titles{flex:1;min-width:0}
+  .qg-title{display:block;font-size:17px;font-weight:650;color:var(--ink)}
+  .qg-sub{display:block;font-size:13px;color:var(--muted);margin-top:3px;line-height:1.6}
+  .qg-body{padding:6px 28px 30px;border-top:1px solid var(--hairline-soft)}
+
+  .qg-folder{
+    font-family:var(--font-mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    margin:26px 0 6px;padding-bottom:8px;
+    border-bottom:1px solid var(--hairline-soft);
+  }
+  .qg-list{list-style:none;padding:0;margin:0}
+  .qg-list li{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:9px 0 9px 14px;margin:0;
+    border-left:2px solid var(--hairline-soft);
+    line-height:1.9;
+  }
+  .qg-name{min-width:210px;flex:0 0 auto;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .qg-math{flex:1;min-width:0;font-size:14.5px;color:var(--body-strong);overflow-x:auto;scrollbar-width:none}
+  .qg-math::-webkit-scrollbar{display:none}
+
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+    details.qg summary{padding:18px 14px}
+    .qg-body{padding:4px 14px 22px}
+    .qg-list li{gap:6px;padding-left:10px}
+    .qg-name{min-width:100%;flex-basis:100%}
+  }
+</style>
+</head>
+<body data-root=".." data-subject="probability-statistics" data-page="cheatsheet" data-content>
+  <div class="hero">
+    <span class="tag">Reference · GATE Cheat Sheet</span>
+    <h1>The Ultimate<br>GATE Cheat Sheet</h1>
+    <p class="lede">The <strong>official syllabus</strong>, the <strong>real 2024–2026 paper patterns</strong>, and every formula,
+      trap and decision rule — combined into one sheet. Read it top to bottom for the full revision,
+      or expand the <strong>Quick glance</strong> card below to scan every formula, organized topic by topic.</p>
+  </div>
+
+  <details class="qg">
+    <summary>
+      <span class="qg-arrow" aria-hidden="true">▶</span>
+      <span class="qg-titles">
+        <span class="qg-title">⚡ Quick glance — every formula, in order</span>
+        <span class="qg-sub">The complete formula tree, grouped by topic in syllabus order. Expand for a rapid scan; collapse to read the full sheet.</span>
+      </span>
+    </summary>
+    <div class="qg-body">
+
+      <div class="qg-folder">📁 1 · Counting</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Permutation (order matters)</span><span class="qg-math">${}^nP_r=\dfrac{n!}{(n-r)!}$</span></li>
+        <li><span class="qg-name">Combination (choose a group)</span><span class="qg-math">$\dbinom{n}{r}=\dfrac{n!}{r!(n-r)!}$</span></li>
+        <li><span class="qg-name">Subsets of an $n$-set</span><span class="qg-math">$2^n$ &nbsp;·&nbsp; non-empty: $2^n-1$</span></li>
+        <li><span class="qg-name">Stars &amp; bars (non-negative)</span><span class="qg-math">$\dbinom{n+k-1}{k-1}$</span></li>
+        <li><span class="qg-name">Stars &amp; bars (positive)</span><span class="qg-math">$\dbinom{n-1}{k-1}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 2 · Probability rules</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Equally likely outcomes</span><span class="qg-math">$P(A)=\dfrac{\text{favourable}}{\text{total}}$</span></li>
+        <li><span class="qg-name">Complement</span><span class="qg-math">$P(A^c)=1-P(A)$</span></li>
+        <li><span class="qg-name">"At least one"</span><span class="qg-math">$P(\text{at least one})=1-P(\text{none})$</span></li>
+        <li><span class="qg-name">Addition (two events)</span><span class="qg-math">$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</span></li>
+        <li><span class="qg-name">Addition (three events)</span><span class="qg-math">singles $-$ pairs $+$ triple</span></li>
+        <li><span class="qg-name">Subset identity</span><span class="qg-math">$A\cap B=A \iff A\subseteq B$</span></li>
+        <li><span class="qg-name">Mutually exclusive</span><span class="qg-math">$P(A\cap B)=0$</span></li>
+        <li><span class="qg-name">Independent</span><span class="qg-math">$P(A\cap B)=P(A)\,P(B)$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 3 · Conditional probability &amp; Bayes</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Conditional probability</span><span class="qg-math">$P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$</span></li>
+        <li><span class="qg-name">Multiplication rule</span><span class="qg-math">$P(A\cap B)=P(A\mid B)\,P(B)$</span></li>
+        <li><span class="qg-name">Total probability</span><span class="qg-math">$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$</span></li>
+        <li><span class="qg-name">Bayes' theorem</span><span class="qg-math">$P(B_i\mid A)=\dfrac{P(A\mid B_i)P(B_i)}{\sum_j P(A\mid B_j)P(B_j)}$</span></li>
+        <li><span class="qg-name">Conditional independence</span><span class="qg-math">$P(X,Y\mid Z)=P(X\mid Z)\,P(Y\mid Z)$</span></li>
+        <li><span class="qg-name">Bayesian network factorization</span><span class="qg-math">$P(X_1,\dots,X_n)=\prod_i P(X_i\mid \text{Parents}(X_i))$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 4 · PMF, PDF &amp; CDF</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">PMF validity (discrete)</span><span class="qg-math">$p(x)\ge0$, $\sum_x p(x)=1$</span></li>
+        <li><span class="qg-name">PDF area = probability</span><span class="qg-math">$P(a\le X\le b)=\int_a^b f(x)\,dx$</span></li>
+        <li><span class="qg-name">PDF validity</span><span class="qg-math">$f(x)\ge0$, $\int_{-\infty}^{\infty}f(x)\,dx=1$</span></li>
+        <li><span class="qg-name">CDF definition</span><span class="qg-math">$F(x)=P(X\le x)$</span></li>
+        <li><span class="qg-name">Interval from CDF (continuous)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a)$</span></li>
+        <li><span class="qg-name">Interval from CDF (integer discrete)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a-1)$</span></li>
+        <li><span class="qg-name">Median</span><span class="qg-math">$F(m)=0.5$</span></li>
+        <li><span class="qg-name">Squared inequality</span><span class="qg-math">$X^2\le a^2 \iff -a\le X\le a$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 5 · Distributions</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Bernoulli</span><span class="qg-math">$E=p$, $\operatorname{Var}=p(1-p)$</span></li>
+        <li><span class="qg-name">Binomial PMF</span><span class="qg-math">$P(X{=}k)=\dbinom nk p^k(1-p)^{n-k}$</span></li>
+        <li><span class="qg-name">Binomial moments</span><span class="qg-math">$E=np$, $\operatorname{Var}=np(1-p)$</span></li>
+        <li><span class="qg-name">Poisson PMF</span><span class="qg-math">$P(X{=}k)=\dfrac{e^{-\lambda}\lambda^k}{k!}$</span></li>
+        <li><span class="qg-name">Poisson moments</span><span class="qg-math">$E=\operatorname{Var}=\lambda$</span></li>
+        <li><span class="qg-name">Uniform PDF</span><span class="qg-math">$f(x)=\dfrac{1}{b-a}$ on $[a,b]$</span></li>
+        <li><span class="qg-name">Uniform moments</span><span class="qg-math">$E=\dfrac{a+b}{2}$, $\operatorname{Var}=\dfrac{(b-a)^2}{12}$</span></li>
+        <li><span class="qg-name">Exponential survival</span><span class="qg-math">$P(X\gt x)=e^{-\lambda x}$</span></li>
+        <li><span class="qg-name">Exponential moments</span><span class="qg-math">$E=\dfrac1\lambda$, $\operatorname{Var}=\dfrac{1}{\lambda^2}$</span></li>
+        <li><span class="qg-name">Memorylessness</span><span class="qg-math">$P(X\gt s{+}t\mid X\gt s)=P(X\gt t)$</span></li>
+        <li><span class="qg-name">Normal standardization</span><span class="qg-math">$Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$</span></li>
+        <li><span class="qg-name">Student's t</span><span class="qg-math">heavier tails; $t_\nu\to N(0,1)$ as $\nu\to\infty$</span></li>
+        <li><span class="qg-name">Chi-square definition</span><span class="qg-math">$Z_1^2+\cdots+Z_k^2\sim\chi^2_k$</span></li>
+        <li><span class="qg-name">Chi-square moments</span><span class="qg-math">$E=k$, $\operatorname{Var}=2k$</span></li>
+        <li><span class="qg-name">Sample deviations</span><span class="qg-math">$\sum(X_i-\bar X)^2\sim\chi^2_{n-1}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 6 · Expectation &amp; variance</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Expected value</span><span class="qg-math">$E[X]=\sum_x xp(x)$ or $\int xf(x)\,dx$</span></li>
+        <li><span class="qg-name">Function of a variable</span><span class="qg-math">$E[g(X)]=\sum g(x)p(x)$ or $\int g(x)f(x)\,dx$</span></li>
+        <li><span class="qg-name">Linearity</span><span class="qg-math">$E[aX+b]=aE[X]+b$; $E[X{+}Y]=E[X]{+}E[Y]$</span></li>
+        <li><span class="qg-name">Tower property</span><span class="qg-math">$E[E[X\mid Y]]=E[X]$</span></li>
+        <li><span class="qg-name">Total variance</span><span class="qg-math">$\operatorname{Var}(X)=E[\operatorname{Var}(X\mid Y)]+\operatorname{Var}(E[X\mid Y])$</span></li>
+        <li><span class="qg-name">Variance (shortcut)</span><span class="qg-math">$\operatorname{Var}(X)=E[X^2]-(E[X])^2$</span></li>
+        <li><span class="qg-name">Scaling</span><span class="qg-math">$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$</span></li>
+        <li><span class="qg-name">Variance of a sum</span><span class="qg-math">$\operatorname{Var}(X{+}Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$</span></li>
+        <li><span class="qg-name">Pairwise identity</span><span class="qg-math">$\sum_i\sum_j(x_i-x_j)^2=2n\sum_i(x_i-\bar x)^2$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 7 · Joint, covariance &amp; correlation</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Marginal (discrete)</span><span class="qg-math">$P(X{=}x)=\sum_y P(X{=}x,Y{=}y)$</span></li>
+        <li><span class="qg-name">Conditional distribution</span><span class="qg-math">$P(X{=}x\mid Y{=}y)=\dfrac{P(X{=}x,Y{=}y)}{P(Y{=}y)}$</span></li>
+        <li><span class="qg-name">Covariance</span><span class="qg-math">$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$</span></li>
+        <li><span class="qg-name">Pearson correlation</span><span class="qg-math">$\rho=\dfrac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$, range $[-1,1]$</span></li>
+        <li><span class="qg-name">Spearman (no ties)</span><span class="qg-math">$r_s=1-\dfrac{6\sum d_i^2}{n(n^2-1)}$</span></li>
+        <li><span class="qg-name">Covariance matrix</span><span class="qg-math">$\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)$; $d\times d$, symmetric</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 8 · Descriptive statistics</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Mean update (add value $a$)</span><span class="qg-math">$\bar x_{\text{new}}=\dfrac{n\bar x+a}{n+1}$</span></li>
+        <li><span class="qg-name">Sample variance</span><span class="qg-math">$s^2=\dfrac{1}{n-1}\sum(x_i-\bar x)^2$</span></li>
+        <li><span class="qg-name">z-score normalization</span><span class="qg-math">$z=\dfrac{x-\mu}{\sigma}$</span></li>
+        <li><span class="qg-name">Right skew</span><span class="qg-math">Mode $\lt$ Median $\lt$ Mean</span></li>
+        <li><span class="qg-name">Left skew</span><span class="qg-math">Mean $\lt$ Median $\lt$ Mode</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 9 · Sampling, CLT &amp; confidence intervals</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Sample mean moments</span><span class="qg-math">$E[\bar X]=\mu$, $\operatorname{Var}(\bar X)=\dfrac{\sigma^2}{n}$</span></li>
+        <li><span class="qg-name">Standard error</span><span class="qg-math">$SE(\bar X)=\dfrac{\sigma}{\sqrt n}$</span></li>
+        <li><span class="qg-name">CLT</span><span class="qg-math">$\bar X\approx N\!\left(\mu,\dfrac{\sigma^2}{n}\right)$</span></li>
+        <li><span class="qg-name">Sum standardization</span><span class="qg-math">$Z=\dfrac{S_n-n\mu}{\sigma\sqrt n}$</span></li>
+        <li><span class="qg-name">Sample proportion</span><span class="qg-math">$E[\hat p]=p$, $\operatorname{Var}(\hat p)=\dfrac{p(1-p)}{n}$</span></li>
+        <li><span class="qg-name">CI, $\sigma$ known</span><span class="qg-math">$\bar x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$</span></li>
+        <li><span class="qg-name">CI, $\sigma$ unknown</span><span class="qg-math">$\bar x\pm t_{\alpha/2,n-1}\dfrac{s}{\sqrt n}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 10 · Hypothesis tests</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Decision rule</span><span class="qg-math">$p\lt\alpha\Rightarrow$ reject $H_0$</span></li>
+        <li><span class="qg-name">Errors &amp; power</span><span class="qg-math">$P(\text{I})=\alpha$, $P(\text{II})=\beta$, Power $=1-\beta$</span></li>
+        <li><span class="qg-name">One-sample z-test</span><span class="qg-math">$z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$</span></li>
+        <li><span class="qg-name">One-sample t-test</span><span class="qg-math">$t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$, $df=n-1$</span></li>
+        <li><span class="qg-name">Paired t-test</span><span class="qg-math">$t=\dfrac{\bar D-\mu_{D,0}}{s_D/\sqrt n}$</span></li>
+        <li><span class="qg-name">Chi-square statistic</span><span class="qg-math">$\chi^2=\sum\dfrac{(O_i-E_i)^2}{E_i}$</span></li>
+        <li><span class="qg-name">Expected cell count</span><span class="qg-math">$E_{ij}=\dfrac{(\text{row total})(\text{col total})}{\text{grand total}}$</span></li>
+        <li><span class="qg-name">Chi-square df (table)</span><span class="qg-math">$df=(r-1)(c-1)$</span></li>
+        <li><span class="qg-name">F-test</span><span class="qg-math">$F=\dfrac{s_1^2}{s_2^2}$, $df_1=n_1{-}1$, $df_2=n_2{-}1$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 11 · Machine-learning links</div>
+      <ul class="qg-list">
+        <li><span class="qg-name">Entropy</span><span class="qg-math">$H(C)=-\sum_i p_i\log_2 p_i$</span></li>
+        <li><span class="qg-name">Weighted child entropy</span><span class="qg-math">$H(C\mid A)=\sum_v\dfrac{|C_v|}{|C|}H(C_v)$</span></li>
+        <li><span class="qg-name">Information gain</span><span class="qg-math">$IG(C,A)=H(C)-H(C\mid A)$</span></li>
+        <li><span class="qg-name">Regression model</span><span class="qg-math">$y_i=\beta_0+\beta_1x_i+\epsilon_i$</span></li>
+        <li><span class="qg-name">OLS slope</span><span class="qg-math">$\hat\beta_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$</span></li>
+        <li><span class="qg-name">OLS intercept</span><span class="qg-math">$\hat\beta_0=\bar y-\hat\beta_1\bar x$</span></li>
+        <li><span class="qg-name">Coefficient of determination</span><span class="qg-math">$R^2=1-\dfrac{SSE}{SST}$; simple LR: $R^2=r^2$</span></li>
+        <li><span class="qg-name">Linear boundary (2-D)</span><span class="qg-math">$w_1x+w_2y+b=0$</span></li>
+      </ul>
+
+    </div>
+  </details>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> The complete concept map</div>
+    <p>The official syllabus moves from counting and probability to conditional probability, Bayes, random variables,
+      distributions, moments, correlation, covariance, CLT, confidence intervals and statistical tests.
+      The best way to remember everything is to follow that same dependency chain.</p>
+    <div class="formula">
+      $$\text{Counting}\to\text{Events}\to\text{Probability rules}\to\text{Conditional probability}\to\text{Bayes}$$
+      $$\text{Random variables}\to\text{PMF/PDF/CDF}\to\text{Distributions}\to\text{Expectation and variance}$$
+      $$\text{Joint distributions}\to\text{Covariance}\to\text{Correlation}\to\text{Descriptive statistics}$$
+      $$\text{Sampling}\to\text{CLT}\to\text{Confidence intervals}\to\text{Hypothesis tests}$$
+    </div>
+    <p>Then connect them to machine learning:</p>
+    <div class="formula">
+      $$\text{Probability}\to\text{Bayesian networks}$$
+      $$\text{Entropy}\to\text{Information gain}\to\text{Decision trees}$$
+      $$\text{Variance and covariance}\to\text{Regression and }R^2$$
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">💡 What recent papers actually test</div>
+      <p>Recent GATE papers repeatedly test <strong>recognition</strong> rather than direct formula substitution:
+        complements, conditioning reversal, shared random entries, distribution transformations, symmetry,
+        degrees of freedom and hidden dependence.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Formula-selection decoder</div>
+    <p>Before calculating, locate the clue.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Question wording</th><th>First method to try</th></tr></thead>
+        <tbody>
+          <tr><td>At least one</td><td>$1-P(\text{none})$</td></tr>
+          <tr><td>None</td><td>Multiply failure probabilities</td></tr>
+          <tr><td>Exactly $k$ successes</td><td>Binomial</td></tr>
+          <tr><td>At most $k$</td><td>Add $P(X{=}0)$ through $P(X{=}k)$</td></tr>
+          <tr><td>A or B</td><td>Union</td></tr>
+          <tr><td>Both A and B</td><td>Intersection</td></tr>
+          <tr><td>Given that</td><td>Conditional probability</td></tr>
+          <tr><td>Cause given an observed result</td><td>Bayes' theorem</td></tr>
+          <tr><td>Many possible causes/routes</td><td>Total probability</td></tr>
+          <tr><td>Equal-likelihood outcomes</td><td>Favourable / total</td></tr>
+          <tr><td>Order matters</td><td>Permutation</td></tr>
+          <tr><td>Order does not matter</td><td>Combination</td></tr>
+          <tr><td>Integer solutions</td><td>Stars and bars</td></tr>
+          <tr><td>Number of events in an interval</td><td>Poisson</td></tr>
+          <tr><td>Waiting time</td><td>Exponential</td></tr>
+          <tr><td>Fixed success/failure trials</td><td>Binomial</td></tr>
+          <tr><td>Equal density over an interval</td><td>Uniform</td></tr>
+          <tr><td>Bell-shaped measurement</td><td>Normal</td></tr>
+          <tr><td>Sum or mean of many variables</td><td>CLT</td></tr>
+          <tr><td>Unknown PDF endpoint/constant</td><td>Total integral $=1$</td></tr>
+          <tr><td>Probability using a CDF</td><td>Upper CDF minus lower CDF</td></tr>
+          <tr><td>Compare numerical variables</td><td>Covariance / Pearson</td></tr>
+          <tr><td>Ranked or ordinal variables</td><td>Spearman</td></tr>
+          <tr><td>Compare a mean, $\sigma$ known</td><td>z-test</td></tr>
+          <tr><td>Compare a mean, $\sigma$ unknown</td><td>t-test</td></tr>
+          <tr><td>Same people before and after</td><td>Paired t-test</td></tr>
+          <tr><td>Categorical counts</td><td>Chi-square</td></tr>
+          <tr><td>Compare two variances</td><td>F-test</td></tr>
+          <tr><td>Decision-tree split</td><td>Entropy and information gain</td></tr>
+          <tr><td>Bayesian-network joint event</td><td>Multiply local conditional probabilities</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Symbol decoder</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>$P(A)$</td><td>Probability that event $A$ occurs</td></tr>
+          <tr><td>$A^c$</td><td>$A$ does not occur</td></tr>
+          <tr><td>$A\cup B$</td><td>$A$ or $B$, including both</td></tr>
+          <tr><td>$A\cap B$</td><td>Both $A$ and $B$</td></tr>
+          <tr><td>$P(A\mid B)$</td><td>Probability of $A$, given $B$</td></tr>
+          <tr><td>$E[X]$</td><td>Expected value or long-run average</td></tr>
+          <tr><td>$\operatorname{Var}(X)$</td><td>Variance or squared spread</td></tr>
+          <tr><td>$SD(X)$</td><td>Standard deviation</td></tr>
+          <tr><td>$\operatorname{Cov}(X,Y)$</td><td>Linear co-movement</td></tr>
+          <tr><td>$\operatorname{Corr}(X,Y)$</td><td>Standardized covariance</td></tr>
+          <tr><td>$\mu$</td><td>Population mean</td></tr>
+          <tr><td>$\sigma^2$</td><td>Population variance</td></tr>
+          <tr><td>$\sigma$</td><td>Population standard deviation</td></tr>
+          <tr><td>$\bar X$</td><td>Sample mean</td></tr>
+          <tr><td>$s^2$</td><td>Sample variance</td></tr>
+          <tr><td>$\hat p$</td><td>Sample proportion</td></tr>
+          <tr><td>$F(x)$</td><td>CDF: $P(X\le x)$</td></tr>
+          <tr><td>$f(x)$</td><td>PDF for a continuous variable</td></tr>
+          <tr><td>$p(x)$</td><td>PMF for a discrete variable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Counting before probability</div>
+    <p>Probability questions often secretly begin as counting questions.</p>
+
+    <p><strong>3.1 Permutation</strong> — use when order or position matters (selecting a captain and vice-captain is ordered):</p>
+    <div class="formula">$${}^nP_r=\frac{n!}{(n-r)!}$$</div>
+
+    <p><strong>3.2 Combination</strong> — use when only the selected group matters (selecting three students for a team):</p>
+    <div class="formula">$$\binom{n}{r}=\frac{n!}{r!\,(n-r)!}$$</div>
+
+    <p><strong>3.3 Subsets</strong> — a set of $n$ elements has $2^n$ subsets; non-empty subsets: $2^n-1$.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 GATE pattern · even product (appeared in the 2026 paper)</div>
+      <p>A product is odd only when <em>every</em> selected factor is odd. Therefore
+        $P(\text{even product})=1-P(\text{all selected numbers are odd})$.</p>
+      <p>For $\{1,\dots,2026\}$ there are 1013 odds:</p>
+      <div class="formula">$$P=1-\frac{2^{1013}-1}{2^{2026}-1}=\frac{2^{1013}(2^{1013}-1)}{2^{2026}-1}$$</div>
+    </div>
+
+    <p><strong>3.4 Stars and bars</strong> — for $x_1+x_2+\cdots+x_k=n$:</p>
+    <div class="formula">
+      $$\text{Non-negative }(x_i\ge0):\ \binom{n+k-1}{k-1}$$
+      $$\text{Positive }(x_i\ge1):\ \binom{n-1}{k-1}$$
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 GATE pattern</div>
+      <p>For $n_1+n_2+n_3+n_4=20$: total non-negative solutions $\binom{23}{3}$, positive solutions $\binom{19}{3}$, so</p>
+      <div class="formula">$$P=\frac{\binom{19}{3}}{\binom{23}{3}}$$</div>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Do not use the positive formula directly unless every variable must be at least 1.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic probability rules</div>
+
+    <p><strong>4.1 Equally likely outcomes</strong> — use only when all elementary outcomes are equally likely:</p>
+    <div class="formula">$$P(A)=\frac{\text{favourable outcomes}}{\text{total outcomes}}$$</div>
+
+    <p><strong>4.2 Complement</strong> — with its most important application:</p>
+    <div class="formula">
+      $$P(A^c)=1-P(A)$$
+      $$P(\text{at least one})=1-P(\text{none})$$
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Example · 100 dice, at least one shows 1</div>
+      <div class="formula">
+        $$P(\text{none shows }1)=\left(\tfrac56\right)^{100}$$
+        $$P(\text{at least one }1)=1-\left(\tfrac56\right)^{100}$$
+      </div>
+    </div>
+
+    <p><strong>4.3 Addition rule</strong>:</p>
+    <div class="formula">
+      $$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$
+      $$\begin{aligned}P(A\cup B\cup C)={}&P(A)+P(B)+P(C)\\[2px]&-P(A\cap B)-P(A\cap C)-P(B\cap C)\\[2px]&+P(A\cap B\cap C)\end{aligned}$$
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Add singles, subtract pairs, add triple.</strong></li></ul>
+    </div>
+
+    <p><strong>4.4 Subset and intersection identity</strong>:</p>
+    <div class="formula">$$A\cap B=A\iff A\subseteq B$$</div>
+    <p>Therefore $A\cap B\cap C=A$ implies $A\subseteq B$ and $A\subseteq C$.
+      It does <em>not</em> necessarily imply $B\subseteq C$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Mutually exclusive vs independent</div>
+    <p>One of GATE's favourite conceptual traps.</p>
+    <div class="formula">
+      $$\text{Mutually exclusive: } P(A\cap B)=0$$
+      $$\text{Independent: } P(A\mid B)=P(A)\ \iff\ P(A\cap B)=P(A)\,P(B)$$
+    </div>
+    <p>If $P(A)\gt0$ and $P(B)\gt0$ and $A,B$ are mutually exclusive, they <strong>cannot</strong> be independent:
+      exclusivity gives $P(A\cap B)=0$, but independence would require $P(A)P(B)\gt0$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul>
+        <li>Mutually exclusive: cannot occur together.</li>
+        <li>Independent: can occur together, but do not influence each other.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Conditional probability</div>
+    <div class="formula">
+      $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$
+      $$P(A\cap B)=P(A\mid B)\,P(B)=P(B\mid A)\,P(A)$$
+    </div>
+    <p>Interpretation: after learning that $B$ happened, restrict attention to the $B$-region.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ The reversal trap</div>
+      <p>Usually $P(A\mid B)\ne P(B\mid A)$. Example: $P(+\mid\text{disease})$ is test sensitivity,
+        but $P(\text{disease}\mid +)$ is the probability a positive person actually has the disease —
+        the second requires Bayes.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Law of total probability</div>
+    <p>When an outcome can happen through several mutually exclusive routes $B_1,\dots,B_k$ that divide the entire population:</p>
+    <div class="formula">$$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$$</div>
+    <p>Think of a probability tree: route probability $=$ branch 1 $\times$ branch 2; then add all routes reaching the desired outcome.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 Example · two fair coins and one double-headed coin</div>
+      <div class="formula">$$P(H)=\tfrac13\cdot\tfrac12+\tfrac13\cdot\tfrac12+\tfrac13\cdot1=\tfrac23$$</div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Bayes' theorem</div>
+    <div class="formula">
+      $$P(B_i\mid A)=\frac{P(A\mid B_i)\,P(B_i)}{\sum_j P(A\mid B_j)\,P(B_j)}$$
+      $$\text{Posterior}=\frac{\text{Likelihood}\times\text{Prior}}{\text{Evidence}}$$
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">🔍 Recognition rule</div>
+      <p>Given $P(\text{result}\mid\text{cause})$, asked $P(\text{cause}\mid\text{result})$ → use Bayes.</p>
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Disease-test pattern</div>
+      <p>Suppose $P(+\mid D)=0.8$, $P(+\mid D^c)=0.1$, $P(D)=0.3$. First the evidence, then the posterior:</p>
+      <div class="formula">
+        $$P(+)=0.8(0.3)+0.1(0.7)=0.31$$
+        $$P(D\mid +)=\frac{0.8(0.3)}{0.31}\approx0.77$$
+      </div>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ GATE traps</div>
+      <ul class="styled">
+        <li>Using $0.8$ directly as the answer.</li>
+        <li>Forgetting false positives.</li>
+        <li>Forgetting the base rate $P(D)$.</li>
+        <li>Reversing $P(+\mid D)$ and $P(D\mid +)$.</li>
+      </ul>
+      <p>Recent papers have used both medical-test and box-selection versions of Bayes.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Conditional independence &amp; Bayesian networks</div>
+    <p><strong>9.1 Conditional independence</strong> — $X\perp Y\mid Z$ means:</p>
+    <div class="formula">$$P(X,Y\mid Z)=P(X\mid Z)\,P(Y\mid Z)$$</div>
+    <p><strong>9.2 Bayesian-network factorization</strong> — for every node, condition only on its parents:</p>
+    <div class="formula">$$P(X_1,\dots,X_n)=\prod_i P(X_i\mid\text{Parents}(X_i))$$</div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Example · $U\to V$, $U\to W$, $V\to Z$, $W\to Z$</div>
+      <div class="formula">
+        $$P(U,V,W,Z)=P(U)\,P(V\mid U)\,P(W\mid U)\,P(Z\mid V,W)$$
+        $$P(U{=}1,V{=}1,W{=}1,Z{=}1)=0.5(0.5)(1)(0.5)=0.125$$
+      </div>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Collider trap</div>
+      <p>For $V\to X\leftarrow W$: $V$ and $W$ may initially be independent, but conditioning on $X$ can make them dependent.
+        🧠 <em>Conditioning on a common effect can open a dependency path.</em></p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Random variables</div>
+    <p>A random variable assigns a numerical value to each random outcome.</p>
+    <ul class="styled deflist">
+      <li><strong>Discrete:</strong> countable values $0,1,2,\dots$ — number of heads, defects, wins.</li>
+      <li><strong>Continuous:</strong> any value in an interval — time, height, temperature.</li>
+    </ul>
+    <p>This distinction controls the mathematics:</p>
+    <div class="formula">
+      $$\text{Discrete}\Rightarrow\text{sum}$$
+      $$\text{Continuous}\Rightarrow\text{integrate}$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> PMF, PDF &amp; CDF</div>
+
+    <p><strong>11.1 PMF</strong> (discrete): $p(x)=P(X{=}x)$; valid if $p(x)\ge0$ and $\sum_x p(x)=1$.</p>
+
+    <p><strong>11.2 PDF</strong> (continuous) — probability is <em>area</em>, and the PDF height is not itself a probability:</p>
+    <div class="formula">
+      $$P(a\le X\le b)=\int_a^b f(x)\,dx$$
+      $$P(X{=}a)=0\ \text{ for continuous }X$$
+    </div>
+    <p>Valid if $f(x)\ge0$ and $\int_{-\infty}^{\infty}f(x)\,dx=1$.</p>
+
+    <p><strong>11.3 CDF</strong> (every random variable): $F(x)=P(X\le x)$ with properties:
+      $0\le F(x)\le1$; non-decreasing; right-continuous; $F(-\infty)=0$, $F(\infty)=1$.</p>
+    <div class="formula">
+      $$\text{Continuous: } P(a\le X\le b)=F(b)-F(a)$$
+      $$\text{Integer-valued discrete: } P(a\le X\le b)=F(b)-F(a-1)$$
+    </div>
+    <div class="callout tip">
+      <div class="callout-label">🎯 From the 2026 paper</div>
+      <p>Non-decreasing behaviour, jumps and right-continuity of a discrete CDF were tested directly.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> PDF/CDF exam tricks</div>
+
+    <p><strong>12.1 Unknown support or constant</strong> — a valid PDF has total area 1. If $f(x)=\tfrac{x}{2}$ on $0\le x\le a$:</p>
+    <div class="formula">$$\int_0^a\frac{x}{2}\,dx=1\ \Rightarrow\ \frac{a^2}{4}=1\ \Rightarrow\ a=2$$</div>
+
+    <p><strong>12.2 Median from a CDF</strong> — solve $F(m)=0.5$. If $F(x)=\dfrac{x-t}{4-t}$ and the median is 3:</p>
+    <div class="formula">$$\frac{3-t}{4-t}=\frac12\ \Rightarrow\ t=2$$</div>
+
+    <p><strong>12.3 Squared-variable inequalities</strong>:</p>
+    <div class="formula">
+      $$X^2\le a^2\ \iff\ -a\le X\le a$$
+      $$P(X^2\le a^2)=F(a)-F(-a)$$
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Common error</div>
+      <p>Calculating only $P(X\le a)$ and forgetting the lower bound $-a$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Distribution chooser</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Distribution</th></tr></thead>
+        <tbody>
+          <tr><td>One success/failure trial</td><td>Bernoulli</td></tr>
+          <tr><td>Number of successes in fixed trials</td><td>Binomial</td></tr>
+          <tr><td>Count of events per interval</td><td>Poisson</td></tr>
+          <tr><td>Equally likely interval values</td><td>Uniform</td></tr>
+          <tr><td>Waiting time</td><td>Exponential</td></tr>
+          <tr><td>Bell-shaped measurement</td><td>Normal</td></tr>
+          <tr><td>Standardized mean with unknown variance</td><td>Student's t</td></tr>
+          <tr><td>Sum of squared standard normals</td><td>Chi-square</td></tr>
+          <tr><td>Ratio of scaled variances</td><td>F</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Bernoulli distribution</div>
+    <div class="formula">
+      $$P(X{=}1)=p,\quad P(X{=}0)=1-p$$
+      $$E[X]=p\qquad \operatorname{Var}(X)=p(1-p)$$
+    </div>
+    <p>An <strong>indicator variable</strong> is a Bernoulli variable: $I_A=1$ if $A$ occurs, else $0$. Then:</p>
+    <div class="formula">$$E[I_A]=P(A)$$</div>
+    <p>This makes expectation questions much easier.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Binomial distribution</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 The BINS test</div>
+      <ul>
+        <li><strong>B</strong>inary result · <strong>I</strong>ndependent trials · fixed <strong>N</strong>umber of trials · <strong>S</strong>ame success probability.</li>
+      </ul>
+    </div>
+    <div class="formula">
+      $$P(X{=}k)=\binom{n}{k}p^k(1-p)^{n-k}$$
+      $$E[X]=np\qquad \operatorname{Var}(X)=np(1-p)$$
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Equal heads and tails</div>
+      <p>In $2n$ fair tosses, equal heads and tails means exactly $n$ heads:</p>
+      <div class="formula">$$P(X{=}n)=\binom{2n}{n}\left(\tfrac12\right)^{2n}=\frac{\binom{2n}{n}}{2^{2n}}$$</div>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Success vs failure count</div>
+      <p>If wins have probability $p$: $X=\text{wins}\sim\text{Bin}(n,p)$ but $Y=\text{non-wins}\sim\text{Bin}(n,1-p)$.
+        Do not use the same $p$ automatically for both variables.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> Poisson distribution</div>
+    <div class="formula">
+      $$P(X{=}k)=\frac{e^{-\lambda}\lambda^k}{k!}$$
+      $$E[X]=\operatorname{Var}(X)=\lambda$$
+    </div>
+    <p>Recognition clues: number of arrivals, calls per hour, defects per unit area, accidents per day.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> Uniform distribution</div>
+    <div class="formula">
+      $$f(x)=\frac{1}{b-a}\ \ (a\le x\le b)$$
+      $$E[X]=\frac{a+b}{2}\qquad \operatorname{Var}(X)=\frac{(b-a)^2}{12}$$
+      $$P(c\le X\le d)=\frac{d-c}{b-a}\ \text{ when }[c,d]\subseteq[a,b]$$
+    </div>
+    <p>For two independent uniform variables, draw the joint rectangle and calculate
+      <strong>favourable area ÷ total area</strong>.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> Exponential distribution</div>
+    <div class="formula">
+      $$f(x)=\lambda e^{-\lambda x}\ (x\ge0)\qquad F(x)=1-e^{-\lambda x}$$
+      $$P(X\gt x)=e^{-\lambda x}$$
+      $$E[X]=\frac{1}{\lambda}\qquad \operatorname{Var}(X)=\frac{1}{\lambda^2}$$
+    </div>
+    <p><strong>Memoryless property</strong>:</p>
+    <div class="formula">$$P(X\gt s+t\mid X\gt s)=P(X\gt t)$$</div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Example</div>
+      <p>$P(X\gt5)=0.35$ &nbsp;⇒&nbsp; $P(X\gt10\mid X\gt5)=P(X\gt5)=0.35$.</p>
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Parameterization trap</div>
+      <p>Some questions call $\lambda$ the <em>rate</em> (so $E[X]=1/\lambda$); others use $\lambda$ to denote the <em>mean</em>.
+        Always read the exact definition in the question — the 2026 paper deliberately used mean notation
+        in its exponential-memorylessness question.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Normal distribution</div>
+    <div class="formula">$$X\sim N(\mu,\sigma^2)\qquad Z=\frac{X-\mu}{\sigma}$$</div>
+    <ul class="styled">
+      <li>$Z=0$: exactly at the mean · $Z\gt0$: above · $Z\lt0$: below · $|Z|$: distance in standard deviations.</li>
+    </ul>
+    <p><strong>Transformation:</strong> $X=aZ+b$ with $Z\sim N(0,1)$ gives:</p>
+    <div class="formula">$$E[X]=b\qquad \operatorname{Var}(X)=a^2$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Sign trap</div>
+      <p>The sign of $a$ cannot be found from variance alone — both $a$ and $-a$ have the same square.
+        Another expectation or covariance condition determines the sign.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Student's t-distribution</div>
+    <ul class="styled">
+      <li>Symmetric around zero, heavier-tailed than the standard normal, controlled by degrees of freedom.</li>
+      <li>As df increase: $t_\nu\to N(0,1)$.</li>
+      <li>Use t for mean inference when the population standard deviation is unknown.</li>
+    </ul>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Normal vs t trap</div>
+      <p>Both have $F(0)=0.5$. The t has less density near the centre and more probability in the tails.
+        When comparing CDFs at crossing points, think in terms of <strong>accumulated area</strong>, not only PDF height.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Chi-square distribution</div>
+    <div class="formula">
+      $$Z_1^2+\cdots+Z_k^2\sim\chi^2_k$$
+      $$E[\chi^2_k]=k\qquad \operatorname{Var}(\chi^2_k)=2k$$
+    </div>
+    <p>Important cases: $Z^2\sim\chi^2_1$; $Z_1^2+Z_2^2\sim\chi^2_2$; and a $\chi^2_2$ is exponential with mean 2.</p>
+    <p><strong>Sample-variance result</strong> for independent standard normals:</p>
+    <div class="formula">
+      $$\sum_{i=1}^{n}X_i^2\sim\chi^2_n$$
+      $$\sum_{i=1}^{n}(X_i-\bar X)^2\sim\chi^2_{n-1}$$
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🤔 Why $n-1$?</div>
+      <p>The deviations satisfy $\sum_i(X_i-\bar X)=0$, so only $n-1$ deviations can vary freely.
+        Recent GATE questions explicitly tested these degree-of-freedom distinctions.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> Expected value</div>
+    <div class="formula">
+      $$\text{Discrete: } E[X]=\sum_x x\,P(X{=}x)$$
+      $$\text{Continuous: } E[X]=\int_{-\infty}^{\infty}x f(x)\,dx$$
+      $$\text{Any function: } E[g(X)]=\sum_x g(x)P(X{=}x)\ \text{ or }\ \int g(x)f(x)\,dx$$
+    </div>
+    <p><strong>Linearity</strong> — independence is <em>not</em> required:</p>
+    <div class="formula">
+      $$E[aX+b]=aE[X]+b$$
+      $$E[X+Y]=E[X]+E[Y]$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Conditional expectation</div>
+    <p>$E[X\mid Y]$ is the expected value of $X$ after $Y$ is known.</p>
+    <p><strong>Tower property</strong> — average inside each group, then average the group averages:</p>
+    <div class="formula">$$E\big[E[X\mid Y]\big]=E[X]$$</div>
+    <p><strong>Law of total variance</strong> — total variation = average within-group variation + between-group variation:</p>
+    <div class="formula">$$\operatorname{Var}(X)=E[\operatorname{Var}(X\mid Y)]+\operatorname{Var}(E[X\mid Y])$$</div>
+    <p>This links conditional expectation, variance decomposition and regression.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> Variance</div>
+    <div class="formula">
+      $$\operatorname{Var}(X)=E\big[(X-E[X])^2\big]=E[X^2]-(E[X])^2$$
+      $$SD(X)=\sqrt{\operatorname{Var}(X)}$$
+    </div>
+    <p><strong>Transformations</strong> — the constant $b$ does not affect spread:</p>
+    <div class="formula">$$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$$</div>
+    <p><strong>Variance of a sum</strong>:</p>
+    <div class="formula">
+      $$\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$$
+      $$\text{Independent: } \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)$$
+    </div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Sign-flip trick (key to a 2026 variance question)</div>
+      <p>If a multiplier is always $+1$ or $-1$, squaring removes it. For Bernoulli $X$:
+        $2X-1\in\{-1,+1\}$, so $(2X-1)^2=1$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Useful variance identity</div>
+    <div class="formula">$$\sum_{i=1}^{n}\sum_{j=1}^{n}(x_i-x_j)^2=2n\sum_{i=1}^{n}(x_i-\bar x)^2$$</div>
+    <p>Use this when GATE gives all pairwise squared distances but asks for variance around the mean. Remember:</p>
+    <div class="formula">$$s^2=\frac{1}{n-1}\sum_i(x_i-\bar x)^2$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Expected waiting time</div>
+    <p>When asked "expected number of trials until a pattern appears", create <strong>states</strong> describing progress.
+      For two consecutive successes with success probability $p$ — state 0: no current success; state 1: one success already:</p>
+    <div class="formula">
+      $$E_0=1+pE_1+(1-p)E_0$$
+      $$E_1=1+p(0)+(1-p)E_0$$
+    </div>
+    <p>Solve the simultaneous equations. For two consecutive even die results, $p=\tfrac12$ and the answer is <strong>6</strong>.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> Joint, marginal &amp; conditional distributions</div>
+    <p><strong>Joint:</strong> $P(X{=}x,Y{=}y)$ describes the two variables together.</p>
+    <p><strong>Marginal</strong> — to keep $X$ and ignore $Y$:</p>
+    <div class="formula">
+      $$P(X{=}x)=\sum_y P(X{=}x,Y{=}y)$$
+      $$f_X(x)=\int f_{X,Y}(x,y)\,dy$$
+    </div>
+    <p><strong>Conditional:</strong></p>
+    <div class="formula">$$P(X{=}x\mid Y{=}y)=\frac{P(X{=}x,Y{=}y)}{P(Y{=}y)}$$</div>
+    <p><strong>Independence</strong> — for <em>every</em> possible pair:</p>
+    <div class="formula">$$P(X{=}x,Y{=}y)=P(X{=}x)\,P(Y{=}y)$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Covariance</div>
+    <div class="formula">
+      $$\operatorname{Cov}(X,Y)=E\big[(X-E[X])(Y-E[Y])\big]$$
+      $$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$$
+    </div>
+    <ul class="styled">
+      <li>Positive: move together · Negative: move oppositely · Zero: no <em>linear</em> co-movement.</li>
+    </ul>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ One-way implication</div>
+      <p>Independence implies $\operatorname{Cov}(X,Y)=0$. But
+        $\operatorname{Cov}(X,Y)=0\ \not\Rightarrow\ X,Y$ independent.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> Pearson correlation</div>
+    <div class="formula">
+      $$\rho_{XY}=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\,\sigma_Y}$$
+      $$r=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_i(x_i-\bar x)^2}\ \sqrt{\sum_i(y_i-\bar y)^2}}$$
+      $$-1\le r\le 1$$
+    </div>
+    <ul class="styled">
+      <li>$r\approx1$: strong positive linear association · $r\approx-1$: strong negative · $r\approx0$: little <em>linear</em> association — it does not mean "no relationship".</li>
+    </ul>
+    <div class="callout example">
+      <div class="callout-label">🎯 Symmetry trick (appeared in GATE 2026)</div>
+      <p>If $X$ is symmetric around zero, $E[X]=0$ and every odd moment is zero: $E[X^3]=E[X^5]=\cdots=0$.
+        If $E[Y\mid X]=X^2$, then $E[XY]=E[X\,E(Y\mid X)]=E[X^3]=0$ — so correlation can be zero even though
+        $Y$ strongly depends on $X$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Spearman correlation</div>
+    <p>Spearman correlation is Pearson correlation applied to <strong>ranks</strong>. Without tied ranks:</p>
+    <div class="formula">$$r_s=1-\frac{6\sum d_i^2}{n(n^2-1)}$$</div>
+    <p>Use it for ordinal data, rankings, monotonic-but-curved relationships, and data strongly affected by outliers.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Pearson</th><th>Spearman</th></tr></thead>
+        <tbody>
+          <tr><td>Raw numerical values</td><td>Ranks</td></tr>
+          <tr><td>Linear relationship</td><td>Monotonic relationship</td></tr>
+          <tr><td>More sensitive to outliers</td><td>More robust to outliers</td></tr>
+          <tr><td>Interval/ratio data</td><td>Ordinal or numerical data</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Concordant &amp; discordant pairs</div>
+    <p>Two pairs $(x_1,y_1),(x_2,y_2)$ are <strong>concordant</strong> if both variables move in the same direction,
+      <strong>discordant</strong> if they move oppositely:</p>
+    <div class="formula">
+      $$\text{Concordant: } (x_1-x_2)(y_1-y_2)\gt0$$
+      $$\text{Discordant: } (x_1-x_2)(y_1-y_2)\lt0$$
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Concordant = coordinates <strong>agree</strong> · Discordant = coordinates <strong>disagree</strong>.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> Covariance matrix</div>
+    <div class="formula">$$\Sigma\in\mathbb{R}^{d\times d}\qquad \Sigma_{ij}=\operatorname{Cov}(X_i,X_j)\qquad \Sigma_{ii}=\operatorname{Var}(X_i)$$</div>
+    <p>The matrix is symmetric: $\Sigma_{ij}=\Sigma_{ji}$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> Descriptive statistics</div>
+    <ul class="styled deflist">
+      <li><strong>Mean</strong> $\bar x=\tfrac1n\sum_i x_i$ — sensitive to extreme values.</li>
+      <li><strong>Median</strong> — middle value after sorting; more resistant to outliers.</li>
+      <li><strong>Mode</strong> — most frequent value.</li>
+    </ul>
+    <p><strong>Updating a mean</strong> after adding a value $a$ (old total is $n\bar x$):</p>
+    <div class="formula">
+      $$\bar x_{\text{new}}=\frac{n\bar x+a}{n+1}$$
+      $$\text{Example: } \frac{50(40)+142}{51}=42$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> Population vs sample variance</div>
+    <div class="formula">
+      $$\sigma^2=\frac{1}{N}\sum_i(x_i-\mu)^2$$
+      $$s^2=\frac{1}{n-1}\sum_i(x_i-\bar x)^2$$
+    </div>
+    <p>The sample formula uses $n-1$ because the sample mean has already been estimated from the same observations.
+      Shortcut: $\operatorname{Var}(X)=E[X^2]-(E[X])^2$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> z-score normalization</div>
+    <div class="formula">
+      $$z=\frac{x-\mu}{\sigma}$$
+      $$\text{Example: } x=106000,\ \mu=96000,\ \sigma=21000\ \Rightarrow\ z=\frac{10000}{21000}\approx0.476$$
+    </div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Minimum and maximum values may be included as distractors — the z-score needs only $x,\mu,\sigma$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> Skewness</div>
+    <p>The mean is pulled toward the long tail.</p>
+    <div class="formula">
+      $$\text{Right-skewed: Mode}\lt\text{Median}\lt\text{Mean}$$
+      $$\text{Left-skewed: Mean}\lt\text{Median}\lt\text{Mode}$$
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>The mean follows the tail.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> Q–Q plots</div>
+    <p>A Q–Q plot compares theoretical quantiles with observed sample quantiles.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Shape</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Approximately straight</td><td>Distributional shape fits</td></tr>
+          <tr><td>Curved</td><td>Shape mismatch</td></tr>
+          <tr><td>Tail deviations</td><td>Tail behaviour differs</td></tr>
+          <tr><td>Isolated point</td><td>Possible outlier</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>For an exponential distribution: quantiles are non-negative, so points lie in the <strong>first quadrant</strong>;
+      compared with the same fully specified distribution they follow approximately $y=x$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">38</span> Sampling distribution &amp; standard error</div>
+    <p>For independent observations with $E[X_i]=\mu$, $\operatorname{Var}(X_i)=\sigma^2$ and sample mean $\bar X=\tfrac1n\sum_i X_i$:</p>
+    <div class="formula">
+      $$E[\bar X]=\mu$$
+      $$\operatorname{Var}(\bar X)=\frac{\sigma^2}{n}$$
+      $$SE(\bar X)=\frac{\sigma}{\sqrt n}$$
+    </div>
+    <ul class="styled">
+      <li><strong>Standard deviation:</strong> spread of individual observations.</li>
+      <li><strong>Standard error:</strong> spread of an estimator across samples.</li>
+      <li>If sample size is multiplied by 4: $SE_{\text{new}}=\dfrac{SE_{\text{old}}}{2}$.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">39</span> Central Limit Theorem</div>
+    <div class="formula">
+      $$\bar X\approx N\!\left(\mu,\ \frac{\sigma^2}{n}\right)$$
+      $$S_n=\sum_i X_i:\quad E[S_n]=n\mu,\quad \operatorname{Var}(S_n)=n\sigma^2$$
+      $$Z=\frac{S_n-n\mu}{\sigma\sqrt n}$$
+    </div>
+    <p><strong>Binomial CLT</strong> — for $Y\sim\text{Bin}(n,p)$: $\mu=np$, $\sigma=\sqrt{np(1-p)}$, then:</p>
+    <div class="formula">$$P(a\le Y\le b)\approx\Phi\!\left(\frac{b-np}{\sqrt{np(1-p)}}\right)-\Phi\!\left(\frac{a-np}{\sqrt{np(1-p)}}\right)$$</div>
+    <div class="callout tip">
+      <div class="callout-label">💡 Continuity correction</div>
+      <p>For a more accurate numerical approximation, $P(a\le Y\le b)$ becomes approximately $P(a-0.5\le N\le b+0.5)$.
+        If the GATE options clearly use integer endpoints without correction, follow the intended option structure.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">40</span> Sample proportion</div>
+    <div class="formula">
+      $$\hat p=\frac1n\sum_i X_i\ \text{ for Bernoulli observations}$$
+      $$E[\hat p]=p\qquad \operatorname{Var}(\hat p)=\frac{p(1-p)}{n}\qquad SE(\hat p)=\sqrt{\frac{p(1-p)}{n}}$$
+    </div>
+    <p>Larger sample size means a more stable estimate.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">41</span> Confidence intervals</div>
+    <div class="formula">
+      $$\sigma\text{ known: }\ \bar x\pm z_{\alpha/2}\,\frac{\sigma}{\sqrt n}$$
+      $$\sigma\text{ unknown: }\ \bar x\pm t_{\alpha/2,\,n-1}\,\frac{s}{\sqrt n}$$
+    </div>
+    <p>For 95% confidence: $z_{\alpha/2}\approx1.96$.</p>
+    <p><strong>Connection with testing:</strong> a two-sided $H_0:\mu=\mu_0$ is rejected at level $\alpha$
+      exactly when $\mu_0$ lies outside the corresponding $100(1-\alpha)\%$ confidence interval.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">42</span> Hypothesis-testing workflow</div>
+    <ul class="styled">
+      <li><strong>Step 1 — write hypotheses:</strong> $H_0$ = no change / no difference / current claim; $H_1$ = effect / difference.</li>
+      <li><strong>Step 2 — choose significance:</strong> $\alpha$, commonly $0.05$.</li>
+      <li><strong>Step 3 — calculate the test statistic:</strong> how far the sample result lies from $H_0$, in standard-error units.</li>
+      <li><strong>Step 4 — use the p-value.</strong></li>
+      <li><strong>Step 5 — state the conclusion in context.</strong> Do not stop with only "reject".</li>
+    </ul>
+    <div class="formula">
+      $$p\lt\alpha\ \Rightarrow\ \text{reject }H_0$$
+      $$p\ge\alpha\ \Rightarrow\ \text{fail to reject }H_0$$
+    </div>
+    <p>Do not normally say "accept $H_0$".</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">43</span> One-tailed vs two-tailed</div>
+    <ul class="styled">
+      <li>$H_1:\mu\ne\mu_0$ — two-tailed.</li>
+      <li>$H_1:\mu\gt\mu_0$ — right-tailed.</li>
+      <li>$H_1:\mu\lt\mu_0$ — left-tailed.</li>
+    </ul>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Never change a two-sided test into a one-sided test after seeing the sample result.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">44</span> Type I &amp; Type II errors</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Error</th><th>What happened</th><th>Probability</th><th>Think</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Type I</strong></td><td>Rejecting a true $H_0$</td><td>$\alpha$</td><td>False alarm</td></tr>
+          <tr><td><strong>Type II</strong></td><td>Failing to reject a false $H_0$</td><td>$\beta$</td><td>Missed detection</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">$$\text{Power}=1-\beta\ \text{ — probability of detecting a genuine effect}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">45</span> Statistical test chooser</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Test</th></tr></thead>
+        <tbody>
+          <tr><td>One mean, population $\sigma$ known</td><td>z-test</td></tr>
+          <tr><td>One mean, population $\sigma$ unknown</td><td>One-sample t-test</td></tr>
+          <tr><td>Two independent means</td><td>Two-sample t-test</td></tr>
+          <tr><td>Same subjects before/after</td><td>Paired t-test</td></tr>
+          <tr><td>Categorical goodness-of-fit</td><td>Chi-square</td></tr>
+          <tr><td>Independence of categorical variables</td><td>Chi-square</td></tr>
+          <tr><td>Compare two variances</td><td>F-test</td></tr>
+          <tr><td>Compare several means</td><td>ANOVA F-test</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">
+      $$z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}$$
+      $$t=\frac{\bar x-\mu_0}{s/\sqrt n}\quad (df=n-1)$$
+      $$\text{Paired: } D_i=X_i-Y_i,\quad t=\frac{\bar D-\mu_{D,0}}{s_D/\sqrt n}$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">46</span> Chi-square tests</div>
+    <div class="formula">
+      $$\chi^2=\sum_i\frac{(O_i-E_i)^2}{E_i}$$
+      $$E_{ij}=\frac{(\text{row total})(\text{column total})}{\text{grand total}}$$
+      $$df=(r-1)(c-1)$$
+    </div>
+    <p>$O_i$ = observed count, $E_i$ = expected count. A large $\chi^2$ means observed counts are far from expected counts.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">47</span> F-test</div>
+    <div class="formula">
+      $$F=\frac{s_1^2}{s_2^2}\qquad H_0:\sigma_1^2=\sigma_2^2$$
+      $$df_1=n_1-1,\qquad df_2=n_2-1$$
+    </div>
+    <p>In standard exam calculations, the larger sample variance is often placed in the numerator so $F\ge1$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">48</span> The shared-random-variable trap</div>
+    <p>When two requested events overlap, do <strong>not</strong> multiply their probabilities as though they were independent.
+      Example: "sum of row 2 equals 3" and "sum of column 3 equals 3" — the entry at $(2,3)$ belongs to both. Split into cases:</p>
+    <div class="formula">
+      $$P=P(\text{shared}{=}1)\,P(\text{requirements}\mid 1)+P(\text{shared}{=}0)\,P(\text{requirements}\mid 0)$$
+      $$\text{Bernoulli(0.5) entries: } P=\tfrac12\left(\tfrac{\binom42}{2^4}\right)^{\!2}+\tfrac12\left(\tfrac{\binom43}{2^4}\right)^{\!2}\approx0.10$$
+    </div>
+    <p>This overlap-conditioning pattern appeared in GATE 2026.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">49</span> Entropy &amp; information gain</div>
+    <p>These belong primarily to decision trees but are probability-based.</p>
+    <div class="formula">
+      $$H(C)=-\sum_i p_i\log_2 p_i$$
+      $$H(C\mid A)=\sum_v\frac{|C_v|}{|C|}H(C_v)$$
+      $$IG(C,A)=H(C)-H(C\mid A)$$
+    </div>
+    <ul class="styled">
+      <li>Pure node: $H=0$ · Balanced binary classes: maximum entropy $=1$.</li>
+      <li>🧠 <strong>Uncertainty before split minus uncertainty after split.</strong></li>
+    </ul>
+    <div class="callout example">
+      <div class="callout-label">🎯 Cricket-table pattern</div>
+      <p>Overall Green 4, Blue 6: $H(C)=-0.4\log_2 0.4-0.6\log_2 0.6\approx0.971$.
+        Spin-friendly (3 G, 2 B): $H(S)\approx0.971$. Pace-friendly (1 G, 4 B): $H(F)\approx0.722$.</p>
+      <div class="formula">
+        $$H(C\mid \text{Pitch})=\tfrac{5}{10}(0.971)+\tfrac{5}{10}(0.722)\approx0.846$$
+        $$IG\approx0.971-0.846=0.12$$
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">50</span> Linear regression essentials</div>
+    <div class="formula">
+      $$y_i=\beta_0+\beta_1x_i+\epsilon_i$$
+      $$\hat y_i=\hat\beta_0+\hat\beta_1x_i\qquad e_i=y_i-\hat y_i$$
+      $$\text{OLS minimizes } SSE=\sum_i e_i^2$$
+    </div>
+    <p><strong>Slope and intercept:</strong></p>
+    <div class="formula">
+      $$\hat\beta_1=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}$$
+      $$\hat\beta_0=\bar y-\hat\beta_1\bar x$$
+    </div>
+    <p>With an intercept: $\sum_i e_i=0$ and the fitted line passes through $(\bar x,\bar y)$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">51</span> OLS assumptions</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Assumption</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Linearity</td><td>Mean response is linear in parameters</td></tr>
+          <tr><td>Zero-mean error</td><td>$E[\epsilon\mid X]=0$</td></tr>
+          <tr><td>Constant variance</td><td>$\operatorname{Var}(\epsilon\mid X)=\sigma^2$</td></tr>
+          <tr><td>Independent observations/errors</td><td>No unexplained dependence</td></tr>
+          <tr><td>Accurate predictors</td><td>Classical errors-in-variables assumption</td></tr>
+          <tr><td>No perfect multicollinearity</td><td>Predictors are not exact linear combinations</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Normal errors are needed for exact small-sample <em>inferential</em> results, not merely for computing the OLS coefficients.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">52</span> $R^2$</div>
+    <div class="formula">
+      $$R^2=1-\frac{SSE}{SST}\qquad SST=\sum_i(y_i-\bar y)^2$$
+      $$\text{Simple linear regression with intercept: } R^2=r^2$$
+    </div>
+    <p>$R^2=0.90$ means the model explains 90% of the observed response variation in the fitted sample.
+      Higher $R^2$ means points tend to lie closer to the fitted line.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Ordinary in-sample OLS with an intercept gives $0\le R^2\le1$ — but test-set $R^2$ or models
+        without an intercept can produce negative values.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">53</span> Linear decision boundaries</div>
+    <div class="formula">$$w_1x+w_2y+b=0\qquad\text{equivalently } y=a_0+a_1x$$</div>
+    <p>All of these are straight-line boundaries: $y=a_0+a_1x$, $y=a_0$, $y=x$, $y=a_1x$.</p>
+    <p><strong>Feature transformation</strong> — original circular boundary $x^2+y^2=c^2$; define $z=x^2+y^2$; then the boundary becomes:</p>
+    <div class="formula">$$z=c^2$$</div>
+    <p>which is a threshold in one-dimensional transformed space.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">54</span> Correlation vs causation</div>
+    <div class="formula">$$\text{Correlation does not by itself prove causation}$$</div>
+    <p>Correlation may arise from: direct causation, reverse causation, a hidden confounder, selection bias, or coincidence.
+      A causal conclusion requires additional evidence beyond the correlation coefficient.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">55</span> Ultimate GATE trap table</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Trap</th><th>Correct response</th></tr></thead>
+        <tbody>
+          <tr><td>"At least one"</td><td>Use complement</td></tr>
+          <tr><td>Mutually exclusive mistaken for independent</td><td>Check intersection and product separately</td></tr>
+          <tr><td>$P(A\mid B)$ reversed</td><td>Use Bayes</td></tr>
+          <tr><td>PDF height treated as probability</td><td>Integrate area</td></tr>
+          <tr><td>CDF assumed left-continuous</td><td>CDF is right-continuous</td></tr>
+          <tr><td>Discrete CDF called strictly positive</td><td>It may equal 0</td></tr>
+          <tr><td>$X^2\le a^2$</td><td>Use $-a\le X\le a$</td></tr>
+          <tr><td>Exponential $\lambda$ assumed to be rate</td><td>Read the parameter definition</td></tr>
+          <tr><td>Variance scaled by $a$</td><td>It scales by $a^2$</td></tr>
+          <tr><td>Expectation assumed to need independence</td><td>Linearity always holds</td></tr>
+          <tr><td>Zero covariance treated as independence</td><td>Reverse implication is false</td></tr>
+          <tr><td>Pearson used for any relationship</td><td>Pearson measures linearity</td></tr>
+          <tr><td>Spearman treated as linear</td><td>Spearman measures monotonic ranks</td></tr>
+          <tr><td>$p\lt\alpha$ interpreted as accepting $H_0$</td><td>Reject $H_0$</td></tr>
+          <tr><td>Test direction changed after results</td><td>Direction must be chosen beforehand</td></tr>
+          <tr><td>t chosen only because sample is small</td><td>Main clue is unknown $\sigma$</td></tr>
+          <tr><td>Chi-square degrees of freedom ignored</td><td>Track constraints / estimated parameters</td></tr>
+          <tr><td>Shared matrix entry ignored</td><td>Condition on the shared entry</td></tr>
+          <tr><td>Exact line and noisy linear trend confused</td><td>Exact line gives $|r|=1$; noise lowers it</td></tr>
+          <tr><td>Information gain uses unweighted child entropy</td><td>Weight by child sizes</td></tr>
+          <tr><td>Bayesian network multiplies marginals</td><td>Condition each node on its parents</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">56</span> Sixty-second exam decision tree</div>
+    <ul class="styled">
+      <li><strong>Counting outcomes?</strong> → permutation, combination, subsets or stars and bars.</li>
+      <li><strong>"At least one"?</strong> → complement.</li>
+      <li><strong>"Given"?</strong> → conditional probability.</li>
+      <li><strong>Cause and result reversed?</strong> → Bayes.</li>
+      <li><strong>Successes in fixed independent trials?</strong> → binomial.</li>
+      <li><strong>Waiting time?</strong> → exponential; check memorylessness.</li>
+      <li><strong>Large sum or sample mean?</strong> → CLT and standardize.</li>
+      <li><strong>Given a PDF?</strong> → check $\int f(x)\,dx=1$.</li>
+      <li><strong>Given a CDF?</strong> → $F(\text{upper})-F(\text{lower})$.</li>
+      <li><strong>About spread?</strong> → variance or standard deviation.</li>
+      <li><strong>Two variables moving together?</strong> → covariance / Pearson / Spearman.</li>
+      <li><strong>Sample claim vs population value?</strong> → select z, t, chi-square or F.</li>
+      <li><strong>Decision-tree table?</strong> → entropy before and after the split.</li>
+      <li><strong>Bayesian network?</strong> → multiply every node's probability conditioned on its parents.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">57</span> Final formula block — last-minute revision</div>
+    <div class="formula">
+      $$P(A^c)=1-P(A)$$
+      $$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$
+      $$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$
+      $$P(B\mid A)=\frac{P(A\mid B)P(B)}{P(A)}$$
+      $$\binom nr=\frac{n!}{r!(n-r)!}$$
+    </div>
+    <div class="formula">
+      $$E[X]=\sum_x xp(x)\ \text{ or }\ \int xf(x)\,dx$$
+      $$\operatorname{Var}(X)=E[X^2]-(E[X])^2$$
+      $$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$$
+      $$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$$
+      $$\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$$
+    </div>
+    <div class="formula">
+      $$P_{\text{Bin}}(X{=}k)=\binom nk p^k(1-p)^{n-k},\quad E=np,\ \operatorname{Var}=np(1-p)$$
+      $$P_{\text{Poisson}}(X{=}k)=e^{-\lambda}\frac{\lambda^k}{k!},\quad E=\operatorname{Var}=\lambda$$
+      $$P_{\text{Exp}}(X\gt x)=e^{-\lambda x},\quad E=\frac1\lambda,\ \operatorname{Var}=\frac{1}{\lambda^2}$$
+      $$Z=\frac{X-\mu}{\sigma}$$
+    </div>
+    <div class="formula">
+      $$E[\bar X]=\mu,\quad SE(\bar X)=\frac{\sigma}{\sqrt n}$$
+      $$E[\hat p]=p,\quad \operatorname{Var}(\hat p)=\frac{p(1-p)}{n}$$
+      $$z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}\qquad t=\frac{\bar x-\mu_0}{s/\sqrt n}$$
+      $$\chi^2=\sum\frac{(O-E)^2}{E}\qquad F=\frac{s_1^2}{s_2^2}$$
+    </div>
+    <div class="formula">
+      $$r=\frac{\operatorname{Cov}(X,Y)}{s_X\,s_Y}\qquad R^2=1-\frac{SSE}{SST}$$
+      $$H(C)=-\sum_i p_i\log_2 p_i\qquad IG=H(\text{parent})-\sum_v\frac{n_v}{n}H(\text{child}_v)$$
+      $$P(\text{Bayesian network})=\prod_i P(X_i\mid\text{Parents}(X_i))$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">✦</span> Final recall story</div>
+    <p>Think of the entire subject as one journey:</p>
+    <p>First <strong>count</strong> possible worlds. Assign <strong>probabilities</strong> to events in those worlds.
+      When information arrives, <strong>condition</strong> the probabilities. When the direction is reversed, use <strong>Bayes</strong>.
+      Convert outcomes into <strong>random variables</strong>. Describe discrete variables using <strong>PMFs</strong>,
+      continuous variables using <strong>PDFs</strong>, and both using <strong>CDFs</strong>. Summarize them using
+      <strong>expectation and variance</strong>. Study pairs using <strong>joint distributions, covariance and correlation</strong>.
+      Take <strong>samples</strong>, use the <strong>CLT</strong> to understand sample means, and use <strong>hypothesis tests</strong>
+      to judge claims. Finally, use <strong>entropy</strong> for decision trees and <strong>conditional factorization</strong>
+      for Bayesian networks.</p>
+    <p>That single sequence connects nearly every probability-and-statistics pattern seen in the recent GATE DA papers.</p>
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📚</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Want the full explanations?</div>
+        <div class="practice-cta-sub">Every formula here is taught story-first in the Detailed Study, with real GATE questions.</div>
+      </div>
+      <a class="btn btn-primary" href="detailed-study.html">Detailed Study →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260620"></script>
+  <script src="../assets/js/app.js?v=20260620"></script>
+</body>
+</html>
