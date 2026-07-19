@@ -266,13 +266,24 @@
 
     <div class="callout example">
       <div class="callout-label">🤔 Why does adding and subtracting the equations work?</div>
-      <p>Suppose $x+y=a$ and $x-y=b$. Adding both equations makes the $y$ terms cancel:
-        $(x+y)+(x-y)=a+b\Rightarrow2x=a+b\Rightarrow x=\dfrac{a+b}2$. Subtracting the second from the first makes
-        the $x$ terms cancel instead: $(x+y)-(x-y)=a-b\Rightarrow2y=a-b\Rightarrow y=\dfrac{a-b}2$. This trick works
-        for numbers, vectors, or matrices — the algebra doesn't care what kind of object $x$ and $y$ are.</p>
+      <p>Suppose $x+y=a$ and $x-y=b$. Add both equations — the $y$ terms cancel:</p>
     </div>
 
-    <div class="formula">$$x=\frac{a+b}2\qquad y=\frac{a-b}2$$</div>
+    <div class="formula">$$(x+y)+(x-y)=a+b$$</div>
+    <div class="formula">$$2x=a+b$$</div>
+
+    <p>Therefore:</p>
+    <div class="formula">$$x=\dfrac{a+b}2$$</div>
+
+    <p>Now subtract the second equation from the first — the $x$ terms cancel instead:</p>
+
+    <div class="formula">$$(x+y)-(x-y)=a-b$$</div>
+    <div class="formula">$$2y=a-b$$</div>
+
+    <p>Therefore:</p>
+    <div class="formula">$$y=\dfrac{a-b}2$$</div>
+
+    <p>This trick works for numbers, vectors, or matrices — the algebra doesn't care what kind of object $x$ and $y$ are.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Finding two vectors.</strong> Vectors $x,y$ satisfy $x+y=[6,4,6]$ and
@@ -356,7 +367,9 @@
         passes three checks:</p>
     </div>
 
-    <div class="formula">$$0\in S\qquad x,y\in S\Rightarrow x+y\in S\qquad x\in S,\ c\in\mathbb R\Rightarrow cx\in S$$</div>
+    <div class="formula">$$0\in S$$</div>
+    <div class="formula">$$x,y\in S\Rightarrow x+y\in S$$</div>
+    <div class="formula">$$x\in S,\ c\in\mathbb R\Rightarrow cx\in S$$</div>
 
     <div class="callout tip">
       <div class="callout-label">🔍 Fastest GATE test</div>
@@ -436,10 +449,20 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A hyperplane is described by $w^Tx=b$, where $w$ is perpendicular to it. To find which side a point $x$
-        sits on, calculate $w^Tx-b$: positive means the positive half-space, negative means the negative
-        half-space, zero means exactly on the hyperplane.</p>
+      <p>A hyperplane is defined by:</p>
     </div>
+
+    <div class="formula">$$w^Tx=b$$</div>
+
+    <p>where $w$ is perpendicular to it. To determine which side a point $x$ lies on, calculate:</p>
+
+    <div class="formula">$$w^Tx-b$$</div>
+
+    <ul class="styled">
+      <li>Positive result: <strong>positive half-space</strong>.</li>
+      <li>Negative result: <strong>negative half-space</strong>.</li>
+      <li>Zero: the point lies <strong>on</strong> the hyperplane.</li>
+    </ul>
 
     <div class="practice">
       <p class="pq"><strong>Q · Identifying a half-space.</strong> The point $(x_1,x_2,x_3,x_4)=(1,4,6,3)$ is in
@@ -462,9 +485,13 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Each coordinate of an $n$-dimensional cube's corner has two possible values (say $0$ or $1$), so with $n$
-        coordinates there are $\underbrace{2\times2\times\cdots\times2}_{n\text{ times}}$ corners:</p>
+      <p>Every coordinate has two possible corner values, usually $0$ or $1$.</p>
+      <p>In two dimensions:</p>
     </div>
+
+    <div class="formula">$$(0,0),\ (0,1),\ (1,0),\ (1,1)$$</div>
+
+    <p>There are $2^2=4$ corners. In $n$ dimensions, each of the $n$ coordinates independently doubles the count:</p>
 
     <div class="formula">$$\text{number of vertices}=2^n$$</div>
 
@@ -551,10 +578,18 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A two-dimensional rotation matrix is $R(\theta)=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$.
-        Applying two rotations adds their angles: $R(\alpha)R(\beta)=R(\alpha+\beta)$, so $R(\theta)^k=R(k\theta)$.
-        A full rotation is $2\pi$, so $R(2\pi)=I$.</p>
+      <p>A two-dimensional rotation matrix is:</p>
     </div>
+
+    <div class="formula">$$R(\theta)=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$$</div>
+
+    <p>Applying two rotations one after another simply adds their angles:</p>
+
+    <div class="formula">$$R(\alpha)R(\beta)=R(\alpha+\beta)\qquad\text{so}\qquad R(\theta)^k=R(k\theta)$$</div>
+
+    <p>A full rotation returns everything to where it started:</p>
+
+    <div class="formula">$$R(2\pi)=I$$</div>
 
     <div class="callout tip">
       <div class="callout-label">🔍 Spot it in the exam</div>
@@ -583,18 +618,40 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>For $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$, $\det(A)=ad-bc$. Geometrically, $|\det(A)|$ is the
-        area/volume scaling factor of the transformation: $\det(A)\gt0$ preserves orientation, $\det(A)\lt0$
-        reverses it, and $\det(A)=0$ means space collapses — dimensions get crushed.</p>
+      <p>For a $2\times2$ matrix:</p>
     </div>
 
-    <div class="formula">$$\det(AB)=\det(A)\det(B)\qquad\det(A^T)=\det(A)\qquad\det(A^{-1})=\frac1{\det(A)}$$</div>
+    <div class="formula">$$A=\begin{bmatrix}a&b\\c&d\end{bmatrix}\qquad\det(A)=ad-bc$$</div>
 
-    <p>For a triangular matrix, $\det(A)=$ product of diagonal entries. For $A\in\mathbb R^{n\times n}$,
-      $\det(cA)=c^n\det(A)$, and $\det(A)=\prod_i\lambda_i$ (the product of eigenvalues).</p>
+    <p>Geometrically, $|\det(A)|$ is the area/volume scaling factor of the transformation: $\det(A)\gt0$ preserves
+      orientation, $\det(A)\lt0$ reverses it, and $\det(A)=0$ means space collapses — dimensions get crushed.</p>
+
+    <p>Important determinant properties:</p>
+
+    <div class="formula">$$\det(AB)=\det(A)\det(B)$$</div>
+    <div class="formula">$$\det(A^T)=\det(A)$$</div>
+    <div class="formula">$$\det(A^{-1})=\frac1{\det(A)}$$</div>
+
+    <p>For a triangular or diagonal matrix:</p>
+
+    <div class="formula">$$\det(A)=\text{product of diagonal entries}$$</div>
+
+    <p>For an $n\times n$ matrix:</p>
+
+    <div class="formula">$$\det(cA)=c^n\det(A)$$</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Be careful: it is $c^n$, not merely $c$.</p>
+    </div>
+
+    <p>The determinant also equals the product of eigenvalues:</p>
+
+    <div class="formula">$$\det(A)=\lambda_1\lambda_2\cdots\lambda_n$$</div>
 
     <p>The $2\times2$ inverse:</p>
-    <div class="formula">$$A^{-1}=\frac1{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}\qquad\text{exists only when }ad-bc\ne0$$</div>
+    <div class="formula">$$A^{-1}=\frac1{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$$</div>
+    <p>This exists only when $ad-bc\ne0$.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Determinant and invertibility.</strong> Given
@@ -685,7 +742,8 @@
     </div>
 
     <p>The most important orthogonality relationships:</p>
-    <div class="formula">$$N(A)\perp\operatorname{Row}(A)\qquad N(A^T)\perp\operatorname{Col}(A)$$</div>
+    <div class="formula">$$N(A)\perp\operatorname{Row}(A)$$</div>
+    <div class="formula">$$N(A^T)\perp\operatorname{Col}(A)$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Null space orthogonality.</strong> Select the correct option.<br><br>
@@ -710,14 +768,31 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A system is written $Ax=b$: $A$ is the coefficient matrix, $x$ is unknown, $b$ is the required output. The
-        augmented matrix is $[A\mid b]$.</p>
+      <p>A system is written:</p>
     </div>
+
+    <div class="formula">$$Ax=b$$</div>
+
+    <ul class="styled decode">
+      <li>$A$ — the coefficient matrix.</li>
+      <li>$x$ — the unknown vector.</li>
+      <li>$b$ — the required output.</li>
+      <li>$[A\mid b]$ — the augmented matrix.</li>
+    </ul>
 
     <p>Let $r=\operatorname{rank}(A)$, $r'=\operatorname{rank}([A\mid b])$, and $n=$ number of unknowns. This is the
       single most important decision table in the topic:</p>
 
-    <div class="formula">$$r\ne r'\Rightarrow\text{no solution}\qquad r=r'=n\Rightarrow\text{unique solution}\qquad r=r'\lt n\Rightarrow\text{infinitely many solutions}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Conclusion</th></tr></thead>
+        <tbody>
+          <tr><td>$r\ne r'$</td><td>No solution</td></tr>
+          <tr><td>$r=r'=n$</td><td>Unique solution</td></tr>
+          <tr><td>$r=r'\lt n$</td><td>Infinitely many solutions</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Dependent equations.</strong> Consider $x+y+z=3$, $2x+2y+2z=6$, $x-y+z=1$. What is
@@ -761,10 +836,17 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A homogeneous system has $Ax=0$, and it always has the trivial solution $x=0$. If $A$ has full column
-        rank ($\operatorname{rank}(A)=n$), then $\operatorname{nullity}(A)=0$ and only the trivial solution exists.
-        If a non-zero solution exists for square $A$, then $A$ is singular and has no inverse.</p>
+      <p>A homogeneous system has:</p>
     </div>
+
+    <div class="formula">$$Ax=0$$</div>
+
+    <p>It always has the trivial solution $x=0$.</p>
+
+    <ul class="styled">
+      <li>If $A$ has full column rank ($\operatorname{rank}(A)=n$), then $\operatorname{nullity}(A)=0$ and only the trivial solution exists.</li>
+      <li>If a non-zero solution exists for square $A$, then $A$ is singular and has no inverse.</li>
+    </ul>
 
     <div class="practice">
       <p class="pq"><strong>Q · Homogeneous-system properties.</strong> Consider $Ax=0$. Select all correct options.<br><br>
@@ -794,8 +876,13 @@
 
     <div class="formula">$$x_{\min}=A^+b$$</div>
 
-    <p>where $A^+$ is the Moore–Penrose pseudoinverse. If $A$ has full row rank, $A^+=A^T(AA^T)^{-1}$; the fully
-      general formula from SVD is $A^+=V\Sigma^+U^T$.</p>
+    <p>where $A^+$ is the Moore–Penrose pseudoinverse.</p>
+
+    <p>If $A$ has full row rank:</p>
+    <div class="formula">$$A^+=A^T(AA^T)^{-1}$$</div>
+
+    <p>The fully general formula, from SVD:</p>
+    <div class="formula">$$A^+=V\Sigma^+U^T$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Choosing a minimum-norm solution.</strong> For an underdetermined system $m\lt n$,
@@ -809,10 +896,16 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">23</span> Dimension-based solution reasoning for $M$ and $M^T$</div>
 
-    <p>For $M\in\mathbb R^{m\times n}$: $Mx=b$ has $n$ unknowns; a unique solution requires full column rank $n$,
-      so unique solutions require $n\le m$; infinite solutions require consistency and rank $\lt n$. Also
-      $\operatorname{rank}(M)=\operatorname{rank}(M^T)$, but the nullities differ:
-      $\operatorname{nullity}(M)=n-r$, $\operatorname{nullity}(M^T)=m-r$.</p>
+    <p>For $M\in\mathbb R^{m\times n}$, consider $Mx=b$ with $n$ unknowns:</p>
+
+    <ul class="styled">
+      <li>A unique solution requires full column rank $n$, so it needs $n\le m$.</li>
+      <li>Infinitely many solutions require consistency together with rank $\lt n$.</li>
+      <li>Also $\operatorname{rank}(M)=\operatorname{rank}(M^T)$, but the nullities differ:</li>
+    </ul>
+
+    <div class="formula">$$\operatorname{nullity}(M)=n-r$$</div>
+    <div class="formula">$$\operatorname{nullity}(M^T)=m-r$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Possible solution behaviours for $M$ and $M^T$.</strong> Which statements are true?<br><br>
@@ -861,15 +954,27 @@
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
       <p>A matrix normally changes both the length and direction of a vector. An <strong>eigenvector</strong> is a
-        special non-zero vector whose <em>direction</em> the matrix preserves: $Ax=\lambda x$, where $x\ne0$ is the
-        eigenvector and $\lambda$ is its eigenvalue. Read the eigenvalue as the stretch factor: $\lambda\gt1$
-        stretches, $0\lt\lambda\lt1$ shrinks, $\lambda\lt0$ reverses and scales, $\lambda=0$ crushes to zero.</p>
+        special non-zero vector whose <em>direction</em> the matrix preserves:</p>
     </div>
 
-    <p>Rearranging $Ax=\lambda x$ gives $(A-\lambda I)x=0$. For a non-zero solution to exist, $A-\lambda I$ must be
-      singular:</p>
+    <div class="formula">$$Ax=\lambda x$$</div>
+
+    <p>where $x\ne0$ is the eigenvector and $\lambda$ is its eigenvalue. Read the eigenvalue as the stretch factor:</p>
+
+    <ul class="styled">
+      <li>$\lambda\gt1$ — stretches.</li>
+      <li>$0\lt\lambda\lt1$ — shrinks.</li>
+      <li>$\lambda\lt0$ — reverses and scales.</li>
+      <li>$\lambda=0$ — crushes to zero.</li>
+    </ul>
+
+    <p>Rearranging $Ax=\lambda x$ gives:</p>
+    <div class="formula">$$(A-\lambda I)x=0$$</div>
+
+    <p>For a non-zero solution to exist, $A-\lambda I$ must be singular:</p>
     <div class="formula">$$\det(A-\lambda I)=0\qquad\text{(the characteristic equation)}$$</div>
-    <p>After finding $\lambda$, find its eigenvectors by solving $(A-\lambda I)x=0$.</p>
+
+    <p>After finding $\lambda$, find its eigenvectors by solving that same equation, $(A-\lambda I)x=0$, for $x$.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Invertibility of $A-\lambda I$.</strong> Suppose $\lambda$ is an eigenvalue of a
@@ -888,7 +993,8 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">26</span> Eigenvalue identities</div>
 
-    <div class="formula">$$\sum_i\lambda_i=\operatorname{tr}(A)\qquad\prod_i\lambda_i=\det(A)$$</div>
+    <div class="formula">$$\sum_i\lambda_i=\operatorname{tr}(A)$$</div>
+    <div class="formula">$$\prod_i\lambda_i=\det(A)$$</div>
 
     <p>For a diagonal or triangular matrix, the eigenvalues are simply the diagonal entries. The characteristic
       polynomial has degree $n$.</p>
@@ -947,8 +1053,12 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">28</span> Powers and inverses of eigenvalues</div>
 
-    <p>If $Ax=\lambda x$, then $A^kx=\lambda^kx$, so the eigenvalues of $A^k$ are $\lambda_i^k$. If $A$ is
-      invertible, the eigenvalues of $A^{-1}$ are $1/\lambda_i$.</p>
+    <p>If $Ax=\lambda x$, then:</p>
+    <div class="formula">$$A^kx=\lambda^kx$$</div>
+    <p>so the eigenvalues of $A^k$ are $\lambda_i^k$.</p>
+
+    <p>If $A$ is invertible, the eigenvalues of $A^{-1}$ are:</p>
+    <div class="formula">$$\frac1{\lambda_i}$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Recursive eigenvector sequence.</strong> Let $x_0$ be an eigenvector of $A$ with
@@ -983,10 +1093,18 @@
       <p>For a $2\times2$ matrix, the characteristic equation always simplifies to:</p>
     </div>
 
-    <div class="formula">$$\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0\qquad\Delta=\operatorname{tr}(A)^2-4\det(A)$$</div>
+    <div class="formula">$$\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0$$</div>
 
-    <p>$\Delta\gt0$: two distinct real eigenvalues. $\Delta=0$: one repeated real eigenvalue. $\Delta\lt0$: a
-      complex-conjugate pair — you can know this <em>without ever solving for the eigenvalues themselves</em>.</p>
+    <p>with discriminant:</p>
+    <div class="formula">$$\Delta=\operatorname{tr}(A)^2-4\det(A)$$</div>
+
+    <ul class="styled">
+      <li>$\Delta\gt0$ — two distinct real eigenvalues.</li>
+      <li>$\Delta=0$ — one repeated real eigenvalue.</li>
+      <li>$\Delta\lt0$ — a complex-conjugate pair.</li>
+    </ul>
+
+    <p>You can know which case you're in <em>without ever solving for the eigenvalues themselves</em>.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Classifying eigenvalues without solving fully.</strong> Consider
@@ -1008,9 +1126,10 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">30</span> Rotation eigenvalues, and a trace shortcut for rotation blocks</div>
 
-    <p>A two-dimensional rotation by $\theta$ has eigenvalues $\lambda=\cos\theta\pm i\sin\theta$. Except at
-      $0^\circ$ and $180^\circ$, a genuine planar rotation has <em>no real eigenvector</em> — every direction
-      genuinely turns.</p>
+    <p>A two-dimensional rotation by $\theta$ has eigenvalues:</p>
+    <div class="formula">$$\lambda=\cos\theta\pm i\sin\theta$$</div>
+    <p>Except at $0^\circ$ and $180^\circ$, a genuine planar rotation has <em>no real eigenvector</em> — every
+      direction genuinely turns.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Real eigenvectors of a $45^\circ$ rotation.</strong> A real $2\times2$ matrix
@@ -1027,9 +1146,12 @@
 
     <div class="callout example">
       <div class="callout-label">🤔 Trace shortcut for a rotation block</div>
-      <p>For a matrix like $A(t)=\begin{bmatrix}1&0&0\\0&\cos t&\sin t\\0&-\sin t&\cos t\end{bmatrix}$, the sum of
-        eigenvalues is just its trace — you never need the individual eigenvalues.</p>
+      <p>For a matrix like:</p>
     </div>
+
+    <div class="formula">$$A(t)=\begin{bmatrix}1&0&0\\0&\cos t&\sin t\\0&-\sin t&\cos t\end{bmatrix}$$</div>
+
+    <p>the sum of eigenvalues is just its trace — you never need the individual eigenvalues.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Trace shortcut for a rotation block (real GATE).</strong> Let $\gamma_1,\gamma_2,\gamma_3$
@@ -1051,11 +1173,13 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">31</span> Equal row-sum shortcut &amp; matrix polynomials</div>
 
-    <p>If every row of $A$ sums to $s$, then $A\mathbf1=s\mathbf1$ — so $s$ is automatically an eigenvalue, with
-      eigenvector $\mathbf1=[1,\ldots,1]^T$.</p>
+    <p>If every row of $A$ sums to $s$, then:</p>
+    <div class="formula">$$A\mathbf1=s\mathbf1$$</div>
+    <p>so $s$ is automatically an eigenvalue, with eigenvector $\mathbf1=[1,\ldots,1]^T$.</p>
 
-    <p>If $Av=\lambda v$ and $B=p(A)$ for some polynomial $p$, then $Bv=p(\lambda)v$ — a matrix polynomial
-      transforms each eigenvalue through that same scalar polynomial.</p>
+    <p>If $Av=\lambda v$ and $B=p(A)$ for some polynomial $p$, then:</p>
+    <div class="formula">$$Bv=p(\lambda)v$$</div>
+    <p>A matrix polynomial transforms each eigenvalue through that same scalar polynomial.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Row sums and a matrix polynomial.</strong> Every row of $A\in\mathbb R^{n\times n}$
@@ -1079,10 +1203,22 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>For non-zero $x$, $xx^T$ is a rank-one matrix: for any $y$, $xx^Ty=x(x^Ty)$ always points in the direction
-        of $x$. If $x^Tx=1$, then $xx^Tx=x$, so $x$ is an eigenvector with eigenvalue $1$. Any $y\perp x$ satisfies
-        $xx^Ty=0$. So the eigenvalues of $xx^T$ (with $\|x\|=1$) are $1,0,\ldots,0$.</p>
+      <p>For non-zero $x$, $xx^T$ is a rank-one matrix. For any $y$:</p>
     </div>
+
+    <div class="formula">$$xx^Ty=x(x^Ty)$$</div>
+
+    <p>which always points in the direction of $x$. If $x^Tx=1$, then:</p>
+
+    <div class="formula">$$xx^Tx=x$$</div>
+
+    <p>so $x$ is an eigenvector with eigenvalue $1$. Any $y\perp x$ satisfies:</p>
+
+    <div class="formula">$$xx^Ty=0$$</div>
+
+    <p>So the eigenvalues of $xx^T$ (with $\|x\|=1$) are:</p>
+
+    <div class="formula">$$1,0,\ldots,0$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Eigenvalues of $I+xx^T$.</strong> Let $A=I_n+xx^T$ where $x^Tx=1$. Which
@@ -1105,10 +1241,24 @@
 
     <div class="callout example">
       <div class="callout-label">🤔 Why does $A^3=A$ force $N(A)=N(A^2)$?</div>
-      <p>If $Ax=0$, then clearly $A^2x=0$ too — so $N(A)\subseteq N(A^2)$. Conversely, if $A^2x=0$, multiply by $A$:
-        $A^3x=0$. But $A^3=A$, so $Ax=0$. So the containment goes both ways: $N(A)=N(A^2)$, and they share the
-        same nullity, hence the same rank.</p>
+      <p>If $Ax=0$, then clearly $A^2x=0$ too:</p>
     </div>
+
+    <div class="formula">$$N(A)\subseteq N(A^2)$$</div>
+
+    <p>Conversely, if $A^2x=0$, multiply both sides by $A$:</p>
+
+    <div class="formula">$$A^3x=0$$</div>
+
+    <p>But $A^3=A$, so:</p>
+
+    <div class="formula">$$Ax=0$$</div>
+
+    <p>The containment goes both ways:</p>
+
+    <div class="formula">$$N(A)=N(A^2)$$</div>
+
+    <p>and they share the same nullity, hence the same rank.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Consequence of $A^3=A$.</strong> Let $A\in\mathbb R^{n\times n}$ satisfy $A^3=A$.
@@ -1127,26 +1277,55 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A matrix is diagonalizable if $A=PDP^{-1}$, where the columns of $P$ are independent eigenvectors
-        $P=[v_1\ v_2\ \cdots\ v_n]$ and the diagonal of $D$ holds the matching eigenvalues
-        $D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$ — the order must match between the two. A matrix is
-        diagonalizable exactly when it has $n$ linearly independent eigenvectors. Distinct eigenvalues guarantee
-        this, and every real symmetric matrix always has an orthonormal eigenbasis.</p>
+      <p>A matrix is diagonalizable when it can be written as:</p>
     </div>
+
+    <div class="formula">$$A=PDP^{-1}$$</div>
+
+    <p>where:</p>
+    <ul class="styled">
+      <li>columns of $P$ are eigenvectors;</li>
+      <li>diagonal entries of $D$ are the corresponding eigenvalues.</li>
+    </ul>
+
+    <p>For example:</p>
+    <div class="formula">$$P=[v_1\ v_2\ \cdots\ v_n]$$</div>
+    <div class="formula">$$D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$$</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Important: the order must match</div>
+      <p>If column $1$ of $P$ is the eigenvector for $\lambda_1$, then position $1$ of $D$ must contain $\lambda_1$.</p>
+    </div>
+
+    <p>A matrix is diagonalizable exactly when it has $n$ linearly independent eigenvectors. Distinct eigenvalues
+      guarantee this, and every real symmetric matrix always has an orthonormal eigenbasis.</p>
 
     <div class="callout example">
       <div class="callout-label">🤔 Why is this useful?</div>
-      <p>$A^k=(PDP^{-1})^k$, and the middle terms telescope away: $A^k=PD^kP^{-1}$. Since $D$ is diagonal,
-        $D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$ — this turns an otherwise brutal matrix power into
-        a handful of scalar powers.</p>
+      <p>Raising $A$ to a power:</p>
     </div>
+
+    <div class="formula">$$A^k=(PDP^{-1})^k$$</div>
+
+    <p>the middle terms telescope away:</p>
+
+    <div class="formula">$$A^k=PD^kP^{-1}$$</div>
+
+    <p>Since $D$ is diagonal:</p>
+
+    <div class="formula">$$D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$$</div>
+
+    <p>This turns an otherwise brutal matrix power into a handful of scalar powers.</p>
 
     <div class="callout trap">
       <div class="callout-label">⚠️ Diagonalizable $\ne$ invertible</div>
       <p>Diagonalizable means "enough independent eigenvectors." Invertible means "no eigenvalue is zero." A matrix
-        like $\begin{bmatrix}1&0\\0&0\end{bmatrix}$ is already diagonal — so it's diagonalizable — but it is
-        <em>not</em> invertible, since one eigenvalue is zero.</p>
+        like:</p>
     </div>
+
+    <div class="formula">$$\begin{bmatrix}1&0\\0&0\end{bmatrix}$$</div>
+
+    <p>is already diagonal — so it's diagonalizable — but it is <em>not</em> invertible, since one eigenvalue is zero.</p>
   </section>
 
   <section class="concept-card">
@@ -1154,10 +1333,18 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>For $u=[u_1,\ldots,u_n]^T$ and $v=[v_1,\ldots,v_n]^T$, the dot product is $u^Tv=u_1v_1+\cdots+u_nv_n$.
-        The angle between them is $\cos\theta=\dfrac{u^Tv}{\|u\|\|v\|}$, and perpendicular vectors satisfy
-        $u^Tv=0$.</p>
+      <p>For $u=[u_1,\ldots,u_n]^T$ and $v=[v_1,\ldots,v_n]^T$, the dot product is:</p>
     </div>
+
+    <div class="formula">$$u^Tv=u_1v_1+\cdots+u_nv_n$$</div>
+
+    <p>The angle between them is:</p>
+
+    <div class="formula">$$\cos\theta=\dfrac{u^Tv}{\|u\|\|v\|}$$</div>
+
+    <p>and perpendicular vectors satisfy:</p>
+
+    <div class="formula">$$u^Tv=0$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · $(3,4,5)$ vectors and a right angle.</strong> Vectors $a,b,c$ satisfy $\|a\|=3$,
@@ -1182,8 +1369,14 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Orthogonal means $u^Tv=0$. Orthonormal means $u^Tv=0$ <em>and</em> $\|u\|=\|v\|=1$.</p>
+      <p>Orthogonal means:</p>
     </div>
+
+    <div class="formula">$$u^Tv=0$$</div>
+
+    <p>Orthonormal means the same condition, <em>plus</em> unit length:</p>
+
+    <div class="formula">$$u^Tv=0\quad\text{and}\quad\|u\|=\|v\|=1$$</div>
 
     <div class="memory-box">
       <div class="callout-label">🧠 Memory</div>
@@ -1210,10 +1403,19 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A square matrix $Q$ is orthogonal when $Q^TQ=I$, so $Q^{-1}=Q^T$. Orthogonal matrices preserve lengths and
-        angles: $\|Qx\|=\|x\|$ and $(Qu)^T(Qv)=u^Tv$. Their determinant is $\pm1$, and their eigenvalues satisfy
-        $|\lambda|=1$ — but those eigenvalues can be complex, as a rotation demonstrates.</p>
+      <p>A square matrix $Q$ is orthogonal when:</p>
     </div>
+
+    <div class="formula">$$Q^TQ=I\qquad\text{so}\qquad Q^{-1}=Q^T$$</div>
+
+    <p>Orthogonal matrices preserve lengths and angles:</p>
+
+    <div class="formula">$$\|Qx\|=\|x\|\qquad(Qu)^T(Qv)=u^Tv$$</div>
+
+    <ul class="styled">
+      <li>Their determinant is $\pm1$.</li>
+      <li>Their eigenvalues satisfy $|\lambda|=1$ — but those eigenvalues can be complex, as a rotation demonstrates.</li>
+    </ul>
 
     <div class="practice">
       <p class="pq"><strong>Q · A norm-preserving matrix.</strong> A real $n\times n$ matrix $A$ satisfies
@@ -1237,15 +1439,27 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A projection takes the shadow of a vector onto a line or subspace. Onto a non-zero vector $u$:
-        $\operatorname{proj}_u(v)=\dfrac{u^Tv}{u^Tu}u$; if $u$ is already a unit vector, this simplifies to
-        $(u^Tv)u$.</p>
+      <p>A projection takes the shadow of a vector onto a line or subspace. Onto a non-zero vector $u$:</p>
     </div>
 
-    <p>A projection matrix satisfies $P^2=P$ ("idempotence") — once a vector is projected onto the subspace,
-      projecting it again changes nothing. An <em>orthogonal</em> projection additionally satisfies $P^T=P$. The
-      eigenvalues of any projection are only $0$ or $1$. If $P$ projects onto a $k$-dimensional subspace,
-      $\operatorname{rank}(P)=k$, $\operatorname{tr}(P)=k$, and $\operatorname{nullity}(P)=n-k$.</p>
+    <div class="formula">$$\operatorname{proj}_u(v)=\dfrac{u^Tv}{u^Tu}u$$</div>
+
+    <p>if $u$ is already a unit vector, this simplifies to:</p>
+
+    <div class="formula">$$(u^Tv)u$$</div>
+
+    <p>A projection matrix satisfies idempotence — once a vector is projected onto the subspace, projecting it
+      again changes nothing:</p>
+
+    <div class="formula">$$P^2=P$$</div>
+
+    <p>An <em>orthogonal</em> projection additionally satisfies $P^T=P$.</p>
+
+    <ul class="styled">
+      <li>The eigenvalues of any projection are only $0$ or $1$.</li>
+      <li>If $P$ projects onto a $k$-dimensional subspace, $\operatorname{rank}(P)=k$ and $\operatorname{tr}(P)=k$.</li>
+      <li>Its nullity is $\operatorname{nullity}(P)=n-k$.</li>
+    </ul>
 
     <div class="practice">
       <p class="pq"><strong>Q · Projection onto a subspace of $\mathbb R^3$.</strong> Let $W$ be a subspace of
@@ -1268,8 +1482,10 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">39</span> Projection onto orthonormal vectors</div>
 
-    <p>If $x_1,\ldots,x_k$ are orthonormal, then $P=x_1x_1^T+\cdots+x_kx_k^T$ projects onto
-      $\operatorname{span}\{x_1,\ldots,x_k\}$. If $Q=[x_1\ \cdots\ x_k]$, then $P=QQ^T$.</p>
+    <p>If $x_1,\ldots,x_k$ are orthonormal, then:</p>
+    <div class="formula">$$P=x_1x_1^T+\cdots+x_kx_k^T$$</div>
+    <p>projects onto $\operatorname{span}\{x_1,\ldots,x_k\}$. Equivalently, if $Q=[x_1\ \cdots\ x_k]$:</p>
+    <div class="formula">$$P=QQ^T$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Sum of orthonormal outer products.</strong> Let $x_1,\ldots,x_5$ be orthonormal
@@ -1293,10 +1509,17 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Define $M=I_n-\dfrac1n\mathbf1\mathbf1^T$, where $\mathbf1=[1,\ldots,1]^T$. This matrix subtracts the mean
-        from a vector. Letting $P=\dfrac1n\mathbf1\mathbf1^T$ (projection onto the all-ones direction), $M=I-P$
-        projects onto the space perpendicular to $\mathbf1$.</p>
+      <p>Define the centering matrix, where $\mathbf1=[1,\ldots,1]^T$:</p>
     </div>
+
+    <div class="formula">$$M=I_n-\dfrac1n\mathbf1\mathbf1^T$$</div>
+
+    <p>This matrix subtracts the mean from a vector. Letting $P=\dfrac1n\mathbf1\mathbf1^T$ be the projection onto
+      the all-ones direction:</p>
+
+    <div class="formula">$$M=I-P$$</div>
+
+    <p>which projects onto the space perpendicular to $\mathbf1$.</p>
 
     <div class="formula">$$M^T=M\qquad M^2=M\qquad M\mathbf1=0$$</div>
 
@@ -1325,11 +1548,15 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>For a real symmetric matrix $A$: $\lambda_{\min}\le\dfrac{x^TAx}{x^Tx}\le\lambda_{\max}$. For a unit
-        vector ($x^Tx=1$), this collapses to a clean statement:</p>
+      <p>For a real symmetric matrix $A$, the Rayleigh quotient is bounded by the extreme eigenvalues:</p>
     </div>
 
-    <div class="formula">$$\max_{\|x\|=1}x^TAx=\lambda_{\max}(A)\qquad\min_{\|x\|=1}x^TAx=\lambda_{\min}(A)$$</div>
+    <div class="formula">$$\lambda_{\min}\le\dfrac{x^TAx}{x^Tx}\le\lambda_{\max}$$</div>
+
+    <p>For a unit vector ($x^Tx=1$), this collapses to a clean statement:</p>
+
+    <div class="formula">$$\max_{\|x\|=1}x^TAx=\lambda_{\max}(A)$$</div>
+    <div class="formula">$$\min_{\|x\|=1}x^TAx=\lambda_{\min}(A)$$</div>
 
     <div class="callout tip">
       <div class="callout-label">🔍 Recognition trigger</div>
@@ -1353,18 +1580,35 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A symmetric matrix $A$ is positive <em>semi</em>definite when $x^TAx\ge0$ for every $x$, and positive
-        definite when $x^TAx\gt0$ for every non-zero $x$. For a symmetric matrix, positive definite
-        $\iff$ every $\lambda_i\gt0$. A positive-definite matrix is always invertible.</p>
+      <p>A symmetric matrix $A$ is positive <em>semi</em>definite when:</p>
     </div>
+
+    <div class="formula">$$x^TAx\ge0\quad\text{for every }x$$</div>
+
+    <p>and positive definite when:</p>
+
+    <div class="formula">$$x^TAx\gt0\quad\text{for every non-zero }x$$</div>
+
+    <p>For a symmetric matrix, positive definite $\iff$ every $\lambda_i\gt0$. A positive-definite matrix is
+      always invertible.</p>
 
     <div class="callout example">
       <div class="callout-label">🤔 Why is every Gram matrix positive semidefinite?</div>
-      <p>Given vectors $x_1,\ldots,x_n$, define $A_{ij}=x_i^Tx_j$ and $X=[x_1\ x_2\ \cdots\ x_n]$, so $A=X^TX$.
-        For any $z$: $z^TAz=z^TX^TXz=(Xz)^T(Xz)=\|Xz\|^2\ge0$ — always non-negative, since it's a squared length.
-        If the columns $x_i$ are linearly independent, $Xz=0$ only when $z=0$, so $z^TAz\gt0$ for non-zero $z$ —
-        making $A$ positive definite and invertible.</p>
+      <p>Given vectors $x_1,\ldots,x_n$, define $A_{ij}=x_i^Tx_j$ and $X=[x_1\ x_2\ \cdots\ x_n]$, so:</p>
     </div>
+
+    <div class="formula">$$A=X^TX$$</div>
+
+    <p>For any $z$:</p>
+
+    <div class="formula">$$z^TAz=z^TX^TXz=(Xz)^T(Xz)=\|Xz\|^2\ge0$$</div>
+
+    <p>always non-negative, since it's a squared length. If the columns $x_i$ are linearly independent, $Xz=0$
+      only when $z=0$, so:</p>
+
+    <div class="formula">$$z^TAz\gt0\quad\text{for non-zero }z$$</div>
+
+    <p>which makes $A$ positive definite and invertible.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Gram matrix of independent vectors.</strong> Let $\{x_1,\ldots,x_n\}$ be linearly
@@ -1384,18 +1628,28 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Every $m\times n$ matrix — square, rectangular, singular, or rank-deficient, it doesn't matter — has an
-        SVD: $A=U\Sigma V^T$, where $U$ holds the left singular vectors, $V$ the right singular vectors, and
-        $\Sigma$ the non-negative singular values.</p>
+      <p>Every $m\times n$ matrix — square, rectangular, singular, or rank-deficient, it doesn't matter — has an SVD:</p>
     </div>
 
-    <div class="formula">$$\sigma_i=\sqrt{\lambda_i(A^TA)}\ge0\qquad\operatorname{rank}(A)=\text{number of non-zero singular values}$$</div>
+    <div class="formula">$$A=U\Sigma V^T$$</div>
+
+    <p>where $U$ holds the left singular vectors, $V$ the right singular vectors, and $\Sigma$ the non-negative
+      singular values.</p>
+
+    <div class="formula">$$\sigma_i=\sqrt{\lambda_i(A^TA)}\ge0$$</div>
+    <div class="formula">$$\operatorname{rank}(A)=\text{number of non-zero singular values}$$</div>
 
     <div class="callout example">
       <div class="callout-label">🤔 The rank-one case: $aa^T$</div>
-      <p>Let $M=aa^T$. Then $Ma=a(a^Ta)=\|a\|^2a$, so $a$ is an eigenvector with eigenvalue $\|a\|^2$. Every
-        vector perpendicular to $a$ has eigenvalue zero. So $aa^T$ has singular values $\|a\|^2,0,\ldots,0$.</p>
+      <p>Let $M=aa^T$. Then:</p>
     </div>
+
+    <div class="formula">$$Ma=a(a^Ta)=\|a\|^2a$$</div>
+
+    <p>so $a$ is an eigenvector with eigenvalue $\|a\|^2$. Every vector perpendicular to $a$ has eigenvalue zero.
+      So $aa^T$ has singular values:</p>
+
+    <div class="formula">$$\|a\|^2,0,\ldots,0$$</div>
 
     <div class="practice">
       <p class="pq"><strong>Q · Sum of singular values of $AA^T$.</strong> Let
@@ -1418,17 +1672,28 @@
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
       <p>PCA finds the directions of maximum variance in centred data. With data matrix $X$ (rows as samples,
-        columns as features): first <strong>centre</strong> the data, $X_c=X-\text{feature means}$. Then
-        <strong>calculate covariance</strong>, $C=\dfrac1nX_c^TX_c$ (or $\dfrac1{n-1}X_c^TX_c$ for the sample
-        version). Then <strong>eigendecompose</strong> it: $Cv_i=\lambda_iv_i$, where $v_i$ is a principal
-        direction and $\lambda_i$ is the variance along it. Finally <strong>sort</strong> by
-        $\lambda_1\ge\lambda_2\ge\cdots$ — the eigenvector for $\lambda_1$ is the first principal component, and so
-        on. Because covariance is symmetric and positive semidefinite, its eigenvectors can always be chosen
-        orthonormal and its eigenvalues are always non-negative.</p>
+        columns as features), it runs in four steps.</p>
     </div>
 
-    <p>Distinct principal components are always orthogonal ($v_i^Tv_j=0$ for $i\ne j$), so their angle is always
-      exactly $90^\circ$.</p>
+    <p><strong>1. Centre</strong> the data:</p>
+    <div class="formula">$$X_c=X-\text{feature means}$$</div>
+
+    <p><strong>2. Calculate covariance</strong>:</p>
+    <div class="formula">$$C=\dfrac1nX_c^TX_c\quad\left(\text{or }\dfrac1{n-1}X_c^TX_c\text{ for the sample version}\right)$$</div>
+
+    <p><strong>3. Eigendecompose</strong> it:</p>
+    <div class="formula">$$Cv_i=\lambda_iv_i$$</div>
+    <p>where $v_i$ is a principal direction and $\lambda_i$ is the variance along it.</p>
+
+    <p><strong>4. Sort</strong> by $\lambda_1\ge\lambda_2\ge\cdots$ — the eigenvector for $\lambda_1$ is the first
+      principal component, and so on.</p>
+
+    <p>Because covariance is symmetric and positive semidefinite, its eigenvectors can always be chosen
+      orthonormal and its eigenvalues are always non-negative.</p>
+
+    <p>Distinct principal components are always orthogonal:</p>
+    <div class="formula">$$v_i^Tv_j=0\quad\text{for }i\ne j$$</div>
+    <p>so their angle is always exactly $90^\circ$.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Angle between the first and tenth principal components (real GATE).</strong> PCA
@@ -1442,9 +1707,9 @@
       </div>
     </div>
 
-    <p>For a unit direction $u$, the variance of centred data along $u$ is $u^TCu$, and by the Rayleigh-quotient
-      result, $\max_{\|u\|=1}u^TCu=\lambda_{\max}(C)$ — the maximum variance equals the largest covariance
-      eigenvalue.</p>
+    <p>For a unit direction $u$, the variance of centred data along $u$ is $u^TCu$. By the Rayleigh-quotient result:</p>
+    <div class="formula">$$\max_{\|u\|=1}u^TCu=\lambda_{\max}(C)$$</div>
+    <p>the maximum variance equals the largest covariance eigenvalue.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Maximum PCA variance.</strong> A centred dataset has covariance eigenvalues
@@ -1569,7 +1834,16 @@
 
     <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\iff Ax=0\text{ has only }x=0$$</div>
 
-    <div class="formula">$$r\ne r'\Rightarrow\text{no solution}\qquad r=r'=n\Rightarrow\text{unique solution}\qquad r=r'\lt n\Rightarrow\text{infinitely many solutions}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Conclusion</th></tr></thead>
+        <tbody>
+          <tr><td>$r\ne r'$</td><td>No solution</td></tr>
+          <tr><td>$r=r'=n$</td><td>Unique solution</td></tr>
+          <tr><td>$r=r'\lt n$</td><td>Infinitely many solutions</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="callout tip">
       <div class="callout-label">💛 A last word before you go</div>
