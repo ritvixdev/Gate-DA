@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Detailed Study with Questions · GATE DA Linear Algebra</title>
+<meta name="description" content="A friendly, complete study guide for GATE DA Linear Algebra — every topic explained like a story, the reason behind every formula, real GATE questions solved step by step, and memory tricks.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260719">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260719">
+<style>
+  /* ---- Detailed Study: calm, airy, "Study in depth" inspired ---- */
+
+  /* Reading rhythm: soft body text, generous line height, roomy cards */
+  .concept-card{padding:38px 38px 34px;margin-bottom:42px}
+  .concept-card p{font-size:15.5px;line-height:2.05;margin:18px 0;color:var(--body)}
+  .concept-card strong{color:var(--body-strong);font-weight:650}
+  .concept-card ul.styled li, .concept-card ul.deflist li{line-height:2;margin:13px 0;color:var(--body)}
+  .sec-head{margin-bottom:24px}
+
+  /* Formulas: each equation centered on its own line, never squished,
+     soft panel background, no harsh borders */
+  .formula{
+    margin:30px 0;padding:22px 24px;
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-radius:14px;
+    text-align:center;
+    overflow-x:auto;scrollbar-width:thin;
+  }
+  .formula .katex-display{margin:14px 0}
+  .formula .katex-display:first-child{margin-top:2px}
+  .formula .katex-display:last-child{margin-bottom:2px}
+  .formula .katex{font-size:1.1em;color:var(--body-strong)}
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
+
+  /* Callouts and story boxes: airy */
+  .callout{margin:28px 0;padding:22px 26px}
+  .callout p{margin:13px 0;line-height:2}
+  .imagine{margin:28px 0;padding:22px 26px}
+  .imagine p{line-height:2.05}
+  .memory-box{margin:30px 0;padding:24px 28px}
+  .memory-box li{margin:14px 0;line-height:1.95}
+
+  /* Questions: clear separation, roomy */
+  .practice{
+    margin:38px 0;padding:26px 28px;
+    background:var(--elevated);
+    border:1px solid var(--hairline);
+    border-radius:16px;
+  }
+  .pq{font-size:16px;line-height:2.1;margin:0 0 18px;color:var(--body-strong)}
+
+  /* Show-answer toggle: soft, inviting pill */
+  .show-ans{
+    margin-top:6px;padding:9px 20px;font-size:12.5px;
+    border:1px solid var(--hairline);background:var(--surface-soft);
+    border-radius:var(--r-pill);
+  }
+
+  /* Solutions: hidden until asked for */
+  .ans{
+    margin-top:18px;padding:22px 26px;
+    border-radius:12px;font-size:15.5px;line-height:2.05;color:var(--body);
+  }
+  .ans p{margin:15px 0}
+  .sol-label{
+    font-family:var(--font-mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px;
+  }
+  ol.steps li{margin:17px 0;line-height:2}
+
+  /* Tables: breathing room */
+  .tbl-wrap{margin:28px 0}
+  .tbl-wrap td,.tbl-wrap th{padding:14px 16px;line-height:1.8}
+
+  /* Symbol-decoder lists */
+  .decode{margin:20px 0 24px;padding-left:4px}
+  .decode li{line-height:2;margin:12px 0}
+
+  /* ---- Calm, flow-preserving boxes: no loud color blocks ----
+     All boxes share the same quiet surface; only the small label
+     and a hairline accent hint at the box type. */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{
+    color:var(--muted);
+  }
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* Solution card: same quiet treatment */
+  .ans{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+  }
+  .sol-label{color:var(--muted)}
+
+  /* Show-answer pill: quiet by default, gentle hint on hover */
+  .show-ans{color:var(--body)}
+  .show-ans:hover{border-color:var(--muted-soft);background:var(--surface-soft)}
+
+  /* ---- Mobile: maximise text per screen, keep it calm ---- */
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .practice{margin:26px 0;padding:18px 12px;border-radius:12px}
+    .pq{font-size:15.5px;line-height:1.9;margin-bottom:14px}
+    .ans{padding:16px 12px;font-size:15px;line-height:1.9;margin-top:14px}
+    .ans p{margin:12px 0}
+    ol.steps li{margin:12px 0;line-height:1.85}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+  }
+</style>
+</head>
+<body data-root=".." data-subject="linear-algebra" data-page="detailed-study" data-content>
+  <div class="hero">
+    <span class="tag">Reference · Detailed Study</span>
+    <h1>Detailed Study<br>with Questions</h1>
+    <p class="lede">Linear algebra is not a pile of formulas — it's one continuous story about vectors, the machines
+      (matrices) that move them, and the special directions those machines respect. Every topic here is told like a
+      small story: <strong>what the idea really means</strong>, <strong>why the formula works</strong> (not just
+      what it is), how to <strong>spot it in the exam</strong>, and <strong>real GATE questions</strong> solved
+      step by step. Try each question first, then reveal the solution. Take your time. There is no rush here.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> Read this first — how to use this page</div>
+
+    <p>Linear algebra earns its scary reputation from notation, not from difficulty. Once you can see a matrix as a
+      "machine that transforms vectors," almost every topic below becomes a natural question about that machine:
+      does it destroy any direction? Does it have a special direction it respects? Does it preserve length? This
+      page answers those questions one at a time.</p>
+
+    <p>Each topic below follows the same gentle rhythm, so your brain always knows what's coming next:</p>
+
+    <ul class="styled">
+      <li>🌱 <strong>The idea in plain words</strong> — a small story or picture, zero symbols.</li>
+      <li>🤔 <strong>Why does this work?</strong> — the reason behind the formula, so it stops feeling like magic.</li>
+      <li>📐 <strong>The formula, decoded</strong> — every symbol explained in one line.</li>
+      <li>🔍 <strong>Spot it in the exam</strong> — the exact words GATE uses when it wants this idea.</li>
+      <li>✍️ <strong>Real questions</strong> — try each one yourself first, then press <em>Show answer</em> to reveal the step-by-step solution.</li>
+      <li>🧠 <strong>Tricks to remember</strong> — small hooks so the idea sticks.</li>
+      <li>🔗 <strong>Connect the dots</strong> — how this topic links to its neighbours, because connected ideas are remembered ideas.</li>
+    </ul>
+
+    <div class="callout tip">
+      <div class="callout-label">💡 The one habit that solves most GATE linear-algebra questions</div>
+      <p>Before touching your pen, ask: <em>is this question secretly about the determinant, the rank, or the
+        eigenvalues?</em> Almost every "does a solution exist," "is it invertible," or "how many independent
+        directions" question is one of these three ideas wearing a disguise.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> The complete subject in one story, and the master equivalence chain</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Don't think of linear algebra as disconnected formulas. Think of it as one story: a <strong>vector</strong>
+        is an arrow or a data point. A <strong>matrix</strong> is a machine that transforms vectors. <strong>Rank</strong>
+        tells you how many independent directions survive through the machine. The <strong>null space</strong> tells
+        you which directions are destroyed. The <strong>determinant</strong> tells you whether the machine collapses
+        space entirely. An <strong>inverse</strong> reverses the machine. An <strong>eigenvector</strong> is a
+        special direction the machine does not turn — only stretches or shrinks. Its <strong>eigenvalue</strong>
+        is exactly that stretch factor. <strong>Orthogonality</strong> means perpendicularity. A
+        <strong>projection</strong> finds a shadow on a line or subspace. <strong>SVD</strong> separates any matrix
+        into rotations and stretches, and <strong>PCA</strong> finds the directions containing the most variation
+        in data.</p>
+    </div>
+
+    <p>For a square matrix $A\in\mathbb R^{n\times n}$, memorize this as one connected sentence — it alone solves a
+      huge fraction of GATE linear-algebra questions:</p>
+
+    <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\iff\text{columns are independent}$$</div>
+
+    <p>which also means:</p>
+
+    <div class="formula">$$Ax=0\text{ has only }x=0\iff0\text{ is not an eigenvalue of }A$$</div>
+
+    <p>and the mirror-image chain for the opposite case:</p>
+
+    <div class="formula">$$\det(A)=0\iff A\text{ is singular}\iff A^{-1}\text{ does not exist}$$</div>
+
+    <div class="formula">$$\operatorname{rank}(A)\lt n\iff\text{columns are dependent}\iff Ax=0\text{ has a non-zero solution}$$</div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul>
+        <li>Every one of these statements is really the <em>same</em> fact seen from a different angle. If you can
+          verify any one of them, you instantly know all the others.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> Vectors — arrows, data, and how they combine</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A vector is an ordered list of numbers, $v=\begin{bmatrix}3\\2\end{bmatrix}$. Geometrically, it means
+        "move 3 units horizontally, then 2 units vertically." In machine learning, a vector can represent a data
+        point, a feature vector, model parameters, or a direction in feature space. A vector in $\mathbb R^n$ has
+        $n$ real-number components.</p>
+    </div>
+
+    <p>Vectors add component by component:</p>
+    <div class="formula">$$\begin{bmatrix}1\\2\end{bmatrix}+\begin{bmatrix}3\\4\end{bmatrix}=\begin{bmatrix}4\\6\end{bmatrix}$$</div>
+
+    <p>A scalar is an ordinary number that stretches, shrinks, or reverses a vector:</p>
+    <div class="formula">$$3\begin{bmatrix}2\\1\end{bmatrix}=\begin{bmatrix}6\\3\end{bmatrix}$$</div>
+
+    <p>A positive scalar stretches; a fraction shrinks; a negative scalar reverses direction; zero collapses the
+      vector to the origin.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Norm — the length of a vector</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For $v=[v_1,v_2,\ldots,v_n]^T$, the Euclidean norm is its length:</p>
+    </div>
+
+    <div class="formula">$$\|v\|_2=\sqrt{v_1^2+v_2^2+\cdots+v_n^2}=\sqrt{v^Tv}$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>Use this the instant you see the words: length, magnitude, norm, distance from the origin, or unit vector.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Norm of an all-ones vector.</strong> A vector of ones in $n$ dimensions is
+        $[1,1,\ldots,1]$. Its length is:<br><br>
+        A. $\sqrt n$ &nbsp;&nbsp; B. $n$ &nbsp;&nbsp; C. $1-\dfrac1{\sqrt n}$ &nbsp;&nbsp; D. $1$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>The word "length" means use the norm.</li>
+          <li>$\|\mathbf1\|=\sqrt{1^2+1^2+\cdots+1^2}$, with $n$ terms under the root.</li>
+          <li>$\|\mathbf1\|=\sqrt n$.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Solving vector sum-and-difference systems</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why does adding and subtracting the equations work?</div>
+      <p>Suppose $x+y=a$ and $x-y=b$. Adding both equations makes the $y$ terms cancel:
+        $(x+y)+(x-y)=a+b\Rightarrow2x=a+b\Rightarrow x=\dfrac{a+b}2$. Subtracting the second from the first makes
+        the $x$ terms cancel instead: $(x+y)-(x-y)=a-b\Rightarrow2y=a-b\Rightarrow y=\dfrac{a-b}2$. This trick works
+        for numbers, vectors, or matrices — the algebra doesn't care what kind of object $x$ and $y$ are.</p>
+    </div>
+
+    <div class="formula">$$x=\frac{a+b}2\qquad y=\frac{a-b}2$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Finding two vectors.</strong> Vectors $x,y$ satisfy $x+y=[6,4,6]$ and
+        $x-y=[4,4,10]$. Which option is correct?<br><br>
+        A. $x=[4,5,8],\ y=[-1,0,2]$ &nbsp;&nbsp; B. $x=[5,4,6],\ y=[2,0,-2]$<br>
+        C. $x=[5,4,8],\ y=[1,0,-2]$ &nbsp;&nbsp; D. $x=[4,6,8],\ y=[1,1,-2]$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$x=\dfrac{[6,4,6]+[4,4,10]}2=\dfrac{[10,8,16]}2=[5,4,8]$.</li>
+          <li>$y=\dfrac{[6,4,6]-[4,4,10]}2=\dfrac{[2,0,-4]}2=[1,0,-2]$.</li>
+        </ol>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Linear combinations and span</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>An expression $c_1v_1+c_2v_2+\cdots+c_kv_k$ is a <strong>linear combination</strong> — scale each vector,
+        then add the results. The <strong>span</strong> of a set of vectors is the collection of every vector you
+        can build this way:</p>
+    </div>
+
+    <div class="formula">$$\operatorname{span}\{v_1,\ldots,v_k\}=\{c_1v_1+\cdots+c_kv_k\}$$</div>
+
+    <p>For example, $[1,0]^T$ and $[0,1]^T$ span all of $\mathbb R^2$, because any $[x,y]^T=x[1,0]^T+y[0,1]^T$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Linear independence</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Vectors are linearly independent when $c_1v_1+\cdots+c_kv_k=0$ forces every coefficient to be zero
+        ($c_1=\cdots=c_k=0$). Plainly: no vector in the set is redundant or buildable from the others. Two non-zero
+        vectors are dependent exactly when one is a scalar multiple of the other.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Rearranging scalar multiples.</strong> Suppose $[a,b]$ is a multiple of $[c,d]$,
+        with $abcd\ne0$. Is $[a,c]$ necessarily a multiple of $[b,d]$?<br><br>
+        A. Statement is true &nbsp;&nbsp; B. Statement is false</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Since $[a,b]$ is a multiple of $[c,d]$, there's a scalar $k$ with $a=kc$, $b=kd$.</li>
+          <li>So $\dfrac ab=\dfrac{kc}{kd}=\dfrac cd$, which rearranges to $ad=bc$.</li>
+          <li>That's exactly the proportionality condition for $[a,c]$ and $[b,d]$ to be scalar multiples.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Independent $=$ "nobody in this set can be built from the others." Dependent $=$ "at least one member is secretly redundant."</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Basis and dimension</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A basis must (1) span the whole space, and (2) be linearly independent — the minimum, non-redundant
+        collection capable of reaching every point in a space. The number of vectors in a basis is the
+        <strong>dimension</strong>: $\dim(\mathbb R^2)=2$, $\dim(\mathbb R^3)=3$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Subspaces — the three-part test</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A subspace is a smaller vector space living inside a larger one. A set $S$ is a subspace exactly when it
+        passes three checks:</p>
+    </div>
+
+    <div class="formula">$$0\in S\qquad x,y\in S\Rightarrow x+y\in S\qquad x\in S,\ c\in\mathbb R\Rightarrow cx\in S$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Fastest GATE test</div>
+      <p>Check the zero vector <em>first</em>. If $0\notin S$, stop immediately — $S$ is not a subspace, no further
+        checking needed.</p>
+    </div>
+
+    <p>Two patterns to recognize instantly: a span is always a subspace ($S=\operatorname{span}\{v_1,\ldots,v_k\}$);
+      a homogeneous system's solution set is always a subspace ($S=\{x:Ax=0\}$). A shifted equation
+      $S=\{x:Ax=b\}$ with $b\ne0$ usually is <em>not</em> a subspace, because zero doesn't satisfy it.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Identifying subspaces.</strong> Select all choices that are subspaces of
+        $\mathbb R^3$, where $\alpha,\beta\in\mathbb R$.<br><br>
+        A. $\left\{x:x=\alpha\begin{bmatrix}1\\1\\0\end{bmatrix}+\beta\begin{bmatrix}1\\0\\0\end{bmatrix}\right\}$<br>
+        B. $\left\{x:x=\alpha^2\begin{bmatrix}1\\2\\0\end{bmatrix}+\beta^2\begin{bmatrix}1\\0\\1\end{bmatrix}\right\}$<br>
+        C. $\{x:5x_1+2x_3=0,\ 4x_1-2x_2+3x_3=0\}$<br>
+        D. $\{x:5x_1+2x_3+4=0\}$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A is a span with unrestricted real coefficients — a span is always a subspace, so A is true.</li>
+          <li>B uses squared coefficients ($\alpha^2,\beta^2\ge0$), which blocks arbitrary negative scaling — a
+            vector can belong while its negative doesn't. So B is false.</li>
+          <li>C: both equations are homogeneous (right side zero) — this is a null space, and every null space is a
+            subspace. So C is true.</li>
+          <li>D: check zero — $5(0)+2(0)+4=4\ne0$, so zero isn't in the set. D is false.</li>
+        </ol>
+        <p><strong>Answer: A and C.</strong></p>
+      </div>
+    </div>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>This "check zero first" test is exactly how you'll recognize the null space (Section 18) and homogeneous
+        systems (Section 21) as subspaces later on.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Affine and convex combinations</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>An affine combination of two vectors has coefficients summing to one: $w=\alpha u+\beta v$,
+        $\alpha+\beta=1$. A convex combination additionally requires $\alpha,\beta\ge0$.</p>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul>
+        <li>$\alpha+\beta=1$ alone means the point lies on the <em>full line</em> through $u$ and $v$.</li>
+        <li>$\alpha+\beta=1$ with $\alpha,\beta\ge0$ means the point lies on the <em>segment</em> joining $u$ and $v$ — nothing more, nothing less.</li>
+      </ul>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Point on a triangle side.</strong> Given non-zero vectors $u,v$, define
+        $w=u+\dfrac13(v-u)$. Let $O$ be the origin, $A,B$ the tips of $u,v$, and $X$ the tip of $w$. Which
+        statement is true?<br><br>
+        A. $X$ lies inside the triangle &nbsp;&nbsp; B. $X$ lies on one of the sides<br>
+        C. $X$ lies outside the triangle &nbsp;&nbsp; D. None of the above</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Expand: $w=u+\tfrac13v-\tfrac13u=\tfrac23u+\tfrac13v$.</li>
+          <li>The coefficients satisfy $\tfrac23+\tfrac13=1$, and both are non-negative.</li>
+          <li>So $w$ is a convex combination of $u$ and $v$ — $X$ lies on segment $AB$.</li>
+        </ol>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Hyperplanes and half-spaces</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A hyperplane is described by $w^Tx=b$, where $w$ is perpendicular to it. To find which side a point $x$
+        sits on, calculate $w^Tx-b$: positive means the positive half-space, negative means the negative
+        half-space, zero means exactly on the hyperplane.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Identifying a half-space.</strong> The point $(x_1,x_2,x_3,x_4)=(1,4,6,3)$ is in
+        which half-space of $x_1-9x_2+3x_3+2x_4=8$?<br><br>
+        A. On the hyperplane &nbsp;&nbsp; B. Cannot be determined &nbsp;&nbsp; C. Negative &nbsp;&nbsp; D. Positive</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Evaluate $w^Tx-b$: $1-9(4)+3(6)+2(3)-8$.</li>
+          <li>$=1-36+18+6-8=-19$.</li>
+          <li>Since $-19\lt0$, the point lies in the negative half-space.</li>
+        </ol>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Geometry in $\mathbb R^n$ — cubes and balls</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Each coordinate of an $n$-dimensional cube's corner has two possible values (say $0$ or $1$), so with $n$
+        coordinates there are $\underbrace{2\times2\times\cdots\times2}_{n\text{ times}}$ corners:</p>
+    </div>
+
+    <div class="formula">$$\text{number of vertices}=2^n$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Cube corners.</strong> How many corners does a cube have in $n$ dimensions?<br><br>
+        A. $n^n$ &nbsp;&nbsp; B. $n^2$ &nbsp;&nbsp; C. $2^n$ &nbsp;&nbsp; D. $n!$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: C.</strong></p></div>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why is $x^Tx\le r^2$ a ball?</div>
+      <p>Because $x^Tx=\|x\|^2$, the set $x^Tx\le r^2$ is exactly a solid ball of radius $r$. A two-dimensional
+        subspace of $\mathbb R^3$ is a plane through the origin, and a plane through the centre of a radius-$r$
+        ball cuts out a disk of radius $r$.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Intersection of a ball and a subspace (real GATE).</strong> Let
+        $S_1=\{x=(x_1,x_2,x_3)^T\in\mathbb R^3:x^Tx\le16\}$ and let $S_2$ be a two-dimensional subspace of
+        $\mathbb R^3$. What is the area of $S_1\cap S_2$?<br><br>
+        A. $16\pi$ &nbsp;&nbsp; B. $4\pi$ &nbsp;&nbsp; C. $4\pi^2$ &nbsp;&nbsp; D. $16\pi^2$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$x^Tx\le16\Rightarrow\|x\|^2\le16\Rightarrow\|x\|\le4$, so $S_1$ is a ball of radius $4$.</li>
+          <li>$S_2$ is a plane through the origin, so its intersection with the ball is a disk of radius $4$.</li>
+          <li>Area $=\pi r^2=\pi(4)^2=16\pi$.</li>
+        </ol>
+        <p><strong>Answer: A</strong> — the official 2026 key gives A for this question.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Matrices — transformation machines &amp; multiplication</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>An $m\times n$ matrix has $m$ rows and $n$ columns — remember "rows first, columns second." A matrix can
+        be viewed as a table of data, a system of equations, or a <strong>transformation</strong> that maps vectors
+        from $\mathbb R^n$ to $\mathbb R^m$. Its columns are exactly where the standard basis vectors land under
+        that transformation.</p>
+    </div>
+
+    <p>If $A$ is $m\times n$ and $B$ is $n\times p$, then $AB$ is $m\times p$:</p>
+    <div class="formula">$$(m\times n)(n\times p)=m\times p$$</div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory rule</div>
+      <ul><li>Inner dimensions must match; outer dimensions give the result's shape.</li></ul>
+    </div>
+
+    <p>Matrix multiplication is generally <em>not</em> commutative ($AB\ne BA$), but it <em>is</em> associative:
+      $A(BC)=(AB)C$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Transpose, symmetric matrices &amp; trace</div>
+
+    <p>The transpose exchanges rows and columns, and reverses order under multiplication:</p>
+    <div class="formula">$$(AB)^T=B^TA^T$$</div>
+
+    <p>A matrix is <strong>symmetric</strong> when $A=A^T$. Symmetric matrices are special: all their eigenvalues
+      are real, eigenvectors for distinct eigenvalues are orthogonal, and they can always be orthogonally
+      diagonalized.</p>
+
+    <p>The <strong>trace</strong> is the sum of diagonal entries — and also the sum of eigenvalues:</p>
+    <div class="formula">$$\operatorname{tr}(A)=a_{11}+a_{22}+\cdots+a_{nn}=\sum_i\lambda_i$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Calculating trace.</strong> The trace of a matrix $A$ can be found by which of the following?<br><br>
+        A. None of the above &nbsp;&nbsp; B. Sum of its eigenvalues &nbsp;&nbsp; C. Sum of its diagonal entries &nbsp;&nbsp; D. Determinant of the matrix</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Both $\operatorname{tr}(A)=\sum_ia_{ii}$ and $\operatorname{tr}(A)=\sum_i\lambda_i$ are correct.</p>
+        <p><strong>Answer: B and C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Rotation matrices and matrix powers</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A two-dimensional rotation matrix is $R(\theta)=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$.
+        Applying two rotations adds their angles: $R(\alpha)R(\beta)=R(\alpha+\beta)$, so $R(\theta)^k=R(k\theta)$.
+        A full rotation is $2\pi$, so $R(2\pi)=I$.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>When you see a rotation matrix raised to a huge power, never multiply it out — use periodicity instead.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · A large power of a rotation matrix (real GATE).</strong> Let
+        $M=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$, $\theta=\dfrac{2\pi}5$.
+        Which expression equals $M^{2026}$?<br><br>
+        A. $M^2$ &nbsp;&nbsp; B. $M$ &nbsp;&nbsp; C. $M^{-1}$ &nbsp;&nbsp; D. $I_2$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$5\theta=5\left(\dfrac{2\pi}5\right)=2\pi$, so $M^5=I$.</li>
+          <li>$2026=5(405)+1$.</li>
+          <li>$M^{2026}=(M^5)^{405}M=I^{405}M=M$.</li>
+        </ol>
+        <p><strong>Answer: B</strong> — the official 2026 answer key also gives B.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Determinants &amp; their properties</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$, $\det(A)=ad-bc$. Geometrically, $|\det(A)|$ is the
+        area/volume scaling factor of the transformation: $\det(A)\gt0$ preserves orientation, $\det(A)\lt0$
+        reverses it, and $\det(A)=0$ means space collapses — dimensions get crushed.</p>
+    </div>
+
+    <div class="formula">$$\det(AB)=\det(A)\det(B)\qquad\det(A^T)=\det(A)\qquad\det(A^{-1})=\frac1{\det(A)}$$</div>
+
+    <p>For a triangular matrix, $\det(A)=$ product of diagonal entries. For $A\in\mathbb R^{n\times n}$,
+      $\det(cA)=c^n\det(A)$, and $\det(A)=\prod_i\lambda_i$ (the product of eigenvalues).</p>
+
+    <p>The $2\times2$ inverse:</p>
+    <div class="formula">$$A^{-1}=\frac1{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}\qquad\text{exists only when }ad-bc\ne0$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Determinant and invertibility.</strong> Given
+        $A=\begin{bmatrix}1&3\\2&4\end{bmatrix}$, which statement is correct?<br><br>
+        A. $\det(A)=0$, so the inverse exists &nbsp;&nbsp; B. The matrix is not full rank<br>
+        C. $\det(A)\ne0$, so the inverse exists &nbsp;&nbsp; D. The columns are linearly dependent</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$\det(A)=1(4)-3(2)=4-6=-2\ne0$ — the matrix is invertible, full rank, with independent columns.</p>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Product of characteristic roots.</strong> The product of the roots of the
+        characteristic equation of a square matrix $A$ equals:<br><br>
+        A. None of the above &nbsp;&nbsp; B. Rank of $A$ &nbsp;&nbsp; C. $A^{-1}$ &nbsp;&nbsp; D. $|A|$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The roots of the characteristic equation are the eigenvalues, and $\lambda_1\lambda_2\cdots\lambda_n=\det(A)$.</p>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> Factor before you calculate — determinants of matrix polynomials</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why factor first?</div>
+      <p>When you see $A^2+cA$, factor it as $A(A+cI)$ before doing anything else:</p>
+    </div>
+
+    <div class="formula">$$\det(A^2+cA)=\det(A)\det(A+cI)$$</div>
+
+    <p>This can save an enormous amount of calculation — if $\det(A)=0$, the whole expression is instantly zero,
+      no matter how messy $A+cI$ looks.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Determinant of a matrix polynomial.</strong> Consider
+        $M=\begin{bmatrix}1&2&3\\3&1&3\\4&3&6\end{bmatrix}$. Find $\det(M^2+12M)$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Factor: $M^2+12M=M(M+12I)$, so $\det(M^2+12M)=\det(M)\det(M+12I)$.</li>
+          <li>Observe $\text{Row}_3=\text{Row}_1+\text{Row}_2$ — the rows are dependent, so $\det(M)=0$.</li>
+          <li>Therefore $\det(M^2+12M)=0$, regardless of $\det(M+12I)$.</li>
+        </ol>
+        <p><strong>Answer: 0.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> Rank and nullity</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Rank is the number of independent directions that survive a transformation — you can calculate it as the
+        number of pivots, the number of independent rows, the number of independent columns, or the number of
+        non-zero rows in echelon form. The <strong>null space</strong> is $N(A)=\{x:Ax=0\}$, and
+        <strong>nullity</strong> is its dimension: rank is the dimension of the output, nullity is the dimension of
+        the directions crushed to zero.</p>
+    </div>
+
+    <div class="formula">$$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$$</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Use the number of <em>columns</em> $n$ here, not the number of rows. Free variables $=n-\operatorname{rank}(A)$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> The four fundamental subspaces</div>
+
+    <p>For $A\in\mathbb R^{m\times n}$ with rank $r$:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Space</th><th>Lives in</th><th>Dimension</th></tr></thead>
+        <tbody>
+          <tr><td>Column space $C(A)$</td><td>$\mathbb R^m$</td><td>$r$</td></tr>
+          <tr><td>Row space $C(A^T)$</td><td>$\mathbb R^n$</td><td>$r$</td></tr>
+          <tr><td>Null space $N(A)$</td><td>$\mathbb R^n$</td><td>$n-r$</td></tr>
+          <tr><td>Left null space $N(A^T)$</td><td>$\mathbb R^m$</td><td>$m-r$</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The most important orthogonality relationships:</p>
+    <div class="formula">$$N(A)\perp\operatorname{Row}(A)\qquad N(A^T)\perp\operatorname{Col}(A)$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Null space orthogonality.</strong> Select the correct option.<br><br>
+        A. Every vector in $N(A)$ is orthogonal to every vector in $C(A)$<br>
+        B. Every vector in $N(A)$ is orthogonal to every vector in the row space of $A$<br>
+        C. Vectors in $N(A)$ are not orthogonal to row-space vectors<br>
+        D. They may or may not be orthogonal</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Suppose $x\in N(A)$, so $Ax=0$.</li>
+          <li>Each component of $Ax$ is one row of $A$ dotted with $x$ — and all of these dot products are zero.</li>
+          <li>So $x$ is orthogonal to every row, hence to the entire row space.</li>
+        </ol>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Systems of linear equations — the solution-count test</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A system is written $Ax=b$: $A$ is the coefficient matrix, $x$ is unknown, $b$ is the required output. The
+        augmented matrix is $[A\mid b]$.</p>
+    </div>
+
+    <p>Let $r=\operatorname{rank}(A)$, $r'=\operatorname{rank}([A\mid b])$, and $n=$ number of unknowns. This is the
+      single most important decision table in the topic:</p>
+
+    <div class="formula">$$r\ne r'\Rightarrow\text{no solution}\qquad r=r'=n\Rightarrow\text{unique solution}\qquad r=r'\lt n\Rightarrow\text{infinitely many solutions}$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Dependent equations.</strong> Consider $x+y+z=3$, $2x+2y+2z=6$, $x-y+z=1$. What is
+        the nature of the solution?<br><br>
+        A. Unique solution &nbsp;&nbsp; B. Infinite solutions &nbsp;&nbsp; C. Inconsistent system &nbsp;&nbsp; D. No solution</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>The second equation is exactly twice the first — it adds no new information.</li>
+          <li>So there are really only two independent equations for three unknowns: $r=2$, $n=3$.</li>
+          <li>The system is consistent and $r\lt n$, so there's a free variable — infinitely many solutions.</li>
+        </ol>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Recognizing inconsistency</div>
+
+    <p>A row like $[0\ 0\ 0\mid5]$ means $0=5$ — impossible, so the system is inconsistent.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Contradiction in a system.</strong> Does this system have a solution?
+        $u+v+w=2$, $u+2v+3w=1$, $v+2w=0$.<br><br>
+        A. No solution exists &nbsp;&nbsp; B. At least one solution exists</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>From the third equation: $v=-2w$.</li>
+          <li>Substitute into the first: $u-2w+w=2\Rightarrow u=2+w$.</li>
+          <li>Substitute both into the second: $(2+w)+2(-2w)+3w=1\Rightarrow2+w-4w+3w=1\Rightarrow2=1$ — a contradiction.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Homogeneous systems</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A homogeneous system has $Ax=0$, and it always has the trivial solution $x=0$. If $A$ has full column
+        rank ($\operatorname{rank}(A)=n$), then $\operatorname{nullity}(A)=0$ and only the trivial solution exists.
+        If a non-zero solution exists for square $A$, then $A$ is singular and has no inverse.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Homogeneous-system properties.</strong> Consider $Ax=0$. Select all correct options.<br><br>
+        A. Infinite solutions exist when $A$ has full column rank<br>
+        B. If square $A$ has a non-zero null vector, $A^{-1}$ exists<br>
+        C. If square $A$ has a non-zero null vector, $A^{-1}$ does not exist<br>
+        D. Only the trivial solution exists when $A$ has full column rank</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Full column rank $\Rightarrow$ nullity $0\Rightarrow$ only $x=0$ exists. D is true, A is false.</li>
+          <li>A non-zero solution to $Ax=0$ means the columns are dependent, so $A$ is singular and non-invertible. C is true, B is false.</li>
+        </ol>
+        <p><strong>Answer: C and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> Underdetermined systems &amp; minimum-norm solutions</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>An $m\times n$ system is underdetermined when $m\lt n$ — more unknowns than equations. A consistent
+        underdetermined system normally has infinitely many solutions, and the minimum-length one among them is:</p>
+    </div>
+
+    <div class="formula">$$x_{\min}=A^+b$$</div>
+
+    <p>where $A^+$ is the Moore–Penrose pseudoinverse. If $A$ has full row rank, $A^+=A^T(AA^T)^{-1}$; the fully
+      general formula from SVD is $A^+=V\Sigma^+U^T$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Choosing a minimum-norm solution.</strong> For an underdetermined system $m\lt n$,
+        which method is commonly used to find the minimum-norm solution?<br><br>
+        A. Gaussian elimination only &nbsp;&nbsp; B. Moore–Penrose pseudoinverse &nbsp;&nbsp; C. Cramer's rule &nbsp;&nbsp; D. Gauss–Jordan elimination</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Dimension-based solution reasoning for $M$ and $M^T$</div>
+
+    <p>For $M\in\mathbb R^{m\times n}$: $Mx=b$ has $n$ unknowns; a unique solution requires full column rank $n$,
+      so unique solutions require $n\le m$; infinite solutions require consistency and rank $\lt n$. Also
+      $\operatorname{rank}(M)=\operatorname{rank}(M^T)$, but the nullities differ:
+      $\operatorname{nullity}(M)=n-r$, $\operatorname{nullity}(M^T)=m-r$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Possible solution behaviours for $M$ and $M^T$.</strong> Which statements are true?<br><br>
+        A. There exists $M\in\mathbb R^{3\times3}$ such that $Mx=b$ has a unique solution and $M^Tx=c$ has
+        infinitely many solutions.<br>
+        B. There exists $M\in\mathbb R^{3\times3}$ such that $Mx=b$ has no solution and $M^Tx=c$ has infinitely
+        many solutions.<br>
+        C. There exists $M\in\mathbb R^{2\times3}$ such that $Mx=b$ has a unique solution and $M^Tx=c$ has
+        infinitely many solutions.<br>
+        D. There exists $M\in\mathbb R^{3\times2}$ such that $Mx=b$ has a unique solution and $M^Tx=c$ has
+        infinitely many solutions.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A: a square $M$ with a unique solution is invertible, so $M^T$ is too — its system can't have infinitely many solutions. False.</li>
+          <li>B: pick a singular square $M$. For some $b\notin C(M)$, $Mx=b$ has no solution; for a suitable $c\in C(M^T)$, the transpose system is consistent with free variables. True.</li>
+          <li>C: a $2\times3$ matrix has three unknowns and rank at most $2$, so a consistent system can't have a unique solution. False.</li>
+          <li>D: a $3\times2$ matrix can have full column rank $2$, so $Mx=b$ can have a unique solution; $M^T$ is $2\times3$ with rank $2$, so its consistent system has one free variable. True.</li>
+        </ol>
+        <p><strong>Answer: B and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> Gaussian-elimination complexity</div>
+
+    <p>For a general dense $n\times n$ system, Gaussian elimination costs $O(n^3)$. If the matrix is already upper
+      triangular, only back-substitution is required — $(n-1)+(n-2)+\cdots+1$, which grows like $O(n^2)$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Upper-triangular system complexity.</strong> The number of additions and
+        multiplications involved in Gaussian elimination on an $n\times n$ <em>upper-triangular</em> matrix is of order:<br><br>
+        A. $O(n)$ &nbsp;&nbsp; B. $O(n^2)$ &nbsp;&nbsp; C. $O(n^3)$ &nbsp;&nbsp; D. $O(n^4)$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Because the matrix is already upper triangular, the remaining work is just back-substitution.</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Eigenvalues and eigenvectors — the basic definition</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A matrix normally changes both the length and direction of a vector. An <strong>eigenvector</strong> is a
+        special non-zero vector whose <em>direction</em> the matrix preserves: $Ax=\lambda x$, where $x\ne0$ is the
+        eigenvector and $\lambda$ is its eigenvalue. Read the eigenvalue as the stretch factor: $\lambda\gt1$
+        stretches, $0\lt\lambda\lt1$ shrinks, $\lambda\lt0$ reverses and scales, $\lambda=0$ crushes to zero.</p>
+    </div>
+
+    <p>Rearranging $Ax=\lambda x$ gives $(A-\lambda I)x=0$. For a non-zero solution to exist, $A-\lambda I$ must be
+      singular:</p>
+    <div class="formula">$$\det(A-\lambda I)=0\qquad\text{(the characteristic equation)}$$</div>
+    <p>After finding $\lambda$, find its eigenvectors by solving $(A-\lambda I)x=0$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Invertibility of $A-\lambda I$.</strong> Suppose $\lambda$ is an eigenvalue of a
+        square matrix $A$, with eigenvector $x$. For $A-\lambda I$:<br><br>
+        A. An inverse cannot be defined &nbsp;&nbsp; B. An inverse may or may not exist<br>
+        C. An inverse certainly exists &nbsp;&nbsp; D. An inverse certainly does not exist</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>By definition $(A-\lambda I)x=0$ for a non-zero $x$, so $A-\lambda I$ has a non-trivial null space and
+          is singular — its inverse does not exist.</p>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Eigenvalue identities</div>
+
+    <div class="formula">$$\sum_i\lambda_i=\operatorname{tr}(A)\qquad\prod_i\lambda_i=\det(A)$$</div>
+
+    <p>For a diagonal or triangular matrix, the eigenvalues are simply the diagonal entries. The characteristic
+      polynomial has degree $n$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Standard eigenvalue facts.</strong> For an $n\times n$ square matrix $A$, select
+        all correct options.<br><br>
+        A. Product of eigenvalues equals $\det(A)$<br>
+        B. Sum of eigenvalues equals $\operatorname{tr}(A)$<br>
+        C. A diagonal matrix's eigenvalues are its diagonal entries<br>
+        D. The characteristic polynomial has degree $n$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>All four are standard identities.</p>
+        <p><strong>Answer: A, B, C and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> Zero eigenvalue vs. zero eigenvector, and a full $2\times2$ example</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Zero <em>is</em> allowed as an eigenvalue: if $Ax=0$ for some non-zero $x$, then $x$ is an eigenvector for
+        $\lambda=0$. But the zero vector is <em>never</em> an eigenvector, because $A0=\lambda0$ holds for every
+        $\lambda$ and carries no directional information at all.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Zero in eigenvalue terminology.</strong> Select all correct options.<br><br>
+        A. Zero is not a permitted eigenvalue &nbsp;&nbsp; B. The null vector is not a permitted eigenvector<br>
+        C. Zero is a permitted eigenvalue &nbsp;&nbsp; D. The null vector is a permitted eigenvector</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B and C.</strong></p></div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · A complete $2\times2$ example.</strong> Consider
+        $A=\begin{bmatrix}2&1\\1&2\end{bmatrix}$. Select all correct options.<br><br>
+        A. The eigenvalues are $1$ and $3$ &nbsp;&nbsp; B. $A$ is symmetric<br>
+        C. $[1,1]^T$ is an eigenvector &nbsp;&nbsp; D. $[1,-1]^T$ is an eigenvector</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$A=A^T$, so B is true.</li>
+          <li>$\det(A-\lambda I)=(2-\lambda)^2-1=\lambda^2-4\lambda+3=(\lambda-1)(\lambda-3)$, giving $\lambda=1,3$. A is true.</li>
+          <li>$A\begin{bmatrix}1\\1\end{bmatrix}=\begin{bmatrix}3\\3\end{bmatrix}=3\begin{bmatrix}1\\1\end{bmatrix}$. C is true.</li>
+          <li>$A\begin{bmatrix}1\\-1\end{bmatrix}=\begin{bmatrix}1\\-1\end{bmatrix}$ — an eigenvector with eigenvalue $1$. D is true.</li>
+        </ol>
+        <p><strong>Answer: A, B, C and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Powers and inverses of eigenvalues</div>
+
+    <p>If $Ax=\lambda x$, then $A^kx=\lambda^kx$, so the eigenvalues of $A^k$ are $\lambda_i^k$. If $A$ is
+      invertible, the eigenvalues of $A^{-1}$ are $1/\lambda_i$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Recursive eigenvector sequence.</strong> Let $x_0$ be an eigenvector of $A$ with
+        eigenvalue $\lambda$, and $x_k=\lambda^kx_0$. Which statement is true?<br><br>
+        A. $x_{k+1}=A^{k-1}x_k$ &nbsp;&nbsp; B. $x_{k+1}=A^{k+1}x_k$ &nbsp;&nbsp; C. $x_{k+1}=A^kx_k$ &nbsp;&nbsp; D. $x_{k+1}=Ax_k$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$Ax_k=A(\lambda^kx_0)=\lambda^kAx_0=\lambda^k(\lambda x_0)=\lambda^{k+1}x_0=x_{k+1}$.</li>
+        </ol>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Eigenvalues of an inverse.</strong> The eigenvalues of
+        $A=\begin{bmatrix}0&1\\2&1\end{bmatrix}$ are $2$ and $-1$. What are the eigenvalues of $A^{-1}$?<br><br>
+        A. $0.5,-1$ &nbsp;&nbsp; B. $-0.5,1$ &nbsp;&nbsp; C. $0.25,1$ &nbsp;&nbsp; D. $4,1$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Take reciprocals: $\dfrac12=0.5$, $\dfrac1{-1}=-1$.</p>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> The $2\times2$ trace-determinant shortcut</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For a $2\times2$ matrix, the characteristic equation always simplifies to:</p>
+    </div>
+
+    <div class="formula">$$\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0\qquad\Delta=\operatorname{tr}(A)^2-4\det(A)$$</div>
+
+    <p>$\Delta\gt0$: two distinct real eigenvalues. $\Delta=0$: one repeated real eigenvalue. $\Delta\lt0$: a
+      complex-conjugate pair — you can know this <em>without ever solving for the eigenvalues themselves</em>.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Classifying eigenvalues without solving fully.</strong> Consider
+        $A=\begin{bmatrix}2&-1\\3&1\end{bmatrix}$. Which statement is true?<br><br>
+        A. Eigenvalues are non-negative and real &nbsp;&nbsp; B. Eigenvalues are a complex-conjugate pair<br>
+        C. One eigenvalue is positive and one is zero &nbsp;&nbsp; D. One eigenvalue is non-negative and the other is negative</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$\operatorname{tr}(A)=2+1=3$. $\det(A)=2(1)-(-1)(3)=5$.</li>
+          <li>$\Delta=3^2-4(5)=9-20=-11\lt0$.</li>
+          <li>Since $\Delta\lt0$, the eigenvalues are a complex-conjugate pair.</li>
+        </ol>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Rotation eigenvalues, and a trace shortcut for rotation blocks</div>
+
+    <p>A two-dimensional rotation by $\theta$ has eigenvalues $\lambda=\cos\theta\pm i\sin\theta$. Except at
+      $0^\circ$ and $180^\circ$, a genuine planar rotation has <em>no real eigenvector</em> — every direction
+      genuinely turns.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Real eigenvectors of a $45^\circ$ rotation.</strong> A real $2\times2$ matrix
+        rotates every real vector by $45^\circ$. Which option is correct?<br><br>
+        A. It can have real eigenvectors because its characteristic polynomial has real coefficients<br>
+        B. It cannot have any real eigenvectors &nbsp;&nbsp; C. It is impossible to determine &nbsp;&nbsp; D. None of the above</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Its eigenvalues are $\cos45^\circ\pm i\sin45^\circ$, which are non-real. Real coefficients only guarantee
+          complex roots come in conjugate pairs — they don't guarantee any root is real.</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Trace shortcut for a rotation block</div>
+      <p>For a matrix like $A(t)=\begin{bmatrix}1&0&0\\0&\cos t&\sin t\\0&-\sin t&\cos t\end{bmatrix}$, the sum of
+        eigenvalues is just its trace — you never need the individual eigenvalues.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Trace shortcut for a rotation block (real GATE).</strong> Let $\gamma_1,\gamma_2,\gamma_3$
+        be the eigenvalues of $A(t)$ above. For which $t\in[-\pi,\pi]$ does $\gamma_1+\gamma_2+\gamma_3=1+\sqrt2$?<br><br>
+        A. $\left\{\frac\pi3,-\frac\pi4\right\}$ &nbsp;&nbsp; B. $\left\{\frac\pi4,-\frac\pi3\right\}$<br>
+        C. $\left\{\frac\pi4,-\frac\pi4\right\}$ &nbsp;&nbsp; D. $\left\{\frac\pi3,-\frac\pi3\right\}$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$\gamma_1+\gamma_2+\gamma_3=\operatorname{tr}(A)=1+\cos t+\cos t=1+2\cos t$.</li>
+          <li>Set $1+2\cos t=1+\sqrt2\Rightarrow\cos t=\dfrac1{\sqrt2}$.</li>
+          <li>In $[-\pi,\pi]$: $t=\dfrac\pi4,-\dfrac\pi4$.</li>
+        </ol>
+        <p><strong>Answer: C</strong> — the official 2026 key also lists C.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Equal row-sum shortcut &amp; matrix polynomials</div>
+
+    <p>If every row of $A$ sums to $s$, then $A\mathbf1=s\mathbf1$ — so $s$ is automatically an eigenvalue, with
+      eigenvector $\mathbf1=[1,\ldots,1]^T$.</p>
+
+    <p>If $Av=\lambda v$ and $B=p(A)$ for some polynomial $p$, then $Bv=p(\lambda)v$ — a matrix polynomial
+      transforms each eigenvalue through that same scalar polynomial.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Row sums and a matrix polynomial.</strong> Every row of $A\in\mathbb R^{n\times n}$
+        sums to $1$. Let $B=A^3-2A^2+A$. Which statement is correct?<br><br>
+        A. $Bx=0$ has no solution &nbsp;&nbsp; B. $Bx=0$ has exactly two solutions<br>
+        C. $Bx=0$ has infinitely many solutions &nbsp;&nbsp; D. $Bx=0$ has a unique solution</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$A\mathbf1=\mathbf1$, so $1$ is an eigenvalue of $A$.</li>
+          <li>$p(\lambda)=\lambda^3-2\lambda^2+\lambda$; at $\lambda=1$: $p(1)=1-2+1=0$.</li>
+          <li>So $B$ has eigenvalue $0$: $B\mathbf1=0$ with $\mathbf1\ne0$ — a non-zero solution, and every scalar multiple of it is also a solution.</li>
+        </ol>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> Outer products &amp; rank-one eigenstructure</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For non-zero $x$, $xx^T$ is a rank-one matrix: for any $y$, $xx^Ty=x(x^Ty)$ always points in the direction
+        of $x$. If $x^Tx=1$, then $xx^Tx=x$, so $x$ is an eigenvector with eigenvalue $1$. Any $y\perp x$ satisfies
+        $xx^Ty=0$. So the eigenvalues of $xx^T$ (with $\|x\|=1$) are $1,0,\ldots,0$.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Eigenvalues of $I+xx^T$.</strong> Let $A=I_n+xx^T$ where $x^Tx=1$. Which
+        statements are correct?<br><br>
+        A. $\operatorname{rank}(A)=n$ &nbsp;&nbsp; B. $A$ is invertible<br>
+        C. $0$ is an eigenvalue of $A$ &nbsp;&nbsp; D. $A^{-1}$ has a negative eigenvalue</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>The eigenvalues of $xx^T$ are $1,0,\ldots,0$. Adding $I$ adds one to every eigenvalue: $2,1,\ldots,1$.</li>
+          <li>All eigenvalues are positive, so rank is $n$, $A$ is invertible, zero is not an eigenvalue, and the eigenvalues of $A^{-1}$ are $\tfrac12,1,\ldots,1$ — none negative.</li>
+        </ol>
+        <p><strong>Answer: A and B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> The matrix identity $A^3=A$</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why does $A^3=A$ force $N(A)=N(A^2)$?</div>
+      <p>If $Ax=0$, then clearly $A^2x=0$ too — so $N(A)\subseteq N(A^2)$. Conversely, if $A^2x=0$, multiply by $A$:
+        $A^3x=0$. But $A^3=A$, so $Ax=0$. So the containment goes both ways: $N(A)=N(A^2)$, and they share the
+        same nullity, hence the same rank.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Consequence of $A^3=A$.</strong> Let $A\in\mathbb R^{n\times n}$ satisfy $A^3=A$.
+        Which statement is always correct?<br><br>
+        A. $A$ is invertible &nbsp;&nbsp; B. $\det(A)=0$ &nbsp;&nbsp; C. Sum of diagonal entries is $1$ &nbsp;&nbsp; D. $A$ and $A^2$ have the same rank</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Neither invertibility nor singularity is forced: $A=I$ is invertible while $A=0$ is singular, and both satisfy $A^3=A$.</p>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> Diagonalization</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A matrix is diagonalizable if $A=PDP^{-1}$, where the columns of $P$ are independent eigenvectors
+        $P=[v_1\ v_2\ \cdots\ v_n]$ and the diagonal of $D$ holds the matching eigenvalues
+        $D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$ — the order must match between the two. A matrix is
+        diagonalizable exactly when it has $n$ linearly independent eigenvectors. Distinct eigenvalues guarantee
+        this, and every real symmetric matrix always has an orthonormal eigenbasis.</p>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why is this useful?</div>
+      <p>$A^k=(PDP^{-1})^k$, and the middle terms telescope away: $A^k=PD^kP^{-1}$. Since $D$ is diagonal,
+        $D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$ — this turns an otherwise brutal matrix power into
+        a handful of scalar powers.</p>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Diagonalizable $\ne$ invertible</div>
+      <p>Diagonalizable means "enough independent eigenvectors." Invertible means "no eigenvalue is zero." A matrix
+        like $\begin{bmatrix}1&0\\0&0\end{bmatrix}$ is already diagonal — so it's diagonalizable — but it is
+        <em>not</em> invertible, since one eigenvalue is zero.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> Dot product, angle &amp; orthogonality</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For $u=[u_1,\ldots,u_n]^T$ and $v=[v_1,\ldots,v_n]^T$, the dot product is $u^Tv=u_1v_1+\cdots+u_nv_n$.
+        The angle between them is $\cos\theta=\dfrac{u^Tv}{\|u\|\|v\|}$, and perpendicular vectors satisfy
+        $u^Tv=0$.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · $(3,4,5)$ vectors and a right angle.</strong> Vectors $a,b,c$ satisfy $\|a\|=3$,
+        $\|b\|=4$, $\|c\|=5$. Which statement is correct?<br><br>
+        A. They always form a right triangle based on lengths alone<br>
+        B. They form a right triangle when $a+b+c=0$<br>
+        C. They may or may not form a right triangle when $a+b+c=0$ &nbsp;&nbsp; D. None</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Given $a+b+c=0$, we get $c=-(a+b)$, and norm ignores sign: $\|c\|^2=\|a+b\|^2$.</li>
+          <li>$\|a+b\|^2=\|a\|^2+\|b\|^2+2a^Tb$, so $25=9+16+2a^Tb\Rightarrow25=25+2a^Tb\Rightarrow a^Tb=0$.</li>
+          <li>So $a\perp b$ — this is forced, not merely possible.</li>
+        </ol>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> Orthogonal vs. orthonormal vectors</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Orthogonal means $u^Tv=0$. Orthonormal means $u^Tv=0$ <em>and</em> $\|u\|=\|v\|=1$.</p>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li>Orthonormal $=$ orthogonal $+$ normalized. Orthonormal vectors are always independent, but independent vectors are not necessarily orthogonal.</li></ul>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Orthonormal bases.</strong> Which statements are correct?<br><br>
+        A. $\mathbb R^n$ has a unique orthonormal basis<br>
+        B. $\mathbb R^n$ does not have a unique orthonormal basis<br>
+        C. Linearly independent vectors in $\mathbb R^n$ are orthonormal<br>
+        D. Orthonormal vectors in $\mathbb R^n$ are linearly independent</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>There are infinitely many rotated orthonormal bases, so B is true. Orthonormal vectors can never be
+          redundant, so D is true. Independence alone doesn't guarantee perpendicularity or unit length, so C is false.</p>
+        <p><strong>Answer: B and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> Orthogonal matrices</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A square matrix $Q$ is orthogonal when $Q^TQ=I$, so $Q^{-1}=Q^T$. Orthogonal matrices preserve lengths and
+        angles: $\|Qx\|=\|x\|$ and $(Qu)^T(Qv)=u^Tv$. Their determinant is $\pm1$, and their eigenvalues satisfy
+        $|\lambda|=1$ — but those eigenvalues can be complex, as a rotation demonstrates.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · A norm-preserving matrix.</strong> A real $n\times n$ matrix $A$ satisfies
+        $\|Ax\|_2=\|x\|_2$ for every $x\in\mathbb R^n$. Which statements are always correct?<br><br>
+        A. $A$ must be orthogonal &nbsp;&nbsp; B. $A=I$ is the only solution<br>
+        C. Eigenvalues are necessarily only $+1$ or $-1$ &nbsp;&nbsp; D. $A$ has full rank</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Squaring both sides: $x^TA^TAx=x^Tx$ for every $x$, so $A^TA=I$ — $A$ is orthogonal.</li>
+          <li>An orthogonal matrix is invertible, hence full rank. But it need not equal $I$ — rotations and reflections also preserve length.</li>
+          <li>Eigenvalues have modulus one, but a rotation can have complex eigenvalues, so C is false.</li>
+        </ol>
+        <p><strong>Answer: A and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">38</span> Projections &amp; projection matrices</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A projection takes the shadow of a vector onto a line or subspace. Onto a non-zero vector $u$:
+        $\operatorname{proj}_u(v)=\dfrac{u^Tv}{u^Tu}u$; if $u$ is already a unit vector, this simplifies to
+        $(u^Tv)u$.</p>
+    </div>
+
+    <p>A projection matrix satisfies $P^2=P$ ("idempotence") — once a vector is projected onto the subspace,
+      projecting it again changes nothing. An <em>orthogonal</em> projection additionally satisfies $P^T=P$. The
+      eigenvalues of any projection are only $0$ or $1$. If $P$ projects onto a $k$-dimensional subspace,
+      $\operatorname{rank}(P)=k$, $\operatorname{tr}(P)=k$, and $\operatorname{nullity}(P)=n-k$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Projection onto a subspace of $\mathbb R^3$.</strong> Let $W$ be a subspace of
+        $\mathbb R^3$, and $P$ the orthogonal projection onto $W$. Which statements are true?<br><br>
+        A. If $W$ is one-dimensional, then $N(P)$ is one-dimensional<br>
+        B. If $W$ is two-dimensional, then $N(P)$ is one-dimensional<br>
+        C. $P^2=P$ &nbsp;&nbsp; D. $P^3=P$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$N(P)=W^\perp$, and $\dim(W)+\dim(W^\perp)=3$.</li>
+          <li>If $\dim(W)=1$, $\dim N(P)=2$ — A is false. If $\dim(W)=2$, $\dim N(P)=1$ — B is true.</li>
+          <li>Any projection satisfies $P^2=P$ — C is true. Then $P^3=P^2P=PP=P$ — D is true.</li>
+        </ol>
+        <p><strong>Answer: B, C and D.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">39</span> Projection onto orthonormal vectors</div>
+
+    <p>If $x_1,\ldots,x_k$ are orthonormal, then $P=x_1x_1^T+\cdots+x_kx_k^T$ projects onto
+      $\operatorname{span}\{x_1,\ldots,x_k\}$. If $Q=[x_1\ \cdots\ x_k]$, then $P=QQ^T$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Sum of orthonormal outer products.</strong> Let $x_1,\ldots,x_5$ be orthonormal
+        vectors in $\mathbb R^{10}$, and $A=x_1x_1^T+\cdots+x_5x_5^T$. Which statements are correct?<br><br>
+        A. Singular values of $A$ are also its eigenvalues &nbsp;&nbsp; B. Singular values of $A$ are either $0$ or $1$<br>
+        C. $\det(A)=1$ &nbsp;&nbsp; D. $A$ is invertible</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$A$ is the orthogonal projection onto a five-dimensional subspace, with eigenvalues five $1$'s and five $0$'s.</li>
+          <li>Since $A$ is symmetric positive semidefinite, its singular values equal its non-negative eigenvalues — A and B are true.</li>
+          <li>Because zero eigenvalues are present, $\det(A)=0$ and $A$ is not invertible.</li>
+        </ol>
+        <p><strong>Answer: A and B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">40</span> The centering matrix</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Define $M=I_n-\dfrac1n\mathbf1\mathbf1^T$, where $\mathbf1=[1,\ldots,1]^T$. This matrix subtracts the mean
+        from a vector. Letting $P=\dfrac1n\mathbf1\mathbf1^T$ (projection onto the all-ones direction), $M=I-P$
+        projects onto the space perpendicular to $\mathbf1$.</p>
+    </div>
+
+    <div class="formula">$$M^T=M\qquad M^2=M\qquad M\mathbf1=0$$</div>
+
+    <p>Its eigenvalues are $0$ once and $1$ exactly $n-1$ times, so $\operatorname{rank}(M)=n-1$ and
+      $\operatorname{tr}(M)=n-1$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Properties of the centering matrix (real GATE).</strong> Let
+        $M=I_n-\dfrac1n\mathbf1\mathbf1^T$. Which statements are correct?<br><br>
+        A. $M^T=M$ &nbsp;&nbsp; B. $M^2=I_n$ &nbsp;&nbsp; C. $\operatorname{tr}(M)=n$ &nbsp;&nbsp; D. $M$ is a projection matrix</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Both $I$ and $\mathbf1\mathbf1^T$ are symmetric, so $M^T=M$ — A is true.</li>
+          <li>Since $M$ is a projection, $M^2=M$, not $I$ — B is false.</li>
+          <li>$\operatorname{tr}(M)=\operatorname{tr}(I)-\tfrac1n\operatorname{tr}(\mathbf1\mathbf1^T)=n-\tfrac1n(n)=n-1$ — C is false.</li>
+          <li>D is true.</li>
+        </ol>
+        <p><strong>Answer: A and D</strong> — the official 2026 key gives A and D.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">41</span> The Rayleigh quotient</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For a real symmetric matrix $A$: $\lambda_{\min}\le\dfrac{x^TAx}{x^Tx}\le\lambda_{\max}$. For a unit
+        vector ($x^Tx=1$), this collapses to a clean statement:</p>
+    </div>
+
+    <div class="formula">$$\max_{\|x\|=1}x^TAx=\lambda_{\max}(A)\qquad\min_{\|x\|=1}x^TAx=\lambda_{\min}(A)$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Recognition trigger</div>
+      <p>Whenever you see $\max_{x^Tx=1}x^TAx$, think: "largest eigenvalue of the symmetric matrix" — nothing more
+        needs computing.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Maximum quadratic form of the centering matrix.</strong> Let
+        $M=I_n-\dfrac1n\mathbf1\mathbf1^T$. Find $\max_{x^Tx=1}x^TMx$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The eigenvalues of $M$ are $0$ and $1$, so its largest eigenvalue is $1$.</p>
+        <p><strong>Answer: 1</strong> — the official answer range is $1$ to $1$.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">42</span> Positive-definite matrices &amp; Gram matrices</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A symmetric matrix $A$ is positive <em>semi</em>definite when $x^TAx\ge0$ for every $x$, and positive
+        definite when $x^TAx\gt0$ for every non-zero $x$. For a symmetric matrix, positive definite
+        $\iff$ every $\lambda_i\gt0$. A positive-definite matrix is always invertible.</p>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why is every Gram matrix positive semidefinite?</div>
+      <p>Given vectors $x_1,\ldots,x_n$, define $A_{ij}=x_i^Tx_j$ and $X=[x_1\ x_2\ \cdots\ x_n]$, so $A=X^TX$.
+        For any $z$: $z^TAz=z^TX^TXz=(Xz)^T(Xz)=\|Xz\|^2\ge0$ — always non-negative, since it's a squared length.
+        If the columns $x_i$ are linearly independent, $Xz=0$ only when $z=0$, so $z^TAz\gt0$ for non-zero $z$ —
+        making $A$ positive definite and invertible.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Gram matrix of independent vectors.</strong> Let $\{x_1,\ldots,x_n\}$ be linearly
+        independent in $\mathbb R^n$. Define $A$ by $A_{ij}=x_i^Tx_j$. Which statement is correct?<br><br>
+        A. $A$ is invertible &nbsp;&nbsp; B. $0$ is a singular value of $A$ &nbsp;&nbsp; C. $\det(A)=0$ &nbsp;&nbsp; D. $z^TAz=0$ for some non-zero $z$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Since $A=X^TX$ with $X$ having independent columns (full rank), $z^TAz=\|Xz\|^2\gt0$ for every non-zero
+          $z$ — $A$ is positive definite, hence invertible.</p>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">43</span> Singular Value Decomposition</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Every $m\times n$ matrix — square, rectangular, singular, or rank-deficient, it doesn't matter — has an
+        SVD: $A=U\Sigma V^T$, where $U$ holds the left singular vectors, $V$ the right singular vectors, and
+        $\Sigma$ the non-negative singular values.</p>
+    </div>
+
+    <div class="formula">$$\sigma_i=\sqrt{\lambda_i(A^TA)}\ge0\qquad\operatorname{rank}(A)=\text{number of non-zero singular values}$$</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 The rank-one case: $aa^T$</div>
+      <p>Let $M=aa^T$. Then $Ma=a(a^Ta)=\|a\|^2a$, so $a$ is an eigenvector with eigenvalue $\|a\|^2$. Every
+        vector perpendicular to $a$ has eigenvalue zero. So $aa^T$ has singular values $\|a\|^2,0,\ldots,0$.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Sum of singular values of $AA^T$.</strong> Let
+        $A=\begin{bmatrix}1\\2\\3\\4\\5\end{bmatrix}$, and let $\sigma_1,\ldots,\sigma_5$ be the singular values of
+        $M=AA^T$. Find $\sum_{i=1}^5\sigma_i$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$M=AA^T$ is rank one; its only non-zero singular value is $A^TA=\|A\|^2=1^2+2^2+3^2+4^2+5^2$.</li>
+          <li>$=1+4+9+16+25=55$. The other four singular values are zero.</li>
+        </ol>
+        <p><strong>Answer: 55.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">44</span> PCA — principal component analysis</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>PCA finds the directions of maximum variance in centred data. With data matrix $X$ (rows as samples,
+        columns as features): first <strong>centre</strong> the data, $X_c=X-\text{feature means}$. Then
+        <strong>calculate covariance</strong>, $C=\dfrac1nX_c^TX_c$ (or $\dfrac1{n-1}X_c^TX_c$ for the sample
+        version). Then <strong>eigendecompose</strong> it: $Cv_i=\lambda_iv_i$, where $v_i$ is a principal
+        direction and $\lambda_i$ is the variance along it. Finally <strong>sort</strong> by
+        $\lambda_1\ge\lambda_2\ge\cdots$ — the eigenvector for $\lambda_1$ is the first principal component, and so
+        on. Because covariance is symmetric and positive semidefinite, its eigenvectors can always be chosen
+        orthonormal and its eigenvalues are always non-negative.</p>
+    </div>
+
+    <p>Distinct principal components are always orthogonal ($v_i^Tv_j=0$ for $i\ne j$), so their angle is always
+      exactly $90^\circ$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Angle between the first and tenth principal components (real GATE).</strong> PCA
+        reduces a feature space from $100$ dimensions to $10$. What is true about the angle $\theta$ between the
+        first and tenth principal components?<br><br>
+        A. $\theta=0^\circ$ &nbsp;&nbsp; B. $\theta=90^\circ$ &nbsp;&nbsp; C. $90^\circ\lt\theta\le180^\circ$ &nbsp;&nbsp; D. $0^\circ\lt\theta\lt90^\circ$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Distinct principal components are always orthogonal, regardless of how many dimensions were kept.</p>
+        <p><strong>Answer: B</strong> — the official 2026 key lists B.</p>
+      </div>
+    </div>
+
+    <p>For a unit direction $u$, the variance of centred data along $u$ is $u^TCu$, and by the Rayleigh-quotient
+      result, $\max_{\|u\|=1}u^TCu=\lambda_{\max}(C)$ — the maximum variance equals the largest covariance
+      eigenvalue.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Maximum PCA variance.</strong> A centred dataset has covariance eigenvalues
+        $\lambda_i=100^{2-i}$ for $1\le i\le100$. Let $u$ be the unit direction of maximum variance. Find
+        $\dfrac1n\sum_{i=1}^n\left(u^Tx^{(i)}\right)^2$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>The direction of maximum variance is the eigenvector for the largest eigenvalue.</li>
+          <li>$\lambda_1=100^{2-1}=100$, $\lambda_2=100^0=1$, and progressively smaller after that.</li>
+          <li>So the requested quantity — the variance along the top direction — is $\lambda_1=100$.</li>
+        </ol>
+        <p><strong>Answer: 100.</strong></p>
+      </div>
+    </div>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>PCA is really the whole subject compressed into four steps: centre the data (Section 40's centering
+        matrix), build a symmetric positive-semidefinite matrix (Section 42's Gram-matrix logic), diagonalize it
+        (Section 34), and read off the largest eigenvalue via the Rayleigh quotient (Section 41).</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">45</span> Final formula-selection map</div>
+
+    <p>Use this table the instant you're unsure which formula applies.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Words in the question</th><th>First thought</th></tr></thead>
+        <tbody>
+          <tr><td>Length, magnitude, norm</td><td>$\|x\|=\sqrt{x^Tx}$</td></tr>
+          <tr><td>Angle</td><td>$\cos\theta=\dfrac{x^Ty}{\|x\|\|y\|}$</td></tr>
+          <tr><td>Perpendicular</td><td>$x^Ty=0$</td></tr>
+          <tr><td>Unit vector</td><td>$x/\|x\|$</td></tr>
+          <tr><td>Coefficients sum to 1</td><td>Affine combination</td></tr>
+          <tr><td>Coefficients sum to 1, non-negative</td><td>Convex combination</td></tr>
+          <tr><td>Subspace</td><td>Zero, addition, scalar multiplication</td></tr>
+          <tr><td>Hyperplane side</td><td>Calculate $w^Tx-b$</td></tr>
+          <tr><td>Number of cube vertices</td><td>$2^n$</td></tr>
+          <tr><td>Matrix product dimensions</td><td>Inner match, outer remain</td></tr>
+          <tr><td>Trace</td><td>Sum diagonal $=$ sum eigenvalues</td></tr>
+          <tr><td>$2\times2$ determinant</td><td>$ad-bc$</td></tr>
+          <tr><td>Inverse exists?</td><td>Check $\det(A)\ne0$</td></tr>
+          <tr><td>Rank</td><td>Count pivots</td></tr>
+          <tr><td>Nullity</td><td>$n-\operatorname{rank}(A)$</td></tr>
+          <tr><td>Number of solutions</td><td>Compare $\operatorname{rank}(A)$, $\operatorname{rank}([A\mid b])$, $n$</td></tr>
+          <tr><td>Homogeneous non-zero solution</td><td>$\operatorname{rank}(A)\lt n$</td></tr>
+          <tr><td>Minimum-norm solution</td><td>$A^+b$</td></tr>
+          <tr><td>Eigenvalues</td><td>$\det(A-\lambda I)=0$</td></tr>
+          <tr><td>Eigenvectors</td><td>$(A-\lambda I)x=0$</td></tr>
+          <tr><td>Sum of eigenvalues</td><td>Trace</td></tr>
+          <tr><td>Product of eigenvalues</td><td>Determinant</td></tr>
+          <tr><td>Eigenvalues of inverse</td><td>$1/\lambda_i$</td></tr>
+          <tr><td>Eigenvalues of powers</td><td>$\lambda_i^k$</td></tr>
+          <tr><td>Polynomial $p(A)$</td><td>Transform eigenvalues as $p(\lambda)$</td></tr>
+          <tr><td>Every row sums to $s$</td><td>$A\mathbf1=s\mathbf1$</td></tr>
+          <tr><td>Large rotation power</td><td>Reduce exponent modulo rotation period</td></tr>
+          <tr><td>Large general matrix power</td><td>$A^k=PD^kP^{-1}$</td></tr>
+          <tr><td>Projection matrix</td><td>$P^2=P$</td></tr>
+          <tr><td>Orthogonal projection</td><td>$P^2=P$ and $P^T=P$</td></tr>
+          <tr><td>Norm-preserving matrix</td><td>$A^TA=I$</td></tr>
+          <tr><td>$\max_{\|x\|=1}x^TAx$</td><td>Largest eigenvalue</td></tr>
+          <tr><td>$A_{ij}=x_i^Tx_j$</td><td>Gram matrix $X^TX$</td></tr>
+          <tr><td>Singular values</td><td>$\sqrt{\lambda_i(A^TA)}$</td></tr>
+          <tr><td>Rank from SVD</td><td>Count non-zero singular values</td></tr>
+          <tr><td>PCA direction</td><td>Covariance eigenvector</td></tr>
+          <tr><td>PCA maximum variance</td><td>Largest covariance eigenvalue</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">46</span> The ten most common GATE traps</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Trap</th><th>Correct response</th></tr></thead>
+        <tbody>
+          <tr><td>"Determinant zero means no solution"</td><td>False — it means either no solution or infinitely many. Check consistency.</td></tr>
+          <tr><td>"Zero cannot be an eigenvalue"</td><td>False — zero can be an eigenvalue. It's the zero <em>vector</em> that can never be an eigenvector.</td></tr>
+          <tr><td>"Null space is perpendicular to column space"</td><td>Usually false — the real relations are $N(A)\perp\operatorname{Row}(A)$ and $N(A^T)\perp\operatorname{Col}(A)$.</td></tr>
+          <tr><td>"Independent means orthogonal"</td><td>False — orthogonal non-zero vectors are independent, but independent vectors need not be perpendicular.</td></tr>
+          <tr><td>"Orthogonal means unit length"</td><td>False — orthogonal means perpendicular; orthonormal means perpendicular <em>and</em> unit length.</td></tr>
+          <tr><td>"Every projection is invertible"</td><td>False — a projection onto a proper subspace has zero eigenvalues, so it's singular.</td></tr>
+          <tr><td>"$P^2=I$ for a projection"</td><td>False — projection means $P^2=P$. It's a <em>reflection</em> that satisfies $R^2=I$.</td></tr>
+          <tr><td>"Orthogonal matrices only have eigenvalues $\pm1$"</td><td>False over the complex numbers — eigenvalues satisfy $|\lambda|=1$, but a rotation can be complex.</td></tr>
+          <tr><td>"Eigenvalues and singular values are identical"</td><td>False in general — eigenvalues can be negative/complex, singular values are always real and non-negative. They coincide only for symmetric PSD matrices.</td></tr>
+          <tr><td>"Trace and determinant are interchangeable"</td><td>False — trace adds ($\sum\lambda_i$), determinant multiplies ($\prod\lambda_i$).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">47</span> Final memory chain</div>
+
+    <p>Read this aloud during revision — each line should replay its section's whole story in your head:</p>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 The chain</div>
+      <ul>
+        <li>A vector is a direction.</li>
+        <li>A matrix transforms directions.</li>
+        <li>Rank counts the directions that survive.</li>
+        <li>Nullity counts the directions destroyed.</li>
+        <li>Determinant tells whether any direction was destroyed.</li>
+        <li>If determinant is non-zero, the matrix is reversible.</li>
+        <li>Eigenvectors are directions that do not turn.</li>
+        <li>Eigenvalues tell how those directions scale.</li>
+        <li>Symmetric matrices have real eigenvalues and orthogonal eigenvectors.</li>
+        <li>Projection matrices satisfy $P^2=P$.</li>
+        <li>Orthogonal matrices preserve lengths.</li>
+        <li>SVD works for every matrix, no exceptions.</li>
+        <li>PCA keeps the directions with the largest covariance eigenvalues.</li>
+      </ul>
+    </div>
+
+    <p>And the two most valuable boxes on this entire page:</p>
+
+    <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\iff Ax=0\text{ has only }x=0$$</div>
+
+    <div class="formula">$$r\ne r'\Rightarrow\text{no solution}\qquad r=r'=n\Rightarrow\text{unique solution}\qquad r=r'\lt n\Rightarrow\text{infinitely many solutions}$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">💛 A last word before you go</div>
+      <p>You've just walked through the entire linear-algebra syllabus — not by memorizing, but by understanding
+        <em>why</em> each idea exists. That's the version of knowledge that survives exam pressure. Revisit the
+        questions here until the solutions feel like your own reasoning, then go test yourself on the real papers.
+        You're more ready than you think.</p>
+    </div>
+
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📝</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Done studying? Test yourself.</div>
+        <div class="practice-cta-sub">Attempt the real GATE questions with the timer running.</div>
+      </div>
+      <a class="btn btn-primary" href="gate-questions.html">GATE questions →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260719"></script>
+  <script src="../assets/js/app.js?v=20260719"></script>
+</body>
+</html>

@@ -98,7 +98,7 @@
         '<div class="nav-section-label">Topics</div>' +
         links +
         '<div class="nav-section-label">Reference</div>' +
-        (subject === "probability-statistics" || subject === "machine-learning"
+        (subject === "probability-statistics" || subject === "machine-learning" || subject === "linear-algebra"
           ? '<a class="topic-link' + (page === "detailed-study" ? " active" : "") + '" href="' + laRoot + '/detailed-study.html">' +
               '<span class="topic-ico">📚</span><span>Detailed study</span></a>'
           : "") +
