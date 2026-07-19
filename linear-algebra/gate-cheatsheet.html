@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>GATE Cheat Sheet · GATE DA Linear Algebra</title>
+<meta name="description" content="The ultimate GATE DA Linear Algebra cheat sheet — concept map, formula decoders, determinants, rank, eigenvalues, orthogonality, SVD, PCA, traps and a one-minute final revision. With a quick-glance collapsible formula tree.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260719">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260719">
+<style>
+  /* ---- GATE Cheat Sheet: same calm, airy design as Detailed Study ---- */
+  .concept-card{padding:38px 38px 34px;margin-bottom:42px}
+  .concept-card p{font-size:15.5px;line-height:2.05;margin:18px 0;color:var(--body)}
+  .concept-card strong{color:var(--body-strong);font-weight:650}
+  .concept-card ul.styled li, .concept-card ul.deflist li{line-height:2;margin:13px 0;color:var(--body)}
+  .sec-head{margin-bottom:24px}
+
+  .formula{
+    margin:30px 0;padding:22px 24px;
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-radius:14px;
+    text-align:center;
+    overflow-x:auto;scrollbar-width:thin;
+  }
+  .formula .katex-display{margin:14px 0}
+  .formula .katex-display:first-child{margin-top:2px}
+  .formula .katex-display:last-child{margin-bottom:2px}
+  .formula .katex{font-size:1.1em;color:var(--body-strong)}
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
+
+  .callout{margin:28px 0;padding:22px 26px}
+  .callout p{margin:13px 0;line-height:2}
+  .imagine{margin:28px 0;padding:22px 26px}
+  .memory-box{margin:30px 0;padding:24px 28px}
+  .memory-box li{margin:14px 0;line-height:1.95}
+  .tbl-wrap{margin:28px 0}
+  .tbl-wrap td,.tbl-wrap th{padding:14px 16px;line-height:1.8}
+  .decode{margin:20px 0 24px;padding-left:4px}
+  .decode li{line-height:2;margin:12px 0}
+
+  /* Quiet boxes: differentiation by label only */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{color:var(--muted)}
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* ---- Quick-glance collapsible formula tree ---- */
+  details.qg{
+    background:var(--surface-card);
+    border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
+    margin:0 0 42px;
+    max-width:820px;
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  details.qg summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;gap:14px;
+    padding:24px 28px;
+    user-select:none;
+  }
+  details.qg summary::-webkit-details-marker{display:none}
+  .qg-arrow{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--surface-soft);border:1px solid var(--hairline);
+    color:var(--muted);font-size:13px;
+    transition:transform .25s var(--ease);
+  }
+  details.qg[open] .qg-arrow{transform:rotate(90deg)}
+  .qg-titles{flex:1;min-width:0}
+  .qg-title{display:block;font-size:17px;font-weight:650;color:var(--ink)}
+  .qg-sub{display:block;font-size:13px;color:var(--muted);margin-top:3px;line-height:1.6}
+  .qg-body{padding:6px 28px 30px;border-top:1px solid var(--hairline-soft)}
+
+  .qg-folder{
+    font-family:var(--font-mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+    margin:26px 0 6px;padding-bottom:8px;
+    border-bottom:1px solid var(--hairline-soft);
+  }
+  .qg-list{list-style:none;padding:0;margin:0 0 0 4px}
+  .qg-item{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:9px 0 9px 18px;margin:0;
+    border-left:2px solid var(--hairline-soft);
+    line-height:1.9;position:relative;
+  }
+  .qg-item::before{
+    content:"";position:absolute;left:0;top:1.15em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  /* Sub-folder inside a topic */
+  .qg-group{
+    list-style:none;margin:0;padding:8px 0 4px 18px;
+    border-left:2px solid var(--hairline-soft);position:relative;
+  }
+  .qg-group::before{
+    content:"";position:absolute;left:0;top:1.35em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  .qg-group-name{
+    display:block;font-family:var(--font-mono);
+    font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--body-strong);margin:2px 0 2px;
+  }
+  .qg-sub{list-style:none;padding:0;margin:4px 0 6px 8px}
+  .qg-sub .qg-item{border-left:2px dashed var(--hairline-soft)}
+  .qg-name{min-width:210px;flex:0 0 auto;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .qg-math{flex:1;min-width:0;font-size:14.5px;color:var(--body-strong);overflow-x:auto;scrollbar-width:none}
+  .qg-math::-webkit-scrollbar{display:none}
+
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+    details.qg summary{padding:18px 14px}
+    .qg-body{padding:4px 14px 22px}
+    .qg-item{gap:6px;padding-left:12px}
+    .qg-group{padding-left:12px}
+    .qg-sub{margin-left:4px}
+    .qg-name{min-width:100%;flex-basis:100%}
+  }
+</style>
+</head>
+<body data-root=".." data-subject="linear-algebra" data-page="cheatsheet" data-content>
+  <div class="hero">
+    <span class="tag">Reference · GATE Cheat Sheet</span>
+    <h1>The Ultimate<br>GATE Cheat Sheet</h1>
+    <p class="lede">From "I forgot everything" to "I know exactly what to apply." Every symbol, formula, trap and
+      decision rule for GATE DA Linear Algebra — combined into one sheet. Read it top to bottom for the full
+      revision, or expand the <strong>Quick glance</strong> card below to scan every formula, organized topic by
+      topic.</p>
+  </div>
+
+  <details class="qg">
+    <summary>
+      <span class="qg-arrow" aria-hidden="true">▶</span>
+      <span class="qg-titles">
+        <span class="qg-title">⚡ Quick glance — every formula, in order</span>
+        <span class="qg-sub">The complete formula tree, grouped by topic in syllabus order. Expand for a rapid scan; collapse to read the full sheet.</span>
+      </span>
+    </summary>
+    <div class="qg-body">
+
+      <div class="qg-folder">📁 1 · Vectors</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Length / norm</span><span class="qg-math">$\|x\|=\sqrt{x^Tx}$</span></li>
+        <li class="qg-item"><span class="qg-name">Unit vector</span><span class="qg-math">$\hat x=x/\|x\|$</span></li>
+        <li class="qg-item"><span class="qg-name">Dot product</span><span class="qg-math">$x^Ty=\sum_ix_iy_i$</span></li>
+        <li class="qg-item"><span class="qg-name">Angle</span><span class="qg-math">$\cos\theta=\dfrac{x^Ty}{\|x\|\|y\|}$</span></li>
+        <li class="qg-item"><span class="qg-name">Perpendicular</span><span class="qg-math">$x^Ty=0$</span></li>
+        <li class="qg-item"><span class="qg-name">Sum/difference shortcut</span><span class="qg-math">$x{+}y{=}a,\ x{-}y{=}b\Rightarrow x=\tfrac{a+b}2,\ y=\tfrac{a-b}2$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 2 · Combinations &amp; subspaces</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Span</span><span class="qg-math">$\operatorname{span}\{v_1,\ldots,v_k\}$</span></li>
+        <li class="qg-item"><span class="qg-name">Independence</span><span class="qg-math">$c_1v_1+\cdots+c_kv_k=0\Rightarrow$ all $c_i=0$</span></li>
+        <li class="qg-item"><span class="qg-name">Subspace test</span><span class="qg-math">$0\in S$; closed under $+$ and scaling</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Affine / convex</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Affine</span><span class="qg-math">$\alpha+\beta=1$ (on the line)</span></li>
+            <li class="qg-item"><span class="qg-name">Convex</span><span class="qg-math">$\alpha+\beta=1,\ \alpha,\beta\ge0$ (on the segment)</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="qg-folder">📁 3 · Geometry</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Hyperplane side</span><span class="qg-math">$w^Tx-b$</span></li>
+        <li class="qg-item"><span class="qg-name">$n$-cube vertices</span><span class="qg-math">$2^n$</span></li>
+        <li class="qg-item"><span class="qg-name">Ball</span><span class="qg-math">$x^Tx\le r^2\Rightarrow\|x\|\le r$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 4 · Matrices &amp; rotation</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Multiplication shape</span><span class="qg-math">$(m\times n)(n\times p)=m\times p$</span></li>
+        <li class="qg-item"><span class="qg-name">Transpose product</span><span class="qg-math">$(AB)^T=B^TA^T$</span></li>
+        <li class="qg-item"><span class="qg-name">Trace</span><span class="qg-math">$\operatorname{tr}(A)=\sum a_{ii}=\sum\lambda_i$</span></li>
+        <li class="qg-item"><span class="qg-name">Rotation power</span><span class="qg-math">$R(\theta)^k=R(k\theta)$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 5 · Determinants</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">$2\times2$</span><span class="qg-math">$\det(A)=ad-bc$</span></li>
+        <li class="qg-item"><span class="qg-name">Product rule</span><span class="qg-math">$\det(AB)=\det(A)\det(B)$</span></li>
+        <li class="qg-item"><span class="qg-name">Eigenvalue link</span><span class="qg-math">$\det(A)=\prod\lambda_i$</span></li>
+        <li class="qg-item"><span class="qg-name">Factor first</span><span class="qg-math">$\det(A^2{+}cA)=\det(A)\det(A{+}cI)$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 6 · Rank, nullity &amp; subspaces</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Rank-nullity</span><span class="qg-math">$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$</span></li>
+        <li class="qg-item"><span class="qg-name">Orthogonality</span><span class="qg-math">$N(A)\perp\operatorname{Row}(A)$, $N(A^T)\perp C(A)$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 7 · Linear systems</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Solution table</span><span class="qg-math">$r\ne r'\to0$; $r{=}r'{=}n\to1$; $r{=}r'{<}n\to\infty$</span></li>
+        <li class="qg-item"><span class="qg-name">Minimum-norm</span><span class="qg-math">$x_{\min}=A^+b$</span></li>
+        <li class="qg-item"><span class="qg-name">Least squares</span><span class="qg-math">$\hat x=(A^TA)^{-1}A^Tb$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 8 · Eigenvalues &amp; eigenvectors</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Definition</span><span class="qg-math">$Ax=\lambda x$</span></li>
+        <li class="qg-item"><span class="qg-name">Characteristic equation</span><span class="qg-math">$\det(A-\lambda I)=0$</span></li>
+        <li class="qg-item"><span class="qg-name">Powers &amp; inverse</span><span class="qg-math">$\lambda_i^k$, $1/\lambda_i$</span></li>
+        <li class="qg-item"><span class="qg-name">$2\times2$ shortcut</span><span class="qg-math">$\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 9 · Diagonalization</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Form</span><span class="qg-math">$A=PDP^{-1}$</span></li>
+        <li class="qg-item"><span class="qg-name">Powers</span><span class="qg-math">$A^k=PD^kP^{-1}$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 10 · Orthogonality</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Orthogonal matrix</span><span class="qg-math">$Q^TQ=I$</span></li>
+        <li class="qg-item"><span class="qg-name">Preserves length</span><span class="qg-math">$\|Qx\|=\|x\|$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 11 · Projections &amp; centering</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Projection matrix</span><span class="qg-math">$P^2=P$</span></li>
+        <li class="qg-item"><span class="qg-name">Orthonormal-column projection</span><span class="qg-math">$P=QQ^T$</span></li>
+        <li class="qg-item"><span class="qg-name">Centering matrix</span><span class="qg-math">$M=I-\tfrac1n\mathbf1\mathbf1^T$</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 12 · Rayleigh, PD &amp; Gram</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">Rayleigh max</span><span class="qg-math">$\max_{\|x\|=1}x^TAx=\lambda_{\max}$</span></li>
+        <li class="qg-item"><span class="qg-name">Gram matrix</span><span class="qg-math">$A=X^TX$, PSD</span></li>
+      </ul>
+
+      <div class="qg-folder">📁 13 · SVD &amp; PCA</div>
+      <ul class="qg-list">
+        <li class="qg-item"><span class="qg-name">SVD</span><span class="qg-math">$A=U\Sigma V^T$</span></li>
+        <li class="qg-item"><span class="qg-name">Singular values</span><span class="qg-math">$\sigma_i=\sqrt{\lambda_i(A^TA)}$</span></li>
+        <li class="qg-item"><span class="qg-name">PCA variance</span><span class="qg-math">$\max$ variance $=\lambda_{\max}(C)$</span></li>
+      </ul>
+
+    </div>
+  </details>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> The complete subject in one picture</div>
+    <p>Linear algebra is one connected story:</p>
+    <div class="formula">$$\text{Vectors}\to\text{Matrices}\to\text{Determinant}\to\text{Rank and Nullity}\to\text{Linear Equations}$$</div>
+    <div class="formula">$$\text{Eigenvalues}\to\text{Diagonalization}\to\text{Orthogonality and Projection}\to\text{SVD}\to\text{PCA}$$</div>
+    <p>A <strong>vector</strong> is an arrow, direction, or data point. A <strong>matrix</strong> is a machine that
+      transforms vectors. <strong>Rank</strong> counts how many independent directions survive; <strong>nullity</strong>
+      counts how many are destroyed. The <strong>determinant</strong> tells whether any dimension was completely
+      collapsed. An <strong>inverse</strong> reverses the transformation. An <strong>eigenvector</strong> is a
+      direction that does not turn; its <strong>eigenvalue</strong> is how much it's scaled. <strong>Orthogonality</strong>
+      means perpendicularity. A <strong>projection</strong> gives the shadow on a subspace. <strong>SVD</strong>
+      expresses any matrix using rotations and stretches, and <strong>PCA</strong> keeps the directions containing
+      the most variance.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> Symbols you must recognize instantly</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Symbol</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>$x,v,u$</td><td>vectors</td></tr>
+          <tr><td>$A,B,M$</td><td>matrices</td></tr>
+          <tr><td>$A^T$</td><td>transpose</td></tr>
+          <tr><td>$A^{-1}$</td><td>inverse</td></tr>
+          <tr><td>$I$</td><td>identity matrix</td></tr>
+          <tr><td>$0$</td><td>zero vector or zero matrix</td></tr>
+          <tr><td>$\det(A)$ or $|A|$</td><td>determinant</td></tr>
+          <tr><td>$\operatorname{rank}(A)$</td><td>number of independent directions</td></tr>
+          <tr><td>$N(A)$</td><td>null space</td></tr>
+          <tr><td>$C(A)$</td><td>column space</td></tr>
+          <tr><td>$\lambda$</td><td>eigenvalue</td></tr>
+          <tr><td>$\sigma$</td><td>singular value</td></tr>
+          <tr><td>$\|x\|$</td><td>length of vector</td></tr>
+          <tr><td>$x^Ty$</td><td>dot product</td></tr>
+          <tr><td>$A^+$</td><td>Moore–Penrose pseudoinverse</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> The most important equivalence chain</div>
+    <p>For a square $n\times n$ matrix $A$:</p>
+    <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n$$</div>
+    <p>equivalently:</p>
+    <div class="formula">$$\text{columns are independent}\iff N(A)=\{0\}\iff Ax=0\text{ has only }x=0\iff0\text{ is not an eigenvalue}$$</div>
+    <p>and the opposite chain:</p>
+    <div class="formula">$$\det(A)=0\iff A\text{ is singular}\iff A^{-1}\text{ does not exist}$$</div>
+    <div class="formula">$$\operatorname{rank}(A)\lt n\iff\text{columns are dependent}\iff Ax=0\text{ has a non-zero solution}\iff0\text{ is an eigenvalue}$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory sentence</div>
+      <ul><li><strong>Non-zero determinant means nothing was destroyed, so the matrix can be reversed.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Vectors — length, unit vectors &amp; the sum/difference shortcut</div>
+    <p><strong>3.1 Length / norm</strong> — for $x=[x_1,\ldots,x_n]^T$:</p>
+    <div class="formula">$$\|x\|=\sqrt{x_1^2+\cdots+x_n^2}=\sqrt{x^Tx}$$</div>
+    <p>Use this when the question says: length, magnitude, distance from origin, unit vector, normalize.</p>
+    <p>For the all-ones vector $\mathbf1=[1,\ldots,1]^T\in\mathbb R^n$: $\|\mathbf1\|=\sqrt n$, because
+      $\mathbf1^T\mathbf1=n$.</p>
+    <p><strong>3.2 Unit vector</strong> — length $1$; to normalize $x$:</p>
+    <div class="formula">$$\hat x=\frac{x}{\|x\|}$$</div>
+    <p><strong>3.3 Sum and difference shortcut</strong> — if $x+y=a$, $x-y=b$:</p>
+    <div class="formula">$$x=\frac{a+b}2\qquad y=\frac{a-b}2$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Dot product, angle &amp; perpendicularity</div>
+    <div class="formula">$$x^Ty=x_1y_1+\cdots+x_ny_n\qquad\text{(a scalar, not a vector)}$$</div>
+    <div class="formula">$$\cos\theta=\frac{x^Ty}{\|x\|\|y\|}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Angle</th></tr></thead>
+        <tbody>
+          <tr><td>$x^Ty\gt0$</td><td>$\theta\lt90^\circ$</td></tr>
+          <tr><td>$x^Ty=0$</td><td>$\theta=90^\circ$</td></tr>
+          <tr><td>$x^Ty\lt0$</td><td>$\theta\gt90^\circ$</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">$$x\perp y\iff x^Ty=0$$</div>
+    <p><strong>Useful expansion</strong>:</p>
+    <div class="formula">$$\|x+y\|^2=\|x\|^2+\|y\|^2+2x^Ty\qquad\|x-y\|^2=\|x\|^2+\|y\|^2-2x^Ty$$</div>
+    <div class="callout example">
+      <div class="callout-label">🎯 GATE trigger</div>
+      <p>If lengths like $3,4,5$ are given together with $a+b+c=0$, write $c=-(a+b)$, expand $\|c\|^2=\|a+b\|^2$ —
+        this very often proves $a^Tb=0$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Linear combinations, span, independence and basis</div>
+    <p><strong>5.1 Linear combination</strong> — $c_1v_1+c_2v_2+\cdots+c_kv_k$ means scaling vectors and adding them.</p>
+    <p><strong>5.2 Span</strong> — every vector reachable using the supplied directions:</p>
+    <div class="formula">$$\operatorname{span}\{v_1,\ldots,v_k\}=\{c_1v_1+\cdots+c_kv_k\}$$</div>
+    <p><strong>5.3 Independence</strong> — vectors are independent when $c_1v_1+\cdots+c_kv_k=0$ forces
+      $c_1=\cdots=c_k=0$: no vector is redundant.</p>
+    <div class="callout tip">
+      <div class="callout-label">🔍 Quick checks</div>
+      <p>Two non-zero vectors are dependent if one is a scalar multiple of the other. More than $n$ vectors in
+        $\mathbb R^n$ must be dependent.</p>
+    </div>
+    <p><strong>5.4 Basis</strong> — must be linearly independent <em>and</em> span the whole space. The number of
+      basis vectors is the dimension: $\dim(\mathbb R^n)=n$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Subspaces</div>
+    <p>A set $S\subseteq\mathbb R^n$ is a subspace if:</p>
+    <div class="formula">$$0\in S\qquad x,y\in S\Rightarrow x+y\in S\qquad x\in S,\ c\in\mathbb R\Rightarrow cx\in S$$</div>
+    <div class="callout tip">
+      <div class="callout-label">🔍 Fastest exam method</div>
+      <p>Test zero first — if the zero vector is not present, stop: not a subspace. A span is always a subspace. A
+        homogeneous system $\{x:Ax=0\}=N(A)$ is always a subspace. A non-homogeneous system $\{x:Ax=b\}$, $b\ne0$,
+        is generally not, since zero doesn't satisfy it. Expressions with squared coefficients like
+        $\alpha^2v_1+\beta^2v_2$ are suspicious — they can't scale negatively.</p>
+    </div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory sentence</div>
+      <ul><li><strong>Subspaces must pass through the origin.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Affine and convex combinations</div>
+    <div class="formula">$$w=\alpha u+\beta v,\qquad\alpha+\beta=1\qquad\text{(point on the line through }u,v\text{)}$$</div>
+    <p>A convex combination additionally requires $\alpha,\beta\ge0$ — then the point lies on the segment between
+      $u$ and $v$.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Coefficients</th><th>Location</th></tr></thead>
+        <tbody>
+          <tr><td>Sum $=1$</td><td>On the complete line</td></tr>
+          <tr><td>Sum $=1$, both non-negative</td><td>On the segment</td></tr>
+          <tr><td>More than two non-negative, summing to $1$</td><td>Inside/on the convex shape</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Example: $u+\tfrac13(v-u)=\tfrac23u+\tfrac13v$ — coefficients non-negative and sum to one, so it's on the
+      segment joining $u$ and $v$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> Hyperplanes and half-spaces</div>
+    <div class="formula">$$w^Tx=b\qquad\text{side test: }w^Tx-b$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Result</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>$\gt0$</td><td>Positive half-space</td></tr>
+          <tr><td>$\lt0$</td><td>Negative half-space</td></tr>
+          <tr><td>$=0$</td><td>Point lies on hyperplane</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The vector $w$ is normal (perpendicular) to the hyperplane.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Geometry shortcuts</div>
+    <p><strong>$n$-dimensional cube</strong> — each coordinate has two corner choices:</p>
+    <div class="formula">$$\text{number of vertices}=2^n$$</div>
+    <p><strong>Ball equation</strong> — $x^Tx\le r^2$ means $\|x\|\le r$: a solid ball of radius $r$. In
+      $\mathbb R^3$, a two-dimensional subspace is a plane through the origin, and a plane through the centre of a
+      radius-$r$ ball cuts out a disk:</p>
+    <div class="formula">$$\text{area}=\pi r^2$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Matrices — multiplication, transpose, symmetry &amp; trace</div>
+    <p>An $m\times n$ matrix has $m$ rows, $n$ columns, and transforms $A:\mathbb R^n\to\mathbb R^m$. Input
+      dimension $=$ number of columns; output dimension $=$ number of rows.</p>
+    <p><strong>10.1 Multiplication</strong> — if $A:m\times n$ and $B:n\times p$, then $AB:m\times p$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Inner dimensions match; outer dimensions survive.</strong> $AB\ne BA$ in general, but $A(BC)=(AB)C$.</li></ul>
+    </div>
+    <p><strong>10.2 Transpose</strong>:</p>
+    <div class="formula">$$(AB)^T=B^TA^T\qquad\text{(the order reverses)}$$</div>
+    <p><strong>10.3 Symmetric matrix</strong> — $A=A^T$. Real symmetric matrices: eigenvalues are real; eigenvectors
+      for distinct eigenvalues are orthogonal; they can be orthogonally diagonalized; Rayleigh-quotient rules apply
+      directly.</p>
+    <p><strong>10.4 Trace</strong>:</p>
+    <div class="formula">$$\operatorname{tr}(A)=\sum_ia_{ii}=\sum_i\lambda_i\qquad\operatorname{tr}(AB)=\operatorname{tr}(BA)$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Trace adds eigenvalues.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> Rotation matrices</div>
+    <div class="formula">$$R(\theta)=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}\qquad R(\alpha)R(\beta)=R(\alpha+\beta)\qquad R(\theta)^k=R(k\theta)$$</div>
+    <p>$R(2\pi)=I$. If $\theta=\dfrac{2\pi}p$, then $R(\theta)^p=I$.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 Large power trick</div>
+      <p>Reduce the exponent modulo $p$. Example: for $\theta=\dfrac{2\pi}5$, since $2026=5(405)+1$,
+        $R(\theta)^{2026}=R(\theta)$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Determinants</div>
+    <div class="formula">$$\det\!\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc$$</div>
+    <p>$|\det(A)|=$ area/volume scale factor. If $\det(A)=0$, at least one dimension was collapsed.</p>
+    <p><strong>12.1 Key properties</strong>:</p>
+    <div class="formula">$$\det(AB)=\det(A)\det(B)\qquad\det(A^T)=\det(A)\qquad\det(A^{-1})=\frac1{\det(A)}\qquad\det(A^k)=\det(A)^k$$</div>
+    <p>For triangular/diagonal matrices, $\det(A)=\prod_ia_{ii}$. For $A\in\mathbb R^{n\times n}$,
+      $\det(cA)=c^n\det(A)$, and $\det(A)=\prod_i\lambda_i$.</p>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Determinant multiplies eigenvalues.</strong></li></ul>
+    </div>
+    <p><strong>12.2 $2\times2$ inverse</strong>:</p>
+    <div class="formula">$$A^{-1}=\frac1{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$$</div>
+    <p>Procedure: swap $a,d$; negate $b,c$; divide by $ad-bc$. Valid only if $ad-bc\ne0$.</p>
+    <p><strong>12.3 Factor before you calculate</strong> — never multiply out $A^2+cA$ directly:</p>
+    <div class="formula">$$A^2+cA=A(A+cI)\qquad\det(A^2+cA)=\det(A)\det(A+cI)$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>If $\det(A)=0$, the whole expression is instantly zero — no need to touch $A+cI$ at all.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> Rank and nullity</div>
+    <div class="formula">$$\operatorname{rank}(A)=\text{number of pivots}=\dim C(A)=\dim\operatorname{Row}(A)$$</div>
+    <div class="formula">$$N(A)=\{x:Ax=0\}\qquad\text{nullity}=\dim N(A)$$</div>
+    <p><strong>13.1 Rank-nullity theorem</strong> — for $A\in\mathbb R^{m\times n}$:</p>
+    <div class="formula">$$\operatorname{rank}(A)+\operatorname{nullity}(A)=n\qquad\text{free variables}=n-r$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>$n$ is the number of <em>columns</em>, not rows.</p>
+    </div>
+    <p><strong>13.2 Full row vs. column rank</strong> — full column rank ($\operatorname{rank}(A)=n$): columns
+      independent, $Ax=0$ has only $x=0$, no free variables. Full row rank ($\operatorname{rank}(A)=m$): the matrix
+      can generate every output in $\mathbb R^m$.</p>
+    <p><strong>13.3 The four fundamental subspaces</strong> — for $A\in\mathbb R^{m\times n}$, rank $r$:</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Space</th><th>Meaning</th><th>Lives in</th><th>Dimension</th></tr></thead>
+        <tbody>
+          <tr><td>$C(A)$</td><td>Column space</td><td>$\mathbb R^m$</td><td>$r$</td></tr>
+          <tr><td>$C(A^T)$</td><td>Row space</td><td>$\mathbb R^n$</td><td>$r$</td></tr>
+          <tr><td>$N(A)$</td><td>$Ax=0$</td><td>$\mathbb R^n$</td><td>$n-r$</td></tr>
+          <tr><td>$N(A^T)$</td><td>$A^Ty=0$</td><td>$\mathbb R^m$</td><td>$m-r$</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">$$N(A)\perp\operatorname{Row}(A)\qquad N(A^T)\perp C(A)$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory sentence</div>
+      <ul><li><strong>Null space is perpendicular to row space, not column space.</strong></li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Linear systems — the solution table</div>
+    <p>A system is $Ax=b$, augmented matrix $[A\mid b]$. Let $r=\operatorname{rank}(A)$,
+      $r'=\operatorname{rank}([A\mid b])$, $n=$ number of unknowns:</p>
+    <div class="formula">$$r\ne r'\Rightarrow\text{no solution}\qquad r=r'=n\Rightarrow\text{unique solution}\qquad r=r'\lt n\Rightarrow\text{infinitely many solutions}$$</div>
+    <p><strong>14.1 Recognizing inconsistency</strong> — a row $[0\ 0\ 0\mid c]$, $c\ne0$, means $0=c$: impossible, so no solution.</p>
+    <p><strong>14.2 Homogeneous systems</strong> — $Ax=0$ always has the trivial solution $x=0$, so it can
+      <em>never</em> have "no solution." Only $x=0$ if full column rank; infinitely many if rank $\lt n$:</p>
+    <div class="formula">$$\text{non-zero solution exists}\iff\operatorname{rank}(A)\lt n\iff\det(A)=0\ \text{(square }A\text{)}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Tall and wide systems, and the minimum-norm solution</div>
+    <p><strong>Tall matrix</strong> ($m\gt n$, overdetermined) — more equations than unknowns; may have no solution
+      or a unique solution, but not infinitely many if full column rank.</p>
+    <p><strong>Wide matrix</strong> ($m\lt n$, underdetermined) — more unknowns than equations; a consistent system
+      cannot have a unique solution since $\operatorname{rank}(A)\le m\lt n$, so at least one free variable exists.</p>
+    <p>For a consistent underdetermined system, the shortest solution is $x_{\min}=A^+b$. If $A$ has full row rank,
+      $A^+=A^T(AA^T)^{-1}$; the fully general SVD formula is $A^+=V\Sigma^+U^T$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> Least-squares solutions &amp; computational complexity</div>
+    <p>When $Ax=b$ has no exact solution, minimize $\|Ax-b\|^2$. Normal equations:</p>
+    <div class="formula">$$A^TA\hat x=A^Tb\qquad\text{if full column rank: }\hat x=(A^TA)^{-1}A^Tb$$</div>
+    <p>Residual $e=b-A\hat x$; at the optimum, $A^Te=0$ — the error is perpendicular to the column space of $A$.</p>
+    <div class="formula">$$\text{General Gaussian elimination: }O(n^3)\qquad\text{Upper-triangular back-substitution: }O(n^2)$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> Eigenvalues and eigenvectors — the basics</div>
+    <div class="formula">$$Ax=\lambda x\qquad x\ne0$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Eigenvalue</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>$\lambda\gt1$</td><td>Stretch</td></tr>
+          <tr><td>$0\lt\lambda\lt1$</td><td>Shrink</td></tr>
+          <tr><td>$\lambda\lt0$</td><td>Reverse and scale</td></tr>
+          <tr><td>$\lambda=0$</td><td>Crush to zero</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>17.1 Finding eigenvalues</strong> — from $Ax=\lambda x$, rearrange to $(A-\lambda I)x=0$; for a
+      non-zero solution, $A-\lambda I$ must be singular:</p>
+    <div class="formula">$$\det(A-\lambda I)=0\qquad\text{(characteristic equation)}\qquad(A-\lambda I)x=0\ \text{(eigenvectors)}$$</div>
+    <p><strong>17.2 Why $A-\lambda I$ is singular</strong> — $(A-\lambda I)x=0$ for non-zero $x$ means
+      $A-\lambda I$ is never invertible, by definition.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> Eigenvalue identities, and zero eigenvalue vs. zero eigenvector</div>
+    <div class="formula">$$\sum_i\lambda_i=\operatorname{tr}(A)\qquad\prod_i\lambda_i=\det(A)$$</div>
+    <p>For triangular/diagonal matrices, $\lambda_i=$ diagonal entries. The characteristic polynomial of an
+      $n\times n$ matrix has degree $n$.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Zero <em>is</em> allowed as an eigenvalue ($Ax=0$ for some non-zero $x$), but the zero vector is
+        <em>never</em> allowed as an eigenvector.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Eigenvalues of powers, inverses &amp; polynomials</div>
+    <p>If $Ax=\lambda x$, then $A^kx=\lambda^kx$:</p>
+    <div class="formula">$$\text{eigenvalues of }A^k=\lambda_i^k\qquad\text{eigenvalues of }A^{-1}=\frac1{\lambda_i}\ \text{(if invertible)}$$</div>
+    <p>If $B=p(A)$ for a polynomial $p$, and $Av=\lambda v$, then $Bv=p(\lambda)v$ — eigenvalues transform as
+      $\lambda\to p(\lambda)$.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 Example</div>
+      <p>$B=A^3-2A^2+A$. If $1$ is an eigenvalue of $A$: $1^3-2(1)^2+1=0$, so $B$ has eigenvalue zero and is singular.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Equal row-sum shortcut &amp; the $2\times2$ characteristic shortcut</div>
+    <p>If every row of $A$ sums to $s$: $A\mathbf1=s\mathbf1$, so $s$ is automatically an eigenvalue with
+      eigenvector $\mathbf1=[1,\ldots,1]^T$.</p>
+    <p>For a $2\times2$ matrix, the characteristic equation is always:</p>
+    <div class="formula">$$\lambda^2-\operatorname{tr}(A)\lambda+\det(A)=0\qquad\Delta=\operatorname{tr}(A)^2-4\det(A)$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Discriminant</th><th>Eigenvalues</th></tr></thead>
+        <tbody>
+          <tr><td>$\Delta\gt0$</td><td>Two distinct real</td></tr>
+          <tr><td>$\Delta=0$</td><td>Repeated real</td></tr>
+          <tr><td>$\Delta\lt0$</td><td>Complex-conjugate pair</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Rotation eigenvalues &amp; the outer-product shortcut</div>
+    <p>A planar rotation by $\theta$ has eigenvalues $\lambda=\cos\theta\pm i\sin\theta$ — a genuine rotation other
+      than $0^\circ$ or $180^\circ$ has no real eigenvector. Real characteristic-polynomial coefficients only
+      guarantee complex roots come in conjugate pairs, not that any root is real.</p>
+    <p>For non-zero $x$, $xx^T$ has rank $1$. If $x^Tx=1$, eigenvalues of $xx^T$ are $1,0,\ldots,0$, so eigenvalues
+      of $I+xx^T$ are $2,1,\ldots,1$ — full rank, positive definite, invertible, with inverse eigenvalues
+      $\tfrac12,1,\ldots,1$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> The matrix equation $A^3=A$</div>
+    <p>Eigenvalues satisfy $\lambda^3=\lambda\Rightarrow\lambda(\lambda-1)(\lambda+1)=0$, so
+      $\lambda\in\{-1,0,1\}$. Also $N(A)=N(A^2)$, so $\operatorname{rank}(A)=\operatorname{rank}(A^2)$.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Trap</div>
+      <p>Do not conclude $A$ is always singular or always invertible: $A=0$ is singular, $A=I$ is invertible, and
+        both satisfy $A^3=A$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Diagonalization</div>
+    <div class="formula">$$A=PDP^{-1}\qquad P=[v_1\ v_2\ \cdots\ v_n]\qquad D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$$</div>
+    <p>$A$ is diagonalizable $\iff$ it has $n$ independent eigenvectors. $n$ distinct eigenvalues guarantee this;
+      repeated eigenvalues don't automatically break it. Every real symmetric matrix can be orthogonally
+      diagonalized: $A=Q\Lambda Q^T$.</p>
+    <div class="formula">$$A^k=PD^kP^{-1}\qquad D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$$</div>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Diagonalizable $\ne$ invertible</div>
+      <p>Diagonalizable means enough independent eigenvectors; invertible means no eigenvalue equals zero. A
+        diagonal matrix containing zero is diagonalizable but not invertible.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> Orthogonal and orthonormal vectors</div>
+    <div class="formula">$$\text{Orthogonal: }u^Tv=0\qquad\text{Orthonormal: }u^Tv=0,\ \|u\|=\|v\|=1$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Orthonormal = orthogonal + normalized.</strong> Every set of non-zero orthogonal vectors is independent, but independent vectors need not be orthogonal. Orthonormal bases are not unique.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Orthogonal matrices</div>
+    <p>A square matrix $Q$ is orthogonal if $Q^TQ=I$, so $Q^{-1}=Q^T$. Orthogonal matrices preserve
+      $\|Qx\|=\|x\|$ and $(Qu)^T(Qv)=u^Tv$ — lengths, angles, and distances. $\det(Q)=\pm1$, and $|\lambda_i|=1$.</p>
+    <div class="callout trap">
+      <div class="callout-label">⚠️ GATE trap</div>
+      <p>Eigenvalues are not necessarily only $+1,-1$ — rotations may have complex eigenvalues of magnitude $1$.</p>
+    </div>
+    <p>If $\|Ax\|=\|x\|$ for every $x$, then $A^TA=I$: $A$ is orthogonal and full rank.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Projections</div>
+    <div class="formula">$$\operatorname{proj}_u(v)=\frac{u^Tv}{u^Tu}u\qquad\text{(unit }u\text{: }(u^Tv)u\text{)}\qquad e=v-\operatorname{proj}_u(v),\ e\perp u$$</div>
+    <p><strong>26.1 Projection matrix</strong> — $P^2=P$ (idempotence). Orthogonal projection also has $P^T=P$.
+      Eigenvalues are $0$ or $1$. If $P$ projects onto a $k$-dimensional subspace:
+      $\operatorname{rank}(P)=\operatorname{tr}(P)=k$, $\operatorname{nullity}(P)=n-k$, $\det(P)=0$ unless $P=I$,
+      and $P^m=P$ for every $m\ge1$.</p>
+    <p><strong>26.2 Orthonormal-column projection</strong> — if $Q$ has orthonormal columns ($Q^TQ=I$), the
+      projection onto $C(Q)$ is $P=QQ^T$. If $x_1,\ldots,x_k$ are orthonormal, $P=x_1x_1^T+\cdots+x_kx_k^T$, with
+      eigenvalues $1$ ($k$ times) and $0$ ($n-k$ times).</p>
+    <p><strong>26.3 General full-column-rank projection</strong> — if the columns of $A$ form a basis of the
+      subspace:</p>
+    <div class="formula">$$P=A(A^TA)^{-1}A^T$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> The centering matrix</div>
+    <div class="formula">$$M=I_n-\frac1n\mathbf1\mathbf1^T\qquad Mx=x-\bar x\mathbf1\ \left(\bar x=\tfrac1n\mathbf1^Tx\right)$$</div>
+    <div class="formula">$$M^T=M\qquad M^2=M\qquad M\mathbf1=0$$</div>
+    <p>Eigenvalues: $0$ once, $1$ exactly $n-1$ times. So $\operatorname{rank}(M)=n-1$, $\operatorname{tr}(M)=n-1$,
+      $\det(M)=0$. It projects onto $\mathbf1^\perp$, the zero-mean subspace.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Rayleigh quotient</div>
+    <div class="formula">$$R_A(x)=\frac{x^TAx}{x^Tx}\qquad\lambda_{\min}\le R_A(x)\le\lambda_{\max}$$</div>
+    <p>For unit vectors ($x^Tx=1$):</p>
+    <div class="formula">$$\max_{\|x\|=1}x^TAx=\lambda_{\max}(A)\qquad\min_{\|x\|=1}x^TAx=\lambda_{\min}(A)$$</div>
+    <div class="callout example">
+      <div class="callout-label">🎯 Instant trigger</div>
+      <p>Whenever you see $\max_{x^Tx=1}x^TAx$, think: <strong>largest eigenvalue</strong>. For the centering
+        matrix, the largest eigenvalue is $1$, so the maximum is $1$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> Positive-definite matrices &amp; Gram matrices</div>
+    <div class="formula">$$\text{PSD: }x^TAx\ge0\ \forall x\qquad\text{PD: }x^TAx\gt0\ \forall x\ne0\qquad\text{(symmetric)}A\text{ PD}\iff\lambda_i\gt0\ \forall i$$</div>
+    <p>Consequences of positive definiteness: all eigenvalues positive; determinant positive; full rank;
+      invertible; no zero singular value.</p>
+    <p><strong>29.1 Gram matrix</strong> — if $A_{ij}=x_i^Tx_j$ and $X=[x_1\ \cdots\ x_n]$, then $A=X^TX$. For any
+      $z$: $z^TAz=\|Xz\|^2\ge0$ — every Gram matrix is PSD. If the $x_i$ are independent, $Xz=0\Rightarrow z=0$, so
+      $z^TAz\gt0$ for $z\ne0$: the Gram matrix is positive definite and invertible.</p>
+    <div class="callout example">
+      <div class="callout-label">🎯 Instant trigger</div>
+      <p>Whenever you see $A_{ij}=x_i^Tx_j$, think: <strong>Gram matrix $X^TX$</strong>.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Gram–Schmidt</div>
+    <p>Converts independent vectors into an orthonormal basis. For $v_1,v_2$: $u_1=v_1$,
+      $u_2=v_2-\operatorname{proj}_{u_1}(v_2)$, then normalize $q_1=u_1/\|u_1\|$, $q_2=u_2/\|u_2\|$. For more
+      vectors, subtract projections onto all previous orthogonal directions. This leads to QR decomposition:</p>
+    <div class="formula">$$A=QR\qquad Q\text{ has orthonormal columns}$$</div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Singular Value Decomposition</div>
+    <div class="formula">$$A=U\Sigma V^T$$</div>
+    <p>Interpretation: $V^T$ rotates/reflects the input, $\Sigma$ stretches along perpendicular directions, $U$
+      rotates/reflects the result. Works for square, rectangular, singular, and rank-deficient matrices alike.</p>
+    <p><strong>31.1 Singular values</strong>:</p>
+    <div class="formula">$$\sigma_i=\sqrt{\lambda_i(A^TA)}\ge0\qquad\operatorname{rank}(A)=\text{number of non-zero singular values}$$</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Eigenvalues</th><th>Singular values</th></tr></thead>
+        <tbody>
+          <tr><td>Square matrices only</td><td>Any matrix</td></tr>
+          <tr><td>May be negative</td><td>Never negative</td></tr>
+          <tr><td>May be complex</td><td>Always real</td></tr>
+          <tr><td>Direction preserved</td><td>Principal stretch amount</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>For a symmetric PSD matrix, $\sigma_i=\lambda_i$.</p>
+    <p><strong>31.2 Pseudoinverse through SVD</strong> — if $A=U\Sigma V^T$, then $A^+=V\Sigma^+U^T$: reciprocate
+      each non-zero singular value, keep zeros as zero, transpose the rectangular diagonal matrix.</p>
+    <p><strong>31.3 Rank-one shortcut</strong> — for non-zero $a$, $M=aa^T$ has eigenvalues/singular values
+      $\|a\|^2,0,\ldots,0$. Example: $a=[1,2,3,4,5]^T\Rightarrow\|a\|^2=1+4+9+16+25=55$ — the singular-value sum of
+      $aa^T$ is $55$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> PCA</div>
+    <p>PCA finds the directions containing maximum variance. Rows of $X$ are samples, columns are features.</p>
+    <p><strong>Step 1 — centre:</strong> $X_c=X-\text{feature means}$. <strong>Step 2 — covariance:</strong>
+      $C=\tfrac1nX_c^TX_c$ (population) or $\tfrac1{n-1}X_c^TX_c$ (sample) — use whichever convention the question
+      specifies. <strong>Step 3 — eigendecompose:</strong> $Cv_i=\lambda_iv_i$, where $v_i$ is a principal
+      direction and $\lambda_i$ is the variance along it. <strong>Step 4 — sort:</strong> $\lambda_1\ge\lambda_2\ge\cdots$;
+      PC1 corresponds to $\lambda_1$, PC2 to $\lambda_2$, and so on.</p>
+    <p><strong>32.1 Orthogonality</strong> — because covariance matrices are symmetric, their eigenvectors can be
+      orthonormal: $v_i^Tv_j=0$ for $i\ne j$, so distinct principal components are always $90^\circ$ apart.</p>
+    <p><strong>32.2 Maximum variance</strong> — for a unit direction $u$, variance along $u$ is $u^TCu$:</p>
+    <div class="formula">$$\max_{\|u\|=1}u^TCu=\lambda_{\max}(C)$$</div>
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory</div>
+      <ul><li><strong>Maximum PCA variance = largest covariance eigenvalue.</strong></li></ul>
+    </div>
+    <p><strong>32.3 Explained variance ratio</strong>:</p>
+    <div class="formula">$$\text{EVR}_i=\frac{\lambda_i}{\lambda_1+\cdots+\lambda_d}\qquad\text{top }k\text{: }\frac{\lambda_1+\cdots+\lambda_k}{\lambda_1+\cdots+\lambda_d}$$</div>
+    <p><strong>32.4 PCA and SVD</strong> — for centred data, $X_c=U\Sigma V^T$, and the columns of $V$ are the
+      principal directions. Sample covariance: $\lambda_i=\dfrac{\sigma_i^2}{n-1}$; population covariance:
+      $\lambda_i=\dfrac{\sigma_i^2}{n}$.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> GATE formula-trigger dictionary</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Question pattern</th><th>Immediate action</th></tr></thead>
+        <tbody>
+          <tr><td>"Length of vector"</td><td>$\sqrt{x^Tx}$</td></tr>
+          <tr><td>"Angle"</td><td>$\dfrac{x^Ty}{\|x\|\|y\|}$</td></tr>
+          <tr><td>"Perpendicular"</td><td>Set $x^Ty=0$</td></tr>
+          <tr><td>"Coefficients sum to 1"</td><td>Affine combination</td></tr>
+          <tr><td>"Non-negative and sum to 1"</td><td>Convex combination</td></tr>
+          <tr><td>"Subspace?"</td><td>Zero, addition, scaling</td></tr>
+          <tr><td>"$Ax=0$"</td><td>Null space / homogeneous system</td></tr>
+          <tr><td>"Hyperplane side"</td><td>Evaluate $w^Tx-b$</td></tr>
+          <tr><td>"Vertices of $n$-cube"</td><td>$2^n$</td></tr>
+          <tr><td>"Trace"</td><td>Diagonal sum / eigenvalue sum</td></tr>
+          <tr><td>"Determinant"</td><td>Product of eigenvalues</td></tr>
+          <tr><td>"Inverse exists?"</td><td>$\det(A)\ne0$</td></tr>
+          <tr><td>"Number of solutions"</td><td>Compare ranks and unknown count</td></tr>
+          <tr><td>"Free variables"</td><td>$n-r$</td></tr>
+          <tr><td>"Minimum norm"</td><td>$A^+b$</td></tr>
+          <tr><td>"Best approximate solution"</td><td>Least squares</td></tr>
+          <tr><td>"Eigenvalues"</td><td>$\det(A-\lambda I)=0$</td></tr>
+          <tr><td>"$A^{-1}$ eigenvalues"</td><td>$1/\lambda_i$</td></tr>
+          <tr><td>"$A^k$ eigenvalues"</td><td>$\lambda_i^k$</td></tr>
+          <tr><td>"Polynomial in $A$"</td><td>Apply polynomial to eigenvalues</td></tr>
+          <tr><td>"Every row sums to $s$"</td><td>$s$ is an eigenvalue</td></tr>
+          <tr><td>"Large rotation power"</td><td>Modular arithmetic</td></tr>
+          <tr><td>"$A^3=A$"</td><td>Eigenvalues $-1,0,1$; ranks of $A,A^2$ equal</td></tr>
+          <tr><td>"Norm preserved"</td><td>Orthogonal matrix</td></tr>
+          <tr><td>"Projection"</td><td>$P^2=P$</td></tr>
+          <tr><td>"Orthogonal projection"</td><td>$P^2=P,\ P^T=P$</td></tr>
+          <tr><td>"$I-\tfrac1n\mathbf{1}\mathbf{1}^T$"</td><td>Centering projection</td></tr>
+          <tr><td>"Maximum $x^TAx$, $\|x\|=1$"</td><td>Largest eigenvalue</td></tr>
+          <tr><td>"$A_{ij}=x_i^Tx_j$"</td><td>Gram matrix</td></tr>
+          <tr><td>"$X^TX$"</td><td>PSD; PD if full column rank</td></tr>
+          <tr><td>"Singular values"</td><td>$\sqrt{\lambda(A^TA)}$</td></tr>
+          <tr><td>"Rank from SVD"</td><td>Count non-zero singular values</td></tr>
+          <tr><td>"Maximum PCA variance"</td><td>Largest covariance eigenvalue</td></tr>
+          <tr><td>"Angle between PCs"</td><td>$90^\circ$</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> How GATE tries to confuse you</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Confusion</th><th>Correct understanding</th></tr></thead>
+        <tbody>
+          <tr><td>Zero eigenvalue vs. zero eigenvector</td><td>Zero eigenvalue is allowed; zero eigenvector is forbidden</td></tr>
+          <tr><td>"Determinant zero means no solution"</td><td>False — means non-invertible; could be no solution or infinitely many</td></tr>
+          <tr><td>Full row rank vs. full column rank</td><td>Column rank controls uniqueness; row rank controls whether every output is reachable</td></tr>
+          <tr><td>Null space vs. column space</td><td>$N(A)\perp\operatorname{Row}(A)$, not generally the column space</td></tr>
+          <tr><td>Orthogonal vs. orthonormal</td><td>Orthogonal: dot product zero. Orthonormal: dot product zero <em>and</em> unit length</td></tr>
+          <tr><td>Projection vs. reflection</td><td>Projection: $P^2=P$. Reflection often: $R^2=I$</td></tr>
+          <tr><td>Orthogonal matrix eigenvalues</td><td>Modulus $1$, but can be complex — not always just $+1,-1$</td></tr>
+          <tr><td>Eigenvalues vs. singular values</td><td>Eigenvalues may be negative/complex; singular values are real and non-negative</td></tr>
+          <tr><td>Diagonalizable vs. invertible</td><td>A matrix may be diagonalizable but singular, or invertible but not diagonalizable</td></tr>
+          <tr><td>General elimination vs. triangular solving</td><td>Dense elimination $O(n^3)$; triangular back-substitution $O(n^2)$</td></tr>
+          <tr><td>PCA component order</td><td>PC1 = largest eigenvalue, PC10 = tenth-largest; all distinct PCs orthogonal</td></tr>
+          <tr><td>Covariance denominator</td><td>$1/n$ vs. $1/(n-1)$ — use whichever the question specifies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> Exam attack strategy</div>
+    <ul class="styled">
+      <li><strong>Step 1 — identify the object.</strong> Is it about a vector, matrix, system, eigenvalue, projection, or covariance/PCA?</li>
+      <li><strong>Step 2 — circle trigger words.</strong> Minimum norm, maximum variance, full rank, row sums, unit vector, projection, orthogonal, determinant, homogeneous.</li>
+      <li><strong>Step 3 — write the smallest useful identity.</strong> Don't write every formula you know — e.g. projection → $P^2=P$; row sums → $A\mathbf1=s\mathbf1$; maximum quadratic form → largest eigenvalue; system solutions → rank table; subspace → check zero.</li>
+      <li><strong>Step 4 — eliminate options using properties.</strong> GATE often expects property recognition over full calculation: a projection with zero eigenvalues can't be invertible; a positive-definite matrix can't have a zero singular value; a wide consistent system can't have a unique solution; a homogeneous system can't have no solution.</li>
+      <li><strong>Step 5 — calculate only if still necessary.</strong> This saves time and reduces mistakes.</li>
+    </ul>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> One-minute final revision</div>
+    <div class="formula">
+      $$\|x\|=\sqrt{x^Tx}\qquad x\perp y\iff x^Ty=0\qquad\operatorname{rank}(A)+\operatorname{nullity}(A)=n$$
+      $$r\ne r'\Rightarrow0\text{ solutions}\qquad r=r'=n\Rightarrow1\text{ solution}\qquad r=r'\lt n\Rightarrow\infty\text{ solutions}$$
+      $$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\qquad\det(A-\lambda I)=0$$
+      $$\operatorname{tr}(A)=\sum\lambda_i\qquad\det(A)=\prod\lambda_i\qquad\lambda(A^{-1})=\frac1\lambda\qquad\lambda(A^k)=\lambda^k$$
+      $$P^2=P\qquad Q^TQ=I\qquad\max_{\|x\|=1}x^TAx=\lambda_{\max}$$
+      $$A=U\Sigma V^T\qquad\sigma_i=\sqrt{\lambda_i(A^TA)}\qquad\text{PCA maximum variance}=\lambda_{\max}(C)$$
+      $$\text{different principal components are perpendicular}$$
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> Final mental map</div>
+    <p>Remember this chain:</p>
+    <p>Vectors combine to create spaces. Matrices transform those spaces. Determinant detects collapse. Rank counts
+      surviving directions. Nullity counts lost directions. Rank decides the number of solutions. Eigenvectors
+      reveal stable directions. Diagonalization simplifies repeated transformations. Orthogonality gives
+      independent perpendicular directions. Projections find shadows and best approximations. SVD explains every
+      matrix using rotations and stretches. PCA uses eigenvectors or SVD to preserve maximum data variance.</p>
+    <p>The most important master rule:</p>
+    <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\iff N(A)=\{0\}\iff0\text{ is not an eigenvalue}$$</div>
+    <p>Once this chain and the solution-count table become automatic, most GATE linear-algebra questions become
+      recognition problems rather than long mathematical calculations.</p>
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📚</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Want the full explanations?</div>
+        <div class="practice-cta-sub">Every formula here is taught story-first in the Detailed Study, with real GATE questions.</div>
+      </div>
+      <a class="btn btn-primary" href="detailed-study.html">Detailed Study →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260719"></script>
+  <script src="../assets/js/app.js?v=20260719"></script>
+</body>
+</html>

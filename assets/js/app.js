@@ -102,7 +102,7 @@
           ? '<a class="topic-link' + (page === "detailed-study" ? " active" : "") + '" href="' + laRoot + '/detailed-study.html">' +
               '<span class="topic-ico">📚</span><span>Detailed study</span></a>'
           : "") +
-        (subject === "probability-statistics" || subject === "machine-learning"
+        (subject === "probability-statistics" || subject === "machine-learning" || subject === "linear-algebra"
           ? '<a class="topic-link' + (page === "cheatsheet" ? " active" : "") + '" href="' + laRoot + '/gate-cheatsheet.html">' +
               '<span class="topic-ico">⚡</span><span>GATE cheat sheet</span></a>'
           : "") +
