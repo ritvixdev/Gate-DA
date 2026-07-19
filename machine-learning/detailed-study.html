@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("gateda:theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}try{document.documentElement.classList.add("booting");setTimeout(function(){document.documentElement.classList.remove("booting");},2500);}catch(e){}})();</script>
+<title>Detailed Study with Questions · GATE DA Machine Learning</title>
+<meta name="description" content="A friendly, complete study guide for GATE DA Machine Learning — every algorithm explained like a story, the reason behind every formula, real GATE questions solved step by step, and memory tricks.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20260719">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260719">
+<style>
+  /* ---- Detailed Study: calm, airy, "Study in depth" inspired ---- */
+
+  /* Reading rhythm: soft body text, generous line height, roomy cards */
+  .concept-card{padding:38px 38px 34px;margin-bottom:42px}
+  .concept-card p{font-size:15.5px;line-height:2.05;margin:18px 0;color:var(--body)}
+  .concept-card strong{color:var(--body-strong);font-weight:650}
+  .concept-card ul.styled li, .concept-card ul.deflist li{line-height:2;margin:13px 0;color:var(--body)}
+  .sec-head{margin-bottom:24px}
+
+  /* Formulas: each equation centered on its own line, never squished,
+     soft panel background, no harsh borders */
+  .formula{
+    margin:30px 0;padding:22px 24px;
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-radius:14px;
+    text-align:center;
+    overflow-x:auto;scrollbar-width:thin;
+  }
+  .formula .katex-display{margin:14px 0}
+  .formula .katex-display:first-child{margin-top:2px}
+  .formula .katex-display:last-child{margin-bottom:2px}
+  .formula .katex{font-size:1.1em;color:var(--body-strong)}
+  @media (max-width:600px){ .formula .katex{font-size:.98em} }
+
+  /* Callouts and story boxes: airy */
+  .callout{margin:28px 0;padding:22px 26px}
+  .callout p{margin:13px 0;line-height:2}
+  .imagine{margin:28px 0;padding:22px 26px}
+  .imagine p{line-height:2.05}
+  .memory-box{margin:30px 0;padding:24px 28px}
+  .memory-box li{margin:14px 0;line-height:1.95}
+
+  /* Questions: clear separation, roomy */
+  .practice{
+    margin:38px 0;padding:26px 28px;
+    background:var(--elevated);
+    border:1px solid var(--hairline);
+    border-radius:16px;
+  }
+  .pq{font-size:16px;line-height:2.1;margin:0 0 18px;color:var(--body-strong)}
+
+  /* Show-answer toggle: soft, inviting pill */
+  .show-ans{
+    margin-top:6px;padding:9px 20px;font-size:12.5px;
+    border:1px solid var(--hairline);background:var(--surface-soft);
+    border-radius:var(--r-pill);
+  }
+
+  /* Solutions: hidden until asked for */
+  .ans{
+    margin-top:18px;padding:22px 26px;
+    border-radius:12px;font-size:15.5px;line-height:2.05;color:var(--body);
+  }
+  .ans p{margin:15px 0}
+  .sol-label{
+    font-family:var(--font-mono);font-size:11.5px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px;
+  }
+  ol.steps li{margin:17px 0;line-height:2}
+
+  /* Tables: breathing room */
+  .tbl-wrap{margin:28px 0}
+  .tbl-wrap td,.tbl-wrap th{padding:14px 16px;line-height:1.8}
+
+  /* Symbol-decoder lists */
+  .decode{margin:20px 0 24px;padding-left:4px}
+  .decode li{line-height:2;margin:12px 0}
+
+  /* ---- Calm, flow-preserving boxes: no loud color blocks ----
+     All boxes share the same quiet surface; only the small label
+     and a hairline accent hint at the box type. */
+  .concept-card .callout,
+  .concept-card .imagine,
+  .concept-card .memory-box{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+    box-shadow:none;
+  }
+  .concept-card .callout .callout-label,
+  .concept-card .imagine .callout-label,
+  .concept-card .memory-box .callout-label{
+    color:var(--muted);
+  }
+  .concept-card .memory-box li::before{color:var(--muted-soft)}
+
+  /* Solution card: same quiet treatment */
+  .ans{
+    background:var(--surface-soft);
+    border:1px solid var(--hairline-soft);
+    border-left:2px solid var(--hairline);
+  }
+  .sol-label{color:var(--muted)}
+
+  /* Show-answer pill: quiet by default, gentle hint on hover */
+  .show-ans{color:var(--body)}
+  .show-ans:hover{border-color:var(--muted-soft);background:var(--surface-soft)}
+
+  /* ---- Mobile: maximise text per screen, keep it calm ---- */
+  @media (max-width:600px){
+    .concept-card{padding:24px 14px 22px;margin-bottom:26px}
+    .concept-card p{font-size:15px;line-height:1.85;margin:14px 0}
+    .concept-card ul.styled li,.concept-card ul.deflist li{line-height:1.85;margin:10px 0}
+    .callout,.imagine,.memory-box{margin:20px 0;padding:16px 12px}
+    .callout p,.imagine p{line-height:1.85;margin:11px 0}
+    .memory-box li{margin:11px 0;line-height:1.8}
+    .formula{margin:20px 0;padding:14px 8px}
+    .formula .katex-display{margin:11px 0}
+    .practice{margin:26px 0;padding:18px 12px;border-radius:12px}
+    .pq{font-size:15.5px;line-height:1.9;margin-bottom:14px}
+    .ans{padding:16px 12px;font-size:15px;line-height:1.9;margin-top:14px}
+    .ans p{margin:12px 0}
+    ol.steps li{margin:12px 0;line-height:1.85}
+    .decode li{line-height:1.85;margin:9px 0}
+    .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
+  }
+</style>
+</head>
+<body data-root=".." data-subject="machine-learning" data-page="detailed-study" data-content>
+  <div class="hero">
+    <span class="tag">Reference · Detailed Study</span>
+    <h1>Detailed Study<br>with Questions</h1>
+    <p class="lede">Machine learning is not a black box — it's a handful of stories about lines, distances and votes,
+      and this page teaches you to <em>see</em> them. Every topic here is told like a small story:
+      <strong>what the idea really means</strong>, <strong>why the formula works</strong> (not just what it is),
+      how to <strong>spot it in the exam</strong>, and <strong>real GATE questions</strong> solved step by step.
+      Try each question first, then reveal the solution. Take your time. There is no rush here.</p>
+  </div>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">0</span> Read this first — how to use this page</div>
+
+    <p>Machine learning looks intimidating because it borrows words from statistics, geometry and even biology —
+      "regression," "regularization," "neighbours," "entropy." But underneath every one of those words is a small,
+      almost obvious idea. This page's only job is to hand you that idea before it hands you the formula.</p>
+
+    <p>Each topic below follows the same gentle rhythm, so your brain always knows what's coming next:</p>
+
+    <ul class="styled">
+      <li>🌱 <strong>The idea in plain words</strong> — a small story or picture, zero symbols.</li>
+      <li>🤔 <strong>Why does this work?</strong> — the reason behind the formula, so it stops feeling like magic.</li>
+      <li>📐 <strong>The formula, decoded</strong> — every symbol explained in one line.</li>
+      <li>🔍 <strong>Spot it in the exam</strong> — the exact words GATE uses when it wants this idea.</li>
+      <li>✍️ <strong>Real questions</strong> — try each one yourself first, then press <em>Show answer</em> to reveal the step-by-step solution.</li>
+      <li>🧠 <strong>Tricks to remember</strong> — small hooks so the idea sticks.</li>
+      <li>🔗 <strong>Connect the dots</strong> — how this topic links to its neighbours, because connected ideas are remembered ideas.</li>
+    </ul>
+
+    <div class="callout tip">
+      <div class="callout-label">💡 The one habit that solves most GATE ML questions</div>
+      <p>Before touching your pen, ask three questions in order: <em>what is being predicted — a number, a category,
+        or nothing at all (just groups)? What does the formula need — raw data, or something already computed like
+        a mean or a residual? What is the question really testing — a definition, a calculation, or a trap?</em></p>
+      <p>Almost every GATE ML question is a straightforward calculation wearing a wordy disguise. Undress the
+        wording first, and the arithmetic underneath is usually short.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">1</span> The exam-pattern table — clue → immediate response</div>
+
+    <p>Here's something that will comfort you: <strong>GATE ML questions are not creative</strong>. They reuse the
+      same handful of setups year after year — a residual here, a confusion matrix there, a regularized loss
+      somewhere else. Each setup points to exactly one calculation. Learn this table and you'll recognize the
+      question before you've finished reading it.</p>
+
+    <p>Don't memorize it in one sitting. Just visit it again after studying each topic below — you'll notice the
+      table slowly becomes obvious, because you'll <em>know</em> why each clue points where it points.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Clue in the question</th><th>Immediate response</th></tr></thead>
+        <tbody>
+          <tr><td>"$m$ observations, $n$ features"</td><td>$X$ is $m\times n$</td></tr>
+          <tr><td>Missing values</td><td>Imputation</td></tr>
+          <tr><td>Numerical output</td><td>Regression</td></tr>
+          <tr><td>Category output</td><td>Classification</td></tr>
+          <tr><td>Unlabelled grouping</td><td>Clustering</td></tr>
+          <tr><td>"$y=b+wx$"</td><td>Regression with intercept</td></tr>
+          <tr><td>"$y=wx$"</td><td>Through-origin formula, no intercept</td></tr>
+          <tr><td>Actual vs predicted values given</td><td>Residual / error metrics</td></tr>
+          <tr><td>Absolute error</td><td>MAE</td></tr>
+          <tr><td>Squared errors</td><td>SSE / MSE / RMSE</td></tr>
+          <tr><td>SST and SSR given</td><td>$R^2=SSR/SST$</td></tr>
+          <tr><td>SST and $R^2$ given</td><td>$SSE=SST(1-R^2)$</td></tr>
+          <tr><td>Need RMSE</td><td>SSE → MSE → square root</td></tr>
+          <tr><td>One predictor exactly combines others</td><td>Perfect collinearity</td></tr>
+          <tr><td>"$X^TX$ singular"</td><td>Coefficients non-unique</td></tr>
+          <tr><td>Random residual cloud</td><td>Homoscedasticity</td></tr>
+          <tr><td>Funnel-shaped residual plot</td><td>Heteroscedasticity</td></tr>
+          <tr><td>"Ridge"</td><td>L2 penalty</td></tr>
+          <tr><td>"Lasso"</td><td>L1 penalty</td></tr>
+          <tr><td>Ridge's effect</td><td>Bias up, variance down</td></tr>
+          <tr><td>"Overall regularized loss"</td><td>Data loss + penalty</td></tr>
+          <tr><td>Logistic probability</td><td>$p=\sigma(z)$</td></tr>
+          <tr><td>Sigmoid value $p$ already known</td><td>Derivative is $p(1-p)$</td></tr>
+          <tr><td>Maximum sigmoid slope</td><td>$p=0.5$, $z=0$</td></tr>
+          <tr><td>Logistic objective</td><td>Maximize likelihood = minimize NLL</td></tr>
+          <tr><td>Multiclass probability</td><td>Softmax</td></tr>
+          <tr><td>"Predicted-positive correctness"</td><td>Precision</td></tr>
+          <tr><td>"Actual-positive detection"</td><td>Recall</td></tr>
+          <tr><td>"Actual-negative detection"</td><td>Specificity</td></tr>
+          <tr><td>Specificity given, FPR asked</td><td>$FPR=1-\text{Specificity}$</td></tr>
+          <tr><td>ROC curve</td><td>$X=$ FPR, $Y=$ TPR</td></tr>
+          <tr><td>Perfect classifier</td><td>Diagonal confusion matrix</td></tr>
+          <tr><td>Always predicts positive</td><td>Sensitivity 1, specificity 0</td></tr>
+          <tr><td>Named-class metric (e.g. "precision of Y")</td><td>Treat that class as positive</td></tr>
+          <tr><td>One class surrounded by another</td><td>Not linearly separable</td></tr>
+          <tr><td>XOR-like arrangement</td><td>Not linearly separable</td></tr>
+          <tr><td>Difficult separability diagram</td><td>Compare convex hulls</td></tr>
+          <tr><td>Difference of two squared distances</td><td>Expand — the $x^Tx$ terms cancel</td></tr>
+          <tr><td>kNN diagram</td><td>Calculate → sort → select → vote</td></tr>
+          <tr><td>Small $k$ in kNN</td><td>Overfitting / high variance</td></tr>
+          <tr><td>Large $k$ in kNN</td><td>Underfitting / high bias</td></tr>
+          <tr><td>k-means centroid</td><td>Coordinate-wise mean</td></tr>
+          <tr><td>k-means inertia</td><td>Sum of squared distances (no square root)</td></tr>
+          <tr><td>Two points share a k-means region</td><td>Check the midpoint</td></tr>
+          <tr><td>Cross-validation grid</td><td>Combinations × folds</td></tr>
+          <tr><td>LOOCV</td><td>One split per model-selection observation</td></tr>
+          <tr><td>Training error down, validation error up</td><td>Overfitting</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember the table</div>
+      <ul>
+        <li>Group it into four families: <strong>data/setup words</strong> (observations, features, missing values)
+          → notation and imputation; <strong>error words</strong> (residual, squared, absolute) → SSE/MSE/RMSE/R²;
+          <strong>classification words</strong> (predicted, actual, positive, negative) → the confusion-matrix
+          metrics; <strong>algorithm names</strong> (Ridge, kNN, k-means, LOOCV) → their one signature formula.</li>
+        <li>Ask yourself: "is this about <em>fitting a number</em>, <em>judging a classifier</em>, or
+          <em>choosing a model</em>?" Fitting → regression/regularization. Judging → confusion matrix/ROC.
+          Choosing → cross-validation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">2</span> The three problem types — regression, classification, clustering</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Every machine-learning problem starts with one question: <em>what am I trying to predict, and do I already
+        have correct answers to learn from?</em> That single question sorts almost all of GATE ML into three boxes.</p>
+      <p><strong>Regression</strong> predicts a number — a price, a salary, a temperature, marks, rainfall in
+        millimetres. Think <em>study hours → marks</em>. <strong>Classification</strong> predicts a category —
+        spam or not spam, disease or no disease, cat, dog or bird. <strong>Clustering</strong> discovers groups
+        <em>without</em> being given correct labels — think <em>customers → natural customer groups</em>, where
+        nobody told the algorithm which customer belongs where.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>Correct answers supplied?</th><th>Output</th></tr></thead>
+        <tbody>
+          <tr><td>Regression</td><td>Yes</td><td>Number</td></tr>
+          <tr><td>Classification</td><td>Yes</td><td>Class</td></tr>
+          <tr><td>Clustering</td><td>No</td><td>Cluster</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>If the question gives you labelled training examples and asks for a real-valued prediction, it's regression.
+        If the labels are categories, it's classification. If there are no labels at all — just points that need to
+        be grouped — it's clustering. This one sentence resolves a surprising number of "which method applies here"
+        questions.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Basic data concepts.</strong> Select the correct option(s).<br><br>
+        A. Filling in missing values in a dataset is referred to as data imputation.<br>
+        B. A dataset with $m$ instances and $n$ features has an $m\times n$ data matrix when columns represent features.<br>
+        C. In a function-approximation problem such as regression, labels are real numbers.<br>
+        D. Two features can be correlated.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A is true: replacing missing values with an estimate (mean, median, mode, or a model's prediction) is exactly what "imputation" means.</li>
+          <li>B is true: rows are instances, columns are features — that's the standard data-matrix convention.</li>
+          <li>C is true: regression ordinarily predicts real-valued outputs.</li>
+          <li>D is true: nothing stops two input features from moving together.</li>
+        </ol>
+        <p><strong>Answer: A, B, C, D.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Tricks to remember</div>
+      <ul>
+        <li>Regression gives a <strong>quantity</strong>. Classification gives a <strong>category</strong>. Clustering discovers <strong>communities</strong>.</li>
+        <li>GATE frequently repeats the same concept with a different sentence order or slightly different wording — don't let rephrasing fool you into re-deriving something you already know.</li>
+      </ul>
+    </div>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>Everything from Part II onward is really just "how do we do regression well" (linear regression, least
+        squares, regularization), "how do we do classification well" (logistic regression, kNN, metrics), or
+        "how do we do clustering well" (k-means) — plus cross-validation, which keeps all three honest.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">3</span> Dataset notation — the data matrix $X$</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Suppose you have $m$ observations (people, houses, days — whatever you're studying) and $n$ features
+        (age, size, temperature — whatever you measured about them). Machine learning collects all of it into one
+        rectangular table:</p>
+    </div>
+
+    <div class="formula">$$X\in\mathbb{R}^{m\times n}$$</div>
+
+    <p>Rows represent observations. Columns represent features. For example, three people described by age, income
+      and years of experience give a $3\times3$ matrix:</p>
+
+    <div class="formula">$$X=\begin{bmatrix}25&40000&2\\30&60000&6\\35&75000&9\end{bmatrix}$$</div>
+
+    <p>The target vector collects the one number we're trying to predict for each row — say, salary:</p>
+
+    <div class="formula">$$y=\begin{bmatrix}50000\\70000\\90000\end{bmatrix}$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>Whenever a question says "$m$ observations, $n$ features," your very first line of working should be
+        "$X$ is $m\times n$." Half of these questions are just testing whether you know rows-are-observations,
+        columns-are-features.</p>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul>
+        <li>Rows = <strong>records</strong>, columns = <strong>characteristics</strong>. "Record" and "row" both start with R.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">4</span> Basic data terms — feature, target, prediction &amp; imputation</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A <strong>feature</strong> ($x_1,x_2,\dots,x_p$) is an input used for prediction. The <strong>target</strong>
+        or <strong>label</strong> ($y$) is the answer you're trying to predict. The <strong>prediction</strong>
+        ($\hat y$, read "y-hat") is the model's own guess at that answer. <strong>Imputation</strong> means
+        replacing missing values with an estimate — the mean, median or mode of the column, most commonly.</p>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Correlation is not causation</div>
+      <p>Two variables can move together (<strong>correlation</strong>) without one actually producing a change in
+        the other (<strong>causation</strong>). Ice-cream sales and drowning deaths rise together every summer —
+        heat causes both, neither causes the other. GATE loves testing exactly this distinction.</p>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul>
+        <li>$\hat y$ carries a hat because it's "wearing a disguise" for the real $y$ — it's an estimate, not the truth.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">5</span> Correlation vs causation, and Pearson's symmetry</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why is correlation symmetric?</div>
+      <p>Pearson correlation is $R_{xy}=\dfrac{\text{Cov}(X,Y)}{\sigma_X\sigma_Y}$. Since $\text{Cov}(X,Y)=\text{Cov}(Y,X)$
+        and $\sigma_X\sigma_Y=\sigma_Y\sigma_X$, swapping the roles of $X$ and $Y$ changes nothing. So
+        $R_{xy}=R_{yx}$ always — correlation never has a "direction," even though causation might.</p>
+    </div>
+
+    <div class="formula">$$-1\le r\le1$$</div>
+
+    <p>A perfect increasing straight-line relationship $y=ax+b$ with $a\gt0$ gives $r=1$; if $a\lt0$, then $r=-1$
+      (assuming $x$ is not constant). Nothing else can push $r$ outside this range.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Symmetry of correlation.</strong> If $R_{xy}=0.8$, what is $R_{yx}$?<br><br>
+        A. $0.8$ &nbsp;&nbsp; B. $-0.8$ &nbsp;&nbsp; C. $0$ &nbsp;&nbsp; D. Cannot be determined</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$\text{Cov}(X,Y)=\text{Cov}(Y,X)$, and $\sigma_X\sigma_Y=\sigma_Y\sigma_X$.</li>
+          <li>Therefore $R_{xy}=R_{yx}$ exactly — no computation needed once you see the symmetry.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Permissible correlation values.</strong> Which values are <em>not</em> permissible for Pearson correlation?<br><br>
+        A. $2$ &nbsp;&nbsp; B. $-1$ &nbsp;&nbsp; C. $-2$ &nbsp;&nbsp; D. $1$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Pearson correlation always satisfies $-1\le r\le1$.</li>
+          <li>$2$ and $-2$ fall outside that range; $-1$ and $1$ are the boundary values themselves, both allowed.</li>
+        </ol>
+        <p><strong>Answer: A, C.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul>
+        <li>Correlation may be explained by a third variable, reverse causation, coincidence, or selection bias — never assume causation from correlation alone.</li>
+        <li>Perfect line, positive slope → $r=1$. Perfect line, negative slope → $r=-1$. Anything less tidy sits strictly in between.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">6</span> Simple linear regression — fitting one line</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Imagine points scattered on graph paper. Linear regression draws a single straight line through them so
+        that the line sits, on average, as close as possible to every point. With one feature:</p>
+    </div>
+
+    <div class="formula">$$\hat y=\beta_0+\beta_1x$$</div>
+
+    <p>where $\beta_0$ is the intercept, $\beta_1$ is the slope, $x$ is the input, and $\hat y$ is the prediction.
+      For example, if $\text{marks}=20+10(\text{hours})$, then at 5 hours: $\hat y=20+10(5)=70$. The slope means
+      "one extra hour of study predicts 10 more marks"; the intercept means "at zero hours studied, the predicted
+      mark is 20."</p>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>Whenever you see a fitted equation like $\text{marks}=20+10(\text{hours})$, read $\beta_0$ as the
+        "starting value" and $\beta_1$ as "the change per unit increase" — that reading answers most interpretation
+        questions instantly.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">7</span> Multiple linear regression &amp; the design matrix</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>With several features, the same idea just adds more slopes:</p>
+    </div>
+
+    <div class="formula">$$\hat y=\beta_0+\beta_1x_1+\beta_2x_2+\cdots+\beta_px_p$$</div>
+
+    <p>For example, $\text{salary}=20000+3000(\text{experience})+500(\text{test score})$. In matrix form this is
+      simply $\hat y=X\beta$. If an intercept is included, $X$'s first column is a column of ones:</p>
+
+    <div class="formula">$$X=\begin{bmatrix}1&x_{11}&x_{12}\\1&x_{21}&x_{22}\\1&x_{31}&x_{32}\end{bmatrix}$$</div>
+
+    <p>With $n$ observations and $p$ predictors, $X$ is $n\times(p+1)$ — the extra "$+1$" column is exactly that
+      column of ones.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · The first column of the design matrix.</strong> In $y=X\beta+\epsilon$, there are
+        $n$ observations and $p$ independent variables, so $X$ is $n\times(p+1)$. The first column of $X$ is a
+        vector of:<br><br>
+        A. Zeros &nbsp;&nbsp; B. Cannot be determined &nbsp;&nbsp; C. Minus ones &nbsp;&nbsp; D. Ones</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>The first column represents the intercept term $\beta_0(1)$.</li>
+          <li>For that term to multiply out correctly for every row, every row needs a literal $1$ in that column.</li>
+        </ol>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>This design matrix is exactly the $X$ from Section 3 — now with one extra column of ones bolted on for the
+        intercept. Everything downstream (least squares, ridge, lasso) works directly with this $X$.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">8</span> The intercept — when do you actually need it?</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>The intercept is the model's starting value when every predictor is zero. Suppose
+        $\text{distance}=\text{initial position}+\text{speed}\times\text{time}$. If the initial position is
+        known to be $10$, you need an intercept: $d=10+vt$. If the object is known to start exactly at the origin,
+        the line can be forced through $(0,0)$: $d=vt$.</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>"Known non-zero starting value" → include an intercept. "Known to start at exactly zero" → force the line
+        through the origin. Never answer "always include one" or "never include one" — both extremes are usually wrong.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Physical meaning of the intercept.</strong> Simple linear regression estimates a
+        car's speed from distance-time data. Time is measured exactly and distance is noisy.<br><br>
+        A. Include an intercept if the initial distance is known to be non-zero.<br>
+        B. Include an intercept if the initial distance is known to be exactly zero.<br>
+        C. Never include an intercept.<br>
+        D. Always include an intercept.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A known non-zero initial position requires an intercept to represent that starting value.</li>
+          <li>A known-zero initial position lets the model be forced through the origin instead.</li>
+          <li>"Always" and "never" are both absolute statements that ignore the actual physical setup, so they're wrong.</li>
+        </ol>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">9</span> Residuals — how far off was the prediction?</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For observation $i$, the residual is simply what actually happened minus what the model guessed:</p>
+    </div>
+
+    <div class="formula">$$e_i=y_i-\hat y_i$$</div>
+
+    <p>If $y=80$ and $\hat y=75$, then $e=80-75=5$ — the prediction was 5 too low. If $e=-5$, the prediction was
+      5 too high. Every error metric in the rest of this page is built from these residuals.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">10</span> Why square the errors? MAE vs squared error</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why does squaring work?</div>
+      <p>Suppose the residuals are $+5$ and $-5$. Adding them directly gives $5-5=0$, which incorrectly hides both
+        errors — it looks like a perfect fit! Squaring gives $5^2+(-5)^2=25+25=50$: it prevents positive and
+        negative errors from cancelling, and it penalizes large errors much more strongly than small ones.</p>
+    </div>
+
+    <div class="formula">$$\text{MAE}=\frac1n\sum_{i=1}^n|y_i-\hat y_i|$$</div>
+
+    <p>Mean Absolute Error grows <em>linearly</em> with the size of the mistake: $|2|=2$, but $|20|=20$ — ten times
+      the error gives exactly ten times the penalty. Squared error grows much faster, which is exactly why OLS
+      (which minimizes squared error) reacts so strongly to outliers — see Section 12.</p>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">11</span> SSE, MSE &amp; RMSE — the total, the average, and the un-squared</div>
+
+    <div class="formula">$$SSE=RSS=\sum_{i=1}^n(y_i-\hat y_i)^2\qquad MSE=\frac{SSE}{n}\qquad RMSE=\sqrt{MSE}$$</div>
+
+    <p>SSE (also called RSS) is the total squared error across every observation. MSE is just SSE averaged over
+      $n$. RMSE takes the square root of MSE, which returns the error to the <em>original unit</em> of the target —
+      if marks are the target, RMSE is measured in marks too, unlike MSE which is in "marks squared."</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Calculate the MSE.</strong> Given $y=[4,6,7,10]$ and $\hat y=[5,5,8,9]$, calculate the MSE.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Residuals: $y-\hat y=[-1,1,-1,1]$.</li>
+          <li>Squared residuals: $[1,1,1,1]$.</li>
+          <li>$\text{MSE}=\dfrac{1+1+1+1}{4}=1$.</li>
+        </ol>
+        <p><strong>Answer: MSE = 1.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Memory chain</div>
+      <ul>
+        <li>$R^2\to SSE\to MSE\to RMSE$ — each one feeds into the next; if a question gives you any one of them plus $n$ and $SST$, you can walk the whole chain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">12</span> Why OLS is so sensitive to outliers</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ One far-away point can pull the whole line</div>
+      <p>OLS minimizes squared error. A residual of $2$ contributes $2^2=4$ to the total loss; a residual of $20$
+        contributes $20^2=400$ — one hundred times more, even though the residual itself is only ten times bigger.
+        One distant, noisy observation can therefore pull the fitted line substantially away from where it "should"
+        sit for the rest of the data.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · OLS and outliers.</strong><br>
+        A. OLS slope and intercept estimates are not sensitive to outliers.<br>
+        B. OLS slope and intercept estimates are sensitive to outliers.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The squared-error objective heavily amplifies large residuals, so a single extreme point can move the
+          fitted line noticeably.</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">13</span> SST, SSR, SSE and $R^2$ — slicing the variation cake</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Think of all the variation in $y$ as a cake. One portion is explained by the model; the rest is error.</p>
+    </div>
+
+    <div class="formula">$$SST=SSR+SSE$$</div>
+
+    <p>where $SST=\sum_i(y_i-\bar y)^2$ is the total variation, $SSR=\sum_i(\hat y_i-\bar y)^2$ is the variation the
+      model explains, and $SSE=\sum_i(y_i-\hat y_i)^2$ is what's left unexplained.</p>
+
+    <div class="formula">$$R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}\qquad\Longrightarrow\qquad SSE=SST(1-R^2)$$</div>
+
+    <p>$R^2=0.80$ means the model explains 80% of the variation in $y$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Direct $R^2$.</strong> Suppose $SST=500$, $SSR=380$. Find $R^2$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$R^2=\dfrac{380}{500}=0.76$</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Reduction in SSE.</strong> Model A has $R^2_A=0.86$; Model B has $R^2_B=0.90$. Both
+        use the same dataset with $SST=500$. By how much did SSE decrease?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$SSE_A=500(1-0.86)=70$.</li>
+          <li>$SSE_B=500(1-0.90)=50$.</li>
+          <li>Decrease: $70-50=20$.</li>
+        </ol>
+        <p><strong>Answer: 20.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · RMSE from $R^2$.</strong> A model is evaluated on 200 observations with $R^2=0.84$
+        and $SST=2500$. Calculate RMSE.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$SSE=2500(1-0.84)=2500(0.16)=400$.</li>
+          <li>$MSE=\dfrac{400}{200}=2$.</li>
+          <li>$RMSE=\sqrt2\approx1.414$.</li>
+        </ol>
+        <p><strong>Answer: RMSE ≈ 1.414.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">14</span> Least squares &amp; the normal equations</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Ordinary Least Squares simply chooses the coefficients that minimize total squared error:</p>
+    </div>
+
+    <div class="formula">$$\min_{\beta_0,\beta_1}\sum_i\big[y_i-(\beta_0+\beta_1x_i)\big]^2$$</div>
+
+    <p>For simple regression with an intercept, the slope and intercept have closed forms:</p>
+
+    <div class="formula">$$\beta_1=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sum_i(x_i-\bar x)^2}=\frac{\text{Cov}(X,Y)}{\text{Var}(X)}\qquad\beta_0=\bar y-\beta_1\bar x$$</div>
+
+    <p>The fitted line always passes through $(\bar x,\bar y)$ — a useful sanity check on any worked answer.</p>
+
+    <p>In matrix form, $\hat y=X\beta$ and the objective becomes $\min_\beta\|y-X\beta\|_2^2$. Setting the gradient
+      to zero gives the <strong>normal equations</strong>:</p>
+
+    <div class="formula">$$X^TX\hat\beta=X^Ty\qquad\Longrightarrow\qquad\hat\beta=(X^TX)^{-1}X^Ty\quad\text{(when }X^TX\text{ is invertible)}$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>If you see "fit by linear least squares" with an intercept implied, reach for the centred-slope formula.
+        If the model is explicitly written as $y=wx$ with no intercept term at all, that formula is <em>wrong</em> —
+        go straight to Section 15 instead.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">15</span> Regression through the origin</div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Do not use the centred slope formula here</div>
+      <p>If the model is explicitly $y=wx$, there is no intercept — the line is forced through $(0,0)$. The correct
+        formula is:</p>
+    </div>
+
+    <div class="formula">$$w=\frac{\sum_ix_iy_i}{\sum_ix_i^2}$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Least squares without an intercept (real GATE).</strong> Given
+        $\{(-1,1),(2,-5),(3,5)\}$, fit $y=wx$ by linear least squares. Find the optimal $w$ to three decimal places.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Because the model is $y=wx$, use $w=\dfrac{\sum x_iy_i}{\sum x_i^2}$.</li>
+          <li>Numerator: $(-1)(1)+(2)(-5)+(3)(5)=-1-10+15=4$.</li>
+          <li>Denominator: $(-1)^2+2^2+3^2=1+4+9=14$.</li>
+          <li>$w=\dfrac{4}{14}=\dfrac27\approx0.286$.</li>
+        </ol>
+        <p><strong>Answer: $w\approx0.286$</strong> — this matches the official GATE 2025 answer range.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">16</span> The pseudoinverse &amp; multicollinearity</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>$\hat\beta=(X^TX)^{-1}X^Ty$ requires $X^TX$ to be invertible. But even when $X^TX$ is singular, a
+        least-squares solution still exists — it can be written using the Moore–Penrose pseudoinverse,
+        $\hat\beta=X^+y$. What actually fails under perfect collinearity is the ordinary inverse and the
+        uniqueness of the coefficient vector; the <em>fitted values</em> can still be unique.</p>
+    </div>
+
+    <p><strong>Perfect multicollinearity</strong> occurs when one feature is an exact linear combination of others,
+      e.g. $x_3=2x_1-x_2$. Then the columns of $X$ are linearly dependent, so $X^TX$ is singular, coefficients are
+      not uniquely identifiable, and multiple coefficient vectors can produce the exact same predictions.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Closed-form OLS.</strong> Which statements about $\hat\beta=(X^TX)^{-1}X^Ty$ are true?<br><br>
+        A. The estimator is a weighted linear combination of observed target values.<br>
+        B. The inverse expression requires $X^TX$ to be invertible, so predictors cannot be perfectly collinear.<br>
+        C. Matrix inversion is always more efficient than gradient descent, regardless of data size.<br>
+        D. When the inverse exists, the expression gives the unique coefficient vector minimizing RSS.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A: true — $\hat\beta$ is a matrix multiplied by $y$, i.e. a linear combination of the targets.</li>
+          <li>B: true, for this particular closed-form and for coefficient uniqueness.</li>
+          <li>C: false — inversion can be very expensive in high dimensions; gradient descent often wins there.</li>
+          <li>D: true under the invertibility condition.</li>
+        </ol>
+        <p><strong>Answer: A, B, D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Exact predictor dependence.</strong> One predictor is an exact linear combination of
+        the remaining predictors. Which statement is correct?<br><br>
+        A. Residuals become zero. &nbsp; B. $R^2$ becomes negative.<br>
+        C. OLS predictions remain unique, but coefficient estimates are not unique. &nbsp; D. Predictions become impossible.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Different coefficient vectors can represent the exact same fitted point in the column space of $X$, so
+          predictions stay unique even though the coefficients themselves are not.</p>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul>
+        <li>Singular $X^TX$ breaks the <em>ordinary</em> inverse and coefficient uniqueness — it does not break the model's ability to predict.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">17</span> Sample size &amp; estimator variance</div>
+
+    <p>A simplified relationship for the variance of a slope estimate is:</p>
+
+    <div class="formula">$$\text{Var}(\hat\beta_1)\propto\frac{\sigma^2}{n\,\text{Var}(x)}$$</div>
+
+    <p>As $n$ increases, the variance shrinks, so the estimate ordinarily becomes more stable — but it does not
+      become exactly zero, no matter how much data you add.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Doubling sample size.</strong> The sample size doubles while the underlying data
+        distribution remains unchanged. What is the most likely effect on the variance of OLS coefficient estimates?<br><br>
+        A. Increases &nbsp; B. Remains exactly unchanged &nbsp; C. Decreases &nbsp; D. Becomes zero</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>More observations normally reduce uncertainty in the estimate, but never make it exactly zero.</p>
+        <p><strong>Answer: C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">18</span> Residual plots — homoscedasticity vs heteroscedasticity</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A residual plot places fitted values on the horizontal axis and residuals on the vertical axis. If the
+        spread of residuals stays roughly the same everywhere — a random cloud, no funnel shape — that's
+        <strong>homoscedasticity</strong>. If the spread visibly changes with the fitted value — a funnel or cone,
+        widening or narrowing — that's <strong>heteroscedasticity</strong>.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Residual pattern.</strong> Standardized residuals are plotted against predicted
+        values and appear randomly scattered.<br><br>
+        A. The assumption of heteroscedasticity is met. &nbsp; B. The assumption of homoscedasticity is met.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Random scatter with roughly constant spread supports homoscedasticity, not heteroscedasticity.</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">19</span> Gradient descent</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Instead of solving for the exact minimum in one shot, gradient descent repeatedly nudges the parameters a
+        little downhill:</p>
+    </div>
+
+    <div class="formula">$$w_{\text{new}}=w_{\text{old}}-\eta\nabla J(w)$$</div>
+
+    <p>where $\eta$ is the learning rate and $\nabla J(w)$ is the gradient. The gradient points <em>uphill</em>
+      (toward increasing loss), so subtracting it moves you downhill, toward lower loss. For squared-error
+      regression, $\nabla J(w)=\dfrac2nX^T(Xw-y)$.</p>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>Gradient descent is how you fit models when the closed-form normal equations are too expensive — and it's
+        the exact mechanism used to update weights when a regularization penalty (next section) is added to the loss.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">20</span> Regularization — the general recipe</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Every regularized objective has the same shape — a prediction loss, plus a penalty on the size of the
+        weights, scaled by how much you care about that penalty:</p>
+    </div>
+
+    <div class="formula">$$\text{Total loss}=\text{Prediction loss}+\lambda\cdot\text{Penalty}$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>Whenever a question asks for an "overall regularized loss," calculate four things in order: the
+        prediction, the prediction error, the regularization penalty, and finally their total. Skipping straight to
+        a formula usually causes a sign or scaling mistake — do it step by step.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">21</span> Ridge regression — the L2 penalty</div>
+
+    <div class="formula">$$J(w)=L(w)+\lambda\|w\|_2^2\qquad\text{where}\qquad\|w\|_2^2=w_1^2+\cdots+w_p^2$$</div>
+
+    <p>Ridge shrinks coefficients, reduces model variance, may increase bias, and helps with multicollinearity —
+      but it usually does <em>not</em> push coefficients exactly to zero.</p>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Watch the convention — $\lambda\|w\|^2$ vs $\frac\lambda2\|w\|^2$</div>
+      <p>These two conventions have different gradients: $\nabla(\lambda\|w\|^2)=2\lambda w$, while
+        $\nabla\!\left(\frac\lambda2\|w\|^2\right)=\lambda w$. Always follow the exact formula the question gives you
+        — don't assume which convention is "standard."</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Ridge concept (real GATE).</strong> Which statement is true for Ridge Regression?<br><br>
+        A. The regularizer protects against a model working well on test data but poorly on training data.<br>
+        B. The regularizer uses the $L_1$ norm.<br>
+        C. Ridge aims to reduce the number of negative-valued parameters.<br>
+        D. The regularizer may increase bias but helps reduce variance in predictions.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A reverses the usual overfitting pattern — overfitting means excellent training performance but weak test performance, not the reverse.</li>
+          <li>B is false: Ridge uses $L_2$, not $L_1$.</li>
+          <li>C is false: Ridge penalizes the <em>magnitude</em> of weights, not their sign.</li>
+          <li>D is exactly the bias–variance trade-off Ridge makes.</li>
+        </ol>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Complete regularized loss (real GATE).</strong> Linear Ridge Regression uses
+        $\hat y=w^Tx$ with $w=\begin{bmatrix}-3\\4\end{bmatrix}$, $x=\begin{bmatrix}1\\2\end{bmatrix}$. The
+        prediction loss is MAE and the regularizer weight is $0.20$. The true value is $y_{\text{true}}=x_1+x_2$.
+        Find the overall regularized loss.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Prediction: $\hat y=w^Tx=(-3)(1)+(4)(2)=-3+8=5$.</li>
+          <li>True value: $y_{\text{true}}=1+2=3$.</li>
+          <li>MAE for one observation: $|5-3|=2$.</li>
+          <li>Ridge penalty: $0.20\|w\|^2=0.20[(-3)^2+4^2]=0.20(9+16)=5$.</li>
+          <li>Total: $2+5=7$.</li>
+        </ol>
+        <p><strong>Answer: 7.00</strong> — matches the worked result on the GATE-question page.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · L2 update.</strong> Logistic regression with L2 regularization uses
+        $\beta\leftarrow\beta-\eta(\nabla L+\lambda\beta)$. Given $\eta=0.1$, $\beta=3$, $\nabla L=2$, $\lambda=0.4$,
+        find the updated coefficient.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$\lambda\beta=0.4(3)=1.2$.</li>
+          <li>Total gradient: $2+1.2=3.2$.</li>
+          <li>Update: $\beta_{\text{new}}=3-0.1(3.2)=2.68$.</li>
+        </ol>
+        <p><strong>Answer: 2.68.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Ridge restrains large weights — think of it as a rubber band pulling every coefficient gently toward zero, never letting any one of them run away.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">22</span> Lasso regression — the L1 penalty</div>
+
+    <div class="formula">$$J(w)=L(w)+\lambda\sum_j|w_j|$$</div>
+
+    <p>Lasso can set coefficients exactly to zero — which means it can perform feature selection — and it is
+      convex, but it is <em>not differentiable at $w=0$</em>: $\dfrac{d|w|}{dw}=1$ for $w\gt0$ and $-1$ for
+      $w\lt0$, with no single ordinary derivative right at $w=0$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · L1 differentiability.</strong> Logistic regression with L1 regularization is
+        trained using gradient descent. Which statement is correct?<br><br>
+        A. The L1 penalty has continuous second derivatives everywhere.<br>
+        B. The optimization becomes non-convex.<br>
+        C. Every update is differentiable.<br>
+        D. Standard gradient descent cannot directly use a unique derivative exactly at $w=0$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The absolute-value function has a sharp corner at zero, so it has no unique ordinary derivative there —
+          subgradient or proximal methods handle this in practice.</p>
+        <p><strong>Answer: D.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Ridge → $L_2$ → shrinks but rarely zeroes. Lasso → $L_1$ → can zero coefficients out entirely, doubling as feature selection.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">23</span> Overfitting &amp; underfitting</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p><strong>Underfitting</strong> means the model is too simple: high training error <em>and</em> high
+        validation error, together with high bias, low variance, excessive regularization, or a very large $k$ in
+        kNN. <strong>Overfitting</strong> means the model has fit the training noise itself: very low training
+        error but higher validation error, together with low bias, high variance, too many parameters or features,
+        a very small $k$ in kNN, or insufficient regularization.</p>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Training performance alone tells you nothing about generalization</div>
+      <p>A model can look perfect on the data it was trained on and still fail badly on new data. Generalization can
+        only be judged using data the model has not seen.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Definitions.</strong> Select the correct option(s).<br><br>
+        A. An overly simplistic model is underfitting.<br>
+        B. Generalization efficiency can be judged reliably from training data alone.<br>
+        C. Generalization can be gauged using unseen test data.<br>
+        D. In overfitting, a model fits training data very well but generalizes poorly.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Training performance alone cannot reveal whether a model generalizes, so B is false; A, C and D are all true.</p>
+        <p><strong>Answer: A, C, D.</strong></p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Opposite movement of errors.</strong> Adding one parameter decreases training MSE
+        but increases validation MSE. The model is:<br><br>
+        A. Overfitting &nbsp; B. Underfitting</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The extra parameter is helping the model memorize training data while harming its performance on unseen data.</p>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Underfitting = "too lazy to learn." Overfitting = "memorized the homework instead of learning the subject."</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">24</span> The confusion matrix</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Every binary classifier's mistakes and successes fit into a $2\times2$ table:</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Predicted positive</th><th>Predicted negative</th></tr></thead>
+        <tbody>
+          <tr><td>Actual positive</td><td>TP</td><td>FN</td></tr>
+          <tr><td>Actual negative</td><td>FP</td><td>TN</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>TP: actual positive, predicted positive. FN: actual positive, predicted negative. FP: actual negative,
+      predicted positive. TN: actual negative, predicted negative.</p>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>The <em>second</em> letter (P or N) always tells you what the model predicted; the <em>first</em> letter (T or F) tells you whether that prediction was correct.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">25</span> Accuracy, precision, recall &amp; specificity</div>
+
+    <div class="formula">$$\text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN}$$</div>
+    <p>Out of everyone, how many predictions were correct?</p>
+
+    <div class="formula">$$\text{Precision}=\frac{TP}{TP+FP}$$</div>
+    <p>Of everything predicted positive, how much was truly positive? Precision starts <em>from the predictions</em>.</p>
+
+    <div class="formula">$$\text{Recall}=\text{Sensitivity}=\text{TPR}=\frac{TP}{TP+FN}$$</div>
+    <p>Of all actual positive cases, how many did the model detect? Recall starts <em>from reality</em>.</p>
+
+    <div class="formula">$$\text{Specificity}=\frac{TN}{TN+FP}\qquad\text{FPR}=\frac{FP}{FP+TN}=1-\text{Specificity}$$</div>
+    <p>Specificity measures the fraction of actual negatives correctly identified.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · FPR from specificity.</strong> A classifier has $\text{Sensitivity}=0.92$,
+        $\text{Specificity}=0.84$. Find FPR.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$\text{FPR}=1-0.84=0.16$. Sensitivity was a distractor — it wasn't needed here.</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Precision.</strong> A confusion matrix has $TP=45$, $FP=15$, $TN=130$, $FN=10$.
+        Calculate precision.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$\text{Precision}=\dfrac{45}{45+15}=\dfrac{45}{60}=0.75$</p>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Accuracy from class-wise rates.</strong> A classifier is evaluated on 1000
+        observations: 400 positive, 600 negative. It correctly classifies 90% of positives and 80% of negatives.
+        Find accuracy.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Correct positives: $TP=0.90(400)=360$.</li>
+          <li>Correct negatives: $TN=0.80(600)=480$.</li>
+          <li>Accuracy $=\dfrac{360+480}{1000}=0.84$.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Equal confusion outcomes.</strong> A balanced binary dataset produces
+        $TP=FP=TN=FN=\tfrac14$. What is the accuracy?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$\text{Accuracy}=TP+TN$ because these are proportions summing to one $=\tfrac14+\tfrac14=0.5$.</p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Precision starts from <em>predictions</em>; recall starts from <em>reality</em>. Say it out loud once and you'll never swap them again.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">26</span> Class-wise metrics for multiclass problems</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For multiclass or named-class questions, temporarily treat the class of interest as "positive":</p>
+    </div>
+
+    <div class="formula">$$\text{Precision}_C=\frac{\text{correctly predicted as }C}{\text{everything predicted as }C}\qquad\text{Recall}_C=\frac{\text{correctly predicted as }C}{\text{everything actually belonging to }C}$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Author classification (real GATE).</strong> There are 20 stories by Author X and 10
+        by Author Y. 6 X stories are labelled Y, and 2 Y stories are labelled X. Which statements are true?<br><br>
+        A. Accuracy is $11/15$. &nbsp; B. Precision of X is higher than precision of Y.<br>
+        C. Recall of X is higher than recall of Y. &nbsp; D. Accuracy is $14/15$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Build the table: Actual X → 14 predicted X, 6 predicted Y (total 20). Actual Y → 2 predicted X, 8 predicted Y (total 10).</li>
+          <li>Accuracy $=\dfrac{14+8}{30}=\dfrac{22}{30}=\dfrac{11}{15}$. So A is true, D is false.</li>
+          <li>$\text{Precision}_X=\dfrac{14}{14+2}=\dfrac{14}{16}=0.875$. $\text{Precision}_Y=\dfrac{8}{8+6}=\dfrac{8}{14}\approx0.571$. So B is true.</li>
+          <li>$\text{Recall}_X=\dfrac{14}{20}=0.70$. $\text{Recall}_Y=\dfrac{8}{10}=0.80$. So C is false.</li>
+        </ol>
+        <p><strong>Answer: A, B</strong> — the same computations appear on the GATE-question page.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">27</span> Perfect &amp; always-positive classifiers</div>
+
+    <p>A <strong>perfect classifier</strong> makes no mistakes: $FP=FN=0$. For multiple classes, every
+      off-diagonal cell is zero — the confusion matrix is diagonal.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Perfect confusion matrix.</strong> A classifier makes no errors, and every class
+        has at least one observation. Which statements are true?<br><br>
+        A. Diagonal entries are non-zero. &nbsp; B. Diagonal entries may be zero or non-zero.<br>
+        C. All off-diagonal entries are zero. &nbsp; D. Off-diagonal entries may be zero or non-zero.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Every class has at least one correctly classified member, so diagonal entries are positive. All errors
+          are absent, so off-diagonal entries are zero.</p>
+        <p><strong>Answer: A, C.</strong></p>
+      </div>
+    </div>
+
+    <p>If a model predicts positive for <em>everyone</em>: no positive case is missed ($FN=0$), but no negative
+      case is ever correctly called negative ($TN=0$). Therefore $\text{Sensitivity}=1$ and $\text{Specificity}=0$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Always positive.</strong> A classifier predicts the positive class for every input.<br><br>
+        A. Sensitivity $=0$, specificity $=1$ &nbsp; B. Sensitivity $=1$, specificity $=0$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B.</strong></p></div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">28</span> Balanced accuracy, prevalence &amp; Cohen's Kappa</div>
+
+    <p>A balanced binary dataset has equal actual positives and negatives: $TP+FN=TN+FP$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Balance identity.</strong> For a perfectly balanced binary dataset, which equality
+        is guaranteed?<br><br>
+        A. $TP+FP=TN+FN$ &nbsp; B. None &nbsp; C. $TP+FN=TN+FP$ &nbsp; D. $TP+TN=FP+FN$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: C.</strong></p></div>
+    </div>
+
+    <div class="formula">$$\text{Balanced accuracy}=\frac{\text{Sensitivity}+\text{Specificity}}{2}$$</div>
+
+    <p>It weights the two actual classes equally. Ordinary accuracy equals balanced accuracy whenever the dataset
+      has equal actual class counts ($TP+FN=TN+FP$) — no additional assumption about equal error rates is needed.</p>
+
+    <div class="formula">$$\text{Prevalence}=\frac{TP+FN}{N}\qquad\text{Detection prevalence}=\frac{TP+FP}{N}$$</div>
+
+    <p>Prevalence is the actual positive fraction; detection prevalence is the predicted positive fraction. They
+      need not be equal.</p>
+
+    <div class="formula">$$\kappa=\frac{p_o-p_e}{1-p_e}$$</div>
+
+    <p>where $p_o$ is observed agreement and $p_e$ is agreement expected purely by chance — Cohen's Kappa adjusts
+      accuracy for the agreement you'd get from lucky guessing alone.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Metric statements.</strong> Which statements are correct?<br><br>
+        A. Cohen's Kappa adjusts for agreement expected by chance.<br>
+        B. Precision increases when false positives decrease while TP stays fixed.<br>
+        C. Detection prevalence equals prevalence for every classifier.<br>
+        D. Balanced accuracy equals ordinary accuracy for every classifier and dataset.<br>
+        E. Specificity increases when false positives decrease.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>A: true, directly from the Kappa formula.</li>
+          <li>B: true — lowering FP shrinks precision's denominator, raising precision.</li>
+          <li>C: false — actual-positive and predicted-positive counts can differ.</li>
+          <li>D: false in general — only true when actual classes are balanced.</li>
+          <li>E: true — lowering FP increases $\dfrac{TN}{TN+FP}$.</li>
+        </ol>
+        <p><strong>Answer: A, B, E.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">29</span> ROC and AUC</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>The Receiver Operating Characteristic curve plots $\text{TPR}=\text{Sensitivity}=\text{Recall}$ on the
+        $y$-axis against $\text{FPR}=1-\text{Specificity}$ on the $x$-axis. Changing the probability threshold that
+        separates "predict positive" from "predict negative" changes both TPR and FPR, tracing out the curve.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · ROC variables.</strong> Which statements are correct?<br><br>
+        A. Recall is plotted on the X-axis. &nbsp; B. TPR or sensitivity is plotted on the Y-axis.<br>
+        C. FPR or $1-\text{specificity}$ is plotted on the X-axis. &nbsp; D. Precision is plotted on the Y-axis.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B, C.</strong></p></div>
+    </div>
+
+    <p>The ROC curve's slope is $\dfrac{d(\text{TPR})}{d(\text{FPR})}$ — like any curve $y=f(x)$, its slope is
+      $\dfrac{dy}{dx}$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · ROC slope statement.</strong> The slope of the ROC curve represents the rate of
+        change of TPR with respect to FPR.<br><br>
+        A. False &nbsp; B. True</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B.</strong></p></div>
+    </div>
+
+    <p><strong>AUC</strong> is the area under the ROC curve. $AUC=1$ means perfect ranking; $AUC=0.5$ means random
+      ranking. Higher is always better.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Best AUC.</strong> Which AUC is most desirable?<br><br>
+        A. 0.8 &nbsp; B. 0.5 &nbsp; C. 0.75 &nbsp; D. 0.9</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: D.</strong></p></div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>ROC axes spell "FTP" backwards in a sense — <strong>F</strong>PR on the floor (x-axis), <strong>T</strong>PR up top (y-axis).</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">30</span> Logistic regression — from a line to a probability</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>A straight line can output anything — $-2$, $1.7$, $10$ — none of which are valid probabilities. Logistic
+        regression fixes this by squashing a linear score into the range $(0,1)$. First compute the score:</p>
+    </div>
+
+    <div class="formula">$$z=\beta_0+\beta_1x_1+\cdots+\beta_px_p$$</div>
+
+    <p>Then squash it through the sigmoid:</p>
+
+    <div class="formula">$$p=\sigma(z)=\frac1{1+e^{-z}}$$</div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why the sigmoid, specifically?</div>
+      <p>$\sigma(0)=0.5$; as $z\to+\infty$, $\sigma(z)\to1$; as $z\to-\infty$, $\sigma(z)\to0$. It is strictly
+        increasing everywhere, and it happens to be exactly the cumulative distribution function of the standard
+        logistic distribution — so it's a genuine, well-behaved probability, not an arbitrary squashing trick.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Sigmoid properties.</strong> The function $\dfrac{e^x}{1+e^x}$ is:<br><br>
+        A. A probability density function &nbsp; B. A cumulative distribution function<br>
+        C. Strictly increasing for every finite $x$ &nbsp; D. None of the above</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Its derivative is $\sigma(x)[1-\sigma(x)]\gt0$ for every finite $x$, confirming it is strictly increasing
+          and is indeed a CDF.</p>
+        <p><strong>Answer: B, C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">31</span> Odds, log-odds &amp; the decision boundary</div>
+
+    <div class="formula">$$\text{odds}=\frac{p}{1-p}\qquad\log\!\left(\frac{p}{1-p}\right)=\beta_0+\beta^Tx$$</div>
+
+    <p>Probability itself is <em>not</em> linear in the predictors — the log-odds are. This is the single most
+      important fact about logistic regression, and it's exactly what "logistic" refers to.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · What is linear?</strong> In logistic regression, a linear relationship is assumed
+        between the independent variables and:<br><br>
+        A. The sigmoid of the dependent variable &nbsp; B. The log-odds<br>
+        C. The sine of the dependent variable &nbsp; D. None</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>The exact linear quantity is $\log\dfrac{p}{1-p}$ — the log-odds, not simply "the log of the dependent variable."</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+
+    <p>Usually $p\ge0.5\Rightarrow$ class 1, and since $p=0.5\iff z=0$, the decision boundary is
+      $\beta_0+\beta^Tx=0$ — a line in two dimensions, a hyperplane in $d$ dimensions.</p>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Probability curves; log-odds is the straight line hiding underneath it.</li></ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">32</span> The sigmoid's derivative</div>
+
+    <div class="formula">$$f(x)=\frac1{1+e^{-x}}\qquad\Longrightarrow\qquad f'(x)=f(x)[1-f(x)]$$</div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Spot it in the exam</div>
+      <p>If the question gives you $f(x)=p$ directly, immediately write $f'(x)=p(1-p)$ — there is no need to solve
+        for $x$ at all.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Derivative from function value (real GATE).</strong> Let $f(x)=\dfrac1{1+e^{-x}}$.
+        Find $f'(x)$ at the point where $f(x)=0.4$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$f'(x)=0.4(1-0.4)=0.4(0.6)=0.24$ — the official GATE 2024 key accepts approximately $0.24$.</p>
+      </div>
+    </div>
+
+    <p>By the chain rule, if $p=\sigma(\beta_0+\beta_1x)$, then $\dfrac{dp}{dx}=\beta_1\,p(1-p)$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Logistic derivative.</strong> A model is $\log\!\left(\dfrac{p}{1-p}\right)=-1.5+0.3x$.
+        At $x=5$, find $\dfrac{dp}{dx}$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$z=-1.5+0.3(5)=0$.</li>
+          <li>$p=\sigma(0)=0.5$.</li>
+          <li>$\dfrac{dp}{dx}=0.3(0.5)(0.5)=0.075$.</li>
+        </ol>
+      </div>
+    </div>
+
+    <p>Since $p(1-p)$ is maximized at $p=0.5$ (i.e. $z=0$), the sigmoid's slope is steepest exactly at the decision
+      boundary, at $x=-\dfrac{\beta_0}{\beta_1}$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Maximum derivative location.</strong> A logistic model has $\beta_0=-4$,
+        $\beta_1=0.5$. Find $x$ where the derivative is maximized.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Set $-4+0.5x=0\Rightarrow0.5x=4\Rightarrow x=8$.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">33</span> Maximum likelihood &amp; softmax</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For binary labels $y_i\in\{0,1\}$ with model probability $p_i=P(y_i=1)$, the likelihood multiplies, for
+        each observation, the probability the model assigns to that observation's <em>true</em> class:</p>
+    </div>
+
+    <div class="formula">$$L=\prod_ip_i^{y_i}(1-p_i)^{1-y_i}$$</div>
+
+    <p>For a point truly labelled 1, use $p_i$; for a point truly labelled 0, use $1-p_i$.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Class-specific probability notation.</strong> There are $n$ observations. $p_i$ is
+        the probability of class 0, $q_i$ is the probability of class 1. The first $k$ observations are truly
+        class 0, the remaining are truly class 1. Which is the likelihood?<br><br>
+        A. $(1-p_1)\cdots(1-p_k)q_{k+1}\cdots q_n$ &nbsp; B. $p_1\cdots p_kq_{k+1}\cdots q_n$<br>
+        C. $(1-p_1)\cdots(1-p_k)(1-q_{k+1})\cdots(1-q_n)$ &nbsp; D. $p_1\cdots p_k(1-q_{k+1})\cdots(1-q_n)$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Each observation contributes the probability assigned to its own true class: class-0 points contribute
+          $p_i$ (the probability of class 0), class-1 points contribute $q_i$ (the probability of class 1).</p>
+        <p><strong>Answer: B.</strong></p>
+      </div>
+    </div>
+
+    <p>Because $\log$ is strictly increasing, $\max L\iff\max\log L$, and negating turns maximization into
+      minimization: $\max\log L\iff\min(-\log L)$. The binary negative log-likelihood is exactly binary
+      cross-entropy:</p>
+
+    <div class="formula">$$-\sum_i\big[y_i\log p_i+(1-y_i)\log(1-p_i)\big]$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Logistic optimization.</strong> Optimal logistic-regression parameters can be found by:<br><br>
+        A. Maximizing likelihood &nbsp; B. Maximizing log-likelihood<br>
+        C. Minimizing likelihood &nbsp; D. Minimizing negative log-likelihood</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: A, B, D.</strong></p></div>
+    </div>
+
+    <p>For $N$ classes, <strong>softmax</strong> generalizes the sigmoid: $P(y=k)=\dfrac{e^{z_k}}{\sum_{i=1}^Ne^{z_i}}$.
+      It is a valid PMF because every term is positive and they all sum to 1.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Softmax validity.</strong> For $P(y=k)=\dfrac{e^{x_k}}{\sum_{i=1}^Ne^{x_i}}$:<br><br>
+        A. It is a valid probability mass function. &nbsp; B. It is not a valid probability mass function.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: A.</strong></p></div>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Many predictors, small data</div>
+      <p>Logistic regression tends to overfit when it has a large number of independent variables relative to the
+        amount of data available, especially without regularization — "large number of predictors" alone isn't the
+        precise story; it's the ratio to available data that matters.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">34</span> Linear separability</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Two classes are <strong>linearly separable</strong> when one straight line (or, in higher dimensions, one
+        hyperplane) can put every point of one class on one side and every point of the other class on the other
+        side:</p>
+    </div>
+
+    <div class="formula">$$w^Tx+b=0\qquad\text{(boundary)}\qquad\text{predict by the sign of }w^Tx+b$$</div>
+
+    <p><strong>Fast visual rules:</strong> clearly separated upper and lower groups → usually separable with a
+      horizontal line. One class surrounded by the other → not separable. An XOR-like arrangement (diagonally
+      alternating classes) → not separable. Upper-left vs lower-right groups → often separable with a diagonal line.</p>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 The convex-hull test</div>
+      <p>Imagine wrapping a rubber band around each class — that's its convex hull. If the two classes' convex
+        hulls overlap, no separating line can exist. If the hulls are disjoint, a separating hyperplane is
+        guaranteed to exist.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Four datasets (real GATE).</strong> Four figures contain circles and squares.
+        (i) circles sit above the squares. (ii) a lone circle is surrounded by squares on all sides. (iii) circles
+        and squares occupy opposite corners in an XOR pattern. (iv) squares sit toward the upper-left, circles
+        toward the lower-right. Which datasets are linearly separable?<br><br>
+        A. Dataset (i) &nbsp; B. Dataset (ii) &nbsp; C. Dataset (iii) &nbsp; D. Dataset (iv)</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>(i): a horizontal boundary separates circles above from squares below — separable.</li>
+          <li>(ii): the circle's point lies inside the squares' convex hull — not separable.</li>
+          <li>(iii): the class convex hulls intersect in the XOR pattern — not separable.</li>
+          <li>(iv): a diagonal line separates upper-left from lower-right — separable.</li>
+        </ol>
+        <p><strong>Answer: A, D</strong> — the official GATE 2024 key lists exactly A and D for this MSQ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">35</span> Nearest-centroid classification</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>Each class has a mean — $\mu_{\text{red}}$, $\mu_{\text{green}}$. Assign a new point $x$ to whichever mean
+        it's closer to. Define $f(x)=\|\mu_{\text{red}}-x\|^2-\|\mu_{\text{green}}-x\|^2$; if $f(x)\lt0$, $x$ is
+        closer to red.</p>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 The important GATE expansion trick</div>
+      <p>Expand each squared distance: $\|\mu_r-x\|^2=\|\mu_r\|^2-2\mu_r^Tx+x^Tx$, and similarly for green.
+        Subtracting the two, the $x^Tx$ terms <em>cancel</em>, leaving:</p>
+    </div>
+
+    <div class="formula">$$f(x)=2(\mu_g-\mu_r)^Tx+\|\mu_r\|^2-\|\mu_g\|^2=w^Tx+b$$</div>
+
+    <p>where $w=2(\mu_g-\mu_r)$ and $b=\|\mu_r\|^2-\|\mu_g\|^2$. Although each individual distance is quadratic in
+      $x$, their <em>difference</em> is affine (linear plus a constant) — that cancellation is the whole trick.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Difference of squared distances (real GATE).</strong> A test point is labelled by
+        $f(x)=\|\mu_{\text{red}}-x\|^2-\|\mu_{\text{green}}-x\|^2$, with red assigned when $f(x)\lt0$. Which
+        statements are correct?<br><br>
+        A. $x=0$ is labelled green if $\|\mu_{\text{red}}\|\lt\|\mu_{\text{green}}\|$.<br>
+        B. $f$ is linear in $x$.<br>
+        C. $f(x)=w^Tx+b$, with $w,b$ determined by the class means.<br>
+        D. $f$ is a quadratic polynomial in $x$.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>At $x=0$: $f(0)=\|\mu_r\|^2-\|\mu_g\|^2$. If $\|\mu_r\|\lt\|\mu_g\|$, then $f(0)\lt0$, so the point is labelled <em>red</em> — making A false.</li>
+          <li>The common $x^Tx$ terms cancel between the two expansions, so $f$ is affine (effectively linear), not quadratic — making D false and B true.</li>
+          <li>C follows directly from the expansion above. The official GATE 2025 key confirms B and C.</li>
+        </ol>
+        <p><strong>Answer: B, C.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">36</span> k-Nearest Neighbours</div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>For classification: find the $k$ nearest labelled points and take a vote. For regression: find the $k$
+        nearest points and average their target values. kNN is a <strong>lazy learner</strong> — it does almost no
+        work during training and most of its work at prediction time.</p>
+    </div>
+
+    <div class="formula">$$d(a,b)=\sqrt{\sum_{j=1}^d(a_j-b_j)^2}$$</div>
+
+    <p>When only <em>comparing</em> distances, squared distances may be used directly, since square root is an
+      increasing function: $d_1\lt d_2\iff d_1^2\lt d_2^2$ — no need to actually take the root.</p>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 The procedure, every time</div>
+      <p>Calculate every distance → sort nearest to farthest → select the first $k$ → count class votes.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Minimum odd $k$ (real GATE).</strong> The query diamond is at $(2,1)$. Circles at
+        $(1,1),(1,2)$; squares at $(2,3),(3,2),(3,3)$. Find the smallest odd $k$ for which the diamond is
+        classified as a square.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Distances from $(2,1)$: $(1,1)$ Circle $=1$; $(1,2)$ Circle $=\sqrt2$; $(3,2)$ Square $=\sqrt2$; $(2,3)$ Square $=2$; $(3,3)$ Square $=\sqrt5$.</li>
+          <li>$k=1$: nearest is $(1,1)$, Circle wins 1–0.</li>
+          <li>$k=3$: the three nearest are two Circles and one Square — Circles win 2–1.</li>
+          <li>$k=5$: all five points vote — Squares win 3–2.</li>
+        </ol>
+        <p><strong>Answer: $k=5$.</strong></p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Small $k$</th><th>Large $k$</th></tr></thead>
+        <tbody>
+          <tr><td>Follows local data closely</td><td>Includes more distant points</td></tr>
+          <tr><td>Sensitive to noise</td><td>Smooths the boundary</td></tr>
+          <tr><td>Low bias, high variance</td><td>Higher bias, lower variance</td></tr>
+          <tr><td>Overfitting risk</td><td>Underfitting risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Effects of $k$.</strong> A very large $k$ may include points from other classes. A
+        very small $k$ makes kNN sensitive to noise.<br><br>
+        A. Both false &nbsp; B. First false, second true &nbsp; C. Both true &nbsp; D. First true, second false</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: C.</strong></p></div>
+    </div>
+
+    <p><strong>Weighted kNN</strong> gives closer neighbours more influence: $w_i=\dfrac1{d_i^p}$, commonly with
+      $p=1$ or $p=2$, with weights summed separately per class.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Weighted vote.</strong> Five neighbours: distance 1 (class A), distance 2 (class
+        B), distance 3 (class A), distance 4 (class B), distance 5 (class B). Weights use $w=1/d$. Which class wins?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Class A: $1+\tfrac13=1.333$.</li>
+          <li>Class B: $\tfrac12+\tfrac14+\tfrac15=0.5+0.25+0.2=0.95$.</li>
+        </ol>
+        <p><strong>Answer: Class A</strong> — a class with fewer neighbours can still win if those neighbours are much closer.</p>
+      </div>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Ties, rounding, and the limits of 1-NN</div>
+      <p>Ties can occur from equal votes, equal-distance training points, or rounding making distances look equal.
+        Odd $k$ reduces vote-count ties in binary classification but cannot remove all <em>distance</em> ties.
+        And even with unlimited data, 1-NN is not guaranteed perfect: classes can overlap, labels can be noisy, and
+        the Bayes error may simply be non-zero.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Very large data and 1-NN.</strong> With binary classification, $k=1$, and a very
+        large labelled dataset, will every new point always be classified correctly?<br><br>
+        A. False &nbsp; B. True</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>"Always" would require perfectly separable, noise-free classes — an assumption we can't make in general.</p>
+        <p><strong>Answer: A.</strong></p>
+      </div>
+    </div>
+
+    <div class="callout memory">
+      <div class="callout-label">🔗 Connect the dots</div>
+      <p>Because kNN and k-means (next section) are both distance-based, <strong>feature scaling</strong> matters
+        enormously for both: if age ranges 20–60 but salary ranges 20,000–200,000, salary differences will silently
+        dominate every distance calculation unless features are scaled first.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">37</span> k-Means clustering</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>kNN</th><th>k-means</th></tr></thead>
+        <tbody>
+          <tr><td>Supervised</td><td>Unsupervised</td></tr>
+          <tr><td>Uses labels</td><td>Does not use labels</td></tr>
+          <tr><td>$k=$ neighbours</td><td>$k=$ clusters</td></tr>
+          <tr><td>Predicts a class/value</td><td>Finds groups</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="imagine">
+      <div class="callout-label">🌱 The idea in plain words</div>
+      <p>k-means repeats two steps until nothing changes: an <strong>assignment step</strong> (assign each point to
+        its closest centroid) and an <strong>update step</strong> (move each centroid to the mean of its assigned
+        points). Assign → update → repeat.</p>
+    </div>
+
+    <div class="formula">$$\mu_j=\frac1{|C_j|}\sum_{x\in C_j}x\qquad\text{WCSS}=\sum_{j=1}^k\sum_{x\in C_j}\|x-\mu_j\|^2$$</div>
+
+    <p>WCSS (inertia, within-cluster sum of squares) uses <em>squared</em> distances — never take a square root
+      here. Good clustering means low within-cluster SS and high between-cluster SS at the same time.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Inertia.</strong> Four points: $(1,2),(2,1),(8,9),(9,8)$, clustered as
+        $C_1=\{(1,2),(2,1)\}$, $C_2=\{(8,9),(9,8)\}$. Find the inertia.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>$\mu_1=(1.5,1.5)$. Each point contributes $(0.5)^2+(0.5)^2=0.5$, so cluster 1 totals $1$.</li>
+          <li>$\mu_2=(8.5,8.5)$. Each point again contributes $0.5$, so cluster 2 totals $1$.</li>
+          <li>$\text{WCSS}=1+1=2$.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Better clustering.</strong> A k-means clustering becomes better when:<br><br>
+        A. Within-cluster SS decreases and between-cluster SS increases. &nbsp; B. Both increase.<br>
+        C. Within-cluster SS increases and between-cluster SS decreases. &nbsp; D. None.</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: A.</strong></p></div>
+    </div>
+
+    <div class="callout example">
+      <div class="callout-label">🤔 Why are k-means regions convex?</div>
+      <p>With centroids fixed, the points assigned to one centroid form a Voronoi region, which is convex: for any
+        two points $a,b$ in the region, the whole segment $(1-t)a+tb$ for $0\le t\le1$ also lies in the region —
+        including the midpoint $t=\tfrac12$, at $\tfrac{a+b}2$.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Midpoint in a k-means region (real GATE).</strong> Euclidean k-means with $k=3$ is
+        run on 100 points. Two points $\begin{bmatrix}1\\1\end{bmatrix}$ and $\begin{bmatrix}-1\\1\end{bmatrix}$
+        belong to cluster 3. Which point must also belong to cluster 3?<br><br>
+        A. $\begin{bmatrix}0\\0\end{bmatrix}$ &nbsp; B. $\begin{bmatrix}0\\2\end{bmatrix}$ &nbsp;
+        C. $\begin{bmatrix}2\\0\end{bmatrix}$ &nbsp; D. $\begin{bmatrix}0\\1\end{bmatrix}$</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>Midpoint $=\tfrac12\left(\begin{bmatrix}1\\1\end{bmatrix}+\begin{bmatrix}-1\\1\end{bmatrix}\right)=\tfrac12\begin{bmatrix}0\\2\end{bmatrix}=\begin{bmatrix}0\\1\end{bmatrix}$.
+          A convex region must contain this midpoint.</p>
+        <p><strong>Answer: D</strong> — the official GATE 2024 key marks option D.</p>
+      </div>
+    </div>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Other k-means facts</div>
+      <ul>
+        <li>Sensitive to feature scaling and to initial centroid placement; different starts can give different answers, and it may converge to a local rather than global optimum.</li>
+        <li>Works best for compact, roughly convex clusters; struggles with rings and moon-shaped clusters.</li>
+        <li>Increasing $k$ can never increase the best-achievable WCSS — the elbow method exploits exactly this to help choose $k$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">38</span> Cross-validation</div>
+
+    <p><strong>Training set</strong> — learns model parameters. <strong>Validation set</strong> — chooses
+      hyperparameters and model complexity. <strong>Test set</strong> — used once, at the very end, for final
+      evaluation. Using test data during model selection causes leakage.</p>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 Trick to remember</div>
+      <ul><li>Train teaches. Validation chooses. Test judges.</li></ul>
+    </div>
+
+    <p><strong>Parameters</strong> are learned from training data (regression coefficients, logistic coefficients,
+      k-means centroids). <strong>Hyperparameters</strong> are chosen externally ($k$ in kNN, number of clusters,
+      Ridge $\lambda$, number of folds, learning rate).</p>
+
+    <div class="formula">$$\text{CV score}=\frac1k\sum_{j=1}^ks_j$$</div>
+
+    <p><strong>$k$-fold cross-validation</strong> divides model-selection data into $k$ folds, uses each as
+      validation exactly once, and averages the scores. Advantages: every point is validated once, limited data is
+      used efficiently, and results depend less on any one random split. Disadvantage: it requires repeated model
+      fitting.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Why use $k$-fold CV?</strong> $k$-fold cross-validation is particularly useful when
+        data is scarce and generally gives a more reliable performance estimate than one train-test split, because
+        several subsets are evaluated.<br><br>
+        A. True &nbsp; B. False</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: A.</strong></p></div>
+    </div>
+
+    <div class="formula">$$\text{Number of fits}=g\times k\qquad(g\text{ hyperparameter combinations},\ k\text{ folds})$$</div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · Grid search.</strong> A dataset has 1200 observations. Five-fold CV is used with 12
+        hyperparameter combinations, one model fitted per combination per fold. How many models are trained?</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div>
+        <p>$12\times5=60$. The figure $1200$ is a distractor — it plays no role in this count.</p>
+      </div>
+    </div>
+
+    <p><strong>Leave-One-Out CV (LOOCV)</strong> is the special case $k=n$: each split trains on $n-1$ points and
+      validates on the one left out, giving $n$ splits total.</p>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · LOOCV equivalence.</strong> With $n$ data points, LOOCV is equivalent to $k$-fold CV
+        when:<br><br>
+        A. $k\lt n$ &nbsp; B. $k=n$ &nbsp; C. $k\gt n$ &nbsp; D. None</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution</div><p><strong>Answer: B.</strong></p></div>
+    </div>
+
+    <div class="callout trap">
+      <div class="callout-label">⚠️ Held-out test data doesn't count toward LOOCV</div>
+      <p>If $N$ total observations include $T$ held out for final testing, LOOCV runs only on the remaining
+        $N-T$ model-selection observations — the held-out test points never participate in any split.</p>
+    </div>
+
+    <div class="practice">
+      <p class="pq"><strong>Q · LOOCV after test split (real GATE).</strong> A classifier has 10 classes,
+        512-dimensional inputs, and 1000 observations; the first 100 are held out for final testing. LOOCV is used
+        for model selection. How many validation splits are generated?<br><br>
+        A. 10 &nbsp; B. 512 &nbsp; C. 900 &nbsp; D. 1000</p>
+      <button class="show-ans" aria-expanded="false">Show answer</button>
+      <div class="ans"><div class="sol-label">Solution — step by step</div>
+        <ol class="steps">
+          <li>Model-selection observations: $1000-100=900$.</li>
+          <li>LOOCV creates exactly one split per model-selection observation.</li>
+        </ol>
+        <p><strong>Answer: C</strong> — the number of classes and input dimensions are distractors.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">🔍 Time-series data breaks the shuffling assumption</div>
+      <p>Time-series observations must preserve chronological order: train on the past, validate on the future
+        (e.g. Jan–Mar → predict Apr, then Jan–Apr → predict May). Ordinary shuffled $k$-fold CV is inappropriate
+        here because it can let future observations influence a model that's being evaluated on the past.</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">39</span> Final formula revision sheet</div>
+
+    <p>Everything on this page, compressed onto one shelf. Read top to bottom the morning of the exam.</p>
+
+    <div class="tbl-wrap">
+      <p><strong>Linear regression</strong></p>
+      <p>$\hat y=\beta_0+\beta_1x$ &nbsp;·&nbsp; $\hat y=X\beta$ &nbsp;·&nbsp;
+        with intercept: $\beta_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$, $\beta_0=\bar y-\beta_1\bar x$
+        &nbsp;·&nbsp; without intercept: $w=\dfrac{\sum x_iy_i}{\sum x_i^2}$</p>
+
+      <p><strong>Errors</strong></p>
+      <p>$e_i=y_i-\hat y_i$ &nbsp;·&nbsp; $\text{MAE}=\dfrac1n\sum|e_i|$ &nbsp;·&nbsp; $SSE=\sum e_i^2$ &nbsp;·&nbsp;
+        $\text{MSE}=\dfrac{SSE}n$ &nbsp;·&nbsp; $\text{RMSE}=\sqrt{\text{MSE}}$</p>
+
+      <p><strong>Variation and fit</strong></p>
+      <p>$SST=SSR+SSE$ &nbsp;·&nbsp; $R^2=\dfrac{SSR}{SST}=1-\dfrac{SSE}{SST}$ &nbsp;·&nbsp; $SSE=SST(1-R^2)$</p>
+
+      <p><strong>OLS</strong></p>
+      <p>$X^TX\hat\beta=X^Ty$ &nbsp;·&nbsp; $\hat\beta=(X^TX)^{-1}X^Ty$ &nbsp;·&nbsp; $\hat\beta=X^+y$ (pseudoinverse, when needed)</p>
+
+      <p><strong>Regularization</strong></p>
+      <p>Ridge: $L+\lambda\sum_jw_j^2$ &nbsp;·&nbsp; Lasso: $L+\lambda\sum_j|w_j|$ &nbsp;·&nbsp;
+        Gradient descent: $w_{\text{new}}=w-\eta\nabla J(w)$</p>
+
+      <p><strong>Logistic regression</strong></p>
+      <p>$z=\beta_0+\beta^Tx$ &nbsp;·&nbsp; $p=\dfrac1{1+e^{-z}}$ &nbsp;·&nbsp; $\log\dfrac{p}{1-p}=z$ &nbsp;·&nbsp;
+        $\dfrac{dp}{dz}=p(1-p)$ &nbsp;·&nbsp; $\dfrac{dp}{dx}=\beta_1\,p(1-p)$ &nbsp;·&nbsp; max slope at $p=0.5,z=0$
+        &nbsp;·&nbsp; $L=\prod_ip_i^{y_i}(1-p_i)^{1-y_i}$</p>
+
+      <p><strong>Classification metrics</strong></p>
+      <p>$\text{Accuracy}=\dfrac{TP+TN}N$ &nbsp;·&nbsp; $\text{Precision}=\dfrac{TP}{TP+FP}$ &nbsp;·&nbsp;
+        $\text{Recall}=\dfrac{TP}{TP+FN}$ &nbsp;·&nbsp; $\text{Specificity}=\dfrac{TN}{TN+FP}$ &nbsp;·&nbsp;
+        $\text{FPR}=1-\text{Specificity}$ &nbsp;·&nbsp; $\text{Balanced accuracy}=\dfrac{\text{Sens}+\text{Spec}}2$</p>
+
+      <p><strong>kNN</strong></p>
+      <p>$d(a,b)=\sqrt{\sum_j(a_j-b_j)^2}$ &nbsp;·&nbsp; $w_i=\dfrac1{d_i^p}$</p>
+
+      <p><strong>Nearest-centroid classifier</strong></p>
+      <p>$\|\mu_r-x\|^2-\|\mu_g-x\|^2=2(\mu_g-\mu_r)^Tx+\|\mu_r\|^2-\|\mu_g\|^2$</p>
+
+      <p><strong>k-means</strong></p>
+      <p>$\mu_j=\dfrac1{|C_j|}\sum_{x\in C_j}x$ &nbsp;·&nbsp; $\text{WCSS}=\sum_j\sum_{x\in C_j}\|x-\mu_j\|^2$ &nbsp;·&nbsp;
+        midpoint $=\dfrac{a+b}2$</p>
+
+      <p><strong>Cross-validation</strong></p>
+      <p>Grid-search fits $=$ combinations $\times$ folds &nbsp;·&nbsp; LOOCV splits $=$ number of model-selection observations
+        &nbsp;·&nbsp; LOOCV after holdout $=N_{\text{total}}-N_{\text{test}}$</p>
+    </div>
+  </section>
+
+  <section class="concept-card">
+    <div class="sec-head"><span class="sec-num">40</span> The final fifteen memory rules</div>
+
+    <p>Fifteen one-liners that carry the entire subject. Read them the morning of the exam — each one should
+      instantly replay its section's story in your head. If one doesn't, that section wants ten more minutes of
+      your time.</p>
+
+    <div class="memory-box">
+      <div class="callout-label">🧠 The fifteen rules</div>
+      <ul>
+        <li>Regression predicts numbers; classification predicts classes.</li>
+        <li>$X$ is observations by features.</li>
+        <li>$y=wx$ and $y=b+wx$ use different slope formulas — never mix them up.</li>
+        <li>Residual is $y-\hat y$.</li>
+        <li>$SSE\to MSE\to RMSE$.</li>
+        <li>$R^2=1-SSE/SST$.</li>
+        <li>Perfect collinearity makes coefficients non-unique, not predictions.</li>
+        <li>Ridge is L2; Lasso is L1.</li>
+        <li>Total regularized loss is data loss plus penalty.</li>
+        <li>Logistic regression is linear in the log-odds, not in probability.</li>
+        <li>Sigmoid derivative is $p(1-p)$.</li>
+        <li>Precision looks at predicted positives; recall looks at actual positives.</li>
+        <li>kNN means calculate distances, sort, select and vote.</li>
+        <li>k-means means assign, update centroids, and minimize inertia.</li>
+        <li>LOOCV uses only non-test observations.</li>
+      </ul>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">💛 A last word before you go</div>
+      <p>You've just walked through the entire machine-learning syllabus — not by memorizing, but by understanding
+        <em>why</em> each idea exists. That's the version of knowledge that survives exam pressure. Revisit the
+        questions here until the solutions feel like your own reasoning, then go test yourself on the real papers.
+        You're more ready than you think.</p>
+    </div>
+
+    <div class="practice-cta">
+      <span class="practice-cta-icon" aria-hidden="true">📝</span>
+      <div class="practice-cta-body">
+        <div class="practice-cta-title">Done studying? Test yourself.</div>
+        <div class="practice-cta-sub">Attempt the real GATE questions with the timer running.</div>
+      </div>
+      <a class="btn btn-primary" href="gate-questions.html">GATE questions →</a>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="../assets/js/topics.js?v=20260719"></script>
+  <script src="../assets/js/app.js?v=20260719"></script>
+</body>
+</html>
