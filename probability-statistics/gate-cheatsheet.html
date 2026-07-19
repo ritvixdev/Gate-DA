@@ -91,13 +91,33 @@
     margin:26px 0 6px;padding-bottom:8px;
     border-bottom:1px solid var(--hairline-soft);
   }
-  .qg-list{list-style:none;padding:0;margin:0}
-  .qg-list li{
+  .qg-list{list-style:none;padding:0;margin:0 0 0 4px}
+  .qg-item{
     display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
-    padding:9px 0 9px 14px;margin:0;
+    padding:9px 0 9px 18px;margin:0;
     border-left:2px solid var(--hairline-soft);
-    line-height:1.9;
+    line-height:1.9;position:relative;
   }
+  .qg-item::before{
+    content:"";position:absolute;left:0;top:1.15em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  /* Sub-folder inside a topic */
+  .qg-group{
+    list-style:none;margin:0;padding:8px 0 4px 18px;
+    border-left:2px solid var(--hairline-soft);position:relative;
+  }
+  .qg-group::before{
+    content:"";position:absolute;left:0;top:1.35em;
+    width:11px;border-top:1px solid var(--hairline);
+  }
+  .qg-group-name{
+    display:block;font-family:var(--font-mono);
+    font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--body-strong);margin:2px 0 2px;
+  }
+  .qg-sub{list-style:none;padding:0;margin:4px 0 6px 8px}
+  .qg-sub .qg-item{border-left:2px dashed var(--hairline-soft)}
   .qg-name{min-width:210px;flex:0 0 auto;font-size:13.5px;color:var(--muted);line-height:1.7}
   .qg-math{flex:1;min-width:0;font-size:14.5px;color:var(--body-strong);overflow-x:auto;scrollbar-width:none}
   .qg-math::-webkit-scrollbar{display:none}
@@ -115,7 +135,9 @@
     .tbl-wrap td,.tbl-wrap th{padding:9px 8px}
     details.qg summary{padding:18px 14px}
     .qg-body{padding:4px 14px 22px}
-    .qg-list li{gap:6px;padding-left:10px}
+    .qg-item{gap:6px;padding-left:12px}
+    .qg-group{padding-left:12px}
+    .qg-sub{margin-left:4px}
     .qg-name{min-width:100%;flex-basis:100%}
   }
 </style>
@@ -141,132 +163,265 @@
 
       <div class="qg-folder">📁 1 · Counting</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Permutation (order matters)</span><span class="qg-math">${}^nP_r=\dfrac{n!}{(n-r)!}$</span></li>
-        <li><span class="qg-name">Combination (choose a group)</span><span class="qg-math">$\dbinom{n}{r}=\dfrac{n!}{r!(n-r)!}$</span></li>
-        <li><span class="qg-name">Subsets of an $n$-set</span><span class="qg-math">$2^n$ &nbsp;·&nbsp; non-empty: $2^n-1$</span></li>
-        <li><span class="qg-name">Stars &amp; bars (non-negative)</span><span class="qg-math">$\dbinom{n+k-1}{k-1}$</span></li>
-        <li><span class="qg-name">Stars &amp; bars (positive)</span><span class="qg-math">$\dbinom{n-1}{k-1}$</span></li>
+        <li class="qg-item"><span class="qg-name">Permutation (order matters)</span><span class="qg-math">${}^nP_r=\dfrac{n!}{(n-r)!}$</span></li>
+        <li class="qg-item"><span class="qg-name">Combination (choose a group)</span><span class="qg-math">$\dbinom{n}{r}=\dfrac{n!}{r!(n-r)!}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Subsets</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">All subsets of an $n$-set</span><span class="qg-math">$2^n$</span></li>
+            <li class="qg-item"><span class="qg-name">Non-empty subsets</span><span class="qg-math">$2^n-1$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Stars &amp; bars &nbsp;($x_1+\cdots+x_k=n$)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Non-negative solutions ($x_i\ge0$)</span><span class="qg-math">$\dbinom{n+k-1}{k-1}$</span></li>
+            <li class="qg-item"><span class="qg-name">Positive solutions ($x_i\ge1$)</span><span class="qg-math">$\dbinom{n-1}{k-1}$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 2 · Probability rules</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Equally likely outcomes</span><span class="qg-math">$P(A)=\dfrac{\text{favourable}}{\text{total}}$</span></li>
-        <li><span class="qg-name">Complement</span><span class="qg-math">$P(A^c)=1-P(A)$</span></li>
-        <li><span class="qg-name">"At least one"</span><span class="qg-math">$P(\text{at least one})=1-P(\text{none})$</span></li>
-        <li><span class="qg-name">Addition (two events)</span><span class="qg-math">$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</span></li>
-        <li><span class="qg-name">Addition (three events)</span><span class="qg-math">singles $-$ pairs $+$ triple</span></li>
-        <li><span class="qg-name">Subset identity</span><span class="qg-math">$A\cap B=A \iff A\subseteq B$</span></li>
-        <li><span class="qg-name">Mutually exclusive</span><span class="qg-math">$P(A\cap B)=0$</span></li>
-        <li><span class="qg-name">Independent</span><span class="qg-math">$P(A\cap B)=P(A)\,P(B)$</span></li>
+        <li class="qg-item"><span class="qg-name">Equally likely outcomes</span><span class="qg-math">$P(A)=\dfrac{\text{favourable}}{\text{total}}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Complement rule</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Complement</span><span class="qg-math">$P(A^c)=1-P(A)$</span></li>
+            <li class="qg-item"><span class="qg-name">"At least one"</span><span class="qg-math">$P(\text{at least one})=1-P(\text{none})$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Addition rule</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Two events</span><span class="qg-math">$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</span></li>
+            <li class="qg-item"><span class="qg-name">Three events</span><span class="qg-math">singles $-$ pairs $+$ triple</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Subset identity</span><span class="qg-math">$A\cap B=A \iff A\subseteq B$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Event relationships</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Mutually exclusive (enemies)</span><span class="qg-math">$P(A\cap B)=0$</span></li>
+            <li class="qg-item"><span class="qg-name">Independent (strangers)</span><span class="qg-math">$P(A\cap B)=P(A)\,P(B)$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 3 · Conditional probability &amp; Bayes</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Conditional probability</span><span class="qg-math">$P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$</span></li>
-        <li><span class="qg-name">Multiplication rule</span><span class="qg-math">$P(A\cap B)=P(A\mid B)\,P(B)$</span></li>
-        <li><span class="qg-name">Total probability</span><span class="qg-math">$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$</span></li>
-        <li><span class="qg-name">Bayes' theorem</span><span class="qg-math">$P(B_i\mid A)=\dfrac{P(A\mid B_i)P(B_i)}{\sum_j P(A\mid B_j)P(B_j)}$</span></li>
-        <li><span class="qg-name">Conditional independence</span><span class="qg-math">$P(X,Y\mid Z)=P(X\mid Z)\,P(Y\mid Z)$</span></li>
-        <li><span class="qg-name">Bayesian network factorization</span><span class="qg-math">$P(X_1,\dots,X_n)=\prod_i P(X_i\mid \text{Parents}(X_i))$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Conditional probability</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Definition</span><span class="qg-math">$P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$</span></li>
+            <li class="qg-item"><span class="qg-name">Multiplication rule</span><span class="qg-math">$P(A\cap B)=P(A\mid B)\,P(B)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Total probability</span><span class="qg-math">$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$</span></li>
+        <li class="qg-item"><span class="qg-name">Bayes' theorem</span><span class="qg-math">$P(B_i\mid A)=\dfrac{P(A\mid B_i)P(B_i)}{\sum_j P(A\mid B_j)P(B_j)}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Bayesian networks</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Conditional independence</span><span class="qg-math">$P(X,Y\mid Z)=P(X\mid Z)\,P(Y\mid Z)$</span></li>
+            <li class="qg-item"><span class="qg-name">Network factorization</span><span class="qg-math">$P(X_1,\dots,X_n)=\prod_i P(X_i\mid \text{Parents}(X_i))$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 4 · PMF, PDF &amp; CDF</div>
       <ul class="qg-list">
-        <li><span class="qg-name">PMF validity (discrete)</span><span class="qg-math">$p(x)\ge0$, $\sum_x p(x)=1$</span></li>
-        <li><span class="qg-name">PDF area = probability</span><span class="qg-math">$P(a\le X\le b)=\int_a^b f(x)\,dx$</span></li>
-        <li><span class="qg-name">PDF validity</span><span class="qg-math">$f(x)\ge0$, $\int_{-\infty}^{\infty}f(x)\,dx=1$</span></li>
-        <li><span class="qg-name">CDF definition</span><span class="qg-math">$F(x)=P(X\le x)$</span></li>
-        <li><span class="qg-name">Interval from CDF (continuous)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a)$</span></li>
-        <li><span class="qg-name">Interval from CDF (integer discrete)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a-1)$</span></li>
-        <li><span class="qg-name">Median</span><span class="qg-math">$F(m)=0.5$</span></li>
-        <li><span class="qg-name">Squared inequality</span><span class="qg-math">$X^2\le a^2 \iff -a\le X\le a$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 PMF (discrete)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Validity</span><span class="qg-math">$p(x)\ge0$, $\sum_x p(x)=1$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 PDF (continuous)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Area = probability</span><span class="qg-math">$P(a\le X\le b)=\int_a^b f(x)\,dx$</span></li>
+            <li class="qg-item"><span class="qg-name">Validity</span><span class="qg-math">$f(x)\ge0$, $\int_{-\infty}^{\infty}f(x)\,dx=1$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 CDF (both kinds)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Definition</span><span class="qg-math">$F(x)=P(X\le x)$</span></li>
+            <li class="qg-item"><span class="qg-name">Interval (continuous)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a)$</span></li>
+            <li class="qg-item"><span class="qg-name">Interval (integer discrete)</span><span class="qg-math">$P(a\le X\le b)=F(b)-F(a-1)$</span></li>
+            <li class="qg-item"><span class="qg-name">Median</span><span class="qg-math">$F(m)=0.5$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Squared inequality</span><span class="qg-math">$X^2\le a^2 \iff -a\le X\le a$</span></li>
       </ul>
 
       <div class="qg-folder">📁 5 · Distributions</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Bernoulli</span><span class="qg-math">$E=p$, $\operatorname{Var}=p(1-p)$</span></li>
-        <li><span class="qg-name">Binomial PMF</span><span class="qg-math">$P(X{=}k)=\dbinom nk p^k(1-p)^{n-k}$</span></li>
-        <li><span class="qg-name">Binomial moments</span><span class="qg-math">$E=np$, $\operatorname{Var}=np(1-p)$</span></li>
-        <li><span class="qg-name">Poisson PMF</span><span class="qg-math">$P(X{=}k)=\dfrac{e^{-\lambda}\lambda^k}{k!}$</span></li>
-        <li><span class="qg-name">Poisson moments</span><span class="qg-math">$E=\operatorname{Var}=\lambda$</span></li>
-        <li><span class="qg-name">Uniform PDF</span><span class="qg-math">$f(x)=\dfrac{1}{b-a}$ on $[a,b]$</span></li>
-        <li><span class="qg-name">Uniform moments</span><span class="qg-math">$E=\dfrac{a+b}{2}$, $\operatorname{Var}=\dfrac{(b-a)^2}{12}$</span></li>
-        <li><span class="qg-name">Exponential survival</span><span class="qg-math">$P(X\gt x)=e^{-\lambda x}$</span></li>
-        <li><span class="qg-name">Exponential moments</span><span class="qg-math">$E=\dfrac1\lambda$, $\operatorname{Var}=\dfrac{1}{\lambda^2}$</span></li>
-        <li><span class="qg-name">Memorylessness</span><span class="qg-math">$P(X\gt s{+}t\mid X\gt s)=P(X\gt t)$</span></li>
-        <li><span class="qg-name">Normal standardization</span><span class="qg-math">$Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$</span></li>
-        <li><span class="qg-name">Student's t</span><span class="qg-math">heavier tails; $t_\nu\to N(0,1)$ as $\nu\to\infty$</span></li>
-        <li><span class="qg-name">Chi-square definition</span><span class="qg-math">$Z_1^2+\cdots+Z_k^2\sim\chi^2_k$</span></li>
-        <li><span class="qg-name">Chi-square moments</span><span class="qg-math">$E=k$, $\operatorname{Var}=2k$</span></li>
-        <li><span class="qg-name">Sample deviations</span><span class="qg-math">$\sum(X_i-\bar X)^2\sim\chi^2_{n-1}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Bernoulli</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=p$, $\operatorname{Var}=p(1-p)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Binomial</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">PMF</span><span class="qg-math">$P(X{=}k)=\dbinom nk p^k(1-p)^{n-k}$</span></li>
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=np$, $\operatorname{Var}=np(1-p)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Poisson</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">PMF</span><span class="qg-math">$P(X{=}k)=\dfrac{e^{-\lambda}\lambda^k}{k!}$</span></li>
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=\operatorname{Var}=\lambda$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Uniform</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">PDF</span><span class="qg-math">$f(x)=\dfrac{1}{b-a}$ on $[a,b]$</span></li>
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=\dfrac{a+b}{2}$, $\operatorname{Var}=\dfrac{(b-a)^2}{12}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Exponential</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Survival</span><span class="qg-math">$P(X\gt x)=e^{-\lambda x}$</span></li>
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=\dfrac1\lambda$, $\operatorname{Var}=\dfrac{1}{\lambda^2}$</span></li>
+            <li class="qg-item"><span class="qg-name">Memorylessness</span><span class="qg-math">$P(X\gt s{+}t\mid X\gt s)=P(X\gt t)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Normal</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Standardization</span><span class="qg-math">$Z=\dfrac{X-\mu}{\sigma}\sim N(0,1)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Student's t</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Behaviour</span><span class="qg-math">heavier tails; $t_\nu\to N(0,1)$ as $\nu\to\infty$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Chi-square</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Definition</span><span class="qg-math">$Z_1^2+\cdots+Z_k^2\sim\chi^2_k$</span></li>
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E=k$, $\operatorname{Var}=2k$</span></li>
+            <li class="qg-item"><span class="qg-name">Sample deviations</span><span class="qg-math">$\sum(X_i-\bar X)^2\sim\chi^2_{n-1}$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 6 · Expectation &amp; variance</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Expected value</span><span class="qg-math">$E[X]=\sum_x xp(x)$ or $\int xf(x)\,dx$</span></li>
-        <li><span class="qg-name">Function of a variable</span><span class="qg-math">$E[g(X)]=\sum g(x)p(x)$ or $\int g(x)f(x)\,dx$</span></li>
-        <li><span class="qg-name">Linearity</span><span class="qg-math">$E[aX+b]=aE[X]+b$; $E[X{+}Y]=E[X]{+}E[Y]$</span></li>
-        <li><span class="qg-name">Tower property</span><span class="qg-math">$E[E[X\mid Y]]=E[X]$</span></li>
-        <li><span class="qg-name">Total variance</span><span class="qg-math">$\operatorname{Var}(X)=E[\operatorname{Var}(X\mid Y)]+\operatorname{Var}(E[X\mid Y])$</span></li>
-        <li><span class="qg-name">Variance (shortcut)</span><span class="qg-math">$\operatorname{Var}(X)=E[X^2]-(E[X])^2$</span></li>
-        <li><span class="qg-name">Scaling</span><span class="qg-math">$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$</span></li>
-        <li><span class="qg-name">Variance of a sum</span><span class="qg-math">$\operatorname{Var}(X{+}Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$</span></li>
-        <li><span class="qg-name">Pairwise identity</span><span class="qg-math">$\sum_i\sum_j(x_i-x_j)^2=2n\sum_i(x_i-\bar x)^2$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Expectation</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Definition</span><span class="qg-math">$E[X]=\sum_x xp(x)$ or $\int xf(x)\,dx$</span></li>
+            <li class="qg-item"><span class="qg-name">Function of a variable</span><span class="qg-math">$E[g(X)]=\sum g(x)p(x)$ or $\int g(x)f(x)\,dx$</span></li>
+            <li class="qg-item"><span class="qg-name">Linearity (no independence needed)</span><span class="qg-math">$E[aX+b]=aE[X]+b$; $E[X{+}Y]=E[X]{+}E[Y]$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Conditional expectation</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Tower property</span><span class="qg-math">$E[E[X\mid Y]]=E[X]$</span></li>
+            <li class="qg-item"><span class="qg-name">Law of total variance</span><span class="qg-math">$\operatorname{Var}(X)=E[\operatorname{Var}(X\mid Y)]+\operatorname{Var}(E[X\mid Y])$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Variance</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Shortcut</span><span class="qg-math">$\operatorname{Var}(X)=E[X^2]-(E[X])^2$</span></li>
+            <li class="qg-item"><span class="qg-name">Scaling</span><span class="qg-math">$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$</span></li>
+            <li class="qg-item"><span class="qg-name">Sum of two variables</span><span class="qg-math">$\operatorname{Var}(X{+}Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)$</span></li>
+            <li class="qg-item"><span class="qg-name">Pairwise identity</span><span class="qg-math">$\sum_i\sum_j(x_i-x_j)^2=2n\sum_i(x_i-\bar x)^2$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 7 · Joint, covariance &amp; correlation</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Marginal (discrete)</span><span class="qg-math">$P(X{=}x)=\sum_y P(X{=}x,Y{=}y)$</span></li>
-        <li><span class="qg-name">Conditional distribution</span><span class="qg-math">$P(X{=}x\mid Y{=}y)=\dfrac{P(X{=}x,Y{=}y)}{P(Y{=}y)}$</span></li>
-        <li><span class="qg-name">Covariance</span><span class="qg-math">$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$</span></li>
-        <li><span class="qg-name">Pearson correlation</span><span class="qg-math">$\rho=\dfrac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$, range $[-1,1]$</span></li>
-        <li><span class="qg-name">Spearman (no ties)</span><span class="qg-math">$r_s=1-\dfrac{6\sum d_i^2}{n(n^2-1)}$</span></li>
-        <li><span class="qg-name">Covariance matrix</span><span class="qg-math">$\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)$; $d\times d$, symmetric</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Joint distributions</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Marginal (discrete)</span><span class="qg-math">$P(X{=}x)=\sum_y P(X{=}x,Y{=}y)$</span></li>
+            <li class="qg-item"><span class="qg-name">Conditional distribution</span><span class="qg-math">$P(X{=}x\mid Y{=}y)=\dfrac{P(X{=}x,Y{=}y)}{P(Y{=}y)}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Covariance</span><span class="qg-math">$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Correlation</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Pearson (linear)</span><span class="qg-math">$\rho=\dfrac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}$, range $[-1,1]$</span></li>
+            <li class="qg-item"><span class="qg-name">Spearman (ranks, no ties)</span><span class="qg-math">$r_s=1-\dfrac{6\sum d_i^2}{n(n^2-1)}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Covariance matrix</span><span class="qg-math">$\Sigma_{ij}=\operatorname{Cov}(X_i,X_j)$; $d\times d$, symmetric</span></li>
       </ul>
 
       <div class="qg-folder">📁 8 · Descriptive statistics</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Mean update (add value $a$)</span><span class="qg-math">$\bar x_{\text{new}}=\dfrac{n\bar x+a}{n+1}$</span></li>
-        <li><span class="qg-name">Sample variance</span><span class="qg-math">$s^2=\dfrac{1}{n-1}\sum(x_i-\bar x)^2$</span></li>
-        <li><span class="qg-name">z-score normalization</span><span class="qg-math">$z=\dfrac{x-\mu}{\sigma}$</span></li>
-        <li><span class="qg-name">Right skew</span><span class="qg-math">Mode $\lt$ Median $\lt$ Mean</span></li>
-        <li><span class="qg-name">Left skew</span><span class="qg-math">Mean $\lt$ Median $\lt$ Mode</span></li>
+        <li class="qg-item"><span class="qg-name">Mean update (add value $a$)</span><span class="qg-math">$\bar x_{\text{new}}=\dfrac{n\bar x+a}{n+1}$</span></li>
+        <li class="qg-item"><span class="qg-name">Sample variance</span><span class="qg-math">$s^2=\dfrac{1}{n-1}\sum(x_i-\bar x)^2$</span></li>
+        <li class="qg-item"><span class="qg-name">z-score normalization</span><span class="qg-math">$z=\dfrac{x-\mu}{\sigma}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Skewness &nbsp;(mean follows the tail)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Right skew</span><span class="qg-math">Mode $\lt$ Median $\lt$ Mean</span></li>
+            <li class="qg-item"><span class="qg-name">Left skew</span><span class="qg-math">Mean $\lt$ Median $\lt$ Mode</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 9 · Sampling, CLT &amp; confidence intervals</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Sample mean moments</span><span class="qg-math">$E[\bar X]=\mu$, $\operatorname{Var}(\bar X)=\dfrac{\sigma^2}{n}$</span></li>
-        <li><span class="qg-name">Standard error</span><span class="qg-math">$SE(\bar X)=\dfrac{\sigma}{\sqrt n}$</span></li>
-        <li><span class="qg-name">CLT</span><span class="qg-math">$\bar X\approx N\!\left(\mu,\dfrac{\sigma^2}{n}\right)$</span></li>
-        <li><span class="qg-name">Sum standardization</span><span class="qg-math">$Z=\dfrac{S_n-n\mu}{\sigma\sqrt n}$</span></li>
-        <li><span class="qg-name">Sample proportion</span><span class="qg-math">$E[\hat p]=p$, $\operatorname{Var}(\hat p)=\dfrac{p(1-p)}{n}$</span></li>
-        <li><span class="qg-name">CI, $\sigma$ known</span><span class="qg-math">$\bar x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$</span></li>
-        <li><span class="qg-name">CI, $\sigma$ unknown</span><span class="qg-math">$\bar x\pm t_{\alpha/2,n-1}\dfrac{s}{\sqrt n}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Sample mean</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Moments</span><span class="qg-math">$E[\bar X]=\mu$, $\operatorname{Var}(\bar X)=\dfrac{\sigma^2}{n}$</span></li>
+            <li class="qg-item"><span class="qg-name">Standard error</span><span class="qg-math">$SE(\bar X)=\dfrac{\sigma}{\sqrt n}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Central Limit Theorem</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Sample-mean form</span><span class="qg-math">$\bar X\approx N\!\left(\mu,\dfrac{\sigma^2}{n}\right)$</span></li>
+            <li class="qg-item"><span class="qg-name">Sum standardization</span><span class="qg-math">$Z=\dfrac{S_n-n\mu}{\sigma\sqrt n}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Sample proportion</span><span class="qg-math">$E[\hat p]=p$, $\operatorname{Var}(\hat p)=\dfrac{p(1-p)}{n}$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Confidence intervals</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">$\sigma$ known</span><span class="qg-math">$\bar x\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$</span></li>
+            <li class="qg-item"><span class="qg-name">$\sigma$ unknown</span><span class="qg-math">$\bar x\pm t_{\alpha/2,n-1}\dfrac{s}{\sqrt n}$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 10 · Hypothesis tests</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Decision rule</span><span class="qg-math">$p\lt\alpha\Rightarrow$ reject $H_0$</span></li>
-        <li><span class="qg-name">Errors &amp; power</span><span class="qg-math">$P(\text{I})=\alpha$, $P(\text{II})=\beta$, Power $=1-\beta$</span></li>
-        <li><span class="qg-name">One-sample z-test</span><span class="qg-math">$z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$</span></li>
-        <li><span class="qg-name">One-sample t-test</span><span class="qg-math">$t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$, $df=n-1$</span></li>
-        <li><span class="qg-name">Paired t-test</span><span class="qg-math">$t=\dfrac{\bar D-\mu_{D,0}}{s_D/\sqrt n}$</span></li>
-        <li><span class="qg-name">Chi-square statistic</span><span class="qg-math">$\chi^2=\sum\dfrac{(O_i-E_i)^2}{E_i}$</span></li>
-        <li><span class="qg-name">Expected cell count</span><span class="qg-math">$E_{ij}=\dfrac{(\text{row total})(\text{col total})}{\text{grand total}}$</span></li>
-        <li><span class="qg-name">Chi-square df (table)</span><span class="qg-math">$df=(r-1)(c-1)$</span></li>
-        <li><span class="qg-name">F-test</span><span class="qg-math">$F=\dfrac{s_1^2}{s_2^2}$, $df_1=n_1{-}1$, $df_2=n_2{-}1$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Decision framework</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Decision rule</span><span class="qg-math">$p\lt\alpha\Rightarrow$ reject $H_0$</span></li>
+            <li class="qg-item"><span class="qg-name">Errors &amp; power</span><span class="qg-math">$P(\text{I})=\alpha$, $P(\text{II})=\beta$, Power $=1-\beta$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Mean tests</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">z-test ($\sigma$ known)</span><span class="qg-math">$z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}$</span></li>
+            <li class="qg-item"><span class="qg-name">t-test ($\sigma$ unknown)</span><span class="qg-math">$t=\dfrac{\bar x-\mu_0}{s/\sqrt n}$, $df=n-1$</span></li>
+            <li class="qg-item"><span class="qg-name">Paired t-test</span><span class="qg-math">$t=\dfrac{\bar D-\mu_{D,0}}{s_D/\sqrt n}$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Chi-square (categorical counts)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Statistic</span><span class="qg-math">$\chi^2=\sum\dfrac{(O_i-E_i)^2}{E_i}$</span></li>
+            <li class="qg-item"><span class="qg-name">Expected cell count</span><span class="qg-math">$E_{ij}=\dfrac{(\text{row total})(\text{col total})}{\text{grand total}}$</span></li>
+            <li class="qg-item"><span class="qg-name">Degrees of freedom (table)</span><span class="qg-math">$df=(r-1)(c-1)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 F-test (compare variances)</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Statistic</span><span class="qg-math">$F=\dfrac{s_1^2}{s_2^2}$, $df_1=n_1{-}1$, $df_2=n_2{-}1$</span></li>
+          </ul>
+        </li>
       </ul>
 
       <div class="qg-folder">📁 11 · Machine-learning links</div>
       <ul class="qg-list">
-        <li><span class="qg-name">Entropy</span><span class="qg-math">$H(C)=-\sum_i p_i\log_2 p_i$</span></li>
-        <li><span class="qg-name">Weighted child entropy</span><span class="qg-math">$H(C\mid A)=\sum_v\dfrac{|C_v|}{|C|}H(C_v)$</span></li>
-        <li><span class="qg-name">Information gain</span><span class="qg-math">$IG(C,A)=H(C)-H(C\mid A)$</span></li>
-        <li><span class="qg-name">Regression model</span><span class="qg-math">$y_i=\beta_0+\beta_1x_i+\epsilon_i$</span></li>
-        <li><span class="qg-name">OLS slope</span><span class="qg-math">$\hat\beta_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$</span></li>
-        <li><span class="qg-name">OLS intercept</span><span class="qg-math">$\hat\beta_0=\bar y-\hat\beta_1\bar x$</span></li>
-        <li><span class="qg-name">Coefficient of determination</span><span class="qg-math">$R^2=1-\dfrac{SSE}{SST}$; simple LR: $R^2=r^2$</span></li>
-        <li><span class="qg-name">Linear boundary (2-D)</span><span class="qg-math">$w_1x+w_2y+b=0$</span></li>
+        <li class="qg-group"><span class="qg-group-name">📂 Decision trees</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Entropy</span><span class="qg-math">$H(C)=-\sum_i p_i\log_2 p_i$</span></li>
+            <li class="qg-item"><span class="qg-name">Weighted child entropy</span><span class="qg-math">$H(C\mid A)=\sum_v\dfrac{|C_v|}{|C|}H(C_v)$</span></li>
+            <li class="qg-item"><span class="qg-name">Information gain</span><span class="qg-math">$IG(C,A)=H(C)-H(C\mid A)$</span></li>
+          </ul>
+        </li>
+        <li class="qg-group"><span class="qg-group-name">📂 Linear regression</span>
+          <ul class="qg-sub">
+            <li class="qg-item"><span class="qg-name">Model</span><span class="qg-math">$y_i=\beta_0+\beta_1x_i+\epsilon_i$</span></li>
+            <li class="qg-item"><span class="qg-name">OLS slope</span><span class="qg-math">$\hat\beta_1=\dfrac{\sum(x_i-\bar x)(y_i-\bar y)}{\sum(x_i-\bar x)^2}$</span></li>
+            <li class="qg-item"><span class="qg-name">OLS intercept</span><span class="qg-math">$\hat\beta_0=\bar y-\hat\beta_1\bar x$</span></li>
+            <li class="qg-item"><span class="qg-name">Coefficient of determination</span><span class="qg-math">$R^2=1-\dfrac{SSE}{SST}$; simple LR: $R^2=r^2$</span></li>
+          </ul>
+        </li>
+        <li class="qg-item"><span class="qg-name">Linear boundary (2-D)</span><span class="qg-math">$w_1x+w_2y+b=0$</span></li>
       </ul>
 
     </div>
