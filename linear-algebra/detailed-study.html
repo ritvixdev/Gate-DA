@@ -143,10 +143,13 @@
   <section class="concept-card">
     <div class="sec-head"><span class="sec-num">0</span> Read this first — how to use this page</div>
 
-    <p>Linear algebra earns its scary reputation from notation, not from difficulty. Once you can see a matrix as a
-      "machine that transforms vectors," almost every topic below becomes a natural question about that machine:
-      does it destroy any direction? Does it have a special direction it respects? Does it preserve length? This
-      page answers those questions one at a time.</p>
+    <p>Linear algebra earns its scary reputation from notation, not from difficulty.</p>
+
+    <p>Once you can see a matrix as a "machine that transforms vectors," almost every topic below becomes a natural
+      question about that machine: does it destroy any direction? Does it have a special direction it respects?
+      Does it preserve length?</p>
+
+    <p>This page answers those questions one at a time.</p>
 
     <p>Each topic below follows the same gentle rhythm, so your brain always knows what's coming next:</p>
 
@@ -173,32 +176,52 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Don't think of linear algebra as disconnected formulas. Think of it as one story: a <strong>vector</strong>
-        is an arrow or a data point. A <strong>matrix</strong> is a machine that transforms vectors. <strong>Rank</strong>
-        tells you how many independent directions survive through the machine. The <strong>null space</strong> tells
-        you which directions are destroyed. The <strong>determinant</strong> tells you whether the machine collapses
-        space entirely. An <strong>inverse</strong> reverses the machine. An <strong>eigenvector</strong> is a
-        special direction the machine does not turn — only stretches or shrinks. Its <strong>eigenvalue</strong>
-        is exactly that stretch factor. <strong>Orthogonality</strong> means perpendicularity. A
-        <strong>projection</strong> finds a shadow on a line or subspace. <strong>SVD</strong> separates any matrix
-        into rotations and stretches, and <strong>PCA</strong> finds the directions containing the most variation
-        in data.</p>
+      <p>Don't think of linear algebra as disconnected formulas. Think of it as one continuous story, where each
+        term is simply the next chapter:</p>
     </div>
 
-    <p>For a square matrix $A\in\mathbb R^{n\times n}$, memorize this as one connected sentence — it alone solves a
-      huge fraction of GATE linear-algebra questions:</p>
+    <ul class="styled deflist">
+      <li>A <strong>vector</strong> is an arrow or a data point.</li>
+      <li>A <strong>matrix</strong> is a machine that transforms vectors.</li>
+      <li><strong>Rank</strong> tells you how many independent directions survive through the machine.</li>
+      <li>The <strong>null space</strong> tells you which directions are destroyed.</li>
+      <li>The <strong>determinant</strong> tells you whether the machine collapses space entirely.</li>
+      <li>An <strong>inverse</strong> reverses the machine.</li>
+      <li>An <strong>eigenvector</strong> is a special direction the machine does not turn — only stretches or shrinks.</li>
+      <li>Its <strong>eigenvalue</strong> is exactly that stretch factor.</li>
+      <li><strong>Orthogonality</strong> means perpendicularity.</li>
+      <li>A <strong>projection</strong> finds a shadow on a line or subspace.</li>
+      <li><strong>SVD</strong> separates any matrix into rotations and stretches.</li>
+      <li><strong>PCA</strong> finds the directions containing the most variation in data.</li>
+    </ul>
 
-    <div class="formula">$$\det(A)\ne0\iff A^{-1}\text{ exists}\iff\operatorname{rank}(A)=n\iff\text{columns are independent}$$</div>
+    <p>For a square matrix $A\in\mathbb R^{n\times n}$, these next four statements are all saying the exact same
+      thing. Memorize them together, and a huge fraction of GATE linear-algebra questions solve themselves:</p>
+
+    <ul class="styled">
+      <li>$\det(A)\ne0$</li>
+      <li>$A^{-1}$ exists</li>
+      <li>$\operatorname{rank}(A)=n$</li>
+      <li>the columns of $A$ are linearly independent</li>
+    </ul>
 
     <p>which also means:</p>
 
-    <div class="formula">$$Ax=0\text{ has only }x=0\iff0\text{ is not an eigenvalue of }A$$</div>
+    <ul class="styled">
+      <li>$Ax=0$ has only the trivial solution $x=0$</li>
+      <li>$0$ is not an eigenvalue of $A$</li>
+    </ul>
 
-    <p>and the mirror-image chain for the opposite case:</p>
+    <p>And the mirror-image chain for the opposite case — the moment any one of these is true, all of them are:</p>
 
-    <div class="formula">$$\det(A)=0\iff A\text{ is singular}\iff A^{-1}\text{ does not exist}$$</div>
-
-    <div class="formula">$$\operatorname{rank}(A)\lt n\iff\text{columns are dependent}\iff Ax=0\text{ has a non-zero solution}$$</div>
+    <ul class="styled">
+      <li>$\det(A)=0$</li>
+      <li>$A$ is singular</li>
+      <li>$A^{-1}$ does not exist</li>
+      <li>$\operatorname{rank}(A)\lt n$</li>
+      <li>the columns of $A$ are linearly dependent</li>
+      <li>$Ax=0$ has a non-zero solution</li>
+    </ul>
 
     <div class="memory-box">
       <div class="callout-label">🧠 Trick to remember</div>
@@ -214,11 +237,15 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A vector is an ordered list of numbers, $v=\begin{bmatrix}3\\2\end{bmatrix}$. Geometrically, it means
-        "move 3 units horizontally, then 2 units vertically." In machine learning, a vector can represent a data
-        point, a feature vector, model parameters, or a direction in feature space. A vector in $\mathbb R^n$ has
-        $n$ real-number components.</p>
+      <p>A vector is an ordered list of numbers:</p>
     </div>
+
+    <div class="formula">$$v=\begin{bmatrix}3\\2\end{bmatrix}$$</div>
+
+    <p>Geometrically, it means "move $3$ units horizontally, then $2$ units vertically."</p>
+
+    <p>In machine learning, a vector can represent a data point, a feature vector, a set of model parameters, or a
+      direction in feature space. A vector in $\mathbb R^n$ has $n$ real-number components.</p>
 
     <p>Vectors add component by component:</p>
     <div class="formula">$$\begin{bmatrix}1\\2\end{bmatrix}+\begin{bmatrix}3\\4\end{bmatrix}=\begin{bmatrix}4\\6\end{bmatrix}$$</div>
@@ -313,7 +340,9 @@
 
     <div class="formula">$$\operatorname{span}\{v_1,\ldots,v_k\}=\{c_1v_1+\cdots+c_kv_k\}$$</div>
 
-    <p>For example, $[1,0]^T$ and $[0,1]^T$ span all of $\mathbb R^2$, because any $[x,y]^T=x[1,0]^T+y[0,1]^T$.</p>
+    <p>For example, $[1,0]^T$ and $[0,1]^T$ span all of $\mathbb R^2$, because any vector can be built as:</p>
+
+    <div class="formula">$$[x,y]^T=x[1,0]^T+y[0,1]^T$$</div>
   </section>
 
   <section class="concept-card">
@@ -321,10 +350,13 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Vectors are linearly independent when $c_1v_1+\cdots+c_kv_k=0$ forces every coefficient to be zero
-        ($c_1=\cdots=c_k=0$). Plainly: no vector in the set is redundant or buildable from the others. Two non-zero
-        vectors are dependent exactly when one is a scalar multiple of the other.</p>
+      <p>Vectors are linearly independent when this equation forces every coefficient to be zero:</p>
     </div>
+
+    <div class="formula">$$c_1v_1+\cdots+c_kv_k=0\quad\Longrightarrow\quad c_1=\cdots=c_k=0$$</div>
+
+    <p>Plainly: no vector in the set is redundant, or buildable from the others. Two non-zero vectors are
+      dependent exactly when one is a scalar multiple of the other.</p>
 
     <div class="practice">
       <p class="pq"><strong>Q · Rearranging scalar multiples.</strong> Suppose $[a,b]$ is a multiple of $[c,d]$,
@@ -352,10 +384,12 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>A basis must (1) span the whole space, and (2) be linearly independent — the minimum, non-redundant
-        collection capable of reaching every point in a space. The number of vectors in a basis is the
-        <strong>dimension</strong>: $\dim(\mathbb R^2)=2$, $\dim(\mathbb R^3)=3$.</p>
+      <p>A basis must do two things: span the whole space, and be linearly independent. It is the minimum,
+        non-redundant collection capable of reaching every point in a space.</p>
+      <p>The number of vectors in a basis is the <strong>dimension</strong>:</p>
     </div>
+
+    <div class="formula">$$\dim(\mathbb R^2)=2\qquad\dim(\mathbb R^3)=3$$</div>
   </section>
 
   <section class="concept-card">
@@ -377,9 +411,14 @@
         checking needed.</p>
     </div>
 
-    <p>Two patterns to recognize instantly: a span is always a subspace ($S=\operatorname{span}\{v_1,\ldots,v_k\}$);
-      a homogeneous system's solution set is always a subspace ($S=\{x:Ax=0\}$). A shifted equation
-      $S=\{x:Ax=b\}$ with $b\ne0$ usually is <em>not</em> a subspace, because zero doesn't satisfy it.</p>
+    <p>Two patterns to recognize instantly:</p>
+
+    <ul class="styled">
+      <li>A span is always a subspace: $S=\operatorname{span}\{v_1,\ldots,v_k\}$.</li>
+      <li>A homogeneous system's solution set is always a subspace: $S=\{x:Ax=0\}$.</li>
+      <li>A shifted equation $S=\{x:Ax=b\}$ with $b\ne0$ usually is <em>not</em> a subspace, because zero doesn't
+        satisfy it.</li>
+    </ul>
 
     <div class="practice">
       <p class="pq"><strong>Q · Identifying subspaces.</strong> Select all choices that are subspaces of
@@ -414,9 +453,12 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>An affine combination of two vectors has coefficients summing to one: $w=\alpha u+\beta v$,
-        $\alpha+\beta=1$. A convex combination additionally requires $\alpha,\beta\ge0$.</p>
+      <p>An affine combination of two vectors has coefficients summing to one:</p>
     </div>
+
+    <div class="formula">$$w=\alpha u+\beta v\qquad\alpha+\beta=1$$</div>
+
+    <p>A convex combination additionally requires $\alpha,\beta\ge0$.</p>
 
     <div class="memory-box">
       <div class="callout-label">🧠 Memory rule</div>
@@ -504,9 +546,9 @@
 
     <div class="callout example">
       <div class="callout-label">🤔 Why is $x^Tx\le r^2$ a ball?</div>
-      <p>Because $x^Tx=\|x\|^2$, the set $x^Tx\le r^2$ is exactly a solid ball of radius $r$. A two-dimensional
-        subspace of $\mathbb R^3$ is a plane through the origin, and a plane through the centre of a radius-$r$
-        ball cuts out a disk of radius $r$.</p>
+      <p>Because $x^Tx=\|x\|^2$, the condition becomes $\|x\|^2\le r^2$ — exactly a solid ball of radius $r$.</p>
+      <p>A two-dimensional subspace of $\mathbb R^3$ is a plane through the origin, and a plane through the centre
+        of a radius-$r$ ball cuts out a disk of radius $r$.</p>
     </div>
 
     <div class="practice">
@@ -531,10 +573,10 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>An $m\times n$ matrix has $m$ rows and $n$ columns — remember "rows first, columns second." A matrix can
-        be viewed as a table of data, a system of equations, or a <strong>transformation</strong> that maps vectors
-        from $\mathbb R^n$ to $\mathbb R^m$. Its columns are exactly where the standard basis vectors land under
-        that transformation.</p>
+      <p>An $m\times n$ matrix has $m$ rows and $n$ columns — remember "rows first, columns second."</p>
+      <p>A matrix can be viewed as a table of data, a system of equations, or a <strong>transformation</strong> that
+        maps vectors from $\mathbb R^n$ to $\mathbb R^m$. Its columns are exactly where the standard basis vectors
+        land under that transformation.</p>
     </div>
 
     <p>If $A$ is $m\times n$ and $B$ is $n\times p$, then $AB$ is $m\times p$:</p>
@@ -545,8 +587,10 @@
       <ul><li>Inner dimensions must match; outer dimensions give the result's shape.</li></ul>
     </div>
 
-    <p>Matrix multiplication is generally <em>not</em> commutative ($AB\ne BA$), but it <em>is</em> associative:
-      $A(BC)=(AB)C$.</p>
+    <p>Matrix multiplication is generally <em>not</em> commutative:</p>
+    <div class="formula">$$AB\ne BA$$</div>
+    <p>but it <em>is</em> associative:</p>
+    <div class="formula">$$A(BC)=(AB)C$$</div>
   </section>
 
   <section class="concept-card">
@@ -585,7 +629,11 @@
 
     <p>Applying two rotations one after another simply adds their angles:</p>
 
-    <div class="formula">$$R(\alpha)R(\beta)=R(\alpha+\beta)\qquad\text{so}\qquad R(\theta)^k=R(k\theta)$$</div>
+    <div class="formula">$$R(\alpha)R(\beta)=R(\alpha+\beta)$$</div>
+
+    <p>which means a repeated rotation is just as simple:</p>
+
+    <div class="formula">$$R(\theta)^k=R(k\theta)$$</div>
 
     <p>A full rotation returns everything to where it started:</p>
 
@@ -621,10 +669,19 @@
       <p>For a $2\times2$ matrix:</p>
     </div>
 
-    <div class="formula">$$A=\begin{bmatrix}a&b\\c&d\end{bmatrix}\qquad\det(A)=ad-bc$$</div>
+    <div class="formula">$$A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$$</div>
 
-    <p>Geometrically, $|\det(A)|$ is the area/volume scaling factor of the transformation: $\det(A)\gt0$ preserves
-      orientation, $\det(A)\lt0$ reverses it, and $\det(A)=0$ means space collapses — dimensions get crushed.</p>
+    <p>its determinant is:</p>
+
+    <div class="formula">$$\det(A)=ad-bc$$</div>
+
+    <p>Geometrically, $|\det(A)|$ is the area/volume scaling factor of the transformation.</p>
+
+    <ul class="styled">
+      <li>$\det(A)\gt0$ — preserves orientation.</li>
+      <li>$\det(A)\lt0$ — reverses orientation.</li>
+      <li>$\det(A)=0$ — space collapses, dimensions get crushed.</li>
+    </ul>
 
     <p>Important determinant properties:</p>
 
@@ -710,12 +767,22 @@
 
     <div class="imagine">
       <div class="callout-label">🌱 The idea in plain words</div>
-      <p>Rank is the number of independent directions that survive a transformation — you can calculate it as the
-        number of pivots, the number of independent rows, the number of independent columns, or the number of
-        non-zero rows in echelon form. The <strong>null space</strong> is $N(A)=\{x:Ax=0\}$, and
-        <strong>nullity</strong> is its dimension: rank is the dimension of the output, nullity is the dimension of
-        the directions crushed to zero.</p>
+      <p>Rank is the number of independent directions that survive a transformation. You can calculate it as:</p>
+
+      <ul class="styled">
+        <li>the number of pivots;</li>
+        <li>the number of independent rows;</li>
+        <li>the number of independent columns;</li>
+        <li>or the number of non-zero rows in echelon form.</li>
+      </ul>
+
+      <p>The <strong>null space</strong> is:</p>
     </div>
+
+    <div class="formula">$$N(A)=\{x:Ax=0\}$$</div>
+
+    <p><strong>Nullity</strong> is its dimension. In short: rank is the dimension of the output, and nullity is the
+      dimension of the directions crushed to zero.</p>
 
     <div class="formula">$$\operatorname{rank}(A)+\operatorname{nullity}(A)=n$$</div>
 
@@ -1020,8 +1087,9 @@
     <div class="callout trap">
       <div class="callout-label">⚠️ Trap</div>
       <p>Zero <em>is</em> allowed as an eigenvalue: if $Ax=0$ for some non-zero $x$, then $x$ is an eigenvector for
-        $\lambda=0$. But the zero vector is <em>never</em> an eigenvector, because $A0=\lambda0$ holds for every
-        $\lambda$ and carries no directional information at all.</p>
+        $\lambda=0$.</p>
+      <p>But the zero vector is <em>never</em> an eigenvector, because $A0=\lambda0$ holds for every $\lambda$ and
+        carries no directional information at all.</p>
     </div>
 
     <div class="practice">
@@ -1406,11 +1474,16 @@
       <p>A square matrix $Q$ is orthogonal when:</p>
     </div>
 
-    <div class="formula">$$Q^TQ=I\qquad\text{so}\qquad Q^{-1}=Q^T$$</div>
+    <div class="formula">$$Q^TQ=I$$</div>
 
-    <p>Orthogonal matrices preserve lengths and angles:</p>
+    <p>which is the same as saying:</p>
 
-    <div class="formula">$$\|Qx\|=\|x\|\qquad(Qu)^T(Qv)=u^Tv$$</div>
+    <div class="formula">$$Q^{-1}=Q^T$$</div>
+
+    <p>Orthogonal matrices preserve both lengths and angles:</p>
+
+    <div class="formula">$$\|Qx\|=\|x\|$$</div>
+    <div class="formula">$$(Qu)^T(Qv)=u^Tv$$</div>
 
     <ul class="styled">
       <li>Their determinant is $\pm1$.</li>
@@ -1521,7 +1594,9 @@
 
     <p>which projects onto the space perpendicular to $\mathbf1$.</p>
 
-    <div class="formula">$$M^T=M\qquad M^2=M\qquad M\mathbf1=0$$</div>
+    <div class="formula">$$M^T=M$$</div>
+    <div class="formula">$$M^2=M$$</div>
+    <div class="formula">$$M\mathbf1=0$$</div>
 
     <p>Its eigenvalues are $0$ once and $1$ exactly $n-1$ times, so $\operatorname{rank}(M)=n-1$ and
       $\operatorname{tr}(M)=n-1$.</p>
@@ -1728,9 +1803,13 @@
 
     <div class="callout memory">
       <div class="callout-label">🔗 Connect the dots</div>
-      <p>PCA is really the whole subject compressed into four steps: centre the data (Section 40's centering
-        matrix), build a symmetric positive-semidefinite matrix (Section 42's Gram-matrix logic), diagonalize it
-        (Section 34), and read off the largest eigenvalue via the Rayleigh quotient (Section 41).</p>
+      <p>PCA is really the whole subject compressed into four steps:</p>
+      <ul class="styled">
+        <li>Centre the data (Section 40's centering matrix).</li>
+        <li>Build a symmetric positive-semidefinite matrix (Section 42's Gram-matrix logic).</li>
+        <li>Diagonalize it (Section 34).</li>
+        <li>Read off the largest eigenvalue via the Rayleigh quotient (Section 41).</li>
+      </ul>
     </div>
   </section>
 
@@ -1848,9 +1927,9 @@
     <div class="callout tip">
       <div class="callout-label">💛 A last word before you go</div>
       <p>You've just walked through the entire linear-algebra syllabus — not by memorizing, but by understanding
-        <em>why</em> each idea exists. That's the version of knowledge that survives exam pressure. Revisit the
-        questions here until the solutions feel like your own reasoning, then go test yourself on the real papers.
-        You're more ready than you think.</p>
+        <em>why</em> each idea exists. That's the version of knowledge that survives exam pressure.</p>
+      <p>Revisit the questions here until the solutions feel like your own reasoning, then go test yourself on the
+        real papers. You're more ready than you think.</p>
     </div>
 
     <div class="practice-cta">
